@@ -4149,6 +4149,292 @@ def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
 
 #/ BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname)
 
+def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname):
+    
+    '''###################
+        prep
+    ###################'''
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+#     lo_BarDatas_Tmp = lo_BarDatas.deepcopy()
+#     ary_Tmp = copy.deepcopy(aryOf_BarDatas)
+
+    lo_BarDatas_Tmp.reverse()
+    
+    lo_UpDown_Symbols = []
+    
+    cntOf_Total = 0
+    cntOf_Matches = 0
+    
+    # paths
+    tlabel = libs.get_TimeLabel_Now()
+    
+    fname_Log = "PatternPercentage_UpUpAboveBB1S__UpOrDown.%s.log" % tlabel
+    
+    dpath_Log = cons_fx.FPath.dpath_LogFile.value
+
+    # counts
+    cntOf_Ups = 0
+    cntOf_Downs = 0
+    cntOf_Zeros = 0
+    
+    cntOf_Ups_Above_BB_1S = 0
+    cntOf_Downs_Above_BB_Main = 0
+    cntOf_Zeros_Above_BB_Main = 0
+    
+    cntOf_UpAboveBB1S_then_NextUp = 0
+    cntOf_UpAboveBB1S_then_NextDowns = 0
+    cntOf_UpAboveBB1S_then_NextZeros = 0
+    
+    cntOf_UpAboveBB1S_then_NextUp_Above_BB_Main = 0
+    cntOf_UpAboveBB1S_then_NextDowns_Above_BB_Main = 0
+    cntOf_UpAboveBB1S_then_NextZeros_Above_BB_Main = 0
+    
+    cntOf_NextUp_Above_BB_Main = 0
+    
+    cntOf_Total = 0
+     
+    '''###################
+        ops
+    ###################'''
+    dic_Account = {
+        
+        "cntOf_Total" : 0,
+        "cntOf_Ups" : 0,
+        "cntOf_Downs" : 0,
+        "cntOf_Zeros" : 0,
+        
+        "cntOf_UpAboveBB1S_then_NextUp" : 0,
+        "cntOf_UpAboveBB1S_then_NextDowns" : 0,
+        "cntOf_UpAboveBB1S_then_NextZeros" : 0,
+        
+        }
+    
+   
+    '''###################
+        for-loop
+    ###################'''
+    for i in range(0, lenOf_BarDatas - 2):
+    
+        '''###################
+            step : 1
+                count total
+        ###################'''
+        cntOf_Total += 1
+        
+        '''###################
+            step : 2
+                bar data instances
+        ###################'''
+        e0 = lo_BarDatas[i]
+        e1 = lo_BarDatas[i + 1]
+        e2 = lo_BarDatas[i + 2]
+        
+        '''###################
+            step : 3
+                diffs
+        ###################'''
+        d0 = e0.price_Close - e0.price_Open
+        d1 = e1.price_Close - e1.price_Open
+        
+        '''###################
+            j1 : d0 > 0 ?
+        ###################'''
+        if d0 > 0 : #if d0 > 0
+            '''###################
+                j1 : d0 > 0 : Y
+            ###################'''
+            '''###################
+                j1 : Y : 1
+            ###################'''
+            # count
+            cntOf_Ups += 1
+            
+            '''###################
+                j2 : e0.C > e0.bb_1S ?
+            ###################'''
+            if e0.price_Close > e0.bb_1S : #if e0.price_Close > e0.bb_1S
+                '''###################
+                    j2 : Y
+                ###################'''
+                '''###################
+                    j2 : Y : 1
+                ###################'''
+                # count
+                cntOf_Ups_Above_BB_1S += 1
+
+                '''###################
+                    j3 : d1 > 0 ?
+                ###################'''
+                if d1 > 0 : #if d1 > 0
+                    '''###################
+                        j3 : d1 > 0 : Y
+                    ###################'''
+                    '''###################
+                        j3 : Y : 1
+                    ###################'''
+                    # count
+                    cntOf_UpAboveBB1S_then_NextUp += 1
+                
+                else : #if d1 > 0
+                    '''###################
+                        j3 : N
+                    ###################'''
+                    '''###################
+                        j3.1 : d1 == 0 ?
+                    ###################'''
+                    if d1 == 0 : #if j1 == 0
+                        '''###################
+                            j3.1 : Y
+                        ###################'''
+                        '''###################
+                            j3.1 : Y : 1
+                        ###################'''
+                        # count
+                        cntOf_UpAboveBB1S_then_NextZeros += 1
+                    
+                    else : #if j1 == 0
+                        '''###################
+                            j3.1 : N
+                        ###################'''
+                        '''###################
+                            j3.1 : N : 1
+                        ###################'''
+                        # count
+                        cntOf_UpAboveBB1S_then_NextDowns += 1
+                    
+                    #/if j1 == 0
+
+                #/if d1 > 0
+            
+            else : #if e0.price_Close > e0.bb_1S
+                '''###################
+                    j2 : N
+                ###################'''
+            
+                pass
+            
+            #/if e0.price_Close > e0.bb_1S
+            
+            
+    
+        elif d0 == 0 : #if d0 > 0
+            '''###################
+                j1.1 : d0 == 0 : Y
+            ###################'''
+            '''###################
+                j1.1 : Y : 1
+            ###################'''
+            # count
+            cntOf_Zeros += 1
+
+        else : #if d0 > 0
+            '''###################
+                j1.1 : d0 == 0 : N
+            ###################'''
+            '''###################
+                j1.1 : N : 1
+            ###################'''
+            # count
+            cntOf_Downs += 1
+            
+        
+        #/if d0 > 0
+        
+    #/for i in range(0, lenOf_BarDatas - 2):
+
+    '''###################
+        report
+    ###################'''
+    '''###################
+        report : file infos
+    ###################'''
+    msg = "source = %s\nlog = %s" \
+            % (
+                fname
+                , fname_Log
+                )
+    
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_Log
+                , fname_Log
+                , 2)
+    
+    '''###################
+        report : stats
+    ###################'''
+    msg = "cntOf_Total = %d\ncntOf_Ups = %d (%.03f)\ncntOf_Downs = %d (%.03f)\ncntOf_Zeros = %d (%.03f)\n" \
+            % (
+                cntOf_Total
+                , cntOf_Ups
+                , (cntOf_Ups * 1.0 / cntOf_Total)
+                , cntOf_Downs
+                , (cntOf_Downs * 1.0 / cntOf_Total)
+                , cntOf_Zeros
+                , (cntOf_Zeros * 1.0 / cntOf_Total)
+                )
+    
+    msg += "cntOf_Ups_Above_BB_1S = %d\nof total = %.03f\nof ups = %.03f" \
+            % (
+                cntOf_Ups_Above_BB_1S
+                
+                , (cntOf_Ups_Above_BB_1S / cntOf_Total)
+                , (cntOf_Ups_Above_BB_1S / cntOf_Ups)
+                )
+    
+    msg += "\ncntOf_UpAboveBB1S_then_NextUp = %d (of total = %.03f, of ups = %.03f, of up-above-BB-1S = %.03f)" \
+            % (
+                cntOf_UpAboveBB1S_then_NextUp
+                , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Total)
+                , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups)
+                , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups_Above_BB_1S)
+                )
+    
+    msg += "\ncntOf_UpAboveBB1S_then_NextDowns = %d (of total = %.03f, of ups = %.03f, of up-above-BB-1S = %.03f)" \
+            % (
+                cntOf_UpAboveBB1S_then_NextDowns
+                , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Total)
+                , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Downs)
+                , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Ups_Above_BB_1S)
+                )
+    
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_Log
+                , fname_Log
+                , 2)
+    
+    print("%s" % \
+            (
+                msg_Log
+            ), file=sys.stderr)
+    
+    '''###################
+        return        
+    ###################'''
+#     return result
+    fpath_Log = cons_fx.FPath.dpath_LogFile.value
+    
+    return 1, fname_Log, fpath_Log
+#     return False
+
+#/ BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
+
 def BUSL_2(lo_BarData):
     
     '''###################

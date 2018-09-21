@@ -197,6 +197,12 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS = \
                     "busl3_res__1_detect_patterns__updowns"
     
+    '''###################
+        utils : busl3 : 2 : research / 2 : up-up above BB.+1S then up or down
+    ###################'''
+    PARAM_BUSL3_CMD_RES__2_PATTERN_PERCENTAGES_UPUP_BB1S_UPDOWN = \
+                    "busl3_res__2_pattern_percentages_upup_bb1s_updown"
+    
     
     
 class Tester(Enum):
@@ -216,6 +222,7 @@ class Tester(Enum):
             
             "1"         # num of up bars and down bars in each of BB areas
             , "2-1"     # up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
+            , "3-1"     # 
             
         ]
     
@@ -237,5 +244,12 @@ class Tester(Enum):
                 , "20180915_125135"
             ],
         
+            [
+                lo_Actions__BUSL__IDs[2]
+                ,"res : pattern percentage"
+                , ParamConstants.PARAM_BUSL3_CMD_RES__2_PATTERN_PERCENTAGES_UPUP_BB1S_UPDOWN.value
+                , "pattern : up-up above BB.+1S then up or down. log file at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log. log file name = PatternPercentage_UpUpAboveBB1S__UpOrDown.XXXX.log"
+                , "20180921_152027"
+            ],
         
         ]
