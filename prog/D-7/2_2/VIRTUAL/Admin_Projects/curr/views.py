@@ -1743,7 +1743,7 @@ def __tester_BuyUps_SellLows__BUSL_3__2Ups(request):
     '''###################
         prep : file path
     ###################'''
-    dpath = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    dpath = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
 #     fname = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.SHRINK-200.csv"
     fname = "44_3.2_5_file-io.USDJPY.Period-M5.Days-26000.Bars-26000.20180721_160222.SHRINK-100.csv"
 
@@ -1835,7 +1835,7 @@ def __tester_BuyUps_SellLows__BUSL_3__3Ups(request):
     '''###################
         get : list of BarDatas
     ###################'''
-    dpath = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    dpath = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
     fname = "44_3.2_5_file-io.USDJPY.Period-M5.Days-26000.Bars-26000.20180721_160222.SHRINK-100.csv"
     
     header_Length   = 2
@@ -2031,7 +2031,8 @@ def __tester_BuyUps_SellLows__BUSL_3__Utils_1_UpsDowns_In_BB_Ranges__V2(\
     '''###################
         op : BUSL_3
     ###################'''
-    libfx.BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname)
+    result, fname_Log = libfx.BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname)
+#     libfx.BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname)
 #     libfx.BUSL_3__Expert__Over_BB_1S(lo_BarDatas, fname)
 #     libfx.BUSL_3__Expert__Over_BB_1S(lo_BarDatas)
     
@@ -2044,7 +2045,8 @@ def __tester_BuyUps_SellLows__BUSL_3__Utils_1_UpsDowns_In_BB_Ranges__V2(\
     '''###################
         return        
     ###################'''
-    msg = "done for : %s" % fpath_Full
+    msg = "done for : %s (log = %s)" % (fpath_Full, fname_Log)
+#     msg = "done for : %s" % fpath_Full
     
     return 1, msg
 #     return render_Page, render_Page_full, dic
@@ -2202,6 +2204,101 @@ def __tester_BuyUps_SellLows__BUSL_3__Res_1__DetectPatterns__UpDownPattern(reque
 
 #/ __tester_BuyUps_SellLows__BUSL_3__Res_1__DetectPatterns__UpDownPattern(request)
 
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> detect patterns --> file created
+###################'''
+def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS(request):
+
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    '''###################
+        params        
+    ###################'''
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+#     fname_CSV_File = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
+#     dpath_CSV_File = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+#     fpath_Full = os.path.join(dpath, fname)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+#         dic['message'] = "CSV NOT EXIST : %s" % fpath_Full
+        
+#         '''###################
+#             pages
+#         ###################'''
+#         render_Page = 'curr/busl_2.html'
+#         render_Page_full = 'curr/busl_2_full.html'
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+    (status, fname_Log, fpath_Log) = \
+            libfx.BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname_CSV_File)
+#     libfx.BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname)
+
+    '''###################
+        return        
+    ###################'''
+#     status = 1
+    
+    msg = "_tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS => done (source = %s / log = %s, dir = %s)" \
+            % (fpath_Full
+               , fname_Log
+               , fpath_Log
+               )
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS(request)
+
 def tester_BuyUps_SellLows__BUSL_3(request):
     
     '''###################
@@ -2314,6 +2411,12 @@ def tester_BuyUps_SellLows__BUSL_3(request):
 # #         dic['message'] = dic['message'] + " (param is '%s')" % param_Cmd
 # #         dic['message'] += " (param is '%s')" % param_Cmd
     
+        '''###################
+            log file, folder
+        ###################'''
+        dic['fname_CSV'] = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
+        dic['dpath_CSV'] = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+
     #/if param_Cmd == cons_fx.ParamConstants.PARAM_BUSL3_CMD_2UPS.value
     
     
@@ -2389,7 +2492,7 @@ def tester_BuyUps_SellLows__BUSL_2(request):
     ######################################'''
 #     dpath = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv"
 #     fname = "44_1.14_file-io.AUDJPY.Period-H1.Days-1900.Bars-45600.20180511_181322.csv"
-    dpath = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    dpath = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
     fname = "44_3.2_file-io.USDJPY.Period-M1.Days-1500.Bars-90000.20180708_165621.SHIRINKED_0707-0706.csv"
 #     fname = "44_3.2_file-io.USDJPY.Period-M1.Days-1500.Bars-90000.20180708_165621.SHIRINKED-361.csv"
 #     fname = "44_3.2_file-io.USDJPY.Period-M1.Days-1500.Bars-90000.20180708_165622.SHRINKED.csv"
@@ -2748,13 +2851,22 @@ def tester_BuyUps_SellLows(request):
     
     pass
 
-def _tester_BuyUps_SellLows__V2__Param_1__NumOfUpDownBars(request):
+def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
+    
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
     
     '''###################
         params        
     ###################'''
-    fname_CSV_File = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
-    dpath_CSV_File = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+    
+#     fname_CSV_File = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
+#     dpath_CSV_File = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
 
     '''###################
         execute        
@@ -2770,9 +2882,27 @@ def _tester_BuyUps_SellLows__V2__Param_1__NumOfUpDownBars(request):
     ###################'''
     return (status, msg)
     
-#/ def _tester_BuyUps_SellLows__V2__Param_1__NumOfUpDownBars(request):
+#/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     
 def tester_BuyUps_SellLows__V2(request):
+
+    '''###################
+        log : main
+    ###################'''
+    msg_Body = "tester_BuyUps_SellLows__V2 starting... ================="
+            
+    msg = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()                        
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg_Body
+            )
+
+    libs.write_Log(
+                msg
+                , cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+                , cons_fx.FPath.fname_LOG_FILE_MAIN.value
+                , 1)
     
     '''###################
         time        
@@ -2816,19 +2946,26 @@ def tester_BuyUps_SellLows__V2(request):
         dispatch
     ###################'''
     if param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[0] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
-#     if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
-        
+        '''###################
+            PARAM_BUSL3_CMD_UTIL__1_UPSDOWNS_IN_BB_RANGES        
+        ###################'''
         # call func
-        (status, msg) = _tester_BuyUps_SellLows__V2__Param_1__NumOfUpDownBars(request)
+        (status, msg) = _tester_BUSL__V2__Param_1__NumOfUpDownBars(request)
         
         dic['message'] += "(num of up bars and down bars in each of BB areas)"
         
         dic['message_2'] += "status = %d / msg = '%s'" % (status, msg)
         
     elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[1] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
-#     elif param == cons_fx.Tester.lo_Actions__BUSL__IDs[1].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
-        
+        '''###################
+            PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS(request)
+
         dic['message'] += "up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log"
+        
+        dic['message_2'] += "status = %d / msg = '%s'" % (status, msg)
         
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     
@@ -2843,6 +2980,25 @@ def tester_BuyUps_SellLows__V2(request):
 
     dic['message_2'] += "(time = %s) (elapsed = %02.3f sec)" % \
                         (libs.get_TimeLabel_Now(), time_Exec_Elapsed)
+
+    
+    '''###################
+        log : main
+    ###################'''
+    msg_Body = "tester_BuyUps_SellLows__V2 ==> done" 
+            
+    msg = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()                        
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg_Body
+            )
+
+    libs.write_Log(
+                msg
+                , cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+                , cons_fx.FPath.fname_LOG_FILE_MAIN.value
+                , 2)
 
     
     '''###################
@@ -4177,5 +4333,3 @@ def exec_Tester_BuyUps_SellLows(request):
 
     
 #     return HttpResponse("Hello Django")
-
-

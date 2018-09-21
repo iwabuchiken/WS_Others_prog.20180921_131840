@@ -3819,7 +3819,7 @@ def _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname):
     '''###################
         return        
     ###################'''
-    return False
+    return False, fname_Log
     
 #/ _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname)
 
@@ -3893,7 +3893,8 @@ def BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname):
     '''###################
         UP-UPs : above +1S
     ###################'''
-    result = _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname)
+    result, fname_Log = _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname)
+#     result = _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname)
 #     result = _BUSL_3__Expert__Above_BB_1S__20180903(lo_BarDatas, fname)
     
     # debug
@@ -3906,7 +3907,7 @@ def BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname):
     '''###################
         return        
     ###################'''
-    return result
+    return result, fname_Log
 #     return False
 
 #/ BUSL_3__Util__1_UpsDowns_In_BB_Ranges(lo_BarDatas, fname)
@@ -4033,6 +4034,11 @@ def _BUSL_3__Res_1__DetectPatterns__UpDownPattern__execute(\
             
 #/ def _BUSL_3__Res_1__DetectPatterns__UpDownPattern__execute(lo_BarDatas, fname):
     
+'''###################
+    @return:         
+        1    ==> detect op --> done
+        fname_Log    ==> newly-created log file
+###################'''
 def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
     
     '''###################
@@ -4055,22 +4061,6 @@ def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
     '''###################
         file
     ###################'''
-#     tlabel = libs.get_TimeLabel_Now()
-#     
-#     fname_Log = "detect_pattern.Updowns.%s.log" % tlabel
-# 
-#     msg = "\n[%s / %s:%d] BUSL_3__Res_1__DetectPatterns__UpDownPattern starting... =========\nfile = %s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , fname
-#             )
-# 
-#     libs.write_Log(
-#                 msg
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , fname_Log
-#                 , 1)
     
     '''###################
         prep : up-down list
@@ -4100,18 +4090,6 @@ def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
         , fname
         ), file=sys.stderr)
     
-#     print("[%s:%d] up down symbols =>" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         
-#         ), file=sys.stderr)
-#     print(lo_UpDown_Symbols[:5])
-#     
-#     for item in lo_BarDatas[:5]:
-#     
-#         print(item.dateTime_Local)
-#         
-#     #/for item in lo_BarDatas[:5]:
-
     '''###################
         op : execute detection
     ###################'''
@@ -4126,41 +4104,12 @@ def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
         
         lo_Models.append([int(x) for x in list("{0:b}".format(i).zfill(5))])
     
-#     lo_Models = [
-#         
-#             [0,0,0,0,0]
-#             , [0,0,0,0,1]
-#             
-#             , [0,0,0,1,0]
-#             , [0,0,0,1,1]
-#             
-#             , [0,0,1,0,0]
-#             , [0,0,1,0,1]
-#                  
-#          ]
-#     lo_Model = [0,0,0,0,0]
-#     lo_Model = [0,0,0,0,1]
-#     lo_Model = lo_UpDown_Symbols[:lenOf_LO_Model]
-    
     # call
     # file
     tlabel = libs.get_TimeLabel_Now()
 
     fname_Log = "detect_pattern.Updowns.%s.log" % tlabel
 
-#     msg = "\n[%s / %s:%d] BUSL_3__Res_1__DetectPatterns__UpDownPattern starting... =========\nfile = %s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , fname
-#             )
-# 
-#     libs.write_Log(
-#                 msg
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , fname_Log
-#                 , 1)
-    
     for lo_Model in lo_Models:
         
         msg = "\n[%s / %s:%d] BUSL_3__Res_1__DetectPatterns__UpDownPattern starting... =========\nfile = %s" % \
@@ -4189,126 +4138,14 @@ def BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname):
         
     #/for model in lo_Models:
 
-#     # call
-#     _BUSL_3__Res_1__DetectPatterns__UpDownPattern__execute(
-#             lo_BarDatas, fname, lo_UpDown_Symbols, lo_Model, fname_Log)
-    
-    
-#     #debug
-#     print("[%s:%d] lo_Model =>" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         
-#         ), file=sys.stderr)
-#     print(lo_Model)
-#     
-#     msg = "[%s / %s:%d] lo_Model : [%s]" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , ",".join([str(x) for x in lo_Model])
-# #             , ",".join(lo_Model)
-#             )
-# 
-#     libs.write_Log(
-#                 msg
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , fname_Log
-#                 , 1)
-#     
-# #     numOf_Max = 10
-#     
-#     for i in range(1, lenOf_BarDatas - lenOf_LO_Model):
-#         
-#         # count
-#         cntOf_Total += 1
-#         
-#         # get : target chunk
-#         lo_Target_UpDowns = lo_UpDown_Symbols[i : i + lenOf_LO_Model]
-#         
-#         # compare
-#         res = (lo_Model == lo_Target_UpDowns)
-#         
-#         # processing
-#         if res == True : #if res == True
-#             
-#             # count
-#             cntOf_Matches += 1
-#             
-#             #debug
-#             bardata = lo_BarDatas_Tmp[i]
-#             
-#             msg_Body = "detected (%d) : (%s)\t(%s)" % \
-#                     (
-#                      i, bardata.dateTime, bardata.dateTime_Local
-#                     )
-#             
-#             msg = "[%s / %s:%d] %s" % \
-#                     (
-#                     libs.get_TimeLabel_Now()                        
-#                     , os.path.basename(libs.thisfile()), libs.linenum()
-#                     , msg_Body
-#                     )
-# #             print(msg, file=sys.stderr)
-#             
-# #             bardata = lo_BarDatas_Tmp[i]
-# #             bardata = lo_BarDatas[i]
-#             
-# #             print(bardata.dateTime, "\t", bardata.dateTime_Local)
-# #             print(bardata.dateTime_Local)
-# 
-#             libs.write_Log(
-#                         msg
-#                         , cons_fx.FPath.dpath_LogFile.value
-#                         , fname_Log
-#                         , 1)
-#             
-#         #/if res == True
-#     
-#     #/for i in range(1, lenOf_BarDatas - lenOf_LO_Model:
-# 
-#     '''###################
-#         log
-#     ###################'''
-#     msg = "[%s / %s:%d] total = %d / matches = %d, %s" % \
-#             (
-#                 libs.get_TimeLabel_Now()
-#                 , os.path.basename(libs.thisfile()), libs.linenum()
-#             , cntOf_Total, cntOf_Matches
-#             , "{:.2%}".format((cntOf_Matches * 1.0 / cntOf_Total))
-#             )
-#     print(msg, file=sys.stderr)
-#     
-# #             bardata = lo_BarDatas_Tmp[i]
-# #             bardata = lo_BarDatas[i]
-#     
-# #             print(bardata.dateTime, "\t", bardata.dateTime_Local)
-# #             print(bardata.dateTime_Local)
-# 
-#     libs.write_Log(
-#                 msg
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , fname_Log
-#                 , 1)
-#             
-            #         msg_Log = "[%s / %s:%d] %s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg)
-#     
-#     libs.write_Log(msg_Log
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , cons_fx.FPath.fname_LogFile.value
-#                 , 1)
-
-    
-    
-    
     '''###################
         return        
     ###################'''
 #     return result
-    return False
+    fpath_Log = cons_fx.FPath.dpath_LogFile.value
+    
+    return 1, fname_Log, fpath_Log
+#     return False
 
 #/ BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname)
 

@@ -1,3 +1,12 @@
+/*
+
+    color names 
+        https://www.w3schools.com/colors/colors_hex.asp
+        https://www.computerhope.com/htmcolor.htm
+        https://html-color-codes.info/color-names/
+
+*/
+
 p.current_Scheme {
 	
 	color  : blue;
@@ -942,3 +951,62 @@ label.lbl_Curr_UpdownPatterns {
 	padding    : 5px;
 	
 }
+
+/********************************
+
+    busl_2.html
+
+********************************/
+/* */
+div#curr_BUSL_2__Message_Area {
+
+	padding    : 10px;
+}
+
+div#curr_BUSL_2__Area_Files_Folders {
+	
+	padding    : 10px;
+}
+
+textarea#curr_BUSL_2__TA__Fname_CSV {
+
+	background : Gold;
+	
+	width      : 50%;
+	
+	margin    : 10px 0px 10px 0px;
+	
+	/* ref http://www.htmq.com/style/padding.shtml */
+	padding    : 5px;
+
+}
+
+textarea#curr_BUSL_2__TA__Dpath_CSV {
+
+	background : LightGreen ;
+	
+	width      : 50%;
+
+    margin    : 10px 0px 0px 0px;
+    
+    padding    : 5px;
+	
+}
+
+
+/********************************
+
+    basics
+
+********************************/
+label.lbl_basic_1 {
+	
+	margin : 10px;
+	/*margin : 5px 5px 5px 5px;*/
+	
+	padding    : 10px;
+	
+	color  : black;
+	
+}
+

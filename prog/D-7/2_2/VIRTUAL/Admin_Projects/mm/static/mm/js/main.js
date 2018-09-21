@@ -400,6 +400,8 @@ function curr_BUSL_3__Action(_param) {
 	/***************************
 		get : param
 	 ***************************/
+	var ta_val_Fname_CSV = $('textarea#curr_BUSL_2__TA__Fname_CSV').val();
+	var ta_val_Dpath_CSV = $('textarea#curr_BUSL_2__TA__Dpath_CSV').val();
 	
 	/***************************
 		ajax : prep
@@ -410,9 +412,14 @@ function curr_BUSL_3__Action(_param) {
 
 	_data = {
 			
-		"param" : _param
+		"param"		: _param
+		, "fname_csv"	: ta_val_Fname_CSV
+		, "dpath_csv"	: ta_val_Dpath_CSV
 			
 	};
+	
+	// time out
+	_timeout = 300000 // 30 sec
 	
 //	command=BUSL_3&busl3_action=util_get_stats__1_upsdowns_in_bb_ranges
 	
@@ -426,7 +433,8 @@ function curr_BUSL_3__Action(_param) {
 	    type: "GET",
 	    data: _data,
 	    
-	    timeout: 10000
+	    timeout: _timeout
+//	    timeout: 10000
 	    
 	}).done(function(data, status, xhr) {
 		

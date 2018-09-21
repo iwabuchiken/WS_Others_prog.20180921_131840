@@ -38,6 +38,15 @@ class BarData(Enum):
 
 class FPath(Enum):
     
+    '''###################
+        log file : main
+    ###################'''
+    fname_LOG_FILE_MAIN = "prog_currency_main.log"
+    dpath_LOG_FILE_MAIN = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+    
+    '''###################
+        
+    ###################'''
     fname_In_CSV = "44_1.14_file-io.EURUSD.Period-H1.Days-1900.Bars-45600.20180511_180935.csv"
     
     dpath_In_CSV = DPATH_ROOT_CURR + "\\data\\csv"
@@ -56,7 +65,8 @@ class FPath(Enum):
     '''###################
         general        
     ###################'''
-    dpath_LogFile = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+    dpath_LogFile = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+#     dpath_LogFile = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
     
     fname_LogFile = "tester_BUSL.log"
     
@@ -88,7 +98,8 @@ class FPath(Enum):
 #     BUSL_3_FNAME_PEAK_LIST = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-08.csv"
 #     BUSL_3_FNAME_PEAK_LIST = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.csv"
 #     BUSL_3_FNAME_PEAK_LIST = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-06.csv"
-    BUSL_3_DPATH_PEAK_LIST = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+#     BUSL_3_DPATH_PEAK_LIST = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    BUSL_3_DPATH_PEAK_LIST = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
     
 class Label_ColNames(Enum):
     
