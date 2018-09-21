@@ -1,0 +1,64 @@
+########################
+#
+#	file type
+#
+########################
+*.pdf
+*.dat
+*.png
+*.wmv
+*.tif
+*.avi
+*.gif
+*.jpg
+*.exe
+*.whl
+
+*.pyc
+
+*.ps
+
+### 2017/05/26 15:36:59
+*.fas
+
+### 2018/02/20 15:16:22
+*.mp4
+
+### 2018/02/26 15:30:43
+*.wav
+
+### 2018/03/21 13:10:55
+*.mid
+
+### 2018/04/08 10:41:43
+*.mp3
+
+### 2018/04/09 14:18:06
+*.xls
+
+### 2018/08/22 14:16:06
+*.iso
+
+### 2018/09/06 11:50:59
+### *.wxm
+
+### 2018/09/19 10:47:47
+*.xcf
+
+########################
+#
+#	directories
+#
+########################
+
+
+### 2018/09/21 13:12:22
+prog/D-7/1_/TGDB/env
+prog/D-7/2_/VIRTUAL/env
+prog/D-7/2_/VIRTUAL/env2
+prog/D-7/2_2/VIRTUAL/env
+prog/D-34/5_/VIRTUAL/env
+
+prog/D-7/2_2/VIRTUAL/Admin_Projects/curr/data/csv_raw
+prog/D-7/2_2/VIRTUAL/Admin_Projects/curr/data/csv
+
