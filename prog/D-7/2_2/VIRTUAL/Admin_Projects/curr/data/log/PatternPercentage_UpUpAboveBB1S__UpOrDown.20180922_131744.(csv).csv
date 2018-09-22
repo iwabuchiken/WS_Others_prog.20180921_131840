@@ -1,0 +1,10 @@
+[20180922_131744 / libfx.py:4535]
+source = 44_3.2_15_file-io.USDJPY.Period-H1.Days-5000.Bars-120000.20180903_134452.2018-06.csv
+log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_131744.log
+csv = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_131744.(csv).csv
+[20180922_131744 / libfx.py:4551]
+id,dateTime_Local,PC
+
+[20180922_131744 / libfx.py:4572]
+3,2018.06.30 04:00,110.793
+

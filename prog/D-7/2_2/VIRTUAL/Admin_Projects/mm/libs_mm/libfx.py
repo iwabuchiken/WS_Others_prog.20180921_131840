@@ -4199,7 +4199,10 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
     cntOf_NextUp_Above_BB_Main = 0
     
     cntOf_Total = 0
-     
+    
+    # index of : UU-U
+    lo_Index_UU_U = []
+    
     '''###################
         ops
     ###################'''
@@ -4220,7 +4223,9 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
     '''###################
         for-loop
     ###################'''
-    for i in range(0, lenOf_BarDatas - 2):
+    for i in range(3, lenOf_BarDatas - 3):
+#     for i in range(0, lenOf_BarDatas - 3):
+#     for i in range(0, lenOf_BarDatas - 2):
     
         '''###################
             step : 1
@@ -4232,9 +4237,9 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
             step : 2
                 bar data instances
         ###################'''
-        e0 = lo_BarDatas[i]
-        e1 = lo_BarDatas[i + 1]
-        e2 = lo_BarDatas[i + 2]
+        e0 = lo_BarDatas_Tmp[i]
+        e1 = lo_BarDatas_Tmp[i + 1]
+        e2 = lo_BarDatas_Tmp[i + 2]
         
         '''###################
             step : 3
@@ -4296,6 +4301,12 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                         # count
                         cntOf_UU_AbBB1S_th_U += 1
                     
+                        '''###################
+                            j4.1 : Y : 1
+                        ###################'''
+                        # append index
+                        lo_Index_UU_U.append(i)
+                        
                     else : #if d2 > 0
                         '''###################
                             j4 : N
@@ -4507,6 +4518,122 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
             (
                 msg_Log
             ), file=sys.stderr)
+    
+    '''###################
+        report : csv data
+    ###################'''
+    fname_Result_CSV = "PatternPercentage_UpUpAboveBB1S__UpOrDown.%s.(csv).csv" % tlabel
+    
+    msg = "\t\t\tsource = %s\n\t\t\tlog = %s\n\t\t\tcsv = %s" \
+            % (
+                fname
+                , fname_Log
+                , fname_Result_CSV
+                )
+    
+#     msg_Log = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+    
+    libs.write_Log(
+                msg
+#                 msg_Log
+                , dpath_Log
+                , fname_Result_CSV
+#                 , fname_Log
+                , 1)
+    
+    # header -----------
+#     msg = "id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2"
+#     msg = "id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2,rsi.-1,rsi.-2,rsi.-3"
+    msg = "id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2,rsi.-1,rsi.-2,rsi.-3,mfi.-1,mfi.-2,mfi.-3"
+#     msg = "id,dateTime,dateTime_Local,PC"
+    
+#     msg_Log = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+    
+    libs.write_Log(
+                msg
+#                 msg_Log
+                , dpath_Log
+                , fname_Result_CSV
+#                 , fname_Log
+                , 1)
+#                 , 2)
+    
+    # bar datas -----------
+    csv_Lines = ""
+    
+    for i in lo_Index_UU_U:
+        
+        # msg = "id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2"
+        # msg = "id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2,rsi.-1,rsi.-2,rsi.-3,mfi.-1,mfi.-2,mfi.-3"
+#         csv_Lines += "%d,%s,%s,%.03f\n" \
+#         csv_Lines += "%d,%s,%s,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f\n" \
+        csv_Lines += "%d,%s,%s,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f,%.03f\n" \
+                % (
+                    lo_BarDatas_Tmp[i].no
+                    , lo_BarDatas_Tmp[i].dateTime
+                    , lo_BarDatas_Tmp[i].dateTime_Local
+                    , lo_BarDatas_Tmp[i].price_Open
+                    
+                    # diffs
+                    , lo_BarDatas_Tmp[i].price_Close - lo_BarDatas_Tmp[i].price_Open
+                    , lo_BarDatas_Tmp[i + 1].price_Close - lo_BarDatas_Tmp[i + 1].price_Open
+                    , lo_BarDatas_Tmp[i + 2].price_Close - lo_BarDatas_Tmp[i + 2].price_Open
+                    
+                    # rsis
+                    , lo_BarDatas_Tmp[i - 1].rsi
+                    , lo_BarDatas_Tmp[i - 2].rsi
+                    , lo_BarDatas_Tmp[i - 3].rsi
+                    
+                    # mfis
+                    , lo_BarDatas_Tmp[i - 1].mfi
+                    , lo_BarDatas_Tmp[i - 2].mfi
+                    , lo_BarDatas_Tmp[i - 3].mfi
+                    
+                    )
+
+    #/for i in lo_Index_UU_U:
+
+    libs.write_Log(
+                csv_Lines
+#                 msg
+#                 msg_Log
+                , dpath_Log
+                , fname_Result_CSV
+#                 , fname_Log
+                , 2)
+
+
+#     msg = "%d,%s,%s,%.03f" \
+#             % (
+#                 lo_BarDatas_Tmp[lo_Index_UU_U[0]].no
+#                 , lo_BarDatas_Tmp[lo_Index_UU_U[0]].dateTime
+#                 , lo_BarDatas_Tmp[lo_Index_UU_U[0]].dateTime_Local
+#                 , lo_BarDatas_Tmp[lo_Index_UU_U[0]].price_Open
+#                 )
+#     
+# #     msg_Log = "[%s / %s:%d]\n%s" % \
+# #             (
+# #             libs.get_TimeLabel_Now()
+# #             , os.path.basename(libs.thisfile()), libs.linenum()
+# #             , msg)
+#     
+#     libs.write_Log(
+#                 msg
+# #                 msg_Log
+#                 , dpath_Log
+#                 , fname_Result_CSV
+# #                 , fname_Log
+#                 , 2)
+    
+    
     
     '''###################
         return        

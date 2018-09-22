@@ -1,0 +1,42 @@
+			source = 44_3.2_15_file-io.USDJPY.Period-H1.Days-5000.Bars-120000.20180903_134452.2018-06.csv
+			log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_134059.log
+			csv = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_134059.(csv).csv
+id,dateTime,dateTime_Local,PC
+
+16
+17
+21
+49
+50
+51
+55
+91
+98
+99
+156
+175
+197
+198
+199
+200
+201
+202
+203
+204
+243
+244
+245
+252
+253
+325
+338
+339
+431
+432
+433
+453
+454
+479
+506
+
+

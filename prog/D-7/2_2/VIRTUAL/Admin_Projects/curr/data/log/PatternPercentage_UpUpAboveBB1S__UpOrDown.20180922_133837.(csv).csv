@@ -1,0 +1,5 @@
+			source = 44_3.2_15_file-io.USDJPY.Period-H1.Days-5000.Bars-120000.20180903_134452.2018-06.csv
+			log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_133837.log
+			csv = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_133837.(csv).csv
+id,dateTime,dateTime_Local,PC
+
