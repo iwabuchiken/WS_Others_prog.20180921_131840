@@ -26,15 +26,24 @@ BUSL_2
         >
         
         <!-- ref for attribute https://www.w3schools.com/tags/tag_label.asp -->
-        <label class="lbl_basic_1" for="curr_BUSL_2__TA__Fname_CSV">
+        <label 
+                class="lbl_basic_1" 
+                for="curr_BUSL_2__TA__Fname_CSV"
+            >
                 CSV raw data file</label><br>
                 
-        <textarea id="curr_BUSL_2__TA__Fname_CSV">{{ fname_CSV }}</textarea>
+        <textarea 
+            id="curr_BUSL_2__TA__Fname_CSV"
+            onmouseover="this.select()"
+            >{{ fname_CSV }}</textarea>
         <br>
         
         <label class="lbl_basic_1" for="curr_BUSL_2__TA__Dpath_CSV">
                 CSV raw data dir</label><br>
-        <textarea id="curr_BUSL_2__TA__Dpath_CSV">{{ dpath_CSV }}</textarea>
+        <textarea 
+            id="curr_BUSL_2__TA__Dpath_CSV"
+            onmouseover="this.select()" 
+            >{{ dpath_CSV }}</textarea>
         
         </div>
 

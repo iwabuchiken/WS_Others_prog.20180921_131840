@@ -1,0 +1,4 @@
+[20180922_104906 / libfx.py:4412]
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.2018-05.csv
+log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180922_104906.log
+

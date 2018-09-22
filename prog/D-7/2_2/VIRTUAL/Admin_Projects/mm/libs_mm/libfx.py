@@ -12,7 +12,7 @@ pushd C:\WORKS_2\WS\WS_Others\free\fx\82_\82_6
 cp_log.py
 
 log dir
-f C:\WORKS_2\WS\WS_Others\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+f C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
 
 '''
 
@@ -4192,6 +4192,10 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
     cntOf_UpAboveBB1S_then_NextDowns_Above_BB_Main = 0
     cntOf_UpAboveBB1S_then_NextZeros_Above_BB_Main = 0
     
+    cntOf_UU_AbBB1S_th_U = 0
+    cntOf_UU_AbBB1S_th_Z = 0
+    cntOf_UU_AbBB1S_th_D = 0
+    
     cntOf_NextUp_Above_BB_Main = 0
     
     cntOf_Total = 0
@@ -4238,6 +4242,7 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
         ###################'''
         d0 = e0.price_Close - e0.price_Open
         d1 = e1.price_Close - e1.price_Open
+        d2 = e2.price_Close - e2.price_Open
         
         '''###################
             j1 : d0 > 0 ?
@@ -4278,6 +4283,50 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                     # count
                     cntOf_UpAboveBB1S_then_NextUp += 1
                 
+                    '''###################
+                        j4 : d2 > 0 ?
+                    ###################'''
+                    if d2 > 0 : #if d2 > 0
+                        '''###################
+                            j4 : Y 
+                        ###################'''
+                        '''###################
+                            j4 : Y : 1
+                        ###################'''
+                        # count
+                        cntOf_UU_AbBB1S_th_U += 1
+                    
+                    else : #if d2 > 0
+                        '''###################
+                            j4 : N
+                        ###################'''
+                        '''###################
+                            j4.1 : d2 == 0 ?
+                        ###################'''
+                        if d2 == 0 : #if d2 == 0
+                            '''###################
+                                j4.1 : Y
+                            ###################'''
+                            '''###################
+                                j4.1 : Y : 1
+                            ###################'''
+                            # count
+                            cntOf_UU_AbBB1S_th_Z += 1
+                        
+                        else : #if d2 == 0
+                            '''###################
+                                j4.1 : N
+                            ###################'''
+                            '''###################
+                                j4.1 : N : 1
+                            ###################'''
+                            # count
+                            cntOf_UU_AbBB1S_th_D += 1
+                        
+                        #/if d2 == 0
+                        
+                    #/if d2 > 0
+                    
                 else : #if d1 > 0
                     '''###################
                         j3 : N
@@ -4390,7 +4439,7 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                 , (cntOf_Ups_Above_BB_1S / cntOf_Total)
                 , (cntOf_Ups_Above_BB_1S / cntOf_Ups)
                 )
-    
+    # cntOf_UpAboveBB1S_then_NextUp
     msg += "\ncntOf_UpAboveBB1S_then_NextUp = %d (of total = %.03f, of ups = %.03f, of up-above-BB-1S = %.03f)" \
             % (
                 cntOf_UpAboveBB1S_then_NextUp
@@ -4399,12 +4448,47 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                 , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups_Above_BB_1S)
                 )
     
+    # cntOf_UpAboveBB1S_then_NextDowns
     msg += "\ncntOf_UpAboveBB1S_then_NextDowns = %d (of total = %.03f, of ups = %.03f, of up-above-BB-1S = %.03f)" \
             % (
                 cntOf_UpAboveBB1S_then_NextDowns
                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Total)
                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Downs)
                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Ups_Above_BB_1S)
+                )
+    
+    # cntOf_UU_AbBB1S_th_U
+    msg += "\ncntOf_UU_AbBB1S_th_U = %d (of total = %.03f, of ups = %.03f, of cntOf_UpAboveBB1S_then_NextUp = %.03f)" \
+            % (
+                cntOf_UU_AbBB1S_th_U
+                , (cntOf_UU_AbBB1S_th_U / cntOf_Total)
+                , (cntOf_UU_AbBB1S_th_U / cntOf_Ups)
+                , (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
+#                 , (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
+                )
+    
+    # cntOf_UU_AbBB1S_th_Z
+    msg += "\ncntOf_UU_AbBB1S_th_Z = %d (of total = %.03f, of zeros = %.03f, of cntOf_UpAboveBB1S_then_NextUp = %.03f)" \
+            % (
+                cntOf_UU_AbBB1S_th_Z
+                , (cntOf_UU_AbBB1S_th_Z / cntOf_Total)
+                , -1 if (cntOf_Zeros == 0) else (cntOf_UU_AbBB1S_th_Z / cntOf_Zeros)
+#                 , (cntOf_UU_AbBB1S_th_Z / cntOf_Zeros)
+                , -1 if (cntOf_UpAboveBB1S_then_NextUp == 0) else (cntOf_UU_AbBB1S_th_Z / cntOf_UpAboveBB1S_then_NextUp)
+#                 , -1 if (cntOf_UpAboveBB1S_then_NextZeros == 0) else (cntOf_UU_AbBB1S_th_Z / cntOf_UpAboveBB1S_then_NextZeros)
+#                 , (cntOf_UpAboveBB1S_then_NextZeros == 0) ? -1 : (cntOf_UU_AbBB1S_th_Z / cntOf_UpAboveBB1S_then_NextZeros)
+#                 , (cntOf_UU_AbBB1S_th_Z / cntOf_UpAboveBB1S_then_NextZeros)
+                )
+    
+    # cntOf_UU_AbBB1S_th_D
+    msg += "\ncntOf_UU_AbBB1S_th_D = %d (of total = %.03f, of downs = %.03f, of cntOf_UpAboveBB1S_then_NextUp = %.03f)" \
+            % (
+                cntOf_UU_AbBB1S_th_D
+                , (cntOf_UU_AbBB1S_th_D / cntOf_Total)
+                , (cntOf_UU_AbBB1S_th_D / cntOf_Downs)
+                , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
+#                 , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
+#                 , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextDowns)
                 )
     
     msg_Log = "[%s / %s:%d]\n%s" % \
