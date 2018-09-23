@@ -2384,6 +2384,96 @@ def _tester_BUSL__V2__Param_3__Pattern_Percentage_Upup_Above_BB1S_UpOrDown(reque
     
 #/ _tester_BUSL__V2__Param_3__Pattern_Percentage_Upup_Above_BB1S_UpOrDown(request)
 
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> slice bardatas --> file created
+###################'''
+def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request):
+
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    '''###################
+        params        
+    ###################'''
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+# #     (status, fname_Log, fpath_Log) = \
+    (status, lo_Fname_Log, fpath_Log) = \
+            libfx.BUSL_3__Util_1__Slice_BarDatas_By_Week(\
+                        lo_BarDatas, fname_CSV_File)
+
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    
+    msg = "OK"
+    
+#     msg = "_tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week => done (source = %s / log[0] = %s (%d files), dir = %s)" \
+#             % (fpath_Full
+#                , lo_Fname_Log[0]
+#                , len(lo_Fname_Log)
+# #                , fname_Log
+#                , fpath_Log
+#                )
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
+
 def tester_BuyUps_SellLows__BUSL_3(request):
     
     '''###################
@@ -3062,6 +3152,15 @@ def tester_BuyUps_SellLows__V2(request):
         dic['message'] += "pattern : up-up above BB.+1S then up or down"
         
 #         dic['message_2'] += "status = %d / msg = '%s'" % (status, msg)
+        
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[3] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+        '''###################
+            PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
+
+        dic['message'] += "util : slice lo_BarDatas by week"
         
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     

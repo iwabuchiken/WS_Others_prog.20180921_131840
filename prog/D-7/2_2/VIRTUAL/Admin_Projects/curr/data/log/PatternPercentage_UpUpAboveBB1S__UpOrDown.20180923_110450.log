@@ -1,0 +1,18 @@
+[20180923_110450 / libfx.py:4423]
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.csv
+log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180923_110450.log
+
+[20180923_110450 / libfx.py:4508]
+cntOf_Total = 515
+cntOf_Ups = 253 (0.491)
+cntOf_Downs = 262 (0.509)
+cntOf_Zeros = 0 (0.000)
+cntOf_Ups_Above_BB_1S = 109
+of total = 0.212
+of ups = 0.431
+cntOf_UpAboveBB1S_then_NextUp = 43 (of total = 0.083, of ups = 0.170, of up-above-BB-1S = 0.394)
+cntOf_UpAboveBB1S_then_NextDowns = 65 (of total = 0.126, of ups = 0.248, of up-above-BB-1S = 0.596)
+cntOf_UU_AbBB1S_th_U = 12 (of total = 0.023, of ups = 0.047, of cntOf_UpAboveBB1S_then_NextUp = 0.279)
+cntOf_UU_AbBB1S_th_Z = 0 (of total = 0.000, of zeros = -1.000, of cntOf_UpAboveBB1S_then_NextUp = 0.000)
+cntOf_UU_AbBB1S_th_D = 31 (of total = 0.060, of downs = 0.118, of cntOf_UpAboveBB1S_then_NextUp = 0.721)
+

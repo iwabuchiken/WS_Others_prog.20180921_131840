@@ -993,6 +993,33 @@ textarea#curr_BUSL_2__TA__Dpath_CSV {
 	
 }
 
+table#tbl_Curr_BUSL_2_Actions__Body {
+    
+    /*border     : 1;*/
+    /*border     : 1px solid black;*/
+    /* ref template for css files https://stackoverflow.com/questions/7900575/how-to-add-css-autocomplete-to-eclipse */
+    /*ref table border http://www.html.am/html-codes/tables/table-border.cfm*/
+    border     : 3px solid blue;
+    
+    margin     : 20px;
+    
+    overflow       :scroll;
+    
+    height         : 50px;
+
+}/*tbl_Curr_BUSL_2_Actions__Body*/
+
+table#tbl_Curr_BUSL_2_Actions__Body tr td {
+    
+    background-color   : #ffffff;
+    
+    text-align     : left;
+    
+    border     : 1px solid #aaaaaa;
+    
+    padding    : 5px;
+    
+}
 
 /********************************
 

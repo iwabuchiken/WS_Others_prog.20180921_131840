@@ -2185,3 +2185,32 @@ function curr_Tester_Tmpl_Commands(_param) {
 
 }//function curr_Tester_Tmpl_BUSL(param) {
 
+function show_CSV_Paths() {
+	
+	// tag
+	var tag = $('div#curr_BUSL_2__Area_Files_Folders');
+	
+	tag.toggle();
+	
+	
+}//show_CSV_Paths()
+
+function hide_CSV_Paths() {
+	
+	// tag
+	var tag = $('div#curr_BUSL_2__Area_Files_Folders');
+	
+	tag.toggle();
+	
+}//show_CSV_Paths()
+
+function show_hide_Tag(tag_name) {
+	
+	// tag
+	var tag = $(tag_name);
+//	var tag = $('div#curr_BUSL_2__Area_Files_Folders');
+	
+	tag.toggle();
+	
+}//show_CSV_Paths()
+

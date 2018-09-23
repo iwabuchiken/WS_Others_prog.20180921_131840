@@ -3,6 +3,7 @@ from enum import Enum
 
 from Admin_Projects.definitions import ROOT_DIR
 from Admin_Projects.definitions import DPATH_ROOT_CURR
+from matplotlib.patches import YAArrow
 
 TypeOf_Data_OpenClose   = "OpenClose"
 
@@ -203,7 +204,11 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_RES__2_PATTERN_PERCENTAGES_UPUP_BB1S_UPDOWN = \
                     "busl3_res__2_pattern_percentages_upup_bb1s_updown"
     
-    
+    '''###################
+        utils : busl3 : utils : 1 / slice lo_BarDatas by week
+    ###################'''
+    PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK = \
+                    "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK"
     
 class Tester(Enum):
     
@@ -220,9 +225,12 @@ class Tester(Enum):
     # http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3&
     lo_Actions__BUSL__IDs = [
             
-            "1"         # num of up bars and down bars in each of BB areas
-            , "2-1"     # up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
-            , "3-1"     # 
+            "1"         # 0 num of up bars and down bars in each of BB areas
+            , "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
+            , "3-1"     # 2
+            
+            , "4-1"     # 3
+            
             
         ]
     
@@ -250,6 +258,14 @@ class Tester(Enum):
                 , ParamConstants.PARAM_BUSL3_CMD_RES__2_PATTERN_PERCENTAGES_UPUP_BB1S_UPDOWN.value
                 , "pattern : up-up above BB.+1S then up or down. log file at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log. log file name = PatternPercentage_UpUpAboveBB1S__UpOrDown.XXXX.log"
                 , "20180921_152027"
+            ],
+            
+            [
+                lo_Actions__BUSL__IDs[3]
+                ,"util : slice lo_BarDatas by week"
+                , ParamConstants.PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK.value
+                , "slice lo_BarDatas by week --> write to files"
+                , "20180923_102542"
             ],
         
         ]
