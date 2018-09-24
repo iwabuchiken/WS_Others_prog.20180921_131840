@@ -4648,7 +4648,172 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
 
 #/ BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
 
-def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+def _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
+                 fname_CSV_File, dpath_Log, lo_Final, lo_CSVs):
+                                                         
+    #debug
+    print("[%s:%d] csv headers" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    
+                    ), file=sys.stderr)
+    print(lo_CSVs[:2])
+    print()
+    
+    # file name
+    filename, file_extension = os.path.splitext(fname_CSV_File)
+    
+#     print("[%s:%d] fname_CSV_File = %s" % \
+    print("[%s:%d] fname_CSV_File : trunk = %s, ext = %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , filename, file_extension
+#                     , fname_CSV_File
+                    ), file=sys.stderr)
+    print()
+    
+    '''###################
+        write to files : headers
+    ###################'''
+    tlabel = libs.get_TimeLabel_Now()
+    
+#     fname_Log_CSV_Monday = "%s.(w-%d).%s%s" % (filename, 1, tlabel, file_extension)
+# #     fname_Log_CSV_Monday = "%s.(w-%d)%s" % (filename, 1, file_extension)
+#     
+#     fpath_CSV_Monday = os.path.join(dpath_Log, fname_Log_CSV_Monday)
+    
+#     fout_CSV_Monday = open(fpath_CSV_Monday, "w")
+#     
+#     # header
+#     fout_CSV_Monday.write(";".join(lo_CSVs[0]))
+#     fout_CSV_Monday.write("\n")
+#     fout_CSV_Monday.write(";".join(lo_CSVs[1]))
+#     fout_CSV_Monday.write("\n")
+
+    '''###################
+        write to files : entries
+    ###################'''
+#     print("[%s:%d] len(lo_Final[0]) => %d" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , len(lo_Final[0])
+#                 ), file=sys.stderr)
+#     
+#     print(lo_Final[0])
+    
+#     idx = 1
+    
+    idxOf_LO_BarDatas = 1
+    
+    for lo_BarDatas in lo_Final:
+#     for lo_BarDatas in lo_Final[0]:
+        
+        fname_Log_CSV_Monday = "%s.(w-%d).%s%s" \
+                % (filename, idxOf_LO_BarDatas, tlabel, file_extension)
+    #     fname_Log_CSV_Monday = "%s.(w-%d)%s" % (filename, 1, file_extension)
+        
+        fpath_CSV_Monday = os.path.join(dpath_Log, fname_Log_CSV_Monday)
+
+        fout_CSV_Monday = open(fpath_CSV_Monday, "w")
+        
+        # header
+        fout_CSV_Monday.write(";".join(lo_CSVs[0]))
+        fout_CSV_Monday.write("\n")
+        fout_CSV_Monday.write(";".join(lo_CSVs[1]))
+        fout_CSV_Monday.write("\n")
+
+        
+        # serial number
+        idx = 1
+        
+        # for loop
+        for item in lo_BarDatas:
+             
+            line = [
+                 
+                    str(item.no)
+                    , str(item.price_Open)
+                    , str(item.price_High)
+                    , str(item.price_Low)
+                    , str(item.price_Close)
+                    
+                    , str(item.rsi)
+                    , str(item.mfi)
+                    
+                    , str(item.bb_1S)
+                    , str(item.bb_2S)
+                    , str(item.bb_Main)
+                    , str(item.bb_M1S)
+                    , str(item.bb_M2S)
+                    
+                    , str(item.diff_OC)
+                    , str(item.diff_HL)
+                    
+                    , str(item.dateTime)
+                    , str(item.dateTime_Local)
+                    
+                    , str(idx)
+                 
+                 ]
+             
+            fout_CSV_Monday.write(";".join(line))
+            fout_CSV_Monday.write("\n")
+            
+            # increment
+            idx += 1
+             
+        #/for item in lo_Final[0]:
+        
+        # close
+        fout_CSV_Monday.close()
+        
+        # index --> increment
+        idxOf_LO_BarDatas += 1
+    
+#     for item in lo_Final[0]:
+#          
+#         line = [
+#              
+#                 str(item.no)
+#                 , str(item.price_Open)
+#                 , str(item.price_High)
+#                 , str(item.price_Low)
+#                 , str(item.price_Close)
+#                 
+#                 , str(item.rsi)
+#                 , str(item.mfi)
+#                 
+#                 , str(item.bb_1S)
+#                 , str(item.bb_2S)
+#                 , str(item.bb_Main)
+#                 , str(item.bb_M1S)
+#                 , str(item.bb_M2S)
+#                 
+#                 , str(item.diff_OC)
+#                 , str(item.diff_HL)
+#                 
+#                 , str(item.dateTime)
+#                 , str(item.dateTime_Local)
+#                 
+#                 , str(idx)
+#              
+#              ]
+#          
+#         fout_CSV_Monday.write(";".join(line))
+#         fout_CSV_Monday.write("\n")
+#         
+#         # increment
+#         idx += 1
+#          
+#     #/for item in lo_Final[0]:
+# 
+#         
+#     
+#     # close
+#     fout_CSV_Monday.close()
+    
+#/ def _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
+                                           
+def BUSL_3__Util_1__Slice_BarDatas_By_Week(\
+           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
     
     '''###################
         prep
@@ -4843,7 +5008,96 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
         step : B1
     ###################'''
     lo_Final.append(lo_Tmp)
+
+    '''###################
+        write to files
+    ###################'''
+    # reverse lo_Final --> to A-Z
+    lo_Final.reverse()
+    
+    for item in lo_Final:
             
+        item.reverse()
+        
+    #/for item in lo_Final:
+    
+    _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
+                 fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+    
+    
+#     #debug
+#     print("[%s:%d] csv headers" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     
+#                     ), file=sys.stderr)
+#     print(lo_CSVs[:2])
+#     print()
+#     
+#     # file name
+#     filename, file_extension = os.path.splitext(fname_CSV_File)
+#     
+# #     print("[%s:%d] fname_CSV_File = %s" % \
+#     print("[%s:%d] fname_CSV_File : trunk = %s, ext = %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , filename, file_extension
+# #                     , fname_CSV_File
+#                     ), file=sys.stderr)
+#     print()
+#     
+#     '''###################
+#         write to files : headers
+#     ###################'''
+#     fname_Log_CSV_Monday = "%s.(w-%d)%s" % (filename, 1, file_extension)
+#     
+#     fpath_CSV_Monday = os.path.join(dpath_Log, fname_Log_CSV_Monday)
+#     
+#     fout_CSV_Monday = open(fpath_CSV_Monday, "w")
+#     
+#     # header
+#     fout_CSV_Monday.write(";".join(lo_CSVs[0]))
+#     fout_CSV_Monday.write("\n")
+#     fout_CSV_Monday.write(";".join(lo_CSVs[1]))
+#     fout_CSV_Monday.write("\n")
+# 
+#     '''###################
+#         write to files : entries
+#     ###################'''
+# #     print("[%s:%d] len(lo_Final[0]) => %d" % \
+# #                 (os.path.basename(libs.thisfile()), libs.linenum()
+# #                 , len(lo_Final[0])
+# #                 ), file=sys.stderr)
+# #     
+# #     print(lo_Final[0])
+#     
+#     for item in lo_Final[0]:
+#          
+#         line = [
+#              
+#                 str(item.no)
+#                 , str(item.price_Open)
+#                 , str(item.price_High)
+#                 , str(item.price_Low)
+#                 , str(item.price_Close)
+#                 
+#                 , str(item.rsi)
+#                 , str(item.mfi)
+#              
+#              ]
+#          
+#         fout_CSV_Monday.write(";".join(line))
+#         fout_CSV_Monday.write("\n")
+#          
+#          
+# #         fout_CSV_Monday.write(";".join(item))
+# #         fout_CSV_Monday.write("\n")
+#         
+#     #/for item in lo_Final[0]:
+# 
+#         
+#     
+#     # close
+#     fout_CSV_Monday.close()
+
     '''###################
         report
     ###################'''
