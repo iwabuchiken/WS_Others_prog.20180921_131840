@@ -1,0 +1,8 @@
+			source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.(w-1).20180924_085823.csv
+			log = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180924_102819.log
+			csv = PatternPercentage_UpUpAboveBB1S__UpOrDown.20180924_102819.(csv).csv
+id,dateTime,dateTime_Local,PC,dif-0,dif-1,dif-2,rsi.-1,rsi.-2,rsi.-3,mfi.-1,mfi.-2,mfi.-3
+593,2018.07.30 15:00,2018.07.30 22:00,129.754,0.129,0.058,0.027,61.141,62.141,62.302,71.150,71.611,77.101
+592,2018.07.30 16:00,2018.07.30 23:00,129.884,0.058,0.027,0.072,65.404,61.141,62.141,75.788,71.150,71.611
+
+

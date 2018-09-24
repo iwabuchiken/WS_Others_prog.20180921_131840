@@ -4243,6 +4243,18 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
         e1 = lo_BarDatas_Tmp[i + 1]
         e2 = lo_BarDatas_Tmp[i + 2]
         
+        #debug
+        if e0.dateTime == "2018.07.25 11:00" : #if e0.dateTime == ""
+                        
+            print("[%s:%d] e0.dateTime => %s / Close = %.03f / bb_1S = %.03f" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , e0.dateTime, e0.price_Close, e0.bb_1S
+                ), file=sys.stderr)
+            
+        #/if e0.dateTime == ""
+                        
+                        
+        
         '''###################
             step : 3
                 diffs
@@ -4458,16 +4470,18 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                 cntOf_UpAboveBB1S_then_NextUp
                 , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Total)
                 , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups)
-                , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups_Above_BB_1S)
+                , -1 if (cntOf_Ups_Above_BB_1S == 0) else (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups_Above_BB_1S)
+#                 , (cntOf_UpAboveBB1S_then_NextUp / cntOf_Ups_Above_BB_1S)
                 )
-    
+
     # cntOf_UpAboveBB1S_then_NextDowns
     msg += "\ncntOf_UpAboveBB1S_then_NextDowns = %d (of total = %.03f, of ups = %.03f, of up-above-BB-1S = %.03f)" \
             % (
                 cntOf_UpAboveBB1S_then_NextDowns
                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Total)
                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Downs)
-                , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Ups_Above_BB_1S)
+                , -1 if (cntOf_Ups_Above_BB_1S == 0) else (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Ups_Above_BB_1S)
+#                 , (cntOf_UpAboveBB1S_then_NextDowns / cntOf_Ups_Above_BB_1S)
                 )
     
     # cntOf_UU_AbBB1S_th_U
@@ -4476,7 +4490,8 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                 cntOf_UU_AbBB1S_th_U
                 , (cntOf_UU_AbBB1S_th_U / cntOf_Total)
                 , (cntOf_UU_AbBB1S_th_U / cntOf_Ups)
-                , (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
+                , -1 if (cntOf_UpAboveBB1S_then_NextUp == 0) else (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
+#                 , (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
 #                 , (cntOf_UU_AbBB1S_th_U / cntOf_UpAboveBB1S_then_NextUp)
                 )
     
@@ -4499,7 +4514,8 @@ def BUSL_3__Res_2__PatternPercentage_UpUpAboveBB1S__UpOrDown(lo_BarDatas, fname)
                 cntOf_UU_AbBB1S_th_D
                 , (cntOf_UU_AbBB1S_th_D / cntOf_Total)
                 , (cntOf_UU_AbBB1S_th_D / cntOf_Downs)
-                , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
+                , -1 if (cntOf_UpAboveBB1S_then_NextUp == 0) else (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
+#                 , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
 #                 , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextUp)
 #                 , (cntOf_UU_AbBB1S_th_D / cntOf_UpAboveBB1S_then_NextDowns)
                 )
@@ -4737,8 +4753,10 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
                     , str(item.rsi)
                     , str(item.mfi)
                     
-                    , str(item.bb_1S)
                     , str(item.bb_2S)
+                    , str(item.bb_1S)
+#                     , str(item.bb_1S)
+#                     , str(item.bb_2S)
                     , str(item.bb_Main)
                     , str(item.bb_M1S)
                     , str(item.bb_M2S)
