@@ -5181,6 +5181,383 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Week(\
 
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname)
 
+def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
+           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    '''###################
+        vars : lists
+    ###################'''
+    # lists
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+
+    lo_BarDatas_Tmp.reverse()
+
+    # list
+    lo_Tmp = []     # L3
+    lo_Final = []   # L4
+    
+#     lo_Months = []
+    
+    '''###################
+        vars : counters
+    ###################'''
+    # counters
+    cntOf_Total = 0
+    cntOf_Months = 0
+
+    '''###################
+        vars : others
+    ###################'''
+    m_now = ""
+    
+    '''###################
+        ops
+    ###################'''
+    for item in lo_BarDatas_Tmp:
+        '''###################
+            step : 0
+                count : total
+        ###################'''
+        cntOf_Total += 1
+         
+        '''###################
+            step : 0, 2
+                get : instance
+                
+        ###################'''
+        e0 = item
+        
+        t0 = e0.dateTime_Local
+        
+        '''###################
+            step : 3
+                get : dateTime
+        ###################'''
+        tokens = (((t0.split(" "))[0]).split("."))
+        
+        m = tokens[1]
+        
+        '''###################
+            step : j1
+                m == m_now ?
+        ###################'''
+        if m == m_now : #if m == m_now
+            '''###################
+                step : j1 : Y
+            ###################'''
+            '''###################
+                step : j1 : Y : 1
+            ###################'''
+            lo_Tmp.append(e0)
+        
+        else : #if m == m_now
+            '''###################
+                step : j1 : N
+            ###################'''
+            '''###################
+                step : j1 : N : 1
+                    count
+            ###################'''
+            cntOf_Months += 1
+            
+            '''###################
+                step : j1 : N : 2
+                    count
+            ###################'''
+            m_now = m
+            
+            '''###################
+                step : j2
+                    lo_Tmp --> has entries ?
+            ###################'''
+            if len(lo_Tmp) > 0 : #if len(lo_Tmp) > 0
+                '''###################
+                    step : j2 : Y
+                ###################'''
+                '''###################
+                    step : j2 : Y : 1
+                ###################'''
+                lo_Final.append(lo_Tmp)
+    
+                '''###################
+                    step : j2 : Y : 2
+                        lo_Tmp --> init
+                ###################'''
+                lo_Tmp = []
+                
+                '''###################
+                    step : j2 : Y : 2
+                        append e0
+                ###################'''
+                lo_Tmp.append(e0)
+            
+            else : #if len(lo_Tmp) > 0
+                '''###################
+                    step : j2 : N
+                ###################'''
+                '''###################
+                    step : j2 : N : 1
+                        append e0
+                ###################'''
+                lo_Tmp.append(e0)
+            
+            #/if len(lo_Tmp) > 0
+        
+        #/if m == m_now
+    
+    #/ for item in lo_BarDatas_Tmp:
+    
+        '''###################
+        step : B1
+    ###################'''
+    lo_Final.append(lo_Tmp)
+
+#         
+#         '''###################
+#             step : 4
+#                 get : tokens
+#         ###################'''
+#         tokens = (((t0.split(" "))[0]).split("."))
+# #         tokens = (((d.split(" "))[0]).split("."))[0]
+# 
+#         tokens_int = [int(x) for x in tokens]
+# 
+#         '''###################
+#             step : 5
+#                 get : weekday
+#         ###################'''        
+#         w0 = datetime.date(tokens_int[0], tokens_int[1], tokens_int[2]).weekday()
+# #         wd = datetime.date(year, month, day).weekday()
+#         
+# #         print("[%s:%d] tokens =>" % \
+# #             (os.path.basename(libs.thisfile()), libs.linenum()
+# #             
+# #             ), file=sys.stderr)
+# #         
+# #         print(tokens)
+# #         
+# #         print("weekday => %d" % w0)
+# 
+#         '''###################
+#             step : j1
+#                 monday ?
+#         ###################'''
+#         if w0 == 0 : #if w0 == 0
+#             '''###################
+#                 step : j1 : Y
+#             ###################'''
+#             '''###################
+#                 step : j2
+#                     flag --> up ?
+#             ###################'''
+#             if flag_Mon == True : #if flag_Mon == True
+#                 '''###################
+#                     step : j2 : Y
+#                 ###################'''
+#                 '''###################
+#                     step : j2 : Y : 1
+#                 ###################'''
+#                 lo_Tmp.append(e0)
+#             
+#             else : #if flag_Mon == True
+#                 '''###################
+#                     step : j2 : N
+#                 ###################'''
+#                 '''###################
+#                     step : j2 : N : 1
+#                         flag --> up
+#                 ###################'''
+#                 flag_Mon = True
+#                 
+#                 '''###################
+#                     step : j2 : N : 2
+#                         count
+#                 ###################'''
+#                 cntOf_Months += 1
+#                 
+#                 '''###################
+#                     step : j2 : N : 3
+#                         e0 --> to L4
+#                 ###################'''
+#                 lo_Months.append(e0)
+#                 
+#                 '''###################
+#                     step : j3
+#                         lo_Tmp --> any entries ?
+#                 ###################'''
+#                 if len(lo_Tmp) > 0 : #if len(lo_Tmp) > 0
+#                     '''###################
+#                         step : j3 : Y
+#                     ###################'''
+#                     '''###################
+#                         step : j3 : Y : 1
+#                             lo_Tmp --> to lo_Final
+#                     ###################'''
+#                     lo_Final.append(lo_Tmp)
+#                     
+#                     '''###################
+#                         step : j3 : Y : 2
+#                             lo_Tmp --> init
+#                     ###################'''
+#                     lo_Tmp = []
+#                     
+#                     '''###################
+#                         step : j3 : Y : 3
+#                             e0 --> to lo_Tmp
+#                     ###################'''
+#                     lo_Tmp.append(e0)
+#                     
+#                 else : #if len(lo_Tmp) > 0
+#                     '''###################
+#                         step : j3 : N
+#                     ###################'''
+#                     '''###################
+#                         step : j3 : N : 1
+#                             eo --> to lo_Tmp
+#                     ###################'''
+#                     lo_Tmp.append(e0)
+#                     
+#                 #/if len(lo_Tmp) > 0
+# 
+#             #/if flag_Mon == True
+#             
+#             
+#             
+#         
+#         else : #if w0 == 0
+#             '''###################
+#                 step : j1 : N
+#             ###################'''
+#             '''###################
+#                 step : j1 : N : 1
+#                     flag --> down
+#             ###################'''
+#             flag_Mon = False
+#             
+#             '''###################
+#                 step : j1 : N : 2
+#                     e0 --> to L2
+#             ###################'''
+#             lo_Tmp.append(e0)
+#             
+#             
+#         #/if w0 == 0
+# 
+#         
+# #         #debug
+# #         break
+#         
+#     #/for item in lo_BarDatas_Tmp:
+# 
+#     '''###################
+#         step : B1
+#     ###################'''
+#     lo_Final.append(lo_Tmp)
+# 
+#     '''###################
+#         write to files
+#     ###################'''
+#     # reverse lo_Final --> to A-Z
+#     lo_Final.reverse()
+#     
+#     for item in lo_Final:
+#             
+#         item.reverse()
+#         
+#     #/for item in lo_Final:
+#     
+# #     _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
+# #                  fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+
+    '''###################
+        report
+    ###################'''
+    msg = "cntOf_Total = %d, cntOf_Months = %d" %\
+                            (cntOf_Total, cntOf_Months)
+                     
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+     
+    print("[%s:%d] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , msg
+            ), file=sys.stderr)
+    
+    print()
+#     
+# #     libs.write_Log(msg_Log, True)
+
+    '''###################
+        report : lo_Months
+    ###################'''
+#     msg = "lo_Months ==>"
+#                     
+#     print("[%s:%d] %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg
+#             ), file=sys.stderr)
+    
+#     for item in lo_Months:
+#     
+#         print(item.dateTime_Local)
+# #         print(item)
+#         
+#     #/for item in lo_Mons:
+
+    
+    
+#     print(len(lo_Mons))
+# #     print(lo_Mons)
+#     print()
+
+    '''###################
+        report : lo_Final
+    ###################'''
+    print("[%s:%d] len(lo_Final) => %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , len(lo_Final)
+                ), file=sys.stderr)
+    
+    #debug
+    for item in lo_Final:
+    
+        print(item[0].dateTime_Local)
+        
+    #/for item in lo_Final:
+
+    
+#     print(lo_Final[0][0].dateTime_Local)
+#     print(lo_Final[0][0])
+    
+    
+    '''###################
+        write to file
+    ###################'''
+    #abcde
+        
+    '''###################
+        return        
+    ###################'''
+#     return result
+    fpath_Log = cons_fx.FPath.dpath_LogFile.value
+    lo_Fname_Log = False
+    
+    return 1, lo_Fname_Log, fpath_Log
+#     return False
+
+#/ BUSL_3__Util_1__Slice_BarDatas_By_Month(lo_BarDatas, fname)
+
 def BUSL_2(lo_BarData):
     
     '''###################

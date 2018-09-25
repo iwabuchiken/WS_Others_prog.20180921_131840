@@ -210,6 +210,9 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK = \
                     "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK"
     
+    PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH = \
+                    "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH"
+    
 class Tester(Enum):
     
     lo_Commands = [
@@ -230,6 +233,7 @@ class Tester(Enum):
             , "3-1"     # 2
             
             , "4-1"     # 3
+            , "4-2"     # 4
             
             
         ]
@@ -267,5 +271,13 @@ class Tester(Enum):
                 , "slice lo_BarDatas by week --> write to files"
                 , "20180923_102542"
             ],
-        
+            
+            [
+                lo_Actions__BUSL__IDs[4]
+                ,"util : slice lo_BarDatas by month"
+                , ParamConstants.PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH.value
+                , "slice lo_BarDatas by month --> write to files"
+                , "20180925_082342"
+            ],
+
         ]
