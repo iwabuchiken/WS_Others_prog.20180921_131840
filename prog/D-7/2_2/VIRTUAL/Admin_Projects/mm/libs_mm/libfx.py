@@ -4785,6 +4785,124 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
         # index --> increment
         idxOf_LO_BarDatas += 1
     
+def _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(\
+                 fname_CSV_File, dpath_Log, lo_Final, lo_CSVs):
+                                                         
+    #debug
+    print("[%s:%d] csv headers" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    
+                    ), file=sys.stderr)
+    print(lo_CSVs[:2])
+    print()
+    
+    # file name
+    filename, file_extension = os.path.splitext(fname_CSV_File)
+    
+#     print("[%s:%d] fname_CSV_File = %s" % \
+    print("[%s:%d] fname_CSV_File : trunk = %s, ext = %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , filename, file_extension
+#                     , fname_CSV_File
+                    ), file=sys.stderr)
+    print()
+    
+    '''###################
+        write to files : headers
+    ###################'''
+    tlabel = libs.get_TimeLabel_Now()
+    
+    '''###################
+        write to files : entries
+    ###################'''
+    idxOf_LO_BarDatas = 1
+    
+    for lo_BarDatas in lo_Final:
+#     for lo_BarDatas in lo_Final[0]:
+        
+        '''###################
+            month        
+        ###################'''
+        month = (lo_BarDatas[0].dateTime_Local.split(" ")[0]).split(".")[1]
+        year = (lo_BarDatas[0].dateTime_Local.split(" ")[0]).split(".")[0]
+#         month = (lo_BarDatas[1].dateTime_Local.split(" ")[0]).split(".")[1]
+#         month = (lo_BarDatas[1].dateTime.split(" ")[0]).split(".")[1]
+#         month = (lo_BarDatas[0].dateTime.split(" ")[0]).split(".")[1]
+        
+#         print("[%s:%d] month => %s (dateTime = %s)" % \
+        print("[%s:%d] month (lo_BarDatas[0]) => %s (dateTime_Local = %s)" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , month, lo_BarDatas[0].dateTime_Local
+#                     , month, lo_BarDatas[1].dateTime_Local
+                    ), file=sys.stderr)
+        
+        
+#         fname_Log_CSV_Monday = "%s.(w-%d).%s%s" \
+#         fname_Log_CSV_Monday = "%s.(m-%s).%s%s" \
+        fname_Log_CSV_Monday = "%s.(%s-%s).%s%s" \
+                % (filename, year, month, tlabel, file_extension)
+    #     fname_Log_CSV_Monday = "%s.(w-%d)%s" % (filename, 1, file_extension)
+        
+        fpath_CSV_Monday = os.path.join(dpath_Log, fname_Log_CSV_Monday)
+
+        fout_CSV_Monday = open(fpath_CSV_Monday, "w")
+        
+        # header
+        fout_CSV_Monday.write(";".join(lo_CSVs[0]))
+        fout_CSV_Monday.write("\n")
+        fout_CSV_Monday.write(";".join(lo_CSVs[1]))
+        fout_CSV_Monday.write("\n")
+
+        
+        # serial number
+        idx = 1
+        
+        # for loop
+        for item in lo_BarDatas:
+             
+            line = [
+                 
+                    str(item.no)
+                    , str(item.price_Open)
+                    , str(item.price_High)
+                    , str(item.price_Low)
+                    , str(item.price_Close)
+                    
+                    , str(item.rsi)
+                    , str(item.mfi)
+                    
+                    , str(item.bb_2S)
+                    , str(item.bb_1S)
+#                     , str(item.bb_1S)
+#                     , str(item.bb_2S)
+                    , str(item.bb_Main)
+                    , str(item.bb_M1S)
+                    , str(item.bb_M2S)
+                    
+                    , str(item.diff_OC)
+                    , str(item.diff_HL)
+                    
+                    , str(item.dateTime)
+                    , str(item.dateTime_Local)
+                    
+                    , str(idx)
+                 
+                 ]
+             
+            fout_CSV_Monday.write(";".join(line))
+            fout_CSV_Monday.write("\n")
+            
+            # increment
+            idx += 1
+             
+        #/for item in lo_Final[0]:
+        
+        # close
+        fout_CSV_Monday.close()
+        
+        # index --> increment
+        idxOf_LO_BarDatas += 1
+    
 #     for item in lo_Final[0]:
 #          
 #         line = [
@@ -5182,7 +5300,7 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Week(\
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname)
 
 def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
-           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
+           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile = True):
 # def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
     
     '''###################
@@ -5269,7 +5387,7 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
             cntOf_Months += 1
             
             '''###################
-                step : j1 : N : 2
+                step : j1 : N : 2*
                     count
             ###################'''
             m_now = m
@@ -5319,163 +5437,6 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
         step : B1
     ###################'''
     lo_Final.append(lo_Tmp)
-
-#         
-#         '''###################
-#             step : 4
-#                 get : tokens
-#         ###################'''
-#         tokens = (((t0.split(" "))[0]).split("."))
-# #         tokens = (((d.split(" "))[0]).split("."))[0]
-# 
-#         tokens_int = [int(x) for x in tokens]
-# 
-#         '''###################
-#             step : 5
-#                 get : weekday
-#         ###################'''        
-#         w0 = datetime.date(tokens_int[0], tokens_int[1], tokens_int[2]).weekday()
-# #         wd = datetime.date(year, month, day).weekday()
-#         
-# #         print("[%s:%d] tokens =>" % \
-# #             (os.path.basename(libs.thisfile()), libs.linenum()
-# #             
-# #             ), file=sys.stderr)
-# #         
-# #         print(tokens)
-# #         
-# #         print("weekday => %d" % w0)
-# 
-#         '''###################
-#             step : j1
-#                 monday ?
-#         ###################'''
-#         if w0 == 0 : #if w0 == 0
-#             '''###################
-#                 step : j1 : Y
-#             ###################'''
-#             '''###################
-#                 step : j2
-#                     flag --> up ?
-#             ###################'''
-#             if flag_Mon == True : #if flag_Mon == True
-#                 '''###################
-#                     step : j2 : Y
-#                 ###################'''
-#                 '''###################
-#                     step : j2 : Y : 1
-#                 ###################'''
-#                 lo_Tmp.append(e0)
-#             
-#             else : #if flag_Mon == True
-#                 '''###################
-#                     step : j2 : N
-#                 ###################'''
-#                 '''###################
-#                     step : j2 : N : 1
-#                         flag --> up
-#                 ###################'''
-#                 flag_Mon = True
-#                 
-#                 '''###################
-#                     step : j2 : N : 2
-#                         count
-#                 ###################'''
-#                 cntOf_Months += 1
-#                 
-#                 '''###################
-#                     step : j2 : N : 3
-#                         e0 --> to L4
-#                 ###################'''
-#                 lo_Months.append(e0)
-#                 
-#                 '''###################
-#                     step : j3
-#                         lo_Tmp --> any entries ?
-#                 ###################'''
-#                 if len(lo_Tmp) > 0 : #if len(lo_Tmp) > 0
-#                     '''###################
-#                         step : j3 : Y
-#                     ###################'''
-#                     '''###################
-#                         step : j3 : Y : 1
-#                             lo_Tmp --> to lo_Final
-#                     ###################'''
-#                     lo_Final.append(lo_Tmp)
-#                     
-#                     '''###################
-#                         step : j3 : Y : 2
-#                             lo_Tmp --> init
-#                     ###################'''
-#                     lo_Tmp = []
-#                     
-#                     '''###################
-#                         step : j3 : Y : 3
-#                             e0 --> to lo_Tmp
-#                     ###################'''
-#                     lo_Tmp.append(e0)
-#                     
-#                 else : #if len(lo_Tmp) > 0
-#                     '''###################
-#                         step : j3 : N
-#                     ###################'''
-#                     '''###################
-#                         step : j3 : N : 1
-#                             eo --> to lo_Tmp
-#                     ###################'''
-#                     lo_Tmp.append(e0)
-#                     
-#                 #/if len(lo_Tmp) > 0
-# 
-#             #/if flag_Mon == True
-#             
-#             
-#             
-#         
-#         else : #if w0 == 0
-#             '''###################
-#                 step : j1 : N
-#             ###################'''
-#             '''###################
-#                 step : j1 : N : 1
-#                     flag --> down
-#             ###################'''
-#             flag_Mon = False
-#             
-#             '''###################
-#                 step : j1 : N : 2
-#                     e0 --> to L2
-#             ###################'''
-#             lo_Tmp.append(e0)
-#             
-#             
-#         #/if w0 == 0
-# 
-#         
-# #         #debug
-# #         break
-#         
-#     #/for item in lo_BarDatas_Tmp:
-# 
-#     '''###################
-#         step : B1
-#     ###################'''
-#     lo_Final.append(lo_Tmp)
-# 
-#     '''###################
-#         write to files
-#     ###################'''
-#     # reverse lo_Final --> to A-Z
-#     lo_Final.reverse()
-#     
-#     for item in lo_Final:
-#             
-#         item.reverse()
-#         
-#     #/for item in lo_Final:
-#     
-# #     _BUSL_3__Util_1__Slice_BarDatas_By_Week__WriteToFile(\
-# #                  fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
 
     '''###################
         report
@@ -5537,14 +5498,19 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
     #/for item in lo_Final:
 
     
-#     print(lo_Final[0][0].dateTime_Local)
-#     print(lo_Final[0][0])
-    
-    
     '''###################
         write to file
     ###################'''
     #abcde
+    if writeToFile == True : #if writeToFile == True
+            
+        _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+
+        pass
+        
+    #/if writeToFile == True
+            
+            
         
     '''###################
         return        
