@@ -2560,6 +2560,156 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request):
     
 #/ _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request)
 
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> slice bardatas --> file created
+###################'''
+def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
+
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    '''###################
+        params        
+    ###################'''
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+    dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+#     
+# #     (status, fname_Log, fpath_Log) = \
+#             libfx.BUSL_3__Util_1__Slice_BarDatas_By_Month(\
+#     _status, _msg, (numOf_BarDats, averageOf_BarDats, stdDevOf_BarDats) = \
+    _status, _msg, stats = \
+            libfx.BUSL_3__Stat__Diff_Of_Bars(\
+                        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
+    
+    #debug
+    print("[%s:%d] _msg => '%s'" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , _msg
+                        ), file=sys.stderr)
+
+    print("[%s:%d] stats =>" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        
+                        ), file=sys.stderr)
+    print(stats)
+
+    '''###################
+        return        
+    ###################'''
+    status = _status
+     
+    msg = _msg
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request)
+
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> slice bardatas --> file created
+###################'''
+# def _tester_BuyUps_SellLows__BUSL_3__Open_DataDir(request):
+def _tester_BUSL__V2__Open_DataDir(request):
+
+    '''###################
+        vars        
+    ###################'''
+    dic = {}
+    
+    print()
+    print("[%s:%d] opening image dir..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+
+    '''###################
+        build : command string        
+    ###################'''
+    command = "%s\\%s" \
+            % ("C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\ops"
+               , "open_folders.bat"
+               )
+
+    cmd_Full = [command]  #=> 
+
+    print()
+    print("[%s:%d] command => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , command
+            ), file=sys.stderr)
+
+    '''###################
+        subprocess        
+    ###################'''
+    #ref https://stackoverflow.com/questions/13525882/tasklist-output answered Nov 23 '12 at 9:36
+    res = subprocess.call(cmd_Full)
+
+    '''###################
+        return        
+    ###################'''
+    status = 1
+     
+    msg = "OK"
+    
+    return (status, msg)
+
+#/ _tester_BuyUps_SellLows__BUSL_3__Open_DataDir(request)
+
 def tester_BuyUps_SellLows__BUSL_3(request):
     
     '''###################
@@ -2653,6 +2803,18 @@ def tester_BuyUps_SellLows__BUSL_3(request):
         render_Page, render_Page_full, dic = \
                     __tester_BuyUps_SellLows__BUSL_3__Res_1__DetectPatterns__UpDownPattern(request)
 #                     __tester_BuyUps_SellLows__BUSL_3__Utils_1_UpsDowns_In_BB_Ranges(request)
+
+#     elif param_Cmd == (cons_fx.Tester.OPEN_DATA_DIR.value) : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+#         '''###################
+#             OPEN_DATA_DIR
+#         ###################'''
+#         # call func
+#         (status, msg) = _tester_BuyUps_SellLows__BUSL_3__Open_DataDir(request)
+# #         (status, msg) = _tester_BUSL__V2__Open_DataDir(request)
+# #         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
+# 
+#         dic['message'] += "open data dirs"
+#         
                     
     else : #if param_Cmd == cons_fx.ParamConstants.PARAM_BUSL3_CMD_2UPS.value
     
@@ -2988,6 +3150,12 @@ def tester_BuyUps_SellLows(request):
     param_Cmd = request.GET.get('command', False)
 #     param_Cmd = request.GET.get('command', False)
     
+    #debug
+    print("[%s:%d] param_Cmd => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , param_Cmd
+        ), file=sys.stderr)
+    
     if not param_Cmd == False and param_Cmd == "BUSL_2" : #if not param_Cmd == False and param_Cmd == 
 
         '''###################
@@ -3182,6 +3350,12 @@ def tester_BuyUps_SellLows__V2(request):
     ###################'''
     param = request.GET.get('param', False)
     
+    #debug
+    print("[%s:%d] param => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , param
+            ), file=sys.stderr)
+    
     '''###################
         validate : no param?
     ###################'''
@@ -3258,6 +3432,25 @@ def tester_BuyUps_SellLows__V2(request):
 
         dic['message'] += "util : slice lo_BarDatas by month"
         
+    elif param == (cons_fx.Tester.OPEN_DATA_DIR.value) : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+        '''###################
+            OPEN_DATA_DIR
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Open_DataDir(request)
+#         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
+
+        dic['message'] += "open data dirs"
+#         
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[5] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+        '''###################
+            PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request)
+
+        dic['message'] += "stat : diff of bars"
+
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     
         dic['message'] += "(UNKNOWN PARAM)"

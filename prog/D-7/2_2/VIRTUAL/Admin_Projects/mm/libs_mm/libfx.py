@@ -5524,6 +5524,168 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
 
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Month(lo_BarDatas, fname)
 
+def _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas):
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    sumOf_Diffs = 0.0
+    
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    '''###################
+        stats : avg : diff
+    ###################'''
+    for item in lo_BarDatas:
+        # diff
+        dif = item.diff_OC
+        
+        # sum
+        sumOf_Diffs += dif
+        
+    #/for item in lo_BarDatas:
+
+    avgOf_Diff = sumOf_Diffs / lenOf_BarDatas
+#     avgOf_Diff = sumOf_Diffs / dif
+    
+    print("[%s:%d] avgOf_Diff => %.03f" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , avgOf_Diff
+                ), file=sys.stderr)
+
+    '''###################
+        stats : variance
+    ###################'''
+    variance = 0.0
+    
+    tmp = 0.0
+    
+    for item in lo_BarDatas:
+        
+        tmp += numpy.power((item.diff_OC - avgOf_Diff), 2)
+        
+    #/for item in lo_BarDatas:
+    
+    # variance
+    variance = tmp / lenOf_BarDatas
+    
+    std_Dev = numpy.sqrt(variance)
+
+    #debug
+    lo_Diffs = [x.diff_OC for x in lo_BarDatas]
+     
+    std_Dev_Python = numpy.std(lo_Diffs, ddof=1)
+    std_Dev_Python_Plain = numpy.std(lo_Diffs)
+     
+    print("[%s:%d] std_Dev = %.03f, std_Dev_Python = %.03f, std_Dev_Python_Plain = %.03f" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , std_Dev, std_Dev_Python, std_Dev_Python_Plain
+                ), file=sys.stderr)
+
+    
+#     # std dev
+#     sumOf_Squares = 0
+#     
+#     for item in lo_BarDatas:
+#          
+#         dif = item.diff_OC
+#         
+#         sumOf_Squares += numpy.power(dif, 2)
+#     
+#     avgOf_SumOf_Squares = sumOf_Squares / lenOf_BarDatas
+#     
+#     #debug
+#     print("[%s:%d] avgOf_SumOf_Squares => %.03f" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , avgOf_SumOf_Squares
+#                 ), file=sys.stderr)
+#     
+#     # std dev
+#     tmp = avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2)
+#     
+#     #debug
+#     print("[%s:%d] tmp => %.03f" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , tmp
+#                 ), file=sys.stderr)
+#     
+#     std_Dev = numpy.sqrt(tmp)
+# #     std_Dev = numpy.sqrt(avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2))
+# #     std_Dev = avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2)
+#     
+#     #debug
+#     lo_Diffs = [x.diff_OC for x in lo_BarDatas]
+#     
+#     std_Dev_Python = numpy.std(lo_Diffs, ddof=1)
+#     
+#     print("[%s:%d] std_Dev = %.03f, std_Dev_Python = %.03f" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , std_Dev, std_Dev_Python
+#                 ), file=sys.stderr)
+    
+    # reutnr
+    return std_Dev
+    
+#     for item in lo_BarDatas:
+#         
+#         dif = item.diff_OC
+#         
+#         sumOf_Devs = numpy.power((dif - avg), 2)
+        
+    #/for item in lo_BarDatas:
+
+    
+#/ def BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas):
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def BUSL_3__Stat__Diff_Of_Bars(\
+           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile = True):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    sumOf_Diffs = 0.0
+    
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    '''###################
+        ops        
+    ###################'''
+    for item in lo_BarDatas:
+        # diff
+        dif = item.diff_OC
+        
+        # sum
+        sumOf_Diffs += dif
+        
+    #/for item in lo_BarDatas:
+
+    '''###################
+        stats
+    ###################'''
+    avg = sumOf_Diffs / lenOf_BarDatas
+#     avg = sumOf_Diffs / dif
+    
+    std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
+    
+    '''###################
+        return        
+    ###################'''
+    # status, message, (num of bardatas, average, std deviation)
+    
+    return 1, "Diff => OK", (lenOf_BarDatas, avg, std_dev)
+#     return 1, "Diff => OK", (lenOf_BarDatas, avg, -1)
+#     return 1, "Diff => OK", (0, -1, -1)
+#     return False
+
+#/ BUSL_3__Util_1__Slice_BarDatas_By_Month(lo_BarDatas, fname)
+
 def BUSL_2(lo_BarData):
     
     '''###################

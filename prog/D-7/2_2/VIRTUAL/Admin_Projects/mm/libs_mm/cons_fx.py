@@ -212,6 +212,12 @@ class ParamConstants(Enum):
     
     PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH = \
                     "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH"
+
+    '''###################
+        stats : busl3 : stats : 1 / diff of bars : avg, dev
+    ###################'''
+    PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV = \
+                    "PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV"
     
 class Tester(Enum):
     
@@ -226,17 +232,30 @@ class Tester(Enum):
     ]
 
     # http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3&
-    lo_Actions__BUSL__IDs = [
+    lo_Actions__BUSL__IDs = {
             
-            "1"         # 0 num of up bars and down bars in each of BB areas
-            , "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
-            , "3-1"     # 2
+            0 : "1"         # 0 num of up bars and down bars in each of BB areas
+            , 1 : "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
+    
+            , 2 : "3-1"     # 2
+            , 5 : "3-2"     # 2
             
-            , "4-1"     # 3
-            , "4-2"     # 4
+            , 3 : "4-1"     # 3
+            , 4 : "4-2"     # 4
             
             
-        ]
+        }
+#     lo_Actions__BUSL__IDs = [
+#             
+#             "1"         # 0 num of up bars and down bars in each of BB areas
+#             , "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
+#             , "3-1"     # 2
+#             
+#             , "4-1"     # 3
+#             , "4-2"     # 4
+#             
+#             
+#         ]
     
     lo_Actions__BUSL = [
         
@@ -265,6 +284,14 @@ class Tester(Enum):
             ],
             
             [
+                lo_Actions__BUSL__IDs[5]
+                ,"stat : diff of bars : avg, dev"
+                , ParamConstants.PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV.value
+                , "stat : diff of bars. average, std deviation"
+                , "20180927_121933"
+            ],
+            
+            [
                 lo_Actions__BUSL__IDs[3]
                 ,"util : slice lo_BarDatas by week"
                 , ParamConstants.PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_WEEK.value
@@ -279,5 +306,17 @@ class Tester(Enum):
                 , "slice lo_BarDatas by month --> write to files"
                 , "20180925_082342"
             ],
+            
+#             [
+#                 lo_Actions__BUSL__IDs[5]
+#                 ,"stat : diff of bars : avg, dev"
+#                 , ParamConstants.PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV.value
+#                 , "stat : diff of bars. average, std deviation"
+#                 , "20180927_121933"
+#             ],
 
         ]
+    
+    #
+    OPEN_DATA_DIR = "OPEN_DATA_DIR"
+
