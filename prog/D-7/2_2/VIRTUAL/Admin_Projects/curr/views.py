@@ -2573,6 +2573,8 @@ def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
     
+    _req_param_3_2_bartype = request.GET.get('param_3-2_bartype', False)
+    
     '''###################
         params        
     ###################'''
@@ -2633,7 +2635,9 @@ def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
 #     _status, _msg, (numOf_BarDats, averageOf_BarDats, stdDevOf_BarDats) = \
     _status, _msg, stats = \
             libfx.BUSL_3__Stat__Diff_Of_Bars(\
-                        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
+                        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+                        , filterBars = _req_param_3_2_bartype
+                        )
     
     #debug
     print("[%s:%d] _msg => '%s'" % \
@@ -3351,7 +3355,8 @@ def tester_BuyUps_SellLows__V2(request):
     param = request.GET.get('param', False)
     
     #debug
-    print("[%s:%d] param => %s" % \
+#     print("[%s:%d] param => %s" % \
+    print("[%s:%d] param => %s ============================" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
             , param
             ), file=sys.stderr)

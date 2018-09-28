@@ -219,6 +219,13 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV = \
                     "PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV"
     
+    '''###################
+        stats : busl3 : 3-2 : stat : diff of bars : avg, dev
+    ###################'''
+    PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS = "all_bars"
+    PARAM_BUSL3_3_2__DIFF_OF_BARS__UP_BARS = "up_bars"
+    PARAM_BUSL3_3_2__DIFF_OF_BARS__DOWN_BARS = "down_bars"
+    
 class Tester(Enum):
     
     lo_Commands = [

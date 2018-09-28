@@ -398,6 +398,18 @@ function curr_BUSL_3__Action(_param) {
 //	alert("ajax starting...");
 	
 	/***************************
+		get : param : 3-2 radio button
+	 ***************************/
+	//ref http://www.mkyong.com/jquery/how-to-select-a-radio-button-with-jquery/
+	var tag_RB_3_2 = $('input:radio[name=curr_BUSL_2__Area_Options__RB_3-2_RBs]:checked');
+	
+	var tag_RB_3_2_checked = tag_RB_3_2.val();
+	
+//	alert("tag_RB_3_2_checked => " + tag_RB_3_2_checked);
+//	
+//	return;
+	
+	/***************************
 		get : param
 	 ***************************/
 	var ta_val_Fname_CSV = $('textarea#curr_BUSL_2__TA__Fname_CSV').val();
@@ -415,6 +427,7 @@ function curr_BUSL_3__Action(_param) {
 		"param"		: _param
 		, "fname_csv"	: ta_val_Fname_CSV
 		, "dpath_csv"	: ta_val_Dpath_CSV
+		, "param_3-2_bartype"	: tag_RB_3_2_checked
 			
 	};
 	

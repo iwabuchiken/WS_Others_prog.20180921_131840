@@ -39,6 +39,7 @@ import time, datetime
 #ref https://stackoverflow.com/questions/25389095/python-get-path-of-root-project-structure answered Aug 19 '14 at 17:42
 from Admin_Projects.definitions import ROOT_DIR
 from Admin_Projects.definitions import DPATH_ROOT_CURR
+from numpy.distutils.from_template import item_re
 # import token
 
 # from definitions import ROOT_DIR
@@ -5584,67 +5585,25 @@ def _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas):
                 ), file=sys.stderr)
 
     
-#     # std dev
-#     sumOf_Squares = 0
-#     
-#     for item in lo_BarDatas:
-#          
-#         dif = item.diff_OC
-#         
-#         sumOf_Squares += numpy.power(dif, 2)
-#     
-#     avgOf_SumOf_Squares = sumOf_Squares / lenOf_BarDatas
-#     
-#     #debug
-#     print("[%s:%d] avgOf_SumOf_Squares => %.03f" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , avgOf_SumOf_Squares
-#                 ), file=sys.stderr)
-#     
-#     # std dev
-#     tmp = avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2)
-#     
-#     #debug
-#     print("[%s:%d] tmp => %.03f" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , tmp
-#                 ), file=sys.stderr)
-#     
-#     std_Dev = numpy.sqrt(tmp)
-# #     std_Dev = numpy.sqrt(avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2))
-# #     std_Dev = avgOf_SumOf_Squares - numpy.power(avgOf_Diff, 2)
-#     
-#     #debug
-#     lo_Diffs = [x.diff_OC for x in lo_BarDatas]
-#     
-#     std_Dev_Python = numpy.std(lo_Diffs, ddof=1)
-#     
-#     print("[%s:%d] std_Dev = %.03f, std_Dev_Python = %.03f" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , std_Dev, std_Dev_Python
-#                 ), file=sys.stderr)
-    
-    # reutnr
+    # return
     return std_Dev
     
-#     for item in lo_BarDatas:
-#         
-#         dif = item.diff_OC
-#         
-#         sumOf_Devs = numpy.power((dif - avg), 2)
-        
-    #/for item in lo_BarDatas:
-
-    
 #/ def BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas):
+
 
 '''###################
     @return: 1, "OK", (0, -1, -1)
         status, message, (num of bardatas, average, std deviation)
+    @caller
+        BUSL_3__Stat__Diff_Of_Bars
 ###################'''
-def BUSL_3__Stat__Diff_Of_Bars(\
-           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile = True):
-# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
+            lo_BarDatas
+           , fname_CSV_File
+           , lo_CSVs
+           , dpath_Log
+           , writeToFile = True
+           ):
     
     '''###################
         step : 1
@@ -5675,14 +5634,394 @@ def BUSL_3__Stat__Diff_Of_Bars(\
     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
     
     '''###################
+        write : file
+    ###################'''
+    if writeToFile == True : #if writeToFile == True
+
+        #debug
+        print("[%s:%d] writing to file ..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        
+
+        # time label
+        tlabel = libs.get_TimeLabel_Now()
+        
+        fname_Log_File = "op_3-2.diff-of-bars.%s.%s-%s.%s.log" \
+                % (
+                    "all-bars"
+                   , fname_CSV_File.split(".")[2]
+                   , fname_CSV_File.split(".")[3]
+                   , tlabel
+                   
+                   )
+        
+        msg = "\nsource = %s\nlen of entries = %d\naverage = %.05f\nstd deviation = %.05f" \
+                % (
+                    fname_CSV_File
+                    , lenOf_BarDatas
+                    , avg
+                    , std_dev
+                   )
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , cons_fx.FPath.dpath_LogFile.value
+                    , fname_Log_File
+                    , 1)
+        
+    #/if writeToFile == True
+
+
+    
+    '''###################
         return        
     ###################'''
     # status, message, (num of bardatas, average, std deviation)
     
-    return 1, "Diff => OK", (lenOf_BarDatas, avg, std_dev)
-#     return 1, "Diff => OK", (lenOf_BarDatas, avg, -1)
-#     return 1, "Diff => OK", (0, -1, -1)
-#     return False
+    return 1, "Diff(all bars) => OK", (lenOf_BarDatas, lenOf_BarDatas, avg, std_dev)
+#     return 1, "Diff(all bars) => OK", (lenOf_BarDatas, avg, std_dev)
+#     return 1, "Diff => OK", (lenOf_BarDatas, avg, std_dev)
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, cntOf_TargetBars, std deviation)
+    @caller
+        BUSL_3__Stat__Diff_Of_Bars
+###################'''
+def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
+            lo_BarDatas
+           , fname_CSV_File
+           , lo_CSVs
+           , dpath_Log
+           , writeToFile = True
+           ):
+
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    sumOf_Diffs = 0.0
+    
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    cntOf_TargetBars = 0
+    
+    lo_BarDatas_Tmp = []
+    
+    '''###################
+        ops        
+    ###################'''
+    for item in lo_BarDatas:
+        # filter
+        if item.diff_OC > 0 : #if item.diff_OC > 0
+
+            # diff
+            dif = item.diff_OC
+            
+            # sum
+            sumOf_Diffs += dif
+            
+            # count
+            cntOf_TargetBars += 1
+            
+            # append
+            lo_BarDatas_Tmp.append(item)
+            
+        #/if item.diff_OC > 0
+        
+    #/for item in lo_BarDatas:
+
+    '''###################
+        stats
+    ###################'''
+    avg = sumOf_Diffs / cntOf_TargetBars
+#     avg = sumOf_Diffs / lenOf_BarDatas
+#     avg = sumOf_Diffs / dif
+    
+    std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp)
+#     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
+    
+    '''###################
+        write : file
+    ###################'''
+    if writeToFile == True : #if writeToFile == True
+
+        # time label
+        tlabel = libs.get_TimeLabel_Now()
+        
+        fname_Log_File = "op_3-2.diff-of-bars.%s.%s-%s.%s.log" \
+                % (
+                    "up-bars"
+                   , fname_CSV_File.split(".")[2]
+                   , fname_CSV_File.split(".")[3]
+                   , tlabel
+                   
+                   )
+        
+        #debug
+        print("[%s:%d] writing to file ... : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fname_Log_File
+            ), file=sys.stderr)
+        
+        msg = "\nlog file = %s" \
+                % (
+                    fname_Log_File
+                   )
+        
+        msg += "\nsource = %s\nlen of entries = %d\ntarget = %d" \
+                % (
+                    fname_CSV_File
+                    , lenOf_BarDatas
+                    , cntOf_TargetBars
+                   )
+        
+        msg += "\naverage = %.05f\nstd deviation = %.05f" \
+                % (
+                    avg
+                    , std_dev
+                   )
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , cons_fx.FPath.dpath_LogFile.value
+                    , fname_Log_File
+                    , 1)
+        
+    #/if writeToFile == True
+    
+    '''###################
+        return        
+    ###################'''
+    # status, message, (num of bardatas, average, std deviation)
+    
+    return 1, "Diff(Up bars) => OK", (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+
+#/ _BUSL_3__Stat__Diff_Of_Bars__UpBars
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, cntOf_TargetBars, std deviation)
+    @caller
+        BUSL_3__Stat__Diff_Of_Bars
+###################'''
+def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
+            lo_BarDatas
+           , fname_CSV_File
+           , lo_CSVs
+           , dpath_Log
+           , writeToFile = True
+           ):
+
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    sumOf_Diffs = 0.0
+    
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    cntOf_TargetBars = 0
+    
+    lo_BarDatas_Tmp = []
+    
+    '''###################
+        ops        
+    ###################'''
+    for item in lo_BarDatas:
+        # diff
+        dif = item.diff_OC
+        
+        # filter
+#         if item.diff_OC < 0 : #if item.diff_OC > 0
+        if dif < 0 : #if item.diff_OC > 0
+
+            # sum
+            sumOf_Diffs += dif
+            
+            # count
+            cntOf_TargetBars += 1
+            
+            # append
+            lo_BarDatas_Tmp.append(item)
+            
+        #/if item.diff_OC > 0
+        
+    #/for item in lo_BarDatas:
+
+    '''###################
+        stats
+    ###################'''
+    avg = sumOf_Diffs / cntOf_TargetBars
+#     avg = sumOf_Diffs / lenOf_BarDatas
+#     avg = sumOf_Diffs / dif
+    
+    std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp)
+#     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
+    
+    '''###################
+        write : file
+    ###################'''
+    if writeToFile == True : #if writeToFile == True
+
+        # time label
+        tlabel = libs.get_TimeLabel_Now()
+        
+        fname_Log_File = "op_3-2.diff-of-bars.%s.%s-%s.%s.log" \
+                % (
+                    "down-bars"
+                   , fname_CSV_File.split(".")[2]
+                   , fname_CSV_File.split(".")[3]
+                   , tlabel
+                   
+                   )
+        
+        #debug
+        print("[%s:%d] writing to file ... : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fname_Log_File
+            ), file=sys.stderr)
+        
+        msg = "\nlog file = %s" \
+                % (
+                    fname_Log_File
+                   )
+        
+        msg += "\nsource = %s\nlen of entries = %d\ntarget = %d" \
+                % (
+                    fname_CSV_File
+                    , lenOf_BarDatas
+                    , cntOf_TargetBars
+                   )
+        
+        msg += "\naverage = %.05f\nstd deviation = %.05f" \
+                % (
+                    avg
+                    , std_dev
+                   )
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , cons_fx.FPath.dpath_LogFile.value
+                    , fname_Log_File
+                    , 1)
+        
+    #/if writeToFile == True
+    
+    '''###################
+        return        
+    ###################'''
+    # status, message, (num of bardatas, average, std deviation)
+    
+    return 1, "Diff(Up bars) => OK", (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+
+#/ _BUSL_3__Stat__Diff_Of_Bars__DownBars
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def BUSL_3__Stat__Diff_Of_Bars(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+       , filterBars = cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+#            , filterBars = "all_bars"
+           ):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+    
+    #debug
+    print("[%s:%d] filterBars => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , filterBars
+            ), file=sys.stderr)
+    
+    '''###################
+        step : -1
+            prep
+    ###################'''
+    status = 0
+    msg = "NOT YET"
+    (lenOf_BarDatas, avg, std_dev) = (-1, -999, -1)
+    
+    '''###################
+        step : 0
+            dispatch
+    ###################'''
+    if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value : #if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+    
+        # call func
+#         status, msg, (lenOf_BarDatas, avg, std_dev) = \
+        status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev) = \
+            _BUSL_3__Stat__Diff_Of_Bars__AllBars(
+                    lo_BarDatas
+                   , fname_CSV_File
+                   , lo_CSVs
+                   , dpath_Log
+                   , writeToFile = True
+                   )
+
+    elif filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__UP_BARS.value : #if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+    
+        # call func
+        status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev) = \
+            _BUSL_3__Stat__Diff_Of_Bars__UpBars(
+                    lo_BarDatas
+                   , fname_CSV_File
+                   , lo_CSVs
+                   , dpath_Log
+                   , writeToFile = True
+                   )
+
+    elif filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__DOWN_BARS.value : #if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+    
+        # call func
+        status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev) = \
+            _BUSL_3__Stat__Diff_Of_Bars__DownBars(
+                    lo_BarDatas
+                   , fname_CSV_File
+                   , lo_CSVs
+                   , dpath_Log
+                   , writeToFile = True
+                   )
+
+    else : #if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+    
+        #debug
+        print("[%s:%d] unknown filterBars => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , filterBars
+            ), file=sys.stderr)
+    
+    #/if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+    
+    '''###################
+        return        
+    ###################'''
+    return status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+#     return status, msg, (lenOf_BarDatas, avg, std_dev)
 
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Month(lo_BarDatas, fname)
 
