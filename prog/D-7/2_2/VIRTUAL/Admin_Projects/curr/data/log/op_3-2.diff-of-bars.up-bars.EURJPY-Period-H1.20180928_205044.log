@@ -1,0 +1,7 @@
+[20180928_205044 / libfx.py:5796] 
+log file = op_3-2.diff-of-bars.up-bars.EURJPY-Period-H1.20180928_205044.log
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-03).20180926_205209.csv
+len of entries = 535
+target = 283
+average = 0.10179
+std deviation = 0.10620

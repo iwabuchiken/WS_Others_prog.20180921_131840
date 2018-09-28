@@ -2667,6 +2667,94 @@ def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
         -1    ==> csv file doesn't exist
         1    ==> slice bardatas --> file created
 ###################'''
+def _tester_BUSL__V2__Param_6__Stat_UpAboveBB1S_Prev3Bars(request):
+
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+#     _req_param_3_2_bartype = request.GET.get('param_3-2_bartype', False)
+    
+    '''###################
+        params        
+    ###################'''
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+    dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+    
+#     _status, _msg, stats = \
+#             libfx.BUSL_3__Stat__Diff_Of_Bars(\
+#                         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+#                         , filterBars = _req_param_3_2_bartype
+#                         )
+    
+    '''###################
+        return        
+    ###################'''
+    status = -1
+#     status = _status
+     
+    msg = "SKELETON"
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_6__Stat_UpAboveBB1S_Prev3Bars(request)
+
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> slice bardatas --> file created
+###################'''
 # def _tester_BuyUps_SellLows__BUSL_3__Open_DataDir(request):
 def _tester_BUSL__V2__Open_DataDir(request):
 
@@ -3447,6 +3535,8 @@ def tester_BuyUps_SellLows__V2(request):
 
         dic['message'] += "open data dirs"
 #         
+    
+    
     elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[5] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
         '''###################
             PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV
@@ -3455,6 +3545,15 @@ def tester_BuyUps_SellLows__V2(request):
         (status, msg) = _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request)
 
         dic['message'] += "stat : diff of bars"
+
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[6] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+        '''###################
+            
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_6__Stat_UpAboveBB1S_Prev3Bars(request)
+
+        dic['message'] += "stat : up bar above BB.+1S : prev 3 bars"
 
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     
