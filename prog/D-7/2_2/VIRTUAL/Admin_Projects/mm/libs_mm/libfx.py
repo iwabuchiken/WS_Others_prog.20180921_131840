@@ -6025,6 +6025,350 @@ def BUSL_3__Stat__Diff_Of_Bars(\
 
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Month(lo_BarDatas, fname)
 
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+#        , filterBars = cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+#            , filterBars = "all_bars"
+           ):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+
+    #debug
+    print("[%s:%d] BUSL_3__Stat_UpAboveBB1S_Prev3Bars" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+    
+    '''###################
+        step : -1
+            prep
+    ###################'''
+    status = 0
+    msg = "SKELETON"
+    
+    '''###################
+        step : 0.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas = len(lo_BarDatas)
+    
+    # counter
+    cntOf_Match = 0
+    
+    # list
+    lo_Match = []
+    
+    # log file
+    # time label
+    tlabel = libs.get_TimeLabel_Now()
+    
+    # log file name
+    fname_Log_File = "op_3-3.prev-3-bars.%s-%s.%s.log" \
+            % (
+               fname_CSV_File.split(".")[2]
+               , fname_CSV_File.split(".")[3]
+               , tlabel
+               
+               )
+    
+    
+    '''###################
+        for loop
+    ###################'''
+    for i in range(3, lenOf_LO_BarDatas - 1):
+#     for i in range(3, lenOf_LO_BarDatas):
+        '''###################
+            step : 1
+                prep
+        ###################'''
+        # bardata
+        e0 = lo_BarDatas[i]
+        e1 = lo_BarDatas[i + 1]
+        
+        # dif
+        d0 = e0.diff_OC
+        d1 = e1.diff_OC
+        
+        '''###################
+            step : j1
+                match ?
+        ###################'''
+        if d0 > 0 \
+            and e0.price_Close > e0.bb_1S \
+            and d1 > 0 : #if d0 > 0 \
+            '''###################
+                step : j1 : Y
+            ###################'''
+            '''###################
+                step : j1 : Y : 1
+                    count
+            ###################'''
+            cntOf_Match += 1
+            
+            '''###################
+                step : j1 : Y : 2
+                    append
+            ###################'''
+#             lo_Match.append(e0)
+        
+            '''###################
+                step : j1 : Y : 3
+                    up-down list
+            ###################'''
+            val_1 = 1 if (lo_BarDatas[i - 1].diff_OC >= 0) else 0
+            val_2 = 1 if (lo_BarDatas[i - 2].diff_OC >= 0) else 0
+            val_3 = 1 if (lo_BarDatas[i - 3].diff_OC >= 0) else 0
+
+            '''###################
+                step : j1 : Y : 4
+                    build data
+            ###################'''
+            dat = [e0.no, e0.dateTime_Local, [val_1, val_2, val_3]]
+            
+            '''###################
+                step : j1 : Y : 2
+                    append
+            ###################'''
+            lo_Match.append(dat)
+            
+        else : #if d0 > 0 \
+            '''###################
+                step : j1 : N
+            ###################'''
+            pass
+            
+        
+        #/if d0 > 0 \
+        
+    #/for i in range(3, lenOf_LO_BarDatas):
+    
+    '''###################
+        step : B
+    ###################'''
+    '''###################
+        step : B : 1
+            write : file
+    ###################'''
+    if writeToFile == True : #if writeToFile == True
+
+        #debug
+        print("[%s:%d] writing to file ..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        
+
+#         # time label
+#         tlabel = libs.get_TimeLabel_Now()
+#         
+#         # log file name
+#         fname_Log_File = "op_3-3.prev-3-bars.%s-%s.%s.log" \
+#                 % (
+#                    fname_CSV_File.split(".")[2]
+#                    , fname_CSV_File.split(".")[3]
+#                    , tlabel
+#                    
+#                    )
+        
+        # header
+        msg = "source = %s\nlog file = %s\n\n" \
+                    % (fname_CSV_File, fname_Log_File)
+        
+        msg += "id\tdatetime\tprev-1\tprev-2\tprev-3\n"
+                
+        
+        msg_Log = "[%s / %s:%d]\n%s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , cons_fx.FPath.dpath_LogFile.value
+                    , fname_Log_File
+                    , 1)
+#                     , 2)
+        
+        
+        # iterate
+        for item in lo_Match:
+            
+            # dat = [e0.no, e0.dateTime_Local, [val_1, val_2, val_3]]
+            
+#             msg = "\n%d\t%s\t%d\t%d\t%d\n" \
+#             msg = "%d\t%s\t%d\t%d\t%d\n" \
+            msg = "%d\t%s\t%d\t%d\t%d" \
+                    % (
+                        item[0]
+                        , item[1]
+                        , item[2][0]
+                        , item[2][1]
+                        , item[2][2]
+                       )
+            
+#             msg_Log = "[%s / %s:%d] %s" % \
+            msg_Log = "%s" % \
+                    (
+                    msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , cons_fx.FPath.dpath_LogFile.value
+                        , fname_Log_File
+                        , 1)
+            
+        #/for item in lo_Match:
+
+    #/if writeToFile == True
+       
+    '''###################
+        section : B
+    ###################'''
+    '''###################
+        section : B
+        for loop
+    ###################'''
+    # counter
+    cntOf_100 = 0
+    cntOf_101 = 0
+    cntOf_110 = 0
+    cntOf_111 = 0
+    
+    cntOf_000 = 0
+    cntOf_001 = 0
+    cntOf_010 = 0
+    cntOf_011 = 0
+    
+    cntOf_Others = 0
+    
+    # loop
+    for item in lo_Match:
+        '''###################
+            section : B : 1
+                match instance
+        ###################'''
+        
+        
+        '''###################
+            section : B : 2
+                prev section
+        ###################'''
+        dat = item[2]
+        
+#         #debug
+#         print("[%s:%d] dat => " % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             
+#             ), file=sys.stderr)
+#         print(dat)
+        
+        '''###################
+            section : B : 3
+                grouping
+        ###################'''
+#         # counter
+#         cntOf_100 = 0
+#         cntOf_101 = 0
+#         cntOf_110 = 0
+#         cntOf_111 = 0
+#         
+#         cntOf_Others = 0
+        
+        # len
+        lenOf_Match = len(lo_Match)
+        
+        # grouping
+        if dat == [1,0,0] : 
+            
+            cntOf_100 += 1
+            
+#             print("[%s:%d] dat ==> [1,0,0]" % \
+#                                (os.path.basename(libs.thisfile()), libs.linenum()
+#                                
+#                                ), file=sys.stderr)
+#             
+            
+        elif dat == [1,0,1] : cntOf_101 += 1
+        elif dat == [1,1,0] : cntOf_110 += 1
+        elif dat == [1,1,1] : cntOf_111 += 1
+        
+        elif dat == [0,0,0] : cntOf_000 += 1
+        elif dat == [0,0,1] : cntOf_001 += 1
+        elif dat == [0,1,0] : cntOf_010 += 1
+        elif dat == [0,1,1] : cntOf_011 += 1
+        
+        else : cntOf_Others += 1
+        
+        #/if dat == [1,0,0]
+        
+    #/for item in lo_Match:
+    msg = "patterns\n"
+    
+#     msg += "000 = %d\n001 = %d\n010 = %d\n011 = %d\n" \
+    msg += "000 = %d (%.04f)\n001 = %d (%.04f)\n010 = %d (%.04f)\n011 = %d (%.04f)\n" \
+            % (
+                cntOf_000
+                , cntOf_000 * 1.0 / lenOf_Match
+#                 , "{:.2%}".format((cntOf_000 * 1.0 / lenOf_Match))
+                , cntOf_001
+                , cntOf_001 * 1.0 / lenOf_Match
+                , cntOf_010
+                , cntOf_010 * 1.0 / lenOf_Match
+                , cntOf_011
+                , cntOf_011 * 1.0 / lenOf_Match
+                )
+    msg += "100 = %d (%.04f)\n101 = %d (%.04f)\n110 = %d (%.04f)\n111 = %d (%.04f)" \
+            % (
+                cntOf_100
+                , cntOf_100 * 1.0 / lenOf_Match
+                , cntOf_101
+                , cntOf_101 * 1.0 / lenOf_Match
+                , cntOf_110
+                , cntOf_110 * 1.0 / lenOf_Match
+                , cntOf_111
+                , cntOf_111 * 1.0 / lenOf_Match
+                )
+            
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , cons_fx.FPath.dpath_LogFile.value
+                , fname_Log_File
+                , 1)
+
+       
+    '''###################
+        report
+    ###################'''
+    print("[%s:%d] len(lo_Match) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_Match)
+        ), file=sys.stderr)
+    
+    
+    '''###################
+        return        
+    ###################'''
+    return status, msg
+#     return status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+#     return status, msg, (lenOf_BarDatas, avg, std_dev)
+
+#/ BUSL_3__Stat_UpAboveBB1S_Prev3Bars(lo_BarDatas, fname)
+
 def BUSL_2(lo_BarData):
     
     '''###################

@@ -2734,9 +2734,10 @@ def _tester_BUSL__V2__Param_6__Stat_UpAboveBB1S_Prev3Bars(request):
     
 #     _status, _msg, stats = \
 #             libfx.BUSL_3__Stat__Diff_Of_Bars(\
-#                         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
-#                         , filterBars = _req_param_3_2_bartype
-#                         )
+    _status, _msg = \
+            libfx.BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
+                        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+                        )
     
     '''###################
         return        
