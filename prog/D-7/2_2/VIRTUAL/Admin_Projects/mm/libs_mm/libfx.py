@@ -40,6 +40,7 @@ import time, datetime
 from Admin_Projects.definitions import ROOT_DIR
 from Admin_Projects.definitions import DPATH_ROOT_CURR
 from numpy.distutils.from_template import item_re
+from sympy.physics.optics.tests.test_medium import e0
 # import token
 
 # from definitions import ROOT_DIR
@@ -6059,6 +6060,10 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
     ###################'''
     lenOf_LO_BarDatas = len(lo_BarDatas)
     
+    # bardatas reversed
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+    lo_BarDatas_Tmp.reverse()
+    
     # counter
     cntOf_Match = 0
     
@@ -6089,8 +6094,10 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
                 prep
         ###################'''
         # bardata
-        e0 = lo_BarDatas[i]
-        e1 = lo_BarDatas[i + 1]
+        e0 = lo_BarDatas_Tmp[i]
+        e1 = lo_BarDatas_Tmp[i + 1]
+#         e0 = lo_BarDatas[i]
+#         e1 = lo_BarDatas[i + 1]
         
         # dif
         d0 = e0.diff_OC
@@ -6098,7 +6105,7 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
         
         '''###################
             step : j1
-                match ?
+                match ? --> up-up
         ###################'''
         if d0 > 0 \
             and e0.price_Close > e0.bb_1S \
@@ -6122,9 +6129,12 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
                 step : j1 : Y : 3
                     up-down list
             ###################'''
-            val_1 = 1 if (lo_BarDatas[i - 1].diff_OC >= 0) else 0
-            val_2 = 1 if (lo_BarDatas[i - 2].diff_OC >= 0) else 0
-            val_3 = 1 if (lo_BarDatas[i - 3].diff_OC >= 0) else 0
+            val_1 = 1 if (lo_BarDatas_Tmp[i - 1].diff_OC >= 0) else 0
+            val_2 = 1 if (lo_BarDatas_Tmp[i - 2].diff_OC >= 0) else 0
+            val_3 = 1 if (lo_BarDatas_Tmp[i - 3].diff_OC >= 0) else 0
+#             val_1 = 1 if (lo_BarDatas[i - 1].diff_OC >= 0) else 0
+#             val_2 = 1 if (lo_BarDatas[i - 2].diff_OC >= 0) else 0
+#             val_3 = 1 if (lo_BarDatas[i - 3].diff_OC >= 0) else 0
 
             '''###################
                 step : j1 : Y : 4
@@ -6310,10 +6320,18 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
         #/if dat == [1,0,0]
         
     #/for item in lo_Match:
-    msg = "patterns\n"
+    msg = "patterns\ntotal\t%d\ntotal match\t%d\n\n" \
+            % (
+                lenOf_LO_BarDatas
+                , lenOf_Match
+               
+               )
+    
+    msg += "pattern\tmatch\tpercentage\n\n"
     
 #     msg += "000 = %d\n001 = %d\n010 = %d\n011 = %d\n" \
-    msg += "000 = %d (%.04f)\n001 = %d (%.04f)\n010 = %d (%.04f)\n011 = %d (%.04f)\n" \
+#     msg += "000 = %d (%.04f)\n001 = %d (%.04f)\n010 = %d (%.04f)\n011 = %d (%.04f)\n" \
+    msg += "000\t%d\t%.04f\t\n001\t%d\t%.04f\t\n010\t%d\t%.04f\t\n011\t%d\t%.04f\t\n" \
             % (
                 cntOf_000
                 , cntOf_000 * 1.0 / lenOf_Match
@@ -6325,7 +6343,8 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
                 , cntOf_011
                 , cntOf_011 * 1.0 / lenOf_Match
                 )
-    msg += "100 = %d (%.04f)\n101 = %d (%.04f)\n110 = %d (%.04f)\n111 = %d (%.04f)" \
+#     msg += "100 = %d (%.04f)\n101 = %d (%.04f)\n110 = %d (%.04f)\n111 = %d (%.04f)" \
+    msg += "100\t%d\t%.04f\t\n101\t%d\t%.04f\t\n110\t%d\t%.04f\t\n111\t%d\t%.04f\t\n" \
             % (
                 cntOf_100
                 , cntOf_100 * 1.0 / lenOf_Match
@@ -6338,7 +6357,7 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
                 )
             
     
-    msg_Log = "[%s / %s:%d] %s" % \
+    msg_Log = "\n[%s / %s:%d]\n%s" % \
             (
             libs.get_TimeLabel_Now()
             , os.path.basename(libs.thisfile()), libs.linenum()
@@ -6368,6 +6387,273 @@ def BUSL_3__Stat_UpAboveBB1S_Prev3Bars(\
 #     return status, msg, (lenOf_BarDatas, avg, std_dev)
 
 #/ BUSL_3__Stat_UpAboveBB1S_Prev3Bars(lo_BarDatas, fname)
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+#        , filterBars = cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
+#            , filterBars = "all_bars"
+           ):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+
+    #debug
+    print("[%s:%d] BUSL_3__Stat_UpAboveBB1S_Prev3Bars" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+    
+    '''###################
+        step : -1
+            prep
+    ###################'''
+    status = 0
+    msg = "SKELETON"
+    
+    '''###################
+        step : 0.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas = len(lo_BarDatas)
+    
+    # counter
+    cntOf_Total = 0
+    cntOf_Match_Up = 0
+    cntOf_Match_Up_Up = 0
+    cntOf_Match_Up_Down = 0
+    cntOf_Match_Up_Zero = 0
+    
+    # list
+    lo_Match_Up_Up = []
+    lo_Match_Up_Down = []
+    lo_Match_Up_Zero = []
+    
+    # prev 3 bars --> store up/down
+    lo_UpDown = []
+    
+    # prev 3 bars --> pattern match
+    lo_UpDown_For_Referral = [1,1,0]
+    
+    
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+#     lo_BarDatas_Tmp = lo_BarDatas.deepcopy()
+#     ary_Tmp = copy.deepcopy(aryOf_BarDatas)
+
+    lo_BarDatas_Tmp.reverse()
+
+    
+    # log file
+    # time label
+    tlabel = libs.get_TimeLabel_Now()
+    
+    # log file name
+    fname_Log_File = "op_3-3.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
+            % (
+               fname_CSV_File.split(".")[2]
+               , fname_CSV_File.split(".")[3]
+               , tlabel
+               
+               )
+    
+    #debug
+    print("[%s:%d] fname_Log_File =>%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log_File
+        ), file=sys.stderr)
+    
+    '''###################
+        for loop
+    ###################'''
+    for i in range(3, lenOf_LO_BarDatas - 1):
+        '''###################
+            step : 1
+                prep
+        ###################'''
+        # bardata
+        e0 = lo_BarDatas_Tmp[i]
+        e1 = lo_BarDatas_Tmp[i + 1]
+        
+        # dif
+        d0 = e0.diff_OC
+        d1 = e1.diff_OC
+        
+        '''###################
+            step : j1
+                up above BB.1S ?
+        ###################'''
+        if d0 > 0 \
+            and e0.price_Close > e0.bb_1S : #if d0 > 0
+            '''###################
+                step : j1 : Y
+            ###################'''
+            '''###################
+                step : j1 : Y : 1
+                    count
+            ###################'''
+#             cntOf_Match_Up += 1
+            
+            '''###################
+                step : j1 : Y : 2
+                    up-down list
+            ###################'''
+            val_1 = 1 if (lo_BarDatas_Tmp[i - 1].diff_OC >= 0) else 0
+            val_2 = 1 if (lo_BarDatas_Tmp[i - 2].diff_OC >= 0) else 0
+            val_3 = 1 if (lo_BarDatas_Tmp[i - 3].diff_OC >= 0) else 0
+            
+            '''###################
+                step : j2
+                    up-down list --> match ?
+            ###################'''
+            if [val_1, val_2, val_3] == lo_UpDown_For_Referral : #if lo_
+                '''###################
+                    step : j2 : Y
+                ###################'''
+                '''###################
+                    step : j2 : Y : 1
+                        count
+                ###################'''
+                cntOf_Match_Up += 1
+                
+                '''###################
+                    step : j3
+                        d1 > 0 ?
+                ###################'''
+                if d1 > 0 : #if d1 > 0
+                    '''###################
+                        step : j3 : Y
+                    ###################'''
+                    '''###################
+                        step : j3 : Y : 1
+                            count
+                    ###################'''
+                    cntOf_Match_Up_Up += 1
+                
+                    '''###################
+                        step : j3 : Y : 2
+                            append
+                    ###################'''
+                    lo_Match_Up_Up.append(e0)
+                    
+                elif d1 == 0 :
+                    '''###################
+                        step : j3 : N
+                    ###################'''
+                    '''###################
+                        step : j3.1
+                            d1 == 0 ?
+                    ###################'''
+                    '''###################
+                        step : j3.1 : Y
+                    ###################'''
+                    '''###################
+                        step : j3.1 : Y : 1
+                            count
+                    ###################'''
+                    cntOf_Match_Up_Zero += 1
+                    
+                    '''###################
+                        step : j3.1 : Y : 2
+                            append
+                    ###################'''
+                    lo_Match_Up_Zero.append(e0)
+                    
+                else : #if d1 > 0
+                    '''###################
+                        step : j3.1 : N
+                            d1 < 0
+                    ###################'''
+                    '''###################
+                        step : j3.1 : N : 1
+                            count
+                    ###################'''
+                    cntOf_Match_Up_Down += 1
+                    
+                    '''###################
+                        step : j3.1 : N : 2
+                            append
+                    ###################'''
+                    lo_Match_Up_Down.append(e0)
+                
+                #/if d1 > 0
+                
+            else : #if [val_1, val_2, val_3] == lo_UpDown_For_Referral
+                '''###################
+                    step : j2 : N
+                ###################'''
+                pass
+            
+            #if [val_1, val_2, val_3] == lo_UpDown_For_Referral
+                    
+        else : #if d0 > 0
+            '''###################
+                step : j1 : N
+            ###################'''
+            pass
+        
+        #/if d0 > 0
+        
+    #/for i in range(3, lenOf_LO_BarDatas - 1):
+
+    '''###################
+        report
+    ###################'''
+    # header
+    msg = "source = %s\nlog file = %s\n\n" \
+                % (fname_CSV_File, fname_Log_File)
+
+    msg += "cntOf_Match_Up\t%s\t%.04f\n" \
+            % (
+                cntOf_Match_Up
+                , cntOf_Match_Up / lenOf_LO_BarDatas
+                )
+            
+    msg += "cntOf_Match_Up\t%s\t%.04f\n" \
+            % (
+                cntOf_Match_Up_Up
+                , cntOf_Match_Up_Up / cntOf_Match_Up
+#                 , cntOf_Match_Up_Up / lenOf_LO_BarDatas
+                )
+            
+    msg += "cntOf_Match_Down\t%s\t%.04f\n" \
+            % (
+                cntOf_Match_Up_Down
+                , cntOf_Match_Up_Down / cntOf_Match_Up
+#                 , cntOf_Match_Up_Down / lenOf_LO_BarDatas
+                )
+            
+    
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    print("[%s:%d] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg
+                            ), file=sys.stderr)
+    
+#     libs.write_Log(
+#                 msg_Log
+#                 , cons_fx.FPath.dpath_LogFile.value
+#                 , fname_Log_File
+#                 , 1)
+    
+    '''###################
+        return        
+    ###################'''
+    return status, msg
+#     return status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+#     return status, msg, (lenOf_BarDatas, avg, std_dev)
+
+#/ Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(lo_BarDatas, fname)
 
 def BUSL_2(lo_BarData):
     

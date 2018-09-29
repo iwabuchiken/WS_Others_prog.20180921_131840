@@ -41,59 +41,63 @@
 </table>
 
 <!-- <table id="tbl_Im_Actions__Body"> -->
-<table id="tbl_Curr_BUSL_2_Actions__Body">
 
-        {% for item in list_of_params %}
-        
-            <tr>
-            
-                <td>
-                
-                    {{forloop.counter}}
-                
-                </td>
-                
-                <td>
-                
-                    {{ item.0 }}
-                    
-                </td>
-                
-                <td id="td_Label_{{ item.0 }}">
-                
-                    {{ item.1 }}
-                    
-                </td>
-                
-                
-                <td>
-                    
-                    <!-- 
-                    <a href="http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3&busl3_action={{ item.2 }}">
-                    GO </a>
-                    
-                     -->
-                     
-                    <button 
-                           onclick="curr_BUSL_3__Action('{{ item.0 }}')"
-                           class="bt_Basic_2_Size20"
-                           >
-                       GO
-                       </button>
-                     
-                </td>
-                
-                <td>
-                    {{ item.3 }}
-                </td>
-                
-                <td>
-                    {{ item.4 }}
-                </td>
-                
-            </tr>
-            
-        {% endfor%}
+<div id = "div_Tbl_Curr_BUSL_2_Actions__Body">
 
-</table>
+	<table id="tbl_Curr_BUSL_2_Actions__Body">
+	
+	        {% for item in list_of_params %}
+	        
+	            <tr>
+	            
+	                <td>
+	                
+	                    {{forloop.counter}}
+	                
+	                </td>
+	                
+	                <td>
+	                
+	                    {{ item.0 }}
+	                    
+	                </td>
+	                
+	                <td id="td_Label_{{ item.0 }}">
+	                
+	                    {{ item.1 }}
+	                    
+	                </td>
+	                
+	                
+	                <td>
+	                    
+	                    <!-- 
+	                    <a href="http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3&busl3_action={{ item.2 }}">
+	                    GO </a>
+	                    
+	                     -->
+	                     
+	                    <button 
+	                           onclick="curr_BUSL_3__Action('{{ item.0 }}')"
+	                           class="bt_Basic_2_Size20"
+	                           >
+	                       GO
+	                       </button>
+	                     
+	                </td>
+	                
+	                <td>
+	                    {{ item.3 }}
+	                </td>
+	                
+	                <td>
+	                    {{ item.4 }}
+	                </td>
+	                
+	            </tr>
+	            
+	        {% endfor%}
+	
+	</table><!-- id="tbl_Curr_BUSL_2_Actions__Body" -->
 
+</div>

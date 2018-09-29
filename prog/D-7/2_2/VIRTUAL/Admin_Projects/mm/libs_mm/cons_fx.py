@@ -240,6 +240,8 @@ class Tester(Enum):
 
     # http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3&
     # max key value : 5 : 20180928_205920
+    # max key value : 6 : 20180929_132616
+    # max key value : 7 : 20180929_132616
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -248,6 +250,7 @@ class Tester(Enum):
             , 2 : "3-1"     # 2
             , 5 : "3-2"     # 2
             , 6 : "3-3"     # 2
+            , 7 : "3-4"
             
             , 3 : "4-1"     # 3
             , 4 : "4-2"     # 4
@@ -309,6 +312,15 @@ class Tester(Enum):
                 , ParamConstants.PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV.value
                 , "Up above BB.+1S, prev-3-bar pattern"
                 , "20180928_210203"
+            ],
+            
+            # 3-4
+            [
+                lo_Actions__BUSL__IDs[7]
+                ,"stat : up(BB.+1S) then up/down : prev 3 bars"
+                , ParamConstants.PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV.value
+                , "Up above BB.+1S, then up/down percentage (after prev-3-bar pattern)"
+                , "20180929_132827"
             ],
             
             [

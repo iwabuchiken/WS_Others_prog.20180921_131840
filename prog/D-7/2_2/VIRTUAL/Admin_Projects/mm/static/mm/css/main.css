@@ -37,7 +37,6 @@ table#tbl_Im_Actions__Header {
 	
 	margin     : 20px;
 	
-	
 	/*float      : left;*/
 
 	
@@ -1036,4 +1035,17 @@ label.lbl_basic_1 {
 	color  : black;
 	
 }
+
+/*ref http://kowaza.boo.jp/03table/table-07-0scroll.html
+    scroll table
+    20180929_133909
+*/
+div#div_Tbl_Curr_BUSL_2_Actions__Body {
+	
+	height     : 350px;
+	
+	overflow-y : scroll;
+	
+	
+}/*div_Tbl_Curr_BUSL_2_Actions__Body*/
 
