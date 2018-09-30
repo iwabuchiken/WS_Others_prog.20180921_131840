@@ -2304,6 +2304,114 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS(request):
         -1    ==> csv file doesn't exist
         1    ==> detect patterns --> file created
 ###################'''
+def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request):
+
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    '''###################
+        params        
+    ###################'''
+    fname_CSV_File = _req_fname_csv
+    dpath_CSV_File = _req_dpath_csv
+#     fname_CSV_File = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
+#     dpath_CSV_File = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+#     fpath_Full = os.path.join(dpath, fname)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+#         dic['message'] = "CSV NOT EXIST : %s" % fpath_Full
+        
+#         '''###################
+#             pages
+#         ###################'''
+#         render_Page = 'curr/busl_2.html'
+#         render_Page_full = 'curr/busl_2_full.html'
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+    dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+    
+#     (status, fname_Log, fpath_Log) = \
+    (status, msg) = \
+            libfx.BUSL_3__DetectPatterns__Highs_Lows(\
+                lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+                )
+#             libfx.BUSL_3__DetectPatterns__Highs_Lows(lo_BarDatas, fname_CSV_File)
+#             libfx.BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname_CSV_File)
+# _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS
+
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    
+    msg = "_tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS" \
+#     msg = "_tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS => done (source = %s / log = %s, dir = %s)" \
+#             % (fpath_Full
+#                , fname_Log
+#                , fpath_Log
+#                )
+    
+    print("[%s:%d] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg
+                    ), file=sys.stderr)
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request)
+
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> detect patterns --> file created
+###################'''
 def _tester_BUSL__V2__Param_3__Pattern_Percentage_Upup_Above_BB1S_UpOrDown(request):
 
     '''###################
@@ -3656,6 +3764,16 @@ def tester_BuyUps_SellLows__V2(request):
         (status, msg) = _tester_BUSL__V2__Param_7__Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(request)
 
         dic['message'] += "stat : up(BB.+1S) then up/down : prev 3 bars"
+
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[8] :
+        '''###################
+            
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request)
+#         (status, msg) = _tester_BUSL__V2__Param_7__Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(request)
+
+        dic['message'] += "res : patt : highs, lows"
 
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     

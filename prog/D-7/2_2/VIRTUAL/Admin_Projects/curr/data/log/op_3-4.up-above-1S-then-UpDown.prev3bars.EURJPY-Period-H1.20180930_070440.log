@@ -1,0 +1,9 @@
+[20180930_070440 / libfx.py:6644]
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-04).20180926_205209.csv
+log file = op_3-4.up-above-1S-then-UpDown.prev3bars.EURJPY-Period-H1.20180930_070440.log
+match pattern = 1,1,0
+
+cntOf_Match_Up	14	0.0282
+cntOf_Match_Up_Up	11	0.7857
+cntOf_Match_Up_Down	3	0.2143
+

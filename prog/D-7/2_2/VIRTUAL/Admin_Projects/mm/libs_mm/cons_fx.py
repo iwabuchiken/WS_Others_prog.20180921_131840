@@ -197,6 +197,12 @@ class ParamConstants(Enum):
     ###################'''
     PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS = \
                     "busl3_res__1_detect_patterns__updowns"
+                    
+    '''###################
+        utils : busl3 : 2 : research / highs, lows
+    ###################'''
+    PARAM_BUSL3_CMD_PARAM_3_4_HIGHS_LOWS = \
+                    "PARAM_BUSL3_CMD_PARAM_3_4_HIGHS_LOWS"
     
     '''###################
         utils : busl3 : 2 : research / 2 : up-up above BB.+1S then up or down
@@ -242,10 +248,12 @@ class Tester(Enum):
     # max key value : 5 : 20180928_205920
     # max key value : 6 : 20180929_132616
     # max key value : 7 : 20180929_132616
+    # max key value : 8 : 20180930_071716
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
             , 1 : "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
+            , 8 : "2-2"     # 
     
             , 2 : "3-1"     # 2
             , 5 : "3-2"     # 2
@@ -285,6 +293,15 @@ class Tester(Enum):
                 , ParamConstants.PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS.value
                 , "up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log"
                 , "20180915_125135"
+            ],
+            
+            # 2-2
+            [
+                lo_Actions__BUSL__IDs[8]
+                ,"res : pattern : highs, lows"
+                , ParamConstants.PARAM_BUSL3_CMD_PARAM_3_4_HIGHS_LOWS.value
+                , "detect highs and lows in a given period"
+                , "20180930_071837"
             ],
             
             # 3-1

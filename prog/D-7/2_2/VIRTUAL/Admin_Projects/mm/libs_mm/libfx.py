@@ -3772,6 +3772,7 @@ def _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname):
 #                      , (cntOf_Up_Above_BB_1S / cntOf_Up)
 #                      )
 #         
+    
     msg_Log = "[%s / %s:%d] %s" % \
                     (
                     libs.get_TimeLabel_Now()
@@ -6454,7 +6455,8 @@ def Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(\
     tlabel = libs.get_TimeLabel_Now()
     
     # log file name
-    fname_Log_File = "op_3-3.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
+#     fname_Log_File = "op_3-3.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
+    fname_Log_File = "op_3-4.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
             % (
                fname_CSV_File.split(".")[2]
                , fname_CSV_File.split(".")[3]
@@ -6605,23 +6607,31 @@ def Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(\
         report
     ###################'''
     # header
-    msg = "source = %s\nlog file = %s\n\n" \
-                % (fname_CSV_File, fname_Log_File)
+#     msg = "source = %s\nlog file = %s\n\n" \
+    msg = "source = %s\nlog file = %s\nmatch pattern = %d,%d,%d\n\n" \
+                % (
+                    fname_CSV_File
+                    , fname_Log_File
+                    , lo_UpDown_For_Referral[0]
+                    , lo_UpDown_For_Referral[1]
+                    , lo_UpDown_For_Referral[2]
+                    )
+#                 % (fname_CSV_File, fname_Log_File)
 
     msg += "cntOf_Match_Up\t%s\t%.04f\n" \
             % (
                 cntOf_Match_Up
                 , cntOf_Match_Up / lenOf_LO_BarDatas
                 )
-            
-    msg += "cntOf_Match_Up\t%s\t%.04f\n" \
+
+    msg += "cntOf_Match_Up_Up\t%s\t%.04f\n" \
             % (
                 cntOf_Match_Up_Up
                 , cntOf_Match_Up_Up / cntOf_Match_Up
 #                 , cntOf_Match_Up_Up / lenOf_LO_BarDatas
                 )
             
-    msg += "cntOf_Match_Down\t%s\t%.04f\n" \
+    msg += "cntOf_Match_Up_Down\t%s\t%.04f\n" \
             % (
                 cntOf_Match_Up_Down
                 , cntOf_Match_Up_Down / cntOf_Match_Up
@@ -6640,11 +6650,11 @@ def Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(\
                             , msg
                             ), file=sys.stderr)
     
-#     libs.write_Log(
-#                 msg_Log
-#                 , cons_fx.FPath.dpath_LogFile.value
-#                 , fname_Log_File
-#                 , 1)
+    libs.write_Log(
+                msg_Log
+                , cons_fx.FPath.dpath_LogFile.value
+                , fname_Log_File
+                , 1)
     
     '''###################
         return        
@@ -6654,6 +6664,532 @@ def Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(\
 #     return status, msg, (lenOf_BarDatas, avg, std_dev)
 
 #/ Stat_UpAboveBB1S_Then_UpDown_Prev3Bars(lo_BarDatas, fname)
+
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def BUSL_3__DetectPatterns__Highs_Lows(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+           ):
+    
+    '''###################
+        execute        
+    ###################'''
+#     (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_1(\
+    (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
+                lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile)
+     
+    '''###################
+        return
+    ###################'''
+    return status, msg
+
+#/ BUSL_3__DetectPatterns__Highs_Lows(lo_BarDatas, fname)
+
+def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+           ):
+
+    #debug
+    print("[%s:%d] BUSL_3__DetectPatterns__Highs_Lows" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+    
+    '''###################
+        step : -1
+            prep
+    ###################'''
+    status = 0
+    msg = "SKELETON"
+    
+    '''###################
+        step : 0.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas = len(lo_BarDatas)
+    
+    # counter #######################
+    cntOf_Ups = 0
+    cntOf_Downs = 0
+    cntOf_Zeros = 0
+    
+    # list #######################
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+    lo_BarDatas_Tmp.reverse()
+    
+    lo_Highs = []
+    lo_Lows = []
+
+    # flags #######################
+    flg_Dat_Set = False
+    
+    # log file #######################
+    # time label
+    tlabel = libs.get_TimeLabel_Now()
+    
+    # log file name
+#     fname_Log_File = "op_3-3.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
+    fname_Log_File = "op_2-2.detect.highs-lows.v-3.%s-%s.%s.log" \
+            % (
+               fname_CSV_File.split(".")[2]
+               , fname_CSV_File.split(".")[3]
+               , tlabel
+               
+               )
+    
+    #debug
+    print("[%s:%d] fname_Log_File =>%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log_File
+        ), file=sys.stderr)
+    
+    '''###################
+        step : 0
+            prep
+    ###################'''
+    dat = {
+        
+        "price_current" : -1.0
+        , "price_start" : -1.0
+        
+        , "index_current" : -1
+        , "index_start" : -1
+        
+        }
+    
+    '''###################
+        for loop
+    ###################'''
+    for i in range(0, lenOf_LO_BarDatas - 1):
+#     for i in range(0, lenOf_LO_BarDatas):
+        '''###################
+            step : 1
+                prep
+        ###################'''
+        e0 = lo_BarDatas_Tmp[i]
+        d0 = e0.diff_OC
+        
+        '''###################
+            step : j1
+                flg_Dat_Set --> Set ?
+        ###################'''
+        if flg_Dat_Set == False : #if flg_Dat_Set == False
+            '''###################
+                step : j1 : N
+                    flg_Dat_Set --> False
+            ###################'''
+            '''###################
+                step : j1 : N : 1
+                    dat --> set
+            ###################'''
+            dat['price_current'] = e0.price_Close
+            dat['price_start'] = e0.price_Open
+            
+            dat['index_current'] = e0.no
+            dat['index_start'] = e0.no
+
+            '''###################
+                step : j1 : N : 2
+                    flag --> set
+            ###################'''
+            flg_Dat_Set = True
+#             flg_Dat_Set == True
+            
+            print("[%s:%d] flag_Dat_Set => set to : %s (%s)" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , flg_Dat_Set, e0.dateTime_Local
+                ), file=sys.stderr)
+        
+        else : #if flg_Dat_Set == False
+            '''###################
+                step : j1 : Y
+                    flg_Dat_Set --> True
+            ###################'''
+            '''###################
+                step : j1 : Y : 1
+                    prev bar
+            ###################'''
+            e_prev = lo_BarDatas_Tmp[i - 1]
+            d_prev = e_prev.diff_OC
+            
+            '''###################
+                step : j2
+                    prev diff >= 0 ?
+            ###################'''
+            if d_prev >= 0 : #if d_prev >= 0
+                '''###################
+                    step : j2 : Y
+                        prev diff >= 0
+                ###################'''
+                '''###################
+                    step : j3
+                        d0 >= 0 ?
+                ###################'''
+                if d0 >= 0 : #if d0 >= 0
+                    '''###################
+                        step : j3 : Y
+                            d0 >= 0
+                    ###################'''
+                    '''###################
+                        step : j3 : Y : 1
+                            dat --> update
+                    ###################'''
+                    dat['price_current'] = e0.price_Close
+                    
+                    dat['index_current'] = e0.no
+                    
+                    
+                
+                else : #if d0 >= 0
+                    '''###################
+                        step : j3 : N
+                            d0 < 0
+                    ###################'''
+                    '''###################
+                        step : j3 : N : 1
+                            dat --> update
+                    ###################'''
+                    dat['price_current'] = e0.price_Close
+                    
+                    dat['index_current'] = e0.no
+                    
+                    '''###################
+                        step : j3 : N : 2
+                            append
+                    ###################'''
+                    lo_Highs.append([e0, dat])
+                    
+                    '''###################
+                        step : j3 : N : 3
+                            dat --> reset
+                    ###################'''
+                    dat = {
+        
+                        "price_current" : -1.0
+                        , "price_start" : -1.0
+                        
+                        , "index_current" : -1
+                        , "index_start" : -1
+                        
+                        }
+
+                    '''###################
+                        step : j3 : N : 4
+                            flag --> reset
+                    ###################'''
+                    flg_Dat_Set = False
+                    
+                    print("[%s:%d] flag_Dat_Set => set BACK to : %s (%s)" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , flg_Dat_Set, e0.dateTime_Local
+                        ), file=sys.stderr)
+                    
+ 
+                #/if d0 >= 0
+            
+            else : #if d_prev >= 0
+                '''###################
+                    step : j2 : N
+                        prev diff < 0
+                ###################'''
+                '''###################
+                    step : j4
+                        d0 >= 0 ?
+                ###################'''
+                if d0 >= 0 : #if d0 >= 0
+                    '''###################
+                        step : j4 : Y
+                            d0 >= 0
+                    ###################'''
+                    '''###################
+                        step : j4 : Y : 1
+                            dat --> update
+                    ###################'''
+                    dat['price_current'] = e0.price_Close
+                    
+                    dat['index_current'] = e0.no
+                    
+                    '''###################
+                        step : j4 : Y : 2
+                            append
+                    ###################'''
+                    lo_Lows.append([e0, dat])
+                    
+                    '''###################
+                        step : j4 : Y : 3
+                            dat --> reset
+                    ###################'''
+                    dat = {
+        
+                        "price_current" : -1.0
+                        , "price_start" : -1.0
+                        
+                        , "index_current" : -1
+                        , "index_start" : -1
+                        
+                        }
+                    
+                    '''###################
+                        step : j4 : Y : 4
+                            flag --> reset
+                    ###################'''
+                    flg_Dat_Set = False
+                
+                    
+                
+                else : #if d0 >= 0
+                    '''###################
+                        step : j4 : N
+                            d0 < 0
+                    ###################'''
+                    '''###################
+                        step : j4 : N : 1
+                            dat --> update
+                    ###################'''
+                    dat['price_current'] = e0.price_Close
+                    
+                    dat['index_current'] = e0.no
+                    
+                
+                #/if d0 >= 0
+                
+
+                
+                
+            
+            #/if d_prev >= 0
+            
+            
+            
+        
+        #/if flg_Dat_Set == False
+        
+        
+        
+    #/for i in range(0, lenOf_LO_BarDatas):
+
+    
+    
+    '''###################
+        report
+    ###################'''
+#     msg = "cntOf_Ups = %d, cntOf_Downs = %d, cntOf_Zeros = %d, total = %d" %\
+    msg = "len(lo_Highs) = %d, len(lo_Lows) = %d, lenOf_LO_BarDatas = %d" %\
+                    (
+                    len(lo_Highs), len(lo_Lows), lenOf_LO_BarDatas
+                    )
+            
+    msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+    
+    print("[%s:%d] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , msg
+        ), file=sys.stderr)
+    
+#     libs.write_Log(msg_Log
+#                         , cons_fx.FPath.dpath_LogFile.value
+#                         , fname_Log
+# #                         , cons_fx.FPath.fname_LogFile.value
+#                         , 1)
+
+    '''###################
+        return        
+    ###################'''
+    return status, msg
+#     return status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+#     return status, msg, (lenOf_BarDatas, avg, std_dev)
+
+#/ BUSL_3__DetectPatterns__Highs_Lows__V_1(lo_BarDatas, fname)
+
+def _BUSL_3__DetectPatterns__Highs_Lows__V_1(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+           ):
+
+    #debug
+    print("[%s:%d] BUSL_3__DetectPatterns__Highs_Lows" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+    
+    '''###################
+        step : -1
+            prep
+    ###################'''
+    status = 0
+    msg = "SKELETON"
+    
+    '''###################
+        step : 0.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas = len(lo_BarDatas)
+    
+    # counter
+    cntOf_Ups = 0
+    cntOf_Downs = 0
+    cntOf_Zeros = 0
+    
+    # list
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+    lo_BarDatas_Tmp.reverse()
+
+    # flags
+    flg_UD = -1
+    
+    # log file
+    # time label
+    tlabel = libs.get_TimeLabel_Now()
+    
+    # log file name
+#     fname_Log_File = "op_3-3.up-above-1S-then-UpDown.prev3bars.%s-%s.%s.log" \
+    fname_Log_File = "op_2-2.detect.highs-lows.%s-%s.%s.log" \
+            % (
+               fname_CSV_File.split(".")[2]
+               , fname_CSV_File.split(".")[3]
+               , tlabel
+               
+               )
+    
+    #debug
+    print("[%s:%d] fname_Log_File =>%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log_File
+        ), file=sys.stderr)
+    
+    '''###################
+        step : 0
+            prep
+    ###################'''
+    dat = {
+        
+        "current_price" : -1.0
+        , "current_index" : -1
+        
+        }
+    
+    '''###################
+        for loop
+    ###################'''
+    for i in range(0, lenOf_LO_BarDatas):
+        '''###################
+            step : 1
+                prep
+        ###################'''
+        e0 = lo_BarDatas_Tmp[i]
+        d0 = e0.diff_OC
+        
+        '''###################
+            step : j1
+                d0 >= 0 ?
+        ###################'''
+        if d0 >= 0 : #if d0 >= 0
+            '''###################
+                step : j1 : Y
+            ###################'''
+            '''###################
+                step : j1 : Y : 1
+                    flag : set
+            ###################'''
+            flg_UD = 1
+            
+            '''###################
+                step : j1 : Y : 1.1
+                    count
+            ###################'''
+            cntOf_Ups += 1
+            
+            '''###################
+                step : j1 : Y : 2
+                    update : closing price
+            ###################'''
+            dat['current_price'] = e0.price_Close
+        
+        else : #if d0 >= 0
+            '''###################
+                step : j1 : N
+            ###################'''
+            '''###################
+                step : j1 : N : 1
+                    flag : set
+            ###################'''
+            flg_UD = -1
+            
+            '''###################
+                step : j1 : N : 1
+                    count
+            ###################'''
+            if d0 == 0 : cntOf_Zeros += 1
+            elif d0 < 0 : cntOf_Downs += 1
+            
+            '''###################
+                step : j1 : N : 2
+                    update : closing price
+            ###################'''
+            dat['current_price'] = e0.price_Close
+            
+        
+        #/if d0 >= 0
+        
+    #/for i in range(0, lenOf_LO_BarDatas):
+
+    
+    
+    '''###################
+        report
+    ###################'''
+    msg = "cntOf_Ups = %d, cntOf_Downs = %d, cntOf_Zeros = %d, total = %d" %\
+                    (
+                    cntOf_Ups
+                    , cntOf_Downs
+                    , cntOf_Zeros
+                    , lenOf_LO_BarDatas
+                    )
+            
+    msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+    
+    print("[%s:%d] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , msg
+        ), file=sys.stderr)
+    
+#     libs.write_Log(msg_Log
+#                         , cons_fx.FPath.dpath_LogFile.value
+#                         , fname_Log
+# #                         , cons_fx.FPath.fname_LogFile.value
+#                         , 1)
+
+    '''###################
+        return        
+    ###################'''
+    return status, msg
+#     return status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev)
+#     return status, msg, (lenOf_BarDatas, avg, std_dev)
+
+#/ BUSL_3__DetectPatterns__Highs_Lows__V_1(lo_BarDatas, fname)
 
 def BUSL_2(lo_BarData):
     
