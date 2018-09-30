@@ -6698,7 +6698,7 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
        , dpath_Log
        , writeToFile = True
            ):
-
+#aaa
     #debug
     print("[%s:%d] BUSL_3__DetectPatterns__Highs_Lows" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -6806,10 +6806,10 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
             flg_Dat_Set = True
 #             flg_Dat_Set == True
             
-            print("[%s:%d] flag_Dat_Set => set to : %s (%s)" % \
-                (os.path.basename(libs.thisfile()), libs.linenum()
-                , flg_Dat_Set, e0.dateTime_Local
-                ), file=sys.stderr)
+#             print("[%s:%d] flag_Dat_Set => set to : %s (%s)" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , flg_Dat_Set, e0.dateTime_Local
+#                 ), file=sys.stderr)
         
         else : #if flg_Dat_Set == False
             '''###################
@@ -6890,10 +6890,10 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
                     ###################'''
                     flg_Dat_Set = False
                     
-                    print("[%s:%d] flag_Dat_Set => set BACK to : %s (%s)" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                        , flg_Dat_Set, e0.dateTime_Local
-                        ), file=sys.stderr)
+#                     print("[%s:%d] flag_Dat_Set => set BACK to : %s (%s)" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         , flg_Dat_Set, e0.dateTime_Local
+#                         ), file=sys.stderr)
                     
  
                 #/if d0 >= 0
@@ -6984,13 +6984,35 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
     '''###################
         report
     ###################'''
+    '''###################
+        report : basic info
+    ###################'''
 #     msg = "cntOf_Ups = %d, cntOf_Downs = %d, cntOf_Zeros = %d, total = %d" %\
-    msg = "len(lo_Highs) = %d, len(lo_Lows) = %d, lenOf_LO_BarDatas = %d" %\
+    msg = "source = %s\nlog file = %s\n\n" %\
                     (
-                    len(lo_Highs), len(lo_Lows), lenOf_LO_BarDatas
+                    fname_CSV_File
+                    , fname_Log_File
                     )
             
-    msg_Log = "[%s / %s:%d] %s" % \
+#     msg += "len(lo_Highs) = %d, len(lo_Lows) = %d, lenOf_LO_BarDatas = %d" %\
+    msg += "lo_Highs\tlo_Lows\tlenOf_LO_BarDatas\n"
+    
+    msg += "%d\t%d\t%d\n" \
+            % (
+                len(lo_Highs)
+                , len(lo_Lows)
+                , lenOf_LO_BarDatas
+                )
+    
+    msg += "%.03f\t%.03f\t%.03f\n" \
+            % (
+                len(lo_Highs) * 1.0 / lenOf_LO_BarDatas
+                , len(lo_Lows) * 1.0 / lenOf_LO_BarDatas
+                , lenOf_LO_BarDatas * 1.0 / lenOf_LO_BarDatas
+                )
+            
+#     msg_Log = "[%s / %s:%d] %s" % \
+    msg_Log = "[%s / %s:%d]\n%s" % \
                     (
                     libs.get_TimeLabel_Now()
                     , os.path.basename(libs.thisfile()), libs.linenum()
@@ -7001,11 +7023,59 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_3(\
         , msg
         ), file=sys.stderr)
     
-#     libs.write_Log(msg_Log
-#                         , cons_fx.FPath.dpath_LogFile.value
-#                         , fname_Log
-# #                         , cons_fx.FPath.fname_LogFile.value
-#                         , 1)
+    libs.write_Log(msg_Log
+                        , dpath_Log
+                        , fname_Log_File
+#                         , cons_fx.FPath.fname_LogFile.value
+                        , 1)
+
+    '''###################
+        report : highs, lows
+    ###################'''
+    msg = "<highs>\ndatetime(local)\tstart\tcurrent\tdiff\n"
+    
+    for item in lo_Highs:
+    
+        msg += "%s\t%0.4f\t%0.4f\t%0.4f\n" \
+                % (
+                    item[0].dateTime_Local
+                    , item[1]['price_start']
+                    , item[1]['price_current']
+                    , item[1]['price_current'] - item[1]['price_start']
+                    )
+        
+    msg += "\n<lows>\ndatetime(local)\tstart\tcurrent\tdiff\n"
+    
+    for item in lo_Lows:
+    
+        msg += "%s\t%0.4f\t%0.4f\t%0.4f\n" \
+                % (
+                    item[0].dateTime_Local
+                    , item[1]['price_start']
+                    , item[1]['price_current']
+                    , item[1]['price_current'] - item[1]['price_start']
+                    )
+        
+    #/for item in lo_Highs:
+
+#     msg_Log = "[%s / %s:%d] %s" % \
+    msg_Log = "[%s / %s:%d]\n%s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+    
+#     print("[%s:%d] %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , msg
+#         ), file=sys.stderr)
+    
+    libs.write_Log(msg_Log
+                        , dpath_Log
+                        , fname_Log_File
+#                         , cons_fx.FPath.fname_LogFile.value
+                        , 1)
+    
 
     '''###################
         return        

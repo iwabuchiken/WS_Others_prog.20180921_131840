@@ -1,0 +1,8 @@
+[20180930_111258 / libfx.py:7015]
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.csv
+log file = op_2-2.detect.highs-lows.v-3.EURJPY-Period-H1.20180930_111258.log
+
+lo_Highs	lo_Lows	lenOf_LO_BarDatas
+102	77	521
+0.196	0.148	1.000
+
