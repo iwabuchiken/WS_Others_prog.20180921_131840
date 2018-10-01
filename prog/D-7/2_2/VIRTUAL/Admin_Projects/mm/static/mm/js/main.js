@@ -405,7 +405,15 @@ function curr_BUSL_3__Action(_param) {
 	
 	var tag_RB_3_2_checked = tag_RB_3_2.val();
 	
-//	alert("tag_RB_3_2_checked => " + tag_RB_3_2_checked);
+	/***************************
+		get : param : 3-2 radio button
+	 ***************************/
+	var tag_RB_2_2 = $('input:radio[name=curr_BUSL_2__Area_Options__RB_2-2_RBs]:checked');
+	
+	var tag_RB_2_2_checked = tag_RB_2_2.val();
+	
+//	//debug
+//	alert("2-2, option => " + tag_RB_2_2_checked);
 //	
 //	return;
 	
@@ -428,6 +436,7 @@ function curr_BUSL_3__Action(_param) {
 		, "fname_csv"	: ta_val_Fname_CSV
 		, "dpath_csv"	: ta_val_Dpath_CSV
 		, "param_3-2_bartype"	: tag_RB_3_2_checked
+		, "param_2-2_MonthOrAll"	: tag_RB_2_2_checked
 			
 	};
 	

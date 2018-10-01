@@ -2312,6 +2312,8 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request):
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
     
+    _req_MonthOrAll = request.GET.get('param_2-2_MonthOrAll', False)
+    
     '''###################
         params        
     ###################'''
@@ -2349,42 +2351,194 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request):
         ###################'''
         return -1, msg
 
-
+    
     '''###################
         get : list of BarDatas
     ###################'''
-    header_Length   = 2
-    skip_Header     = False
-    
-    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
-                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
-#                         dpath, fname, header_Length, skip_Header)
-    
-    print()
-    print("[%s:%d] len(lo_BarDatas) => %d" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                        , len(lo_BarDatas)
-                        ), file=sys.stderr)
-
     '''###################
-        execute        
-        
-        (-1, msg) ==> csv file doesn't exist
-        (1, msg) ==> up-down stats --> created
+        prep
     ###################'''
-    '''###################
-        op : BUSL_3
-    ###################'''
+    # dpath log
     dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
     
-#     (status, fname_Log, fpath_Log) = \
-    (status, msg) = \
-            libfx.BUSL_3__DetectPatterns__Highs_Lows(\
-                lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
-                )
-#             libfx.BUSL_3__DetectPatterns__Highs_Lows(lo_BarDatas, fname_CSV_File)
-#             libfx.BUSL_3__Res_1__DetectPatterns__UpDownPattern(lo_BarDatas, fname_CSV_File)
-# _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS
+    '''###################
+        dispatch
+    ###################'''
+    status = -1
+    msg = "NONE"
+    
+    # dispatch
+    if _req_MonthOrAll == cons_fx.ParamConstants.PARAM_BUSL3_2_2__BY_MONTH.value : #if montn_or_all == cons_fx.ParamConstants.PARAM_BUSL3_2_2__BY_MONTH.value
+
+        header_Length   = 2
+        skip_Header     = False
+        
+        lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                            dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+    #                         dpath, fname, header_Length, skip_Header)
+        
+        print()
+        print("[%s:%d] len(lo_BarDatas) => %d" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , len(lo_BarDatas)
+                            ), file=sys.stderr)
+    
+        '''###################
+            execute        
+            
+            (-1, msg) ==> csv file doesn't exist
+            (1, msg) ==> up-down stats --> created
+        ###################'''
+        '''###################
+            op : BUSL_3
+        ###################'''
+#         dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+        
+    #     (status, fname_Log, fpath_Log) = \
+        (status, msg) = \
+                libfx.BUSL_3__DetectPatterns__Highs_Lows(\
+                    lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+#                     , month_or_all = _req_MonthOrAll
+    #                 , montn_or_all = _req_MonthOrAll
+                    )
+#         (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
+#                     lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile
+#     #                 , montn_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+#                     )
+    
+    elif _req_MonthOrAll == cons_fx.ParamConstants.PARAM_BUSL3_2_2__ALL_MONTHS.value : #if montn_or_all == cons_fx.ParamConstants.PARAM_BUSL3_2_2__BY_MONTH.value
+        '''###################
+            csv file names        
+                C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+        ###################'''
+        fnames_CSV = []
+
+        # time label
+        tlabel = libs.get_TimeLabel_Now()        
+        
+#         for i in range(7, 10):
+        for i in range(1, 9):
+        
+            fname_CSV_File = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-%02d).20180926_205209.csv" % i
+#             tmp = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-%02d).20180926_205209.csv" % i
+            
+            fname_Log_File = "op_2-2.detect.highs-lows.v-3.%s-%s.(m-%02d).%s.log" \
+                % (
+#                    tmp.split(".")[2]
+#                    , tmp.split(".")[3]
+                    fname_CSV_File.split(".")[2]
+                    , fname_CSV_File.split(".")[3]
+                    , i
+                   , tlabel
+                   
+                   )
+            
+            '''###################
+                list : bardatas        
+            ###################'''
+            header_Length   = 2
+            skip_Header     = False
+            
+            lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                                dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                                 dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+        #                         dpath, fname, header_Length, skip_Header)
+            
+            print()
+            print("[%s:%d] len(lo_BarDatas) => %d" % \
+                                (os.path.basename(libs.thisfile()), libs.linenum()
+                                , len(lo_BarDatas)
+                                ), file=sys.stderr)
+
+            
+#             fnames_CSV.append([tmp, fname_Log_File])
+# #             fnames_CSV.append(tmp)
+            
+            '''###################
+                exec
+            ###################'''
+            (status, msg) = \
+                libfx.BUSL_3__DetectPatterns__Highs_Lows(\
+                    lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+                    , _fname_Log_File = fname_Log_File
+#                     , month_or_all = _req_MonthOrAll
+    #                 , montn_or_all = _req_MonthOrAll
+                    )
+
+
+            
+            
+        #/for i in range(1, 10):
+
+        
+        '''###################
+            exec
+        ###################'''
+        # couter
+        cntOf_Exec = 0
+        
+        # iterate
+        for item in fnames_CSV:
+
+#             fname_Log_File = "op_2-2.detect.highs-lows.v-3.%s-%s.%s.log" \
+#                 % (
+#                    fname_CSV_File.split(".")[2]
+#                    , fname_CSV_File.split(".")[3]
+#                    , tlabel
+#                    
+#                    )
+    
+#             (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
+#                         lo_BarDatas, item[0], lo_CSVs, dpath_Log, writeToFile
+#                         , _fname_Log_File = item[1]
+# #                         lo_BarDatas, item, lo_CSVs, dpath_Log, writeToFile
+#         #                 , montn_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+#                         )
+            
+            # count
+            cntOf_Exec += 1
+            
+        #/for item in fnames_CSV:
+        
+#         '''###################
+#             result
+#         ###################'''
+#         status = 1
+#         
+#         msg = "done : %d files" % cntOf_Exec        
+
+#     header_Length   = 2
+#     skip_Header     = False
+#     
+#     lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+#                         dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+# #                         dpath, fname, header_Length, skip_Header)
+#     
+#     print()
+#     print("[%s:%d] len(lo_BarDatas) => %d" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         , len(lo_BarDatas)
+#                         ), file=sys.stderr)
+# 
+#     '''###################
+#         execute        
+#         
+#         (-1, msg) ==> csv file doesn't exist
+#         (1, msg) ==> up-down stats --> created
+#     ###################'''
+#     '''###################
+#         op : BUSL_3
+#     ###################'''
+#     dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+#     
+# #     (status, fname_Log, fpath_Log) = \
+#     (status, msg) = \
+#             libfx.BUSL_3__DetectPatterns__Highs_Lows(\
+#                 lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
+#                 , month_or_all = _req_MonthOrAll
+# #                 , montn_or_all = _req_MonthOrAll
+#                 )
+
 
     '''###################
         return        

@@ -1,0 +1,20 @@
+[20181001_122818 / libfx.py:7035]
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-09).20180926_205209.csv
+log file = op_2-2.detect.highs-lows.v-3.EURJPY-Period-H1.(m-09).20181001_122817.log
+
+lo_Highs	lo_Lows	lenOf_LO_BarDatas
+3	2	15
+0.200	0.133	1.000
+
+[20181001_122818 / libfx.py:7082]
+<highs>
+datetime(local)	start	current	diff
+2018.09.03 12:00	128.6250	128.6210	-0.0040
+2018.09.03 10:00	128.7110	128.7110	0.0000
+2018.09.01 04:00	128.7460	128.7250	-0.0210
+
+<lows>
+datetime(local)	start	current	diff
+2018.09.03 08:00	128.9450	128.9440	-0.0010
+2018.09.01 02:00	128.7860	128.7910	0.0050
+

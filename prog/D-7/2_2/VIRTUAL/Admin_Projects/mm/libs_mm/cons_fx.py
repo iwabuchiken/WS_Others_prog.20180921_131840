@@ -232,6 +232,16 @@ class ParamConstants(Enum):
     PARAM_BUSL3_3_2__DIFF_OF_BARS__UP_BARS = "up_bars"
     PARAM_BUSL3_3_2__DIFF_OF_BARS__DOWN_BARS = "down_bars"
     
+    '''###################
+        param : 2-2
+    ###################'''
+    # _busl_2.tbl_options.html
+    PARAM_BUSL3_2_2__BY_MONTH = "by_month"
+    PARAM_BUSL3_2_2__ALL_MONTHS = "all_months"
+
+
+#/ class ParamConstants(Enum):
+    
 class Tester(Enum):
     
     lo_Commands = [
@@ -369,3 +379,11 @@ class Tester(Enum):
     #
     OPEN_DATA_DIR = "OPEN_DATA_DIR"
 
+class Constants(Enum) :
+    
+    '''###################
+        general        
+    ###################'''
+    CONS_NONE = "NONE"
+
+#/ class Constants(Enum) :
