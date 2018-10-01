@@ -6725,6 +6725,9 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     cntOf_Downs = 0
     cntOf_Zeros = 0
     
+    cntOf_NewDats = 0
+    cntOf_OverTheThreshold = 0
+    
     # list #######################
     # baradatas for ops
     lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
@@ -6737,6 +6740,7 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     flg_Dat_Set = False
     
     # others #######################
+#     ts = 0.5    # threshold --> (anchor - start) * ts
     ts = 0.3    # threshold --> (anchor - start) * ts
     
     # log file #######################
@@ -6793,7 +6797,6 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
         e0 = lo_BarDatas_Tmp[i]
         d0 = e0.diff_OC
         
-        #abcde
         '''###################
             step : j1
                 flag --> set?
@@ -6812,18 +6815,29 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                     step : j2 : Y
                         d0 >= 0
                 ###################'''
-                pass
-            
                 '''###################
                     step : j2 : Y : 1
                         dat --> set
                 ###################'''
-           
+                dat["price_current"] = e0.price_Close
+                dat["price_start"] = e0.price_Open
+                dat["price_anchor"] = e0.price_Close
+                
+                dat["index_current"] = e0.no
+                dat["index_start"] = e0.no
+                dat["index_anchor"] = e0.no
+                
+                '''###################
+                    step : j2 : Y : 1.1
+                        count
+                ###################'''
+                cntOf_NewDats += 1
+                
                 '''###################
                     step : j2 : Y : 2
                         flag --> set
                 ###################'''
-                
+                flg_Dat_Set = True
             
             else : #if d0 >= 0
                 '''###################
@@ -6842,7 +6856,6 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                 step : j1 : Y
                     flag --> set
             ###################'''    
-            pass
             '''###################
                 step : j3
                     d0 >= 0 ?
@@ -6852,28 +6865,96 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                     step : j3 : N
                         d0 < 0
                 ###################'''    
-                pass
-                
                 '''###################
                     step : j3 : N : 1
                         threshold calc
                 ###################'''    
-           
+                tmp_diff = dat['price_anchor'] - dat['price_start']
+                
+                ts_val = tmp_diff * ts
+                
+                price_A = dat['price_anchor'] - ts_val
+                
                 '''###################
                     step : j4
                         over the threshold ?
-                ###################'''    
-                '''###################
-                    step : j4 : Y
-                        over the threshold
-                ###################'''    
-            
-                '''###################
-                    step : j4 : N
-                        eaual or less than the threshold
-                ###################'''    
+                ###################'''
+                if e0.price_Close > price_A : #if e0.price_Close > price_A
+                    '''###################
+                        step : j4 : Y
+                            over the threshold
+                    ###################'''    
+                    print("[%s:%d] over the threshold : %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , e0.dateTime_Local
+                            ), file=sys.stderr)
+                    
+                    #abcde
+                    
+                    # count
+                    cntOf_OverTheThreshold += 1
+                    
+                    '''###################
+                        step : j4 : Y : 1
+                            dat --> update
+                    ###################'''    
+                    dat["price_current"] = e0.price_Close
+    #                 dat["price_start"] = e0.price_Open
+#                     dat["price_anchor"] = e0.price_Close
+                    
+                    dat["index_current"] = e0.no
+    #                 dat["index_start"] = e0.no
+#                     dat["index_anchor"] = e0.no
+                    
                 
-            
+                else : #if e0.price_Close > price_A
+                    '''###################
+                        step : j4 : N
+                            eaual or less than the threshold
+                    ###################'''    
+                    print("[%s:%d] eaual or less than the threshold : %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , e0.dateTime_Local
+                            ), file=sys.stderr)
+                    '''###################
+                        step : j4 : N : 1
+                            dat --> update
+                    ###################'''    
+                    dat["price_current"] = e0.price_Close
+#                     dat["price_start"] = e0.price_Open
+#                     dat["price_anchor"] = e0.price_Close
+                    
+                    dat["index_current"] = e0.no
+#                     dat["index_start"] = e0.no
+#                     dat["index_anchor"] = e0.no
+                    
+                    '''###################
+                        step : j4 : N : 2
+                            dat --> append
+                    ###################'''    
+                    lo_Highs.append(dat)
+                    
+                    '''###################
+                        step : j4 : N : 3
+                            dat --> reset
+                    ###################'''    
+                    dat["price_current"] = -1.0
+                    dat["price_start"] = -1.0
+                    dat["price_anchor"] = -1.0
+                    
+                    dat["index_current"] = -1
+                    dat["index_start"] = -1
+                    dat["index_anchor"] = -1
+                    
+                    '''###################
+                        step : j4 : N : 4
+                            flag --> reset
+                    ###################'''    
+                    flg_Dat_Set = False
+                    
+                
+                #/if e0.price_Close > price_A
+                
             else : #if d0 >= 0
                 '''###################
                     step : j3 : Y
@@ -6883,10 +6964,22 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                     step : j3 : Y : 1
                         dat --> update
                 ###################'''    
-                pass
-            
+                dat["price_current"] = e0.price_Close
+#                 dat["price_start"] = e0.price_Open
+                dat["price_anchor"] = e0.price_Close
                 
-            
+                dat["index_current"] = e0.no
+#                 dat["index_start"] = e0.no
+                dat["index_anchor"] = e0.no
+                
+                print("[%s:%d] dat => updated (anchor, too) : %s (e0.no = %d)" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , e0.dateTime_Local
+                    , e0.no
+                    ), file=sys.stderr)
+                
+                print(dat)
+                
             #/if d0 >= 0
             
 
@@ -6895,6 +6988,76 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     
     #/for i in range(0, lenOf_LO_BarDatas):
 
+    '''###################
+        append : the last dat
+    ###################'''
+    lo_Highs.append(dat)
+                
+    '''###################
+        report
+    ###################'''
+    '''###################
+        report : new dats
+    ###################'''
+#     msg = "cntOf_NewDats\t%d cntOf_OverTheThreshold = %d" %\
+    msg = "cntOf_NewDats = %d / cntOf_OverTheThreshold = %d / len of bardats = %d" %\
+                    (
+                    cntOf_NewDats
+                    , cntOf_OverTheThreshold
+                    , lenOf_LO_BarDatas
+                    )
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+    
+    print("[%s:%d] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , msg
+                ), file=sys.stderr)
+             
+#     libs.write_Log(msg_Log
+#                         , cons_fx.FPath.dpath_LogFile.value
+#                         , fname_Log
+# #                         , cons_fx.FPath.fname_LogFile.value
+#                         , 1)
+    
+    
+    '''###################
+        report : lo_Highs
+    ###################'''
+#     msg = "cntOf_NewDats\t%d" %\
+#                     (
+#                     cntOf_NewDats
+#                     )
+#     
+#     msg_Log = "[%s / %s:%d] %s" % \
+#                     (
+#                     libs.get_TimeLabel_Now()
+#                     , os.path.basename(libs.thisfile()), libs.linenum()
+#                     , msg)
+    
+    for item in lo_Highs:
+        
+        print(item)
+        
+# #         print("[%s:%d] high : dateTime_Local = %s" % \
+#         print("[%s:%d] high : index start = %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , item['index_start']
+# #                     , lo_BarDatas_Tmp[item['index_start']].dateTime_Local
+#                     ), file=sys.stderr)
+        
+    #/for item in lo_Highs:
+
+             
+#     libs.write_Log(msg_Log
+#                         , cons_fx.FPath.dpath_LogFile.value
+#                         , fname_Log
+# #                         , cons_fx.FPath.fname_LogFile.value
+#                         , 1)
     
     
     
