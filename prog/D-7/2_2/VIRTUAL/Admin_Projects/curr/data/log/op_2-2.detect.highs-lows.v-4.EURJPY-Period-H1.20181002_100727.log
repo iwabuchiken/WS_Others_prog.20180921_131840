@@ -1,0 +1,74 @@
+[20181002_100727 / libfx.py:6776]
+csv = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.(w-1).20180924_112956.csv
+fname_Log_File =>op_2-2.detect.highs-lows.v-4.EURJPY-Period-H1.20181002_100727.log
+
+[20181002_100727 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 08:00 (e0.no = 40)
+[20181002_100727 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 09:00 (d0 = -0.035)
+[20181002_100727 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.30 09:00
+[20181002_100727 / libfx.py:7068] (j4 : N : 2) dat --> appended (2018.07.30 09:00)
+idx_start = 41 (2018.07.30 07:00)
+idx_anchor = 40 (2018.07.30 08:00)
+idx_current = 39 (2018.07.30 09:00)
+[20181002_100727 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 11:00 (e0.no = 37)
+[20181002_100727 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 12:00 (d0 = -0.055)
+[20181002_100727 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.30 12:00
+[20181002_100727 / libfx.py:7068] (j4 : N : 2) dat --> appended (2018.07.30 12:00)
+idx_start = 38 (2018.07.30 10:00)
+idx_anchor = 37 (2018.07.30 11:00)
+idx_current = 36 (2018.07.30 12:00)
+[20181002_100727 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 14:00 (d0 = -0.038)
+[20181002_100727 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.30 14:00
+[20181002_100727 / libfx.py:7068] (j4 : N : 2) dat --> appended (2018.07.30 14:00)
+idx_start = 35 (2018.07.30 13:00)
+idx_anchor = 35 (2018.07.30 13:00)
+idx_current = 34 (2018.07.30 14:00)
+[20181002_100727 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 16:00 (d0 = -0.019)
+[20181002_100727 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.30 16:00
+[20181002_100728 / libfx.py:7068] (j4 : N : 2) dat --> appended (2018.07.30 16:00)
+idx_start = 33 (2018.07.30 15:00)
+idx_anchor = 33 (2018.07.30 15:00)
+idx_current = 32 (2018.07.30 16:00)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 18:00 (e0.no = 30)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 19:00 (e0.no = 29)
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 20:00 (d0 = -0.003)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.30 20:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.30 21:00 (d0 = -0.018)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.30 21:00
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 22:00 (e0.no = 26)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.30 23:00 (e0.no = 25)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 00:00 (e0.no = 24)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 01:00 (e0.no = 23)
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 02:00 (d0 = -0.066)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 02:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 03:00 (d0 = -0.025)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 03:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 05:00 (d0 = -0.019)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 05:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 09:00 (d0 = -0.033)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 09:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 10:00 (d0 = -0.035)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 10:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 12:00 (d0 = -0.023)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 12:00
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 13:00 (d0 = -0.169)
+[20181002_100728 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.31 13:00
+[20181002_100728 / libfx.py:7068] (j4 : N : 2) dat --> appended (2018.07.31 13:00)
+idx_start = 31 (2018.07.30 17:00)
+idx_anchor = 23 (2018.07.31 01:00)
+idx_current = 11 (2018.07.31 13:00)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 15:00 (e0.no = 9)
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 16:00 (d0 = -0.029)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 16:00
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 17:00 (e0.no = 7)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 18:00 (e0.no = 6)
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 19:00 (d0 = -0.060)
+[20181002_100728 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 19:00
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 20:00 (e0.no = 4)
+[20181002_100728 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 21:00 (e0.no = 3)
+[20181002_100728 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.31 22:00 (d0 = -0.089)
+[20181002_100729 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.31 22:00
+[20181002_100729 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.31 23:00 (e0.no = 1)
+[20181002_100729 / libfx.py:7235] (last : 1) dat --> appended (2018.07.31 23:00)
+idx_start = 10 (2018.07.30 16:00)
+idx_anchor = 1 (2018.07.30 07:00)
+idx_current = 1 (2018.07.30 07:00)

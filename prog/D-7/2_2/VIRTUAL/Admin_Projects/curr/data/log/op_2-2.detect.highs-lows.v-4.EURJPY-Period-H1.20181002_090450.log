@@ -1,0 +1,38 @@
+[20181002_090450 / libfx.py:6776]
+csv = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.(w-1).20180924_112956.csv
+fname_Log_File =>op_2-2.detect.highs-lows.v-4.EURJPY-Period-H1.20181002_090450.log
+
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 08:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.30 09:00 (e0.no = 39)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 10:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 11:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.30 12:00 (e0.no = 36)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 13:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.30 14:00 (e0.no = 34)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 15:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.30 16:00 (e0.no = 32)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 17:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 18:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 19:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.30 20:00 (e0.no = 28)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 22:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.30 23:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 00:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 01:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.31 02:00 (e0.no = 22)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 04:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 06:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 07:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 08:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 11:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.31 12:00 (e0.no = 12)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 14:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 15:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.31 16:00 (e0.no = 8)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 17:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 18:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.31 19:00 (e0.no = 5)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 20:00
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 21:00
+[20181002_090450 / libfx.py:7023] dat => updated (anchor, too) : 2018.07.31 22:00 (e0.no = 2)
+[20181002_090450 / libfx.py:6907] over the threshold : 2018.07.31 23:00

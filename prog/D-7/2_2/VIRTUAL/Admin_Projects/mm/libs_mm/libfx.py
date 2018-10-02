@@ -3744,34 +3744,6 @@ def _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908(lo_BarDatas, fname):
                     , "{:.2%}".format((cntOf_Down_Below_BB_M1S * 1.0 / cntOf_Total))
                     , "{:.2%}".format((cntOf_Down_Below_BB_M1S * 1.0 / cntOf_Down))
                     )
-#     , cntOf_Up = %d (of total : %s), cntOf_Down = %d (of total : %s), cntOf_Zero = %d (of total : %s), cntOf_Up_Above_BB_1S = %d (of total : %s), cntOf_Down_Below_BB_M1S = %d (of total : %s)" %\
-                    
-#                      , cntOf_Up, "{:.2%}".format((cntOf_Up * 1.0 / cntOf_Total))
-#                      , cntOf_Down, "{:.2%}".format((cntOf_Down * 1.0 / cntOf_Total))
-#                      , cntOf_Zero, "{:.2%}".format((cntOf_Zero * 1.0 / cntOf_Total))
-#                      , cntOf_Up_Above_BB_1S, "{:.2%}".format((cntOf_Up_Above_BB_1S * 1.0 / cntOf_Total))
-#                      , cntOf_Down_Below_BB_M1S, "{:.2%}".format((cntOf_Down_Below_BB_M1S * 1.0 / cntOf_Total))
-#     msg = "cntOf_Total = %d, cntOf_Up = %d (of total : %s), cntOf_Down = %d (of total : %s), cntOf_Zero = %d (of total : %s), cntOf_Up_Above_BB_1S = %d (of total : %s), cntOf_Down_Below_BB_M1S = %d (of total : %s)" %\
-#                     (cntOf_Total
-#                      , cntOf_Up, "{:.2%}".format((cntOf_Up * 1.0 / cntOf_Total))
-#                      , cntOf_Down, "{:.2%}".format((cntOf_Down * 1.0 / cntOf_Total))
-#                      , cntOf_Zero, "{:.2%}".format((cntOf_Zero * 1.0 / cntOf_Total))
-#                      , cntOf_Up_Above_BB_1S, "{:.2%}".format((cntOf_Up_Above_BB_1S * 1.0 / cntOf_Total))
-#                      , cntOf_Down_Below_BB_M1S, "{:.2%}".format((cntOf_Down_Below_BB_M1S * 1.0 / cntOf_Total))
-#     msg = "cntOf_Total = %d, cntOf_Up = %d (of total : %.03f), cntOf_Down = %d (of total : %.03f), cntOf_Zero = %d (of total : %.03f)" %\
-#                     (cntOf_Total
-#                      , cntOf_Up, (cntOf_Up * 1.0 / cntOf_Total)
-#                      , cntOf_Down, (cntOf_Down * 1.0 / cntOf_Total)
-#                      , cntOf_Zero, (cntOf_Zero * 1.0 / cntOf_Total)
-#                      )
-#     msg = "cntOf_Total = %d, cntOf_Up = %d(%.03f), cntOf_Up_Above_BB_1S = %d(%.03f, %.03f)" %\
-#                     (cntOf_Total, cntOf_Up
-#                      , (cntOf_Up / cntOf_Total)
-#                      , cntOf_Up_Above_BB_1S
-#                      , (cntOf_Up_Above_BB_1S / cntOf_Total)
-#                      , (cntOf_Up_Above_BB_1S / cntOf_Up)
-#                      )
-#         
     
     msg_Log = "[%s / %s:%d] %s" % \
                     (
@@ -6714,6 +6686,22 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     status = 0
     msg = "SKELETON"
     
+#     version_Num = 4
+    
+#     # time label
+#     tlabel = libs.get_TimeLabel_Now()
+# 
+#     id_Op = "2-2"
+#     
+#     fname_Log_File = "op_%s.detect.highs-lows.v-%d.%s-%s.%s.log" \
+#                 % (
+#                     id_Op
+#                     , version_Num
+#                    , fname_CSV_File.split(".")[2]
+#                    , fname_CSV_File.split(".")[3]
+#                    , tlabel
+#                    
+#                    )
     '''###################
         step : 0.1
             prep
@@ -6747,28 +6735,52 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     # time label
     tlabel = libs.get_TimeLabel_Now()
     
+    version_Num = 4
+    id_Op = "2-2"
+
     if _fname_Log_File == cons_fx.Constants.CONS_NONE.value : #if _fname_Log_File == cons_fx.Constants.CONS_NONE.value
-    
-        fname_Log_File = "op_2-2.detect.highs-lows.v-3.%s-%s.%s.log" \
+        
+#         fname_Log_File = "op_2-2.detect.highs-lows.v-3.%s-%s.%s.log" \
+        fname_Log_File = "op_%s.detect.highs-lows.v-%d.%s-%s.%s.log" \
                 % (
-                   fname_CSV_File.split(".")[2]
+                    id_Op
+                    , version_Num
+                   , fname_CSV_File.split(".")[2]
                    , fname_CSV_File.split(".")[3]
                    , tlabel
-                   
+                    
                    )
-    
+     
     else :
-        
+         
         fname_Log_File = _fname_Log_File
-        
+         
     #/if _fname_Log_File == cons_fx.Constants.CONS_NONE.value
     
     
-    #debug
-    print("[%s:%d] fname_Log_File =>%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , fname_Log_File
-        ), file=sys.stderr)
+#     #debug
+#     print("[%s:%d] fname_Log_File =>%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , fname_Log_File
+#         ), file=sys.stderr)
+
+    msg = "csv = %s\nfname_Log_File =>%s" %\
+                    (
+                    fname_CSV_File
+                    , fname_Log_File
+                    )
+    
+    msg_Log = "[%s / %s:%d]\n%s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+             
+    libs.write_Log(msg_Log
+                        , cons_fx.FPath.dpath_LogFile.value
+                        , fname_Log_File
+#                         , cons_fx.FPath.fname_LogFile.value
+                        , 2)
     
     '''###################
         step : 0
@@ -6860,11 +6872,30 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                 step : j3
                     d0 >= 0 ?
             ###################'''    
-            if d0 >= 0 : #if d0 >= 0
+#             if d0 >= 0 : #if d0 >= 0
+            if d0 < 0 : #if d0 < 0
                 '''###################
                     step : j3 : N
                         d0 < 0
                 ###################'''    
+                msg = "(j3 : N) d0 < 0 : %s (d0 = %.03f)" %\
+                                (
+                                e0.dateTime_Local
+                                , d0
+                                )
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                         
+                libs.write_Log(msg_Log
+                                    , cons_fx.FPath.dpath_LogFile.value
+                                    , fname_Log_File
+            #                         , cons_fx.FPath.fname_LogFile.value
+                                    , 1)
+    
                 '''###################
                     step : j3 : N : 1
                         threshold calc
@@ -6884,10 +6915,28 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                         step : j4 : Y
                             over the threshold
                     ###################'''    
-                    print("[%s:%d] over the threshold : %s" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                            , e0.dateTime_Local
-                            ), file=sys.stderr)
+                    msg = "(j4 : Y) over the threshold : %s" %\
+                                    (
+                                    e0.dateTime_Local
+                                    )
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                             
+                    libs.write_Log(msg_Log
+                                        , cons_fx.FPath.dpath_LogFile.value
+                                        , fname_Log_File
+                #                         , cons_fx.FPath.fname_LogFile.value
+                                        , 1)
+                    
+                    
+#                     print("[%s:%d] over the threshold : %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                             , e0.dateTime_Local
+#                             ), file=sys.stderr)
                     
                     #abcde
                     
@@ -6912,10 +6961,28 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                         step : j4 : N
                             eaual or less than the threshold
                     ###################'''    
-                    print("[%s:%d] eaual or less than the threshold : %s" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                            , e0.dateTime_Local
-                            ), file=sys.stderr)
+                    msg = "(j4 : N) eaual or less than the threshold : %s" %\
+                                    (
+                                    e0.dateTime_Local
+                                    )
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                             
+                    libs.write_Log(msg_Log
+                                        , cons_fx.FPath.dpath_LogFile.value
+                                        , fname_Log_File
+                #                         , cons_fx.FPath.fname_LogFile.value
+                                        , 1)
+                    
+#                     print("[%s:%d] eaual or less than the threshold : %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                             , e0.dateTime_Local
+#                             ), file=sys.stderr)
+                    
                     '''###################
                         step : j4 : N : 1
                             dat --> update
@@ -6932,16 +6999,104 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                         step : j4 : N : 2
                             dat --> append
                     ###################'''    
-                    lo_Highs.append(dat)
+                    dat2 = {
+                        
+                        "price_current" : dat["price_current"]
+                        , "price_start" : dat["price_start"]
+                        , "price_anchor" : dat["price_anchor"]
+                        
+                        , "index_current" : dat["index_current"]
+                        , "index_start" : dat["index_start"]
+                        , "index_anchor" : dat["index_anchor"]
+                        
+                        
+#                         , "price_start" : -1.0
+#                         , "price_anchor" : -1.0
+#                         
+#                         , "index_current" : -1
+#                         , "index_start" : -1
+#                         , "index_anchor" : -1
+                        
+                        }
+                    
+                    
+                    lo_Highs.append(dat2)
+#                     lo_Highs.append(dat)
+                    
+                    print("[%s:%d] dat --> appended" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        
+                        ), file=sys.stderr)
+                    print(dat)
+                    print("dat['index_start'] => %d" % dat['index_start'])
+#                     print(lo_BarDatas_Tmp[dat['index_start']])
+
+                    print("lo_BarDatas_Tmp[0] => ")
+                    print(lo_BarDatas_Tmp[0])
+                    
+                    print("len(lo_BarDatas_Tmp) => %d" % len(lo_BarDatas_Tmp))
+                    
+                    print("lo_BarDatas_Tmp[int(dat['index_start']) - 1] ==>")
+                    print(lo_BarDatas_Tmp[int(dat['index_start']) - 1].dateTime_Local)
+#                     print("lo_BarDatas_Tmp[int(dat['index_start'])] ==>")
+#                     print(lo_BarDatas_Tmp[int(dat['index_start'])])
+                    
+                    print()
+                    
+                    
+#                     msg = "(j4 : N : 2) dat --> appended (%s)\nidx_start = %d\nidx_anchor = %d\nidx_current = %d" %\
+                    msg = "(j4 : N : 2) dat --> appended (%s)\nidx_start = %d (%s)\nidx_anchor = %d (%s)\nidx_current = %d (%s)" %\
+                                    (
+                                    e0.dateTime_Local
+                                    , dat['index_start']
+                                    , lo_BarDatas[dat['index_start'] - 1].dateTime_Local
+                                    , dat['index_anchor']
+                                    , lo_BarDatas[dat['index_anchor'] - 1].dateTime_Local
+                                    , dat['index_current']
+                                    , lo_BarDatas[dat['index_current'] - 1].dateTime_Local
+#                                     , dat['index_start']
+#                                     , lo_BarDatas_Tmp[dat['index_start'] - 1].dateTime_Local
+#                                     , dat['index_anchor']
+#                                     , lo_BarDatas_Tmp[dat['index_anchor'] - 1].dateTime_Local
+#                                     , dat['index_current']
+#                                     , lo_BarDatas_Tmp[dat['index_current'] - 1].dateTime_Local
+                                    )
+
+                    msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                             
+                    libs.write_Log(msg_Log
+                                        , cons_fx.FPath.dpath_LogFile.value
+                                        , fname_Log_File
+                #                         , cons_fx.FPath.fname_LogFile.value
+                                        , 1)
                     
                     '''###################
                         step : j4 : N : 3
                             dat --> reset
-                    ###################'''    
+                    ###################'''
+#                     dat = {
+#                         
+#                         "price_current" : -1.0
+#                         , "price_start" : -1.0
+#                         , "price_anchor" : -1.0
+#                         
+#                         , "index_current" : -1
+#                         , "index_start" : -1
+#                         , "index_anchor" : -1
+#                         
+#                         }
+                    
+                    #ref https://www.tutorialspoint.com/python/dictionary_clear.htm
+#                     dat = clear()
+                    dat.clear()
                     dat["price_current"] = -1.0
                     dat["price_start"] = -1.0
                     dat["price_anchor"] = -1.0
-                    
+                     
                     dat["index_current"] = -1
                     dat["index_start"] = -1
                     dat["index_anchor"] = -1
@@ -6961,24 +7116,76 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                         d0 >= 0
                 ###################'''    
                 '''###################
-                    step : j3 : Y : 1
-                        dat --> update
+                    step : j3.1
+                        price_Close > dat.price_anchor ?
                 ###################'''    
-                dat["price_current"] = e0.price_Close
-#                 dat["price_start"] = e0.price_Open
-                dat["price_anchor"] = e0.price_Close
+                if e0.price_Close > dat['price_anchor'] : #if e0.price_Close > dat['price_anchor']
+                    '''###################
+                        step : j3.1 : Y
+                            price_Close > dat.price_anchor
+                    ###################'''    
+                    '''###################
+                        step : j3.1 : Y : 1
+                            dat --> update
+                    ###################'''    
+                    dat["price_current"] = e0.price_Close
+    #                 dat["price_start"] = e0.price_Open
+                    dat["price_anchor"] = e0.price_Close
+                    
+                    dat["index_current"] = e0.no
+    #                 dat["index_start"] = e0.no
+                    dat["index_anchor"] = e0.no
+
+                    msg = "(j3.1 : Y : 1) dat => updated (anchor, too) : %s (e0.no = %d)" %\
+                                    (
+                                    e0.dateTime_Local
+                                    , e0.no
+                                    )
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                             
+                    libs.write_Log(msg_Log
+                                        , cons_fx.FPath.dpath_LogFile.value
+                                        , fname_Log_File
+                #                         , cons_fx.FPath.fname_LogFile.value
+                                        , 1)
+                    
+                    
+#                     print("[%s:%d] dat => updated (anchor, too) : %s (e0.no = %d)" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         , e0.dateTime_Local
+#                         , e0.no
+#                         ), file=sys.stderr)
+#                     
+#                     print(dat)
                 
-                dat["index_current"] = e0.no
-#                 dat["index_start"] = e0.no
-                dat["index_anchor"] = e0.no
+                else : #if e0.price_Close > dat['price_anchor']
+                    '''###################
+                        step : j3.1 : N
+                            price_Close <= dat.price_anchor
+                    ###################'''    
+                    '''###################
+                        step : j3.1 : N : 1
+                            dat --> update
+                    ###################'''    
+                    dat["price_current"] = e0.price_Close
+    #                 dat["price_start"] = e0.price_Open
+#                     dat["price_anchor"] = e0.price_Close
+                    
+                    dat["index_current"] = e0.no
+    #                 dat["index_start"] = e0.no
+#                     dat["index_anchor"] = e0.no
+                    
                 
-                print("[%s:%d] dat => updated (anchor, too) : %s (e0.no = %d)" % \
-                    (os.path.basename(libs.thisfile()), libs.linenum()
-                    , e0.dateTime_Local
-                    , e0.no
-                    ), file=sys.stderr)
+                    
                 
-                print(dat)
+                #/if e0.price_Close > dat['price_anchor']
+                
+                
                 
             #/if d0 >= 0
             
@@ -6988,11 +7195,52 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
     
     #/for i in range(0, lenOf_LO_BarDatas):
 
+    #debug
+    print("[%s:%d] lo_Highs (post for-loop) ==>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        ), file=sys.stderr)
+    
+    for item in lo_Highs:
+            
+        print(item)
+        
+    #/for item in lo_Highs:
+
+    print()
+
     '''###################
-        append : the last dat
+        step : last
+    ###################'''
+    '''###################
+        step : last : 1
+            append : the last dat
     ###################'''
     lo_Highs.append(dat)
-                
+    
+#     msg = "(last : 1) dat --> appended (%s)\nidx_start = %d, idx_anchor = %d, idx_current = %d" %\
+    msg = "(last : 1) dat --> appended (%s)\nidx_start = %d (%s)\nidx_anchor = %d (%s)\nidx_current = %d (%s)" %\
+            (
+                e0.dateTime_Local
+                , dat['index_start']
+                , lo_BarDatas[dat['index_start'] - 1].dateTime_Local
+                , dat['index_anchor']
+                , lo_BarDatas[dat['index_anchor'] - 1].dateTime_Local
+                , dat['index_current']
+                , lo_BarDatas[dat['index_current'] - 1].dateTime_Local
+                                )
+
+    msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+             
+    libs.write_Log(msg_Log
+                        , cons_fx.FPath.dpath_LogFile.value
+                        , fname_Log_File
+#                         , cons_fx.FPath.fname_LogFile.value
+                        , 1)
+    
     '''###################
         report
     ###################'''
@@ -7038,6 +7286,8 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
 #                     libs.get_TimeLabel_Now()
 #                     , os.path.basename(libs.thisfile()), libs.linenum()
 #                     , msg)
+
+
     
     for item in lo_Highs:
         
