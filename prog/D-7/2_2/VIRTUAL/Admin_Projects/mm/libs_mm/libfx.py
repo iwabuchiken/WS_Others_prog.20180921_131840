@@ -7408,7 +7408,240 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
         exec
     ###################'''
     #abcde
+    '''###################
+        step1 : A.1 
+            vars
+    ###################'''
+    '''###################
+        vars : lists
+    ###################'''
+    lenOf_BarDatas = len(lo_BarDatas)
     
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+    lo_BarDatas_Tmp.reverse()
+    
+    '''###################
+        vars : counters
+    ###################'''
+    cntOf_Total = 0
+    cntOf_NewDats = 0
+    
+    '''###################
+        vars : dat
+    ###################'''
+    dat = {
+        
+        "price_current" : -1.0
+        , "price_start" : -1.0
+        , "price_anchor" : -1.0
+        , "price_anchor2" : -1.0
+        , "price_bottom" : -1.0
+        
+        , "index_current" : -1
+        , "index_start" : -1
+        , "index_anchor" : -1
+        , "index_anchor2" : -1
+        , "index_bottom" : -1
+        
+        }
+    
+    '''###################
+        vars : flags
+    ###################'''
+#     flg_Dat = True
+    flg_Dat = False
+    
+    '''###################
+        vars : others
+    ###################'''
+    ts = 0.05   # 0.05 JPY
+    
+    
+    '''###################
+        for-loop
+    ###################'''
+    for i in range(0, lenOf_BarDatas):
+#     for i in range(3, lenOf_LO_BarDatas):
+        '''###################
+            step : 1
+                prep
+        ###################'''
+        # bardata
+        e0 = lo_BarDatas_Tmp[i]
+
+        d0 = e0.diff_OC
+    
+        '''###################
+            step : j1
+                flag --> set ?
+        ###################'''
+        if not flg_Dat == True : #if flg_Dat == True
+            '''###################
+                step : j1 : N
+                    flag --> set
+            ###################'''
+            print("[%s:%d] flg_Dat --> not set (%s)" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , flg_Dat
+                    ), file=sys.stderr)
+            
+            '''###################
+                step : j2
+                    d0 >= 0 ?
+                    --> up bar
+            ###################'''
+            if d0 >= 0 : #if d0 >= 0
+                '''###################
+                    step : j2 : Y
+                        d0 >= 0
+                ###################'''
+                '''###################
+                    step : j2 : Y : 1
+                        data --> set
+                ###################'''
+                dat["price_current"] = e0.price_Close
+                dat["price_start"] = e0.price_Open
+                dat["price_anchor"] = e0.price_Close
+                #dat["price_anchor2"] = e0.price_Close
+                
+                dat["index_current"] = e0.no
+                dat["index_start"] = e0.no
+                dat["index_anchor"] = e0.no
+                #dat["index_anchor2"] = e0.no
+                
+                print("[%s:%d] dat --> set" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                
+                ), file=sys.stderr)
+                print(dat)
+                
+                '''###################
+                    step : j2 : Y : 2
+                        count : new dat
+                ###################'''
+                cntOf_NewDats += 1
+                
+                '''###################
+                    step : j2 : Y : 3
+                        flag --> to True
+                ###################'''
+                flg_Dat = True
+                
+                print("[%s:%d] Dat set : flag ==> %s (cnt = %d)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , flg_Dat, cntOf_NewDats
+                            ), file=sys.stderr)
+                
+                print(dat)
+                
+#                 #debug
+#                 break
+            
+            else : #if d0 >= 0
+                '''###################
+                    step : j2 : N
+                        d0 < 0
+                ###################'''
+                print("[%s:%d] d0 < 0 (%.03f) --> flg_Dat remains False" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , d0
+                            ), file=sys.stderr)
+                
+            
+            #/if d0 >= 0
+            
+            
+        
+        else : #if flg_Dat == True
+            '''###################
+                step : j1 : Y
+                    flag --> set
+            ###################'''
+            '''###################
+                step : j3
+                    d0 >= 0 ?
+            ###################'''
+            if not d0 >= 0 : #if not d0 >= 0
+                '''###################
+                    step : j3 : N
+                        d0 < 0
+                ###################'''
+#                 print("[%s:%d] dat is set, d0 < 0 (%.03f)(e0 = %d)(anchor - close = %.03f" % \
+                print("[%s:%d] dat is set, d0 < 0 (%.03f)(e0 = %d)(close - anchor) = %.03f" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , d0
+                        , e0.no
+                        , (e0.price_Close - dat['price_anchor'])
+#                         , (dat['price_anchor'] - e0.price_Close)
+#                         , (dat['price_anchor'] - dat['price_current'])
+                        ), file=sys.stderr)
+
+                '''###################
+                    step : j3 : N : 1
+                        calc : refer price
+                ###################'''
+                price_Refer = dat['price_start'] - ts
+#                 price_Refer = e0.price_Close + ts
+                
+                '''###################
+                    step : j4
+                        price_Close > price_Refer ?
+                ###################'''
+                if e0.price_Close > price_Refer : #if e0.price_Close > price_Refer
+                    '''###################
+                        step : j4 : Y
+                            price_Close > price_Refer
+                    ###################'''
+                    print("[%s:%d] price_Close > price_Refer (%.03f, %.03f)" % \
+                                (os.path.basename(libs.thisfile()), libs.linenum()
+                                , e0.price_Close, price_Refer
+                                ), file=sys.stderr)
+                    
+                
+                else : #if e0.price_Close > price_Refer
+                    '''###################
+                        step : j4 : N
+                            price_Close <= price_Refer
+                    ###################'''
+                    print("[%s:%d] price_Close <= price_Refer (%.03f, %.03f)" % \
+                                (os.path.basename(libs.thisfile()), libs.linenum()
+                                , e0.price_Close, price_Refer
+                                ), file=sys.stderr)
+                
+                #/if e0.price_Close > price_Refer
+                
+                #debug
+                break
+            
+            else : #if not d0 >= 0
+                '''###################
+                    step : j3 : Y
+                        d0 >= 0
+                ###################'''            
+                print("[%s:%d] dat is set, d0 >= 0 (%.03f)" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , d0
+                        ), file=sys.stderr)
+
+                #debug
+                break
+                
+            #/if not d0 >= 0
+        
+#             print("[%s:%d] flg_Dat => %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                             , flg_Dat
+#                             ), file=sys.stderr)
+            
+#             #debug
+#             break
+        
+        #/if flg_Dat == True
+        
+        
+    
+    #/ for i in range(0, lenOf_LO_BarDatas):
     
 #     (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
 #                 lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile
