@@ -1,0 +1,6 @@
+[20181003_093110 / libfx.py:6776]
+csv = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.csv
+fname_Log_File =>op_2-2.detect.highs-lows.v-4.EURJPY-Period-H1.20181003_093110.log
+
+[20181003_093110 / libfx.py:6890] (j3 : N) d0 < 0 : 2017.11.30 18:00 (d0 = -0.245)
+[20181003_093110 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2017.11.30 18:00

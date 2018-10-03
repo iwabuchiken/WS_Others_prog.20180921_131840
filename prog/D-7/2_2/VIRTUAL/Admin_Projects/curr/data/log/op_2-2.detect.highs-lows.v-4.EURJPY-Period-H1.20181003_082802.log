@@ -1,0 +1,11 @@
+[20181003_082802 / libfx.py:6776]
+csv = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.csv
+fname_Log_File =>op_2-2.detect.highs-lows.v-4.EURJPY-Period-H1.20181003_082802.log
+
+[20181003_082802 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.02 09:00 (e0.no = 1086)
+[20181003_082802 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.02 10:00 (d0 = -0.027)
+[20181003_082802 / libfx.py:6926] (j4 : Y) over the threshold : 2018.07.02 10:00
+[20181003_082802 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.02 11:00 (e0.no = 1084)
+[20181003_082802 / libfx.py:7148] (j3.1 : Y : 1) dat => updated (anchor, too) : 2018.07.02 12:00 (e0.no = 1083)
+[20181003_082802 / libfx.py:6890] (j3 : N) d0 < 0 : 2018.07.02 13:00 (d0 = -0.229)
+[20181003_082802 / libfx.py:6972] (j4 : N) eaual or less than the threshold : 2018.07.02 13:00

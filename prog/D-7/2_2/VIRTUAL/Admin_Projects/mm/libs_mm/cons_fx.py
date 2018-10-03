@@ -5,6 +5,12 @@ from Admin_Projects.definitions import ROOT_DIR
 from Admin_Projects.definitions import DPATH_ROOT_CURR
 from matplotlib.patches import YAArrow
 
+import os, sys
+# sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm')
+# 
+# from mm.libs_mm import cons_mm, cons_fx, libs, libfx
+
+
 TypeOf_Data_OpenClose   = "OpenClose"
 
 '''###################
@@ -89,8 +95,10 @@ class FPath(Enum):
 #             "44_3.2_11_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180813_115015" \
 #             + ".SHRINK-100.csv"
     BUSL_3_FNAME_PEAK_LIST = \
-            "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341" \
+            "44_3.2_15_file-io.USDJPY.Period-H1.Days-5000.Bars-120000.20180903_134452" \
             + ".2018-07.csv"
+#             "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341" \
+#             + ".2018-07.csv"
 #             + ".2018-08.csv"
 #     BUSL_3_FNAME_PEAK_LIST = \
 #             "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341" \
@@ -101,6 +109,28 @@ class FPath(Enum):
 #     BUSL_3_FNAME_PEAK_LIST = "44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-06.csv"
 #     BUSL_3_DPATH_PEAK_LIST = "C:\\WORKS_2\\WS\\WS_Others\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
     BUSL_3_DPATH_PEAK_LIST = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    
+    @classmethod
+    def set_BUSL_3_CSV_Name(self, val):
+        
+#         print("[%s:%d] set_BUSL_3_CSV_Name" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             
+#             ), file=sys.stderr)
+        
+#         self.BUSL_3_FNAME_PEAK_LIST.value = val
+        
+        return self.BUSL_3_FNAME_PEAK_LIST.value
+        
+    #/ def set_BUSL_3_CSV_Name(self, val):
+        
+    
+    '''###################
+        conf
+    ###################'''
+    DPATH_CONF_BUSL_3 = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data"
+    
+    FNAME_CONF_BUSL_3 = "busl_3.conf"
     
 class Label_ColNames(Enum):
     

@@ -3157,7 +3157,114 @@ def _tester_BUSL__V2__Open_DataDir(request):
 
 #/ _tester_BuyUps_SellLows__BUSL_3__Open_DataDir(request)
 
+'''###################
+    _tester_BuyUps_SellLows__BUSL_3__Set_Conf
+    
+    at : 20181003_092034
+    
+    caller :
+        tester_BuyUps_SellLows__BUSL_3
+    
+###################'''
+def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
+    
+    '''###################
+        file : conf        
+    ###################'''
+    dpath_Conf = cons_fx.FPath.DPATH_CONF_BUSL_3.value
+    fname_Conf = cons_fx.FPath.FNAME_CONF_BUSL_3.value
+    
+    f_conf = open(os.path.join(dpath_Conf, fname_Conf), "r")
+
+    '''###################
+        build : parmas set
+    ###################'''
+    confs = {}
+    
+    # build : conf 
+    conf_lines = []
+    
+    conf_lines_tmp = f_conf.readlines()
+    
+    for item in conf_lines_tmp:
+    
+        # strip
+        item_tmp = item.strip()
+        
+        #
+        if not item_tmp.startswith("#") \
+            and not item_tmp == "" : 
+#         if not item.startswith("#") \
+#             and not item == "" : 
+            
+            conf_lines.append(item.strip())
+        
+    #/for item in conf_lines_tmp:
+
+    
+
+    print("[%s:%d] conf_lines ==>" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        
+                        ), file=sys.stderr)
+    print(conf_lines)
+    
+    # iterate
+    for item in conf_lines:
+    
+        # trim
+        tmp = item.strip()
+        
+        #
+        tokens = tmp.split("=")
+        
+        confs[tokens[0]] = tokens[1]
+        
+    #/for item in conf_lines:
+
+    '''###################
+        file : close
+    ###################'''
+    f_conf.close()
+    
+    '''###################
+        set : conf values
+    ###################'''
+    '''###################
+        set : conf values : 
+    ###################'''
+#     cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value = confs["BUSL_3_FNAME_PEAK_LIST"]
+    
+    result = cons_fx.FPath.set_BUSL_3_CSV_Name("abc")
+    
+    print("[%s:%d] result = %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , result
+                    ), file=sys.stderr)
+    #aaa
+    '''###################
+        report
+    ###################'''
+    print("[%s:%d] conf ==> loaded" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        
+                        ), file=sys.stderr)
+    
+    print(confs)
+
+    '''###################
+        return
+    ###################'''
+    return confs
+
+#/ def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
+    
 def tester_BuyUps_SellLows__BUSL_3(request):
+    
+    '''###################
+        set : conf
+    ###################'''
+    confs = _tester_BuyUps_SellLows__BUSL_3__Set_Conf()
     
     '''###################
         time        
@@ -3284,8 +3391,10 @@ def tester_BuyUps_SellLows__BUSL_3(request):
         '''###################
             log file, folder
         ###################'''
-        dic['fname_CSV'] = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
-        dic['dpath_CSV'] = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+#         dic['fname_CSV'] = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
+        dic['fname_CSV'] = confs["BUSL_3_FNAME_PEAK_LIST"]
+        dic['dpath_CSV'] = confs["BUSL_3_DPATH_PEAK_LIST"]
+#         dic['dpath_CSV'] = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
 
     #/if param_Cmd == cons_fx.ParamConstants.PARAM_BUSL3_CMD_2UPS.value
     
@@ -3761,6 +3870,11 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
 #/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     
 def tester_BuyUps_SellLows__V2(request):
+
+    '''###################
+        set : conf
+    ###################'''
+    confs = _tester_BuyUps_SellLows__BUSL_3__Set_Conf()
 
     '''###################
         log : main

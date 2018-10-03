@@ -2076,3 +2076,79 @@ starting : tester_BuyUps_SellLows =======================
 
 [20181002_101218 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.(w-1).20180924_112956.csv
 
+[20181003_082750 / views.py:3581] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_082801 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135341.2018-07.csv
+
+[20181003_084456 / views.py:3617] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_084532 / views.py:3617] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_084635 / views.py:3617] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_084812 / views.py:3624] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_084940 / views.py:3636] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_085837 / views.py:3649] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_085958 / views.py:3649] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_090135 / views.py:3652] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_090212 / views.py:3652] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_090941 / views.py:3659] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_091041 / views.py:3659] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_091234 / views.py:3659] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_091313 / views.py:3659] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_091734 / views.py:3671] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_091942 / views.py:3671] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092212 / views.py:3681] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092234 / views.py:3681] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092254 / views.py:3681] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092551 / views.py:3682] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092708 / views.py:3685] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092844 / views.py:3690] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_092919 / views.py:3690] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_093103 / views.py:3690] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181003_093110 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.csv
+
