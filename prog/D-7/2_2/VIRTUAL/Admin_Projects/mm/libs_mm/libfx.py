@@ -5376,6 +5376,13 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
                     step : j2 : Y
                 ###################'''
                 '''###################
+                    step : j2 : Y : 0
+                        lo_Tmp --> reverse back
+                ###################'''
+                #test
+                lo_Tmp.reverse()
+                
+                '''###################
                     step : j2 : Y : 1
                 ###################'''
                 lo_Final.append(lo_Tmp)
@@ -5408,8 +5415,15 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
     
     #/ for item in lo_BarDatas_Tmp:
     
-        '''###################
-        step : B1
+    '''###################
+        step : B1 : 1
+            reverse back
+    ###################'''
+#     lo_Final.reverse()
+                
+    '''###################
+        step : B1 : 2
+            append to final
     ###################'''
     lo_Final.append(lo_Tmp)
 
@@ -6669,6 +6683,51 @@ def BUSL_3__DetectPatterns__Highs_Lows(\
 
 #/ BUSL_3__DetectPatterns__Highs_Lows(lo_BarDatas, fname)
 
+'''###################
+    @return: 1, "OK", (0, -1, -1)
+        status, message, (num of bardatas, average, std deviation)
+###################'''
+def BUSL_3__DetectPatterns__Two_Tops(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+       , month_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+       , _fname_Log_File = cons_fx.Constants.CONS_NONE.value
+           ):
+    
+    #debug
+    print("[%s:%d] BUSL_3__DetectPatterns__Two_Tops => starting..." % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+    
+    '''###################
+        prep
+    ###################'''
+    status = 1
+    msg = "DEMO : BUSL_3__DetectPatterns__Two_Tops"
+    
+    '''###################
+        execute        
+    ###################'''
+#     (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_4(\
+    (status, msg) = _BUSL_3__DetectPatterns__Two_Tops__V_1(\
+                lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile
+                , month_or_all  # by_month, all_months (_busl_2.tbl_options.html)
+                , _fname_Log_File
+#                 , month_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+                )
+     
+
+    '''###################
+        return
+    ###################'''
+    return status, msg
+
+#/ BUSL_3__DetectPatterns__Two_Tops
+
 def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
        lo_BarDatas
        , fname_CSV_File
@@ -6938,7 +6997,6 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
 #                             , e0.dateTime_Local
 #                             ), file=sys.stderr)
                     
-                    #abcde
                     
                     # count
                     cntOf_OverTheThreshold += 1
@@ -7318,6 +7376,54 @@ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
 
 #/ def _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
                                              
+def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
+       lo_BarDatas
+       , fname_CSV_File
+       , lo_CSVs
+       , dpath_Log
+       , writeToFile = True
+       , month_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+       , _fname_Log_File = cons_fx.Constants.CONS_NONE.value
+           ):
+
+    #debug
+    print("[%s:%d] _BUSL_3__DetectPatterns__Two_Tops__V_1 => starting..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+    
+#     #debug
+#     print("[%s:%d] month, or all months ==> %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , montn_or_all
+#             ), file=sys.stderr)
+#     
+    '''###################
+        prep
+    ###################'''
+    status = -1
+    msg = "NONE"
+    
+    '''###################
+        exec
+    ###################'''
+    #abcde
+    
+    
+#     (status, msg) = _BUSL_3__DetectPatterns__Highs_Lows__V_4__exec(\
+#                 lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile
+#                 , _fname_Log_File
+# #                 , montn_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
+#                 )
+        
+    
+    '''###################
+        return        
+    ###################'''
+    return status, msg
+
+#/ _BUSL_3__DetectPatterns__Two_Tops__V_4(lo_BarDatas, fname)
+
 def _BUSL_3__DetectPatterns__Highs_Lows__V_4(\
        lo_BarDatas
        , fname_CSV_File

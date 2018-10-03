@@ -269,6 +269,10 @@ class ParamConstants(Enum):
     PARAM_BUSL3_2_2__BY_MONTH = "by_month"
     PARAM_BUSL3_2_2__ALL_MONTHS = "all_months"
 
+    '''###################
+        param : 2-3
+    ###################'''
+    PARAM_BUSL3_2_3 = "PARAM_BUSL3_2_3"
 
 #/ class ParamConstants(Enum):
     
@@ -289,11 +293,13 @@ class Tester(Enum):
     # max key value : 6 : 20180929_132616
     # max key value : 7 : 20180929_132616
     # max key value : 8 : 20180930_071716
+    # max key value : 9 : 20181003_154643
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
             , 1 : "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
             , 8 : "2-2"     # 
+            , 9 : "2-3"     # 
     
             , 2 : "3-1"     # 2
             , 5 : "3-2"     # 2
@@ -344,6 +350,15 @@ class Tester(Enum):
                 , "20180930_071837"
             ],
             
+            # 2-3
+            [
+                lo_Actions__BUSL__IDs[9]
+                ,"detect : two-tops"
+                , ParamConstants.PARAM_BUSL3_2_3.value
+                , "detect chart pattern : 'two-tops'"
+                , "20181003_154721"
+            ],
+            
             # 3-1
             [
                 lo_Actions__BUSL__IDs[2]
@@ -388,6 +403,7 @@ class Tester(Enum):
                 , "20180923_102542"
             ],
             
+            # 4-2
             [
                 lo_Actions__BUSL__IDs[4]
                 ,"util : slice lo_BarDatas by month"
