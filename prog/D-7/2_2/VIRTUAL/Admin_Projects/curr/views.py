@@ -28,7 +28,7 @@ sys.path.append('..')
 # sys.path.append('C:/WORKS_2/WS/WS_Others/free/VX7GLZ_science-research/31_Materials')
 sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm')
 
-from mm.libs_mm import cons_mm, cons_fx, libs, libfx
+from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2
 # from mm.libs_mm import libs
 # from mm.libs_mm import libfx
 
@@ -2640,8 +2640,9 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__TWO_TOPS(request):
     '''###################
         op : BUSL_3
     ###################'''
+#             libfx.BUSL_3__DetectPatterns__Two_Tops(\
     (status, msg) = \
-            libfx.BUSL_3__DetectPatterns__Two_Tops(\
+            libfx_2.BUSL_3__DetectPatterns__Two_Tops(\
                 lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log
                 )
 #             libfx.BUSL_3__DetectPatterns__Highs_Lows(\
