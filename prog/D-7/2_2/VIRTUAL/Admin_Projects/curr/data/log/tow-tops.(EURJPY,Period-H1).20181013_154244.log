@@ -1,0 +1,19 @@
+[20181013_154244 / libfx_2.py:124] =========== _BUSL_3__DetectPatterns__Two_Tops__V_2
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).csv
+
+[20181013_154244 / libfx_2.py:219] flg_Dat --> not set (False, 2017.11.30 23:00)
+
+[20181013_154244 / libfx_2.py:253] (j2 : Y) d0 => 0 (d0 = 0.128)
+
+[20181013_154244 / libfx_2.py:291] (j2 : Y : 1) dat --> set (2017.11.30 23:00)
+
+[20181013_154244 / libfx_2.py:359] (j1 : Y) flg_Dat ==> True (2017.11.30 22:00)
+
+[20181013_154244 / libfx_2.py:393] (j3 : Y) d0 => 0 : 2017.11.30 22:00 (d0 = 0.107)
+
+[20181013_154244 / libfx_2.py:428] (j4 : N) flg_A1 --> False : 2017.11.30 22:00 (flg_A1 = False)
+
+[20181013_154244 / libfx_2.py:489] dat --> updated
+dat['price_current'] = 133.142, dat['index_current'] = 319 (2017.11.30 22:00)
+dat['price_start'] = 133.140, dat['index_start'] = 320.000 (<mm.libs_mm.libfx.BarData object at 0x000000000B423748>)
+
