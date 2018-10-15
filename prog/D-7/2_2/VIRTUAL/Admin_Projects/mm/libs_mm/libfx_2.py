@@ -75,6 +75,8 @@ def test_func():
 
 # def get_ChartData_CSV_Between(fname_In, id_Start, id_End):
 
+#abcde
+
 def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
        lo_BarDatas
        , fname_CSV_File
@@ -694,8 +696,56 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         
                         print("%s" % msg_Log)                
     
+                        '''###################
+                            step : j8 : Y : 2
+                                flag --> True
+                        ###################'''
+                        flg_A1 = True
     
+                        '''###################
+                            step : j8 : Y : 3
+                                dat --> update : A1
+                        ###################'''
+                        #memo 'index' first defined, then 'price' using
+                        ##    the newly defined 'index'
+#                         dat["index_current"] = e0.no
+    #                     dat["index_start"] = e0.no
+                        dat["index_anchor"] = e0.no - 1
+    #                     dat["index_anchor2"] = e0.no
+    #                     dat["index_bottom"] = e0.no
     
+#                         dat["price_current"] = e0.price_Close
+    #                     dat["price_start"] = e0.price_Close
+                        dat["price_anchor"] = lo_BarDatas[dat['index_anchor'] - 1].price_Close
+#                         dat["price_anchor"] = lo_BarDatas[e0.no - 1].price_Close
+#                         dat["price_anchor"] = e0.price_Close
+    #                     dat["price_anchor2"] = e0.price_Close
+    #                     dat["price_bottom"] = e0.price_Close
+                        
+                        msg = "(j8 : Y : 3) dat --> updated\nprice_anchor = %s (%d, %.03f)" \
+                                    % (
+#                                         lo_BarDatas[dat['index_start']].dateTime_Local
+                                        #memo 'dat['index_start']' needs to be deducted by 1
+                                        #     b/c the csv data starts with 1
+                                        lo_BarDatas[dat['index_anchor'] - 1].dateTime_Local
+                                        , dat['index_anchor']
+                                        , dat['price_anchor']
+                                        
+                                       )
+                        
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(
+                                    msg_Log
+                                    , dpath_Log
+                                    , fname_Log
+                                    , 2)
+                        
+                        print("%s" % msg_Log)                
     
                         #debug
                         break
