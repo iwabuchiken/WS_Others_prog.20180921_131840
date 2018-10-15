@@ -649,7 +649,54 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                     , 2)
                         
                         print("%s" % msg_Log)                
-                         
+
+                        '''###################
+                            step : j8 : Y : 1
+                                dat --> update
+                        ###################'''
+                        dat["price_current"] = e0.price_Close
+    #                     dat["price_start"] = e0.price_Close
+    #                     dat["price_anchor"] = e0.price_Close
+    #                     dat["price_anchor2"] = e0.price_Close
+    #                     dat["price_bottom"] = e0.price_Close
+                        
+                        dat["index_current"] = e0.no
+    #                     dat["index_start"] = e0.no
+    #                     dat["index_anchor"] = e0.no
+    #                     dat["index_anchor2"] = e0.no
+    #                     dat["index_bottom"] = e0.no
+    
+                        msg = "(j8 : Y : 1) dat --> updated\nstart = %s (%d, %.03f)\ncurrent= %s (%d, %.03f)" \
+                                    % (
+#                                         lo_BarDatas[dat['index_start']].dateTime_Local
+                                        #memo 'dat['index_start']' needs to be deducted by 1
+                                        #     b/c the csv data starts with 1
+                                        lo_BarDatas[dat['index_start'] - 1].dateTime_Local
+                                        , dat['index_start']
+                                        , dat['price_start']
+                                        
+                                        , e0.dateTime_Local
+                                        , dat['index_current']
+                                        , dat['price_current']
+                                       )
+                        
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(
+                                    msg_Log
+                                    , dpath_Log
+                                    , fname_Log
+                                    , 2)
+                        
+                        print("%s" % msg_Log)                
+    
+    
+    
+    
                         #debug
                         break
                         
