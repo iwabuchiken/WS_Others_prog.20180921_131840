@@ -1,0 +1,25 @@
+[20181015_090802 / libfx_2.py:124] =========== _BUSL_3__DetectPatterns__Two_Tops__V_2
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).csv
+
+[20181015_090802 / libfx_2.py:220] flg_Dat --> not set (False, 2017.11.13 16:00)
+
+[20181015_090802 / libfx_2.py:325] (j2 : N) d0 < 0 (d0 = -0.072)
+
+[20181015_090802 / libfx_2.py:220] flg_Dat --> not set (False, 2017.11.13 17:00)
+
+[20181015_090802 / libfx_2.py:254] (j2 : Y) d0 => 0 (d0 = 0.038)
+
+[20181015_090802 / libfx_2.py:292] (j2 : Y : 1) dat --> set (2017.11.13 17:00)
+
+[20181015_090802 / libfx_2.py:361] (j1 : Y) flg_Dat ==> True (2017.11.13 18:00)
+
+[20181015_090802 / libfx_2.py:557] (j3 : N) d0 < 0 : 2017.11.13 18:00 (d0 = -0.137)
+
+[20181015_090802 / libfx_2.py:589] (j7 : N) flg_A1 --> False : 2017.11.13 18:00 (flg_A1 = False)
+
+[20181015_090802 / libfx_2.py:648] (j8 : N) e0.price_Close < dat['price_start'] : 2017.11.13 18:00 (close = 131.970 / start = 132.069)
+
+[20181015_090802 / libfx_2.py:712] (j9 : N) e0.price_Close < (dat['price_start'] - sl) : 2017.11.13 18:00 (close = 131.970 / start = 132.069 / start - sl = 132.039)
+
+[20181015_090802 / libfx_2.py:758] dat --> reset done
+

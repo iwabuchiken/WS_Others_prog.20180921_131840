@@ -185,12 +185,36 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
         vars : others
     ###################'''
     ts = 0.05   # 0.05 JPY
+    sl = 0.03   # 0.03 JPY
     
     '''###################
         for-loop
     ###################'''
     for i in range(0, lenOf_BarDatas):
 #     for i in range(3, lenOf_LO_BarDatas):
+        
+        msg = "start for-loop ------------------- (%d)" % cntOf_Total
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , dpath_Log
+                    , fname_Log
+                    , 2)
+        
+        print("%s" % msg_Log)
+        
+        '''###################
+            step : 0
+                count
+        ###################'''
+        cntOf_Total += 1
+        
         '''###################
             step : 1
                 prep
@@ -655,8 +679,129 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         
                         print("%s" % msg_Log)                
                         
-                        #abcde
-                                                 
+                        '''###################
+                            step : j9
+                                price_Close --> above the range R2 ?
+                                i.e. Close >= sl
+                        ###################'''
+                        if e0.price_Close >= (dat['price_start'] - sl) : #if e0.price_Close >= (dat['price_start'] - sl)
+                            '''###################
+                                step : j9 : Y
+                                    price_Close --> above the range R2
+                                    i.e. Close >= sl
+                                    ==> loc : E
+                            ###################'''
+                            msg = "(j9 : Y) e0.price_Close >= (dat['price_start'] - sl) : %s (close = %.03f / start = %.03f / start - sl = %.03f)" \
+                                        % (e0.dateTime_Local
+                                           , e0.price_Close
+                                           , dat['price_start']
+                                           , (dat['price_start'] - sl)
+                                           )
+                            
+                            msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                            
+                            libs.write_Log(
+                                        msg_Log
+                                        , dpath_Log
+                                        , fname_Log
+                                        , 2)
+                            
+                            print("%s" % msg_Log)    
+                            
+                            #debug
+                            break
+                        
+                        else : #if e0.price_Close >= (dat['price_start'] - sl)
+                            '''###################
+                                step : j9 : N
+                                    price_Close --> below the range R2
+                                    i.e. Close >= sl
+                                    ==> loc : F
+                            ###################'''
+                            msg = "(j9 : N) e0.price_Close < (dat['price_start'] - sl) : %s (close = %.03f / start = %.03f / start - sl = %.03f)" \
+                                        % (e0.dateTime_Local
+                                           , e0.price_Close
+                                           , dat['price_start']
+                                           , (dat['price_start'] - sl)
+                                           )
+                            
+                            msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                            
+                            libs.write_Log(
+                                        msg_Log
+                                        , dpath_Log
+                                        , fname_Log
+                                        , 2)
+                            
+                            print("%s" % msg_Log)    
+
+
+                            '''###################
+                                step : j9 : N : 1
+                                    flags --> reset
+                            ###################'''
+                            flg_Dat = False
+                            flg_A1 = False
+                            flg_A2 = False
+                            flg_Btm = False
+                            
+                            '''###################
+                                step : j9 : N : 2
+                                    dat --> reset
+                            ###################'''
+                            dat = {
+                                
+                                "price_current" : -1.0
+                                , "price_start" : -1.0
+                                , "price_anchor" : -1.0
+                                , "price_anchor2" : -1.0
+                                , "price_bottom" : -1.0
+                                
+                                , "index_current" : -1
+                                , "index_start" : -1
+                                , "index_anchor" : -1
+                                , "index_anchor2" : -1
+                                , "index_bottom" : -1
+                                
+                                }
+
+                            msg = "dat --> reset done"
+                            
+                            msg_Log = "[%s / %s:%d] %s" % \
+                                    (
+                                    libs.get_TimeLabel_Now()
+                                    , os.path.basename(libs.thisfile()), libs.linenum()
+                                    , msg)
+                            
+                            libs.write_Log(
+                                        msg_Log
+                                        , dpath_Log
+                                        , fname_Log
+                                        , 2)
+                            
+                            print("%s" % msg_Log)    
+                            
+#                             #debug
+#                             break
+                            
+                            # next
+                            continue
+                            
+#                             #debug
+#                             break
+                        
+                        #/if e0.price_Close >= (dat['price_start'] - sl)
+                
+                
+                        
                         #debug
                         break
                     
