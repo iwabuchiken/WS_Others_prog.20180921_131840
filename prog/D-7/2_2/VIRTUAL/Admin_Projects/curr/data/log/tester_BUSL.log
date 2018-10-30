@@ -2336,3 +2336,24 @@ starting : tester_BuyUps_SellLows =======================
 
 [20181016_074521 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
 
+[20181030_174255 / views.py:3797] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181030_175527 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
+
+[20181030_181032 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
+
+[20181030_181124 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
+
+[20181030_181629 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
+
+[20181030_182040 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new)(dummy).csv
+
+[20181030_182520 / views.py:3797] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181030_182720 / views.py:3797] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181030_183238 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
