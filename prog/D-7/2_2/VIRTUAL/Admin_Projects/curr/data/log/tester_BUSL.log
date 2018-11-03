@@ -2357,3 +2357,20 @@ starting : tester_BuyUps_SellLows =======================
 starting : tester_BuyUps_SellLows =======================
 [20181030_183238 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
 
+[20181103_131628 / views.py:3797] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181103_131804 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133115 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133216 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133319 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133359 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133711 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+
+[20181103_133946 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-100).csv
+

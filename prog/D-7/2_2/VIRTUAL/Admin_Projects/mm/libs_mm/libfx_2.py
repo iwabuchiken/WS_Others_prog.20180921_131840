@@ -200,6 +200,10 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     ts = 0.05   # 0.05 JPY
     sl = 0.03   # 0.03 JPY
     
+    ts_DownBar_For_A1__Margin = 0.03
+    
+    ts_DownBar_For_A1__Price = -1
+    
     '''###################
         for-loop
     ###################'''
@@ -376,7 +380,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 
 #                 #debug
 #                 break
-                continue
+#                 continue
             
                 
             
@@ -460,9 +464,60 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , 2)
                     
                     print("%s" % msg_Log)
+
+                    '''###################
+                        step : j4 : N : 1
+                            calc : ts price for : down bar
+                    ###################'''
+                    ts_DownBar_For_A1__Price = dat['price_start']
+                    #aa
+                    '''###################
+                        step : j5
+                            less than the start price ?
+                    ###################'''
+                    if e0.price_Close < ts_DownBar_For_A1__Price : #if e0.price_Close < ts_DownBar_For_A1__Price
+                        '''###################
+                            step : j5 : Y
+                                less than the start price
+                        ###################'''
+                        msg = "(j5 : Y) \n"
+                        msg += "e0.price_Close = %.03f\n" % (e0.price_Close)
+                        msg += "ts_DownBar_For_A1__Price = %.03f (%s)" \
+                                % (ts_DownBar_For_A1__Price, e0.dateTime_Local)
+                    
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(msg_Log, dpath_Log, fname_Log
+                                    , 2)
+                        
+                    else : #if e0.price_Close < ts_DownBar_For_A1__Price
+                        
+                        '''###################
+                            step : j5 : N
+                                more than the start price
+                        ###################'''
+                        msg = "(j5 : N) e0.price_Close = %.03f, ts_DownBar_For_A1__Price = %.03f (%s)" % (e0.price_Close, ts_DownBar_For_A1__Price, e0.dateTime_Local)
+                    
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(msg_Log, dpath_Log, fname_Log
+                                    , 2)
+                        
+                        #debug
+                        break
+                        
+                    #/if e0.price_Close < ts_DownBar_For_A1__Price
                 
-                    #debug
-                    break
+#                     #debug
+#                     break
                 
                 else : #if d0 >= 0
                     '''###################
@@ -492,14 +547,17 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     #debug
                     flg_Dat = False
                     
-                    continue
+                    #debug
+                    break
+                    
+#                     continue
 #                     break
                     
                 
                 #/if d0 >= 0
                 
-                #debug
-                break
+#                 #debug
+#                 break
                 
             else : #if flg_A1_tmp == False
                 '''###################
@@ -531,8 +589,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             
             
             
-            #debug
-            break
+#             #debug
+#             break
             
             
     #/ for i in range(0, lenOf_BarDatas):
