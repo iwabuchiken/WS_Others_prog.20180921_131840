@@ -77,6 +77,7 @@ def test_func():
 
 #abcde
 
+#xxx
 def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
        lo_BarDatas
        , fname_CSV_File
@@ -130,10 +131,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(
-                msg_Log
-                , dpath_Log
-                , fname_Log
+    libs.write_Log(msg_Log, dpath_Log, fname_Log
                 , 2)
     
     '''###################
@@ -218,10 +216,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(
-                    msg_Log
-                    , dpath_Log
-                    , fname_Log
+        libs.write_Log(msg_Log, dpath_Log, fname_Log
                     , 2)
         
         print("%s" % msg_Log)
@@ -250,7 +245,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 step : j1 : N
                     flag --> False
             ###################'''
-            msg = "flg_Dat --> not set (%s, %s)" \
+            msg = "(j1 : N) flg_Dat --> not set (%s, %s)" \
                     % (flg_Dat, e0.dateTime_Local)
             
             
@@ -260,10 +255,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(
-                        msg_Log
-                        , dpath_Log
-                        , fname_Log
+            libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
             print("%s" % msg_Log)
@@ -294,10 +286,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -332,11 +321,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
-                            , 2)
+                libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
                 
                 print("%s" % msg_Log)
 
@@ -365,10 +350,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -401,10 +383,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(
-                        msg_Log
-                        , dpath_Log
-                        , fname_Log
+            libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
             print("%s" % msg_Log)
@@ -431,10 +410,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -457,10 +433,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
-                                , fname_Log
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
                     print("%s" % msg_Log)
@@ -470,7 +443,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             calc : ts price for : down bar
                     ###################'''
                     ts_DownBar_For_A1__Price = dat['price_start']
-                    #aa
+                    
                     '''###################
                         step : j5
                             less than the start price ?
@@ -491,8 +464,47 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log, fname_Log
+                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                        
+                        '''###################
+                            step : j5 : Y : 1
+                                dat --> reset
+                        ###################'''
+                        dat = {
+                            
+                                "price_current" : -1.0
+                                , "price_start" : -1.0
+                                , "price_anchor" : -1.0
+                                , "price_anchor2" : -1.0
+                                , "price_bottom" : -1.0
+                                
+                                , "index_current" : -1
+                                , "index_start" : -1
+                                , "index_anchor" : -1
+                                , "index_anchor2" : -1
+                                , "index_bottom" : -1
+                            
+                            }
+
+                        msg = "dat --> reset done"
+                        
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(msg_Log, dpath_Log
+                                    , fname_Log
                                     , 2)
+                        
+                        print("%s" % msg_Log)    
+                        
+                        '''###################
+                            step : j5 : Y : 2
+                                flag --> reset
+                        ###################'''
+                        flg_Dat = False
                         
                     else : #if e0.price_Close < ts_DownBar_For_A1__Price
                         
@@ -500,7 +512,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             step : j5 : N
                                 more than the start price
                         ###################'''
-                        msg = "(j5 : N) e0.price_Close = %.03f, ts_DownBar_For_A1__Price = %.03f (%s)" % (e0.price_Close, ts_DownBar_For_A1__Price, e0.dateTime_Local)
+                        msg = "(j5 : N)"
+                        msg += "\ne0.price_Close = %.03f" % (e0.price_Close)
+                        msg += "\ndat['price_start'] = %.03f" % (dat['price_start'])
+                        msg += "\nts_DownBar_For_A1__Price = %.03f (%s)" % \
+                                        (ts_DownBar_For_A1__Price, e0.dateTime_Local)
                     
                         msg_Log = "[%s / %s:%d] %s" % \
                                 (
@@ -508,16 +524,35 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log, fname_Log
-                                    , 2)
+                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+                        '''###################
+                            step : j5 : N : 1
+                                dat --> update
+                        ###################'''
+                        dat['price_current'] = e0.price_Close
+                        dat['index_current'] = e0.no
                         
-                        #debug
-                        break
+                        # log
+                        msg = "(j5 : N : 1)"
+                        msg += " dat ==> updated"
+                        msg += "\ne0.price_Close = %.03f" % (e0.price_Close)
+                        msg += "\ndat['price_current'] = %.03f" % (dat['price_current'])
+                        msg += "\ndat['index_current'] = %d" % (dat['index_current'])
+                        msg += "\n(%s)" % (e0.dateTime_Local)
+                    
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                        
+#                         #debug
+#                         break
                         
                     #/if e0.price_Close < ts_DownBar_For_A1__Price
-                
-#                     #debug
-#                     break
                 
                 else : #if d0 >= 0
                     '''###################
@@ -536,28 +571,54 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
-                                , fname_Log
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
                     print("%s" % msg_Log)
                 
-                    #debug
-                    flg_Dat = False
+                    '''###################
+                        step : j4 : Y : 1
+                            update : A1_tmp
+                    ###################'''
+                    #aa
+                    judge = (dat['price_anchor'] < e0.price_Close)
                     
-                    #debug
-                    break
+                    if judge :
+                        
+                        dat['price_anchor'] = e0.price_Close
+                        dat['index_anchor'] = e0.no
+#                         dat['price_anchor'] = e0.price_Close if (dat['price_anchor'] < e0.price_Close) else dat['price_anchor']
+#                         dat['index_anchor'] = e0.no if (dat['price_anchor'] < e0.price_Close) else dat['index_anchor']
+#                     dat['price_anchor'] = e0.price_Close
+#                     dat['index_anchor'] = e0.no
                     
-#                     continue
-#                     break
+                    '''###################
+                        step : j4 : Y : 2
+                            update : current
+                    ###################'''
+                    dat['price_current'] = e0.price_Close
+                    dat['index_current'] = e0.no
+
+                    # log
+                    msg = "(j4 : Y : 2) dat ==> updated (%s)" % (e0.dateTime_Local)
                     
-                
+                    msg += "\ndat[price_anchor] = %.03f" % dat['price_anchor']
+                    msg += "\ndat[index_anchor] = %d" % dat['index_anchor']
+                    msg += "\ndat[price_current] = %.03f" % dat['price_current']
+                    msg += "\ndat[index_current] = %d" % dat['index_current']
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                            (
+                            libs.get_TimeLabel_Now()
+                            , os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg)
+                    
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log, 2) 
+                    print("%s" % msg_Log)
+
+
+                    
                 #/if d0 >= 0
-                
-#                 #debug
-#                 break
                 
             else : #if flg_A1_tmp == False
                 '''###################
@@ -572,10 +633,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -587,14 +645,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             
             #/if flg_A1_tmp == False
             
-            
-            
-#             #debug
-#             break
-            
-            
     #/ for i in range(0, lenOf_BarDatas):
-        
     
     '''###################
         ops : closing
@@ -613,10 +664,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(
-                msg_Log
-                , dpath_Log
-                , fname_Log
+    libs.write_Log(msg_Log, dpath_Log, fname_Log
                 , 2)
     
     print("%s" % msg_Log)
@@ -677,10 +725,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(
-                msg_Log
-                , dpath_Log
-                , fname_Log
+    libs.write_Log(msg_Log, dpath_Log, fname_Log
                 , 2)
     
     '''###################
@@ -754,10 +799,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(
-                    msg_Log
-                    , dpath_Log
-                    , fname_Log
+        libs.write_Log(msg_Log, dpath_Log, fname_Log
                     , 2)
         
         print("%s" % msg_Log)
@@ -796,10 +838,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(
-                        msg_Log
-                        , dpath_Log
-                        , fname_Log
+            libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
             print("%s" % msg_Log)
@@ -830,10 +869,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -868,10 +904,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -901,10 +934,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -937,10 +967,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(
-                        msg_Log
-                        , dpath_Log
-                        , fname_Log
+            libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
             print("%s" % msg_Log)
@@ -970,10 +997,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -1005,10 +1029,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
-                                , fname_Log
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
                     print("%s" % msg_Log)
@@ -1066,10 +1087,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
-                                , fname_Log
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
                     print("%s" % msg_Log)
@@ -1099,10 +1117,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
-                                , fname_Log
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
                     print("%s" % msg_Log)
@@ -1133,10 +1148,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(
-                            msg_Log
-                            , dpath_Log
-                            , fname_Log
+                libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
                 print("%s" % msg_Log)
@@ -1165,9 +1177,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
+                    libs.write_Log(msg_Log, dpath_Log
                                 , fname_Log
                                 , 2)
                     
@@ -1195,9 +1205,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(
-                                    msg_Log
-                                    , dpath_Log
+                        libs.write_Log(msg_Log, dpath_Log
                                     , fname_Log
                                     , 2)
                         
@@ -1239,9 +1247,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(
-                                    msg_Log
-                                    , dpath_Log
+                        libs.write_Log(msg_Log, dpath_Log
                                     , fname_Log
                                     , 2)
                         
@@ -1290,9 +1296,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(
-                                    msg_Log
-                                    , dpath_Log
+                        libs.write_Log(msg_Log, dpath_Log
                                     , fname_Log
                                     , 2)
                         
@@ -1319,9 +1323,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(
-                                    msg_Log
-                                    , dpath_Log
+                        libs.write_Log(msg_Log, dpath_Log
                                     , fname_Log
                                     , 2)
                         
@@ -1352,9 +1354,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                     , os.path.basename(libs.thisfile()), libs.linenum()
                                     , msg)
                             
-                            libs.write_Log(
-                                        msg_Log
-                                        , dpath_Log
+                            libs.write_Log(msg_Log, dpath_Log
                                         , fname_Log
                                         , 2)
                             
@@ -1383,9 +1383,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                     , os.path.basename(libs.thisfile()), libs.linenum()
                                     , msg)
                             
-                            libs.write_Log(
-                                        msg_Log
-                                        , dpath_Log
+                            libs.write_Log(msg_Log, dpath_Log
                                         , fname_Log
                                         , 2)
                             
@@ -1429,9 +1427,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                                     , os.path.basename(libs.thisfile()), libs.linenum()
                                     , msg)
                             
-                            libs.write_Log(
-                                        msg_Log
-                                        , dpath_Log
+                            libs.write_Log(msg_Log, dpath_Log
                                         , fname_Log
                                         , 2)
                             
@@ -1478,9 +1474,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log
+                    libs.write_Log(msg_Log, dpath_Log
                                 , fname_Log
                                 , 2)
                     
