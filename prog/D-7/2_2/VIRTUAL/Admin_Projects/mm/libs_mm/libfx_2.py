@@ -392,7 +392,97 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
 #                     (os.path.basename(libs.thisfile()), libs.linenum()
 #                     , flg_Dat, e0.dateTime_Local
 #                     ), file=sys.stderr)
+            '''###################
+                step : j1.1
+                    tred --> flat?
+            ###################'''
+            #aaa
+            res = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
+                            , fname_Log)
             
+            
+            
+            if res == False : #if res == False
+                '''###################
+                    step : j1.1 : N
+                        trend --> NOT flat
+                ###################'''
+                msg = "(j1.1 : N) trend --> NOT flat (%s)" \
+                        % (e0.dateTime_Local)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(msg_Log, dpath_Log
+                            , fname_Log
+                            , 2)
+                
+                pass
+            
+            else : #if res == False
+                '''###################
+                    step : j1.1 : Y
+                        tred --> flat
+                ###################'''
+                '''###################
+                    step : j1.1 : Y : 1
+                        tred --> flat
+                ###################'''
+                msg = "(j1.1 : Y : 1) trend --> flat (%s)" \
+                        % (e0.dateTime_Local)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(msg_Log, dpath_Log
+                            , fname_Log
+                            , 2)
+                
+                dat = {
+                    
+                        "price_current" : -1.0
+                        , "price_start" : -1.0
+                        , "price_anchor" : -1.0
+                        , "price_anchor2" : -1.0
+                        , "price_bottom" : -1.0
+                        
+                        , "index_current" : -1
+                        , "index_start" : -1
+                        , "index_anchor" : -1
+                        , "index_anchor2" : -1
+                        , "index_bottom" : -1
+                    
+                    }
+
+                msg = "dat --> reset done"
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(msg_Log, dpath_Log
+                            , fname_Log
+                            , 2)
+                
+                print("%s" % msg_Log)    
+                
+                '''###################
+                    step : j1.1 : Y : 2
+                        flag --> reset
+                ###################'''
+                flg_Dat = False            
+            #/if res == False
+            
+            
+#             
             '''###################
                 step : j3
                     flag : flg_A1_tmp --> True
@@ -1829,3 +1919,43 @@ def BUSL_3__DetectPatterns__Two_Tops(\
     return status, msg
 
 #/ BUSL_3__DetectPatterns__Two_Tops
+
+'''###################
+    def is_Trend__Flat
+    
+    @param param: ts_Inclination
+            if the calculated inclination of the given data in the bardatas
+                is within the range of +ts_Inclination to -ts_Inclination
+                ===>  return True (i.e. it is a flat trend)
+    @return: [True/False, <actual inclination value>]
+    
+    @memo
+        1. inclination calculated as follows:
+            s(xy) / s(x)^2
+            ==> x, y : set of data
+                s(x)^2 : variance of x
+                s(xy) : co-variance of x and y
+    @date : 20181115_174125
+###################'''
+def is_Trend__Flat(lo_BarDatas, ts_Inclination = 0.1, dpath_Log, fname_Log) :
+    
+    #debug
+    #bbb
+    msg = "is_Trend__Flat : len of list : %d" \
+            % (len(lo_BarDatas))
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log
+                , fname_Log
+                , 2)
+    
+    #ref covariance https://stackoverflow.com/questions/15036205/numpy-covariance-matrix
+    
+    return True
+    
+#/ def is_Trend__Flat(lo_BarDatas)
