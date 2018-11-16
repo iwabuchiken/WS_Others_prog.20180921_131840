@@ -16,7 +16,8 @@ f C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
 
 '''
 
-import inspect, os, os.path, sys, copy, numpy, csv, sys, token
+import inspect, os, os.path, sys, copy, numpy as np, csv, sys, token
+# import inspect, os, os.path, sys, copy, numpy, csv, sys, token
 # import os
 # import os.path
 # import sys
@@ -41,6 +42,7 @@ from Admin_Projects.definitions import ROOT_DIR
 from Admin_Projects.definitions import DPATH_ROOT_CURR
 from numpy.distutils.from_template import item_re
 from sympy.physics.optics.tests.test_medium import e0
+from audioop import avg
 # import token
 
 # from definitions import ROOT_DIR
@@ -393,13 +395,24 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
 #                     , flg_Dat, e0.dateTime_Local
 #                     ), file=sys.stderr)
             '''###################
-                step : j1.1
-                    tred --> flat?
+                step : (j1 : Y : 1 / j1.1)
+                    trend --> flat ?
             ###################'''
-            #aaa
-            res = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
-                            , fname_Log)
+            msg = "(j1 : Y : 1 / j1.1) trend --> flat ? (UTC = %s)" % (e0.dateTime)
+#             msg = "(j1 : Y : 1 / j1.1) trend --> flat ? (%s)" % (e0.dateTime_Local)
             
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(msg_Log, dpath_Log, fname_Log
+                        , 2)
+            
+#             res = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
+            res, lo_BarDatas__Target = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
+                            , fname_Log)
             
             
             if res == False : #if res == False
@@ -407,7 +420,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j1.1 : N
                         trend --> NOT flat
                 ###################'''
-                msg = "(j1.1 : N) trend --> NOT flat (%s)" \
+                msg = "(j1 : Y : 1 / j1.1 : N) trend --> NOT flat (%s)" \
                         % (e0.dateTime_Local)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
@@ -431,7 +444,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j1.1 : Y : 1
                         tred --> flat
                 ###################'''
-                msg = "(j1.1 : Y : 1) trend --> flat (%s)" \
+                msg = "(j1 : Y : 1 / j1.1 : Y : 1) trend --> flat (%s)" \
                         % (e0.dateTime_Local)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
@@ -1927,7 +1940,7 @@ def BUSL_3__DetectPatterns__Two_Tops(\
             if the calculated inclination of the given data in the bardatas
                 is within the range of +ts_Inclination to -ts_Inclination
                 ===>  return True (i.e. it is a flat trend)
-    @return: [True/False, <actual inclination value>]
+    @return: (True/False, <actual inclination value>)
     
     @memo
         1. inclination calculated as follows:
@@ -1937,12 +1950,83 @@ def BUSL_3__DetectPatterns__Two_Tops(\
                 s(xy) : co-variance of x and y
     @date : 20181115_174125
 ###################'''
-def is_Trend__Flat(lo_BarDatas, ts_Inclination = 0.1, dpath_Log, fname_Log) :
+#def is_Trend__Flat(lo_BarDatas, ts_Inclination = 0.1, dpath_Log, fname_Log) :
+def is_Trend__Flat(\
+           lo_BarDatas
+           , dpath_Log, fname_Log
+           , ts_Inclination = 0.1
+           , lenOf_BarDatas__Target = 5
+           ) :
     
+    '''###################
+        step : 1        
+            len of data
+    ###################'''
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    '''###################
+        step : j1
+            len --> equal or more than 5?
+    ###################'''
+#     if lenOf_BarDatas < 5 : #if lenOf_BarDatas >= 5
+    if lenOf_BarDatas < lenOf_BarDatas__Target : #if lenOf_BarDatas >= 5
+        '''###################
+            step : j1 : N
+                len --> less than 5
+        ###################'''
+        '''###################
+            step : j1 : N : 1
+                return
+        ###################'''
+        #debug
+        msg = "[is_Trend__Flat] (j1 : N : 1) less than 5 (%d)" \
+                % (lenOf_BarDatas)
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(msg_Log, dpath_Log
+                    , fname_Log
+                    , 2)
+        
+        return (False, False)
+    
+    #//if lenOf_BarDatas >= 5
+    
+    '''###################
+        step : j1 : Y
+            len --> equal or more than 5
+    ###################'''
     #debug
-    #bbb
-    msg = "is_Trend__Flat : len of list : %d" \
-            % (len(lo_BarDatas))
+    msg = "[is_Trend__Flat] (j1 : Y) equal or more than 5 (%d)" \
+            % (lenOf_BarDatas)
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log
+                , fname_Log
+                , 2)
+        
+    '''###################
+        step : j1 : Y : 1
+            get list : last N bars
+    ###################'''
+    L_2 = lo_BarDatas[-1 * lenOf_BarDatas__Target :]
+
+    #debug
+    msg = "[is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = %d / L_2[-1] = UTC, %s" \
+            % (len(L_2), L_2[-1].dateTime)
+#     msg = "[is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = %d / L_2[-1] = %s" \
+#             % (len(L_2), L_2[-1].dateTime_Local)
+#             % (lenOf_BarDatas, L_2[-1].dateTime_Local)
+#             % (lenOf_BarDatas)
     
     msg_Log = "[%s / %s:%d] %s" % \
             (
@@ -1954,8 +2038,97 @@ def is_Trend__Flat(lo_BarDatas, ts_Inclination = 0.1, dpath_Log, fname_Log) :
                 , fname_Log
                 , 2)
     
+    '''###################
+        step : j1 : Y : 2
+            get list : mean prices
+    ###################'''
+    L_3 = []
+    
+    for item in L_2:
+        # prices            
+        open = item.price_Open
+        close = item.price_Close
+        
+        # mean price
+        avg = (open + close) / 2.0
+        
+        # append
+        L_3.append(avg)
+            
+    #/for item in L_2:
+
+    '''###################
+        step : j1 : Y : 3
+            get list : indices
+    ###################'''
+    L_4 = b = [i for i in range(0, lenOf_BarDatas__Target)]
+    
+    '''###################
+        step : j1 : Y : 4
+            get val : co-variance
+    ###################'''
+    mat = np.cov(L_4, L_3, rowvar = 0)
+    
+    #ref https://sci-pursuit.com/math/statistics/least-square-method.html
+    #ref https://mathtrain.jp/varcovmatrix
+    #ref https://stackoverflow.com/questions/15317822/calculating-covariance-with-python-and-numpy
+    covari = mat[0][1] / mat[0][0]
+            # cov(a,a)  cov(a,b)
+            # cov(a,b)  cov(b,b)
+#     covari = mat[0][1] / mat[1][1]
+#     covari = mat[1][1] / mat[0][1]
+    
+    #aaa
+    #debug
+#     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)" \
+#     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)\n" \
+    msg = "[is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = %.03f (UTC = %s)\n" \
+            % (
+                covari
+                , L_2[-1].dateTime
+#                 , lo_BarDatas[-1].dateTime
+#                 , lo_BarDatas[-1].dateTime_Local
+                )
+    
+    msg += "<avg values>\n"
+    
+    for item in L_3:
+        
+        msg += "%.03f\t" % item
+        
+        
+    #/for item in L_3:
+
+    msg += "\n\n"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log
+                , fname_Log
+                , 2)
+
+    
+#     #debug
+#     msg = "is_Trend__Flat : len of list : %d" \
+#             % (len(lo_BarDatas))
+#     
+#     msg_Log = "[%s / %s:%d] %s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+#     
+#     libs.write_Log(msg_Log, dpath_Log
+#                 , fname_Log
+#                 , 2)
+    
     #ref covariance https://stackoverflow.com/questions/15036205/numpy-covariance-matrix
     
-    return True
+    return (True, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
+#     return True
     
 #/ def is_Trend__Flat(lo_BarDatas)
