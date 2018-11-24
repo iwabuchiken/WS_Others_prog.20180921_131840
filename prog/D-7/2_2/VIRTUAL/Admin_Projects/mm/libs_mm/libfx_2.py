@@ -77,9 +77,6 @@ def test_func():
 
 # def get_ChartData_CSV_Between(fname_In, id_Start, id_End):
 
-#abcde
-
-#xxx
 def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
        lo_BarDatas
        , fname_CSV_File
@@ -260,7 +257,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
-            print("%s" % msg_Log)
+#             print("%s" % msg_Log)
 #             print("[%s:%d] flg_Dat --> not set (%s, %s)" % \
 #                     (os.path.basename(libs.thisfile()), libs.linenum()
 #                     , flg_Dat, e0.dateTime_Local
@@ -291,7 +288,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
-                print("%s" % msg_Log)
+#                 print("%s" % msg_Log)
 
 #                 print("[%s:%d] (j2 : Y) d0 => 0 (d0 = %.03f)" % \
 #                         (os.path.basename(libs.thisfile()), libs.linenum()
@@ -325,12 +322,12 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 
                 libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
                 
-                print("%s" % msg_Log)
+#                 print("%s" % msg_Log)
 
 #                 print("[%s:%d] (j2 : Y : 1) dat --> set" % \
 #                         (os.path.basename(libs.thisfile()), libs.linenum()
 #                         ), file=sys.stderr)
-                print(dat)
+#                 print(dat)
                 
                 '''###################
                     step : j2 : Y : 2
@@ -355,7 +352,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
-                print("%s" % msg_Log)
+#                 print("%s" % msg_Log)
 
 #                 print("[%s:%d] (j2 : N) d0 < 0 (d0 = %.03f)" % \
 #                         (os.path.basename(libs.thisfile()), libs.linenum()
@@ -388,7 +385,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             libs.write_Log(msg_Log, dpath_Log, fname_Log
                         , 2)
             
-            print("%s" % msg_Log)
+#             print("%s" % msg_Log)
 
 #             print("[%s:%d] (j1 : Y) flg_Dat ==> %s (%s)" % \
 #                     (os.path.basename(libs.thisfile()), libs.linenum()
@@ -440,11 +437,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j1.1 : Y
                         tred --> flat
                 ###################'''
-                '''###################
-                    step : j1.1 : Y : 1
-                        tred --> flat
-                ###################'''
-                msg = "(j1 : Y : 1 / j1.1 : Y : 1) trend --> flat (%s)" \
+                msg = "(j1 : Y : 1 / j1.1 : Y) trend --> flat (%s)" \
                         % (e0.dateTime_Local)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
@@ -457,6 +450,10 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , fname_Log
                             , 2)
                 
+                '''###################
+                    step : j1.1 : Y : 1
+                        dat --> reset
+                ###################'''
                 dat = {
                     
                         "price_current" : -1.0
@@ -473,7 +470,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     
                     }
 
-                msg = "dat --> reset done"
+                msg = "(j1 : Y : 1 / j1.1 : Y : 1) dat --> reset done"
+#                 msg = "dat --> reset done"
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -485,16 +483,21 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , fname_Log
                             , 2)
                 
-                print("%s" % msg_Log)    
+#                 print("%s" % msg_Log)    
                 
                 '''###################
                     step : j1.1 : Y : 2
                         flag --> reset
                 ###################'''
                 flg_Dat = False            
+                
+                '''###################
+                    step : j1.1 : Y : 3
+                        continue
+                ###################'''
+                continue
+                
             #/if res == False
-            
-            
 #             
             '''###################
                 step : j3
@@ -516,7 +519,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 libs.write_Log(msg_Log, dpath_Log, fname_Log
                             , 2)
                 
-                print("%s" % msg_Log)
+#                 print("%s" % msg_Log)
 
                 '''###################
                     step : j4
@@ -677,7 +680,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     libs.write_Log(msg_Log, dpath_Log, fname_Log
                                 , 2)
                     
-                    print("%s" % msg_Log)
+#                     print("%s" % msg_Log)
                 
                     '''###################
                         step : j4 : Y : 1
@@ -717,7 +720,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , msg)
                     
                     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2) 
-                    print("%s" % msg_Log)
+#                     print("%s" % msg_Log)
 
 
                     
@@ -1955,9 +1958,21 @@ def is_Trend__Flat(\
            lo_BarDatas
            , dpath_Log, fname_Log
            , ts_Inclination = 0.1
-           , lenOf_BarDatas__Target = 5
+           , lenOf_BarDatas__Target = cons_fx.Constants.lenOf_BarDatas__Target.value
+#            , lenOf_BarDatas__Target = 5
            ) :
+#xxx
+    '''###################
+        step : 0
+            vars
+    ###################'''
+    ts_Incli = cons_fx.Constants.ts_Incli.value
+     
+    fname, ext = os.path.splitext(fname_Log)
     
+    fname_Log__Inclinations = "%s.(Inclinations)%s" % (fname, ext)
+    
+     
     '''###################
         step : 1        
             len of data
@@ -2078,7 +2093,7 @@ def is_Trend__Flat(\
 #     covari = mat[0][1] / mat[1][1]
 #     covari = mat[1][1] / mat[0][1]
     
-    #aaa
+    
     #debug
 #     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)" \
 #     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)\n" \
@@ -2110,25 +2125,80 @@ def is_Trend__Flat(\
     libs.write_Log(msg_Log, dpath_Log
                 , fname_Log
                 , 2)
-
     
-#     #debug
-#     msg = "is_Trend__Flat : len of list : %d" \
-#             % (len(lo_BarDatas))
-#     
-#     msg_Log = "[%s / %s:%d] %s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg)
-#     
-#     libs.write_Log(msg_Log, dpath_Log
-#                 , fname_Log
-#                 , 2)
+    # inclinations
+#     msg += "%s\t%.03f\n" % (L_2[-1].dateTime, covari)
+    msg = "[is_Trend__Flat] (j1 : Y : 4) %s\t%.03f\n" % (L_2[-1].dateTime, covari)
+    
+#     msg += "\n"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log
+                , fname_Log__Inclinations
+                , 1)
+    
+    '''###################
+        step : j2
+            incli ---> less than threshold ?
+    ###################'''
+    res_Threshold = False
+    
+#     if covari >= ts_Incli : #if covari < ts_Incli
+#     if covari >= ts_Incli : #if covari < ts_Incli
+#     if (covari < ts_Incli) \
+#             and (covari >= 0) : #if covari < ts_Incli
+    if (np.abs(covari) < ts_Incli) :
+        '''###################
+            step : j2 : Y
+                incli ---> less than threshold
+                      ---> i.e. flat
+        ###################'''
+        res_Threshold = True
+
+        msg = "[is_Trend__Flat] (j2 : Y) %s\t%.03f (ts = %.03f)\n" % (L_2[-1].dateTime, covari, ts_Incli)
+        
+    #     msg += "\n"
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(msg_Log, dpath_Log
+                    , fname_Log
+                    , 1)
+    
+    else : #/if covari < ts_Incli
+        '''###################
+            step : j2 : N
+                incli ---> NOT less than threshold
+        ###################'''
+        msg = "[is_Trend__Flat] (j2 : N) %s\t%.03f (ts = %.03f)\n" % (L_2[-1].dateTime, covari, ts_Incli)
+        
+    #     msg += "\n"
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(msg_Log, dpath_Log
+                    , fname_Log
+                    , 1)
+            
+    #/if covari < ts_Incli
     
     #ref covariance https://stackoverflow.com/questions/15036205/numpy-covariance-matrix
     
-    return (True, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
+    return (res_Threshold, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
+#     return (True, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
 #     return True
     
 #/ def is_Trend__Flat(lo_BarDatas)

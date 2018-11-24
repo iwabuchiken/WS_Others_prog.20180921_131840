@@ -432,4 +432,12 @@ class Constants(Enum) :
     ###################'''
     CONS_NONE = "NONE"
 
+    '''###################
+        BUSL_3
+        libfx_2 : is_Trend__Flat
+    ###################'''
+    ts_Incli = 0.01
+    
+    lenOf_BarDatas__Target = 5
+    
 #/ class Constants(Enum) :
