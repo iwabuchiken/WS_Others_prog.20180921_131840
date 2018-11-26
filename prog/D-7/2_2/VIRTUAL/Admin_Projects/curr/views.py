@@ -2567,7 +2567,7 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request):
         1    ==> detect patterns --> file created
 ###################'''
 def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__TWO_TOPS(request):
-
+#xxx
     '''###################
         request
     ###################'''

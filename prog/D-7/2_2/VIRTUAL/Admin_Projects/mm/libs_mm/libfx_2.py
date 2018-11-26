@@ -77,6 +77,7 @@ def test_func():
 
 # def get_ChartData_CSV_Between(fname_In, id_Start, id_End):
 
+#xxx
 def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
        lo_BarDatas
        , fname_CSV_File
@@ -105,6 +106,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     status = -1
     msg = "NONE"
     
+    # list for lines : log file
+    lo_LogLines = []
+    
     '''###################
         prep : log file
     ###################'''
@@ -119,9 +123,17 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     
     fpath_Log = os.path.join(dpath_Log, fname_Log)
     
+    # test
+    fname_Log_Test = "tow-tops.(%.01f).(%s,%s).%s.(test).log" \
+                % (
+                    version_Num
+                    , tokens[2], tokens[3], libs.get_TimeLabel_Now())
+    
+    fpath_Log_Test = os.path.join(dpath_Log, fname_Log_Test)
+    
 #     fout_Log = open(fpath_Log, "w")
     msg = "=========== _BUSL_3__DetectPatterns__Two_Tops__V_5"
-    
+
     msg += "\nsource = %s" % fname_CSV_File
     
     msg_Log = "[%s / %s:%d] %s" % \
@@ -130,9 +142,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log, fname_Log
-                , 2)
+#     libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                 , 2)
     
+    # append : log line
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
+
     '''###################
         exec
     ###################'''
@@ -215,10 +231,14 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(msg_Log, dpath_Log, fname_Log
-                    , 2)
+#         libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                     , 2)
         
         print("%s" % msg_Log)
+        
+        # log lines
+        lo_LogLines.append(msg_Log)
+        lo_LogLines.append("\n\n")
         
         '''###################
             step : 0
@@ -244,8 +264,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 step : j1 : N
                     flag --> False
             ###################'''
-            msg = "(j1 : N) flg_Dat --> not set (%s, %s)" \
-                    % (flg_Dat, e0.dateTime_Local)
+#             msg = "(j1 : N) flg_Dat --> not set (%s, %s)" \
+            msg = "(j1 : N) flg_Dat --> not set (%s, UTC = %s)" \
+                    % (flg_Dat, e0.dateTime)
             
             
             msg_Log = "[%s / %s:%d] %s" % \
@@ -254,17 +275,12 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(msg_Log, dpath_Log, fname_Log
-                        , 2)
+#             libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                         , 2)
             
-#             print("%s" % msg_Log)
-#             print("[%s:%d] flg_Dat --> not set (%s, %s)" % \
-#                     (os.path.basename(libs.thisfile()), libs.linenum()
-#                     , flg_Dat, e0.dateTime_Local
-#                     ), file=sys.stderr)
-            
-#             #debug
-#             break
+            # log lines
+            lo_LogLines.append(msg_Log)
+            lo_LogLines.append("\n\n")
             
             '''###################
                 step : j2
@@ -285,15 +301,12 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log, fname_Log
-                            , 2)
+#                 libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                             , 2)
                 
-#                 print("%s" % msg_Log)
-
-#                 print("[%s:%d] (j2 : Y) d0 => 0 (d0 = %.03f)" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                         ,d0
-#                         ), file=sys.stderr)
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
 
                 '''###################
                     step : j2 : Y : 1
@@ -312,7 +325,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 dat["index_bottom"] = e0.no
                 
                 #debug
-                msg = "(j2 : Y : 1) dat --> set (%s)" % (e0.dateTime_Local)
+#                 msg = "(j2 : Y : 1) dat --> set (%s)" % (e0.dateTime_Local)
+                msg = "(j2 : Y : 1) dat --> set (UTC = %s)" % (e0.dateTime)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -320,14 +334,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+#                 libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
                 
-#                 print("%s" % msg_Log)
-
-#                 print("[%s:%d] (j2 : Y : 1) dat --> set" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                         ), file=sys.stderr)
-#                 print(dat)
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
                 
                 '''###################
                     step : j2 : Y : 2
@@ -349,32 +360,22 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log, fname_Log
-                            , 2)
+                #libs.write_Log(msg_Log, dpath_Log, fname_Log
+#, 2)
                 
-#                 print("%s" % msg_Log)
-
-#                 print("[%s:%d] (j2 : N) d0 < 0 (d0 = %.03f)" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                         , d0
-#                         ), file=sys.stderr)
-                
-#                 #debug
-#                 break
-#                 continue
-            
-                
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
             
             #/if d0 >= 0
-            
-
             
         else : #if flg_Dat == True
             '''###################
                 step : j1 : Y
                     flag --> True
             ###################'''
-            msg = "(j1 : Y) flg_Dat ==> %s (%s)" % (flg_Dat, e0.dateTime_Local)
+            msg = "(j1 : Y) flg_Dat ==> %s (UTC = %s)" % (flg_Dat, e0.dateTime)
+#             msg = "(j1 : Y) flg_Dat ==> %s (%s)" % (flg_Dat, e0.dateTime_Local)
             
             msg_Log = "[%s / %s:%d] %s" % \
                     (
@@ -382,15 +383,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(msg_Log, dpath_Log, fname_Log
-                        , 2)
+            #libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                       , 2)
             
-#             print("%s" % msg_Log)
-
-#             print("[%s:%d] (j1 : Y) flg_Dat ==> %s (%s)" % \
-#                     (os.path.basename(libs.thisfile()), libs.linenum()
-#                     , flg_Dat, e0.dateTime_Local
-#                     ), file=sys.stderr)
+            # log lines
+            lo_LogLines.append(msg_Log)
+            lo_LogLines.append("\n\n")
+                
             '''###################
                 step : (j1 : Y : 1 / j1.1)
                     trend --> flat ?
@@ -404,21 +403,41 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-            libs.write_Log(msg_Log, dpath_Log, fname_Log
-                        , 2)
+            #libs.write_Log(msg_Log, dpath_Log, fname_Log
+#                       , 2)
+
+            # log lines
+            lo_LogLines.append(msg_Log)
+            lo_LogLines.append("\n\n")
             
 #             res = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
-            res, lo_BarDatas__Target = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
-                            , fname_Log)
-            
-            
+#             res, lo_BarDatas__Target = is_Trend__Flat(lo_BarDatas_Tmp[:i], dpath_Log
+
+        #            lo_LogLines
+        #            , lo_BarDatas
+        #            , dpath_Log, fname_Log
+        #            , ts_Inclination = 0.1
+        #            , lenOf_BarDatas__Target = cons_fx.Constants.lenOf_BarDatas__Target.value
+        #         return (res_Threshold, lo_BarDatas[-1 * lenOf_BarDatas__Target :], lo_LogLines)
+#             res, lo_BarDatas__Target, lo_LogLines = \
+#             (res, lo_BarDatas__Target, lo_LogLines) = \
+            (res, lo_BarDatas__Target) = \
+                    is_Trend__Flat(\
+                            lo_LogLines
+                            , lo_BarDatas_Tmp[:i + 1]   # needs "+1"
+#                             , lo_BarDatas_Tmp[:i]
+                            , dpath_Log
+                            , fname_Log
+                            )
+                    
             if res == False : #if res == False
                 '''###################
                     step : j1.1 : N
                         trend --> NOT flat
                 ###################'''
-                msg = "(j1 : Y : 1 / j1.1 : N) trend --> NOT flat (%s)" \
-                        % (e0.dateTime_Local)
+#                 msg = "(j1 : Y : 1 / j1.1 : N) trend --> NOT flat (%s)" \
+                msg = "(j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = %s)" \
+                        % (e0.dateTime)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -426,9 +445,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log
-                            , fname_Log
-                            , 2)
+#                 libs.write_Log(msg_Log, dpath_Log
+#                             , fname_Log
+#                           , 2)
+
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
                 
                 pass
             
@@ -437,8 +460,10 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j1.1 : Y
                         tred --> flat
                 ###################'''
-                msg = "(j1 : Y : 1 / j1.1 : Y) trend --> flat (%s)" \
-                        % (e0.dateTime_Local)
+#                 msg = "(j1 : Y : 1 / j1.1 : Y) trend --> flat (%s)" \
+                msg = "(j1 : Y : 1 / j1.1 : Y) trend --> flat (UTC = %s)" \
+                        % (e0.dateTime)
+#                         % (e0.dateTime_Local)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -446,9 +471,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log
-                            , fname_Log
-                            , 2)
+#                 libs.write_Log(msg_Log, dpath_Log
+#                             , fname_Log
+# #                           , 2)
+                
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
                 
                 '''###################
                     step : j1.1 : Y : 1
@@ -479,11 +508,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log
-                            , fname_Log
-                            , 2)
+#                 libs.write_Log(msg_Log, dpath_Log
+#                             , fname_Log
+# #                           , 2)
                 
-#                 print("%s" % msg_Log)    
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
                 
                 '''###################
                     step : j1.1 : Y : 2
@@ -508,7 +539,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j3 : N
                         flag : flg_A1_tmp --> False
                 ###################'''
-                msg = "(j3 : N) flg_A1_tmp ==> %s (%s)" % (flg_A1_tmp, e0.dateTime_Local)
+#                 msg = "(j3 : N) flg_A1_tmp ==> %s (%s)" % (flg_A1_tmp, e0.dateTime_Local)
+                msg = "(j3 : N) flg_A1_tmp ==> %s (UTC = %s)" % (flg_A1_tmp, e0.dateTime)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -516,11 +548,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log, fname_Log
-                            , 2)
-                
-#                 print("%s" % msg_Log)
+                #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                            #, 2)
 
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
+                
                 '''###################
                     step : j4
                         d0 => 0 ?
@@ -531,7 +565,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             d0 < 0
                     ###################'''
                 
-                    msg = "(j4 : N) d0 ==> %.03f (%s)" % (d0, e0.dateTime_Local)
+#                     msg = "(j4 : N) d0 ==> %.03f (%s)" % (d0, e0.dateTime_Local)
+                    msg = "(j4 : N) d0 ==> %.03f (UTC = %s)" % (d0, e0.dateTime)
                     
                     msg_Log = "[%s / %s:%d] %s" % \
                             (
@@ -539,10 +574,14 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(msg_Log, dpath_Log, fname_Log
-                                , 2)
+                    #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                                #, 2)
                     
-                    print("%s" % msg_Log)
+#                     print("%s" % msg_Log)
+
+                    # log lines
+                    lo_LogLines.append(msg_Log)
+                    lo_LogLines.append("\n\n")
 
                     '''###################
                         step : j4 : N : 1
@@ -561,8 +600,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         ###################'''
                         msg = "(j5 : Y) \n"
                         msg += "e0.price_Close = %.03f\n" % (e0.price_Close)
-                        msg += "ts_DownBar_For_A1__Price = %.03f (%s)" \
-                                % (ts_DownBar_For_A1__Price, e0.dateTime_Local)
+                        msg += "ts_DownBar_For_A1__Price = %.03f (UTC = %s)" \
+                                % (ts_DownBar_For_A1__Price, e0.dateTime)
+#                                 % (ts_DownBar_For_A1__Price, e0.dateTime_Local)
                     
                         msg_Log = "[%s / %s:%d] %s" % \
                                 (
@@ -570,7 +610,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                        #libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+                        # log lines
+                        lo_LogLines.append(msg_Log)
+                        lo_LogLines.append("\n\n")
                         
                         '''###################
                             step : j5 : Y : 1
@@ -600,11 +644,15 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log
-                                    , fname_Log
-                                    , 2)
+#                         libs.write_Log(msg_Log, dpath_Log
+#                                     , fname_Log
+#                                     , 2)
                         
                         print("%s" % msg_Log)    
+
+                        # log lines
+                        lo_LogLines.append(msg_Log)
+                        lo_LogLines.append("\n\n")
                         
                         '''###################
                             step : j5 : Y : 2
@@ -621,8 +669,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         msg = "(j5 : N)"
                         msg += "\ne0.price_Close = %.03f" % (e0.price_Close)
                         msg += "\ndat['price_start'] = %.03f" % (dat['price_start'])
-                        msg += "\nts_DownBar_For_A1__Price = %.03f (%s)" % \
-                                        (ts_DownBar_For_A1__Price, e0.dateTime_Local)
+                        msg += "\nts_DownBar_For_A1__Price = %.03f (UTC = %s)" % \
+                                        (ts_DownBar_For_A1__Price, e0.dateTime)
+#                                         (ts_DownBar_For_A1__Price, e0.dateTime_Local)
                     
                         msg_Log = "[%s / %s:%d] %s" % \
                                 (
@@ -630,7 +679,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+#                         libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+                        # log lines
+                        lo_LogLines.append(msg_Log)
+                        lo_LogLines.append("\n\n")
 
                         '''###################
                             step : j5 : N : 1
@@ -643,9 +696,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         msg = "(j5 : N : 1)"
                         msg += " dat ==> updated"
                         msg += "\ne0.price_Close = %.03f" % (e0.price_Close)
+                        
                         msg += "\ndat['price_current'] = %.03f" % (dat['price_current'])
                         msg += "\ndat['index_current'] = %d" % (dat['index_current'])
-                        msg += "\n(%s)" % (e0.dateTime_Local)
+                        msg += "\ndat['price_start'] = %.03f" % (dat['price_start'])
+                        msg += "\ndat['index_start'] = %d" % (dat['index_start'])
+                        
+                        msg += "\n(UTC = %s)" % (e0.dateTime)
                     
                         msg_Log = "[%s / %s:%d] %s" % \
                                 (
@@ -653,10 +710,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                                 , os.path.basename(libs.thisfile()), libs.linenum()
                                 , msg)
                         
-                        libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
-                        
-#                         #debug
-#                         break
+#                         libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+                        # log lines
+                        lo_LogLines.append(msg_Log)
+                        lo_LogLines.append("\n\n")
                         
                     #/if e0.price_Close < ts_DownBar_For_A1__Price
                 
@@ -669,7 +727,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     cntOf_J4_Y += 1
                     
                     # log
-                    msg = "(j4 : Y) d0 ==> %.03f (%s)" % (d0, e0.dateTime_Local)
+#                     msg = "(j4 : Y) d0 ==> %.03f (%s)" % (d0, e0.dateTime_Local)
+                    msg = "(j4 : Y) d0 ==> %.03f (UTC = %s)" % (d0, e0.dateTime)
                     
                     msg_Log = "[%s / %s:%d] %s" % \
                             (
@@ -677,11 +736,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(msg_Log, dpath_Log, fname_Log
-                                , 2)
+                    #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                                #, 2)
+
+                    # log lines
+                    lo_LogLines.append(msg_Log)
+                    lo_LogLines.append("\n\n")
                     
-#                     print("%s" % msg_Log)
-                
                     '''###################
                         step : j4 : Y : 1
                             update : A1_tmp
@@ -706,12 +767,22 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     dat['index_current'] = e0.no
 
                     # log
-                    msg = "(j4 : Y : 2) dat ==> updated (%s)" % (e0.dateTime_Local)
+#                     msg = "(j4 : Y : 2) dat ==> updated (%s)" % (e0.dateTime_Local)
+                    msg = "(j4 : Y : 2) dat ==> updated (UTC=%s)" % (e0.dateTime)
                     
-                    msg += "\ndat[price_anchor] = %.03f" % dat['price_anchor']
-                    msg += "\ndat[index_anchor] = %d" % dat['index_anchor']
-                    msg += "\ndat[price_current] = %.03f" % dat['price_current']
-                    msg += "\ndat[index_current] = %d" % dat['index_current']
+                    msg += "\ndat['price_anchor'] = %.03f" % dat['price_anchor']
+                    msg += "\ndat['index_anchor'] = %d (UTC = %s)" % (dat['index_anchor'], lo_BarDatas_Tmp[dat['index_anchor'] - 1].dateTime)
+                    
+                    msg += "\ndat['price_current'] = %.03f" % dat['price_current']
+                    msg += "\ndat['index_current'] = %d (UTC = %s)" % (dat['index_current'], lo_BarDatas_Tmp[dat['index_anchor'] - 1].dateTime)
+                    
+                    msg += "\ndat['price_start'] = %.03f" % dat['price_start']
+                    msg += "\ndat['index_start'] = %d (UTC = %s)" % (dat['index_start'], lo_BarDatas_Tmp[dat['index_start'] - 1].dateTime)
+                    
+#                     msg += "\ndat[price_anchor] = %.03f" % dat['price_anchor']
+#                     msg += "\ndat[index_anchor] = %d" % dat['index_anchor']
+#                     msg += "\ndat[price_current] = %.03f" % dat['price_current']
+#                     msg += "\ndat[index_current] = %d" % dat['index_current']
                     
                     msg_Log = "[%s / %s:%d] %s" % \
                             (
@@ -719,10 +790,11 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(msg_Log, dpath_Log, fname_Log, 2) 
-#                     print("%s" % msg_Log)
+#                     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2) 
 
-
+                    # log lines
+                    lo_LogLines.append(msg_Log)
+                    lo_LogLines.append("\n\n")
                     
                 #/if d0 >= 0
                 
@@ -731,7 +803,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j3 : Y
                         flag : flg_A1_tmp --> True
                 ###################'''
-                msg = "(j3 : Y) flg_A1_tmp ==> %s (%s)" % (flg_A1_tmp, e0.dateTime_Local)
+#                 msg = "(j3 : Y) flg_A1_tmp ==> %s (%s)" % (flg_A1_tmp, e0.dateTime_Local)
+                msg = "(j3 : Y) flg_A1_tmp ==> %s (UTC = %s)" % (flg_A1_tmp, e0.dateTime)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -739,11 +812,14 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-                libs.write_Log(msg_Log, dpath_Log, fname_Log
-                            , 2)
+                #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                            #, 2)
                 
                 print("%s" % msg_Log)
                 
+                # log lines
+                lo_LogLines.append(msg_Log)
+                lo_LogLines.append("\n\n")
                 
                 #debug
                 break
@@ -770,11 +846,23 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log, fname_Log
-                , 2)
+    #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                #, 2)
     
     print("%s" % msg_Log)
+
+    # log lines
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
         
+    '''###################
+        write : log
+    ###################'''
+    txt_LogLines = "".join(lo_LogLines)
+    
+    libs.write_Log(txt_LogLines, dpath_Log, fname_Log_Test
+                , 2)
+    
     '''###################
         return        
     ###################'''
@@ -934,8 +1022,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                 step : j1 : N
                     flag --> False
             ###################'''
-            msg = "flg_Dat --> not set (%s, %s)" \
-                    % (flg_Dat, e0.dateTime_Local)
+            msg = "flg_Dat --> not set (%s, UTC = %s)" \
+                    % (flg_Dat, e0.dateTime)
+#                     % (flg_Dat, e0.dateTime_Local)
             
             
             msg_Log = "[%s / %s:%d] %s" % \
@@ -1065,7 +1154,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                 step : j1 : Y
                     flag --> True
             ###################'''
-            msg = "(j1 : Y) flg_Dat ==> %s (%s)" % (flg_Dat, e0.dateTime_Local)
+#             msg = "(j1 : Y) flg_Dat ==> %s (%s)" % (flg_Dat, e0.dateTime_Local)
+            msg = "(j1 : Y) flg_Dat ==> %s (UTC = %s)" % (flg_Dat, e0.dateTime)
             
             msg_Log = "[%s / %s:%d] %s" % \
                     (
@@ -1177,9 +1267,10 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
 #                     dat["index_bottom"] = e0.no
                     
                     #debug
-                    msg = "dat --> updated\ndat['price_current'] = %.03f, dat['index_current'] = %d (%s)" \
+                    msg = "dat --> updated\ndat['price_current'] = %.03f, dat['index_current'] = %d (UTC = %s)" \
                                 % (dat['price_current'], dat['index_current']
-                                   , e0.dateTime_Local
+                                   , e0.dateTime
+#                                    , e0.dateTime_Local
                                    )
                     
                     msg += "\ndat['price_start'] = %.03f, dat['index_start'] = %.03f (%s)" \
@@ -1955,13 +2046,14 @@ def BUSL_3__DetectPatterns__Two_Tops(\
 ###################'''
 #def is_Trend__Flat(lo_BarDatas, ts_Inclination = 0.1, dpath_Log, fname_Log) :
 def is_Trend__Flat(\
-           lo_BarDatas
-           , dpath_Log, fname_Log
+           lo_LogLines
+           , lo_BarDatas
+           , dpath_Log
+           , fname_Log
            , ts_Inclination = 0.1
            , lenOf_BarDatas__Target = cons_fx.Constants.lenOf_BarDatas__Target.value
 #            , lenOf_BarDatas__Target = 5
            ) :
-#xxx
     '''###################
         step : 0
             vars
@@ -1971,7 +2063,7 @@ def is_Trend__Flat(\
     fname, ext = os.path.splitext(fname_Log)
     
     fname_Log__Inclinations = "%s.(Inclinations)%s" % (fname, ext)
-    
+    #aaa
      
     '''###################
         step : 1        
@@ -2003,9 +2095,13 @@ def is_Trend__Flat(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(msg_Log, dpath_Log
-                    , fname_Log
-                    , 2)
+#         libs.write_Log(msg_Log, dpath_Log
+#                     , fname_Log
+#                     , 2)
+
+        # append : log line
+        lo_LogLines.append(msg_Log)
+        lo_LogLines.append("\n\n")
         
         return (False, False)
     
@@ -2025,9 +2121,12 @@ def is_Trend__Flat(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log
-                , fname_Log
-                , 2)
+    #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                #, 2)
+
+    # append : log line
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
         
     '''###################
         step : j1 : Y : 1
@@ -2049,9 +2148,12 @@ def is_Trend__Flat(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log
-                , fname_Log
-                , 2)
+   #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                #, 2)
+
+    # append : log line
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
     
     '''###################
         step : j1 : Y : 2
@@ -2105,11 +2207,21 @@ def is_Trend__Flat(\
 #                 , lo_BarDatas[-1].dateTime_Local
                 )
     
-    msg += "<avg values>\n"
+    #debug
+    msg += "\nL_1[-1](lo_BarDatas) = UTC, %s / L_2[-1] = UTC, %s\n" \
+            %  (lo_BarDatas[-1].dateTime, L_2[-1].dateTime)
+    #aaa"
     
-    for item in L_3:
+    msg += "<close price>\n"
+#     msg += "<avg values>\n"
+    
+    for item in L_2:
         
-        msg += "%.03f\t" % item
+        msg += "%.03f\t" % item.price_Close
+        
+#     for item in L_3:
+#         
+#         msg += "%.03f\t" % item
         
         
     #/for item in L_3:
@@ -2122,9 +2234,12 @@ def is_Trend__Flat(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log
-                , fname_Log
-                , 2)
+   #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                #, 2)
+
+    # append : log line
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
     
     # inclinations
 #     msg += "%s\t%.03f\n" % (L_2[-1].dateTime, covari)
@@ -2138,9 +2253,12 @@ def is_Trend__Flat(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-    libs.write_Log(msg_Log, dpath_Log
-                , fname_Log__Inclinations
-                , 1)
+   #libs.write_Log(msg_Log, dpath_Log, fname_Log__Inclinations
+                #, 1)
+
+    # append : log line
+    lo_LogLines.append(msg_Log)
+    lo_LogLines.append("\n\n")
     
     '''###################
         step : j2
@@ -2170,9 +2288,12 @@ def is_Trend__Flat(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(msg_Log, dpath_Log
-                    , fname_Log
-                    , 1)
+       #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                    #, 1)
+
+        # append : log line
+        lo_LogLines.append(msg_Log)
+        lo_LogLines.append("\n\n")
     
     else : #/if covari < ts_Incli
         '''###################
@@ -2189,14 +2310,18 @@ def is_Trend__Flat(\
                 , os.path.basename(libs.thisfile()), libs.linenum()
                 , msg)
         
-        libs.write_Log(msg_Log, dpath_Log
-                    , fname_Log
-                    , 1)
+       #libs.write_Log(msg_Log, dpath_Log, fname_Log
+                    #, 1)
+
+        # append : log line
+        lo_LogLines.append(msg_Log)
+        lo_LogLines.append("\n\n")
             
     #/if covari < ts_Incli
     
     #ref covariance https://stackoverflow.com/questions/15036205/numpy-covariance-matrix
     
+#     return (res_Threshold, lo_BarDatas[-1 * lenOf_BarDatas__Target :], lo_LogLines)
     return (res_Threshold, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
 #     return (True, lo_BarDatas[-1 * lenOf_BarDatas__Target :])
 #     return True
