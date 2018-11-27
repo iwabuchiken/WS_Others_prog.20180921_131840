@@ -1,0 +1,280 @@
+[20181127_113120 / libfx_2.py:144] =========== _BUSL_3__DetectPatterns__Two_Tops__V_5
+source = 44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181127_113120 / libfx_2.py:233] start for-loop ------------------- (0)
+
+[20181127_113120 / libfx_2.py:277] (j1 : N) flg_Dat --> not set (False, UTC = 2017.11.13 09:00)
+
+[20181127_113120 / libfx_2.py:362] (j2 : N) d0 < 0 (d0 = -0.072)
+
+[20181127_113120 / libfx_2.py:233] start for-loop ------------------- (1)
+
+[20181127_113120 / libfx_2.py:277] (j1 : N) flg_Dat --> not set (False, UTC = 2017.11.13 10:00)
+
+[20181127_113120 / libfx_2.py:303] (j2 : Y) d0 => 0 (d0 = 0.038)
+
+[20181127_113120 / libfx_2.py:336] (j2 : Y : 1) dat --> set (UTC = 2017.11.13 10:00)
+
+[20181127_113120 / libfx_2.py:233] start for-loop ------------------- (2)
+
+[20181127_113120 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 11:00)
+
+[20181127_113120 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 11:00)
+
+[20181127_113120 / libfx_2.py:2188] [is_Trend__Flat] (j1 : N : 1) less than 5 (3)
+
+[20181127_113120 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 11:00)
+
+[20181127_113120 / libfx_2.py:553] (j3 : N) flg_A1_tmp ==> False (UTC = 2017.11.13 11:00)
+
+[20181127_113120 / libfx_2.py:579] (j4 : N) d0 ==> -0.137 (UTC = 2017.11.13 11:00)
+
+[20181127_113121 / libfx_2.py:615] (j5 : Y) 
+e0.price_Close = 131.970
+ts_DownBar_For_A1__Price = 132.069 (UTC = 2017.11.13 11:00)
+
+[20181127_113121 / libfx_2.py:649] dat --> reset done
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (3)
+
+[20181127_113121 / libfx_2.py:277] (j1 : N) flg_Dat --> not set (False, UTC = 2017.11.13 12:00)
+
+[20181127_113121 / libfx_2.py:362] (j2 : N) d0 < 0 (d0 = -0.006)
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (4)
+
+[20181127_113121 / libfx_2.py:277] (j1 : N) flg_Dat --> not set (False, UTC = 2017.11.13 13:00)
+
+[20181127_113121 / libfx_2.py:303] (j2 : Y) d0 => 0 (d0 = 0.093)
+
+[20181127_113121 / libfx_2.py:336] (j2 : Y : 1) dat --> set (UTC = 2017.11.13 13:00)
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (5)
+
+[20181127_113121 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 14:00)
+
+[20181127_113121 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 14:00)
+
+[20181127_113121 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (6)
+
+[20181127_113121 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 14:00
+
+[20181127_113121 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = -0.009 (UTC = 2017.11.13 14:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 14:00 / L_2[-1] = UTC, 2017.11.13 14:00
+<close price>
+132.107	131.970	131.965	132.058	132.050	
+
+
+
+[20181127_113121 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 14:00	-0.009
+
+
+[20181127_113121 / libfx_2.py:2380] [is_Trend__Flat] (j2 : Y) 2017.11.13 14:00	-0.009 (ts = 0.010)
+
+
+[20181127_113121 / libfx_2.py:473] (j1 : Y : 1 / j1.1 : Y) trend --> flat (UTC = 2017.11.13 14:00)
+
+[20181127_113121 / libfx_2.py:513] (j1 : Y : 1 / j1.1 : Y : 1) dat --> reset done
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (6)
+
+[20181127_113121 / libfx_2.py:277] (j1 : N) flg_Dat --> not set (False, UTC = 2017.11.13 15:00)
+
+[20181127_113121 / libfx_2.py:303] (j2 : Y) d0 => 0 (d0 = 0.198)
+
+[20181127_113121 / libfx_2.py:336] (j2 : Y : 1) dat --> set (UTC = 2017.11.13 15:00)
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (7)
+
+[20181127_113121 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 16:00)
+
+[20181127_113121 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 16:00)
+
+[20181127_113121 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (8)
+
+[20181127_113121 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 16:00
+
+[20181127_113121 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = 0.076 (UTC = 2017.11.13 16:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 16:00 / L_2[-1] = UTC, 2017.11.13 16:00
+<close price>
+131.965	132.058	132.050	132.247	132.312	
+
+
+
+[20181127_113121 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 16:00	0.076
+
+
+[20181127_113121 / libfx_2.py:2402] [is_Trend__Flat] (j2 : N) 2017.11.13 16:00	0.076 (ts = 0.010)
+
+
+[20181127_113121 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 16:00)
+
+[20181127_113121 / libfx_2.py:553] (j3 : N) flg_A1_tmp ==> False (UTC = 2017.11.13 16:00)
+
+[20181127_113121 / libfx_2.py:741] (j4 : Y) d0 ==> 0.063 (UTC = 2017.11.13 16:00)
+
+[20181127_113121 / libfx_2.py:795] (j4 : Y : 2) dat ==> updated (UTC=2017.11.13 16:00)
+dat['price_anchor'] = 132.312
+dat['index_anchor'] = 8 (UTC = 2017.11.13 16:00)
+dat['price_current'] = 132.312
+dat['index_current'] = 8 (UTC = 2017.11.13 16:00)
+dat['price_start'] = 132.049
+dat['index_start'] = 7 (UTC = 2017.11.13 15:00)
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (8)
+
+[20181127_113121 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 17:00)
+
+[20181127_113121 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 17:00)
+
+[20181127_113121 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (9)
+
+[20181127_113121 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 17:00
+
+[20181127_113121 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = 0.091 (UTC = 2017.11.13 17:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 17:00 / L_2[-1] = UTC, 2017.11.13 17:00
+<close price>
+132.058	132.050	132.247	132.312	132.396	
+
+
+
+[20181127_113121 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 17:00	0.091
+
+
+[20181127_113121 / libfx_2.py:2402] [is_Trend__Flat] (j2 : N) 2017.11.13 17:00	0.091 (ts = 0.010)
+
+
+[20181127_113121 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 17:00)
+
+[20181127_113121 / libfx_2.py:553] (j3 : N) flg_A1_tmp ==> False (UTC = 2017.11.13 17:00)
+
+[20181127_113121 / libfx_2.py:741] (j4 : Y) d0 ==> 0.083 (UTC = 2017.11.13 17:00)
+
+[20181127_113121 / libfx_2.py:795] (j4 : Y : 2) dat ==> updated (UTC=2017.11.13 17:00)
+dat['price_anchor'] = 132.396
+dat['index_anchor'] = 9 (UTC = 2017.11.13 17:00)
+dat['price_current'] = 132.396
+dat['index_current'] = 9 (UTC = 2017.11.13 17:00)
+dat['price_start'] = 132.049
+dat['index_start'] = 7 (UTC = 2017.11.13 15:00)
+
+[20181127_113121 / libfx_2.py:233] start for-loop ------------------- (9)
+
+[20181127_113121 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 18:00)
+
+[20181127_113121 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 18:00)
+
+[20181127_113121 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (10)
+
+[20181127_113121 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 18:00
+
+[20181127_113121 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = 0.093 (UTC = 2017.11.13 18:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 18:00 / L_2[-1] = UTC, 2017.11.13 18:00
+<close price>
+132.050	132.247	132.312	132.396	132.440	
+
+
+
+[20181127_113121 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 18:00	0.093
+
+
+[20181127_113121 / libfx_2.py:2402] [is_Trend__Flat] (j2 : N) 2017.11.13 18:00	0.093 (ts = 0.010)
+
+
+[20181127_113121 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 18:00)
+
+[20181127_113121 / libfx_2.py:553] (j3 : N) flg_A1_tmp ==> False (UTC = 2017.11.13 18:00)
+
+[20181127_113122 / libfx_2.py:741] (j4 : Y) d0 ==> 0.045 (UTC = 2017.11.13 18:00)
+
+[20181127_113122 / libfx_2.py:795] (j4 : Y : 2) dat ==> updated (UTC=2017.11.13 18:00)
+dat['price_anchor'] = 132.440
+dat['index_anchor'] = 10 (UTC = 2017.11.13 18:00)
+dat['price_current'] = 132.440
+dat['index_current'] = 10 (UTC = 2017.11.13 18:00)
+dat['price_start'] = 132.049
+dat['index_start'] = 7 (UTC = 2017.11.13 15:00)
+
+[20181127_113122 / libfx_2.py:233] start for-loop ------------------- (10)
+
+[20181127_113122 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 19:00)
+
+[20181127_113122 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 19:00)
+
+[20181127_113122 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (11)
+
+[20181127_113122 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 19:00
+
+[20181127_113122 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = 0.079 (UTC = 2017.11.13 19:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 19:00 / L_2[-1] = UTC, 2017.11.13 19:00
+<close price>
+132.247	132.312	132.396	132.440	132.512	
+
+
+
+[20181127_113122 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 19:00	0.079
+
+
+[20181127_113122 / libfx_2.py:2402] [is_Trend__Flat] (j2 : N) 2017.11.13 19:00	0.079 (ts = 0.010)
+
+
+[20181127_113122 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 19:00)
+
+[20181127_113122 / libfx_2.py:553] (j3 : N) flg_A1_tmp ==> False (UTC = 2017.11.13 19:00)
+
+[20181127_113122 / libfx_2.py:741] (j4 : Y) d0 ==> 0.074 (UTC = 2017.11.13 19:00)
+
+[20181127_113122 / libfx_2.py:795] (j4 : Y : 2) dat ==> updated (UTC=2017.11.13 19:00)
+dat['price_anchor'] = 132.512
+dat['index_anchor'] = 11 (UTC = 2017.11.13 19:00)
+dat['price_current'] = 132.512
+dat['index_current'] = 11 (UTC = 2017.11.13 19:00)
+dat['price_start'] = 132.049
+dat['index_start'] = 7 (UTC = 2017.11.13 15:00)
+
+[20181127_113122 / libfx_2.py:843] (j6 : Y) flag : flg_A1 ---> conditinos met (UTC=2017.11.13 19:00)
+dat['index_start'] = 7 (UTC = 2017.11.13 15:00)dat['index_current'] = 11 (UTC = 2017.11.13 19:00)
+dat['price_start'] = 132.049 / price_current = 132.512 / ts = 0.100
+
+[20181127_113122 / libfx_2.py:233] start for-loop ------------------- (11)
+
+[20181127_113122 / libfx_2.py:385] (j1 : Y) flg_Dat ==> True (UTC = 2017.11.13 20:00)
+
+[20181127_113122 / libfx_2.py:405] (j1 : Y : 1 / j1.1) trend --> flat ? (UTC = 2017.11.13 20:00)
+
+[20181127_113122 / libfx_2.py:2214] [is_Trend__Flat] (j1 : Y) equal or more than 5 (12)
+
+[20181127_113122 / libfx_2.py:2241] [is_Trend__Flat] (j1 : Y : 1) get list : last N bars (len = 5 / L_2[-1] = UTC, 2017.11.13 20:00
+
+[20181127_113122 / libfx_2.py:2326] [is_Trend__Flat] (j1 : Y : 4) get val : incli(a value) = 0.058 (UTC = 2017.11.13 20:00)
+
+L_1[-1](lo_BarDatas) = UTC, 2017.11.13 20:00 / L_2[-1] = UTC, 2017.11.13 20:00
+<close price>
+132.312	132.396	132.440	132.512	132.516	
+
+
+
+[20181127_113122 / libfx_2.py:2345] [is_Trend__Flat] (j1 : Y : 4) 2017.11.13 20:00	0.058
+
+
+[20181127_113122 / libfx_2.py:2402] [is_Trend__Flat] (j2 : N) 2017.11.13 20:00	0.058 (ts = 0.010)
+
+
+[20181127_113122 / libfx_2.py:447] (j1 : Y : 1 / j1.1 : N) trend --> NOT flat (UTC = 2017.11.13 20:00)
+
+[20181127_113122 / libfx_2.py:891] (j3 : Y) flg_A1_tmp ==> True (UTC = 2017.11.13 20:00)
+
+[20181127_113122 / libfx_2.py:939] FINAL REPORT --------------------
+cntOf_Total = 12
+cntOf_J4_Y = 4
+flat detections = 1
+1)	no = 6	UTC = 2017.11.13 14:00
+
+
+
+

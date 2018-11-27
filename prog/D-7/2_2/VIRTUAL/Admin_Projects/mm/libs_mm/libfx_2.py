@@ -109,6 +109,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     # list for lines : log file
     lo_LogLines = []
     
+    lo_BarDatas__Flat = []
+    
     '''###################
         prep : log file
     ###################'''
@@ -479,6 +481,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 lo_LogLines.append(msg_Log)
                 lo_LogLines.append("\n\n")
                 
+                # flat bars
+                lo_BarDatas__Flat.append(e0)
+                
                 '''###################
                     step : j1.1 : Y : 1
                         dat --> reset
@@ -796,6 +801,81 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     lo_LogLines.append(msg_Log)
                     lo_LogLines.append("\n\n")
                     
+                    '''###################
+                        step : j6
+                            flag : flg_A1 ---> conditions met ?
+                    ###################'''
+                    #aaa
+                    ts_Price_For_Anchor_Fixing = 0.1
+                    
+#                     cond_1 = (dat['index_current'] - dat['index_start'] == 4)
+                    cond_1 = (dat['index_current'] - dat['index_start'] >= 4)
+                    cond_2 = (dat['price_current'] - dat['price_start'] > ts_Price_For_Anchor_Fixing)
+                    
+                    if (cond_1 and cond_2) == True : #if (cond_1 and cond_2)
+                        '''###################
+                            step : j6 : Y
+                                flag : flg_A1 ---> conditions met
+                        ###################'''
+                        #aaa
+                        msg = "(j6 : Y) flag : flg_A1 ---> conditinos met (UTC=%s)\n" \
+                                        % (e0.dateTime)
+                        
+                        msg += "dat['index_start'] = %d (UTC = %s)" \
+                                        % (dat['index_start']
+                                           , lo_BarDatas_Tmp[dat['index_start'] - 1].dateTime)
+                        
+                        msg += "dat['index_current'] = %d (UTC = %s)" \
+                                        % (dat['index_current']
+                                           , lo_BarDatas_Tmp[dat['index_current'] - 1].dateTime)
+                        
+#                         msg += "dat['index_start'] = %d / index_current = %d" \
+#                                         % (dat['index_start'], dat['index_current'])
+                        
+                        msg += "\n"
+                        
+                        msg += "dat['price_start'] = %.03f / price_current = %.03f / ts = %.03f" \
+                                        % (dat['price_start'], dat['price_current']
+                                           , ts_Price_For_Anchor_Fixing)
+                        
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                        
+    #                     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2) 
+    
+                        # log lines
+                        lo_LogLines.append(msg_Log)
+                        lo_LogLines.append("\n\n")
+                        
+                        '''###################
+                            step : j6 : Y : 1
+                                flag --> true
+                        ###################'''
+                        flg_A1_tmp = True
+                    
+                        msg = "(j6 : Y : 1) flg_A1_tmp => %s (UTC=%s)\n" \
+                                        % (flg_A1_tmp, e0.dateTime)
+
+                        msg_Log = "[%s / %s:%d] %s" % \
+                                (
+                                libs.get_TimeLabel_Now()
+                                , os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg)
+                    
+                    else : #if (cond_1 and cond_2)
+                        '''###################
+                            step : j6 : N
+                                flag : flg_A1 ---> conditions NOT met
+                        ###################'''
+                        continue
+                    
+                    #/if (cond_1 and cond_2)
+                    
+                    
+                    
                 #/if d0 >= 0
                 
             else : #if flg_A1_tmp == False
@@ -839,7 +919,21 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     msg = "FINAL REPORT --------------------\n"
     
     msg += "cntOf_Total = %d\ncntOf_J4_Y = %d" % (cntOf_Total, cntOf_J4_Y)
-    #aa
+    
+    msg += "\nflat detections = %d\n" % (len(lo_BarDatas__Flat))
+    
+    cnt = 1
+    
+    for item in lo_BarDatas__Flat:
+
+        msg += "%d)\tno = %d\tUTC = %s\n" % (cnt, item.no, item.dateTime)
+        
+        # counter
+        cnt += 1
+        
+    #/for item in lo_BarDatas__Flat:
+
+    
     msg_Log = "[%s / %s:%d] %s" % \
             (
             libs.get_TimeLabel_Now()
@@ -860,7 +954,8 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
     ###################'''
     txt_LogLines = "".join(lo_LogLines)
     
-    libs.write_Log(txt_LogLines, dpath_Log, fname_Log_Test
+#     libs.write_Log(txt_LogLines, dpath_Log, fname_Log_Test
+    libs.write_Log(txt_LogLines, dpath_Log, fname_Log
                 , 2)
     
     '''###################
@@ -2063,7 +2158,6 @@ def is_Trend__Flat(\
     fname, ext = os.path.splitext(fname_Log)
     
     fname_Log__Inclinations = "%s.(Inclinations)%s" % (fname, ext)
-    #aaa
      
     '''###################
         step : 1        
@@ -2210,7 +2304,6 @@ def is_Trend__Flat(\
     #debug
     msg += "\nL_1[-1](lo_BarDatas) = UTC, %s / L_2[-1] = UTC, %s\n" \
             %  (lo_BarDatas[-1].dateTime, L_2[-1].dateTime)
-    #aaa"
     
     msg += "<close price>\n"
 #     msg += "<avg values>\n"
