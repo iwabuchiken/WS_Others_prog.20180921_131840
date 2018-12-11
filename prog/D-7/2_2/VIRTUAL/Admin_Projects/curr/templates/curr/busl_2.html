@@ -47,6 +47,17 @@ BUSL_2
             >{{ fname_CSV }}</textarea>
         <br>
         
+		<select id="ddProjects" name="nameProjects">
+		  {% for item in lo_CSV_Files %}
+		      <option value="{{ forloop.counter }}">{{ item }}</option>
+		  {% endfor %}
+		</select>
+		
+		<button onclick="select_file();">select file</button>
+
+        <br>
+        <br>
+
         <label class="lbl_basic_1" for="curr_BUSL_2__TA__Dpath_CSV">
                 CSV raw data dir</label><br>
         <textarea 

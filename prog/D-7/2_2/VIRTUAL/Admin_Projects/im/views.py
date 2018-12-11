@@ -628,7 +628,14 @@ def _im_actions__Ops_14(action): # /im/im_action
     ###################'''
     files = []
 
-    dir_Target = "/cake_apps/images/ifm11"
+    #dir_Target = "/cake_apps/images/ifm11"
+    dir_Target = "/cake_apps/images/ifm11_2"
+
+    print("[%s:%d] dir_Target => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dir_Target
+            ), file=sys.stderr)
+    
 
     try:
 

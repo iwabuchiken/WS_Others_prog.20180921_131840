@@ -3504,7 +3504,22 @@ def tester_BuyUps_SellLows__BUSL_3(request):
 #         dic['dpath_CSV'] = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
 
     #/if param_Cmd == cons_fx.ParamConstants.PARAM_BUSL3_CMD_2UPS.value
+
+    '''###################
+        set : dropdown list-related
+    ###################'''
+        
+    lo_CSV_Files = os.listdir(dic['dpath_CSV'])
     
+    print()
+    print("[%s:%d] len(lo_CSV_Files) => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , len(lo_CSV_Files)
+            ), file=sys.stderr)
+    
+    lo_CSV_Files.sort()
+    
+    dic['lo_CSV_Files'] = lo_CSV_Files
     
 #     render_Page, render_Page_full, dic = __tester_BuyUps_SellLows__BUSL_3__2Ups(request)
     
@@ -3530,6 +3545,8 @@ def tester_BuyUps_SellLows__BUSL_3(request):
                 
 #     dic['message'] = "BUSL_3 ==> done (%s)(elapsed = %02.3f sec)" % \
 #                     (libs.get_TimeLabel_Now(), time_Exec_Elapsed)
+
+
 
     '''###################
         return        
@@ -3783,6 +3800,7 @@ def tester_BuyUps_SellLows__BUSL_2(request):
     
 #/ def tester_BuyUps_SellLows__BUSL_2(request):
     
+#xxx
 def tester_BuyUps_SellLows(request):
     
     '''###################
