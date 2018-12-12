@@ -416,7 +416,16 @@ function curr_BUSL_3__Action(_param) {
 //	alert("2-2, option => " + tag_RB_2_2_checked);
 //	
 //	return;
-	
+
+	/***************************
+		get : param : 3-2 radio button
+	 ***************************/
+	var tag_Select_CSV_File = $('select[name=select_Curr_BUSL_2__CSV_Files] option:selected').val();
+
+//	//debug
+//	alert("tag_Select_CSV_File => '" + tag_Select_CSV_File + "'");
+//	
+//	return;
 	/***************************
 		get : param
 	 ***************************/
@@ -437,6 +446,7 @@ function curr_BUSL_3__Action(_param) {
 		, "dpath_csv"	: ta_val_Dpath_CSV
 		, "param_3-2_bartype"	: tag_RB_3_2_checked
 		, "param_2-2_MonthOrAll"	: tag_RB_2_2_checked
+		, "param_bardata_csv_file"	: tag_Select_CSV_File
 			
 	};
 	

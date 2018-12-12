@@ -47,11 +47,13 @@ BUSL_2
             >{{ fname_CSV }}</textarea>
         <br>
         
-		<select id="ddProjects" name="nameProjects">
-		  {% for item in lo_CSV_Files %}
-		      <option value="{{ forloop.counter }}">{{ item }}</option>
-		  {% endfor %}
-		</select>
+        <div id="div_Curr_BUSL_2__CSV_Files">
+			<select id="select_Curr_BUSL_2__CSV_Files" name="select_Curr_BUSL_2__CSV_Files">
+			  {% for item in lo_CSV_Files %}
+			      <option value="{{ item }}">({{forloop.counter}}) {{ item }}</option>
+			  {% endfor %}
+			</select>
+		</div><!-- <div id="div_Curr_BUSL_2__CSV_Files"> -->
 		
 		<button onclick="select_file();">select file</button>
 

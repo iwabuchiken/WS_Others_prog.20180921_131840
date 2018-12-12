@@ -1983,6 +1983,13 @@ def __tester_BuyUps_SellLows__BUSL_3__Utils_1_UpsDowns_In_BB_Ranges__V2(\
 #     fname = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
 #     dpath = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
     
+    print()
+    print("[%s:%d] dpath = %s / fname = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , dpath, fname
+        ), file=sys.stderr)
+    
+    
     # validate
     fpath_Full = os.path.join(dpath, fname)
     
@@ -2216,6 +2223,14 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__UPSDOWNS(request):
     ###################'''
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    
+    print()
+    print("[%s:%d] _req_param_bardata_csv_file => %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , _req_param_bardata_csv_file
+                        ), file=sys.stderr)
     
     '''###################
         params        
@@ -2567,7 +2582,6 @@ def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request):
         1    ==> detect patterns --> file created
 ###################'''
 def _tester_BUSL__V2__Param_2__DETECT_PATTERNS__TWO_TOPS(request):
-#xxx
     '''###################
         request
     ###################'''
@@ -3800,7 +3814,6 @@ def tester_BuyUps_SellLows__BUSL_2(request):
     
 #/ def tester_BuyUps_SellLows__BUSL_2(request):
     
-#xxx
 def tester_BuyUps_SellLows(request):
     
     '''###################
@@ -3969,6 +3982,13 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
     
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    
+    print("[%s:%d] _req_param_bardata_csv_file => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , _req_param_bardata_csv_file
+            ), file=sys.stderr)
+    
     '''###################
         params        
     ###################'''
@@ -3992,8 +4012,8 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     ###################'''
     return (status, msg)
     
-#/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
-    
+#/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request)
+#xxx
 def tester_BuyUps_SellLows__V2(request):
 
     '''###################

@@ -2622,3 +2622,36 @@ starting : tester_BuyUps_SellLows =======================
 [20181211_151011 / views.py:3815] 
 
 starting : tester_BuyUps_SellLows =======================
+[20181212_161251 / views.py:3815] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_161431 / views.py:3815] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_161724 / views.py:3815] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_161922 / views.py:3815] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_163231 / views.py:3814] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_163806 / views.py:3821] 
+
+starting : tester_BuyUps_SellLows =======================
+[20181212_163811 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181212_163811 / libfx.py:3500] starting : _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908
+[20181212_164050 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181212_164050 / libfx.py:3500] starting : _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908
+[20181212_165126 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181212_165126 / libfx.py:3500] starting : _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908
+[20181212_165156 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181212_165156 / libfx.py:3500] starting : _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908
+[20181212_165552 / libfx.py:1974] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_3.2_15_file-io.EURJPY.Period-H1.Days-5000.Bars-120000.20180903_135340.(m-11).20180926_205209.(new).(SHRINK-50).csv
+
+[20181212_165552 / libfx.py:3500] starting : _BUSL_3__Util__1_UpsDowns_In_BB_Ranges__exec_20180908
