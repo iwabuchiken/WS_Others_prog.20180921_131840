@@ -3992,7 +3992,8 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     '''###################
         params        
     ###################'''
-    fname_CSV_File = _req_fname_csv
+    fname_CSV_File = _req_param_bardata_csv_file
+#     fname_CSV_File = _req_fname_csv
     dpath_CSV_File = _req_dpath_csv
     
 #     fname_CSV_File = cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value
