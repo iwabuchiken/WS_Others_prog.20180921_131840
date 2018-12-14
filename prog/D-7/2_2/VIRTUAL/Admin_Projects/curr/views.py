@@ -3974,6 +3974,108 @@ def tester_BuyUps_SellLows(request):
     
     pass
 
+'''###################
+    _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS
+    
+    @at : 2018/12/14 16:57:21
+    
+    @return: 
+        status
+            -1    csv source file ---> NOT exist
+            
+###################'''
+def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
+    
+    '''###################
+        params : csv file name
+    ###################'''
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+
+    '''###################
+        file : validate : exists
+    ###################'''
+    #ref join https://torina.top/detail/249/
+    lo_CSV_File_Path_Elements = [_req_dpath_csv, _req_param_bardata_csv_file]
+    fpath_Src_CSV = os.path.join(*lo_CSV_File_Path_Elements)
+    
+    res = os.path.isfile(fpath_Src_CSV)
+    
+    #debug
+    print()
+    print("[%s:%d] csv file exisits? => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , res
+        ), file=sys.stderr)
+            # [views.py:3997] csv file exisits? => True
+    
+    # validation
+    if res == False : #if res == False
+    
+        status = -1
+        
+        msg = "CONSEQUTIVE_UPS_DOWNS : csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
+        
+        return (status, msg)
+        
+    #/if res == False
+    
+    '''###################
+        get : list of bardatas
+    ###################'''
+    header_Length   = 2
+    
+    skip_Header     = False
+
+#     lo_BarDatas = libfx.get_Listof_BarDatas_2(
+    lo_BarDatas, _ = libfx.get_Listof_BarDatas_2(
+                        _req_dpath_csv
+                        , _req_param_bardata_csv_file
+                        , header_Length
+                        , skip_Header)
+    # validate : None ?
+    if lo_BarDatas == None : #if lo_BarDatas == None
+    
+        print()
+        print("[%s:%d] lo_BarDatas => None" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , res
+            ), file=sys.stderr)
+        
+        status = -2
+        
+        msg = "CONSEQUTIVE_UPS_DOWNS : lo_BarDatas ---> None : %s" % (fpath_Src_CSV)
+        
+        return (status, msg)
+            
+    #/if lo_BarDatas == None
+    
+    #debug
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_BarDatas)
+        ), file=sys.stderr)
+    
+    #aaaa
+    
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    msg = "CONSEQUTIVE_UPS_DOWNS<br>csv = %s<br>dir = %s<br>csv source = %s" \
+                % (
+                    _req_param_bardata_csv_file
+                    , _req_dpath_csv
+                    , fpath_Src_CSV
+                    )
+    
+    msg += "<br>lo_BarDatas => <font color='blue'>%d entries</font>" % (len(lo_BarDatas))
+    
+    return (status, msg)
+    
+#/ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
+    
 def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     
     '''###################
@@ -4198,6 +4300,21 @@ def tester_BuyUps_SellLows__V2(request):
 #         (status, msg) = _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request)
 
         dic['message'] += "res : patt : two-tops"
+
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[10] :
+        '''###################
+            
+        ###################'''
+        # call func
+        #bbb
+        (status, msg) = _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request)
+#         (status, msg) = _tester_BUSL__V2__Param_2__DETECT_PATTERNS__HIGHS_LOWS(request)
+
+#         dic['message'] += "stats : consequtive U/D"
+#         dic['message'] += "<br><div style='color : red;'>stats : consequtive U/D</div>"
+        dic['message'] = \
+                "<br><div style='color : red;'>%s</div>" % (msg)
+#                 "<br><div style='color : red;'>stats : consequtive U/D</div>"
 
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     

@@ -1951,20 +1951,6 @@ def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
     #ref enum https://qiita.com/methane/items/8612bdefd8fa4238cc44
     #ref https://docs.python.org/3.5/library/enum.html
     fname_In = "%s/%s" % (dpath, fname)
-#     fname_In = cons_fx.FPath.dpath_In_CSV.value \
-#             + "/" \
-#             + cons_fx.FPath.fname_In_CSV.value
-
-#     header_Length   = 2
-#     
-#     skip_Header     = False
-    
-    #debug
-#     print()
-#     print("[%s:%d] fname_In => %s" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                         , fname_In
-#                         ), file=sys.stderr)
 
     msg = "fname_In => %s" % (fname_In)
     
@@ -1979,6 +1965,12 @@ def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
                 , cons_fx.FPath.dpath_LogFile.value
                 , cons_fx.FPath.fname_LogFile.value
                 , 2)
+
+    print()
+    print("[%s:%d] %s" % \
+    (os.path.basename(libs.thisfile()), libs.linenum()
+     , msg_Log
+    ), file=sys.stderr)
     
     '''###################
         validate : file exists        
@@ -2007,22 +1999,22 @@ def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
     lo_CSVs = libfx.get_ChartData_CSV(\
                     fname_In, header_Length, skip_Header)
     
-#     print()
-#     print("[%s:%d] len(lo_CSVs) => %d" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , len(lo_CSVs)
-#                 ), file=sys.stderr)
-    
+    print()
+    print("[%s:%d] len(lo_CSVs) => %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , len(lo_CSVs)
+                ), file=sys.stderr)
+    #aaa
     '''###################
         csv : convert to BarData
     ###################'''
     lo_BarDatas = libfx.conv_CSVRows_2_BarDatas(lo_CSVs[header_Length:])
     
-#     print()
-#     print("[%s:%d] len(lo_BarDatas) => %d" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , len(lo_BarDatas)
-#                 ), file=sys.stderr)
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , len(lo_BarDatas)
+                ), file=sys.stderr)
     
         ### Validate
     if lo_BarDatas == None : #if aryOf_BarDatas == None

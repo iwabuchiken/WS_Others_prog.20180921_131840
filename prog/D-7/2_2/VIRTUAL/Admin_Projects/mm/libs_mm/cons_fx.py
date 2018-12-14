@@ -294,9 +294,12 @@ class Tester(Enum):
     # max key value : 7 : 20180929_132616
     # max key value : 8 : 20180930_071716
     # max key value : 9 : 20181003_154643
+    # max key value : 10 : 20181214_153849
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
+            , 10 : "1-2"         # in a given period, X-consequtive ups/downs
+    
             , 1 : "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
             , 8 : "2-2"     # 
             , 9 : "2-3"     # 
@@ -311,28 +314,26 @@ class Tester(Enum):
             
             
         }
-#     lo_Actions__BUSL__IDs = [
-#             
-#             "1"         # 0 num of up bars and down bars in each of BB areas
-#             , "2-1"     # 1 up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log
-#             , "3-1"     # 2
-#             
-#             , "4-1"     # 3
-#             , "4-2"     # 4
-#             
-#             
-#         ]
     
     lo_Actions__BUSL = [
         
             [
                 lo_Actions__BUSL__IDs[0]
-                ,"get stats for BB"
+#                 ,"get stats for BB"
+                ,"stats : U/D in BB ranges"
                 , ParamConstants.PARAM_BUSL3_CMD_UTIL__1_UPSDOWNS_IN_BB_RANGES.value
                 , "num of up bars and down bars in each of BB areas"
                 , "20180915_124138"
             ],
-        
+            # 10 : "1-2"         # in a given period, X-consequtive ups/downs
+            [
+                lo_Actions__BUSL__IDs[10]
+                ,"stats : consequtive U/D"
+                , ParamConstants.PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS.value
+                , "in a given period, X-consequtive ups/downs"
+                , "20181214_153849"
+            ],
+            
             [
                 lo_Actions__BUSL__IDs[1]
                 ,"res : pattern detection"

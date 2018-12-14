@@ -1,7 +1,15 @@
 plain
 
+<!-- ref https://stackoverflow.com/questions/11306669/django-template-escaping#11306935 -->
+<!-- ref https://code.djangoproject.com/wiki/AutoEscaping -->
+<!-- ref https://duckduckgo.com/?q=django+template+not+escape+html&atb=v84-1__&ia=qa -->
+
+{% autoescape off %}
+
 <br>
     {{ message }}
 <br>
 
     {{ message_2 }}
+
+{% endautoescape %}
