@@ -1,0 +1,161 @@
+/* Use padding instead of "br" tag => http://stackoverflow.com/questions/1588671/jquery-remove-on-element-doesnt-hide-used-space */
+/* Comment => http://www.w3schools.com/css/css_syntax.asp */
+/* padding => // http://www.htmq.com/style/padding.shtml */
+div.time_label {
+	
+	padding: 5px 0px 5px 0px;
+	
+}
+
+input[readonly="readonly"], input[readonly] {
+	user-select: none;
+}
+
+.labels {
+	
+	background-color: #D8F781;
+	color: black;
+	padding: 0px 5px 0px 5px;
+	border: medium solid #0431B4;
+	font-weight: bold;
+}
+
+.input_area {
+	background-color: #CEF6F5;
+	border: medium solid #0431B4;
+	padding: 7px 5px 7px 5px;
+	
+	font-size: medium;
+	font-weight: bold;
+	
+	text-align: center;
+	
+	width: 200px;
+	
+}
+
+body {
+	background-color: #E6E0F8;
+	margin-left: auto;
+	/*margin-right: auto;*/
+	text-align: center;
+}
+
+#js_area {
+	background-color: #F7BE81;
+}
+
+.text-center {
+	text-align: center;
+}
+
+#time_table {
+	/* REF http://kumacrow.blog111.fc2.com/blog-entry-294.html */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+textarea#ta_encode {
+	background-color: #99CCFF; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	margin-left: auto;
+	margin-right: 50px;
+	width:		200px;
+	height:		200px;
+	
+	/*margin-right: auto;*/
+	text-align: left;
+}
+
+textarea#ta_decode {
+	background-color: #FFCC99; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	margin-left: auto;
+	margin-right: 50px;
+	
+	width:		200px;
+	height:		200px;
+	
+	/*margin-right: auto;*/
+	text-align: left;
+}
+
+label#label_decode {
+	background-color: #FFCC99; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	
+	/*margin-left: 10px;*/
+	margin-right: 10px;
+
+	/* top, left+right, bottom */
+	padding:	2px 5px 2px;	/* ref http://www.htmq.com/style/padding.shtml */
+	
+	/*margin-right: auto;*/
+	text-align: left;
+}
+
+label#label_encode {
+	background-color: #99CCFF; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	
+	margin-right: 30px;
+	
+	/* top, left+right, bottom */
+	padding:	2px 5px 2px;	/* ref http://www.htmq.com/style/padding.shtml */
+	
+	/*margin-right: auto;*/
+	text-align: left;
+}
+
+/*buton#bt_clear_all {*/
+input#bt_clear_all {
+	background-color: #CC6600; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	
+	color:		#000000;
+	font-size:	120%;	/* ref http://www.tagindex.com/stylesheet/form/font_size.html */
+	
+	width:		100px;
+	height:		50px;
+	
+	margin-left: 0px;
+	margin-right: 40px;
+	
+	/* top, left+right, bottom */
+	padding:	2px 5px 2px;	/* ref http://www.htmq.com/style/padding.shtml */
+	
+	/*margin-right: auto;*/
+	text-align: center;
+	
+}/*buton#bt_clear_all*/
+
+input#bt_copy_encoded {
+	background-color: #6680E6; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	
+	color:		#000000;
+	font-size:	100%;	/* ref http://www.tagindex.com/stylesheet/form/font_size.html */
+	
+	
+	margin-right: 10px;
+	margin-left: 10px;
+	
+	/* top, left+right, bottom */
+	padding:	2px 5px 2px;	/* ref http://www.htmq.com/style/padding.shtml */
+	
+	/*margin-right: auto;*/
+	text-align: center;
+	
+}/*input#bt_copy_encoded*/
+
+input#bt_copy_decoded {
+	background-color: #F7A826; /* ref https://www.w3schools.com/colors/colors_mixer.asp */
+	
+	color:		#000000;
+	font-size:	100%;	/* ref http://www.tagindex.com/stylesheet/form/font_size.html */
+	
+	
+	margin-right: 10px;
+	
+	/* top, left+right, bottom */
+	padding:	2px 5px 2px;	/* ref http://www.htmq.com/style/padding.shtml */
+	
+	/*margin-right: auto;*/
+	text-align: center;
+	
+}/*input#bt_copy_decoded*/
+

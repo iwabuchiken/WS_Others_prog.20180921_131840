@@ -1,0 +1,56 @@
+/* Use padding instead of "br" tag => http://stackoverflow.com/questions/1588671/jquery-remove-on-element-doesnt-hide-used-space */
+/* Comment => http://www.w3schools.com/css/css_syntax.asp */
+/* padding => // http://www.htmq.com/style/padding.shtml */
+div.time_label {
+	
+	padding: 5px 0px 5px 0px;
+	
+}
+
+input[readonly="readonly"], input[readonly] {
+	user-select: none;
+}
+
+.labels {
+	
+	background-color: #D8F781;
+	color: black;
+	padding: 0px 5px 0px 5px;
+	border: medium solid #0431B4;
+	font-weight: bold;
+}
+
+.input_area {
+	background-color: #CEF6F5;
+	border: medium solid #0431B4;
+	padding: 7px 5px 7px 5px;
+	
+	font-size: medium;
+	font-weight: bold;
+	
+	text-align: center;
+	
+	width: 200px;
+	
+}
+
+body {
+	background-color: #E6E0F8;
+	margin-left: auto;
+	/*margin-right: auto;*/
+	text-align: center;
+}
+
+#js_area {
+	background-color: #F7BE81;
+}
+
+.text-center {
+	text-align: center;
+}
+
+#time_table {
+	/* REF http://kumacrow.blog111.fc2.com/blog-entry-294.html */
+	margin-left: auto;
+	margin-right: auto;
+}
