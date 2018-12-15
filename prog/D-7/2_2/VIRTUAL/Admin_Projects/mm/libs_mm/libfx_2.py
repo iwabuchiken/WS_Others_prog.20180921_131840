@@ -805,7 +805,6 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         step : j6
                             flag : flg_A1 ---> conditions met ?
                     ###################'''
-                    #aaa
                     ts_Price_For_Anchor_Fixing = 0.1
                     
 #                     cond_1 = (dat['index_current'] - dat['index_start'] == 4)
@@ -817,7 +816,6 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             step : j6 : Y
                                 flag : flg_A1 ---> conditions met
                         ###################'''
-                        #aaa
                         msg = "(j6 : Y) flag : flg_A1 ---> conditinos met (UTC=%s)\n" \
                                         % (e0.dateTime)
                         
@@ -2420,3 +2418,123 @@ def is_Trend__Flat(\
 #     return True
     
 #/ def is_Trend__Flat(lo_BarDatas)
+
+def get_Data_Consecutive_Bars(\
+          lo_BarDatas
+          , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
+          , fname_LogFile = cons_fx.FPath.fname_LogFile.value
+          ):
+    
+    pass
+
+    '''###################
+        step : 0
+            prep
+    ###################'''
+    # baradatas for ops
+    lo_BarDatas_Tmp = copy.deepcopy(lo_BarDatas)
+    
+    lenOf_BarDatas = len(lo_BarDatas_Tmp)
+    
+    # flags
+    flg_Monitor = False
+    
+    # counters
+    cntOf_Follow = 0
+    
+    # lists
+    lo_BarDatas_Data= []
+    
+    for i in range(0, (lenOf_BarDatas - 1)):
+        '''###################
+            step : 1
+                get : BarData
+        ###################'''
+        e0 = lo_BarDatas_Tmp[0]
+        
+        '''###################
+            step : 2
+                get : price data
+        ###################'''
+        p0 = e0.price_Close
+        
+        d0 = e0.diff_OC
+        
+        '''###################
+            step : j1
+                flg_Monitor ---> True ?
+        ###################'''
+        if flg_Monitor == True : #if flg_Monitor == True
+            '''###################
+                step : j1 : Y
+                    flg_Monitor ---> True
+            ###################'''
+            msg = "(j1 : Y) flg_Monitor ---> True (%s)" % (e0.dateTime)
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_LogFile
+                        , fname_LogFile
+#                         , cons_fx.FPath.dpath_LogFile.value
+#                         , cons_fx.FPath.fname_LogFile.value
+                        , 2)
+        
+            print()
+            print("[%s:%d] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , msg_Log
+            ), file=sys.stderr)
+            
+            #debug
+            break
+
+            
+                
+            
+        
+        else : #if flg_Monitor == True
+            '''###################
+                step : j1 : N
+                    flg_Monitor ---> False
+            ###################'''
+            msg = "(j1 : N) flg_Monitor ---> False (%s)" % (e0.dateTime)
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_LogFile
+                        , fname_LogFile
+                        , 2)
+        
+            print()
+            print("[%s:%d] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , msg_Log
+            ), file=sys.stderr)
+        
+            #debug
+            break
+            
+        #aaa
+        
+        #/if flg_Monitor == True
+                
+                
+        
+    #/for i in range(0, (lenOf_BarDatas - 1)):
+
+    
+#/ def get_Data_Consecutive_Bars(lo_BarDatas):
+    
+    

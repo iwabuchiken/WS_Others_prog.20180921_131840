@@ -4057,8 +4057,22 @@ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
         , len(lo_BarDatas)
         ), file=sys.stderr)
     
-    #aaaa
+    '''###################
+        op : get data : consecutive bars
+    ###################'''
     
+    tlabel = libs.get_TimeLabel_Now()
+    
+    fname_LogFile = "44_5.1_consecutive-ups-downs.(%s).log" % (tlabel)
+    
+    lo_Data_Consecutive_Bars = libfx_2.get_Data_Consecutive_Bars(
+                        lo_BarDatas
+                        , cons_fx.FPath.dpath_LogFile.value
+                        , fname_LogFile
+                        )
+    
+    #aaaa
+        
     '''###################
         return        
     ###################'''
