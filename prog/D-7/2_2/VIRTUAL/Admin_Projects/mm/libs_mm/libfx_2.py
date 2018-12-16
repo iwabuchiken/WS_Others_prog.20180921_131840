@@ -77,7 +77,6 @@ def test_func():
 
 # def get_ChartData_CSV_Between(fname_In, id_Start, id_End):
 
-#xxx
 def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
        lo_BarDatas
        , fname_CSV_File
@@ -2419,6 +2418,7 @@ def is_Trend__Flat(\
     
 #/ def is_Trend__Flat(lo_BarDatas)
 
+#xxx
 def get_Data_Consecutive_Bars(\
           lo_BarDatas
           , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
@@ -2445,12 +2445,16 @@ def get_Data_Consecutive_Bars(\
     # lists
     lo_BarDatas_Data= []
     
+    # temp bardata instance
+    e_Target = None
+    
     for i in range(0, (lenOf_BarDatas - 1)):
         '''###################
             step : 1
                 get : BarData
         ###################'''
-        e0 = lo_BarDatas_Tmp[0]
+        e0 = lo_BarDatas_Tmp[i]
+#         e0 = lo_BarDatas_Tmp[0]
         
         '''###################
             step : 2
@@ -2491,9 +2495,62 @@ def get_Data_Consecutive_Bars(\
              , msg_Log
             ), file=sys.stderr)
             
+#             #debug
+#             break
+            '''###################
+                step : j3
+                    d0 > 0 ?
+            ###################'''
+            if d0 >= 0 : #if d0 >= 0
+                '''###################
+                    step : j3 : Y
+                        d0 >= 0
+                ###################'''
+                msg = "(j3 : Y) d0 >= 0 (%.03f) (%s)" % (d0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+
+                #debug
+                break
+            
+            else : #if d0 >= 0
+                '''###################
+                    step : j3 : N
+                        d0 < 0
+                ###################'''
+                msg = "(j3 : Y) d0 ><0 (%.03f) (%s)" % (d0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+            #aaa
+            
+                #debug
+                break
+            
+            #/if d0 >= 0
+            
             #debug
             break
-
+            
             
                 
             
@@ -2522,16 +2579,121 @@ def get_Data_Consecutive_Bars(\
             (os.path.basename(libs.thisfile()), libs.linenum()
              , msg_Log
             ), file=sys.stderr)
-        
-            #debug
-            break
+
+            '''###################
+                step : j2
+                    d0 > 0 ?
+            ###################'''
+            if d0 >= 0 : #if d0 >= 0
+                '''###################
+                    step : j2 : Y
+                        d0 > 0
+                ###################'''
+                msg = "(j2 : Y) d0 >= 0 (d0 = %.03f) (%s)" % (d0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
             
-        #aaa
-        
+                print()
+                print("[%s:%d] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , msg_Log
+                ), file=sys.stderr)
+
+                '''###################
+                    step : j2 : Y : 1
+                        flg_Monitor ---> True
+                ###################'''
+                flg_Monitor = True
+
+                '''###################
+                    step : j2 : Y : 2
+                        cntOf_Follow ---> + 1
+                ###################'''
+                cntOf_Follow += 1
+            
+                '''###################
+                    step : j2 : Y : 3
+                        e_Target ---> set
+                ###################'''
+                e_Target = e0
+
+                '''###################
+                    step : j2 : Y : 4
+                        continue
+                ###################'''
+                msg = "(j2 : Y : 4) continuing the for-loop... (cntOf_Follow = %d)(%s)" \
+                                % (cntOf_Follow, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+            
+                print()
+                print("[%s:%d] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , msg_Log
+                ), file=sys.stderr)
+
+                continue
+
+                #aaa
+            
+                #debug
+                break
+                
+            
+            else : #if d0 >= 0
+                '''###################
+                    step : j2 : N
+                        d0 < 0
+                ###################'''
+                msg = "(j2 : N) d0 < 0 (d0 = %.03f) (%s)" % (d0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+            
+                print()
+                print("[%s:%d] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , msg_Log
+                ), file=sys.stderr)
+            
+                #debug
+                break
+            
+                
+            
+            #/if d0 >= 0
+            
         #/if flg_Monitor == True
                 
-                
-        
     #/for i in range(0, (lenOf_BarDatas - 1)):
 
     
