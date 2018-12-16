@@ -2442,7 +2442,7 @@ def get_Data_Consecutive_Bars(\
     # counters
     cntOf_Follow = 0
     
-    # lists
+    # lists : append ---> [cntOf_Follow, e_Target]
     lo_BarDatas_Data= []
     
     # temp bardata instance
@@ -2520,15 +2520,23 @@ def get_Data_Consecutive_Bars(\
                             , fname_LogFile
                             , 2)
 
-                #debug
-                break
-            
-            else : #if d0 >= 0
                 '''###################
-                    step : j3 : N
-                        d0 < 0
+                    step : j3 : Y : 1
+                        cntOf_Follow ---> +1
                 ###################'''
-                msg = "(j3 : Y) d0 ><0 (%.03f) (%s)" % (d0, e0.dateTime)
+                cntOf_Follow += 1
+
+                '''###################
+                    step : j3 : Y : 2
+                        e_Target ---> update
+                ###################'''
+                e_Target = e0
+                
+                '''###################
+                    step : j3 : Y : 3
+                        continue
+                ###################'''
+                msg = "(j3 : Y : 3) continue... (%s)" % (e0.dateTime)
                 
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
@@ -2541,8 +2549,96 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
-            #aaa
+
+                
+                continue
+                
+                #debug
+                break
             
+            else : #if d0 >= 0
+                '''###################
+                    step : j3 : N
+                        d0 < 0
+                ###################'''
+                msg = "(j3 : Y) d0 <0 (%.03f) (%s)" % (d0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+
+                '''###################
+                    step : j3 : N : 1
+                        flg_Monitor ---> False
+                ###################'''
+                flg_Monitor = False
+                
+                '''###################
+                    step : j3 : N : 2
+                        data ---> append
+                ###################'''
+                lo_BarDatas_Data.append([cntOf_Follow, e_Target])
+                
+                msg = "(j3 : N : 2) data ---> append (cntOf_Follow = %d / e_Target = %s (e0 = %s)" \
+                        % (cntOf_Follow, e_Target.dateTime, e0.dateTime)
+#                         % (d0, e_Target.dateTime, e0.dateTime)
+                 
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                 
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+                
+                print()
+                print("[%s:%d] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , msg_Log
+                ), file=sys.stderr)
+                
+                print(lo_BarDatas_Data)
+                
+                #aaa
+
+                '''###################
+                    step : j3 : N : 3
+                        reset data
+                ###################'''
+                # cntOf_Follow
+                cntOf_Follow = 0
+                
+                # e_Target
+                e_Target = None
+
+                msg = "(j3 : N : 2) data ---> reset (cntOf_Follow = %d) (e0 = %s)" \
+                        % (cntOf_Follow, e0.dateTime)
+#                         % (d0, e_Target.dateTime, e0.dateTime)
+                 
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                 
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+                
                 #debug
                 break
             
@@ -2654,8 +2750,6 @@ def get_Data_Consecutive_Bars(\
 
                 continue
 
-                #aaa
-            
                 #debug
                 break
                 
