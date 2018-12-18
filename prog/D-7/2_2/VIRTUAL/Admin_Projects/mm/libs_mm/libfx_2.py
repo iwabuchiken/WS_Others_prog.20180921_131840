@@ -2423,6 +2423,19 @@ def get_Data_Consecutive_Bars__Report(\
                 , fname_LogFile
                 ):
 
+    msg = "get_Data_Consecutive_Bars__Report starting... -----------------------```"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_LogFile
+                , fname_LogFile
+                , 2)
 
     print()
     print("[%s:%d] len(lo_BarDatas_Data) => %d" % \
@@ -2517,11 +2530,296 @@ def get_Data_Consecutive_Bars__Report(\
         
     #/for item in lo_Counts:
 
+    '''###################
+        report : N consecutive        
+    ###################'''
+    num_Target = 2
+    
+    '''###################
+        step : j1
+            lo_Counts[2] > 0 ?
+    ###################'''
+    if lo_Counts[num_Target] > 0 : #if lo_Counts[2] > 0
+        '''###################
+            step : j1 : Y
+        ###################'''
+        print()
+        print("[%s:%d] (j1 : Y) lo_Counts[%d] => larger than 0 (%d)" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , num_Target, lo_Counts[num_Target]
+            ), file=sys.stderr)
+        
+        lenOf_LO_BarDatas_Data = len(lo_BarDatas_Data)
+        
+        for i in range(0, lenOf_LO_BarDatas_Data):
+            '''###################
+                step : j1 : Y : 1
+                    get : data
+            ###################'''
+            m0 = lo_BarDatas_Data[i]
+            n0 = m0[0]
+            e0 = m0[1]
+        
+            '''###################
+                step : j2
+                    n0 == 3 ?
+            ###################'''
+            if n0 == (num_Target + 1) : #if n0 == (num_Target + 1)
+                '''###################
+                    step : j2 : Y
+                        n0 == 3
+                ###################'''
+                '''###################
+                    step : j2 : Y : 1
+                        show data
+                ###################'''
+                msg = "(j2 : Y : 1)"
+                
+                msg += "\n" \
+                        + "n0 = %d / e0 = %s" % (n0, e0.dateTime)
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_LogFile
+                            , fname_LogFile
+                            , 2)
+
+                #aa
+            
+            else : #if n0 == (num_Target + 1)
+            
+                continue
+            
+            #/if n0 == (num_Target + 1)
+                
+                
+            
+            
+        #/for i in range(0, lenOf_LO_BarDatas_Data):
+
+        
+        
+        
+    else : #if lo_Counts[2] > 0
+        '''###################
+            step : j1 : N
+        ###################'''
+    
+        print()
+        print("[%s:%d] (j1 : N) lo_Counts[%d] => NOT larger than 0 (%d)" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , num_Target, lo_Counts[num_Target]
+            ), file=sys.stderr)
+        
+    
+    #/if lo_Counts[2] > 0
+
+    msg = "get_Data_Consecutive_Bars__Report ending... -----------------------////"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_LogFile
+                , fname_LogFile
+                , 2)
+   
+   
+
+#/ def get_Data_Consecutive_Bars__Report(lo_BarDatas_Data):
+
+#xxx
+def get_Data_Consecutive_Bars__Report_V2(\
+                lo_BarDatas_Data
+                , dpath_LogFile
+                , fname_LogFile
+                ):
+
+    msg = "get_Data_Consecutive_Bars__Report starting... -----------------------```"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_LogFile
+                , fname_LogFile
+                , 2)
+
+    print()
+    print("[%s:%d] len(lo_BarDatas_Data) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_BarDatas_Data) 
+        ), file=sys.stderr)
+    
+    '''###################
+        get : max count        
+    ###################'''
+    max_Count = -1
+    
+    #lo_BarDatas_Data.append([cntOf_Follow, e_Target])
+    
+    for item in lo_BarDatas_Data:
+          
+        cntOf_Follow = item[0]
+        
+        # compare
+        if cntOf_Follow > max_Count : #if cntOf_Follow > max_Count
+                        
+            max_Count = cntOf_Follow
+            
+        #/if cntOf_Follow > max_Count
+                        
+    #/for item in lo_BarDatas_Data:
+    
+    print()
+    print("[%s:%d] max_Count => %d" % \
+    (os.path.basename(libs.thisfile()), libs.linenum()
+     , max_Count
+    ), file=sys.stderr)
+
+    '''###################
+        init : list
+    ###################'''
+    lo_Counts = [0] * max_Count
+    
+    # count
+    for item in lo_BarDatas_Data:
+                        
+        cntOf_Follow = item[0]
+
+#         print()
+#         print("[%s:%d] cntOf_Follow => %d" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#              , cntOf_Follow, 
+#             ), file=sys.stderr)
+        
+        # count
+        lo_Counts[cntOf_Follow - 1] += 1
+#         lo_Counts[cntOf_Follow] += 1
+        
+    #/for item in lo_BarDatas_Data:
+    
+    # build string
+    strOf_LO_Counts = ""
+    
+    for item in lo_Counts:
+    
+        strOf_LO_Counts += "%d," % (item)
+        
+    #/for item in lo_Counts:
+
+    msg = "lo_Counts = '%s'" % (strOf_LO_Counts)
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_LogFile
+                , fname_LogFile
+                , 2)
+
+    #debug
+#     for i in range(0, (max_Count - 1)):
+    for i in range(0, (max_Count)):
+                                
+        print()
+        print("[%s:%d] lo_Counts[%d] => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , i, lo_Counts[i]
+            ), file=sys.stderr)
+        
+        
+    #/for item in lo_Counts:
+
+    '''###################
+        report : N consecutive        
+    ###################'''
+    # prep
+    lenOf_LO_BarDatas_Data = len(lo_BarDatas_Data)
+    
+    # new list
+    lo_New = []
+    
+    for i in range(0,max_Count):
+            
+        lo_New.append([])
+        
+    #/for i in range(0,max_Count):
+
+    
+#     lo_New = [[]] * max_Count
+#     lo_New = [[]] * lenOf_LO_BarDatas_Data
+
+    print()
+    print("[%s:%d] lo_New =>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print(lo_New)
+    
+    '''###################
+        for-loop
+    ###################'''
+    for i in range(0, lenOf_LO_BarDatas_Data) :
+        '''###################
+            steps : 1
+                vars
+        ###################'''
+        m0 = lo_BarDatas_Data[i]
+        n0 = m0[0]
+
+        print()
+        print("[%s:%d] n0 => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , n0
+            ), file=sys.stderr)
+#         print(lo_New)
+        
+        '''###################
+            steps : 2
+                append to the new list
+        ###################'''
+        lo_New[n0 - 1].append(m0)
+#         lo_New[n0].append(m0)
+        
+    #/for i in range(0, lenOf_LO_BarDatas_Data:
+
+    '''###################
+        write to log
+    ###################'''
+    print()
+    print("[%s:%d] lo_New =>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print(lo_New)
+    
+    #aa
     
 
 #/ def get_Data_Consecutive_Bars__Report(lo_BarDatas_Data):
 
 #xxx
+
+
 def get_Data_Consecutive_Bars(\
           lo_BarDatas
           , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
@@ -2932,7 +3230,7 @@ def get_Data_Consecutive_Bars(\
     
     lo_CntOf_FollowS = []
     
-    get_Data_Consecutive_Bars__Report(lo_BarDatas_Data, dpath_LogFile, fname_LogFile)
+    get_Data_Consecutive_Bars__Report_V2(lo_BarDatas_Data, dpath_LogFile, fname_LogFile)
     
     #aa
     
