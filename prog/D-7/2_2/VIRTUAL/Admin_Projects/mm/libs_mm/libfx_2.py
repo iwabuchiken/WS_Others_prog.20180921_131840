@@ -2638,6 +2638,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
                 lo_BarDatas_Data
                 , dpath_LogFile
                 , fname_LogFile
+                , lo_LogLines
                 ):
 
     msg = "get_Data_Consecutive_Bars__Report starting... -----------------------```"
@@ -2816,8 +2817,6 @@ def get_Data_Consecutive_Bars__Report_V2(\
                 , fname_LogFile
                 , 1)
     
-    #aa
-    
     '''###################
         steps : f1
     ###################'''
@@ -2886,8 +2885,6 @@ def get_Data_Consecutive_Bars__Report_V2(\
 #/ def get_Data_Consecutive_Bars__Report(lo_BarDatas_Data):
 
 #xxx
-
-
 def get_Data_Consecutive_Bars(\
           lo_BarDatas
           , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
@@ -2912,13 +2909,20 @@ def get_Data_Consecutive_Bars(\
     # lists : append ---> [cntOf_Follow, e_Target]
     lo_BarDatas_Data= []
     
+    lo_LogLines = []
+    
     # temp bardata instance
     e_Target = None
     
     # debug : for-loop
     cntOf_Debug = 0
-    maxOf_CntOf_Debug = 100
+    maxOf_CntOf_Debug = 30
+#     maxOf_CntOf_Debug = 100
 #     maxOf_CntOf_Debug = 10
+    
+    # numericals
+    numOf_LogLines_BlankLines = 2
+#     numOf_LogLines_BlankLines = 1
     
     for i in range(0, (lenOf_BarDatas - 1)):
         '''###################
@@ -2942,6 +2946,11 @@ def get_Data_Consecutive_Bars(\
 #                         , cons_fx.FPath.dpath_LogFile.value
 #                         , cons_fx.FPath.fname_LogFile.value
                         , 2)
+        
+            # log line
+            lo_LogLines.append(msg_Log)
+            for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+            
         
 #             print()
 #             print("[%s:%d] %s" % \
@@ -2996,7 +3005,10 @@ def get_Data_Consecutive_Bars(\
 #                         , cons_fx.FPath.dpath_LogFile.value
 #                         , cons_fx.FPath.fname_LogFile.value
                         , 2)
-        
+
+            # log line
+            lo_LogLines.append(msg_Log)
+            for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
 #             print()
 #             print("[%s:%d] %s" % \
 #             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -3028,6 +3040,10 @@ def get_Data_Consecutive_Bars(\
                             , fname_LogFile
                             , 2)
 
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+                
                 '''###################
                     step : j3 : Y : 1
                         cntOf_Follow ---> +1
@@ -3058,6 +3074,9 @@ def get_Data_Consecutive_Bars(\
                             , fname_LogFile
                             , 2)
 
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
                 
                 continue
                 
@@ -3083,6 +3102,10 @@ def get_Data_Consecutive_Bars(\
                             , fname_LogFile
                             , 2)
 
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+                
                 '''###################
                     step : j3 : N : 1
                         flg_Monitor ---> False
@@ -3110,6 +3133,10 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
+                
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
                 
 #                 print()
 #                 print("[%s:%d] %s" % \
@@ -3144,7 +3171,10 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
-                
+
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")                
 #                 #debug
 #                 break
             
@@ -3171,7 +3201,10 @@ def get_Data_Consecutive_Bars(\
                         , dpath_LogFile
                         , fname_LogFile
                         , 2)
-        
+
+            # log line
+            lo_LogLines.append(msg_Log)
+            for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")        
 #             print()
 #             print("[%s:%d] %s" % \
 #             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -3200,7 +3233,10 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
-            
+
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")            
 #                 print()
 #                 print("[%s:%d] %s" % \
 #                 (os.path.basename(libs.thisfile()), libs.linenum()
@@ -3243,7 +3279,10 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
-            
+
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")            
 #                 print()
 #                 print("[%s:%d] %s" % \
 #                 (os.path.basename(libs.thisfile()), libs.linenum()
@@ -3274,7 +3313,10 @@ def get_Data_Consecutive_Bars(\
                             , dpath_LogFile
                             , fname_LogFile
                             , 2)
-            
+
+                # log line
+                lo_LogLines.append(msg_Log)
+                for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
 #                 print()
 #                 print("[%s:%d] %s" % \
 #                 (os.path.basename(libs.thisfile()), libs.linenum()
@@ -3298,7 +3340,30 @@ def get_Data_Consecutive_Bars(\
     
     lo_CntOf_FollowS = []
     
-    get_Data_Consecutive_Bars__Report_V2(lo_BarDatas_Data, dpath_LogFile, fname_LogFile)
+    get_Data_Consecutive_Bars__Report_V2(lo_BarDatas_Data, dpath_LogFile, fname_LogFile, lo_LogLines)
+#     get_Data_Consecutive_Bars__Report_V2(lo_BarDatas_Data, dpath_LogFile, fname_LogFile)
+
+    print()
+    print("[%s:%d] len(lo_LogLines) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_LogLines)
+        ), file=sys.stderr)
+    
+
+    '''###################
+        report : write to log
+    ###################'''
+    strOf_LogLines = "".join(lo_LogLines)
+#     strOf_LogLines = "\r".join(lo_LogLines)
+#     strOf_LogLines = "\n".join(lo_LogLines)
+    
+    libs.write_Log(
+                strOf_LogLines
+                , dpath_LogFile
+                , fname_LogFile + "(test).log"
+                , 2)
+    
+    
     
     #aa
     
