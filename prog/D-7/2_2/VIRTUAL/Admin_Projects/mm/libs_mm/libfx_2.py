@@ -95,11 +95,6 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
             ), file=sys.stderr)
     
 #     #debug
-#     print("[%s:%d] month, or all months ==> %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , montn_or_all
-#             ), file=sys.stderr)
-#     
     '''###################
         prep
     ###################'''
@@ -269,8 +264,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
 #             msg = "(j1 : N) flg_Dat --> not set (%s, %s)" \
             msg = "(j1 : N) flg_Dat --> not set (%s, UTC = %s)" \
                     % (flg_Dat, e0.dateTime)
-            
-            
+
             msg_Log = "[%s / %s:%d] %s" % \
                     (
                     libs.get_TimeLabel_Now()
@@ -295,8 +289,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 ###################'''
                 msg = "(j2 : Y) d0 => 0 (d0 = %.03f)" \
                         % (d0)
-                
-                
+
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
                         libs.get_TimeLabel_Now()
@@ -347,8 +340,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         flag : Dat --> set
                 ###################'''
                 flg_Dat = True
-                
-            
+
             else : #if d0 >= 0
                 '''###################
                     step : j2 : N
@@ -870,8 +862,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                         continue
                     
                     #/if (cond_1 and cond_2)
-                    
-                    
+
                     
                 #/if d0 >= 0
                 
@@ -900,8 +891,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                 
                 #debug
                 break
-                
-            
+
             #/if flg_A1_tmp == False
             
     #/ for i in range(0, lenOf_BarDatas):
@@ -979,11 +969,6 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
             ), file=sys.stderr)
     
 #     #debug
-#     print("[%s:%d] month, or all months ==> %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , montn_or_all
-#             ), file=sys.stderr)
-#     
     '''###################
         prep
     ###################'''
@@ -1117,8 +1102,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
             msg = "flg_Dat --> not set (%s, UTC = %s)" \
                     % (flg_Dat, e0.dateTime)
 #                     % (flg_Dat, e0.dateTime_Local)
-            
-            
+
             msg_Log = "[%s / %s:%d] %s" % \
                     (
                     libs.get_TimeLabel_Now()
@@ -1148,8 +1132,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                 ###################'''
                 msg = "(j2 : Y) d0 => 0 (d0 = %.03f)" \
                         % (d0)
-                
-                
+
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
                         libs.get_TimeLabel_Now()
@@ -1206,8 +1189,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                         flag : Dat --> set
                 ###################'''
                 flg_Dat = True
-                
-            
+
             else : #if d0 >= 0
                 '''###################
                     step : j2 : N
@@ -1234,8 +1216,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
 #                 #debug
 #                 break
                 continue
-            
-                
+
             
             #/if d0 >= 0
             
@@ -1418,8 +1399,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                     
                     #debug
                     break
-                
-                    
+
                 
                 #/if not flg_A1 == True
                 
@@ -1732,19 +1712,15 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
 #                             break
                         
                         #/if e0.price_Close >= (dat['price_start'] - sl)
-                
-                
+
                         
                         #debug
                         break
-                    
-                        
+
                     
                     #/if e0.price_Close >= dat['price_start']
-                    
-                        
-                    
-                    
+
+
                     #debug
                     break
                     
@@ -1771,16 +1747,13 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                     
                     #debug
                     break
-            
-                
+
             
             #/if d0 >= 0
-            
-            
+
     
     #/ for i in range(0, lenOf_BarDatas):
-        
-    
+
     '''###################
         ops : closing
     ###################'''
@@ -1809,11 +1782,6 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
             ), file=sys.stderr)
     
 #     #debug
-#     print("[%s:%d] month, or all months ==> %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , montn_or_all
-#             ), file=sys.stderr)
-#     
     '''###################
         prep
     ###################'''
@@ -1872,8 +1840,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
         vars : others
     ###################'''
     ts = 0.05   # 0.05 JPY
-    
-    
+
     '''###################
         for-loop
     ###################'''
@@ -1963,11 +1930,9 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
                             (os.path.basename(libs.thisfile()), libs.linenum()
                             , d0
                             ), file=sys.stderr)
-                
-            
+
             #/if d0 >= 0
-            
-            
+
         
         else : #if flg_Dat == True
             '''###################
@@ -2013,8 +1978,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
                                 (os.path.basename(libs.thisfile()), libs.linenum()
                                 , e0.price_Close, price_Refer
                                 ), file=sys.stderr)
-                    
-                
+
                 else : #if e0.price_Close > price_Refer
                     '''###################
                         step : j4 : N
@@ -2054,8 +2018,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
 #             break
         
         #/if flg_Dat == True
-        
-        
+
     
     #/ for i in range(0, lenOf_LO_BarDatas):
     
@@ -2064,8 +2027,7 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_1(\
 #                 , _fname_Log_File
 # #                 , montn_or_all = "by_month"  # by_month, all_months (_busl_2.tbl_options.html)
 #                 )
-        
-    
+
     '''###################
         return        
     ###################'''
@@ -2284,8 +2246,7 @@ def is_Trend__Flat(\
             # cov(a,b)  cov(b,b)
 #     covari = mat[0][1] / mat[1][1]
 #     covari = mat[1][1] / mat[0][1]
-    
-    
+
     #debug
 #     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)" \
 #     msg = "[is_Trend__Flat] (j1 : Y : 4) get val : co-variance = %.03f (UTC = %s)\n" \
@@ -2311,8 +2272,7 @@ def is_Trend__Flat(\
 #     for item in L_3:
 #         
 #         msg += "%.03f\t" % item
-        
-        
+
     #/for item in L_3:
 
     msg += "\n\n"
@@ -2479,11 +2439,6 @@ def get_Data_Consecutive_Bars__Report(\
                         
         cntOf_Follow = item[0]
 
-#         print()
-#         print("[%s:%d] cntOf_Follow => %d" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , cntOf_Follow, 
-#             ), file=sys.stderr)
         
         # count
         lo_Counts[cntOf_Follow - 1] += 1
@@ -2523,8 +2478,7 @@ def get_Data_Consecutive_Bars__Report(\
             (os.path.basename(libs.thisfile()), libs.linenum()
              , i, lo_Counts[i]
             ), file=sys.stderr)
-        
-        
+
     #/for item in lo_Counts:
 
     '''###################
@@ -2592,14 +2546,11 @@ def get_Data_Consecutive_Bars__Report(\
                 continue
             
             #/if n0 == (num_Target + 1)
-                
-                
-            
-            
+
+
         #/for i in range(0, lenOf_LO_BarDatas_Data):
 
-        
-        
+
         
     else : #if lo_Counts[2] > 0
         '''###################
@@ -2611,8 +2562,7 @@ def get_Data_Consecutive_Bars__Report(\
             (os.path.basename(libs.thisfile()), libs.linenum()
              , num_Target, lo_Counts[num_Target]
             ), file=sys.stderr)
-        
-    
+
     #/if lo_Counts[2] > 0
 
     msg = "get_Dt_Consecutive_Brs__Report ending... -----------------------////"
@@ -2628,8 +2578,7 @@ def get_Data_Consecutive_Bars__Report(\
                 , dpth_LogFile
                 , fnme_LogFile
                 , 2)
-   
-   
+
 
 #/ def get_Data_Consecutive_Bars__Report(lo_BarDatas_Data):
 
@@ -2650,11 +2599,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-##    libs.write_Log(
-##                msg_Log
-##                , dpath_LogFile
-##                , fname_LogFile
-##                , 2)
+
 
     # log line
     lo_LogLines.append(msg_Log)
@@ -2702,11 +2647,6 @@ def get_Data_Consecutive_Bars__Report_V2(\
                         
         cntOf_Follow = item[0]
 
-#         print()
-#         print("[%s:%d] cntOf_Follow => %d" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , cntOf_Follow, 
-#             ), file=sys.stderr)
         
         # count
         lo_Counts[cntOf_Follow - 1] += 1
@@ -2731,11 +2671,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-##    libs.write_Log(
-##                msg_Log
-##                , dpath_LogFile
-##                , fname_LogFile
-##                , 2)
+
 
     # log line
     lo_LogLines.append(msg_Log)
@@ -2750,8 +2686,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
             (os.path.basename(libs.thisfile()), libs.linenum()
              , i, lo_Counts[i]
             ), file=sys.stderr)
-        
-        
+
     #/for item in lo_Counts:
 
     '''###################
@@ -2781,11 +2716,6 @@ def get_Data_Consecutive_Bars__Report_V2(\
         m0 = lo_BarDatas_Data[i]
         n0 = m0[0]
 
-#         print()
-#         print("[%s:%d] n0 => %d" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , n0
-#             ), file=sys.stderr)
 #         print(lo_New)
         
         '''###################
@@ -2810,11 +2740,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
             , os.path.basename(libs.thisfile()), libs.linenum()
             , msg)
     
-##    libs.write_Log(
-##                msg_Log
-##                , dpath_LogFile
-##                , fname_LogFile
-##                , 1)
+
 
     # log line
     lo_LogLines.append(msg_Log)
@@ -2854,11 +2780,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
                     (
                     msg)
             
-##            libs.write_Log(
-##                        msg_Log
-##                        , dpath_LogFile
-##                        , fname_LogFile
-##                        , 1)
+
             
             # log line
             lo_LogLines.append(msg_Log)
@@ -2874,11 +2796,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
                 (
                 msg)
         
-##        libs.write_Log(
-##                    msg_Log
-##                    , dpath_LogFile
-##                    , fname_LogFile
-##                    , 2)
+
 
         # log line
         lo_LogLines.append(msg_Log)
@@ -2887,14 +2805,13 @@ def get_Data_Consecutive_Bars__Report_V2(\
         
     #/for i in range(0, lenOf_LO_New):
     
-    #abcd
-    
-
 #/ def get_Data_Consecutive_Bars__Report(lo_BarDatas_Data):
 
 #xxx
 def get_Data_Consecutive_Bars(\
           lo_BarDatas
+          , lo_CSVs_HeaderLines
+          , fname_CSV_Source
           , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
           , fname_LogFile = cons_fx.FPath.fname_LogFile.value
           ):
@@ -2931,48 +2848,69 @@ def get_Data_Consecutive_Bars(\
     # numericals
     numOf_LogLines_BlankLines = 2
 #     numOf_LogLines_BlankLines = 1
+
+    '''###################
+        step : 0
+            header lines ---> write to file
+            #     Pair=EURJPY    Period=H1    Days=5000    Shift=1    Bars=120000    Time=20180903_135340                                    
+            # no    Open    High    Low    Close    RSI    MFI    BB.2s    BB.1s    BB.main    BB.-1s    BB.-2s    Diff    High/Low    datetime
+    ###################'''
+#     print("[%s:%d] lo_CSVs_HeaderLines ==>" % \
+#                                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                                         
+#                                         ), file=sys.stderr)
+#     print(lo_CSVs_HeaderLines)
+    # [['Pair=EURJPY', 'Period=H1', 'Days=5000', 'Shift=1', 'Bars=120000', 'Time=20180
+    # 903_135340'], ['no', 'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.
+    # 1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'Diff', 'High/Low', 'datetime']]
+
+    msg = "\n##################################################"
+    msg = "\nSource csv\t: %s" % (fname_CSV_Source)
+    msg += "\nPair\t: %s" % (lo_CSVs_HeaderLines[0][0].split("=")[1])
+    msg += "\nPeriod\t: %s" % (lo_CSVs_HeaderLines[0][1].split("=")[1])
+    
+    msg += "\n##################################################"
+    
+    #abcd
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    # log line
+    lo_LogLines.append(msg_Log)
+    for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+
+
     
     for i in range(0, (lenOf_BarDatas - 1)):
-        '''###################
-            debug
-                for-loop
-        ###################'''
-        if cntOf_Debug > maxOf_CntOf_Debug : #if cntOf_Debug > maxOf_CntOf_Debug
-        
-            msg = "(debug : for-loop) count = %d (%s)" % (cntOf_Debug, e0.dateTime)
-            
-            msg_Log = "[%s / %s:%d] %s" % \
-                    (
-                    libs.get_TimeLabel_Now()
-                    , os.path.basename(libs.thisfile()), libs.linenum()
-                    , msg)
-            
-#             libs.write_Log(
-#                         msg_Log
-#                         , dpath_LogFile
-#                         , fname_LogFile
-# #                         , cons_fx.FPath.dpath_LogFile.value
-# #                         , cons_fx.FPath.fname_LogFile.value
-#                         , 2)
-        
-            # log line
-            lo_LogLines.append(msg_Log)
-            for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
-            
-        
-#             print()
-#             print("[%s:%d] %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , msg_Log
-#             ), file=sys.stderr)
-            
-            # exit the for loop
-            break
-            
-        # count : debug
-        cntOf_Debug += 1
-            
-        #/if cntOf_Debug > maxOf_CntOf_Debug
+#         '''###################
+#             debug
+#                 for-loop
+#         ###################'''
+#         if cntOf_Debug > maxOf_CntOf_Debug : #if cntOf_Debug > maxOf_CntOf_Debug
+# #abcd        
+#             msg = "(debug : for-loop) count = %d (%s)" % (cntOf_Debug, e0.dateTime)
+#             
+#             msg_Log = "[%s / %s:%d] %s" % \
+#                     (
+#                     libs.get_TimeLabel_Now()
+#                     , os.path.basename(libs.thisfile()), libs.linenum()
+#                     , msg)
+#             
+#             # log line
+#             lo_LogLines.append(msg_Log)
+#             for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+# 
+#             
+#             # exit the for loop
+#             break
+#             
+#         # count : debug
+#         cntOf_Debug += 1
+#             
+#         #/if cntOf_Debug > maxOf_CntOf_Debug
         
         '''###################
             step : 1
@@ -3018,11 +2956,6 @@ def get_Data_Consecutive_Bars(\
             lo_LogLines.append(msg_Log)
             for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
 
-#             print()
-#             print("[%s:%d] %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , msg_Log
-#             ), file=sys.stderr)
             
 #             #debug
 #             break
@@ -3043,11 +2976,7 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
@@ -3077,11 +3006,7 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
@@ -3105,11 +3030,7 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
@@ -3137,21 +3058,12 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                  
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
                 
                 # log line
                 lo_LogLines.append(msg_Log)
                 for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
                 
-#                 print()
-#                 print("[%s:%d] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                  , msg_Log
-#                 ), file=sys.stderr)
 #                 
 #                 print(lo_BarDatas_Data)
                 
@@ -3175,11 +3087,7 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                  
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
@@ -3205,20 +3113,11 @@ def get_Data_Consecutive_Bars(\
                     , os.path.basename(libs.thisfile()), libs.linenum()
                     , msg)
             
-##            libs.write_Log(
-##                        msg_Log
-##                        , dpath_LogFile
-##                        , fname_LogFile
-##                        , 2)
+
 
             # log line
             lo_LogLines.append(msg_Log)
             for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")        
-#             print()
-#             print("[%s:%d] %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#              , msg_Log
-#             ), file=sys.stderr)
 
             '''###################
                 step : j2
@@ -3237,20 +3136,11 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
                 for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")            
-#                 print()
-#                 print("[%s:%d] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                  , msg_Log
-#                 ), file=sys.stderr)
 
                 '''###################
                     step : j2 : Y : 1
@@ -3283,27 +3173,17 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
                 for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")            
-#                 print()
-#                 print("[%s:%d] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                  , msg_Log
-#                 ), file=sys.stderr)
 
                 continue
 
 #                 #debug
 #                 break
-                
-            
+
             else : #if d0 >= 0
                 '''###################
                     step : j2 : N
@@ -3317,25 +3197,15 @@ def get_Data_Consecutive_Bars(\
                         , os.path.basename(libs.thisfile()), libs.linenum()
                         , msg)
                 
-##                libs.write_Log(
-##                            msg_Log
-##                            , dpath_LogFile
-##                            , fname_LogFile
-##                            , 2)
+
 
                 # log line
                 lo_LogLines.append(msg_Log)
                 for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
-#                 print()
-#                 print("[%s:%d] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                  , msg_Log
-#                 ), file=sys.stderr)
             
 #                 #debug
 #                 break
-            
-                
+
             
             #/if d0 >= 0
             
@@ -3368,16 +3238,14 @@ def get_Data_Consecutive_Bars(\
         report : write to log
     ###################'''
     strOf_LogLines = "".join(lo_LogLines)
-#     strOf_LogLines = "\r".join(lo_LogLines)
-#     strOf_LogLines = "\n".join(lo_LogLines)
     
     libs.write_Log(
                 strOf_LogLines
                 , dpath_LogFile
-                , fname_LogFile + "(test).log"
+                , fname_LogFile
+#                 , fname_LogFile + "(test).log"
                 , 2)
-    
-    
+
     
     #aa
     

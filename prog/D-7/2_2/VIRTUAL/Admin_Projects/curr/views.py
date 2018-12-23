@@ -4028,7 +4028,8 @@ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
     skip_Header     = False
 
 #     lo_BarDatas = libfx.get_Listof_BarDatas_2(
-    lo_BarDatas, _ = libfx.get_Listof_BarDatas_2(
+#     lo_BarDatas, _ = libfx.get_Listof_BarDatas_2(
+    lo_BarDatas, lo_CSVs_HeaderLines = libfx.get_Listof_BarDatas_2(
                         _req_dpath_csv
                         , _req_param_bardata_csv_file
                         , header_Length
@@ -4065,8 +4066,11 @@ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
     
     fname_LogFile = "44_5.1_consecutive-ups-downs.(%s).log" % (tlabel)
     
+    #abcd
     lo_Data_Consecutive_Bars = libfx_2.get_Data_Consecutive_Bars(
                         lo_BarDatas
+                        , lo_CSVs_HeaderLines
+                        , _req_param_bardata_csv_file
                         , cons_fx.FPath.dpath_LogFile.value
                         , fname_LogFile
                         )
