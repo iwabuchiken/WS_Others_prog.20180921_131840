@@ -2588,6 +2588,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
                 , dpath_LogFile
                 , fname_LogFile
                 , lo_LogLines
+                , lo_LogLines_Data
                 , numOf_LogLines_BlankLines
                 ):
 
@@ -2769,7 +2770,8 @@ def get_Data_Consecutive_Bars__Report_V2(\
                     prep : a0
             ###################'''
             a0 = m0[j]
-            
+
+#abc            
             '''###################
                 steps : f2 : 2
                     write
@@ -2785,7 +2787,18 @@ def get_Data_Consecutive_Bars__Report_V2(\
             # log line
             lo_LogLines.append(msg_Log)
             for i in range(numOf_LogLines_BlankLines_Blank_1) : lo_LogLines.append("\n")        
-#             for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")        
+
+            msg = "a0[0]\t%d\t / \ta0[1].dateTime\t%s" % (a0[0], a0[1].dateTime)
+            
+            msg_Log = "%s" % \
+                    (
+                    msg)
+            
+            # log line
+            lo_LogLines_Data.append(msg_Log)
+            for i in range(numOf_LogLines_BlankLines_Blank_1) : lo_LogLines_Data.append("\n")        
+
+
             
         #/for j in range(0, lenOf_M0):
 
@@ -2815,6 +2828,13 @@ def get_Data_Consecutive_Bars(\
           , dpath_LogFile = cons_fx.FPath.dpath_LogFile.value
           , fname_LogFile = cons_fx.FPath.fname_LogFile.value
           ):
+
+    '''###################
+        time        
+    ###################'''
+    time_Start = time.time()
+    
+    
     
     '''###################
         step : 0
@@ -2835,6 +2855,7 @@ def get_Data_Consecutive_Bars(\
     lo_BarDatas_Data= []
     
     lo_LogLines = []
+    lo_LogLines_Data = []
     
     # temp bardata instance
     e_Target = None
@@ -2865,13 +2886,12 @@ def get_Data_Consecutive_Bars(\
     # 1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'Diff', 'High/Low', 'datetime']]
 
     msg = "\n##################################################"
-    msg = "\nSource csv\t: %s" % (fname_CSV_Source)
+    msg += "\nSource csv\t: %s" % (fname_CSV_Source)
     msg += "\nPair\t: %s" % (lo_CSVs_HeaderLines[0][0].split("=")[1])
     msg += "\nPeriod\t: %s" % (lo_CSVs_HeaderLines[0][1].split("=")[1])
     
     msg += "\n##################################################"
     
-    #abcd
     msg_Log = "[%s / %s:%d] %s" % \
             (
             libs.get_TimeLabel_Now()
@@ -2881,6 +2901,9 @@ def get_Data_Consecutive_Bars(\
     # log line
     lo_LogLines.append(msg_Log)
     for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+    
+    lo_LogLines_Data.append(msg_Log)
+    for i in range(numOf_LogLines_BlankLines) : lo_LogLines_Data.append("\n")
 
 
     
@@ -2890,7 +2913,6 @@ def get_Data_Consecutive_Bars(\
 #                 for-loop
 #         ###################'''
 #         if cntOf_Debug > maxOf_CntOf_Debug : #if cntOf_Debug > maxOf_CntOf_Debug
-# #abcd        
 #             msg = "(debug : for-loop) count = %d (%s)" % (cntOf_Debug, e0.dateTime)
 #             
 #             msg_Log = "[%s / %s:%d] %s" % \
@@ -3224,6 +3246,7 @@ def get_Data_Consecutive_Bars(\
                  , dpath_LogFile
                  , fname_LogFile
                  , lo_LogLines
+                 , lo_LogLines_Data
                  , numOf_LogLines_BlankLines)
 #     get_Data_Consecutive_Bars__Report_V2(lo_BarDatas_Data, dpath_LogFile, fname_LogFile)
 
@@ -3232,8 +3255,24 @@ def get_Data_Consecutive_Bars(\
         (os.path.basename(libs.thisfile()), libs.linenum()
          , len(lo_LogLines)
         ), file=sys.stderr)
-    
 
+    '''###################
+        time        
+    ###################'''
+    time_Elapsed = time.time() - time_Start
+    
+    msg = "\ndone (time : %02.3f sec)" % (time_Elapsed)
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+            
+    # log line
+    lo_LogLines.append(msg_Log)
+    for i in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
+    
     '''###################
         report : write to log
     ###################'''
@@ -3246,8 +3285,17 @@ def get_Data_Consecutive_Bars(\
 #                 , fname_LogFile + "(test).log"
                 , 2)
 
+    strOf_LogLines = "".join(lo_LogLines_Data)
     
-    #aa
+    libs.write_Log(
+                strOf_LogLines
+                , dpath_LogFile
+                , fname_LogFile + "(test).csv" 
+                , 2)
+
+
+
+#abc
     
 #/ def get_Data_Consecutive_Bars(lo_BarDatas):
     
