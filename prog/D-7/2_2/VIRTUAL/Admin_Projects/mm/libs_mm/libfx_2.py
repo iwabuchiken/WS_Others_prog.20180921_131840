@@ -2585,6 +2585,7 @@ def get_Data_Consecutive_Bars__Report(\
 #xxx
 def get_Data_Consecutive_Bars__Report_V2(\
                 lo_BarDatas_Data
+                , lo_BarDatas_Tmp
                 , dpath_LogFile
                 , fname_LogFile
                 , lo_LogLines
@@ -2788,7 +2789,16 @@ def get_Data_Consecutive_Bars__Report_V2(\
             lo_LogLines.append(msg_Log)
             for i in range(numOf_LogLines_BlankLines_Blank_1) : lo_LogLines.append("\n")        
 
-            msg = "a0[0]\t%d\t / \ta0[1].dateTime\t%s" % (a0[0], a0[1].dateTime)
+#             msg = "a0[0]\t%d\t / \ta0[1].dateTime\t%s\tclose=\t%.03f\tBB.main=\t%.03f\tBB.+1=\t%.03f\tBB.+2=\t%.03f" \
+            msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
+                    % (a0[0]
+                       , a0[1].dateTime
+                       , a0[1].price_Close
+                       , a0[1].bb_Main
+                       , a0[1].bb_1S
+                       , a0[1].bb_2S
+                       )
+            #abc
             
             msg_Log = "%s" % \
                     (
@@ -2891,6 +2901,8 @@ def get_Data_Consecutive_Bars(\
     msg += "\nPeriod\t: %s" % (lo_CSVs_HeaderLines[0][1].split("=")[1])
     
     msg += "\n##################################################"
+    
+    msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2\t"
     
     msg_Log = "[%s / %s:%d] %s" % \
             (
@@ -3243,6 +3255,7 @@ def get_Data_Consecutive_Bars(\
     
     get_Data_Consecutive_Bars__Report_V2(\
                  lo_BarDatas_Data
+                 , lo_BarDatas_Tmp
                  , dpath_LogFile
                  , fname_LogFile
                  , lo_LogLines
@@ -3287,10 +3300,14 @@ def get_Data_Consecutive_Bars(\
 
     strOf_LogLines = "".join(lo_LogLines_Data)
     
+    '''###################
+        report : write csv data
+    ###################'''
     libs.write_Log(
                 strOf_LogLines
                 , dpath_LogFile
-                , fname_LogFile + "(test).csv" 
+                , fname_LogFile + "(hit-data).csv" 
+#                 , fname_LogFile + "(test).csv" 
                 , 2)
 
 
