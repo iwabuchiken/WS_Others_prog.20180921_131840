@@ -3325,11 +3325,11 @@ def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
 
     
 
-    print("[%s:%d] conf_lines ==>" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                        
-                        ), file=sys.stderr)
-    print(conf_lines)
+#     print("[%s:%d] conf_lines ==>" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         
+#                         ), file=sys.stderr)
+#     print(conf_lines)
     
     # iterate
     for item in conf_lines:
@@ -3359,10 +3359,11 @@ def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
     
     result = cons_fx.FPath.set_BUSL_3_CSV_Name("abc")
     
-    print("[%s:%d] result = %s" % \
-                    (os.path.basename(libs.thisfile()), libs.linenum()
-                    , result
-                    ), file=sys.stderr)
+#     print("[%s:%d] result = %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , result
+#                     ), file=sys.stderr)
+
     '''###################
         report
     ###################'''

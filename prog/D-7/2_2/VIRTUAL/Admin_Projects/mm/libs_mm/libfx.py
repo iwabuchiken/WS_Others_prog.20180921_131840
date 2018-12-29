@@ -469,7 +469,7 @@ def conv_CSVRows_2_BarDatas(result) :
 #/def conv_CSVRows_2_BarDatas(result) :
 
 class BarData :
-    
+#abc    
 #     id = -1
     no = -1
 
