@@ -2804,15 +2804,15 @@ def get_Data_Consecutive_Bars__Report_V2(\
             
             else : #if a0[0] == 1
             
-                print()
+#                print()
 #                 print("[%s:%d] a0[1].no - 1 (%s) => %d" % \
-                print("[%s:%d] a0[2] - 2 (%s) => %d" % \
-                    (os.path.basename(libs.thisfile()), libs.linenum()
-                     , a0[1].dateTime
-                     , a0[2] - 2
+#                print("[%s:%d] a0[2] - 2 (%s) => %d" % \
+#                    (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , a0[1].dateTime
+#                     , a0[2] - 2
 #                      , a0[2] 
 #                      , a0[1].no - 1 
-                    ), file=sys.stderr)
+#                    ), file=sys.stderr)
                 
 #abc            
             
