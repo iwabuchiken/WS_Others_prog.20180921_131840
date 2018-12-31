@@ -2815,9 +2815,13 @@ def get_Data_Consecutive_Bars__Report_V2(\
 #                    ), file=sys.stderr)
                 
 #abc            
+
+#@_20181231_154048
             
 #                 msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s" \
-                msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%.03f\t%.03f" \
+#                 msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%.03f\t%.03f" \
+#                 msg += "\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
+                msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
                         % (a0[0]
                            , a0[1].dateTime
                            , a0[1].price_Close
@@ -2826,6 +2830,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
                            , a0[1].bb_2S
                            
                            , lo_BarDatas_Tmp[a0[2] - 2].dateTime
+                           , lo_BarDatas_Tmp[a0[2] - 2].price_Close
                            , lo_BarDatas_Tmp[a0[2] - 2].bb_Main
                            , lo_BarDatas_Tmp[a0[2] - 2].bb_1S
                            , lo_BarDatas_Tmp[a0[2] - 2].bb_2S
@@ -2950,8 +2955,11 @@ def get_Data_Consecutive_Bars(\
     msg += "\nPeriod\t: %s" % (lo_CSVs_HeaderLines[0][1].split("=")[1])
     
     msg += "\n#####\t#####\t#####\t#####\t#####\t#####\t#####\t#####\t"
-    
-    msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2\te0(-2).dateTime\te0(-2).BB.main\te0(-2).BB.+1\te0(-2).BB.+2"
+
+#@_20181231_154136    
+    msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2"
+    msg += "\te0(-2).dateTime\tclose\te0(-2).BB.main\te0(-2).BB.+1\te0(-2).BB.+2"
+#     msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2\te0(-2).dateTime\te0(-2).BB.main\te0(-2).BB.+1\te0(-2).BB.+2"
 #     msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2\te0(-1).dateTime"
 #     msg += "\na0[0]\ta0[1].dateTime\tclose\tBB.main\tBB.+1\tBB.+2\t"
     
