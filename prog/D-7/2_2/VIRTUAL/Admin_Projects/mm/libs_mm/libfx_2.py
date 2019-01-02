@@ -2751,6 +2751,7 @@ def get_Data_Consecutive_Bars__Report_V2(\
     '''###################
         steps : f1
     ###################'''
+    #@_20190102_120948
     for i in range(0, lenOf_LO_New):
         '''###################
             steps : f1 : 1
@@ -2804,23 +2805,16 @@ def get_Data_Consecutive_Bars__Report_V2(\
             
             else : #if a0[0] == 1
             
-#                print()
-#                 print("[%s:%d] a0[1].no - 1 (%s) => %d" % \
-#                print("[%s:%d] a0[2] - 2 (%s) => %d" % \
-#                    (os.path.basename(libs.thisfile()), libs.linenum()
-#                     , a0[1].dateTime
-#                     , a0[2] - 2
-#                      , a0[2] 
-#                      , a0[1].no - 1 
-#                    ), file=sys.stderr)
+            
+                # deduction value @_20190102_121516
+                numOf_Target_Index= 2
                 
+                valOf_Deduction = (a0[2] - 1) - a0[0] + numOf_Target_Index
+#                 valOf_Deduction = -1 * a0[2] + numOf_Target_Index
 #abc            
 
 #@_20181231_154048
             
-#                 msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s" \
-#                 msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%.03f\t%.03f" \
-#                 msg += "\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
                 msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
                         % (a0[0]
                            , a0[1].dateTime
@@ -2829,28 +2823,25 @@ def get_Data_Consecutive_Bars__Report_V2(\
                            , a0[1].bb_1S
                            , a0[1].bb_2S
                            
-                           , lo_BarDatas_Tmp[a0[2] - 2].dateTime
-                           , lo_BarDatas_Tmp[a0[2] - 2].price_Close
-                           , lo_BarDatas_Tmp[a0[2] - 2].bb_Main
-                           , lo_BarDatas_Tmp[a0[2] - 2].bb_1S
-                           , lo_BarDatas_Tmp[a0[2] - 2].bb_2S
-#                            , lo_BarDatas_Tmp[a0[2]].dateTime
-#                            , lo_BarDatas_Tmp[a0[1].no - 1].dateTime
-#                            , lo_BarDatas_Tmp[a0[0] - 1].dateTime
+                           , lo_BarDatas_Tmp[valOf_Deduction].dateTime
+                           , lo_BarDatas_Tmp[valOf_Deduction].price_Close
+                           , lo_BarDatas_Tmp[valOf_Deduction].bb_Main
+                           , lo_BarDatas_Tmp[valOf_Deduction].bb_1S
+                           , lo_BarDatas_Tmp[valOf_Deduction].bb_2S
+#                            , lo_BarDatas_Tmp[a0[2] - valOf_Deduction].dateTime
+#                            , lo_BarDatas_Tmp[a0[2] - valOf_Deduction].price_Close
+#                            , lo_BarDatas_Tmp[a0[2] - valOf_Deduction].bb_Main
+#                            , lo_BarDatas_Tmp[a0[2] - valOf_Deduction].bb_1S
+#                            , lo_BarDatas_Tmp[a0[2] - valOf_Deduction].bb_2S
+#                            , lo_BarDatas_Tmp[a0[2] - 2].dateTime
+#                            , lo_BarDatas_Tmp[a0[2] - 2].price_Close
+#                            , lo_BarDatas_Tmp[a0[2] - 2].bb_Main
+#                            , lo_BarDatas_Tmp[a0[2] - 2].bb_1S
+#                            , lo_BarDatas_Tmp[a0[2] - 2].bb_2S
                            )
                 
             
             #/if a0[0] == 1
-            
-
-#             msg = "%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f" \
-#                     % (a0[0]
-#                        , a0[1].dateTime
-#                        , a0[1].price_Close
-#                        , a0[1].bb_Main
-#                        , a0[1].bb_1S
-#                        , a0[1].bb_2S
-#                        )
             
             msg_Log = "%s" % \
                     (
@@ -2978,7 +2969,7 @@ def get_Data_Consecutive_Bars(\
     for i in range(numOf_LogLines_BlankLines) : lo_LogLines_Data.append("\n")
 
 
-    
+    #@_20190102_121052
     for i in range(0, (lenOf_BarDatas - 1)):
 #         '''###################
 #             debug
@@ -2986,25 +2977,25 @@ def get_Data_Consecutive_Bars(\
 #         ###################'''
 #         if cntOf_Debug > maxOf_CntOf_Debug : #if cntOf_Debug > maxOf_CntOf_Debug
 #             msg = "(debug : for-loop) count = %d (%s)" % (cntOf_Debug, e0.dateTime)
-#              
+#               
 #             msg_Log = "[%s / %s:%d] %s" % \
 #                     (
 #                     libs.get_TimeLabel_Now()
 #                     , os.path.basename(libs.thisfile()), libs.linenum()
 #                     , msg)
-#              
+#               
 #             # log line
 #             lo_LogLines.append(msg_Log)
 #             for j in range(numOf_LogLines_BlankLines) : lo_LogLines.append("\n")
-#  
-#              
+#   
+#               
 #             # exit the for loop
 #             break
-#              
+#               
 #         # count : debug
 #         cntOf_Debug += 1
-#              
-#         #/if cntOf_Debug > maxOf_CntOf_Debug
+#               
+        #/if cntOf_Debug > maxOf_CntOf_Debug
         
         '''###################
             step : 1
