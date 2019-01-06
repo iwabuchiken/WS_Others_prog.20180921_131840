@@ -2949,12 +2949,15 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request):
         -1    ==> csv file doesn't exist
         1    ==> slice bardatas --> file created
 ###################'''
+#xxx
 def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
 
     '''###################
         request
     ###################'''
-    _req_fname_csv = request.GET.get('fname_csv', False)
+    # param_bardata_csv_file ---> name from the dropdown list //20190106_134455
+    _req_fname_csv = request.GET.get('param_bardata_csv_file', False)
+#     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
     
     _req_param_3_2_bartype = request.GET.get('param_3-2_bartype', False)
@@ -4135,7 +4138,7 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     return (status, msg)
     
 #/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request)
-#xxx
+
 def tester_BuyUps_SellLows__V2(request):
 
     '''###################
