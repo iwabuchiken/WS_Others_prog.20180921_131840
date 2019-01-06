@@ -5636,10 +5636,12 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
                    
                    )
         
-        msg = "\nsource = %s\nlen of entries = %d\naverage = %.05f\nstd deviation = %.05f" \
+#         msg = "\nsource = %s\nlen of entries = %d\naverage = %.05f\nstd deviation = %.05f" \
+        msg = "\nsource = %s\nlen of entries = %d\nbar type = %s\naverage = %.05f\nstd deviation = %.05f" \
                 % (
                     fname_CSV_File
                     , lenOf_BarDatas
+                    , "all bars"
                     , avg
                     , std_dev
                    )
@@ -5756,10 +5758,11 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
                     fname_Log_File
                    )
         
-        msg += "\nsource = %s\nlen of entries = %d\ntarget = %d" \
+        msg += "\nsource = %s\nlen of entries = %d\nbar type = %s\ntarget = %d" \
                 % (
                     fname_CSV_File
                     , lenOf_BarDatas
+                    , "up bars"
                     , cntOf_TargetBars
                    )
         
@@ -5880,10 +5883,11 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
                     fname_Log_File
                    )
         
-        msg += "\nsource = %s\nlen of entries = %d\ntarget = %d" \
+        msg += "\nsource = %s\nlen of entries = %d\nbar type = %s\ntarget = %d" \
                 % (
                     fname_CSV_File
                     , lenOf_BarDatas
+                    , "down bars"
                     , cntOf_TargetBars
                    )
         
