@@ -5590,6 +5590,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
     ###################'''
     sumOf_Diffs = 0.0
     
+    sumOf_Diffs_HL = 0.0
+    
     lenOf_BarDatas = len(lo_BarDatas)
     
     '''###################
@@ -5599,8 +5601,12 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
         # diff
         dif = item.diff_OC
         
+        dif_HL = item.diff_HL
+        
         # sum
         sumOf_Diffs += dif
+        
+        sumOf_Diffs_HL += dif_HL
         
     #/for item in lo_BarDatas:
 
@@ -5608,6 +5614,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
         stats
     ###################'''
     avg = sumOf_Diffs / lenOf_BarDatas
+    avg_HL = sumOf_Diffs_HL / lenOf_BarDatas
 #     avg = sumOf_Diffs / dif
     
     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
@@ -5637,12 +5644,19 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
                    )
         
 #         msg = "\nsource = %s\nlen of entries = %d\naverage = %.05f\nstd deviation = %.05f" \
-        msg = "\nsource = %s\nlen of entries = %d\nbar type = %s\naverage = %.05f\nstd deviation = %.05f" \
+#         msg = "\nsource = %s\nlen of entries = %d\nbar type = %s\naverage = %.05f\nstd deviation = %.05f" \
+        msg = "\nlog file = %s\nsource = %s\nlen of entries = %d\nbar type = %s" \
                 % (
-                    fname_CSV_File
+                    fname_Log_File
+                    , fname_CSV_File
                     , lenOf_BarDatas
                     , "all bars"
-                    , avg
+                   )
+        
+        msg += "\naverage = %.05f\naverage (HL) = %.05f\nstd deviation = %.05f" \
+                % (
+                    avg
+                    , avg_HL
                     , std_dev
                    )
         
@@ -5691,6 +5705,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
     ###################'''
     sumOf_Diffs = 0.0
     
+    sumOf_Diffs_HL = 0.0
+    
     lenOf_BarDatas = len(lo_BarDatas)
     
     cntOf_TargetBars = 0
@@ -5707,8 +5723,13 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
             # diff
             dif = item.diff_OC
             
+            # diff
+            dif_HL = item.diff_HL
+            #abc
             # sum
             sumOf_Diffs += dif
+            
+            sumOf_Diffs_HL += dif_HL
             
             # count
             cntOf_TargetBars += 1
@@ -5726,6 +5747,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
     avg = sumOf_Diffs / cntOf_TargetBars
 #     avg = sumOf_Diffs / lenOf_BarDatas
 #     avg = sumOf_Diffs / dif
+    
+    avg_HL = sumOf_Diffs_HL / cntOf_TargetBars
     
     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp)
 #     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
@@ -5766,9 +5789,11 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
                     , cntOf_TargetBars
                    )
         
-        msg += "\naverage = %.05f\nstd deviation = %.05f" \
+#         msg += "\naverage = %.05f\nstd deviation = %.05f" \
+        msg += "\naverage = %.05f\naverage(HL) = %.05f\nstd deviation = %.05f" \
                 % (
                     avg
+                    , avg_HL
                     , std_dev
                    )
         
@@ -5801,6 +5826,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
     @caller
         BUSL_3__Stat__Diff_Of_Bars
 ###################'''
+#xxx
 def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
             lo_BarDatas
            , fname_CSV_File
@@ -5815,6 +5841,9 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
     ###################'''
     sumOf_Diffs = 0.0
     
+    sumOf_Diffs_HL = 0.0
+
+    #abc
     lenOf_BarDatas = len(lo_BarDatas)
     
     cntOf_TargetBars = 0
@@ -5834,6 +5863,11 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
 
             # sum
             sumOf_Diffs += dif
+        
+            # HL
+            dif_HL = item.diff_HL
+            
+            sumOf_Diffs_HL += dif_HL
             
             # count
             cntOf_TargetBars += 1
@@ -5851,6 +5885,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
     avg = sumOf_Diffs / cntOf_TargetBars
 #     avg = sumOf_Diffs / lenOf_BarDatas
 #     avg = sumOf_Diffs / dif
+    
+    avg_HL = sumOf_Diffs_HL / cntOf_TargetBars
     
     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp)
 #     std_dev = _BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas)
@@ -5891,9 +5927,11 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
                     , cntOf_TargetBars
                    )
         
-        msg += "\naverage = %.05f\nstd deviation = %.05f" \
+#         msg += "\naverage = %.05f\nstd deviation = %.05f" \
+        msg += "\naverage = %.05f\naverage (HL) = %.05f\nstd deviation = %.05f" \
                 % (
                     avg
+                    , avg_HL
                     , std_dev
                    )
         
