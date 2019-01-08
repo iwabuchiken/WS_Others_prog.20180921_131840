@@ -5266,9 +5266,8 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Week(\
 
 #/ BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname)
 
-def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
-           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile = True):
-# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+def slice_BarDatas_By_Month(\
+        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
     
     '''###################
         step : 1
@@ -5437,32 +5436,29 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
             ), file=sys.stderr)
     
     print()
-#     
-# #     libs.write_Log(msg_Log, True)
+    
+    '''###################
+        return        
+    ###################'''
+    return lo_Final
+    
+#/ def slice_BarDatas_By_Month(\
+#/         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
+
+def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
+           lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log, writeToFile = True):
+# def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
+    
+    '''###################
+        step : 0
+            slice
+    ###################'''
+    #abc
+    lo_Final = slice_BarDatas_By_Month(lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
 
     '''###################
         report : lo_Months
     ###################'''
-#     msg = "lo_Months ==>"
-#                     
-#     print("[%s:%d] %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg
-#             ), file=sys.stderr)
-    
-#     for item in lo_Months:
-#     
-#         print(item.dateTime_Local)
-# #         print(item)
-#         
-#     #/for item in lo_Mons:
-
-    
-    
-#     print(len(lo_Mons))
-# #     print(lo_Mons)
-#     print()
-
     '''###################
         report : lo_Final
     ###################'''
@@ -5477,7 +5473,6 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
         print(item[0].dateTime_Local)
         
     #/for item in lo_Final:
-
     
     '''###################
         write to file
@@ -5489,8 +5484,6 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Month(\
         pass
         
     #/if writeToFile == True
-            
-            
         
     '''###################
         return        

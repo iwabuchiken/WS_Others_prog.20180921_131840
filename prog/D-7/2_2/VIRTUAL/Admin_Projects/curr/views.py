@@ -2872,11 +2872,14 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request):
     ###################'''
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
+    #abc
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
     
     '''###################
         params        
     ###################'''
-    fname_CSV_File = _req_fname_csv
+#     fname_CSV_File = _req_fname_csv
+    fname_CSV_File = _req_param_bardata_csv_file
     dpath_CSV_File = _req_dpath_csv
 
     # validate
@@ -4070,7 +4073,6 @@ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
     
     fname_LogFile = "44_5.1_consecutive-ups-downs.(%s).log" % (tlabel)
     
-    #abcd
     lo_Data_Consecutive_Bars = libfx_2.get_Data_Consecutive_Bars(
                         lo_BarDatas
                         , lo_CSVs_HeaderLines
