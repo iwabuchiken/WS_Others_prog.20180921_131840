@@ -5048,7 +5048,8 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Week(\
             step : 3
                 get : dateTime
         ###################'''
-        t0 = e0.dateTime_Local
+        t0 = e0.dateTime
+#         t0 = e0.dateTime_Local
         
         '''###################
             step : 4
@@ -5398,7 +5399,8 @@ def slice_BarDatas_By_Month(\
         ###################'''
         e0 = item
         
-        t0 = e0.dateTime_Local
+        t0 = e0.dateTime
+#         t0 = e0.dateTime_Local
         
         '''###################
             step : 3
@@ -5546,54 +5548,51 @@ def slice_BarDatas_By_Day(\
     lo_Tmp = []     # L3
     lo_Final = []   # L4
     
-#     lo_Months = []
-    
     '''###################
         vars : counters
     ###################'''
     # counters
     cntOf_Total = 0
-    cntOf_Months = 0
+    cntOf_Days = 0
 
     '''###################
         vars : others
     ###################'''
-    m_now = ""
+    d_now = ""
     
     '''###################
         ops
     ###################'''
     for item in lo_BarDatas_Tmp:
         '''###################
-            step : 0
-                count : total
+            step : 1
+                prep
         ###################'''
         cntOf_Total += 1
          
         '''###################
-            step : 0, 2
-                get : instance
-                
+            get : instance
         ###################'''
         e0 = item
         
-        t0 = e0.dateTime_Local
-        
+        t0 = e0.dateTime
+#         t0 = e0.dateTime_Local
         '''###################
-            step : 3
-                get : dateTime
+            get : dateTime
+            string is ---> e.g. "2018.07.12 23:32"
         ###################'''
         tokens = (((t0.split(" "))[0]).split("."))
         
-        m = tokens[1]
+        d = tokens[2]   # ["2018", "07", "12"]
         
         '''###################
             step : j1
-                m == m_now ?
+                d == d_now ?
         ###################'''
-        if m == m_now : #if m == m_now
+        if d == d_now : #if m == m_now
             '''###################
                 step : j1 : Y
+                d == d_now
             ###################'''
             '''###################
                 step : j1 : Y : 1
@@ -5608,42 +5607,50 @@ def slice_BarDatas_By_Day(\
                 step : j1 : N : 1
                     count
             ###################'''
-            cntOf_Months += 1
+            cntOf_Days += 1
             
             '''###################
-                step : j1 : N : 2*
-                    count
+                step : j1 : N : 2
+                    update : d_now
             ###################'''
-            m_now = m
+            d_now = d
+            
+            print("[%s:%d]\n(j1 : N : 2) d_now ==> updated (d_dnow = %s , cntOf_Days = %d" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , d_now, cntOf_Days
+                    ), file=sys.stderr)
+            
+            print()
             
             '''###################
                 step : j2
-                    lo_Tmp --> has entries ?
+                    the latest day --> has entries ?
             ###################'''
             if len(lo_Tmp) > 0 : #if len(lo_Tmp) > 0
                 '''###################
                     step : j2 : Y
+                        the latest day --> has entries
                 ###################'''
                 '''###################
-                    step : j2 : Y : 0
+                    step : j2 : Y : 1
                         lo_Tmp --> reverse back
                 ###################'''
-                #test
                 lo_Tmp.reverse()
                 
                 '''###################
-                    step : j2 : Y : 1
+                    step : j2 : Y : 2
+                        append
                 ###################'''
                 lo_Final.append(lo_Tmp)
     
                 '''###################
-                    step : j2 : Y : 2
-                        lo_Tmp --> init
+                    step : j2 : Y : 3
+                        lo_Tmp --> reset
                 ###################'''
                 lo_Tmp = []
                 
                 '''###################
-                    step : j2 : Y : 2
+                    step : j2 : Y : 4
                         append e0
                 ###################'''
                 lo_Tmp.append(e0)
@@ -5657,7 +5664,7 @@ def slice_BarDatas_By_Day(\
                         append e0
                 ###################'''
                 lo_Tmp.append(e0)
-            
+
             #/if len(lo_Tmp) > 0
         
         #/if m == m_now
@@ -5672,15 +5679,17 @@ def slice_BarDatas_By_Day(\
                 
     '''###################
         step : B1 : 2
-            append to final
+            append to final (the last entry)
     ###################'''
+    lo_Tmp.reverse()
+    
     lo_Final.append(lo_Tmp)
 
     '''###################
         report
     ###################'''
-    msg = "cntOf_Total = %d, cntOf_Months = %d" %\
-                            (cntOf_Total, cntOf_Months)
+    msg = "cntOf_Total = %d, cntOf_Days = %d" %\
+                            (cntOf_Total, cntOf_Days)
                      
     msg_Log = "[%s / %s:%d] %s" % \
             (
@@ -5781,19 +5790,20 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Day(\
     #debug
     for item in lo_Final:
     
-        print(item[0].dateTime_Local)
+        print(item[0].dateTime)
+#         print(item[0].dateTime_Local)
         
     #/for item in lo_Final:
     
     '''###################
         write to file
     ###################'''
-    if writeToFile == True : #if writeToFile == True
-            
-        _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
-#         _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
-
-        pass
+#     if writeToFile == True : #if writeToFile == True
+#             
+#         _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+# #         _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+# 
+#         pass
         
     #/if writeToFile == True
         

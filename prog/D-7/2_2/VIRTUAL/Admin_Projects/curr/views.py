@@ -3023,8 +3023,9 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Day(request):
     
 # #     (status, fname_Log, fpath_Log) = \
     (status, lo_Fname_Log, fpath_Log) = \
-            libfx.BUSL_3__Util_1__Slice_BarDatas_By_Month(\
+            libfx.BUSL_3__Util_1__Slice_BarDatas_By_Day(\
                         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
+#             libfx.BUSL_3__Util_1__Slice_BarDatas_By_Month(\
 
     '''###################
         return        
