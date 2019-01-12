@@ -249,6 +249,9 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH = \
                     "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH"
 
+    PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_DAY = \
+                    "PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_DAY"
+
     '''###################
         stats : busl3 : stats : 1 / diff of bars : avg, dev
     ###################'''
@@ -295,6 +298,7 @@ class Tester(Enum):
     # max key value : 8 : 20180930_071716
     # max key value : 9 : 20181003_154643
     # max key value : 10 : 20181214_153849
+    # max key value : 11 : 20190112_084810
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -311,6 +315,7 @@ class Tester(Enum):
             
             , 3 : "4-1"     # 3
             , 4 : "4-2"     # 4
+            , 11 : "4-3"     # 4
             
             
         }
@@ -338,7 +343,8 @@ class Tester(Enum):
                 lo_Actions__BUSL__IDs[1]
                 ,"res : pattern detection"
                 , ParamConstants.PARAM_BUSL3_CMD_RES__1_DETECT_PATTERNS__UPSDOWNS.value
-                , "up-down pattern of 5 bars : log at detect_pattern.Updowns.XXX.log"
+                , "1) up-down pattern of 5 bars<br>" \
+                    + "2) log at detect_pattern.Updowns.XXX.log"
                 , "20180915_125135"
             ],
             
@@ -365,7 +371,8 @@ class Tester(Enum):
                 lo_Actions__BUSL__IDs[2]
                 ,"res : pattern percentage"
                 , ParamConstants.PARAM_BUSL3_CMD_RES__2_PATTERN_PERCENTAGES_UPUP_BB1S_UPDOWN.value
-                , "pattern : up-up above BB.+1S then up or down. log file at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log. log file name = PatternPercentage_UpUpAboveBB1S__UpOrDown.XXXX.log"
+                , "1) pattern : up-up above BB.+1S then up or down" \
+                    + "<br>2) log file at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log. log file name = PatternPercentage_UpUpAboveBB1S__UpOrDown.XXXX.log"
                 , "20180921_152027"
             ],
             
@@ -409,9 +416,19 @@ class Tester(Enum):
                 lo_Actions__BUSL__IDs[4]
                 ,"util : slice lo_BarDatas by month"
                 , ParamConstants.PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH.value
-                , "slice lo_BarDatas by month --> write to files"
+                , "1) slice lo_BarDatas by month --> write to files" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20180925_082342"
             ],
+            
+            [
+                lo_Actions__BUSL__IDs[11]
+                ,"util : slice lo_BarDatas by day"
+                , ParamConstants.PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_DAY.value
+                , "1) slice lo_BarDatas by day --> write to files" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+                , "20180925_082342"
+            ],      #abc
             
 #             [
 #                 lo_Actions__BUSL__IDs[5]

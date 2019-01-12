@@ -2780,11 +2780,14 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request):
     ###################'''
     _req_fname_csv = request.GET.get('fname_csv', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
+    #abc
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
     
     '''###################
         params        
     ###################'''
-    fname_CSV_File = _req_fname_csv
+#     fname_CSV_File = _req_fname_csv
+    fname_CSV_File = _req_param_bardata_csv_file
     dpath_CSV_File = _req_dpath_csv
 
     # validate
@@ -2946,6 +2949,93 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request):
     return (status, msg)
     
 #/ _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request)
+
+'''###################
+    @return: 
+        -1    ==> csv file doesn't exist
+        1    ==> slice bardatas --> file created
+###################'''
+def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Day(request):
+#xxx
+    '''###################
+        request
+    ###################'''
+    _req_fname_csv = request.GET.get('fname_csv', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+    #abc
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    
+    '''###################
+        params        
+    ###################'''
+#     fname_CSV_File = _req_fname_csv
+    fname_CSV_File = _req_param_bardata_csv_file
+    dpath_CSV_File = _req_dpath_csv
+
+    # validate
+    fpath_Full = os.path.join(dpath_CSV_File, fname_CSV_File)
+    
+    if not os.path.isfile(fpath_Full) : #if not os.path.isfile(fpath_Full)
+    
+        print("[%s:%d] csv file --> NOT exist : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fpath_Full
+            ), file=sys.stderr)
+        
+        # return
+        '''###################
+            message
+        ###################'''
+        msg = "CSV NOT EXIST : %s" % fpath_Full
+        
+        '''###################
+            return        
+        ###################'''
+        return -1, msg
+
+
+    '''###################
+        get : list of BarDatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_CSV_File, fname_CSV_File, header_Length, skip_Header)
+#                         dpath, fname, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        execute        
+        
+        (-1, msg) ==> csv file doesn't exist
+        (1, msg) ==> up-down stats --> created
+    ###################'''
+    '''###################
+        op : BUSL_3
+    ###################'''
+    dpath_Log = cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+    
+# #     (status, fname_Log, fpath_Log) = \
+    (status, lo_Fname_Log, fpath_Log) = \
+            libfx.BUSL_3__Util_1__Slice_BarDatas_By_Month(\
+                        lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
+
+    '''###################
+        return        
+    ###################'''
+    status = 1
+     
+    msg = "OK"
+    
+    return (status, msg)
+    
+#/ _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Day(request)
 
 '''###################
     @return: 
@@ -3959,6 +4049,13 @@ def tester_BuyUps_SellLows(request):
     dic["msg"] = "rendering... (%s)" \
                     % (libs.get_TimeLabel_Now())
 
+    print()
+    print("[%s:%d] rendering... ==> \nrender_Page = %s\nrender_Page_full = %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , render_Page, render_Page_full
+            ), file=sys.stderr)
+
+
     if referer_Current == referer_MM : #if referer_Current == referer_MM
     
         print()
@@ -3976,7 +4073,7 @@ def tester_BuyUps_SellLows(request):
                 (os.path.basename(libs.thisfile()), libs.linenum()
                 ,referer_Current, referer_MM
                 ), file=sys.stderr)
-
+#abc
         return render(request, render_Page_full, dic)
     
     pass
@@ -4263,7 +4360,17 @@ def tester_BuyUps_SellLows__V2(request):
         # call func
         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request)
 #         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
-
+#abc
+        dic['message'] += "util : slice lo_BarDatas by month"
+        
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[11] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
+        '''###################
+            PARAM_BUSL3_CMD_UTIL_1__SLICE_BARDATAS_BY_MONTH
+        ###################'''
+        # call func
+        (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Day(request)
+#         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
+#abc
         dic['message'] += "util : slice lo_BarDatas by month"
         
     elif param == (cons_fx.Tester.OPEN_DATA_DIR.value) : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
@@ -4377,6 +4484,12 @@ def tester_BuyUps_SellLows__V2(request):
     '''###################
         render
     ###################'''
+    print()
+    print("[%s:%d] render_Page => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , render_Page
+            ), file=sys.stderr)
+
     return render(request, render_Page, dic)
     
 #/ def  tester_BuyUps_SellLows__V2(request):

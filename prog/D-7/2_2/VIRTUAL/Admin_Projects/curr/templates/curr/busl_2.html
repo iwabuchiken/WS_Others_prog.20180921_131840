@@ -1,5 +1,7 @@
 {% load taglib_curr %}
 
+
+
 BUSL_2
 <br>
 {{ message }}
@@ -73,4 +75,7 @@ BUSL_2
     
 <hr>
 
-{% include 'curr/partials/busl_3/_idx_tbl.html' %}
+<!-- ref https://code.djangoproject.com/wiki/AutoEscaping -->
+{% autoescape off %}
+	{% include 'curr/partials/busl_3/_idx_tbl.html' %}
+{% endautoescape %}
