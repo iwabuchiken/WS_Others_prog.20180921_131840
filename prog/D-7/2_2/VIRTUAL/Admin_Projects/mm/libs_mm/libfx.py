@@ -4877,10 +4877,10 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(\
         
         # index --> increment
         idxOf_LO_BarDatas += 1
-    
+
+#xxx    
 def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
                  fname_CSV_File, dpath_Log, lo_Final, lo_CSVs):
-#xxx
     #debug
     print("[%s:%d] csv headers" % \
                     (os.path.basename(libs.thisfile()), libs.linenum()
@@ -4910,15 +4910,22 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
     ###################'''
     idxOf_LO_BarDatas = 1
     
+    lo_File_Names__New = []
+    
+    str_File_Name  = "list_4-3.slice-by-day"
+    
+    fname_Admin_File_Names = "(file-names).(src=%s).dat" % filename
+    fpath_Admin_File_Names = os.path.join(dpath_Log, fname_Admin_File_Names)
+    
     for lo_BarDatas in lo_Final:
 #     for lo_BarDatas in lo_Final[0]:
         
         '''###################
             date data
         ###################'''
-        _day = (lo_BarDatas[0].dateTime_Local.split(" ")[0]).split(".")[2]
-        month = (lo_BarDatas[0].dateTime_Local.split(" ")[0]).split(".")[1]
-        year = (lo_BarDatas[0].dateTime_Local.split(" ")[0]).split(".")[0]
+        _day = (lo_BarDatas[0].dateTime.split(" ")[0]).split(".")[2]
+        month = (lo_BarDatas[0].dateTime.split(" ")[0]).split(".")[1]
+        year = (lo_BarDatas[0].dateTime.split(" ")[0]).split(".")[0]
         
         print("[%s:%d] _day (lo_BarDatas[0]) => %s (dateTime_Local = %s)" % \
                     (os.path.basename(libs.thisfile()), libs.linenum()
@@ -4928,8 +4935,14 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
         
         
         fname_Log_CSV_Monday = "%s.(%s-%s-%s).%s%s" \
-                % (filename, year, month, _day, tlabel, file_extension)
+                % (str_File_Name, year, month, _day, tlabel, file_extension)
+#         fname_Log_CSV_Monday = "%s.(%s-%s-%s).%s%s" \
+#                 % (filename, year, month, _day, tlabel, file_extension)
     #     fname_Log_CSV_Monday = "%s.(w-%d)%s" % (filename, 1, file_extension)
+        
+        # append file name
+        lo_File_Names__New.append(fname_Log_CSV_Monday)
+        
         
         fpath_CSV_Monday = os.path.join(dpath_Log, fname_Log_CSV_Monday)
 
@@ -4938,7 +4951,10 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
         # header
         fout_CSV_Monday.write(";".join(lo_CSVs[0]))
         fout_CSV_Monday.write("\n")
+        
         fout_CSV_Monday.write(";".join(lo_CSVs[1]))
+        fout_CSV_Monday.write(";" + "dateTime_Local")
+        fout_CSV_Monday.write(";" + "s.n.")
         fout_CSV_Monday.write("\n")
 
         
@@ -4990,6 +5006,43 @@ def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
         
         # index --> increment
         idxOf_LO_BarDatas += 1
+
+        '''###################
+            admin file names
+        ###################'''
+        fout_Admin_File_Names = open(fpath_Admin_File_Names, "w")
+        
+        msg = "source = %s" % fname_CSV_File
+        
+#         msg_Log = "[%s / %s:%d] %s" % \
+        msg_Log = "[%s / %s:%d]\n%s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        fout_Admin_File_Names.write(msg_Log)
+        fout_Admin_File_Names.write("\n\n")
+        
+        for item in lo_File_Names__New:
+        
+            fout_Admin_File_Names.write(item)
+            fout_Admin_File_Names.write("\n")
+            
+        msg = "source = %s" % fname_CSV_File
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+                
+        print()
+        print(msg_Log)
+            
+        #/for item in lo_File_Names__New:
+        
+        fout_Admin_File_Names.close()
     
 #/ def _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(\
                                            
@@ -5775,7 +5828,7 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Day(\
     #abc
     lo_Final = slice_BarDatas_By_Day(lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
 #     lo_Final = slice_BarDatas_By_Month(lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log)
-#xxx
+
     '''###################
         report : lo_Months
     ###################'''
@@ -5798,13 +5851,12 @@ def BUSL_3__Util_1__Slice_BarDatas_By_Day(\
     '''###################
         write to file
     ###################'''
-#     if writeToFile == True : #if writeToFile == True
-#             
-#         _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
-# #         _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
-# 
-#         pass
-        
+    #@_20190112_171722
+    if writeToFile == True : #if writeToFile == True
+             
+        _BUSL_3__Util_1__Slice_BarDatas_By_Day__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+#         _BUSL_3__Util_1__Slice_BarDatas_By_Month__WriteToFile(fname_CSV_File, dpath_Log, lo_Final, lo_CSVs)
+ 
     #/if writeToFile == True
         
     '''###################
@@ -6141,7 +6193,6 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
     @caller
         BUSL_3__Stat__Diff_Of_Bars
 ###################'''
-#xxx
 def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
             lo_BarDatas
            , fname_CSV_File
