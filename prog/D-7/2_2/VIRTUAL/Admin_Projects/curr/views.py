@@ -4238,7 +4238,7 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     return (status, msg)
     
 #/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request)
-
+#xxx
 def tester_BuyUps_SellLows__V2(request):
 
     '''###################
@@ -4361,7 +4361,7 @@ def tester_BuyUps_SellLows__V2(request):
         # call func
         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Month(request)
 #         (status, msg) = _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Week(request)
-#abc
+
         dic['message'] += "util : slice lo_BarDatas by month"
         
     elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[11] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
@@ -4385,7 +4385,7 @@ def tester_BuyUps_SellLows__V2(request):
         dic['message'] += "open data dirs"
 #         
     
-    
+#abc    
     elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[5] : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
         '''###################
             PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV
