@@ -277,6 +277,11 @@ class ParamConstants(Enum):
     ###################'''
     PARAM_BUSL3_2_3 = "PARAM_BUSL3_2_3"
 
+    '''###################
+        param : 36~
+    ###################'''
+    PARAM_BUSL3_CMD_37_1__Admin_Parse_Trade_Reports = "parse_reports"
+
 #/ class ParamConstants(Enum):
     
 class Tester(Enum):
@@ -299,6 +304,7 @@ class Tester(Enum):
     # max key value : 9 : 20181003_154643
     # max key value : 10 : 20181214_153849
     # max key value : 11 : 20190112_084810
+    # max key value : 12 : 20190118_123056
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -316,6 +322,8 @@ class Tester(Enum):
             , 3 : "4-1"     # 3
             , 4 : "4-2"     # 4
             , 11 : "4-3"     # 4
+    
+            , 12 : "37-1"     #
             
             
         }
@@ -428,7 +436,17 @@ class Tester(Enum):
                 , "1) slice lo_BarDatas by day --> write to files" \
                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20180925_082342"
+            ],      
+            
+            [
+                lo_Actions__BUSL__IDs[12]
+                ,"admin : extract from html reports"
+                , ParamConstants.PARAM_BUSL3_CMD_37_1__Admin_Parse_Trade_Reports.value
+                , "1) extract transactions ==> write to files" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+                , "20190118_123803"
             ],      #abc
+            
             
 #             [
 #                 lo_Actions__BUSL__IDs[5]

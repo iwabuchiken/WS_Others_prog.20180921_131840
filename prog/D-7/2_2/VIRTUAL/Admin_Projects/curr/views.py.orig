@@ -4291,7 +4291,7 @@ def _tester_BUSL__V2__Param_37_1__Adimn_Parse_Trade_Reports(request):
 #     f_Src_Html = open(fpath_Src_Html, "r")
 #     
 #     html =  f_Src_Html.read()
-# #     html =  """HTMLãƒ†ã‚­ã‚¹ãƒˆ"""
+# #     html =  """HTMLƒeƒLƒXƒg"""
 #     soup_2 = BeautifulSoup(html.text, "lxml")    
     
         

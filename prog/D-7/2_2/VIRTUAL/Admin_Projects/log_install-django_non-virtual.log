@@ -1,0 +1,14 @@
+C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects>python -m pip i
+nstall django==1.10
+Collecting django==1.10
+  Cache entry deserialization failed, entry ignored
+  Cache entry deserialization failed, entry ignored
+  Downloading https://files.pythonhosted.org/packages/4b/4c/059f68d8f029f7054e4e
+6bb0b1ed2fde7f28d07a3727325727d5a95ae1b8/Django-1.10-py2.py3-none-any.whl (6.8MB
+)
+    100% |################################| 6.8MB 125kB/s
+Installing collected packages: django
+Successfully installed django-1.10
+You are using pip version 9.0.1, however version 18.1 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' comm
+and.

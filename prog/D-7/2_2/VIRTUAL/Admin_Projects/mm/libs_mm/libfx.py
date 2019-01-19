@@ -6012,7 +6012,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
         
 #         msg = "\nsource = %s\nlen of entries = %d\naverage = %.05f\nstd deviation = %.05f" \
 #         msg = "\nsource = %s\nlen of entries = %d\nbar type = %s\naverage = %.05f\nstd deviation = %.05f" \
-        msg = "\nlog file = %s\nsource = %s\nlen of entries = %d\nbar type = %s" \
+        msg = "\nlog file = %s\nsource\t=\t%s\nlen of entries\t=\t%d\nbar type\t=\t%s" \
                 % (
                     fname_Log_File
                     , fname_CSV_File
@@ -6020,7 +6020,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__AllBars(\
                     , "all bars"
                    )
         
-        msg += "\naverage = %.05f\naverage (HL) = %.05f\nstd deviation = %.05f" \
+        msg += "\naverage\t=\t%.05f\naverage (HL)\t=\t%.05f\nstd deviation\t=\t%.05f" \
                 % (
                     avg
                     , avg_HL
@@ -6148,7 +6148,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
                     fname_Log_File
                    )
         
-        msg += "\nsource = %s\nlen of entries = %d\nbar type = %s\ntarget = %d" \
+        msg += "\nsource\t=\t%s\nlen of entries\t=\t%d\nbar type\t=\t%s\ntarget\t=\t%d" \
                 % (
                     fname_CSV_File
                     , lenOf_BarDatas
@@ -6156,8 +6156,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
                     , cntOf_TargetBars
                    )
         
-#         msg += "\naverage = %.05f\nstd deviation = %.05f" \
-        msg += "\naverage = %.05f\naverage(HL) = %.05f\nstd deviation = %.05f" \
+#         msg += "\naverage\t=\t%.05f\nstd deviation\t=\t%.05f" \
+        msg += "\naverage\t=\t%.05f\naverage(HL)\t=\t%.05f\nstd deviation\t=\t%.05f" \
                 % (
                     avg
                     , avg_HL
@@ -6285,7 +6285,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
                     fname_Log_File
                    )
         
-        msg += "\nsource = %s\nlen of entries = %d\nbar type = %s\ntarget = %d" \
+        msg += "\nsource\t=\t%s\nlen of entries\t=\t%d\nbar type\t=\t%s\ntarget\t=\t%d" \
                 % (
                     fname_CSV_File
                     , lenOf_BarDatas
@@ -6293,8 +6293,8 @@ def _BUSL_3__Stat__Diff_Of_Bars__DownBars(\
                     , cntOf_TargetBars
                    )
         
-#         msg += "\naverage = %.05f\nstd deviation = %.05f" \
-        msg += "\naverage = %.05f\naverage (HL) = %.05f\nstd deviation = %.05f" \
+#         msg += "\naverage\t=\t%.05f\nstd deviation\t=\t%.05f" \
+        msg += "\naverage\t=\t%.05f\naverage (HL)\t=\t%.05f\nstd deviation\t=\t%.05f" \
                 % (
                     avg
                     , avg_HL

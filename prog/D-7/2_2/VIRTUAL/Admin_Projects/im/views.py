@@ -468,8 +468,8 @@ def _im_actions__Ops_15(action): # /im/im_action
 
     for text in ao_Lines:
 
-        if "成功:" in text.decode("shift-jis") : #if "成功:" in text
-#         if "成功:" in text : #if "成功:" in text
+        if "謌仙粥:" in text.decode("shift-jis") : #if "謌仙粥:" in text
+#         if "謌仙粥:" in text : #if "謌仙粥:" in text
 
             print("[%s:%d] success =>" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -480,7 +480,7 @@ def _im_actions__Ops_15(action): # /im/im_action
 
             cnt_Success += 1
 
-        elif "エラー:" in text.decode("shift-jis") : #if "成功:" in text
+        elif "繧ｨ繝ｩ繝ｼ:" in text.decode("shift-jis") : #if "謌仙粥:" in text
 
             print("[%s:%d] error =>" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -491,7 +491,7 @@ def _im_actions__Ops_15(action): # /im/im_action
 
             cnt_Error += 1
 
-        #/if "成功:" in text
+        #/if "謌仙粥:" in text
 
     #/for text in ao_Lines:
 
@@ -504,7 +504,7 @@ def _im_actions__Ops_15(action): # /im/im_action
 # 
 #     msg = None
 #     
-#     if "成功:" in res_Str : #if condition
+#     if "謌仙粥:" in res_Str : #if condition
 # 
 #         msg = "process => successfull"
 #         
@@ -1103,7 +1103,7 @@ def _im_actions__Ops_11_0(action, request): # /im/im_action
 
     command = "C:\\WORKS_2\\Programs\\sakura\\sakura.exe"
 #     command = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
-                # OSError: [WinError 193] %1 は有効な Win32 アプリケーションではありません。
+                # OSError: [WinError 193] %1 縺ｯ譛牙柑縺ｪ Win32 繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲�
 #     command = action
     arg1 = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
 
@@ -1470,7 +1470,7 @@ def _im_actions__Ops_10_1(action, request): # /im/im_action
 #     
 #     command = "C:\\WORKS_2\\Programs\\sakura\\sakura.exe"
 # #     command = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
-#                 # OSError: [WinError 193] %1 は有効な Win32 アプリケーションではありません。
+#                 # OSError: [WinError 193] %1 縺ｯ譛牙柑縺ｪ Win32 繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲�
 # #     command = action
 #     arg1 = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
 #     
@@ -1564,7 +1564,7 @@ def _im_actions__Ops_9_1(action): # /im/im_action
 
     command = "C:\\WORKS_2\\Programs\\sakura\\sakura.exe"
 #     command = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
-                # OSError: [WinError 193] %1 は有効な Win32 アプリケーションではありません。
+                # OSError: [WinError 193] %1 縺ｯ譛牙柑縺ｪ Win32 繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲�
 #     command = action
     arg1 = "%s\\%s" % (cons_im.FPath.DPATH_CMD_LIB_WS_CAKE_IFM11.value, action)
 

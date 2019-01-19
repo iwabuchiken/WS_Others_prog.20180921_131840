@@ -1,0 +1,9 @@
+[20190118_122213 / libfx.py:6307] 
+log file = op_3-2.diff-of-bars.down-bars.(2018-11-21)-20190113_092728.20190118_122212.log
+source	=	list_4-3.slice-by-day.(2018-11-21).20190113_092728.csv
+len of entries	=	1433
+bar type	=	down bars
+target	=	653
+average	=	-0.01197
+average (HL)	=	0.02193
+std deviation	=	0.01233

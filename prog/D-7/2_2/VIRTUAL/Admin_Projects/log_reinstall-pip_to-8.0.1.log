@@ -1,0 +1,23 @@
+(env) C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects>pip insta
+ll pip==8.0.1
+Collecting pip==8.0.1
+  Downloading https://files.pythonhosted.org/packages/45/9c/6f9a24917c860873e2ce
+7bd95b8f79897524353df51d5d920cd6b6c1ec33/pip-8.0.1-py2.py3-none-any.whl (1.2MB)
+    100% |################################| 1.2MB 806kB/s
+Installing collected packages: pip
+  Found existing installation: pip 18.1
+    Uninstalling pip-18.1:
+      Successfully uninstalled pip-18.1
+Could not install packages due to an EnvironmentError: [WinError 5] アクセスが拒
+否されました。: 'C:\\Users\\IWABUC~1\\AppData\\Local\\Temp\\pip-uninstall-vzbfnc
+2k\\works_2\\ws\\ws_others\\prog\\d-7\\2_2\\virtual\\env\\scripts\\pip.exe'
+Consider using the `--user` option or check the permissions.
+
+
+(env) C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects>pip insta
+ll pip==8.0.1 --user
+Can not perform a '--user' install. User site-packages are not visible in this v
+irtualenv.
+You are using pip version 8.0.1, however version 18.1 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' comm
+and.

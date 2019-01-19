@@ -1,0 +1,8 @@
+[20190119_131817 / libfx.py:6033] 
+log file = op_3-2.diff-of-bars.all-bars.EURJPY-Period-D1.20190119_131817.log
+source	=	44_3.2_15_file-io.EURJPY.Period-D1.Days-2000.Bars-2000.20180903_135712.(2018-06).20190117_132128.csv
+len of entries	=	21
+bar type	=	all bars
+average	=	0.13871
+average (HL)	=	1.15848
+std deviation	=	0.77360
