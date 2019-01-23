@@ -9,6 +9,18 @@ start_env
 pushd C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\ops\5.1\38-\
 python 1_1.py
 
+python 1_1.py dpath_Src_HTML="C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades" timestamp fname_Dst_CSV="trade.down-down-buy.(20190122_230530).(e-j,M1).csv"
+
+    dpath_Src_HTML = "C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades"
+    
+    fname_Src_HTML = "DetailedStatement.(20190122_230530).(e-j,M1).htm"
+#     fname_Src_HTML = "DetailedStatement.(20190117_231722).(e-j,M1).htm"
+
+    dpath_Dst_CSV = "C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades"
+    fname_Dst_CSV = "trade_log.(20190122_230530).(e-j,M1).csv"
+    fname_Dst_CSV="trade.down-down-buy.(20190122_230530).(e-j,M1).csv"
+
+
 '''
 ###############################################
 import sys
@@ -30,9 +42,9 @@ from mm.libs_mm import cons_mm, cons_fx, libs, libfx
     import : built-in modules        
 ###################'''
 import os, io
-#ref https://uguisu.skr.jp/Windows/python3.html
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8') #
-# sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8') #
+# #ref https://uguisu.skr.jp/Windows/python3.html
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8') #
+# # sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8') #
 
 '''###################
     import : discrete modules
@@ -52,6 +64,563 @@ def show_Message() :
     -p	Phase of the sine curves ---> sin(2 * np.pi * f0 * n * phase / fs)'''
     
     print (msg)
+
+#xxx
+def _test_2__20190123_100239__CommandLine_Args():
+    
+    '''###################
+        vars
+    ###################'''
+    #ref C:\Users\iwabuchiken\AppData\Roaming\MetaQuotes\Terminal\B9B5D4C0EA7B43E1F3A680F94F757B3D\MQL4\Files\Report_Trades
+    dpath_Src_HTML = "C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades"
+    
+    fname_Src_HTML = "DetailedStatement.(20190122_230530).(e-j,M1).htm"
+#     fname_Src_HTML = "DetailedStatement.(20190117_231722).(e-j,M1).htm"
+
+    dpath_Dst_CSV = "C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades"
+    fname_Dst_CSV = "trade_log.(20190122_230530).(e-j,M1).csv"
+
+    #ddd
+    '''###################
+        get : command line args
+            fname_Src_HTML
+    ###################'''
+    #ref https://www.tutorialspoint.com/python/python_command_line_arguments.htm
+    lo_Args = sys.argv
+
+    print()
+    
+    print("[%s:%d] lo_Args =>" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            ), file=sys.stdout)
+    print(lo_Args)
+    
+    # arg for file name?
+    for item in lo_Args[1:]:
+                    
+        # detection
+        '''###################
+            fname_Src_HTML
+        ###################'''
+        #ref https://www.tutorialspoint.com/python/string_startswith.htm
+#         if item.startswith("filename=") : #if item.startswith("filename=")
+        if item.startswith("fname_Src_HTML=") : #if item.startswith("filename=")
+            # update : file name
+            fname_Src_HTML = item.split("=")[1]
+
+            print()
+            
+            print("[%s:%d] fname_Src_HTML => updated : %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , fname_Src_HTML
+                    ), file=sys.stdout)
+    
+    #/if item.startswith("filename=")
+    
+        '''###################
+            dpath_Src_HTML
+        ###################'''
+        #ref https://www.tutorialspoint.com/python/string_startswith.htm
+#         if item.startswith("filename=") : #if item.startswith("filename=")
+        if item.startswith("dpath_Src_HTML=") : #if item.startswith("filename=")
+            # update : file name
+            dpath_Src_HTML = item.split("=")[1]
+
+            print()
+            
+            print("[%s:%d] dpath_Src_HTML => updated : %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , dpath_Src_HTML
+                    ), file=sys.stdout)
+    
+        '''###################
+            dpath_Dst_CSV
+        ###################'''
+        #ref https://www.tutorialspoint.com/python/string_startswith.htm
+#         if item.startswith("filename=") : #if item.startswith("filename=")
+        if item.startswith("dpath_Dst_CSV=") : #if item.startswith("filename=")
+            # update : file name
+            dpath_Dst_CSV = item.split("=")[1]
+
+            print()
+            
+            print("[%s:%d] dpath_Dst_CSV => updated : %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , dpath_Dst_CSV
+                    ), file=sys.stdout)
+            
+        '''###################
+            fname_Dst_CSV
+        ###################'''
+        #ref https://www.tutorialspoint.com/python/string_startswith.htm
+#         if item.startswith("filename=") : #if item.startswith("filename=")
+        if item.startswith("fname_Dst_CSV=") : #if item.startswith("filename=")
+            # update : file name
+            fname_Dst_CSV = item.split("=")[1]
+
+            print()
+            
+            print("[%s:%d] fname_Dst_CSV => updated : %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , fname_Dst_CSV
+                    ), file=sys.stdout)
+            
+        '''###################
+            add time stamp
+        ###################'''
+        #ref https://www.tutorialspoint.com/python/string_startswith.htm
+        if item.startswith("timestamp") : #if item.startswith("filename=")
+            # update : file name
+            #ref https://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python#541394
+            filetrunk, ext = os.path.splitext(fname_Dst_CSV)
+            
+            fname_Dst_CSV = "%s.%s%s" % (filetrunk, libs.get_TimeLabel_Now(), ext)
+
+            print()
+            
+            print("[%s:%d] fname_Dst_CSV => updated : %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , fname_Dst_CSV
+                    ), file=sys.stdout)
+
+        
+        
+    #/if item.startswith("filename=")
+        
+    #/for item in lo_Args[1:]:
+
+    print()
+    
+    print("[%s:%d] source file info --------------\n" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+
+            ), file=sys.stdout)
+    
+    print()
+    
+    print("fname_Src_HTML => %s\n" % \
+            (fname_Src_HTML), file=sys.stdout)
+    
+    print("dpath_Src_HTML => %s\n" % \
+            (dpath_Src_HTML), file=sys.stdout)
+    
+    '''###################
+        return        
+    ###################'''
+    return (dpath_Src_HTML, fname_Src_HTML, dpath_Dst_CSV, fname_Dst_CSV)
+#     return (dpath_Src_HTML, fname_Src_HTML)
+
+#/def _test_2__20190123_100239__CommandLine_Args():    
+'''###################
+    _test_2__20190123_100239__Write_To_CSVFile
+    
+    @return: 
+            0<    : file written (num of written lines)
+            -1    : file not exist (source)
+            -2    : file not exist (dst)
+    
+    @created : 20190123_105056
+    
+###################'''
+def _test_2__20190123_100239__Write_To_CSVFile( \
+        lo_File_Info, lo_TDs):
+    
+    '''###################
+        get : file infos        
+    ###################'''
+    [dpath_Src_HTML, fname_Src_HTML, dpath_Dst_CSV, fname_Dst_CSV] = \
+                lo_File_Info
+
+    '''###################
+        file : open
+    ###################'''
+    fpath_Src_Full = os.path.join(dpath_Src_HTML, fname_Src_HTML)
+    fpath_Dst_Full = os.path.join(dpath_Dst_CSV, fname_Dst_CSV)
+
+    print()
+    
+    print("[%s:%d] fpath_Dst_Full ===> '%s'\n" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , fpath_Dst_Full
+            ), file=sys.stdout)
+    
+#     # validate : existence
+#     #ref is file http://gesource.jp/programming/python/code/0008.html
+#     if not os.path.isfile(fpath_Src_Full) : #if not os.path.isfile(fpath_Src_Full)
+#         
+#         # report
+#         print()
+#         print("[%s:%d] file(source) ---> not exist : '%s'" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          , fpath_Src_Full
+#                         ), file=sys.stdout)
+#         
+#         return -1
+#     
+#     #/if not os.path.isfile(fpath_Src_Full)
+#     
+#     # file : dest
+#     if not os.path.isfile(fpath_Dst_Full) : #if not os.path.isfile(fpath_Dst_Full)
+#         
+#         # report
+#         print()
+#         print("[%s:%d] file(dest) ---> not exist : '%s'" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          , fpath_Dst_Full
+#                         ), file=sys.stdout)
+#         
+#         return -2
+#     
+#     #/if not os.path.isfile(fpath_Dst_Full)
+
+    # open
+    fout = open(fpath_Dst_Full, "w")
+    
+    '''###################
+        file : write
+    ###################'''
+    '''###################
+        file : write : meta info
+    ###################'''
+    fout.write("dpath_Src_HTML\t%s" % dpath_Src_HTML)
+    fout.write("\n")
+    fout.write("fname_Src_HTML\t%s" % fname_Src_HTML)
+    fout.write("\n")
+    
+    fout.write("dpath_Dst_CSV\t%s" % dpath_Dst_CSV)
+    fout.write("\n")
+    fout.write("fname_Dst_CSV\t%s" % fname_Dst_CSV)
+    fout.write("\n")
+    
+    '''###################
+        file : write : TDs
+    ###################'''
+    for item in lo_TDs:
+    
+        # build line
+        str_TD_Data = "\t".join(item)
+        
+        # write
+        fout.write(str_TD_Data)
+        fout.write("\n")
+        
+    #/for item in lo_TDs:
+
+    '''###################
+        file : close
+    ###################'''
+    fout.close()
+
+    print()
+    print("[%s:%d] file ---> written : '%s'" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , fpath_Dst_Full
+                    ), file=sys.stdout)
+    
+    #ddd
+    '''###################
+        return
+    ###################'''
+    return True
+        
+#/def _test_2__20190123_100239__Write_To_CSVFile():
+    
+'''###################
+    _test_2__20190123_100239__Collect_TDs
+    
+    @return: 
+        list of TDs
+        
+    @created : 20190123_123256
+    
+###################'''
+def _test_2__20190123_100239__Collect_TDs(soup):
+
+    '''###################
+        vars
+    ###################'''
+    cntOf_Debug = 0
+    maxOf_CntOf_Debug = 10
+
+    
+    '''###################
+        collect : TRs
+    ###################'''
+    # TRs
+    lo_TRs = soup.find_all("tr")
+#     lo_TRs = soup.find("tr")
+    
+    print()
+    
+    print("[%s:%d] len(lo_TRs) => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , len(lo_TRs)
+            ), file=sys.stdout)
+    
+    '''###################
+        collect : TDs
+    ###################'''
+    # list of scraped TDs
+    lo_TDs = []
+    
+    for TR in lo_TRs:
+
+        '''###################
+            step 1 : 
+                collect tags : TDs
+        ###################'''
+        # find : TDs
+        TDs = TR.find_all("td")
+        
+        # get : strings
+        #ref replace https://orangain.hatenablog.com/entry/20100503/1272900555
+        lo_TD_Strings = [x.string.replace('\xa0', ' ') for x in TDs]
+#         lo_TD_Strings = [x.string for x in TDs]
+        
+        '''###################
+            step : j1 :
+                "Open Trades:" ?
+        ###################'''
+        if lo_TD_Strings[0] == "Open Trades:" : #if lo_TD_Strings[0] == 
+        
+            # report : break
+            print()
+            
+            print("[%s:%d] lo_TD_Strings[0] (%d) => 'Open Trades:' ; breaking..." % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , cntOf_Debug
+                    ), file=sys.stdout)
+            print(lo_TD_Strings)
+        
+#             # report : last element in the list
+#             print()
+#             
+#             print("[%s:%d]\nlo_TDs[-1] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-1])
+#                         # ['Closed P/L:', '-71 710']            
+#                         
+#             print("[%s:%d]\nlo_TDs[-2] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-2])
+#                         # ['\xa0', '0', '0', '0', '-71 710']            
+#                         
+#             print("[%s:%d]\nlo_TDs[-3] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-3])
+#                         #          ['5207241', '2019.01.22 16:01:00', 'sell', '0.10', 'eurjpy_', '124.118', '124.159', '124.05
+#                         # 9', '2019.01.22 16:01:30', '124.059', '0', '0', '0', '590']
+        
+            # break
+            break
+        
+        #/if lo_TD_Strings[0] == 
+    
+        '''###################
+            append : TDs
+        ###################'''
+        # append
+        lo_TDs.append(lo_TD_Strings)
+        
+        # counter
+        cntOf_Debug += 1
+         
+        #/if cntOf_Debug > maxOf_CntOf_Debug
+        
+    #/for TR in lo_TRs:
+
+    '''###################
+        return
+    ###################'''
+    return lo_TDs
+
+#/def _test_2__20190123_100239__Collect_TDs(soup):
+    
+def test_2__20190123_100239():
+
+    print()
+    print("[%s:%d] test_2 =======================" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+
+                    ), file=sys.stdout)
+    
+    '''###################
+        vars
+    ###################'''
+    (dpath_Src_HTML, fname_Src_HTML, dpath_Dst_CSV, fname_Dst_CSV) = \
+                _test_2__20190123_100239__CommandLine_Args()
+#     (dpath_Src_HTML, fname_Src_HTML) = _test_2__20190123_100239__CommandLine_Args()
+    
+    '''###################
+        get : file
+    ###################'''
+    fin_HTML = open(os.path.join(dpath_Src_HTML, fname_Src_HTML), "r")
+    
+    lo_HTML_Lines = fin_HTML.read()
+    
+    fin_HTML.close()
+    
+    print()
+    
+    print("[%s:%d] Read HTML content => done" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            ), file=sys.stdout)
+    
+    '''###################
+        load : html file
+    ###################'''
+
+    '''###################
+        get : soup instance
+    ###################'''
+    soup = BeautifulSoup(lo_HTML_Lines, "lxml")
+    
+#     print()
+#     
+#     print("[%s:%d] soup => %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , type(soup)
+#             ), file=sys.stdout)
+#             #     soup => <class 'bs4.BeautifulSoup'>
+
+    '''###################
+        collect tags : TRs
+    ###################'''
+#     # TRs
+#     lo_TRs = soup.find_all("tr")
+# #     lo_TRs = soup.find("tr")
+#     
+#     print()
+#     
+#     print("[%s:%d] len(lo_TRs) => %d" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#              , len(lo_TRs)
+#             ), file=sys.stdout)
+    
+#     print()
+#     
+#     print("[%s:%d] lo_TRs[0] =>" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#              
+#             ), file=sys.stdout)
+#             
+#     print(lo_TRs[0])
+
+    '''###################
+        collect tags : TR > TDs
+    ###################'''
+#     cntOf_Debug = 0
+#     maxOf_CntOf_Debug = 10
+    
+    # list of scraped TDs
+    lo_TDs = _test_2__20190123_100239__Collect_TDs(soup)
+    
+#     # list of scraped TDs
+#     lo_TDs = []
+#     
+#     for TR in lo_TRs:
+# 
+#         '''###################
+#             step 1 : 
+#                 collect tags : TDs
+#         ###################'''
+#         # find : TDs
+#         TDs = TR.find_all("td")
+#         
+#         # get : strings
+#         #ref replace https://orangain.hatenablog.com/entry/20100503/1272900555
+#         lo_TD_Strings = [x.string.replace('\xa0', ' ') for x in TDs]
+# #         lo_TD_Strings = [x.string for x in TDs]
+#         
+#         '''###################
+#             step : j1 :
+#                 "Open Trades:" ?
+#         ###################'''
+#         if lo_TD_Strings[0] == "Open Trades:" : #if lo_TD_Strings[0] == 
+#         
+#             # report : break
+#             print()
+#             
+#             print("[%s:%d] lo_TD_Strings[0] (%d) => 'Open Trades:' ; breaking..." % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                      , cntOf_Debug
+#                     ), file=sys.stdout)
+#             print(lo_TD_Strings)
+#         
+#             # report : last element in the list
+#             print()
+#             
+#             print("[%s:%d]\nlo_TDs[-1] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-1])
+#                         # ['Closed P/L:', '-71 710']            
+#                         
+#             print("[%s:%d]\nlo_TDs[-2] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-2])
+#                         # ['\xa0', '0', '0', '0', '-71 710']            
+#                         
+#             print("[%s:%d]\nlo_TDs[-3] =>" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     ), file=sys.stdout)
+#             print("\t", lo_TDs[-3])
+#                         #          ['5207241', '2019.01.22 16:01:00', 'sell', '0.10', 'eurjpy_', '124.118', '124.159', '124.05
+#                         # 9', '2019.01.22 16:01:30', '124.059', '0', '0', '0', '590']
+#         
+#             # break
+#             break
+#         
+#         #/if lo_TD_Strings[0] == 
+#     
+#         '''###################
+#             append : TDs
+#         ###################'''
+#         # append
+#         lo_TDs.append(lo_TD_Strings)
+#         
+#         # counter
+#         cntOf_Debug += 1
+#          
+#         #/if cntOf_Debug > maxOf_CntOf_Debug
+#         
+#     #/for TR in lo_TRs:
+
+    '''###################
+        report : TDs
+    ###################'''
+    print()
+    
+    print("[%s:%d] len(lo_TDs) => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , len(lo_TDs)
+            ), file=sys.stdout)
+
+    '''###################
+        TDs : write to file
+    ###################'''
+#     #ref C:\Users\iwabuchiken\AppData\Roaming\MetaQuotes\Terminal\B9B5D4C0EA7B43E1F3A680F94F757B3D\MQL4\Files\Report_Trades
+#     dpath_Dst_CSV = "C:\\Users\\iwabuchiken\\AppData\\Roaming\\MetaQuotes\\Terminal\\B9B5D4C0EA7B43E1F3A680F94F757B3D\\MQL4\\Files\\Report_Trades"
+#     
+#     fname_Dst_CSV = "trade_log.(20190122_230530).(e-j,M1).csv"
+
+    # write to file
+    res = _test_2__20190123_100239__Write_To_CSVFile(
+                [dpath_Src_HTML, fname_Src_HTML, dpath_Dst_CSV, fname_Dst_CSV]
+                , lo_TDs
+                )
+
+    #ccc
+
+    #debug
+    return
+
+
+#/def test_2__20190123_100239()
 
 def test_1():
 
@@ -337,7 +906,7 @@ def test_1():
             # <td class="mspt">-1 070</td>
             #                 ==> -1 070
 
-#     ccc
+#     @_20190122_140536
 
 #/ def test_1():
 
@@ -346,7 +915,8 @@ def exec_prog():
     '''###################
         ops        
     ###################'''
-    test_1()
+    test_2__20190123_100239()
+#     test_1()
     
     print("[%s:%d] exec_prog() => done" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
