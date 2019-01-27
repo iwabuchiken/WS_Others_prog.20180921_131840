@@ -312,3 +312,6 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190124_142125 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-19).20190113_092728.csv
 
+[20190127_111118 / views.py:3937] 
+
+starting : tester_BuyUps_SellLows =======================
