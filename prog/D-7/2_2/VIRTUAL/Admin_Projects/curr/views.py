@@ -4334,7 +4334,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
     #debug
     print()
-    print("[%s:%d] html file exisits? => %s (%s)" % \
+    print("[%s:%d] csv file exisits? => %s (%s)" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         , res, fpath_Src_CSV
         ), file=sys.stderr)
@@ -4345,15 +4345,28 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
         status = -1
         
-        msg = "Param_37_1__Adimn_Parse_Trade_Reports : html source file ---> NOT exist : %s" % (fpath_Src_CSV)
+        msg = "(ERROR) Param_37_1__Adimn_Parse_Trade_Reports : csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
         
         return (status, msg)
         
     #/if res == False
 
     '''###################
-        parce
+        get : list of bardatas
     ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    #ccc
     '''###################
         return        
     ###################'''
@@ -4640,7 +4653,20 @@ def tester_BuyUps_SellLows__V2(request):
 #ccc
         
         #ref color names https://html-color-codes.info/color-names/
-        str_Color_Name = "DarkGreen"
+#         str_Color_Name = "DarkGreen"
+        str_Color_Name = ""
+        
+        if msg.startswith("(ERROR)") : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "red"
+        
+        else : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "DarkGreen"
+        
+        #/if msg.startswith("(ERROR)")
+        
+        
         
         dic['message'] = \
                 "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
