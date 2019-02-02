@@ -4220,7 +4220,7 @@ def _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS(request):
             -2    source file extension ---> not ".html" nor ".htm"
             
 ###################'''
-#xxx
+
 def _tester_BUSL__V2__Param_37_1__Adimn_Parse_Trade_Reports(request):
     
     '''###################
@@ -4291,7 +4291,7 @@ def _tester_BUSL__V2__Param_37_1__Adimn_Parse_Trade_Reports(request):
 #     f_Src_Html = open(fpath_Src_Html, "r")
 #     
 #     html =  f_Src_Html.read()
-# #     html =  """HTMLテキスト"""
+# #     html =  """HTML繝�繧ｭ繧ｹ繝�"""
 #     soup_2 = BeautifulSoup(html.text, "lxml")    
     
         
@@ -4310,6 +4310,63 @@ def _tester_BUSL__V2__Param_37_1__Adimn_Parse_Trade_Reports(request):
     return (status, msg)
     
 #/ def _tester_BUSL__V2__Param_37_1__Adimn_Parse_Trade_Reports(request):
+
+#xxx
+def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
+    
+    '''###################
+        params : csv file name
+    ###################'''
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+
+    '''###################
+        file : validate : exists
+    ###################'''
+    #ref join https://torina.top/detail/249/
+    dpath_Src_CSV = _req_dpath_csv
+    fname_Src_CSV = _req_param_bardata_csv_file
+    
+    #ref https://torina.top/detail/249/
+    fpath_Src_CSV = os.path.join(dpath_Src_CSV, fname_Src_CSV)
+    
+    res = os.path.isfile(fpath_Src_CSV)
+    
+    #debug
+    print()
+    print("[%s:%d] html file exisits? => %s (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , res, fpath_Src_CSV
+        ), file=sys.stderr)
+            # [views.py:3997] csv file exisits? => True
+    
+    # validation
+    if res == False : #if res == False
+    
+        status = -1
+        
+        msg = "Param_37_1__Adimn_Parse_Trade_Reports : html source file ---> NOT exist : %s" % (fpath_Src_CSV)
+        
+        return (status, msg)
+        
+    #/if res == False
+
+    '''###################
+        parce
+    ###################'''
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    msg = "PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell"
+    
+    msg += "<br>Src_CSV = %s" % (fname_Src_CSV)
+    
+    msg += "<br>dpath_csv = %s" % (_req_dpath_csv)
+    
+    return (status, msg)
+    
+#/ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
 def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     
@@ -4558,7 +4615,7 @@ def tester_BuyUps_SellLows__V2(request):
         dic['message'] = \
                 "<br><div style='color : red;'>%s</div>" % (msg)
 #                 "<br><div style='color : red;'>stats : consequtive U/D</div>"
-#abc
+
     elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[12] :
         '''###################
             "37-1"
@@ -4571,6 +4628,23 @@ def tester_BuyUps_SellLows__V2(request):
 
         dic['message'] = \
                 "<br><div style='color : red;'>%s</div>" % (msg)
+
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[13] :
+        '''###################
+            "37-1"
+            admin : extract from html reports
+        ###################'''
+        # call func
+        (status, msg) = \
+            _BUSL3_Tester_No_42_1__BuyUpSellDown(request)
+#ccc
+        
+        #ref color names https://html-color-codes.info/color-names/
+        str_Color_Name = "DarkGreen"
+        
+        dic['message'] = \
+                "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
+#                 "<br><div style='color : red;'>%s</div>" % (msg)
 
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     

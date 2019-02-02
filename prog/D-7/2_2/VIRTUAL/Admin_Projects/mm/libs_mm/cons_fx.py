@@ -281,6 +281,8 @@ class ParamConstants(Enum):
         param : 36~
     ###################'''
     PARAM_BUSL3_CMD_37_1__Admin_Parse_Trade_Reports = "parse_reports"
+    
+    PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell = "up-buy-down-sell"
 
 #/ class ParamConstants(Enum):
     
@@ -305,6 +307,7 @@ class Tester(Enum):
     # max key value : 10 : 20181214_153849
     # max key value : 11 : 20190112_084810
     # max key value : 12 : 20190118_123056
+    # max key value : 13 : 20190202_085325
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -324,6 +327,7 @@ class Tester(Enum):
             , 11 : "4-3"     # 4
     
             , 12 : "37-1"     #
+            , 13 : "42-1"     # """tester_1"" > up --> then buy; down, sell"
             
             
         }
@@ -445,7 +449,18 @@ class Tester(Enum):
                 , "1) extract transactions ==> write to files" \
                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20190118_123803"
-            ],      #abc
+            ],     
+                        
+            [
+                lo_Actions__BUSL__IDs[13]
+                ,"tester : buy the up, sell the down"
+                , ParamConstants.PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell.value
+                , "1) test on the data ==> write to files" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+                , "20190202_085325"
+            ],     
+
+#abc
             
             
 #             [
