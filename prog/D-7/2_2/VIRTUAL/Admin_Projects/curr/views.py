@@ -4366,7 +4366,268 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                         , len(lo_BarDatas)
                         ), file=sys.stderr)
 
-    #ccc
+    '''###################
+        adjust : order of the list
+    ###################'''
+    bar_Start = lo_BarDatas[0]
+    bar_End = lo_BarDatas[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas[0].dateTime
+                             , lo_BarDatas[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    '''###################
+        prep : log file
+    ###################'''
+    tlabel = libs.get_TimeLabel_Now()
+    
+    dpath_Log = cons_fx.FPath.dpath_LogFile.value
+    
+    fname_Log = "no-42.[tester-1].%s.log" % tlabel 
+    
+    fpath_Log = os.path.join(dpath_Log, fname_Log)
+    
+    fout_Log = open(fpath_Log, "w")
+
+    '''###################
+        log : meta info
+    ###################'''
+    msg = "source csv\t=\t%s" % fname_Src_CSV
+    msg += "\n"
+
+    msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+        
+    msg += "log file name\t=\t%s" % fname_Log
+    msg += "\n"
+        
+    msg += "log file dpath\t=\t%s" % dpath_Log
+    msg += "\n"
+        
+    msg += "this file created at\t=\t%s" % tlabel
+    msg += "\n"
+    msg += "\n"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(
+                msg_Log
+                , dpath_Log, fname_Log
+                , 2)
+
+    '''###################
+        vars
+    ###################'''
+    # general
+    margin_SL = 0.02    # JPY
+    margin_TP = 0.04    # JPY
+    
+    # flags
+    flg_Pos = False
+    
+    # others
+    pos = {
+             "pr_op" : 0
+           , "pr_curr" : 0
+           , "pr_SL" : 0
+           , "pr_TP" : 0
+           
+           , "idx_open" : 0
+           , "idx_curr" : 0
+           , "idx_SL" : 0
+           , "idx_TP" : 0
+           }
+    
+    '''###################
+        flowcharting
+    ###################'''
+    
+    lenOf_LO_BarDatas = len(lo_BarDatas)
+    
+    for i in range(0, lenOf_LO_BarDatas):
+        '''###################
+            step : 0
+                report : iteration
+        ###################'''
+        msg = "for-loop starts --------------- (itr = %d)" % (i)
+
+        print()
+        print("[%s:%d] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg
+                            ), file=sys.stderr)
+        
+        #ccc
+        
+        msg_Log = "[%s / %s:%d] %s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , msg)
+        
+        libs.write_Log(
+                    msg_Log
+                    , dpath_Log, fname_Log
+                    , 2)
+        
+        '''###################
+            step : 1
+                get instances
+        ###################'''
+        e0 = lo_BarDatas[i]
+        
+        d0 = e0.price_Close - e0.price_Open
+     
+        '''###################
+            step : j1
+                position ---> taken ?
+        ###################'''
+        if flg_Pos == False : #if flg_Pos == False
+            '''###################
+                step : j1 : N
+                    position ---> NOT taken
+            ###################'''
+            msg = "\n(j1 : Y) position ---> NOT taken (flg_Pos = %s)(i = %d / %s)" \
+                    % (
+                        flg_Pos
+                        , i, e0.dateTime
+                        )
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_Log, fname_Log
+                        , 2)
+
+            '''###################
+                step : j1 : N : 1
+                    flag ---> true
+            ###################'''
+            flg_Pos = True
+
+            '''###################
+                step : j1 : N : 2
+                    Pos struct ---> set values
+            ###################'''
+            pos['pr_op'] = e0.price_Open
+            pos['pr_curr'] = e0.price_Open
+            pos['idx_op'] = i
+            pos['idx_curr'] = i
+            
+            pos['pr_SL'] = e0.price_Open - margin_SL
+            pos['pr_TP'] = e0.price_Open + margin_TP
+            
+            # log
+            msg = "\n(j1 : N : 2) Pos struct ---> set values"
+            msg += "(i = %d / %s)" \
+                    % (
+                       i, e0.dateTime
+                       )
+            msg += "\n"
+            
+            msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+            msg += "\n"
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_Log, fname_Log
+                        , 2)
+
+        #ccc
+        
+        else : #if flg_Pos == False
+            '''###################
+                step : j1 : Y
+                    position ---> taken
+            ###################'''
+            msg = "\n(j1 : Y) position ---> taken (flg_Pos = %s)" % (flg_Pos)
+            
+            msg += "(i = %d / %s)" % (i, e0.dateTime)
+            msg += "\n"
+
+            msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+            msg += "\n"
+            
+            msg += "\t%s\t%0.3f" % ("gain/loss", pos['pr_curr'] - pos['pr_op'])
+            msg += "\n"
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_Log, fname_Log
+                        , 2)
+        
+            #debug
+            break
+        
+        #/if flg_Pos == False
+        
+        
+         
+    #/for i in range(0, lenOf_LO_BarDatas - 1):
+
+    '''###################
+        close : log file
+    ###################'''
+    fout_Log.close()
+        
     '''###################
         return        
     ###################'''
