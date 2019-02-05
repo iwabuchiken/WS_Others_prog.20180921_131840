@@ -4461,10 +4461,12 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
            , "pr_SL" : 0
            , "pr_TP" : 0
            
-           , "idx_open" : 0
-           , "idx_curr" : 0
-           , "idx_SL" : 0
-           , "idx_TP" : 0
+           , "idx_open" : -1
+           , "idx_curr" : -1
+           , "idx_SL" : -1
+           , "idx_TP" : -1
+           
+           , "idx_id" : -1
            }
     
     '''###################
@@ -4485,8 +4487,6 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                             (os.path.basename(libs.thisfile()), libs.linenum()
                             , msg
                             ), file=sys.stderr)
-        
-        #ccc
         
         msg_Log = "[%s / %s:%d] %s" % \
                 (
@@ -4543,11 +4543,12 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                 step : j1 : N : 2
                     Pos struct ---> set values
             ###################'''
-            pos['pr_op'] = e0.price_Open
-            pos['pr_curr'] = e0.price_Open
+            pos['pr_op'] = e0.price_Close
+            pos['pr_curr'] = e0.price_Close
             pos['idx_op'] = i
             pos['idx_curr'] = i
-            
+            pos['idx_id'] = e0.no
+            #ccc
             pos['pr_SL'] = e0.price_Open - margin_SL
             pos['pr_TP'] = e0.price_Open + margin_TP
             
@@ -4613,9 +4614,163 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                         msg_Log
                         , dpath_Log, fname_Log
                         , 2)
-        
-            #debug
-            break
+
+            '''###################
+                step : j1 : Y : 1
+                    position ---> update
+            ###################'''
+            pos['pr_curr'] = e0.price_Close
+            pos['idx_curr'] = i
+
+            msg = "\n(j1 : Y) position ---> updated"
+            
+            msg += "(i = %d / %s)" % (i, e0.dateTime)
+            msg += "\n"
+
+            msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+            msg += "\n"
+            msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+            msg += "\n"
+            
+            msg += "\t%s\t%d (%s)" \
+                    % (
+                       "pos['idx_op']"
+                       , pos['idx_op']
+                       , lo_BarDatas[pos['idx_op']].dateTime)
+            msg += "\n"
+            
+            msg += "\t%s\t%d (%s)" \
+                    % (
+                       "pos['idx_curr']"
+                       , pos['idx_curr']
+                       , lo_BarDatas[pos['idx_curr']].dateTime)
+            msg += "\n"
+            
+            msg += "\t%s\t%0.3f" % ("gain/loss", pos['pr_curr'] - pos['pr_op'])
+            msg += "\n"
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            libs.write_Log(
+                        msg_Log
+                        , dpath_Log, fname_Log
+                        , 2)
+
+            '''###################
+                step : j2
+                    price : current < SL ?
+                    ==> less than SL?
+            ###################'''
+            cond_j2 = (pos['pr_curr'] < pos['pr_SL'])
+            
+            if cond_j2 == True : #if cond_j2 == True
+                '''###################
+                    step : j2 : Y
+                        less than SL
+                ###################'''
+                msg = "(j2 : Y) current price ---> less than SL"
+                msg += "\n"
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_Log, fname_Log
+                            , 2)
+            
+                #debug
+                break
+            
+            else : #if cond_j2 == True
+                '''###################
+                    step : j2 : N
+                        NOT less than SL
+                ###################'''
+                msg = "(j2 : N) current price ---> NOT less than SL"
+                msg += "\n"
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log
+                            , dpath_Log, fname_Log
+                            , 2)
+            
+#                 #debug
+#                 break
+
+                '''###################
+                    step : j3
+                        current price > TP ?
+                ###################'''
+                cond_j3 = (pos['pr_curr'] > pos['pr_TP'])
+                
+                if cond_j3 == False : #if cond_j3 == False
+                    '''###################
+                        step : j3 : N
+                            NOT --> current price > TP
+                    ###################'''
+                    msg = "(j3 : N) NOT --> current price > TP"
+                    msg += "\n"
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                            (
+                            libs.get_TimeLabel_Now()
+                            , os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg)
+                    
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                
+#                     #debug
+#                     break
+                
+                else : #if cond_j3 == False
+                
+                    '''###################
+                        step : j3 : Y
+                            YES --> current price > TP
+                    ###################'''
+                    msg = "(j3 : N) YES --> current price > TP"
+                    msg += "\n"
+                    
+                    msg_Log = "[%s / %s:%d] %s" % \
+                            (
+                            libs.get_TimeLabel_Now()
+                            , os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg)
+                    
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                
+                    #debug
+                    break
+                    
+                
+                #/if cond_j3 == False
+                
+                #ccc
+            
+            #/if cond_j2 == True
+            
+            
+            
+#             #debug
+#             break
         
         #/if flg_Pos == False
         

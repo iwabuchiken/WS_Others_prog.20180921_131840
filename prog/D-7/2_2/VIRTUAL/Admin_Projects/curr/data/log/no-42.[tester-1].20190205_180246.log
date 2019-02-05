@@ -1,0 +1,43 @@
+[20190205_180246 / views.py:4439] source csv	=	list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190205_180246.log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190205_180246
+
+
+
+[20190205_180246 / views.py:4494] for-loop starts --------------- (itr = 0)
+
+[20190205_180246 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 0 / 2018.11.14 12:46)
+
+[20190205_180246 / views.py:4575] 
+(j1 : N : 2) Pos struct ---> set values(i = 0 / 2018.11.14 12:46)
+	pos['pr_op']	128.402
+	pos['pr_curr']	128.402
+	pos['pr_SL']	128.352
+	pos['pr_TP']	128.412
+
+
+[20190205_180246 / views.py:4494] for-loop starts --------------- (itr = 1)
+
+[20190205_180246 / views.py:4610] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 1 / 2018.11.14 12:47)
+	pos['pr_op']	128.402
+	pos['pr_curr']	128.402
+	pos['pr_SL']	128.352
+	pos['pr_TP']	128.412
+	gain/loss	0.000
+
+
+[20190205_180246 / views.py:4659] 
+(j1 : Y) position ---> updated(i = 1 / 2018.11.14 12:47)
+	pos['pr_op']	128.402
+	pos['pr_curr']	128.383
+	pos['pr_SL']	128.352
+	pos['pr_TP']	128.412
+	pos['idx_op']	0 (2018.11.14 12:46)
+	pos['idx_curr']	1 (2018.11.14 12:46)
+	gain/loss	-0.019
+
+
