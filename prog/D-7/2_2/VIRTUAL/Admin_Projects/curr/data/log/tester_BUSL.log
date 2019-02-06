@@ -392,3 +392,20 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190205_181606 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
 
+[20190206_123341 / views.py:3937] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190206_123341 / views.py:3937] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190206_123421 / views.py:3937] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190206_123434 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
+
+[20190206_124224 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
+
+[20190206_124353 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
+
+[20190206_124600 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2018-11-14).20190113_093118.csv
+
