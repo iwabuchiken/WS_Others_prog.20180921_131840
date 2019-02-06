@@ -1,0 +1,5186 @@
+[20190206_132725 / views.py:4439] source csv	=	list_4-3.slice-by-day.(2018-11-27).20190113_092224.SHRINK-200.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190206_132725.log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190206_132725
+
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 0)
+
+[20190206_132725 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 0 / 2018.11.26 00:05)
+
+[20190206_132725 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 0 / 2018.11.26 00:05)
+(j4 : Y : 2) bar ---> NOT up (i = 0 / 2018.11.26 00:05)
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 1)
+
+[20190206_132725 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2018.11.26 00:06)
+
+[20190206_132725 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2018.11.26 00:06)
+(j4 : Y : 2) bar ---> NOT up (i = 1 / 2018.11.26 00:06)
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 2)
+
+[20190206_132725 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 2 / 2018.11.26 00:07)
+
+[20190206_132725 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 2 / 2018.11.26 00:07)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 3)
+
+[20190206_132725 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 3 / 2018.11.26 00:08)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.000
+
+
+[20190206_132725 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 3 / 2018.11.26 00:08)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.023
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	3 (2018.11.26 00:08)
+	gain/loss	-0.002
+
+
+[20190206_132725 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132725 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 4)
+
+[20190206_132725 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 4 / 2018.11.26 00:09)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.023
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	-0.002
+
+
+[20190206_132725 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 4 / 2018.11.26 00:09)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.018
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	4 (2018.11.26 00:09)
+	gain/loss	-0.007
+
+
+[20190206_132725 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132725 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132725 / views.py:4496] for-loop starts --------------- (itr = 5)
+
+[20190206_132725 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 5 / 2018.11.26 00:10)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.018
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	-0.007
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 5 / 2018.11.26 00:10)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.053
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	5 (2018.11.26 00:10)
+	gain/loss	0.028
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 6)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 6 / 2018.11.26 00:11)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.053
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.028
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 6 / 2018.11.26 00:11)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.037
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	6 (2018.11.26 00:11)
+	gain/loss	0.012
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 7)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 7 / 2018.11.26 00:12)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.037
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.012
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 7 / 2018.11.26 00:12)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.041
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	7 (2018.11.26 00:12)
+	gain/loss	0.016
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 8)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 8 / 2018.11.26 00:13)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.041
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.016
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 8 / 2018.11.26 00:13)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	8 (2018.11.26 00:13)
+	gain/loss	0.011
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 9)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 9 / 2018.11.26 00:14)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.011
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 9 / 2018.11.26 00:14)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	9 (2018.11.26 00:14)
+	gain/loss	0.011
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 10)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 10 / 2018.11.26 00:15)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.011
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 10 / 2018.11.26 00:15)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	10 (2018.11.26 00:15)
+	gain/loss	0.006
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 11)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 11 / 2018.11.26 00:16)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.006
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 11 / 2018.11.26 00:16)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	11 (2018.11.26 00:16)
+	gain/loss	0.006
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132726 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132726 / views.py:4496] for-loop starts --------------- (itr = 12)
+
+[20190206_132726 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 12 / 2018.11.26 00:17)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.006
+
+
+[20190206_132726 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 12 / 2018.11.26 00:17)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.034
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	12 (2018.11.26 00:17)
+	gain/loss	0.009
+
+
+[20190206_132726 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 13)
+
+[20190206_132727 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 13 / 2018.11.26 00:18)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.034
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.009
+
+
+[20190206_132727 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 13 / 2018.11.26 00:18)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.034
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	13 (2018.11.26 00:18)
+	gain/loss	0.009
+
+
+[20190206_132727 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 14)
+
+[20190206_132727 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 14 / 2018.11.26 00:19)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.034
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.009
+
+
+[20190206_132727 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 14 / 2018.11.26 00:19)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	14 (2018.11.26 00:19)
+	gain/loss	0.006
+
+
+[20190206_132727 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 15)
+
+[20190206_132727 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 15 / 2018.11.26 00:20)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.006
+
+
+[20190206_132727 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 15 / 2018.11.26 00:20)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.033
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	15 (2018.11.26 00:20)
+	gain/loss	0.008
+
+
+[20190206_132727 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 16)
+
+[20190206_132727 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 16 / 2018.11.26 00:21)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.033
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.008
+
+
+[20190206_132727 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 16 / 2018.11.26 00:21)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.038
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	16 (2018.11.26 00:21)
+	gain/loss	0.013
+
+
+[20190206_132727 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 17)
+
+[20190206_132727 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 17 / 2018.11.26 00:22)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.038
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.013
+
+
+[20190206_132727 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 17 / 2018.11.26 00:22)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.042
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	17 (2018.11.26 00:22)
+	gain/loss	0.017
+
+
+[20190206_132727 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132727 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132727 / views.py:4496] for-loop starts --------------- (itr = 18)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 18 / 2018.11.26 00:23)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.042
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	0.017
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 18 / 2018.11.26 00:23)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.015
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	18 (2018.11.26 00:23)
+	gain/loss	-0.010
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 19)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 19 / 2018.11.26 00:24)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.015
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	-0.010
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 19 / 2018.11.26 00:24)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.019
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	19 (2018.11.26 00:24)
+	gain/loss	-0.006
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 20)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 20 / 2018.11.26 00:25)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.019
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	gain/loss	-0.006
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 20 / 2018.11.26 00:25)
+	pos['pr_op']	128.025
+	pos['pr_curr']	127.994
+	pos['pr_SL']	128.001
+	pos['pr_TP']	128.061
+	pos['idx_op']	2 (2018.11.26 00:07)
+	pos['idx_curr']	20 (2018.11.26 00:25)
+	gain/loss	-0.031
+
+
+[20190206_132728 / views.py:4773] (j2 : Y) current price ---> less than SL
+
+
+[20190206_132728 / views.py:4844] 
+(j2 : Y : 4) continue : for-loop(i = 20 / 2018.11.26 00:25)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 21)
+
+[20190206_132728 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 21 / 2018.11.26 00:26)
+
+[20190206_132728 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 21 / 2018.11.26 00:26)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 22)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 22 / 2018.11.26 00:27)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	0.000
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 22 / 2018.11.26 00:27)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	22 (2018.11.26 00:27)
+	gain/loss	0.002
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 23)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 23 / 2018.11.26 00:28)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	0.002
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 23 / 2018.11.26 00:28)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.970
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	23 (2018.11.26 00:28)
+	gain/loss	-0.016
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 24)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 24 / 2018.11.26 00:29)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.970
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.016
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 24 / 2018.11.26 00:29)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	24 (2018.11.26 00:29)
+	gain/loss	0.009
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 25)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 25 / 2018.11.26 00:30)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	0.009
+
+
+[20190206_132728 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 25 / 2018.11.26 00:30)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	25 (2018.11.26 00:30)
+	gain/loss	-0.004
+
+
+[20190206_132728 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132728 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132728 / views.py:4496] for-loop starts --------------- (itr = 26)
+
+[20190206_132728 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 26 / 2018.11.26 00:31)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.004
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 26 / 2018.11.26 00:31)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	26 (2018.11.26 00:31)
+	gain/loss	-0.010
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 27)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 27 / 2018.11.26 00:32)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.010
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 27 / 2018.11.26 00:32)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	27 (2018.11.26 00:32)
+	gain/loss	0.002
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 28)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 28 / 2018.11.26 00:33)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	0.002
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 28 / 2018.11.26 00:33)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.980
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	28 (2018.11.26 00:33)
+	gain/loss	-0.006
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 29)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 29 / 2018.11.26 00:34)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.980
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.006
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 29 / 2018.11.26 00:34)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	29 (2018.11.26 00:34)
+	gain/loss	0.000
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 30)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 30 / 2018.11.26 00:35)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	0.000
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 30 / 2018.11.26 00:35)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.978
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	30 (2018.11.26 00:35)
+	gain/loss	-0.008
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 31)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 31 / 2018.11.26 00:36)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.978
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.008
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 31 / 2018.11.26 00:36)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.984
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	31 (2018.11.26 00:36)
+	gain/loss	-0.002
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132729 / views.py:4496] for-loop starts --------------- (itr = 32)
+
+[20190206_132729 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 32 / 2018.11.26 00:37)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.984
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.002
+
+
+[20190206_132729 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 32 / 2018.11.26 00:37)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.975
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	32 (2018.11.26 00:37)
+	gain/loss	-0.011
+
+
+[20190206_132729 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132729 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 33)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 33 / 2018.11.26 00:38)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.975
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.011
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 33 / 2018.11.26 00:38)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	33 (2018.11.26 00:38)
+	gain/loss	-0.014
+
+
+[20190206_132730 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132730 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 34)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 34 / 2018.11.26 00:39)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.014
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 34 / 2018.11.26 00:39)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.963
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	34 (2018.11.26 00:39)
+	gain/loss	-0.023
+
+
+[20190206_132730 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132730 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 35)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 35 / 2018.11.26 00:40)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.963
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.023
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 35 / 2018.11.26 00:40)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	35 (2018.11.26 00:40)
+	gain/loss	-0.024
+
+
+[20190206_132730 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132730 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 36)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 36 / 2018.11.26 00:41)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.024
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 36 / 2018.11.26 00:41)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	36 (2018.11.26 00:41)
+	gain/loss	-0.024
+
+
+[20190206_132730 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132730 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 37)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 37 / 2018.11.26 00:42)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.024
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 37 / 2018.11.26 00:42)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	37 (2018.11.26 00:42)
+	gain/loss	-0.021
+
+
+[20190206_132730 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132730 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132730 / views.py:4496] for-loop starts --------------- (itr = 38)
+
+[20190206_132730 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 38 / 2018.11.26 00:43)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.021
+
+
+[20190206_132730 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 38 / 2018.11.26 00:43)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.968
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	38 (2018.11.26 00:43)
+	gain/loss	-0.018
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 39)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 39 / 2018.11.26 00:44)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.968
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	gain/loss	-0.018
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 39 / 2018.11.26 00:44)
+	pos['pr_op']	127.986
+	pos['pr_curr']	127.958
+	pos['pr_SL']	127.961
+	pos['pr_TP']	128.021
+	pos['idx_op']	21 (2018.11.26 00:26)
+	pos['idx_curr']	39 (2018.11.26 00:44)
+	gain/loss	-0.028
+
+
+[20190206_132731 / views.py:4773] (j2 : Y) current price ---> less than SL
+
+
+[20190206_132731 / views.py:4844] 
+(j2 : Y : 4) continue : for-loop(i = 39 / 2018.11.26 00:44)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 40)
+
+[20190206_132731 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 40 / 2018.11.26 00:45)
+
+[20190206_132731 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 40 / 2018.11.26 00:45)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.959
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 41)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 41 / 2018.11.26 00:46)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.959
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.000
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 41 / 2018.11.26 00:46)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.966
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	41 (2018.11.26 00:46)
+	gain/loss	0.007
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 42)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 42 / 2018.11.26 00:47)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.966
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.007
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 42 / 2018.11.26 00:47)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	42 (2018.11.26 00:47)
+	gain/loss	0.006
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 43)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 43 / 2018.11.26 00:48)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.006
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 43 / 2018.11.26 00:48)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.966
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	43 (2018.11.26 00:48)
+	gain/loss	0.007
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 44)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 44 / 2018.11.26 00:49)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.966
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.007
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 44 / 2018.11.26 00:49)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	44 (2018.11.26 00:49)
+	gain/loss	0.010
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 45)
+
+[20190206_132731 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 45 / 2018.11.26 00:51)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.010
+
+
+[20190206_132731 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 45 / 2018.11.26 00:51)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	45 (2018.11.26 00:51)
+	gain/loss	0.010
+
+
+[20190206_132731 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132731 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132731 / views.py:4496] for-loop starts --------------- (itr = 46)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 46 / 2018.11.26 00:52)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.010
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 46 / 2018.11.26 00:52)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	46 (2018.11.26 00:52)
+	gain/loss	0.013
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132732 / views.py:4496] for-loop starts --------------- (itr = 47)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 47 / 2018.11.26 00:53)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.013
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 47 / 2018.11.26 00:53)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	47 (2018.11.26 00:53)
+	gain/loss	0.015
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132732 / views.py:4496] for-loop starts --------------- (itr = 48)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 48 / 2018.11.26 00:54)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.015
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 48 / 2018.11.26 00:54)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.973
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	48 (2018.11.26 00:54)
+	gain/loss	0.014
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132732 / views.py:4496] for-loop starts --------------- (itr = 49)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 49 / 2018.11.26 00:55)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.973
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.014
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 49 / 2018.11.26 00:55)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	49 (2018.11.26 00:55)
+	gain/loss	0.013
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132732 / views.py:4496] for-loop starts --------------- (itr = 50)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 50 / 2018.11.26 00:56)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.972
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.013
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 50 / 2018.11.26 00:56)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	50 (2018.11.26 00:56)
+	gain/loss	0.015
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132732 / views.py:4496] for-loop starts --------------- (itr = 51)
+
+[20190206_132732 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 51 / 2018.11.26 00:57)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.015
+
+
+[20190206_132732 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 51 / 2018.11.26 00:57)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.960
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	51 (2018.11.26 00:57)
+	gain/loss	0.001
+
+
+[20190206_132732 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132732 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 52)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 52 / 2018.11.26 00:58)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.960
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.001
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 52 / 2018.11.26 00:58)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	52 (2018.11.26 00:58)
+	gain/loss	0.003
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 53)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 53 / 2018.11.26 00:59)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.962
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.003
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 53 / 2018.11.26 00:59)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	53 (2018.11.26 00:59)
+	gain/loss	0.036
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 54)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 54 / 2018.11.26 01:00)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.036
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 54 / 2018.11.26 01:00)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.992
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	54 (2018.11.26 01:00)
+	gain/loss	0.033
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 55)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 55 / 2018.11.26 01:01)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.992
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.033
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 55 / 2018.11.26 01:01)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.980
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	55 (2018.11.26 01:01)
+	gain/loss	0.021
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 56)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 56 / 2018.11.26 01:02)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.980
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.021
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 56 / 2018.11.26 01:02)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	56 (2018.11.26 01:02)
+	gain/loss	0.010
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 57)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 57 / 2018.11.26 01:03)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.969
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.010
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 57 / 2018.11.26 01:03)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	57 (2018.11.26 01:03)
+	gain/loss	0.023
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 58)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 58 / 2018.11.26 01:04)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.023
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 58 / 2018.11.26 01:04)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.983
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	58 (2018.11.26 01:04)
+	gain/loss	0.024
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 59)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 59 / 2018.11.26 01:05)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.983
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.024
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 59 / 2018.11.26 01:05)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	59 (2018.11.26 01:05)
+	gain/loss	0.036
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132733 / views.py:4496] for-loop starts --------------- (itr = 60)
+
+[20190206_132733 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 60 / 2018.11.26 01:06)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	gain/loss	0.036
+
+
+[20190206_132733 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 60 / 2018.11.26 01:06)
+	pos['pr_op']	127.959
+	pos['pr_curr']	127.998
+	pos['pr_SL']	127.935
+	pos['pr_TP']	127.995
+	pos['idx_op']	40 (2018.11.26 00:45)
+	pos['idx_curr']	60 (2018.11.26 01:06)
+	gain/loss	0.039
+
+
+[20190206_132733 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132733 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132734 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 60 / 2018.11.26 01:06)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 61)
+
+[20190206_132734 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 61 / 2018.11.26 01:07)
+
+[20190206_132734 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 61 / 2018.11.26 01:07)
+(j4 : Y : 2) bar ---> NOT up (i = 61 / 2018.11.26 01:07)
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 62)
+
+[20190206_132734 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 62 / 2018.11.26 01:08)
+
+[20190206_132734 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 62 / 2018.11.26 01:08)
+(j4 : Y : 2) bar ---> NOT up (i = 62 / 2018.11.26 01:08)
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 63)
+
+[20190206_132734 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 63 / 2018.11.26 01:09)
+
+[20190206_132734 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 63 / 2018.11.26 01:09)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.003
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 64)
+
+[20190206_132734 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 64 / 2018.11.26 01:10)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.003
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	0.000
+
+
+[20190206_132734 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 64 / 2018.11.26 01:10)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.981
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	64 (2018.11.26 01:10)
+	gain/loss	-0.022
+
+
+[20190206_132734 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132734 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 65)
+
+[20190206_132734 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 65 / 2018.11.26 01:11)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.981
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.022
+
+
+[20190206_132734 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 65 / 2018.11.26 01:11)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	65 (2018.11.26 01:11)
+	gain/loss	-0.017
+
+
+[20190206_132734 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132734 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 66)
+
+[20190206_132734 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 66 / 2018.11.26 01:12)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.017
+
+
+[20190206_132734 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 66 / 2018.11.26 01:12)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.000
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	66 (2018.11.26 01:12)
+	gain/loss	-0.003
+
+
+[20190206_132734 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132734 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132734 / views.py:4496] for-loop starts --------------- (itr = 67)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 67 / 2018.11.26 01:13)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.000
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.003
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 67 / 2018.11.26 01:13)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.000
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	67 (2018.11.26 01:13)
+	gain/loss	-0.003
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 68)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 68 / 2018.11.26 01:14)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.000
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.003
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 68 / 2018.11.26 01:14)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.996
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	68 (2018.11.26 01:14)
+	gain/loss	-0.007
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 69)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 69 / 2018.11.26 01:15)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.996
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.007
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 69 / 2018.11.26 01:15)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.997
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	69 (2018.11.26 01:15)
+	gain/loss	-0.006
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 70)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 70 / 2018.11.26 01:16)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.997
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.006
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 70 / 2018.11.26 01:16)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.007
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	70 (2018.11.26 01:16)
+	gain/loss	0.004
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 71)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 71 / 2018.11.26 01:17)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.007
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	0.004
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 71 / 2018.11.26 01:17)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.004
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	71 (2018.11.26 01:17)
+	gain/loss	0.001
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 72)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 72 / 2018.11.26 01:18)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.004
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	0.001
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 72 / 2018.11.26 01:18)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.992
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	72 (2018.11.26 01:18)
+	gain/loss	-0.011
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 73)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 73 / 2018.11.26 01:19)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.992
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.011
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 73 / 2018.11.26 01:19)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.003
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	73 (2018.11.26 01:19)
+	gain/loss	0.000
+
+
+[20190206_132735 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132735 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132735 / views.py:4496] for-loop starts --------------- (itr = 74)
+
+[20190206_132735 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 74 / 2018.11.26 01:20)
+	pos['pr_op']	128.003
+	pos['pr_curr']	128.003
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	0.000
+
+
+[20190206_132735 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 74 / 2018.11.26 01:20)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	74 (2018.11.26 01:20)
+	gain/loss	-0.017
+
+
+[20190206_132736 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132736 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132736 / views.py:4496] for-loop starts --------------- (itr = 75)
+
+[20190206_132736 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 75 / 2018.11.26 01:21)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.017
+
+
+[20190206_132736 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 75 / 2018.11.26 01:21)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	75 (2018.11.26 01:21)
+	gain/loss	-0.015
+
+
+[20190206_132736 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132736 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132736 / views.py:4496] for-loop starts --------------- (itr = 76)
+
+[20190206_132736 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 76 / 2018.11.26 01:22)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.988
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.015
+
+
+[20190206_132736 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 76 / 2018.11.26 01:22)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.983
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	76 (2018.11.26 01:22)
+	gain/loss	-0.020
+
+
+[20190206_132736 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132736 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132736 / views.py:4496] for-loop starts --------------- (itr = 77)
+
+[20190206_132736 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 77 / 2018.11.26 01:23)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.983
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.020
+
+
+[20190206_132736 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 77 / 2018.11.26 01:23)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	77 (2018.11.26 01:23)
+	gain/loss	-0.017
+
+
+[20190206_132736 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132736 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132736 / views.py:4496] for-loop starts --------------- (itr = 78)
+
+[20190206_132736 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 78 / 2018.11.26 01:24)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.017
+
+
+[20190206_132736 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 78 / 2018.11.26 01:24)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	78 (2018.11.26 01:24)
+	gain/loss	-0.021
+
+
+[20190206_132736 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132736 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132736 / views.py:4496] for-loop starts --------------- (itr = 79)
+
+[20190206_132736 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 79 / 2018.11.26 01:25)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.021
+
+
+[20190206_132737 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 79 / 2018.11.26 01:25)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.998
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	79 (2018.11.26 01:25)
+	gain/loss	-0.005
+
+
+[20190206_132737 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132737 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 80)
+
+[20190206_132737 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 80 / 2018.11.26 01:26)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.998
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.005
+
+
+[20190206_132737 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 80 / 2018.11.26 01:26)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	80 (2018.11.26 01:26)
+	gain/loss	-0.017
+
+
+[20190206_132737 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132737 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 81)
+
+[20190206_132737 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 81 / 2018.11.26 01:27)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.986
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.017
+
+
+[20190206_132737 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 81 / 2018.11.26 01:27)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.981
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	81 (2018.11.26 01:27)
+	gain/loss	-0.022
+
+
+[20190206_132737 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132737 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 82)
+
+[20190206_132737 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 82 / 2018.11.26 01:28)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.981
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	gain/loss	-0.022
+
+
+[20190206_132737 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 82 / 2018.11.26 01:28)
+	pos['pr_op']	128.003
+	pos['pr_curr']	127.975
+	pos['pr_SL']	127.977
+	pos['pr_TP']	128.037
+	pos['idx_op']	63 (2018.11.26 01:09)
+	pos['idx_curr']	82 (2018.11.26 01:28)
+	gain/loss	-0.028
+
+
+[20190206_132737 / views.py:4773] (j2 : Y) current price ---> less than SL
+
+
+[20190206_132737 / views.py:4844] 
+(j2 : Y : 4) continue : for-loop(i = 82 / 2018.11.26 01:28)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 83)
+
+[20190206_132737 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 83 / 2018.11.26 01:29)
+
+[20190206_132737 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 83 / 2018.11.26 01:29)
+(j4 : Y : 2) bar ---> NOT up (i = 83 / 2018.11.26 01:29)
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 84)
+
+[20190206_132737 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 84 / 2018.11.26 01:30)
+
+[20190206_132737 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 84 / 2018.11.26 01:30)
+(j4 : Y : 2) bar ---> NOT up (i = 84 / 2018.11.26 01:30)
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 85)
+
+[20190206_132737 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 85 / 2018.11.26 01:31)
+
+[20190206_132737 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 85 / 2018.11.26 01:31)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+
+
+[20190206_132737 / views.py:4496] for-loop starts --------------- (itr = 86)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 86 / 2018.11.26 01:32)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.965
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.000
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 86 / 2018.11.26 01:32)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.957
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	86 (2018.11.26 01:32)
+	gain/loss	-0.008
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 87)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 87 / 2018.11.26 01:33)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.957
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.008
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 87 / 2018.11.26 01:33)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.956
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	87 (2018.11.26 01:33)
+	gain/loss	-0.009
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 88)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 88 / 2018.11.26 01:34)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.956
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.009
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 88 / 2018.11.26 01:34)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	88 (2018.11.26 01:34)
+	gain/loss	-0.021
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 89)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 89 / 2018.11.26 01:35)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.021
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 89 / 2018.11.26 01:35)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.940
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	89 (2018.11.26 01:35)
+	gain/loss	-0.025
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 90)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 90 / 2018.11.26 01:36)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.940
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.025
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 90 / 2018.11.26 01:36)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.939
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	90 (2018.11.26 01:36)
+	gain/loss	-0.026
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 91)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 91 / 2018.11.26 01:37)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.939
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.026
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 91 / 2018.11.26 01:37)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.946
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	91 (2018.11.26 01:37)
+	gain/loss	-0.019
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 92)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 92 / 2018.11.26 01:38)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.946
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.019
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 92 / 2018.11.26 01:38)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.937
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	92 (2018.11.26 01:38)
+	gain/loss	-0.028
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132738 / views.py:4496] for-loop starts --------------- (itr = 93)
+
+[20190206_132738 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 93 / 2018.11.26 01:39)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.937
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.028
+
+
+[20190206_132738 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 93 / 2018.11.26 01:39)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.941
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	93 (2018.11.26 01:39)
+	gain/loss	-0.024
+
+
+[20190206_132738 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132738 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 94)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 94 / 2018.11.26 01:40)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.941
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.024
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 94 / 2018.11.26 01:40)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.943
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	94 (2018.11.26 01:40)
+	gain/loss	-0.022
+
+
+[20190206_132739 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132739 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 95)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 95 / 2018.11.26 01:41)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.943
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.022
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 95 / 2018.11.26 01:41)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.945
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	95 (2018.11.26 01:41)
+	gain/loss	-0.020
+
+
+[20190206_132739 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132739 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 96)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 96 / 2018.11.26 01:42)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.945
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.020
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 96 / 2018.11.26 01:42)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.939
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	96 (2018.11.26 01:42)
+	gain/loss	-0.026
+
+
+[20190206_132739 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132739 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 97)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 97 / 2018.11.26 01:43)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.939
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.026
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 97 / 2018.11.26 01:43)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	97 (2018.11.26 01:43)
+	gain/loss	-0.021
+
+
+[20190206_132739 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132739 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 98)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 98 / 2018.11.26 01:44)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.021
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 98 / 2018.11.26 01:44)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	98 (2018.11.26 01:44)
+	gain/loss	-0.021
+
+
+[20190206_132739 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132739 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132739 / views.py:4496] for-loop starts --------------- (itr = 99)
+
+[20190206_132739 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 99 / 2018.11.26 01:45)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.944
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	-0.021
+
+
+[20190206_132739 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 99 / 2018.11.26 01:45)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	99 (2018.11.26 01:45)
+	gain/loss	0.011
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 100)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 100 / 2018.11.26 01:46)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.011
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 100 / 2018.11.26 01:46)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	100 (2018.11.26 01:46)
+	gain/loss	0.011
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 101)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 101 / 2018.11.26 01:47)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.976
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.011
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 101 / 2018.11.26 01:47)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	101 (2018.11.26 01:47)
+	gain/loss	0.030
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 102)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 102 / 2018.11.26 01:48)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.995
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.030
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 102 / 2018.11.26 01:48)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	102 (2018.11.26 01:48)
+	gain/loss	0.009
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 103)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 103 / 2018.11.26 01:49)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.974
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.009
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 103 / 2018.11.26 01:49)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.994
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	103 (2018.11.26 01:49)
+	gain/loss	0.029
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 104)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 104 / 2018.11.26 01:50)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.994
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.029
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 104 / 2018.11.26 01:50)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.967
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	104 (2018.11.26 01:50)
+	gain/loss	0.002
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 105)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 105 / 2018.11.26 01:51)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.967
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.002
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 105 / 2018.11.26 01:51)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.977
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	105 (2018.11.26 01:51)
+	gain/loss	0.012
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 106)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 106 / 2018.11.26 01:52)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.977
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.012
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 106 / 2018.11.26 01:52)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	106 (2018.11.26 01:52)
+	gain/loss	0.017
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132740 / views.py:4496] for-loop starts --------------- (itr = 107)
+
+[20190206_132740 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 107 / 2018.11.26 01:53)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.982
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.017
+
+
+[20190206_132740 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 107 / 2018.11.26 01:53)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.989
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	107 (2018.11.26 01:53)
+	gain/loss	0.024
+
+
+[20190206_132740 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132740 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 108)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 108 / 2018.11.26 01:54)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.989
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.024
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 108 / 2018.11.26 01:54)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.997
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	108 (2018.11.26 01:54)
+	gain/loss	0.032
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 109)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 109 / 2018.11.26 01:55)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.997
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.032
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 109 / 2018.11.26 01:55)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.993
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	109 (2018.11.26 01:55)
+	gain/loss	0.028
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 110)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 110 / 2018.11.26 01:56)
+	pos['pr_op']	127.965
+	pos['pr_curr']	127.993
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	gain/loss	0.028
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 110 / 2018.11.26 01:56)
+	pos['pr_op']	127.965
+	pos['pr_curr']	128.007
+	pos['pr_SL']	127.937
+	pos['pr_TP']	127.997
+	pos['idx_op']	85 (2018.11.26 01:31)
+	pos['idx_curr']	110 (2018.11.26 01:56)
+	gain/loss	0.042
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132741 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 110 / 2018.11.26 01:56)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 111)
+
+[20190206_132741 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 111 / 2018.11.26 01:57)
+
+[20190206_132741 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 111 / 2018.11.26 01:57)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.032
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 112)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 112 / 2018.11.26 01:58)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.032
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	gain/loss	0.000
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 112 / 2018.11.26 01:58)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.008
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	pos['idx_op']	111 (2018.11.26 01:57)
+	pos['idx_curr']	112 (2018.11.26 01:58)
+	gain/loss	-0.024
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 113)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 113 / 2018.11.26 01:59)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.008
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	gain/loss	-0.024
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 113 / 2018.11.26 01:59)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.015
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	pos['idx_op']	111 (2018.11.26 01:57)
+	pos['idx_curr']	113 (2018.11.26 01:59)
+	gain/loss	-0.017
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132741 / views.py:4496] for-loop starts --------------- (itr = 114)
+
+[20190206_132741 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 114 / 2018.11.26 02:00)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.015
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	gain/loss	-0.017
+
+
+[20190206_132741 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 114 / 2018.11.26 02:00)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.029
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	pos['idx_op']	111 (2018.11.26 01:57)
+	pos['idx_curr']	114 (2018.11.26 02:00)
+	gain/loss	-0.003
+
+
+[20190206_132741 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132741 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 115)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 115 / 2018.11.26 02:01)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.029
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	gain/loss	-0.003
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 115 / 2018.11.26 02:01)
+	pos['pr_op']	128.032
+	pos['pr_curr']	128.051
+	pos['pr_SL']	127.986
+	pos['pr_TP']	128.046
+	pos['idx_op']	111 (2018.11.26 01:57)
+	pos['idx_curr']	115 (2018.11.26 02:01)
+	gain/loss	0.019
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132742 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 115 / 2018.11.26 02:01)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 116)
+
+[20190206_132742 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 116 / 2018.11.26 02:02)
+
+[20190206_132742 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 116 / 2018.11.26 02:02)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.064
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 117)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 117 / 2018.11.26 02:03)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.064
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.000
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 117 / 2018.11.26 02:03)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	117 (2018.11.26 02:03)
+	gain/loss	0.012
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 118)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 118 / 2018.11.26 02:04)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.012
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 118 / 2018.11.26 02:04)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.069
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	118 (2018.11.26 02:04)
+	gain/loss	0.005
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 119)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 119 / 2018.11.26 02:05)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.069
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.005
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 119 / 2018.11.26 02:05)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.057
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	119 (2018.11.26 02:05)
+	gain/loss	-0.007
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 120)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 120 / 2018.11.26 02:06)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.057
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.007
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 120 / 2018.11.26 02:06)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.060
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	120 (2018.11.26 02:06)
+	gain/loss	-0.004
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 121)
+
+[20190206_132742 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 121 / 2018.11.26 02:07)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.060
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.004
+
+
+[20190206_132742 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 121 / 2018.11.26 02:07)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.054
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	121 (2018.11.26 02:07)
+	gain/loss	-0.010
+
+
+[20190206_132742 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132742 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132742 / views.py:4496] for-loop starts --------------- (itr = 122)
+
+[20190206_132743 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 122 / 2018.11.26 02:08)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.054
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.010
+
+
+[20190206_132743 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 122 / 2018.11.26 02:08)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.046
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	122 (2018.11.26 02:08)
+	gain/loss	-0.018
+
+
+[20190206_132743 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132743 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 123)
+
+[20190206_132743 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 123 / 2018.11.26 02:09)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.046
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.018
+
+
+[20190206_132743 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 123 / 2018.11.26 02:09)
+	pos['pr_op']	128.064
+	pos['pr_curr']	128.027
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	116 (2018.11.26 02:02)
+	pos['idx_curr']	123 (2018.11.26 02:09)
+	gain/loss	-0.037
+
+
+[20190206_132743 / views.py:4773] (j2 : Y) current price ---> less than SL
+
+
+[20190206_132743 / views.py:4844] 
+(j2 : Y : 4) continue : for-loop(i = 123 / 2018.11.26 02:09)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 124)
+
+[20190206_132743 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 124 / 2018.11.26 02:10)
+
+[20190206_132743 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 124 / 2018.11.26 02:10)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.004
+	pos['pr_TP']	128.064
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 125)
+
+[20190206_132743 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 125 / 2018.11.26 02:11)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.004
+	pos['pr_TP']	128.064
+	gain/loss	0.000
+
+
+[20190206_132743 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 125 / 2018.11.26 02:11)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.058
+	pos['pr_SL']	128.004
+	pos['pr_TP']	128.064
+	pos['idx_op']	124 (2018.11.26 02:10)
+	pos['idx_curr']	125 (2018.11.26 02:11)
+	gain/loss	0.008
+
+
+[20190206_132743 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132743 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 126)
+
+[20190206_132743 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 126 / 2018.11.26 02:12)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.058
+	pos['pr_SL']	128.004
+	pos['pr_TP']	128.064
+	gain/loss	0.008
+
+
+[20190206_132743 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 126 / 2018.11.26 02:12)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.067
+	pos['pr_SL']	128.004
+	pos['pr_TP']	128.064
+	pos['idx_op']	124 (2018.11.26 02:10)
+	pos['idx_curr']	126 (2018.11.26 02:12)
+	gain/loss	0.017
+
+
+[20190206_132743 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132743 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132743 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 126 / 2018.11.26 02:12)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 127)
+
+[20190206_132743 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 127 / 2018.11.26 02:13)
+
+[20190206_132743 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 127 / 2018.11.26 02:13)
+(j4 : Y : 2) bar ---> NOT up (i = 127 / 2018.11.26 02:13)
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 128)
+
+[20190206_132743 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 128 / 2018.11.26 02:14)
+
+[20190206_132743 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 128 / 2018.11.26 02:14)
+(j4 : Y : 2) bar ---> NOT up (i = 128 / 2018.11.26 02:14)
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 129)
+
+[20190206_132743 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 129 / 2018.11.26 02:15)
+
+[20190206_132743 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 129 / 2018.11.26 02:15)
+(j4 : Y : 2) bar ---> NOT up (i = 129 / 2018.11.26 02:15)
+
+
+[20190206_132743 / views.py:4496] for-loop starts --------------- (itr = 130)
+
+[20190206_132743 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 130 / 2018.11.26 02:16)
+
+[20190206_132743 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 130 / 2018.11.26 02:16)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.055
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+
+
+[20190206_132744 / views.py:4496] for-loop starts --------------- (itr = 131)
+
+[20190206_132744 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 131 / 2018.11.26 02:17)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.055
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	0.000
+
+
+[20190206_132744 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 131 / 2018.11.26 02:17)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.026
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	131 (2018.11.26 02:17)
+	gain/loss	-0.029
+
+
+[20190206_132744 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132744 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132744 / views.py:4496] for-loop starts --------------- (itr = 132)
+
+[20190206_132744 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 132 / 2018.11.26 02:18)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.026
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.029
+
+
+[20190206_132744 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 132 / 2018.11.26 02:18)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.026
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	132 (2018.11.26 02:18)
+	gain/loss	-0.029
+
+
+[20190206_132744 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132744 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132744 / views.py:4496] for-loop starts --------------- (itr = 133)
+
+[20190206_132744 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 133 / 2018.11.26 02:19)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.026
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.029
+
+
+[20190206_132744 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 133 / 2018.11.26 02:19)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.039
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	133 (2018.11.26 02:19)
+	gain/loss	-0.016
+
+
+[20190206_132744 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132744 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132744 / views.py:4496] for-loop starts --------------- (itr = 134)
+
+[20190206_132744 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 134 / 2018.11.26 02:20)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.039
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.016
+
+
+[20190206_132744 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 134 / 2018.11.26 02:20)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.037
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	134 (2018.11.26 02:20)
+	gain/loss	-0.018
+
+
+[20190206_132744 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132744 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132744 / views.py:4496] for-loop starts --------------- (itr = 135)
+
+[20190206_132744 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 135 / 2018.11.26 02:21)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.037
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.018
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 135 / 2018.11.26 02:21)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	135 (2018.11.26 02:21)
+	gain/loss	-0.024
+
+
+[20190206_132745 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132745 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 136)
+
+[20190206_132745 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 136 / 2018.11.26 02:22)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.031
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.024
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 136 / 2018.11.26 02:22)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	136 (2018.11.26 02:22)
+	gain/loss	-0.019
+
+
+[20190206_132745 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132745 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 137)
+
+[20190206_132745 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 137 / 2018.11.26 02:23)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.036
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	gain/loss	-0.019
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 137 / 2018.11.26 02:23)
+	pos['pr_op']	128.055
+	pos['pr_curr']	128.016
+	pos['pr_SL']	128.024
+	pos['pr_TP']	128.084
+	pos['idx_op']	130 (2018.11.26 02:16)
+	pos['idx_curr']	137 (2018.11.26 02:23)
+	gain/loss	-0.039
+
+
+[20190206_132745 / views.py:4773] (j2 : Y) current price ---> less than SL
+
+
+[20190206_132745 / views.py:4844] 
+(j2 : Y : 4) continue : for-loop(i = 137 / 2018.11.26 02:23)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 138)
+
+[20190206_132745 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 138 / 2018.11.26 02:24)
+
+[20190206_132745 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 138 / 2018.11.26 02:24)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 139)
+
+[20190206_132745 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 139 / 2018.11.26 02:25)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.000
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 139 / 2018.11.26 02:25)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	139 (2018.11.26 02:25)
+	gain/loss	0.000
+
+
+[20190206_132745 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132745 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 140)
+
+[20190206_132745 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 140 / 2018.11.26 02:26)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.000
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 140 / 2018.11.26 02:26)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	140 (2018.11.26 02:26)
+	gain/loss	0.005
+
+
+[20190206_132745 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132745 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132745 / views.py:4496] for-loop starts --------------- (itr = 141)
+
+[20190206_132745 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 141 / 2018.11.26 02:27)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.005
+
+
+[20190206_132745 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 141 / 2018.11.26 02:27)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	141 (2018.11.26 02:27)
+	gain/loss	0.011
+
+
+[20190206_132745 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 142)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 142 / 2018.11.26 02:28)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.011
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 142 / 2018.11.26 02:28)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	142 (2018.11.26 02:28)
+	gain/loss	0.005
+
+
+[20190206_132746 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 143)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 143 / 2018.11.26 02:29)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.005
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 143 / 2018.11.26 02:29)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.022
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	143 (2018.11.26 02:29)
+	gain/loss	-0.003
+
+
+[20190206_132746 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 144)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 144 / 2018.11.26 02:30)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.022
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	-0.003
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 144 / 2018.11.26 02:30)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	144 (2018.11.26 02:30)
+	gain/loss	0.000
+
+
+[20190206_132746 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 145)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 145 / 2018.11.26 02:31)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.025
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.000
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 145 / 2018.11.26 02:31)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	145 (2018.11.26 02:31)
+	gain/loss	0.011
+
+
+[20190206_132746 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 146)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 146 / 2018.11.26 02:32)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.036
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.011
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 146 / 2018.11.26 02:32)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.019
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	146 (2018.11.26 02:32)
+	gain/loss	-0.006
+
+
+[20190206_132746 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132746 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132746 / views.py:4496] for-loop starts --------------- (itr = 147)
+
+[20190206_132746 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 147 / 2018.11.26 02:33)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.019
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	-0.006
+
+
+[20190206_132746 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 147 / 2018.11.26 02:33)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.020
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	147 (2018.11.26 02:33)
+	gain/loss	-0.005
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 148)
+
+[20190206_132747 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 148 / 2018.11.26 02:34)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.020
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	-0.005
+
+
+[20190206_132747 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 148 / 2018.11.26 02:34)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.026
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	148 (2018.11.26 02:34)
+	gain/loss	0.001
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 149)
+
+[20190206_132747 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 149 / 2018.11.26 02:35)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.026
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.001
+
+
+[20190206_132747 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 149 / 2018.11.26 02:35)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.039
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	149 (2018.11.26 02:35)
+	gain/loss	0.014
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 150)
+
+[20190206_132747 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 150 / 2018.11.26 02:36)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.039
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.014
+
+
+[20190206_132747 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 150 / 2018.11.26 02:36)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	150 (2018.11.26 02:36)
+	gain/loss	0.005
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 151)
+
+[20190206_132747 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 151 / 2018.11.26 02:37)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.030
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.005
+
+
+[20190206_132747 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 151 / 2018.11.26 02:37)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.039
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	151 (2018.11.26 02:37)
+	gain/loss	0.014
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 152)
+
+[20190206_132747 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 152 / 2018.11.26 02:38)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.039
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	gain/loss	0.014
+
+
+[20190206_132747 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 152 / 2018.11.26 02:38)
+	pos['pr_op']	128.025
+	pos['pr_curr']	128.057
+	pos['pr_SL']	127.995
+	pos['pr_TP']	128.055
+	pos['idx_op']	138 (2018.11.26 02:24)
+	pos['idx_curr']	152 (2018.11.26 02:38)
+	gain/loss	0.032
+
+
+[20190206_132747 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132747 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132747 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 152 / 2018.11.26 02:38)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 153)
+
+[20190206_132747 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 153 / 2018.11.26 02:39)
+
+[20190206_132747 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 153 / 2018.11.26 02:39)
+(j4 : Y : 2) bar ---> NOT up (i = 153 / 2018.11.26 02:39)
+
+
+[20190206_132747 / views.py:4496] for-loop starts --------------- (itr = 154)
+
+[20190206_132747 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 154 / 2018.11.26 02:40)
+
+[20190206_132748 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 154 / 2018.11.26 02:40)
+(j4 : Y : 2) bar ---> NOT up (i = 154 / 2018.11.26 02:40)
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 155)
+
+[20190206_132748 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 155 / 2018.11.26 02:41)
+
+[20190206_132748 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 155 / 2018.11.26 02:41)
+(j4 : Y : 2) bar ---> NOT up (i = 155 / 2018.11.26 02:41)
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 156)
+
+[20190206_132748 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 156 / 2018.11.26 02:42)
+
+[20190206_132748 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 156 / 2018.11.26 02:42)
+(j4 : Y : 2) bar ---> NOT up (i = 156 / 2018.11.26 02:42)
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 157)
+
+[20190206_132748 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 157 / 2018.11.26 02:43)
+
+[20190206_132748 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 157 / 2018.11.26 02:43)
+(j4 : Y : 2) bar ---> NOT up (i = 157 / 2018.11.26 02:43)
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 158)
+
+[20190206_132748 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 158 / 2018.11.26 02:44)
+
+[20190206_132748 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 158 / 2018.11.26 02:44)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 159)
+
+[20190206_132748 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 159 / 2018.11.26 02:45)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.000
+
+
+[20190206_132748 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 159 / 2018.11.26 02:45)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.039
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	159 (2018.11.26 02:45)
+	gain/loss	-0.011
+
+
+[20190206_132748 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132748 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 160)
+
+[20190206_132748 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 160 / 2018.11.26 02:46)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.039
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	-0.011
+
+
+[20190206_132748 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 160 / 2018.11.26 02:46)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	160 (2018.11.26 02:46)
+	gain/loss	0.000
+
+
+[20190206_132748 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132748 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 161)
+
+[20190206_132748 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 161 / 2018.11.26 02:47)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.000
+
+
+[20190206_132748 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 161 / 2018.11.26 02:47)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.058
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	161 (2018.11.26 02:47)
+	gain/loss	0.008
+
+
+[20190206_132748 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132748 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 162)
+
+[20190206_132748 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 162 / 2018.11.26 02:48)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.058
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.008
+
+
+[20190206_132748 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 162 / 2018.11.26 02:48)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.047
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	162 (2018.11.26 02:48)
+	gain/loss	-0.003
+
+
+[20190206_132748 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132748 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132748 / views.py:4496] for-loop starts --------------- (itr = 163)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 163 / 2018.11.26 02:49)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.047
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	-0.003
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 163 / 2018.11.26 02:49)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.052
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	163 (2018.11.26 02:49)
+	gain/loss	0.002
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132749 / views.py:4496] for-loop starts --------------- (itr = 164)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 164 / 2018.11.26 02:50)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.052
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.002
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 164 / 2018.11.26 02:50)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	164 (2018.11.26 02:50)
+	gain/loss	0.000
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132749 / views.py:4496] for-loop starts --------------- (itr = 165)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 165 / 2018.11.26 02:51)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.000
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 165 / 2018.11.26 02:51)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.053
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	165 (2018.11.26 02:51)
+	gain/loss	0.003
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132749 / views.py:4496] for-loop starts --------------- (itr = 166)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 166 / 2018.11.26 02:52)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.053
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.003
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 166 / 2018.11.26 02:52)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.052
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	166 (2018.11.26 02:52)
+	gain/loss	0.002
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132749 / views.py:4496] for-loop starts --------------- (itr = 167)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 167 / 2018.11.26 02:53)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.052
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.002
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 167 / 2018.11.26 02:53)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	167 (2018.11.26 02:53)
+	gain/loss	0.000
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132749 / views.py:4496] for-loop starts --------------- (itr = 168)
+
+[20190206_132749 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 168 / 2018.11.26 02:54)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.000
+
+
+[20190206_132749 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 168 / 2018.11.26 02:54)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.072
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	168 (2018.11.26 02:54)
+	gain/loss	0.022
+
+
+[20190206_132749 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132749 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 169)
+
+[20190206_132750 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 169 / 2018.11.26 02:55)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.072
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	gain/loss	0.022
+
+
+[20190206_132750 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 169 / 2018.11.26 02:55)
+	pos['pr_op']	128.050
+	pos['pr_curr']	128.086
+	pos['pr_SL']	128.017
+	pos['pr_TP']	128.077
+	pos['idx_op']	158 (2018.11.26 02:44)
+	pos['idx_curr']	169 (2018.11.26 02:55)
+	gain/loss	0.036
+
+
+[20190206_132750 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132750 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132750 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 169 / 2018.11.26 02:55)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 170)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 170 / 2018.11.26 02:56)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 170 / 2018.11.26 02:56)
+(j4 : Y : 2) bar ---> NOT up (i = 170 / 2018.11.26 02:56)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 171)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 171 / 2018.11.26 02:57)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 171 / 2018.11.26 02:57)
+(j4 : Y : 2) bar ---> NOT up (i = 171 / 2018.11.26 02:57)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 172)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 172 / 2018.11.26 02:58)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 172 / 2018.11.26 02:58)
+(j4 : Y : 2) bar ---> NOT up (i = 172 / 2018.11.26 02:58)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 173)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 173 / 2018.11.26 02:59)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 173 / 2018.11.26 02:59)
+(j4 : Y : 2) bar ---> NOT up (i = 173 / 2018.11.26 02:59)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 174)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 174 / 2018.11.26 03:00)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 174 / 2018.11.26 03:00)
+(j4 : Y : 2) bar ---> NOT up (i = 174 / 2018.11.26 03:00)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 175)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 175 / 2018.11.26 03:01)
+
+[20190206_132750 / views.py:4610] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 175 / 2018.11.26 03:01)
+(j4 : Y : 2) bar ---> NOT up (i = 175 / 2018.11.26 03:01)
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 176)
+
+[20190206_132750 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 176 / 2018.11.26 03:02)
+
+[20190206_132750 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 176 / 2018.11.26 03:02)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.061
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 177)
+
+[20190206_132750 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 177 / 2018.11.26 03:03)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.061
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.000
+
+
+[20190206_132750 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 177 / 2018.11.26 03:03)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	177 (2018.11.26 03:03)
+	gain/loss	-0.011
+
+
+[20190206_132750 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132750 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132750 / views.py:4496] for-loop starts --------------- (itr = 178)
+
+[20190206_132750 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 178 / 2018.11.26 03:04)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.050
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.011
+
+
+[20190206_132750 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 178 / 2018.11.26 03:04)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.068
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	178 (2018.11.26 03:04)
+	gain/loss	0.007
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 179)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 179 / 2018.11.26 03:05)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.068
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.007
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 179 / 2018.11.26 03:05)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.079
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	179 (2018.11.26 03:05)
+	gain/loss	0.018
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 180)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 180 / 2018.11.26 03:06)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.079
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.018
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 180 / 2018.11.26 03:06)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	180 (2018.11.26 03:06)
+	gain/loss	0.015
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 181)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 181 / 2018.11.26 03:07)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.015
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 181 / 2018.11.26 03:07)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.075
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	181 (2018.11.26 03:07)
+	gain/loss	0.014
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 182)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 182 / 2018.11.26 03:08)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.075
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.014
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 182 / 2018.11.26 03:08)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.064
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	182 (2018.11.26 03:08)
+	gain/loss	0.003
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 183)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 183 / 2018.11.26 03:09)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.064
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.003
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 183 / 2018.11.26 03:09)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.060
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	183 (2018.11.26 03:09)
+	gain/loss	-0.001
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132751 / views.py:4496] for-loop starts --------------- (itr = 184)
+
+[20190206_132751 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 184 / 2018.11.26 03:10)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.060
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	-0.001
+
+
+[20190206_132751 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 184 / 2018.11.26 03:10)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.066
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	184 (2018.11.26 03:10)
+	gain/loss	0.005
+
+
+[20190206_132751 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132751 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 185)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 185 / 2018.11.26 03:11)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.066
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.005
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 185 / 2018.11.26 03:11)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	185 (2018.11.26 03:11)
+	gain/loss	0.015
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 186)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 186 / 2018.11.26 03:12)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.015
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 186 / 2018.11.26 03:12)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.071
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	186 (2018.11.26 03:12)
+	gain/loss	0.010
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 187)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 187 / 2018.11.26 03:13)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.071
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.010
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 187 / 2018.11.26 03:13)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.079
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	187 (2018.11.26 03:13)
+	gain/loss	0.018
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 188)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 188 / 2018.11.26 03:14)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.079
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.018
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 188 / 2018.11.26 03:14)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.088
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	188 (2018.11.26 03:14)
+	gain/loss	0.027
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 189)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 189 / 2018.11.26 03:15)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.088
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.027
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 189 / 2018.11.26 03:15)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	189 (2018.11.26 03:15)
+	gain/loss	0.015
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 190)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 190 / 2018.11.26 03:16)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.076
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.015
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 190 / 2018.11.26 03:16)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.088
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	190 (2018.11.26 03:16)
+	gain/loss	0.027
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 191)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 191 / 2018.11.26 03:17)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.088
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.027
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 191 / 2018.11.26 03:17)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.084
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	191 (2018.11.26 03:17)
+	gain/loss	0.023
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 192)
+
+[20190206_132752 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 192 / 2018.11.26 03:18)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.084
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	gain/loss	0.023
+
+
+[20190206_132752 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 192 / 2018.11.26 03:18)
+	pos['pr_op']	128.061
+	pos['pr_curr']	128.110
+	pos['pr_SL']	128.031
+	pos['pr_TP']	128.091
+	pos['idx_op']	176 (2018.11.26 03:02)
+	pos['idx_curr']	192 (2018.11.26 03:18)
+	gain/loss	0.049
+
+
+[20190206_132752 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132752 / views.py:4911] (j3 : N) YES --> current price > TP
+
+
+[20190206_132752 / views.py:4981] 
+(j3 : Y : 4) continue : for-loop(i = 192 / 2018.11.26 03:18)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2018.11.26 03:26)
+	pos['idx_curr']	-1 (2018.11.26 03:26)
+
+
+[20190206_132752 / views.py:4496] for-loop starts --------------- (itr = 193)
+
+[20190206_132752 / views.py:4528] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 193 / 2018.11.26 03:19)
+
+[20190206_132753 / views.py:4583] 
+(j4 : Y : 2) Pos struct ---> set values(i = 193 / 2018.11.26 03:19)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.134
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+
+
+[20190206_132753 / views.py:4496] for-loop starts --------------- (itr = 194)
+
+[20190206_132753 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 194 / 2018.11.26 03:20)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.134
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	0.000
+
+
+[20190206_132753 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 194 / 2018.11.26 03:20)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.128
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	194 (2018.11.26 03:20)
+	gain/loss	-0.006
+
+
+[20190206_132753 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132753 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132753 / views.py:4496] for-loop starts --------------- (itr = 195)
+
+[20190206_132753 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 195 / 2018.11.26 03:21)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.128
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	-0.006
+
+
+[20190206_132753 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 195 / 2018.11.26 03:21)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.118
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	195 (2018.11.26 03:21)
+	gain/loss	-0.016
+
+
+[20190206_132753 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132753 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132753 / views.py:4496] for-loop starts --------------- (itr = 196)
+
+[20190206_132753 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 196 / 2018.11.26 03:22)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.118
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	-0.016
+
+
+[20190206_132753 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 196 / 2018.11.26 03:22)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.126
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	196 (2018.11.26 03:22)
+	gain/loss	-0.008
+
+
+[20190206_132753 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132753 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132753 / views.py:4496] for-loop starts --------------- (itr = 197)
+
+[20190206_132753 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 197 / 2018.11.26 03:23)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.126
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	-0.008
+
+
+[20190206_132753 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 197 / 2018.11.26 03:23)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.136
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	197 (2018.11.26 03:23)
+	gain/loss	0.002
+
+
+[20190206_132753 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132753 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132753 / views.py:4496] for-loop starts --------------- (itr = 198)
+
+[20190206_132753 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 198 / 2018.11.26 03:24)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.136
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	0.002
+
+
+[20190206_132753 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 198 / 2018.11.26 03:24)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.126
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	198 (2018.11.26 03:24)
+	gain/loss	-0.008
+
+
+[20190206_132753 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132753 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132754 / views.py:4496] for-loop starts --------------- (itr = 199)
+
+[20190206_132754 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 199 / 2018.11.26 03:25)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.126
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	-0.008
+
+
+[20190206_132754 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 199 / 2018.11.26 03:25)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.122
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	199 (2018.11.26 03:25)
+	gain/loss	-0.012
+
+
+[20190206_132754 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132754 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+
+[20190206_132754 / views.py:4496] for-loop starts --------------- (itr = 200)
+
+[20190206_132754 / views.py:4702] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 200 / 2018.11.26 03:26)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.122
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	gain/loss	-0.012
+
+
+[20190206_132754 / views.py:4749] 
+(j1 : Y) position ---> updated(i = 200 / 2018.11.26 03:26)
+	pos['pr_op']	128.134
+	pos['pr_curr']	128.127
+	pos['pr_SL']	128.090
+	pos['pr_TP']	128.150
+	pos['idx_op']	193 (2018.11.26 03:19)
+	pos['idx_curr']	200 (2018.11.26 03:26)
+	gain/loss	-0.007
+
+
+[20190206_132754 / views.py:4865] (j2 : N) current price ---> NOT less than SL
+
+
+[20190206_132754 / views.py:4891] (j3 : N) NOT --> current price > TP
+
+

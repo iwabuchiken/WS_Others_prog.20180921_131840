@@ -1,0 +1,12 @@
+[20190206_134230 / views.py:5072]
+source csv	=	list_4-3.slice-by-day.(2018-11-27).20190113_092224.SHRINK-50.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190206_134222.csv
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190206_134222
+
+============== SL ==============
+2	2018.11.26 00:07	128.025	127.994	-0.031
+21	2018.11.26 00:26	127.986	127.958	-0.028
+
+

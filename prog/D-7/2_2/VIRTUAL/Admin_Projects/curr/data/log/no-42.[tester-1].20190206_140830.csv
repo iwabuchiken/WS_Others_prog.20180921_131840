@@ -1,0 +1,15 @@
+[20190206_140838 / views.py:5132]
+source csv	=	list_4-3.slice-by-day.(2019-01-23).20190206_135722.SHRINK-50.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190206_140830.csv
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190206_140830
+
+'============== SL ==============
+e0.no	idx_op	dateTime	pr_op	pr_curr	diff
+11476	2	2019.01.23 00:04	124.271	124.239	-0.032
+11452	10	2019.01.23 00:12	124.255	124.205	-0.050
+'============== TP ==============
+e0.no	idx_op	dateTime	pr_op	pr_curr	diff
+
+

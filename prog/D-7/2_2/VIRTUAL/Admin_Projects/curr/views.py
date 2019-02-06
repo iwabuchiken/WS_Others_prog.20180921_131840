@@ -4412,7 +4412,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
     fpath_Log = os.path.join(dpath_Log, fname_Log)
     
-    fout_Log = open(fpath_Log, "w")
+#     fout_Log = open(fpath_Log, "w")
 
     '''###################
         log : meta info
@@ -4440,9 +4440,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
             , msg)
     
     libs.write_Log(
-                msg_Log
-                , dpath_Log, fname_Log
-                , 2)
+                msg_Log, dpath_Log, fname_Log, 2)
 
     '''###################
         vars
@@ -4499,9 +4497,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                 , msg)
         
         libs.write_Log(
-                    msg_Log
-                    , dpath_Log, fname_Log
-                    , 2)
+                    msg_Log, dpath_Log, fname_Log, 2)
         
         '''###################
             step : 1
@@ -4533,58 +4529,150 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                     , msg)
             
             libs.write_Log(
-                        msg_Log
-                        , dpath_Log, fname_Log
-                        , 2)
+                        msg_Log, dpath_Log, fname_Log, 2)
 
             '''###################
-                step : j1 : N : 1
-                    flag ---> true
+                step : j4
+                    bar ---> up ?
             ###################'''
-            flg_Pos = True
-
-            '''###################
-                step : j1 : N : 2
-                    Pos struct ---> set values
-            ###################'''
-            pos['pr_op'] = e0.price_Close
-            pos['pr_curr'] = e0.price_Close
-            pos['idx_op'] = i
-            pos['idx_curr'] = i
-            pos['idx_id'] = e0.no
+            if d0 > 0 : #if d0 > 0
+                '''###################
+                    step : j4 : Y
+                        bar ---> up
+                ###################'''
             
-            pos['pr_SL'] = e0.price_Open - margin_SL
-            pos['pr_TP'] = e0.price_Open + margin_TP
+                '''###################
+                    step : j4 : Y : 1
+                        flag ---> true
+                ###################'''
+                flg_Pos = True
+    
+                '''###################
+                    step : j4 : Y : 2
+                        Pos struct ---> set values
+                ###################'''
+                pos['pr_op'] = e0.price_Close
+                pos['pr_curr'] = e0.price_Close
+                pos['idx_op'] = i
+                pos['idx_curr'] = i
+                pos['idx_id'] = e0.no
+                
+                pos['pr_SL'] = e0.price_Open - margin_SL
+                pos['pr_TP'] = e0.price_Open + margin_TP
+                
+                # log
+                msg = "\n(j4 : Y : 2) Pos struct ---> set values"
+                msg += "(i = %d / %s)" \
+                        % (
+                           i, e0.dateTime
+                           )
+                msg += "\n"
+                
+                msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+                msg += "\n"
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log, dpath_Log, fname_Log, 2)
+    
+                '''###################
+                    step : j4 : Y : 3
+                        continue for-loop
+                ###################'''
+                continue            
             
-            # log
-            msg = "\n(j1 : N : 2) Pos struct ---> set values"
-            msg += "(i = %d / %s)" \
-                    % (
-                       i, e0.dateTime
-                       )
-            msg += "\n"
+            else : #if d0 > 0
+                '''###################
+                    step : j4 : N
+                        bar ---> NOT up
+                ###################'''
+                msg += "\n(j4 : Y : 2) bar ---> NOT up"
+                
+                msg += " (i = %d / %s)" % (i, e0.dateTime)                
+                
+                msg += "\n"
+                
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(
+                            msg_Log, dpath_Log, fname_Log, 2)
+                
+                '''###################
+                    step : j4 : N : 1
+                        continue for-loop
+                ###################'''
+                continue
             
-            msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
-            msg += "\n"
-            msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
-            msg += "\n"
-            msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
-            msg += "\n"
-            msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
-            msg += "\n"
+            #/if d0 > 0
             
-            msg_Log = "[%s / %s:%d] %s" % \
-                    (
-                    libs.get_TimeLabel_Now()
-                    , os.path.basename(libs.thisfile()), libs.linenum()
-                    , msg)
-            
-            libs.write_Log(
-                        msg_Log
-                        , dpath_Log, fname_Log
-                        , 2)
-
-        
+#             '''###################
+#                 step : j1 : N : 1
+#                     flag ---> true
+#             ###################'''
+#             flg_Pos = True
+# 
+#             '''###################
+#                 step : j1 : N : 2
+#                     Pos struct ---> set values
+#             ###################'''
+#             pos['pr_op'] = e0.price_Close
+#             pos['pr_curr'] = e0.price_Close
+#             pos['idx_op'] = i
+#             pos['idx_curr'] = i
+#             pos['idx_id'] = e0.no
+#             
+#             pos['pr_SL'] = e0.price_Open - margin_SL
+#             pos['pr_TP'] = e0.price_Open + margin_TP
+#             
+#             # log
+#             msg = "\n(j1 : N : 2) Pos struct ---> set values"
+#             msg += "(i = %d / %s)" \
+#                     % (
+#                        i, e0.dateTime
+#                        )
+#             msg += "\n"
+#             
+#             msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+#             msg += "\n"
+#             msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+#             msg += "\n"
+#             msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+#             msg += "\n"
+#             msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+#             msg += "\n"
+#             
+#             msg_Log = "[%s / %s:%d] %s" % \
+#                     (
+#                     libs.get_TimeLabel_Now()
+#                     , os.path.basename(libs.thisfile()), libs.linenum()
+#                     , msg)
+#             
+#             libs.write_Log(
+#                         msg_Log
+#                         , dpath_Log, fname_Log
+#                         , 2)
+# 
+#             '''###################
+#                 step : j1 : N : 3
+#                     continue for-loop
+#             ###################'''
+#             continue
         
         else : #if flg_Pos == False
             '''###################
@@ -4615,9 +4703,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                     , msg)
             
             libs.write_Log(
-                        msg_Log
-                        , dpath_Log, fname_Log
-                        , 2)
+                        msg_Log, dpath_Log, fname_Log, 2)
 
             '''###################
                 step : j1 : Y : 1
@@ -4664,9 +4750,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                     , msg)
             
             libs.write_Log(
-                        msg_Log
-                        , dpath_Log, fname_Log
-                        , 2)
+                        msg_Log, dpath_Log, fname_Log, 2)
 
             '''###################
                 step : j2
@@ -4682,7 +4766,35 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                 ###################'''
                 msg = "(j2 : Y) current price ---> less than SL"
                 msg += "\n"
+
+                msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+                msg += "\n"
                 
+                msg += "\t%s\t%d (%s)" \
+                        % (
+                           "pos['idx_op']"
+                           , pos['idx_op']
+                           , lo_BarDatas[pos['idx_op']].dateTime)
+                msg += "\n"
+                
+                msg += "\t%s\t%d (%s)" \
+                        % (
+                           "pos['idx_curr']"
+                           , pos['idx_curr']
+                           , lo_BarDatas[pos['idx_curr']].dateTime)
+                msg += "\n"
+                
+                msg += "\t%s\t%0.3f" % ("gain/loss", pos['pr_curr'] - pos['pr_op'])
+                msg += "\n"
+
+
+#ccc                
                 msg_Log = "[%s / %s:%d] %s" % \
                         (
                         libs.get_TimeLabel_Now()
@@ -4690,12 +4802,82 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                         , msg)
                 
                 libs.write_Log(
-                            msg_Log
-                            , dpath_Log, fname_Log
-                            , 2)
+                            msg_Log, dpath_Log, fname_Log, 2)
             
-                #debug
-                break
+                '''###################
+                    step : j2 : Y : 1
+                        pos ---> to L3
+                ###################'''
+                lo_BarTatas_Ended_SL.append([pos, e0])
+
+                '''###################
+                    step : j2 : Y : 2
+                        pos ---> reset
+                ###################'''
+                pos = {
+                         "pr_op" : -1
+                       , "pr_curr" : -1
+                       , "pr_SL" : -1
+                       , "pr_TP" : -1
+                       
+                       , "idx_op" : -1
+                       , "idx_curr" : -1
+                       , "idx_SL" : -1
+                       , "idx_TP" : -1
+                       
+                       , "idx_id" : -1
+                       }
+                    
+                '''###################
+                    step : j2 : Y : 3
+                        flag ---> back to false
+                ###################'''
+                flg_Pos = False
+
+                '''###################
+                    step : j2 : Y : 4
+                        continue : for-loop
+                ###################'''
+                msg = "\n(j2 : Y : 4) continue : for-loop"
+                
+                msg += "(i = %d / %s)" % (i, e0.dateTime)
+                msg += "\n"
+    
+                msg += "\t%s\t%0.3f" % ("pos['pr_op']", pos['pr_op'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_curr']", pos['pr_curr'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_SL']", pos['pr_SL'])
+                msg += "\n"
+                msg += "\t%s\t%0.3f" % ("pos['pr_TP']", pos['pr_TP'])
+                msg += "\n"
+                
+                msg += "\t%s\t%d (%s)" \
+                        % (
+                           "pos['idx_op']"
+                           , pos['idx_op']
+                           , lo_BarDatas[pos['idx_op']].dateTime)
+                msg += "\n"
+                
+                msg += "\t%s\t%d (%s)" \
+                        % (
+                           "pos['idx_curr']"
+                           , pos['idx_curr']
+                           , lo_BarDatas[pos['idx_curr']].dateTime)
+                msg += "\n"
+                
+                msg_Log = "[%s / %s:%d] %s" % \
+                        (
+                        libs.get_TimeLabel_Now()
+                        , os.path.basename(libs.thisfile()), libs.linenum()
+                        , msg)
+                
+                libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+                
+                continue            
+            
+#                 #debug
+#                 break
             
             else : #if cond_j2 == True
                 '''###################
@@ -4712,9 +4894,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                         , msg)
                 
                 libs.write_Log(
-                            msg_Log
-                            , dpath_Log, fname_Log
-                            , 2)
+                            msg_Log, dpath_Log, fname_Log, 2)
             
 #                 #debug
 #                 break
@@ -4829,14 +5009,11 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                             , os.path.basename(libs.thisfile()), libs.linenum()
                             , msg)
                     
-                    libs.write_Log(
-                                msg_Log
-                                , dpath_Log, fname_Log
-                                , 2)
+                    libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
                     
                     continue
                 
-                #cccc
+                
                 
 #                     #debug
 #                     break
@@ -4844,8 +5021,6 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
                 
                 #/if cond_j3 == False
                 
-                #ccc
-            
             #/if cond_j2 == True
             
             
@@ -4860,9 +5035,135 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     #/for i in range(0, lenOf_LO_BarDatas - 1):
 
     '''###################
+        TPs, SLs
+    ###################'''
+    fname_Log_CSV = "no-42.[tester-1].%s.csv" % tlabel
+
+    '''###################
+        csv : meta info
+    ###################'''
+    msg = "source csv\t=\t%s" % fname_Src_CSV
+    msg += "\n"
+
+    msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+        
+    msg += "log file name\t=\t%s" % fname_Log_CSV
+    msg += "\n"
+        
+    msg += "log file dpath\t=\t%s" % dpath_Log
+    msg += "\n"
+        
+    msg += "this file created at\t=\t%s" % tlabel
+    msg += "\n"
+    msg += "\n"
+    
+#     msg_Log = "[%s / %s:%d] %s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+#     
+#     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+    '''###################
+        csv : SLs
+    ###################'''
+    msg += "'============== SL =============="
+    msg += "\n"
+    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff"
+    msg += "\n"
+    
+#     msg_Log = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+#     
+#     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+    # SLs
+    sumOf_SLs = 0
+    
+    for position, bardata in lo_BarTatas_Ended_SL:
+    
+        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+                       bardata.no
+                       , position['idx_op']
+                       , lo_BarDatas[position['idx_op']].dateTime
+                       , position['idx_curr']
+                       , lo_BarDatas[position['idx_curr']].dateTime
+                       , position['pr_op']
+                       , position['pr_curr']
+                       , position['pr_curr'] - position['pr_op']
+                       )
+        msg += "\n"
+        
+        # sum
+        sumOf_SLs += (position['pr_curr'] - position['pr_op'])
+    
+    #/for position, bardata in lo_BarTatas_Ended_SL:
+    msg += "\t\t\t\t\t%.03f" % (sumOf_SLs)
+    msg += "\n"
+    
+    # separator line
+    msg += "\n"
+    
+    '''###################
+        csv : TPs
+    ###################'''
+    msg += "'============== TP =============="
+    msg += "\n"
+    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff"
+    msg += "\n"
+    
+#     msg_Log = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , msg)
+#     
+#     libs.write_Log(msg_Log, dpath_Log, fname_Log, 2)
+
+    # TPs
+    sumOf_TPs = 0
+    
+    for position, bardata in lo_BarTatas_Ended_TP:
+    
+#         msg += "%d\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+                       bardata.no
+                       , position['idx_op']
+                       , lo_BarDatas[position['idx_op']].dateTime
+                       , position['idx_curr']
+                       , lo_BarDatas[position['idx_curr']].dateTime
+                       , position['pr_op']
+                       , position['pr_curr']
+                       , position['pr_curr'] - position['pr_op']
+                       )
+        msg += "\n"
+
+        # sum
+        sumOf_TPs += (position['pr_curr'] - position['pr_op'])
+    
+    #/for position, bardata in lo_BarTatas_Ended_SL:
+    msg += "\t\t\t\t\t%.03f" % (sumOf_TPs)
+    msg += "\n"
+#ccc        
+    #/for bardata in lo_BarTatas_Ended_SL:
+
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log, fname_Log_CSV, 2)
+    
+    '''###################
         close : log file
     ###################'''
-    fout_Log.close()
+#     fout_Log.close()
         
     '''###################
         return        
