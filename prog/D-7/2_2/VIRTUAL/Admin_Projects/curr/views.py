@@ -5272,6 +5272,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
            , "pr_curr" : -1
            , "pr_SL" : -1
            , "pr_TP" : -1
+           , "pr_sp" : 0.01 # JPY
            
            , "idx_op" : -1
            , "idx_curr" : -1
@@ -5524,8 +5525,10 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                     price : current < SL ?
                     ==> less than SL?
             ###################'''
-            cond_j2 = (pos['pr_curr'] < pos['pr_SL'])
-            
+#             cond_j2 = (pos['pr_curr'] < pos['pr_SL'])
+            cond_j2 = (pos['pr_curr'] - pos['pr_sp'] < pos['pr_SL'])
+                    #=> KeyError: 'pr_sp'
+                    #ccc
             if cond_j2 == True : #if cond_j2 == True
                 '''###################
                     step : j2 : Y
@@ -5585,6 +5588,8 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                        , "pr_curr" : -1
                        , "pr_SL" : -1
                        , "pr_TP" : -1
+                       
+                       , "pr_sp" : 0.01 # JPY
                        
                        , "idx_op" : -1
                        , "idx_curr" : -1
@@ -5669,7 +5674,9 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                     step : j3
                         current price > TP ?
                 ###################'''
-                cond_j3 = (pos['pr_curr'] > pos['pr_TP'])
+#                 cond_j3 = (pos['pr_curr'] > pos['pr_TP'])
+                cond_j3 = (pos['pr_curr'] + pos['pr_sp'] > pos['pr_TP'])
+#                 cond_j2 = (pos['pr_curr'] - pos['pr_sp'] < pos['pr_SL'])
                 
                 if cond_j3 == False : #if cond_j3 == False
                     '''###################
@@ -5722,6 +5729,8 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                            , "pr_curr" : -1
                            , "pr_SL" : -1
                            , "pr_TP" : -1
+                           
+                           , "pr_sp" : 0.01 # JPY
                            
                            , "idx_op" : -1
                            , "idx_curr" : -1
@@ -5837,7 +5846,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
     ###################'''
     msg += "'============== SL =============="
     msg += "\n"
-    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff"
+    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff\tpr_curr less spread\tdiff"
     msg += "\n"
     
 #     msg_Log = "[%s / %s:%d]\n%s" % \
@@ -5853,7 +5862,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
     
     for position, bardata in lo_BarTatas_Ended_SL:
     
-        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % (
                        bardata.no
                        , position['idx_op']
                        , lo_BarDatas[position['idx_op']].dateTime
@@ -5862,6 +5871,8 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                        , position['pr_op']
                        , position['pr_curr']
                        , position['pr_curr'] - position['pr_op']
+                       , position['pr_curr'] - position['pr_sp']
+                       , position['pr_curr'] - position['pr_sp'] - position['pr_op']
                        )
         msg += "\n"
         
@@ -5880,7 +5891,8 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
     ###################'''
     msg += "'============== TP =============="
     msg += "\n"
-    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff"
+    msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff\tpr_curr less spread\tdiff"
+#     msg += "e0.no\tidx_op\tdateTime\tidx_curr\tdateTime\tpr_op\tpr_curr\tdiff"
     msg += "\n"
     
 #     msg_Log = "[%s / %s:%d]\n%s" % \
@@ -5897,7 +5909,8 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
     for position, bardata in lo_BarTatas_Ended_TP:
     
 #         msg += "%d\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
-        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+#         msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f" % (
+        msg += "%d\t%d\t%s\t%d\t%s\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % (
                        bardata.no
                        , position['idx_op']
                        , lo_BarDatas[position['idx_op']].dateTime
@@ -5906,6 +5919,9 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request):
                        , position['pr_op']
                        , position['pr_curr']
                        , position['pr_curr'] - position['pr_op']
+                       , position['pr_curr'] - position['pr_sp']
+                       , position['pr_curr'] - position['pr_sp'] - position['pr_op']
+                       
                        )
         msg += "\n"
 

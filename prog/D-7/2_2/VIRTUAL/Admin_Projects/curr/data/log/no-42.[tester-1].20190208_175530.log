@@ -1,0 +1,138 @@
+[20190208_175530 / views.py:5253] source csv	=	list_4-3.slice-by-day.(2019-01-23).20190206_135722.SHRINK-200.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190208_175530.log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190208_175530
+
+
+
+[20190208_175530 / views.py:5312] for-loop starts --------------- (itr = 1)
+
+[20190208_175530 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2019.01.23 00:01)
+
+[20190208_175530 / views.py:5430] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2019.01.23 00:01)
+(j4 : Y : 2) bar ---> NOT up (i = 1 / 2019.01.23 00:01)
+
+
+[20190208_175530 / views.py:5312] for-loop starts --------------- (itr = 2)
+
+[20190208_175530 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 2 / 2019.01.23 00:04)
+
+[20190208_175530 / views.py:5430] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 2 / 2019.01.23 00:04)
+(j4 : Y : 2) bar ---> NOT up (i = 2 / 2019.01.23 00:04)
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 3)
+
+[20190208_175531 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 3 / 2019.01.23 00:05)
+
+[20190208_175531 / views.py:5403] 
+(j4 : Y : 2) Pos struct ---> set values(i = 3 / 2019.01.23 00:05)
+	pos['pr_op']	124.260
+	pos['pr_curr']	124.260
+	pos['pr_SL']	124.251
+	pos['pr_TP']	124.311
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 4)
+
+[20190208_175531 / views.py:5470] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 4 / 2019.01.23 00:06)
+	pos['pr_op']	124.260
+	pos['pr_curr']	124.260
+	pos['pr_SL']	124.251
+	pos['pr_TP']	124.311
+	gain/loss	0.000
+
+
+[20190208_175531 / views.py:5517] 
+(j1 : Y) position ---> updated(i = 4 / 2019.01.23 00:06)
+	pos['pr_op']	124.260
+	pos['pr_curr']	124.258
+	pos['pr_SL']	124.251
+	pos['pr_TP']	124.311
+	pos['idx_op']	3 (2019.01.23 00:05)
+	pos['idx_curr']	4 (2019.01.23 00:06)
+	gain/loss	-0.002
+
+
+[20190208_175531 / views.py:5569] (j2 : Y) current price ---> less than SL
+	pos['pr_op']	124.260
+	pos['pr_curr']	124.258
+	pos['pr_SL']	124.251
+	pos['pr_TP']	124.311
+	pos['idx_op']	3 (2019.01.23 00:05)
+	pos['idx_curr']	4 (2019.01.23 00:06)
+	gain/loss	-0.002
+
+
+[20190208_175531 / views.py:5640] 
+(j2 : Y : 4) continue : for-loop(i = 4 / 2019.01.23 00:06)
+	pos['pr_op']	-1.000
+	pos['pr_curr']	-1.000
+	pos['pr_SL']	-1.000
+	pos['pr_TP']	-1.000
+	pos['idx_op']	-1 (2019.01.23 03:21)
+	pos['idx_curr']	-1 (2019.01.23 03:21)
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 5)
+
+[20190208_175531 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 5 / 2019.01.23 00:07)
+
+[20190208_175531 / views.py:5430] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 5 / 2019.01.23 00:07)
+(j4 : Y : 2) bar ---> NOT up (i = 5 / 2019.01.23 00:07)
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 6)
+
+[20190208_175531 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 6 / 2019.01.23 00:08)
+
+[20190208_175531 / views.py:5430] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 6 / 2019.01.23 00:08)
+(j4 : Y : 2) bar ---> NOT up (i = 6 / 2019.01.23 00:08)
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 7)
+
+[20190208_175531 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 7 / 2019.01.23 00:09)
+
+[20190208_175531 / views.py:5403] 
+(j4 : Y : 2) Pos struct ---> set values(i = 7 / 2019.01.23 00:09)
+	pos['pr_op']	124.239
+	pos['pr_curr']	124.239
+	pos['pr_SL']	124.241
+	pos['pr_TP']	124.301
+
+
+[20190208_175531 / views.py:5312] for-loop starts --------------- (itr = 8)
+
+[20190208_175531 / views.py:5470] 
+(j1 : Y) position ---> taken (flg_Pos = True)(i = 8 / 2019.01.23 00:10)
+	pos['pr_op']	124.239
+	pos['pr_curr']	124.239
+	pos['pr_SL']	124.241
+	pos['pr_TP']	124.301
+	gain/loss	0.000
+
+
+[20190208_175531 / views.py:5517] 
+(j1 : Y) position ---> updated(i = 8 / 2019.01.23 00:10)
+	pos['pr_op']	124.239
+	pos['pr_curr']	124.233
+	pos['pr_SL']	124.241
+	pos['pr_TP']	124.301
+	pos['idx_op']	7 (2019.01.23 00:09)
+	pos['idx_curr']	8 (2019.01.23 00:10)
+	gain/loss	-0.006
+
+
