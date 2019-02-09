@@ -1,0 +1,33 @@
+[20190209_124723 / views.py:5253] source csv	=	list_4-3.slice-by-day.(2019-01-23).20190206_135722.SHRINK-200.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-42.[tester-1].20190209_124723.log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190209_124723
+
+
+
+[20190209_124723 / views.py:5312] for-loop starts --------------- (itr = 1)
+
+[20190209_124723 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2019.01.23 00:01)
+
+[20190209_124723 / views.py:5433] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 1 / 2019.01.23 00:01)
+(j4 : Y : 2) bar ---> NOT up (i = 1 / 2019.01.23 00:01)
+
+
+[20190209_124723 / views.py:5312] for-loop starts --------------- (itr = 2)
+
+[20190209_124723 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 2 / 2019.01.23 00:04)
+
+[20190209_124723 / views.py:5433] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 2 / 2019.01.23 00:04)
+(j4 : Y : 2) bar ---> NOT up (i = 2 / 2019.01.23 00:04)
+
+
+[20190209_124723 / views.py:5312] for-loop starts --------------- (itr = 3)
+
+[20190209_124723 / views.py:5346] 
+(j1 : Y) position ---> NOT taken (flg_Pos = False)(i = 3 / 2019.01.23 00:05)
+
