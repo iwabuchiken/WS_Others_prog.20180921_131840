@@ -282,7 +282,12 @@ class ParamConstants(Enum):
     ###################'''
     PARAM_BUSL3_CMD_37_1__Admin_Parse_Trade_Reports = "parse_reports"
     
+    '''###################
+        param : 40~
+    ###################'''
     PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell = "up-buy-down-sell"
+    
+    PARAM_BUSL3_CMD_45_1__Get_Basic_Stats = "get-basic-stats"
 
 #/ class ParamConstants(Enum):
     
@@ -308,6 +313,7 @@ class Tester(Enum):
     # max key value : 11 : 20190112_084810
     # max key value : 12 : 20190118_123056
     # max key value : 13 : 20190202_085325
+    # max key value : 14 : 20190210_165125
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -328,6 +334,7 @@ class Tester(Enum):
     
             , 12 : "37-1"     #
             , 13 : "42-1"     # """tester_1"" > up --> then buy; down, sell"
+            , 14 : "45-1"     # """tester_1"" > up --> then buy; down, sell"
             
             
         }
@@ -451,6 +458,7 @@ class Tester(Enum):
                 , "20190118_123803"
             ],     
                         
+            # "42-1"
             [
                 lo_Actions__BUSL__IDs[13]
                 ,"tester : buy the up, sell the down"
@@ -459,18 +467,19 @@ class Tester(Enum):
                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20190202_085325"
             ],     
-
-#abc
-            
-            
-#             [
-#                 lo_Actions__BUSL__IDs[5]
-#                 ,"stat : diff of bars : avg, dev"
-#                 , ParamConstants.PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV.value
-#                 , "stat : diff of bars. average, std deviation"
-#                 , "20180927_121933"
-#             ],
-
+                        
+            # "45-1"
+            [
+                lo_Actions__BUSL__IDs[14]
+                ,"stats : gen basic stats"
+                , ParamConstants.PARAM_BUSL3_CMD_45_1__Get_Basic_Stats.value
+                , "1) num of up/down bars" \
+                    + "<br>2) width of up/down bars --> (open-close),(high-low)" \
+                    + "<br>3) num of consequtives and num of bars in each consequtive" \
+                    + "<br>4) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+                , "20190210_165125"
+            ],     
+            #ccc
         ]
     
     #
