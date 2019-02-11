@@ -1,0 +1,20 @@
+[20190211_124318 / views.py:7210]
+pair	=	USDJPY
+timeframe	=	M1
+source csv	=	list_4-3.slice-by-day.(2019-02-06).20190211_105457.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+source file date	=	20190211_085606
+log file name	=	no-45.[basic-stats].20190211_124318.csv
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190211_124318
+
+
+
+[20190211_124318 / views.py:7241]
+[Close - Open]=========================
+lenOf_BarDatas	1434
+len(lo_Ups)	649	0.453
+len(lo_Downs)	657	0.458
+len(lo_Zeros)	128	0.089
+
+

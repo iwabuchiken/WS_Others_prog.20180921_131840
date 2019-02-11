@@ -6957,6 +6957,35 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
                         ), file=sys.stderr)
 
     '''###################
+        info : currency
+    ###################'''
+#     print()
+#     print("[%s:%d] lo_CSVs =>" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         
+#                         ), file=sys.stderr)
+#     print(lo_CSVs)
+            #     [views.py:6964] lo_CSVs =>
+            # [['Pair=USDJPY', 'Period=M1', 'Days=20000', 'Shift=1', 'Bars=1200000', 'Time=20190211_085606'], ['no
+            # ', 'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'D
+            # iff', 'High/Low', 'datetime', 'dateTime_Local', 's.n.']]
+
+    print()
+    print("[%s:%d] lo_CSVs[0][0] => %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                         , lo_CSVs[0][0]
+                        ), file=sys.stderr)
+
+    
+    #Pair=USDJPY    Period=M1    Days=20000    Shift=1    Bars=1200000    Time=20190211_085606
+    pair = (lo_CSVs[0][0]).split("=")[1]
+    timeframe = (lo_CSVs[0][1]).split("=")[1]
+    filedate = (lo_CSVs[0][5]).split("=")[1]
+#     pair = (lo_CSVs[0].split(";")[0]).split("=")[1]
+#     timeframe = (lo_CSVs[0].split(";")[0]).split("=")[1]
+    
+    
+    '''###################
         adjust : order of the list
     ###################'''
     bar_Start = lo_BarDatas[0]
@@ -7149,10 +7178,18 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
     '''###################
         csv : meta info
     ###################'''
-    msg = "source csv\t=\t%s" % fname_Src_CSV
+    msg = "pair\t=\t%s" % pair
+    msg += "\n"
+    msg += "timeframe\t=\t%s" % timeframe
+    msg += "\n"
+    #ccc
+    msg += "source csv\t=\t%s" % fname_Src_CSV
     msg += "\n"
 
     msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+        
+    msg += "source file date\t=\t%s" % filedate
     msg += "\n"
         
     msg += "log file name\t=\t%s" % fname_Log_CSV
@@ -7197,7 +7234,7 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
     msg += "len(lo_Zeros)\t%d\t%.03f" \
                 % (lenOf_Zeros, lenOf_Zeros * 1.0 / lenOf_BarDatas) 
     msg += "\n"
-
+#ccc
     msg_Log = "[%s / %s:%d]\n%s" % \
             (
             libs.get_TimeLabel_Now()

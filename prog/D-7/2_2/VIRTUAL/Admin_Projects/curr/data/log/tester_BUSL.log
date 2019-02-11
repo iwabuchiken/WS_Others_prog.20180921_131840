@@ -540,3 +540,83 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190210_181846 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-23).20190206_135722.csv
 
+[20190211_083649 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_084551 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-23).20190206_135722.SHRINK-200.csv
+
+[20190211_105136 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_105210 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(USDJPY).(Period-M1).(NumOfUnits-20000).(Bars-1200000).20190211_085606.csv
+
+[20190211_105326 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_105350 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_105455 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(USDJPY).(Period-M1).(NumOfUnits-20000).(Bars-1200000).20190211_085606.(2019-02).20190211_105217.csv
+
+[20190211_105647 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_105711 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_122617 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_122718 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_122850 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_123015 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_123149 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_123412 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_123527 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_123909 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_105457.csv
+
+[20190211_124249 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-04).20190211_105457.csv
+
+[20190211_124307 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-05).20190211_105457.csv
+
+[20190211_124317 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-06).20190211_105457.csv
+
+[20190211_124325 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-07).20190211_105457.csv
+
+[20190211_124333 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-08).20190211_105457.csv
+
+[20190211_130100 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_130119 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(USDJPY).(Period-M5).(NumOfUnits-3000).(Bars-3000).20190211_091837.csv
+
+[20190211_130325 / views.py:3936] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190211_130354 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-25).20190211_130120.csv
+
+[20190211_132014 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-28).20190211_130120.csv
+
+[20190211_132023 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-29).20190211_130120.csv
+
+[20190211_132031 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-30).20190211_130120.csv
+
+[20190211_132040 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-01-31).20190211_130120.csv
+
+[20190211_132104 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-01).20190211_130120.csv
+
+[20190211_132112 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-04).20190211_130120.csv
+
+[20190211_132710 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-05).20190211_130120.csv
+
+[20190211_132718 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-06).20190211_130120.csv
+
+[20190211_132728 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-07).20190211_130120.csv
+
+[20190211_132736 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/list_4-3.slice-by-day.(2019-02-08).20190211_130120.csv
+
