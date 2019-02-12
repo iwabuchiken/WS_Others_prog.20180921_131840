@@ -7257,6 +7257,418 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
     
 #/ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0:
     
+'''###################
+    func : def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request)
+    at : 2019/02/10 17:08:05
+    
+    @return: (status, msg)        
+###################'''
+#xxx
+def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
+    
+    '''###################
+        params : csv file name
+    ###################'''
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+
+    '''###################
+        file : validate : exists
+    ###################'''
+    #ref join https://torina.top/detail/249/
+    dpath_Src_CSV = _req_dpath_csv
+    fname_Src_CSV = _req_param_bardata_csv_file
+    
+    #ref https://torina.top/detail/249/
+    fpath_Src_CSV = os.path.join(dpath_Src_CSV, fname_Src_CSV)
+    
+    res = os.path.isfile(fpath_Src_CSV)
+    
+    #debug
+    print()
+    print("[%s:%d] csv file exisits? => %s (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , res, fpath_Src_CSV
+        ), file=sys.stderr)
+            # [views.py:3997] csv file exisits? => True
+    
+    # validation
+    if res == False : #if res == False
+    
+        status = -1
+        
+        msg = "(ERROR) Param_37_1__Adimn_Parse_Trade_Reports : csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
+        
+        return (status, msg)
+        
+    #/if res == False
+    
+    '''###################
+        get : list of bardatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        info : currency
+    ###################'''
+    #     [views.py:6964] lo_CSVs =>
+    # [['Pair=USDJPY', 'Period=M1', 'Days=20000', 'Shift=1', 'Bars=1200000', 'Time=20190211_085606'], ['no
+    # ', 'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'D
+    # iff', 'High/Low', 'datetime', 'dateTime_Local', 's.n.']]
+
+    print()
+    print("[%s:%d] lo_CSVs[0][0] => %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                         , lo_CSVs[0][0]
+                        ), file=sys.stderr)
+
+    
+    #Pair=USDJPY    Period=M1    Days=20000    Shift=1    Bars=1200000    Time=20190211_085606
+    pair = (lo_CSVs[0][0]).split("=")[1]
+    timeframe = (lo_CSVs[0][1]).split("=")[1]
+    filedate = (lo_CSVs[0][5]).split("=")[1]
+#     pair = (lo_CSVs[0].split(";")[0]).split("=")[1]
+#     timeframe = (lo_CSVs[0].split(";")[0]).split("=")[1]
+    
+    
+    '''###################
+        adjust : order of the list
+    ###################'''
+    bar_Start = lo_BarDatas[0]
+    bar_End = lo_BarDatas[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas[0].dateTime
+                             , lo_BarDatas[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    '''###################
+        prep : log file
+    ###################'''
+    lo_Log_Lines = []
+    
+    tlabel = libs.get_TimeLabel_Now()
+    
+    dpath_Log = cons_fx.FPath.dpath_LogFile.value
+    
+    fname_Log_Trunk = "no-45.[basic-stats].[v-2.0]" 
+    fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
+#     fname_Log = "no-42.[tester-1].%s.log" % tlabel 
+    
+    fpath_Log = os.path.join(dpath_Log, fname_Log)
+    
+#     fout_Log = open(fpath_Log, "w")
+
+    '''###################
+        log : meta info
+    ###################'''
+    msg = "source csv\t=\t%s" % fname_Src_CSV
+    msg += "\n"
+
+    msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+        
+    msg += "log file name\t=\t%s" % fname_Log
+    msg += "\n"
+        
+    msg += "log file dpath\t=\t%s" % dpath_Log
+    msg += "\n"
+        
+    msg += "this file created at\t=\t%s" % tlabel
+    msg += "\n"
+    msg += "\n"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    # append log line
+    lo_Log_Lines.append(msg_Log)
+
+    '''###################
+        ops
+    ###################'''
+    '''###################
+        vars
+    ###################'''
+    lenOf_BarDatas = len(lo_BarDatas)
+    
+    # lists
+    lo_Ups = []
+    lo_Downs = []
+    lo_Zeros = []
+    
+    # sums
+    sumOf_Ups = 0.0
+    sumOf_Downs = 0.0
+    sumOf_Diff_HL = 0.0
+    
+    '''###################
+        for-loop
+    ###################'''
+    for i in range(0, lenOf_BarDatas):
+    
+        '''###################
+            step : 1
+                prep data
+        ###################'''
+        e0 = lo_BarDatas[i]
+        d0_1 = e0.price_Close - e0.price_Open
+        d0_2 = e0.price_High - e0.price_Low
+
+        '''###################
+            step : 2
+                diff of HL ---> sum
+        ###################'''
+        sumOf_Diff_HL += d0_2
+        
+        '''###################
+            step : j1
+                up/down/zero
+        ###################'''
+        if d0_1 > 0 : #if d0_1 > 0
+            '''###################
+                step : j1-1
+                    up
+            ###################'''
+            '''###################
+                step : j1-1 : 1
+                    append e0
+            ###################'''
+            lo_Ups.append(e0)
+            
+            '''###################
+                step : j1-1 : 1.1
+                    sum
+            ###################'''
+            sumOf_Ups += d0_1
+            
+#             print()
+#             print("[%s:%d] sumOf_Ups = %.03f (d0_1 = %.03f) (%s)" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                      , sumOf_Ups, d0_1, e0.dateTime
+#                     ), file=sys.stderr)
+
+            '''###################
+                step : j1-1 : 2
+                    next loop
+            ###################'''
+            continue
+            
+        elif d0_1 < 0 : #if d0_1 > 0
+            '''###################
+                step : j1-2
+                    down
+            ###################'''
+            '''###################
+                step : j1-2 : 1
+                    append e0
+            ###################'''
+            lo_Downs.append(e0)
+            
+            '''###################
+                step : j1-1 : 1.1
+                    sum
+            ###################'''
+            sumOf_Downs += d0_1
+            
+            '''###################
+                step : j1-1 : 2
+                    next loop
+            ###################'''
+            continue
+            
+        
+        else : #if d0_1 > 0
+            '''###################
+                step : j1-3
+                    zero
+            ###################'''
+            '''###################
+                step : j1-3 : 1
+                    append e0
+            ###################'''
+            lo_Zeros.append(e0)
+            
+            '''###################
+                step : j1-1 : 2
+                    next loop
+            ###################'''
+            continue
+        
+        #/if d0_1 > 0
+        
+        #ccc
+        
+    #/for i in range(0, lenOf_BarDatas):
+
+    '''###################
+        step : B1 : 1
+            calc
+    ###################'''
+    avgOf_Diff_Ups = sumOf_Ups * 1.0 / len(lo_Ups)
+    avgOf_Diff_Downs = sumOf_Downs * 1.0 / len(lo_Downs)
+    avgOf_Diff_HLs = sumOf_Diff_HL * 1.0 / (len(lo_Ups) + len(lo_Downs))
+    
+    avgOf_UpsAndDowns = avgOf_Diff_Ups + avgOf_Diff_Downs
+        
+    '''###################
+        log : write
+    ###################'''
+    print()
+    print("[%s:%d] len(lo_Log_Lines) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_Log_Lines)
+        ), file=sys.stderr)
+                
+    str_Log_Lines = "\r\n".join(lo_Log_Lines)
+    
+    libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
+    
+    '''###################
+        TPs, SLs
+    ###################'''
+    fname_Log_CSV_trunk = "no-45.[basic-stats]"
+    fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
+
+    '''###################
+        csv : meta info
+    ###################'''
+    msg = "pair\t=\t%s" % pair
+    msg += "\n"
+    msg += "timeframe\t=\t%s" % timeframe
+    msg += "\n"
+    #ccc
+    msg += "source csv\t=\t%s" % fname_Src_CSV
+    msg += "\n"
+
+    msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+        
+    msg += "source file date\t=\t%s" % filedate
+    msg += "\n"
+        
+    msg += "log file name\t=\t%s" % fname_Log_CSV
+    msg += "\n"
+        
+    msg += "log file dpath\t=\t%s" % dpath_Log
+    msg += "\n"
+        
+    msg += "this file created at\t=\t%s" % tlabel
+    msg += "\n"
+    
+    msg += "\n"
+    
+
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log, fname_Log_CSV, 2)
+    
+    '''###################
+        csv : data : num of ups and downs
+    ###################'''
+    # lens
+    lenOf_Ups = len(lo_Ups)
+    lenOf_Downs = len(lo_Downs)
+    lenOf_Zeros = len(lo_Zeros)
+    
+    msg = "[Close - Open]========================="
+    msg += "\n"
+    
+    msg += "lenOf_BarDatas\t%d" % lenOf_BarDatas
+    msg += "\n"
+    msg += "len(lo_Ups)\t%d\t%.03f" \
+                % (lenOf_Ups, lenOf_Ups * 1.0 / lenOf_BarDatas) 
+    msg += "\n"
+    msg += "len(lo_Downs)\t%d\t%.03f" \
+                % (lenOf_Downs, lenOf_Downs * 1.0 / lenOf_BarDatas) 
+    msg += "\n"
+    msg += "len(lo_Zeros)\t%d\t%.03f" \
+                % (lenOf_Zeros, lenOf_Zeros * 1.0 / lenOf_BarDatas) 
+    msg += "\n"
+    msg += "\n"
+
+    '''###################
+        csv : data : diff of ups and downs
+    ###################'''
+    msg += "[Diff]========================="
+    msg += "\n"
+    
+    msg += "avgOf_Diff_Ups\t%.03f\t(sumOf_Ups = %.03f, len(lo_Ups) = %d)" % \
+                 (avgOf_Diff_Ups, sumOf_Ups, len(lo_Ups))
+    msg += "\n"
+    msg += "avgOf_Diff_Downs\t%.03f\t(sumOf_Downs = %.03f, len(lo_Downs) = %d)" % \
+                (avgOf_Diff_Downs, sumOf_Downs, len(lo_Downs))
+    msg += "\n"
+    msg += "avgOf_Diff_HLs\t%.03f" % (avgOf_Diff_HLs)
+    msg += "\n"
+
+#ccc
+    '''###################
+        csv : write to file
+    ###################'''
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    libs.write_Log(msg_Log, dpath_Log, fname_Log_CSV, 2)
+    
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_45_1__Get_Basic_Stats.value
+    
+    msg += "<br>Src_CSV = %s" % (fname_Src_CSV)
+    
+    msg += "<br>dpath_csv = %s" % (_req_dpath_csv)
+    
+    return (status, msg)
+    
+#/ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0:
+    
 def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
     '''###################
@@ -7310,7 +7722,8 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats(request):
 #     (status, msg) = _BUSL3_Tester_No_42_1__BuyUpSellDown__exec(request)
 #     (status, msg) = _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec(request)
 #     (status, msg) = _BUSL3_Tester_No_42_1__BuyUpSellDown_With_Spread__exec__V_1_1(request)
-    (status, msg) = _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request)
+#     (status, msg) = _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request)
+    (status, msg) = _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request)
     
     '''###################
         time        

@@ -1,0 +1,25 @@
+[20190212_130152 / views.py:7602]
+pair	=	EURJPY
+timeframe	=	M1
+source csv	=	list_4-3.slice-by-day.(2019-01-23).20190206_135722.SHRINK-50.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+source file date	=	20190203_101336
+log file name	=	no-45.[basic-stats].20190212_130151.csv
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190212_130151
+
+
+
+[20190212_130152 / views.py:7653]
+[Close - Open]=========================
+lenOf_BarDatas	50
+len(lo_Ups)	23	0.460
+len(lo_Downs)	24	0.480
+len(lo_Zeros)	3	0.060
+
+[Diff]=========================
+avgOf_Diff_Ups	0.007 (sumOf_Ups = 0.171, len(lo_Ups) = 23)
+avgOf_Diff_Downs	-0.009 (sumOf_Downs = -0.209, len(lo_Downs) = 24)
+avgOf_Diff_HLs	0.016
+
+
