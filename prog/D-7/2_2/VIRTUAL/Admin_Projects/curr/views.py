@@ -58,7 +58,7 @@ from os.path import isfile, join, splitext
 # from macpath import defpath
 # from pathlib import Path
 
-import subprocess, copy, time, glob, re, datetime
+import subprocess, copy, time, glob, re, datetime, math
 #from C:\WORKS_2\WS\WS_Others\free\VX7GLZ_science-research\31_Materials\1_\1_1.3.py
 # import xml.etree.ElementTree as ET
 
@@ -7152,8 +7152,6 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
         
         #/if d0_1 > 0
         
-        #ccc
-        
     #/for i in range(0, lenOf_BarDatas):
 
     '''###################
@@ -7182,7 +7180,7 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
     msg += "\n"
     msg += "timeframe\t=\t%s" % timeframe
     msg += "\n"
-    #ccc
+
     msg += "source csv\t=\t%s" % fname_Src_CSV
     msg += "\n"
 
@@ -7234,7 +7232,7 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_1_0(request):
     msg += "len(lo_Zeros)\t%d\t%.03f" \
                 % (lenOf_Zeros, lenOf_Zeros * 1.0 / lenOf_BarDatas) 
     msg += "\n"
-#ccc
+
     msg_Log = "[%s / %s:%d]\n%s" % \
             (
             libs.get_TimeLabel_Now()
@@ -7439,6 +7437,12 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
     sumOf_Downs = 0.0
     sumOf_Diff_HL = 0.0
     
+    # max, min
+    valOf_Max_OC = -0.1
+    valOf_Min_OC = 999
+    valOf_Max_HL = -0.1
+    valOf_Min_HL = 999
+    
     '''###################
         for-loop
     ###################'''
@@ -7468,6 +7472,25 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
                     up
             ###################'''
             '''###################
+                step : j1-1 : 0.1
+                    max
+            ###################'''
+            # close
+            if e0.price_Close > valOf_Max_OC : #if e0.price_Close > valOf_Max
+                
+                valOf_Max_OC = e0.price_Close
+            
+            #/if e0.price_Close > valOf_Max
+
+            # high
+            if e0.price_High > valOf_Max_HL : #if e0.price_Close > valOf_Max
+
+                valOf_Max_HL = e0.price_High
+            
+            #/if e0.price_Close > valOf_Max
+
+            
+            '''###################
                 step : j1-1 : 1
                     append e0
             ###################'''
@@ -7496,6 +7519,24 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
                 step : j1-2
                     down
             ###################'''
+            '''###################
+                step : j1-1 : 0.1
+                    min
+            ###################'''
+            # close
+            if e0.price_Close < valOf_Min_OC : #if e0.price_Close > valOf_Min
+                
+                valOf_Min_OC = e0.price_Close
+            
+            #/if e0.price_Close > valOf_Min
+
+            # high
+            if e0.price_Low < valOf_Min_HL : #if e0.price_Close > valOf_Min
+
+                valOf_Min_HL = e0.price_Low
+            
+            #/if e0.price_Close > valOf_Min
+            
             '''###################
                 step : j1-2 : 1
                     append e0
@@ -7533,8 +7574,6 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
             continue
         
         #/if d0_1 > 0
-        
-        #ccc
         
     #/for i in range(0, lenOf_BarDatas):
 
@@ -7574,7 +7613,7 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
     msg += "\n"
     msg += "timeframe\t=\t%s" % timeframe
     msg += "\n"
-    #ccc
+
     msg += "source csv\t=\t%s" % fname_Src_CSV
     msg += "\n"
 
@@ -7592,6 +7631,103 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
         
     msg += "this file created at\t=\t%s" % tlabel
     msg += "\n"
+    
+    # bar datetime, price
+    msg += "starting bar\t=\t%s\topen=\t%.03f" \
+            % (
+               lo_BarDatas[0].dateTime
+               , lo_BarDatas[0].price_Open
+               )
+    msg += "\n"
+    
+    msg += "ending bar\t=\t%s\tclose=\t%.03f" \
+            % (
+               lo_BarDatas[-1].dateTime
+               , lo_BarDatas[0].price_Close
+               )
+    msg += "\n"
+
+
+    # max, min : open, close
+    msg += "\tmax\tmin\tdiff"
+    msg += "\n"
+    
+    msg += "OC\t%.03f\t%.03f\t%.03f" \
+            % (valOf_Max_OC, valOf_Min_OC
+                , (valOf_Max_OC - valOf_Min_OC)
+            )
+    msg += "\n"
+    
+    msg += "HL\t%.03f\t%.03f\t%.03f" \
+            % (valOf_Max_HL, valOf_Min_HL
+                , (valOf_Max_HL - valOf_Min_HL)
+            )
+    msg += "\n"
+    
+    # max, min : ratios
+    print()
+    print("[%s:%d] (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) => %.03f" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)
+        ), file=sys.stderr)
+            # (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) => 896.000
+    print()
+    print("[%s:%d] (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3) => %.03f" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
+        ), file=sys.stderr)
+    
+#ccc        
+    ratioOf_valOf_Max_HL_OC = \
+            ((valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)) / ((valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3))
+#             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
+#                  / (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
+#             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
+#                  / (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
+                 
+    print()
+    print("[%s:%d] ratioOf_valOf_Max_HL_OC => %.03f" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , ratioOf_valOf_Max_HL_OC
+        ), file=sys.stderr)
+
+    ratioOf_valOf_Min_HL_OC = \
+            ((valOf_Min_HL - math.floor(valOf_Min_HL)) * math.pow(10, 3)) \
+                 / ((valOf_Min_OC - math.floor(valOf_Min_OC)) * math.pow(10, 3))
+    
+    diffOf_OC = (valOf_Max_OC - valOf_Min_OC)
+    diffOf_HL = (valOf_Max_HL - valOf_Min_HL)
+    
+    ratioOf_Diff_HL_OC = ((diffOf_HL - math.floor(diffOf_HL)) * math.pow(10, 3)) \
+                    / ((diffOf_OC - math.floor(diffOf_OC)) * math.pow(10, 3))
+            
+    
+    msg += "HL/OC\t%.03f\t%.03f\t%.03f" \
+            % (
+               ratioOf_valOf_Max_HL_OC
+                 
+               , ratioOf_valOf_Min_HL_OC
+                 
+               , ratioOf_Diff_HL_OC
+               
+#                , valOf_Min_HL / valOf_Min_OC
+#                , (valOf_Max_HL - valOf_Min_HL) / (valOf_Max_OC - valOf_Min_OC)
+            )
+    msg += "\n"
+    
+#     msg += "valOf_Max_OC\t=\t%.03f\tvalOf_Min_OC\t=\t%.03f\tdiff=%.03f" \
+#             % (
+#                valOf_Max_OC, valOf_Min_OC
+#                , (valOf_Max_OC - valOf_Min_OC)
+#                )
+#     msg += "\n"
+#     
+#     msg += "valOf_Max_HL\t=\t%.03f\tvalOf_Min_HL\t=\t%.03f\tdiff=%.03f" \
+#             % (
+#                valOf_Max_HL, valOf_Min_HL
+#                , (valOf_Max_HL - valOf_Min_HL)
+#                )
+#     msg += "\n"
     
     msg += "\n"
     
