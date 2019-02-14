@@ -1,0 +1,29 @@
+[20190214_105334 / views.py:8169]
+pair	=	EURJPY
+timeframe	=	M15
+source csv	=	list_4-3.slice-by-day.(2019-02-13).20190214_100054.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+source file date	=	20190214_095445
+log file name	=	no-45.[basic-stats].20190214_105333.csv
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190214_105333
+starting bar	=	2019.02.13 00:00	open=	125.076
+ending bar	=	2019.02.13 23:45	close=	125.125
+[range]=========================	max	min	diff
+OC	125.510	124.986	0.524
+HL	125.532	124.986	0.546
+HL/OC	1.043	1.000	1.042
+
+[20190214_105334 / views.py:8221]
+[Close - Open]=========================
+lenOf_BarDatas	96
+len(lo_Ups)	45	0.469
+len(lo_Downs)	50	0.521
+len(lo_Zeros)	1	0.010
+
+[Diff]=========================
+avgOf_Diff_Ups	0.033	(sumOf_Ups = 1.493, len(lo_Ups) = 45)
+avgOf_Diff_Downs	-0.031	(sumOf_Downs = -1.554, len(lo_Downs) = 50)
+avgOf_Diff_HLs	0.066
+
+
