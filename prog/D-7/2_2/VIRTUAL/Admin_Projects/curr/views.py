@@ -7677,7 +7677,6 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
         , (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
         ), file=sys.stderr)
     
-#ccc        
     ratioOf_valOf_Max_HL_OC = \
             ((valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)) / ((valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3))
 #             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
@@ -7779,7 +7778,6 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
     msg += "avgOf_Diff_HLs\t%.03f" % (avgOf_Diff_HLs)
     msg += "\n"
 
-#ccc
     '''###################
         csv : write to file
     ###################'''
@@ -7806,14 +7804,13 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0(request):
 #/ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_2_0:
     
 '''###################
-    func : def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request)
+    func : def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(request)
     at : 2019/02/14 10:11:32
     
     @return ([lo_Ups, lo_Downs, lo_Zeros], lo_Log_Lines, msg_Log_CSV)
         lo_Log_Lines : list of log lines for log file
         msg_Log_CSV : a string of log lines for csv file (basic stats)
 ###################'''
-#xxx
 def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(
         lo_BarDatas
         , pair
@@ -8126,7 +8123,6 @@ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(
         , (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
         ), file=sys.stderr)
     
-#ccc        
     ratioOf_valOf_Max_HL_OC = \
             ((valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)) / ((valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3))
 #             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
@@ -8210,7 +8206,6 @@ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(
     msg += "avgOf_Diff_HLs\t%.03f" % (avgOf_Diff_HLs)
     msg += "\n"
 
-#ccc
     '''###################
         csv : write to file
     ###################'''
@@ -8234,10 +8229,370 @@ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(
 #     msg += "<br>dpath_csv = %s" % (_req_dpath_csv)
 #     
 #     return (status, msg)
-    #ccc
     return ([lo_Ups, lo_Downs, lo_Zeros], lo_Log_Lines, msg_Log_CSV)
     
 #/ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(request):
+    
+'''###################
+    func : def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_2(request)
+    at : 2019/02/15 09:52:59
+    
+    @return (lo_BarDatas, lo_Log_Lines)
+    
+###################'''
+def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_2(
+#xxx
+        lo_BarDatas
+        , pair
+        , timeframe
+        , filedate
+        , lo_Log_Lines
+        , msg_Log_CSV
+#         , numOf_Slices = 5
+        , numOf_Slices = 4
+        ):
+    
+    '''###################
+        steps : A.1
+            prep
+    ###################'''
+    lenOf_Lo_BarDatas = len(lo_BarDatas)
+    
+    lo_Histo_1 = []
+    lo_Histo_2 = []
+    lo_Histo_3 = []
+    lo_Histo_4 = []
+    
+    '''###################
+        steps : A.2
+            get : max (diff)
+    ###################'''
+    price_Close_Max = -1.0
+    
+    diff_Max = -1.0
+    
+    e0_Max = lo_BarDatas[0]
+    
+#     price_Close_Min = 999.0
+    
+    for bardata in lo_BarDatas:
+        
+        # diff
+        diff = bardata.price_Close - bardata.price_Open
+        
+        # judge
+        if diff > diff_Max : #if diff > diff_Max
+            
+            # update : diff
+            diff_Max = diff
+
+            # update : bardata
+            e0_Max = bardata
+        
+        #/if diff > diff_Max
+
+        
+#         # compare : max
+#         if bardata.price_Close > price_Close_Max : #if bardata.price_Close > price_Close_Max
+#             
+#             # update : max
+#             price_Close_Max = bardata.price_Close
+#             
+#             # update : bardata
+#             e0_Max = bardata
+# 
+#             #debug
+#             print()
+#             print("[%s:%d] Max updated => price_Close_Max = %.03f, (%s)" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , price_Close_Max, bardata.dateTime
+#                 ), file=sys.stderr)
+#         
+#         #/if bardata.price_Close > price_Close_Max
+
+#         # compare : min
+#         if bardata.price_Close < price_Close_Min : #if bardata.price_Close > price_Close_Max
+#             
+#             price_Close_Min = bardata.price_Close
+# 
+#             #debug
+#             print()
+#             print("[%s:%d] Max updated => price_Close_Max = %.03f, (%s)" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , price_Close_Max
+#                 ), file=sys.stderr)
+        
+        #/if bardata.price_Close > price_Close_Max
+
+    #/for bardata in lo_BarDatas:
+    
+    #debug
+    print()
+    print("[%s:%d] diff_Max = %.03f (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , diff_Max, e0_Max.dateTime
+        ), file=sys.stderr)
+            #[views.py:8331] diff_Max = 0.115 (2019.02.13 03:00)    
+
+    '''###################
+        steps : A.3
+            get : slice ranges
+    ###################'''
+    lo_Slice_Ranges = libfx_2.get_Slice_Ranges(diff_Max, numOf_Slices)
+    
+#     #debug
+#     print()
+#     print("[%s:%d] lo_Slice_Ranges =>" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         ), file=sys.stderr)
+#     
+#     for item in lo_Slice_Ranges:
+# 
+#         print(item)
+#         
+#         
+#     #/for item in lo_Slice_Ranges:
+
+    
+#     '''###################
+#         steps : A.1.2
+#             modify : max (diff)
+#     ###################'''
+#     n1 = diff_Max * math.pow(10,3)
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] n1 = %.03f (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n1, type(n1)
+#         ), file=sys.stderr)
+#     
+#     n2_floor = math.floor(n1)
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] n2_floor = %d (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n2_floor, type(n2_floor)
+#         ), file=sys.stderr)
+#     print("[%s:%d] n2_floor = %.03f" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n2_floor
+#         ), file=sys.stderr)
+#     
+#     n3_residue = n2_floor % 10
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] n3_residue = %d (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n3_residue, type(n3_residue)
+#         ), file=sys.stderr)
+#             #=> (<class 'int'>)
+#     
+#     n4 = 0
+#     
+#     if n3_residue == 0 : #if n3_residue == 0
+#         
+#             n4 = int(n2_floor / 10)
+# #             n4 = n2_floor / 10
+#         
+#     else : #if n3_residue == 0
+#     
+#         n4 = int(n2_floor / 10) + 1
+# #         n4 = n2_floor / 10 + 1
+#     
+#     #/if n3_residue == 0
+# 
+#     #debug
+#     print()
+#     print("[%s:%d] n4 = %d (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n4, type(n4)
+#         ), file=sys.stderr)
+#         
+#     n5 = n4 * 10
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] n5 = %d (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n5, type(n5)
+#         ), file=sys.stderr)
+#             #=> n5 = 120 (<class 'int'>)
+# 
+#     # n6
+#     n6 = n5 * 1.0 / math.pow(10, 3)
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] n6 = %.03f (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , n6, type(n6)
+#         ), file=sys.stderr)
+#     
+#     # width of a slice
+#     widthOf_Slice = n6 / numOf_Slices
+# 
+#     #debug
+#     print()
+#     print("[%s:%d] widthOf_Slice = %.03f (%s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , widthOf_Slice, type(widthOf_Slice)
+#         ), file=sys.stderr)
+#     
+#     # list of slice ranges
+#     lo_Slice_Ranges = []
+# 
+#     #debug
+#     print()
+#     print("[%s:%d] numOf_Slices = %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , numOf_Slices
+#         ), file=sys.stderr)
+#     
+#     for i in range(0, numOf_Slices):
+#         
+#         # calc
+#         slice_Start = 0 + widthOf_Slice * i
+#         slice_End = slice_Start + widthOf_Slice
+#         
+#         #debug
+#         print()
+#         print("[%s:%d] slice_Start = %.03f, slice_End = %.03f" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , slice_Start, slice_End
+#             ), file=sys.stderr)
+#         
+#         
+#     #/for i in range(0, numOf_Slices):
+
+    '''######################################
+        steps : A.4
+            for-loop
+    ######################################'''
+    for i in range(0, lenOf_Lo_BarDatas):
+        '''###################
+            step : 1
+                prep : vars
+        ###################'''
+        e0 = lo_BarDatas[i]
+        
+        d0 = e0.price_Close - e0.price_Open
+        
+        '''###################
+            step : 2
+                prep : conditions
+        ###################'''
+        cond_1 = (lo_Slice_Ranges[0][0] <= d0) \
+                    and (d0 < lo_Slice_Ranges[0][1])
+        cond_2 = (lo_Slice_Ranges[1][0] <= d0) \
+                    and (d0 < lo_Slice_Ranges[1][1])
+        cond_3 = (lo_Slice_Ranges[2][0] <= d0) \
+                    and (d0 < lo_Slice_Ranges[2][1])
+        cond_4 = (lo_Slice_Ranges[3][0] <= d0) \
+                    and (d0 < lo_Slice_Ranges[3][1])
+        
+        '''###################
+            step : j1
+                prep : range
+        ###################'''
+        if cond_1 == True : #if cond_1 == True
+            '''###################
+                step : j1 : .1
+                    append
+            ###################'''
+            lo_Histo_1.append(e0)
+        
+        elif cond_2 == True : #if cond_1 == True
+            '''###################
+                step : j1 : .2
+                    append
+            ###################'''
+            lo_Histo_2.append(e0)
+        
+        elif cond_3 == True : #if cond_1 == True
+            '''###################
+                step : j1 : .3
+                    append
+            ###################'''
+            lo_Histo_3.append(e0)
+        
+        elif cond_4 == True : #if cond_1 == True
+            '''###################
+                step : j1 : .4
+                    append
+            ###################'''
+            lo_Histo_4.append(e0)
+        
+        else : #if cond_1 == True
+            
+            msg = "unknown value : e0 = %s / d0 = %.03f" % (e0.dateTime, d0)
+            msg += "\n"
+            
+            msg_Log = "[%s / %s:%d] %s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg)
+            
+            # append log line
+            lo_Log_Lines.append(msg_Log)
+            
+        
+        #/if cond_1 == True
+        
+
+                    
+                    
+    #/for i in range(0, lenOf_Lo_BarDatas):
+
+    '''######################################
+        steps : B.1
+            build : lo_Histos
+    ######################################'''
+    lo_Histos = [
+                 [lo_Slice_Ranges[0], lo_Histo_1]
+                 , [lo_Slice_Ranges[1], lo_Histo_2]
+                 , [lo_Slice_Ranges[2], lo_Histo_3]
+                 , [lo_Slice_Ranges[3], lo_Histo_4]
+                 ]
+    
+    #debug
+    sumOf_Histos = len(lo_Histo_1) \
+                + len(lo_Histo_2) \
+                + len(lo_Histo_3) \
+                + len(lo_Histo_4) \
+    
+    
+    print()
+    print("[%s:%d] lo_Histos ==> total = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , sumOf_Histos
+        ), file=sys.stderr)
+    
+    for item in lo_Histos:
+
+        print("%.03f -- %.03f ==> %d (%.03f)" %\
+               (
+                item[0][0]
+                , item[0][1]
+                , len(item[1])
+                , len(item[1]) * 1.0 / sumOf_Histos
+                )
+              )
+        
+    #/for item in lo_Histos:
+
+    
+#ccc
+
+    
+    
+#     return (lo_Histos, lo_Log_Lines)
+    return (lo_BarDatas, lo_Log_Lines)
+    
+#/ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_2(request):
     
 '''###################
     func : def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request)
@@ -8412,24 +8767,29 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request):
         ops
     ###################'''
     '''###################
-        test
+        for-loop : 1
+            Close - Open
+            Diff
     ###################'''
-    tmp_lo_Log_Lines = copy.deepcopy(lo_Log_Lines)
+#     tmp_lo_Log_Lines = copy.deepcopy(lo_Log_Lines)
     
 #     ([_lo_Ups, _lo_Downs, _lo_Zeros], tmp_lo_Log_Lines, msg_Log_CSV) = \
-    (lo_UpsDownsZeros, tmp_lo_Log_Lines, msg_Log_CSV) = \
+#     (lo_UpsDownsZeros, tmp_lo_Log_Lines, msg_Log_CSV) = \
+
+    #([lo_Ups, lo_Downs, lo_Zeros], lo_Log_Lines, msg_Log_CSV)
+    (lo_UpsDownsZeros, lo_Log_Lines, msg_Log_CSV) = \
             __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(\
                 lo_BarDatas
                 , pair
                 , timeframe
                 , filedate
-                , tmp_lo_Log_Lines
+                , lo_Log_Lines
+#                 , tmp_lo_Log_Lines
                 , fname_Src_CSV
                 , dpath_Src_CSV
                 , fname_Log
                 , dpath_Log
                 , tlabel
-#ccc
                 )
 
     print()
@@ -8437,368 +8797,39 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request):
                         (os.path.basename(libs.thisfile()), libs.linenum()
                          , len(lo_UpsDownsZeros)
                         ), file=sys.stderr)
-            #[views.py:8430] len(lo_UpsDownsZeros) => 3
+            #[views.py:8430] len(lo_UpsDownsZeros) => 3    
+            
+    #@_20190214_105718
+    '''###################
+        for-loop : 2
+            histogram
+    ###################'''
+    lo_Ups = lo_UpsDownsZeros[0]
+    lo_Downs = lo_UpsDownsZeros[1]
+    lo_Zeros = lo_UpsDownsZeros[2]
     
-#     '''###################
-#         vars
-#     ###################'''
-#     lenOf_BarDatas = len(lo_BarDatas)
-#     
-#     # lists
-#     lo_Ups = []
-#     lo_Downs = []
-#     lo_Zeros = []
-#     
-#     # sums
-#     sumOf_Ups = 0.0
-#     sumOf_Downs = 0.0
-#     sumOf_Diff_HL = 0.0
-#     
-#     # max, min
-#     valOf_Max_OC = -0.1
-#     valOf_Min_OC = 999
-#     valOf_Max_HL = -0.1
-#     valOf_Min_HL = 999
-#     
-#     '''###################
-#         for-loop
-#     ###################'''
-#     for i in range(0, lenOf_BarDatas):
-#     
-#         '''###################
-#             step : 1
-#                 prep data
-#         ###################'''
-#         e0 = lo_BarDatas[i]
-#         d0_1 = e0.price_Close - e0.price_Open
-#         d0_2 = e0.price_High - e0.price_Low
-# 
-#         '''###################
-#             step : 2
-#                 diff of HL ---> sum
-#         ###################'''
-#         sumOf_Diff_HL += d0_2
-#         
-#         '''###################
-#             step : j1
-#                 up/down/zero
-#         ###################'''
-#         if d0_1 > 0 : #if d0_1 > 0
-#             '''###################
-#                 step : j1-1
-#                     up
-#             ###################'''
-#             '''###################
-#                 step : j1-1 : 0.1
-#                     max
-#             ###################'''
-#             # close
-#             if e0.price_Close > valOf_Max_OC : #if e0.price_Close > valOf_Max
-#                 
-#                 valOf_Max_OC = e0.price_Close
-#             
-#             #/if e0.price_Close > valOf_Max
-# 
-#             # high
-#             if e0.price_High > valOf_Max_HL : #if e0.price_Close > valOf_Max
-# 
-#                 valOf_Max_HL = e0.price_High
-#             
-#             #/if e0.price_Close > valOf_Max
-# 
-#             
-#             '''###################
-#                 step : j1-1 : 1
-#                     append e0
-#             ###################'''
-#             lo_Ups.append(e0)
-#             
-#             '''###################
-#                 step : j1-1 : 1.1
-#                     sum
-#             ###################'''
-#             sumOf_Ups += d0_1
-#             
-# #             print()
-# #             print("[%s:%d] sumOf_Ups = %.03f (d0_1 = %.03f) (%s)" % \
-# #                     (os.path.basename(libs.thisfile()), libs.linenum()
-# #                      , sumOf_Ups, d0_1, e0.dateTime
-# #                     ), file=sys.stderr)
-# 
-#             '''###################
-#                 step : j1-1 : 2
-#                     next loop
-#             ###################'''
-#             continue
-#             
-#         elif d0_1 < 0 : #if d0_1 > 0
-#             '''###################
-#                 step : j1-2
-#                     down
-#             ###################'''
-#             '''###################
-#                 step : j1-1 : 0.1
-#                     min
-#             ###################'''
-#             # close
-#             if e0.price_Close < valOf_Min_OC : #if e0.price_Close > valOf_Min
-#                 
-#                 valOf_Min_OC = e0.price_Close
-#             
-#             #/if e0.price_Close > valOf_Min
-# 
-#             # high
-#             if e0.price_Low < valOf_Min_HL : #if e0.price_Close > valOf_Min
-# 
-#                 valOf_Min_HL = e0.price_Low
-#             
-#             #/if e0.price_Close > valOf_Min
-#             
-#             '''###################
-#                 step : j1-2 : 1
-#                     append e0
-#             ###################'''
-#             lo_Downs.append(e0)
-#             
-#             '''###################
-#                 step : j1-1 : 1.1
-#                     sum
-#             ###################'''
-#             sumOf_Downs += d0_1
-#             
-#             '''###################
-#                 step : j1-1 : 2
-#                     next loop
-#             ###################'''
-#             continue
-#             
-#         
-#         else : #if d0_1 > 0
-#             '''###################
-#                 step : j1-3
-#                     zero
-#             ###################'''
-#             '''###################
-#                 step : j1-3 : 1
-#                     append e0
-#             ###################'''
-#             lo_Zeros.append(e0)
-#             
-#             '''###################
-#                 step : j1-1 : 2
-#                     next loop
-#             ###################'''
-#             continue
-#         
-#         #/if d0_1 > 0
-#         
-#     #/for i in range(0, lenOf_BarDatas):
-# 
-#     '''###################
-#         step : B1 : 1
-#             calc
-#     ###################'''
-#     avgOf_Diff_Ups = sumOf_Ups * 1.0 / len(lo_Ups)
-#     avgOf_Diff_Downs = sumOf_Downs * 1.0 / len(lo_Downs)
-#     avgOf_Diff_HLs = sumOf_Diff_HL * 1.0 / (len(lo_Ups) + len(lo_Downs))
-#     
-#     avgOf_UpsAndDowns = avgOf_Diff_Ups + avgOf_Diff_Downs
-#         
-#     '''###################
-#         log : write
-#     ###################'''
-#     print()
-#     print("[%s:%d] len(lo_Log_Lines) => %d" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , len(lo_Log_Lines)
-#         ), file=sys.stderr)
-#                 
-#     str_Log_Lines = "\r\n".join(lo_Log_Lines)
-#     
-#     libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
-#     
-#     '''###################
-#         TPs, SLs
-#     ###################'''
-#     fname_Log_CSV_trunk = "no-45.[basic-stats]"
-#     fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
-# 
-#     '''###################
-#         csv : meta info
-#     ###################'''
-#     msg = "pair\t=\t%s" % pair
-#     msg += "\n"
-#     msg += "timeframe\t=\t%s" % timeframe
-#     msg += "\n"
-# 
-#     msg += "source csv\t=\t%s" % fname_Src_CSV
-#     msg += "\n"
-# 
-#     msg += "source dpath\t=\t%s" % dpath_Src_CSV
-#     msg += "\n"
-#         
-#     msg += "source file date\t=\t%s" % filedate
-#     msg += "\n"
-#         
-#     msg += "log file name\t=\t%s" % fname_Log_CSV
-#     msg += "\n"
-#         
-#     msg += "log file dpath\t=\t%s" % dpath_Log
-#     msg += "\n"
-#         
-#     msg += "this file created at\t=\t%s" % tlabel
-#     msg += "\n"
-#     
-#     # bar datetime, price
-#     msg += "starting bar\t=\t%s\topen=\t%.03f" \
-#             % (
-#                lo_BarDatas[0].dateTime
-#                , lo_BarDatas[0].price_Open
-#                )
-#     msg += "\n"
-#     
-#     msg += "ending bar\t=\t%s\tclose=\t%.03f" \
-#             % (
-#                lo_BarDatas[-1].dateTime
-#                , lo_BarDatas[0].price_Close
-#                )
-#     msg += "\n"
-# 
-# 
-#     # max, min : open, close
-#     msg += "[range]========================="
-#     msg += "\tmax\tmin\tdiff"
-#     msg += "\n"
-#     
-#     msg += "OC\t%.03f\t%.03f\t%.03f" \
-#             % (valOf_Max_OC, valOf_Min_OC
-#                 , (valOf_Max_OC - valOf_Min_OC)
-#             )
-#     msg += "\n"
-#     
-#     msg += "HL\t%.03f\t%.03f\t%.03f" \
-#             % (valOf_Max_HL, valOf_Min_HL
-#                 , (valOf_Max_HL - valOf_Min_HL)
-#             )
-#     msg += "\n"
-#     
-#     # max, min : ratios
-#     print()
-#     print("[%s:%d] (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) => %.03f" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)
-#         ), file=sys.stderr)
-#             # (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) => 896.000
-#     print()
-#     print("[%s:%d] (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3) => %.03f" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
-#         ), file=sys.stderr)
-#     
-# #ccc        
-#     ratioOf_valOf_Max_HL_OC = \
-#             ((valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3)) / ((valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3))
-# #             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
-# #                  / (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
-# #             (valOf_Max_HL - math.floor(valOf_Max_HL)) * math.pow(10, 3) \
-# #                  / (valOf_Max_OC - math.floor(valOf_Max_OC)) * math.pow(10, 3)
-#                  
-#     print()
-#     print("[%s:%d] ratioOf_valOf_Max_HL_OC => %.03f" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , ratioOf_valOf_Max_HL_OC
-#         ), file=sys.stderr)
-# 
-#     ratioOf_valOf_Min_HL_OC = \
-#             ((valOf_Min_HL - math.floor(valOf_Min_HL)) * math.pow(10, 3)) \
-#                  / ((valOf_Min_OC - math.floor(valOf_Min_OC)) * math.pow(10, 3))
-#     
-#     diffOf_OC = (valOf_Max_OC - valOf_Min_OC)
-#     diffOf_HL = (valOf_Max_HL - valOf_Min_HL)
-#     
-#     ratioOf_Diff_HL_OC = ((diffOf_HL - math.floor(diffOf_HL)) * math.pow(10, 3)) \
-#                     / ((diffOf_OC - math.floor(diffOf_OC)) * math.pow(10, 3))
-#             
-#     
-#     msg += "HL/OC\t%.03f\t%.03f\t%.03f" \
-#             % (
-#                ratioOf_valOf_Max_HL_OC
-#                  
-#                , ratioOf_valOf_Min_HL_OC
-#                  
-#                , ratioOf_Diff_HL_OC
-#                
-# #                , valOf_Min_HL / valOf_Min_OC
-# #                , (valOf_Max_HL - valOf_Min_HL) / (valOf_Max_OC - valOf_Min_OC)
-#             )
-#     msg += "\n"
-#     
-#     msg += "\n"
-#     
-# 
-#     msg_Log = "[%s / %s:%d]\n%s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg)
-#     
-#     libs.write_Log(msg_Log, dpath_Log, fname_Log_CSV, 2)
-#     
-#     '''###################
-#         csv : data : num of ups and downs
-#     ###################'''
-#     # lens
-#     lenOf_Ups = len(lo_Ups)
-#     lenOf_Downs = len(lo_Downs)
-#     lenOf_Zeros = len(lo_Zeros)
-#     
-#     msg = "[Close - Open]========================="
-#     msg += "\n"
-#     
-#     msg += "lenOf_BarDatas\t%d" % lenOf_BarDatas
-#     msg += "\n"
-#     msg += "len(lo_Ups)\t%d\t%.03f" \
-#                 % (lenOf_Ups, lenOf_Ups * 1.0 / lenOf_BarDatas) 
-#     msg += "\n"
-#     msg += "len(lo_Downs)\t%d\t%.03f" \
-#                 % (lenOf_Downs, lenOf_Downs * 1.0 / lenOf_BarDatas) 
-#     msg += "\n"
-#     msg += "len(lo_Zeros)\t%d\t%.03f" \
-#                 % (lenOf_Zeros, lenOf_Zeros * 1.0 / lenOf_BarDatas) 
-#     msg += "\n"
-#     msg += "\n"
-# 
-#     '''###################
-#         csv : data : diff of ups and downs
-#     ###################'''
-#     msg += "[Diff]========================="
-#     msg += "\n"
-#     
-#     msg += "avgOf_Diff_Ups\t%.03f\t(sumOf_Ups = %.03f, len(lo_Ups) = %d)" % \
-#                  (avgOf_Diff_Ups, sumOf_Ups, len(lo_Ups))
-#     msg += "\n"
-#     msg += "avgOf_Diff_Downs\t%.03f\t(sumOf_Downs = %.03f, len(lo_Downs) = %d)" % \
-#                 (avgOf_Diff_Downs, sumOf_Downs, len(lo_Downs))
-#     msg += "\n"
-#     msg += "avgOf_Diff_HLs\t%.03f" % (avgOf_Diff_HLs)
-#     msg += "\n"
-# 
-# #ccc
-#     '''###################
-#         csv : write to file
-#     ###################'''
-#     msg_Log = "[%s / %s:%d]\n%s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg)
-
+    #@return (lo_BarDatas, lo_Log_Lines)
+    #test
+    tmp_lo_Log_Lines = copy.deepcopy(lo_Log_Lines)
+    
+    (lo_Ups_Histogram, tmp_lo_Log_Lines) = \
+        __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_2(\
+                lo_Ups
+                , pair
+                , timeframe
+                , filedate
+                , tmp_lo_Log_Lines
+#                 , lo_Log_Lines
+                , msg_Log_CSV
+                )
+    
+#ccc
+    
     '''###################
         write : csv
     ###################'''
     
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
-#     libs.write_Log(msg_Log, dpath_Log, fname_Log_CSV, 2)
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
 
     '''###################
         write : log
@@ -8809,10 +8840,10 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request):
         , len(lo_Log_Lines)
         ), file=sys.stderr)
                  
-    str_Log_Lines = "\r\n".join(tmp_lo_Log_Lines)
-#     str_Log_Lines = "\r\n".join(lo_Log_Lines)
+#     str_Log_Lines = "\r\n".join(tmp_lo_Log_Lines)
+    str_Log_Lines = "\r\n".join(lo_Log_Lines)
      
-    libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
+#     libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
     
     '''###################
         return        

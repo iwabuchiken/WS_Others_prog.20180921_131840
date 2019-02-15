@@ -16,7 +16,7 @@ f C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
 
 '''
 
-import inspect, os, os.path, sys, copy, numpy as np, csv, sys, token
+import inspect, os, os.path, sys, copy, numpy as np, csv, sys, token, math
 # import inspect, os, os.path, sys, copy, numpy, csv, sys, token
 # import os
 # import os.path
@@ -3367,4 +3367,130 @@ def get_Data_Consecutive_Bars(\
     
 #/ def get_Data_Consecutive_Bars(lo_BarDatas):
     
+def get_Slice_Ranges(width_Total, numOf_Slices):
     
+    '''###################
+        steps : 1
+            modify : total
+    ###################'''
+    n1 = width_Total * math.pow(10,3)
+    
+    #debug
+    print()
+    print("[%s:%d] n1 = %.03f (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n1, type(n1)
+        ), file=sys.stderr)
+    
+    n2_floor = math.floor(n1)
+    
+    #debug
+    print()
+    print("[%s:%d] n2_floor = %d (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n2_floor, type(n2_floor)
+        ), file=sys.stderr)
+    print("[%s:%d] n2_floor = %.03f" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n2_floor
+        ), file=sys.stderr)
+    
+    n3_residue = n2_floor % 10
+    
+    #debug
+    print()
+    print("[%s:%d] n3_residue = %d (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n3_residue, type(n3_residue)
+        ), file=sys.stderr)
+            #=> (<class 'int'>)
+    
+    n4 = 0
+    
+    if n3_residue == 0 : #if n3_residue == 0
+        
+            n4 = int(n2_floor / 10)
+#             n4 = n2_floor / 10
+        
+    else : #if n3_residue == 0
+    
+        n4 = int(n2_floor / 10) + 1
+#         n4 = n2_floor / 10 + 1
+    
+    #/if n3_residue == 0
+
+    #debug
+    print()
+    print("[%s:%d] n4 = %d (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n4, type(n4)
+        ), file=sys.stderr)
+        
+    n5 = n4 * 10
+    
+    #debug
+    print()
+    print("[%s:%d] n5 = %d (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n5, type(n5)
+        ), file=sys.stderr)
+            #=> n5 = 120 (<class 'int'>)
+
+    # n6
+    n6 = n5 * 1.0 / math.pow(10, 3)
+    
+    #debug
+    print()
+    print("[%s:%d] n6 = %.03f (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , n6, type(n6)
+        ), file=sys.stderr)
+    
+    # width of a slice
+    widthOf_Slice = n6 / numOf_Slices
+
+    #debug
+    print()
+    print("[%s:%d] widthOf_Slice = %.03f (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , widthOf_Slice, type(widthOf_Slice)
+        ), file=sys.stderr)
+    
+    '''###################
+        step
+            build list
+    ###################'''
+    # list of slice ranges
+    lo_Slice_Ranges = []
+
+    #debug
+    print()
+    print("[%s:%d] numOf_Slices = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , numOf_Slices
+        ), file=sys.stderr)
+    
+    for i in range(0, numOf_Slices):
+        
+        # calc
+        slice_Start = 0 + widthOf_Slice * i
+        slice_End = slice_Start + widthOf_Slice
+        
+        #debug
+        print()
+        print("[%s:%d] slice_Start = %.03f, slice_End = %.03f" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , slice_Start, slice_End
+            ), file=sys.stderr)
+        
+        # append
+        lo_Slice_Ranges.append([slice_Start, slice_End])
+        
+    #/for i in range(0, numOf_Slices):
+    
+    '''###################
+        return        
+    ###################'''
+    return lo_Slice_Ranges
+    
+#/ def get_Slice_Ranges(width_Total, numOf_Slices):
