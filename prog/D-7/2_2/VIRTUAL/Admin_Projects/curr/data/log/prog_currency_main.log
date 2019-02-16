@@ -2669,3 +2669,35 @@
 [20190215_143954 / views.py:8995] tester_BuyUps_SellLows__V2 starting... =================
 [20190215_143956 / views.py:9283] tester_BuyUps_SellLows__V2 ==> done
 
+[20190216_104618 / views.py:9017] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_104756 / views.py:9017] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_104756 / views.py:9330] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_104901 / views.py:9019] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_104901 / views.py:9332] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_105020 / views.py:9019] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_105020 / views.py:9332] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_105225 / views.py:9019] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_105225 / views.py:9338] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_105340 / views.py:9020] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_105340 / views.py:9339] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_125505 / views.py:9276] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_125543 / views.py:9277] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_125717 / views.py:9278] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_125918 / views.py:9317] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_130045 / views.py:9317] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_130322 / views.py:9322] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_130428 / views.py:9325] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_130429 / views.py:9644] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_130708 / views.py:9322] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_130709 / views.py:9641] tester_BuyUps_SellLows__V2 ==> done
+
+[20190216_132929 / views.py:9659] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_133243 / views.py:9672] tester_BuyUps_SellLows__V2 starting... =================
+[20190216_133244 / views.py:9991] tester_BuyUps_SellLows__V2 ==> done
+

@@ -288,6 +288,8 @@ class ParamConstants(Enum):
     PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell = "up-buy-down-sell"
     
     PARAM_BUSL3_CMD_45_1__Get_Basic_Stats = "get-basic-stats"
+    
+    PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 = "get-basic-stats-cat-2"
 
 #/ class ParamConstants(Enum):
     
@@ -314,6 +316,7 @@ class Tester(Enum):
     # max key value : 12 : 20190118_123056
     # max key value : 13 : 20190202_085325
     # max key value : 14 : 20190210_165125
+    # max key value : 15 : 20190216_103134
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -335,6 +338,11 @@ class Tester(Enum):
             , 12 : "37-1"     #
             , 13 : "42-1"     # """tester_1"" > up --> then buy; down, sell"
             , 14 : "45-1"     # """tester_1"" > up --> then buy; down, sell"
+    
+            , 15 : "46-1"     # "get basic stats, category-2 (as a routine job)
+                                # 1. correl ---> between pairs
+                                #   1. U/J ~ E/J"
+            
             
             
         }
@@ -479,6 +487,18 @@ class Tester(Enum):
                     + "<br>4) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20190210_165125"
             ],     
+                        
+            # "46-1"
+            [
+                lo_Actions__BUSL__IDs[15]   # key
+                ,"stats : gen basic stats, category-2"  # description : short
+                , ParamConstants.PARAM_BUSL3_CMD_45_1__Get_Basic_Stats.value    # constant string
+                , "1) correl ---> between pairs" \
+                    + "<br>&nbsp;&nbsp;1) U/J ~ E/J" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
+                , "20190216_103134" # descipt. : long
+            ],     
+
             #ccc
         ]
     
