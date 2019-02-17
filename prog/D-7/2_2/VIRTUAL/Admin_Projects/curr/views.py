@@ -70,6 +70,10 @@ import subprocess, copy, time, glob, re, datetime, math
 
 # import re
 
+'''###################
+    import : user-installed
+###################'''
+import numpy
 
 
 
@@ -9180,268 +9184,13 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
          , lo_Log_Lines
      ) = _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep(request)
     
-#     '''###################
-#         params : csv file name
-#     ###################'''
-#     _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
-#     _req_dpath_csv = request.GET.get('dpath_csv', False)
-# 
-#     '''###################
-#         file : validate : exists
-#     ###################'''
-#     #ref join https://torina.top/detail/249/
-# #     dpath_Src_CSV = _req_dpath_csv
-# #     fname_Src_CSV = _req_param_bardata_csv_file
-#     dpath_Src_CSV__Pair_1 = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
-#     fname_Src_CSV__Pair_1 = "44_5.1_10_rawdata.(USDJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_094828.csv"
-#     
-#     dpath_Src_CSV__Pair_2 = dpath_Src_CSV__Pair_1
-#     fname_Src_CSV__Pair_2 = "44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_095445.csv"
-#     
-#     #ref https://torina.top/detail/249/
-# #     fpath_Src_CSV = os.path.join(dpath_Src_CSV, fname_Src_CSV)
-#     fpath_Src_CSV__Pair_1 = os.path.join(\
-#                     dpath_Src_CSV__Pair_1
-#                     , fname_Src_CSV__Pair_1
-#                     )
-#     
-#     fpath_Src_CSV__Pair_2 = os.path.join(\
-#                     dpath_Src_CSV__Pair_2
-#                     , fname_Src_CSV__Pair_2
-#                     )
-#     
-#     # validate : csv 1 ------------------------
-#     res = os.path.isfile(fpath_Src_CSV__Pair_1)
-# #     res = os.path.isfile(fpath_Src_CSV)
-#     
-#     #debug
-#     print()
-#     print("[%s:%d] csv file exisits? fpath_Src_CSV__Pair1 => %s (%s)" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , res, fpath_Src_CSV__Pair_1
-# #         , res, fpath_Src_CSV
-#         ), file=sys.stderr)
-#             # [views.py:3997] csv file exisits? => True
-#     
-#     # validation
-#     if res == False : #if res == False
-#     
-#         status = -1
-#         
-#         msg = "(ERROR) PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 : "
-#         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV__Pair_1)
-#         
-#         return (status, msg)
-#         
-#     #/if res == False
-# 
-#     # validate : csv 2 ------------------------
-#     res = os.path.isfile(fpath_Src_CSV__Pair_2)
-# #     res = os.path.isfile(fpath_Src_CSV)
-#     
-#     #debug
-#     print()
-#     print("[%s:%d] csv file exisits? fpath_Src_CSV__Pair_2 => %s (%s)" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , res, fpath_Src_CSV__Pair_2
-# #         , res, fpath_Src_CSV
-#         ), file=sys.stderr)
-#             # [views.py:3997] csv file exisits? => True
-#     
-#     # validation
-#     if res == False : #if res == False
-#     
-#         status = -1
-#         
-#         msg = "(ERROR) PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 : "
-#         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV__Pair_2)
-#         
-#         return (status, msg)
-#         
-#     #/if res == False
-#     
-#     
-#     '''###################
-#         get : list of bardatas
-#     ###################'''
-#     header_Length   = 2
-#     skip_Header     = False
-#     
-# #     lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
-# #                         dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
-#     lo_BarDatas__Pair_1, lo_CSVs__Pair_1 = libfx.get_Listof_BarDatas_2(
-#                         dpath_Src_CSV__Pair_1, fname_Src_CSV__Pair_1
-#                         , header_Length, skip_Header
-#                         )
-#     
-#     lo_BarDatas__Pair_2, lo_CSVs__Pair_2 = libfx.get_Listof_BarDatas_2(
-#                         dpath_Src_CSV__Pair_2, fname_Src_CSV__Pair_2
-#                         , header_Length, skip_Header
-#                         )
-#     
-#     print()
-#     print("[%s:%d] len(lo_BarDatas__Pair_1) => %d" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                         , len(lo_BarDatas__Pair_1)
-# #                         , len(lo_BarDatas)
-#                         ), file=sys.stderr)
-# 
-#     '''###################
-#         info : currency
-#     ###################'''
-#     #     [views.py:6964] lo_CSVs =>
-#     # [['Pair=USDJPY', 'Period=M1', 'Days=20000', 'Shift=1', 'Bars=1200000', 'Time=20190211_085606'], ['no
-#     # ', 'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'D
-#     # iff', 'High/Low', 'datetime', 'dateTime_Local', 's.n.']]
-# 
-#     print()
-#     print("[%s:%d] lo_CSVs[0][0] (__Pair_1) => %s" % \
-#                         (os.path.basename(libs.thisfile()), libs.linenum()
-#                          , lo_CSVs__Pair_1[0][0]
-# #                          , lo_CSVs[0][0]
-#                         ), file=sys.stderr)
-# 
-#     
-#     #Pair=USDJPY    Period=M1    Days=20000    Shift=1    Bars=1200000    Time=20190211_085606
-#     pair = (lo_CSVs__Pair_1[0][0]).split("=")[1]
-#     timeframe = (lo_CSVs__Pair_1[0][1]).split("=")[1]
-#     filedate = (lo_CSVs__Pair_1[0][5]).split("=")[1]
-#     
-#     
-#     '''###################
-#         adjust : order of the list
-#     ###################'''
-#     # pair : 1
-#     bar_Start = lo_BarDatas__Pair_1[0]
-#     bar_End = lo_BarDatas__Pair_1[-1]
-# #     bar_Start = lo_BarDatas[0]
-# #     bar_End = lo_BarDatas[-1]
-#     
-#     if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
-#     
-#         print()
-#         print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#         
-#         # reverse
-#         lo_BarDatas__Pair_1.reverse()
-# 
-#         print()
-#         print("[%s:%d] lo_BarDatas__Pair_1, order => reversed (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , lo_BarDatas__Pair_1[0].dateTime
-#                              , lo_BarDatas__Pair_1[-1].dateTime
-#                             ), file=sys.stderr)
-#     
-#     
-#     else : #if bar_Start.dateTime > bar_End..dateTime
-# 
-#         print()
-#         print("[%s:%d] lo_BarDatas__Pair_1, order => A to Z (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#     
-#     #/if bar_Start.dateTime > bar_End..dateTime
-#     
-#     # pair : 2
-#     bar_Start = lo_BarDatas__Pair_2[0]
-#     bar_End = lo_BarDatas__Pair_2[-1]
-# #     bar_Start = lo_BarDatas[0]
-# #     bar_End = lo_BarDatas[-1]
-#     
-#     if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
-#     
-#         print()
-#         print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#         
-#         # reverse
-#         lo_BarDatas__Pair_2.reverse()
-# 
-#         print()
-#         print("[%s:%d] lo_BarDatas__Pair_2, order => reversed (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , lo_BarDatas__Pair_2[0].dateTime
-#                              , lo_BarDatas__Pair_2[-1].dateTime
-#                             ), file=sys.stderr)
-#     
-#     
-#     else : #if bar_Start.dateTime > bar_End..dateTime
-# 
-#         print()
-#         print("[%s:%d] lo_BarDatas__Pair_2, order => A to Z (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#     
-#     #/if bar_Start.dateTime > bar_End..dateTime
-#     
-#     '''###################
-#         prep : log file
-#     ###################'''
-#     lo_Log_Lines = []
-#     
-#     tlabel = libs.get_TimeLabel_Now()
-#     
-#     dpath_Log = cons_fx.FPath.dpath_LogFile.value
-#     
-#     fname_Log_Trunk = "no-46.[basic-stats,cat-2].[v-1.0]" 
-#     fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
-#     
-#     fpath_Log = os.path.join(dpath_Log, fname_Log)
-#     
-#     '''###################
-#         prep : log file : csv
-#     ###################'''
-#     fname_Log_CSV_trunk = "no-46.[basic-stats-cat-2]"
-#     fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
-# 
-#     '''###################
-#         log : meta info
-#     ###################'''
-#     msg = "n"
-#     
-#     msg += "source csv (1)\t=\t%s" % fname_Src_CSV__Pair_1
-#     msg += "\n"
-#     msg += "source dpath(1)\t=\t%s" % dpath_Src_CSV__Pair_1
-#     msg += "\n"
-#     
-#     msg += "source csv (2)\t=\t%s" % fname_Src_CSV__Pair_2
-#     msg += "\n"
-#     msg += "source dpath(2)\t=\t%s" % dpath_Src_CSV__Pair_2
-#     msg += "\n"
-#         
-#     msg += "log file name\t=\t%s" % fname_Log
-#     msg += "\n"
-#         
-#     msg += "log file dpath\t=\t%s" % dpath_Log
-#     msg += "\n"
-#         
-#     msg += "this file created at\t=\t%s" % tlabel
-#     msg += "\n"
-#     msg += "\n"
-#     
-#     msg_Log = "[%s / %s:%d] %s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , msg)
-#     
-#     # append log line
-#     lo_Log_Lines.append(msg_Log)
-
     '''###################
         validate : csv files exist
     ###################'''
     if lo_Src_File_Data == False : #if lo_Src_File_Data == False
         
         #=> (False, status, msg, _, _, _)
-        #ccc
+
         status = lo_BarDatas_Data
         msg = lo_CSV_Data
 #         msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2.value
@@ -9453,23 +9202,211 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     '''###################
         unpack vars
     ###################'''
-    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) =\
-                lo_Log_File_Data
-    
     (dpath_Src_CSV__Pair_1, fname_Src_CSV__Pair_1 \
          , dpath_Src_CSV__Pair_2, fname_Src_CSV__Pair_2) = \
                 lo_Src_File_Data
     
+    (lo_BarDatas__Pair_1, lo_CSVs__Pair_1
+            , lo_BarDatas__Pair_2, lo_CSVs__Pair_2) = \
+                        lo_BarDatas_Data
+                        
+    (pair, timeframe, filedate) = lo_CSV_Data
+    
+    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) =\
+                lo_Log_File_Data
+    
+    (fname_Log_CSV_trunk, fname_Log_CSV) = lo_Log_File_CSV_Data
+
     '''###################
+        prep
+            log : meta info
+    ###################'''
+    lo_Log_Lines_CSV = []
+    
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("source csv (1)\t=\t%s" % fname_Src_CSV__Pair_1)
+    lo_Log_Lines_CSV.append("\n")
+
+    lo_Log_Lines_CSV.append("source dpath (1)\t=\t%s" % dpath_Src_CSV__Pair_1)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("source csv (2)\t=\t%s" % fname_Src_CSV__Pair_2)
+    lo_Log_Lines_CSV.append("\n")
+
+    lo_Log_Lines_CSV.append("source dpath (2)\t=\t%s" % dpath_Src_CSV__Pair_2)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("log file name\t=\t%s" % fname_Log)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("log file dpath\t=\t%s" % dpath_Log)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("this file created at\t=\t%s" % tlabel)
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("\n")
+
+    # bar datetime, price
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("[basics]=========================")
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("num of bars (1)\t=\t%d" \
+            % (
+               len(lo_BarDatas__Pair_1)
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("num of bars (2)\t=\t%d" \
+            % (
+               len(lo_BarDatas__Pair_2)
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("starting bar (1)\t=\t%s\topen=\t%.03f" \
+            % (
+               lo_BarDatas__Pair_1[0].dateTime
+               , lo_BarDatas__Pair_1[0].price_Open
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("ending bar (1)\t=\t%s\tclose=\t%.03f" \
+            % (
+               lo_BarDatas__Pair_1[-1].dateTime
+               , lo_BarDatas__Pair_1[0].price_Close
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("starting bar (2)\t=\t%s\topen=\t%.03f" \
+            % (
+               lo_BarDatas__Pair_2[0].dateTime
+               , lo_BarDatas__Pair_2[0].price_Open
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("ending bar (2)\t=\t%s\tclose=\t%.03f" \
+            % (
+               lo_BarDatas__Pair_2[-1].dateTime
+               , lo_BarDatas__Pair_2[0].price_Close
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+#     msg_Log_CSV = "[%s / %s:%d] %s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Log_Lines_CSV))    
+#             , msg)    
+    
+    '''######################################
         ops
-    ###################'''
+    ######################################'''
     #@_20190216_134007
+    price_Close_Pair_1 = [x.price_Close for x in lo_BarDatas__Pair_1]
+    price_Close_Pair_2 = [x.price_Close for x in lo_BarDatas__Pair_2]
+
+    print()
+    print("[%s:%d] price_Close_Pair_1[:10] =>" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                         
+                        ), file=sys.stderr)
+    print(price_Close_Pair_1[:10])
     
     '''###################
-        write : csv
+        correl
     ###################'''
+    #ref https://deepage.net/features/numpy-corrcoef.html
+    corr = numpy.corrcoef(price_Close_Pair_1, price_Close_Pair_2)
     
-#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
+#     print()
+#     print("[%s:%d] corr =>" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          
+#                         ), file=sys.stderr)
+#     print(corr)
+    
+    # log
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("[correl]=========================")
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("%.03f" % corr[0][1])
+    lo_Log_Lines_CSV.append("\n")
+
+    '''###################
+        correl : list divided by n
+    ###################'''
+    nA_1 = len(lo_BarDatas__Pair_1)
+    nB_1 = len(lo_BarDatas__Pair_2)
+    
+    nA_2 = 10
+    nB_2 = 10
+    
+    nA_3 = int(nA_1 * 1.0 / nA_2)
+    nB_3 = int(nB_1 * 1.0 / nB_2)
+    
+    print()
+    print("[%s:%d] nA_3 = %.03f, nB_3 = %.03f" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                         , nA_3, nB_3
+                        ), file=sys.stderr)
+            #[views.py:9349] nA_3 = 450.000, nB_3 = 450.000    
+    
+    lo_BarDatas__Pair_1_Slices = [False] * nA_2
+    lo_BarDatas__Pair_2_Slices = [False] * nB_2
+    
+    for i in range(0, nA_2):
+    
+        lo_BarDatas__Pair_1_Slices[i] = \
+                    lo_BarDatas__Pair_1[i * nA_3 : (i + 1) * nA_3]
+        
+        lo_BarDatas__Pair_2_Slices[i] = \
+                    lo_BarDatas__Pair_2[i * nB_3 : (i + 1) * nB_3]
+        
+    #/for i in range(0, nA_2):
+    
+    print()
+    print("[%s:%d] lo_BarDatas__Pair_1_Slices[1][:10] =>" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        ), file=sys.stderr)
+    print(lo_BarDatas__Pair_1_Slices[1][:10])
+
+    for i in range(0, nA_2):
+    
+        # list of bardatas
+        lo_BarDatas__Pair_1__Target = lo_BarDatas__Pair_1_Slices[i]
+        lo_BarDatas__Pair_2__Target = lo_BarDatas__Pair_2_Slices[i]
+        
+        # build : price list
+        lo_Price_Close__Pair_1 = \
+                    [x.price_Close for x in lo_BarDatas__Pair_1__Target]
+        
+        lo_Price_Close__Pair_2 = \
+                    [x.price_Close for x in lo_BarDatas__Pair_2__Target]
+        
+        # correl
+        corr = numpy.corrcoef(lo_Price_Close__Pair_1, lo_Price_Close__Pair_2)
+        
+        print()
+        print("[%s:%d] index %d => correl : %.03f" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , i, corr[0][1]
+                ), file=sys.stderr)
+        
+    #/for i in range(0, nA_2):
+
+
+    #ccc
+    
+    '''######################################
+        write : csv
+    ######################################'''
+    msg_Log_CSV = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Log_Lines_CSV))
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
 
     '''###################
         write : log
