@@ -9338,8 +9338,10 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     nA_1 = len(lo_BarDatas__Pair_1)
     nB_1 = len(lo_BarDatas__Pair_2)
     
-    nA_2 = 10
-    nB_2 = 10
+    nA_2 = 10 * 10
+    nB_2 = nA_2
+#     nA_2 = 10
+#     nB_2 = 10
     
     nA_3 = int(nA_1 * 1.0 / nA_2)
     nB_3 = int(nB_1 * 1.0 / nB_2)
@@ -9369,7 +9371,14 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
                         (os.path.basename(libs.thisfile()), libs.linenum()
                         ), file=sys.stderr)
     print(lo_BarDatas__Pair_1_Slices[1][:10])
-
+    
+    # line : separator
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("total / %d" % nA_2)
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("s.n.\tcorrel")
+    lo_Log_Lines_CSV.append("\n")
+    
     for i in range(0, nA_2):
     
         # list of bardatas
@@ -9391,6 +9400,11 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
                 (os.path.basename(libs.thisfile()), libs.linenum()
                  , i, corr[0][1]
                 ), file=sys.stderr)
+        
+        # log lines
+        lo_Log_Lines_CSV.append("%d\t%.03f" % ((i + 1), corr[0][1]))
+        lo_Log_Lines_CSV.append("\n")
+        
         
     #/for i in range(0, nA_2):
 
