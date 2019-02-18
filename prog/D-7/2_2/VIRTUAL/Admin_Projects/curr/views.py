@@ -1985,7 +1985,7 @@ def __tester_BuyUps_SellLows__BUSL_3__Expert__Over_BB_1S(request):
 ###################'''
 def __tester_BuyUps_SellLows__BUSL_3__Utils_1_UpsDowns_In_BB_Ranges__V2(\
             dpath_CSV_File, fname_CSV_File):
-
+#xxx
     '''###################
         vars
     ###################'''
@@ -8245,7 +8245,6 @@ def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_1(
     
 ###################'''
 def __BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0_Forloop_2(
-#xxx
         lo_BarDatas
         , pair
         , timeframe
@@ -9147,6 +9146,190 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep(request):
 #/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep
     
 '''###################
+    func : def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
+    at : 2019/02/18 13:17:44
+    
+    @return: 
+        (False, status, msg) ---> csv file not exist
+###################'''
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request):
+    '''###################
+        params : csv file name
+    ###################'''
+    _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
+    _req_dpath_csv = request.GET.get('dpath_csv', False)
+
+    '''###################
+        file : validate : exists
+    ###################'''
+    #ref join https://torina.top/detail/249/
+    dpath_Src_CSV = _req_dpath_csv
+    fname_Src_CSV = _req_param_bardata_csv_file
+    
+    #ref https://torina.top/detail/249/
+    fpath_Src_CSV = os.path.join(dpath_Src_CSV, fname_Src_CSV)
+
+    # validate : csv
+    res = os.path.isfile(fpath_Src_CSV)
+    
+    #debug
+    print()
+    print("[%s:%d] csv file exisits? fpath_Src_CSV => %s (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , res, fpath_Src_CSV
+        ), file=sys.stderr)
+    
+    # validation
+    if res == False : #if res == False
+    
+        status = -1
+        
+        msg = "(ERROR) _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep : "
+        msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
+        
+        return (False, status, msg, _, _, _)
+        
+    #/if res == False
+
+    '''###################
+        get : list of bardatas
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
+    
+    print()
+#     print("[%s:%d] len(lo_BarDatas__Pair_1) => %d" % \
+    print("[%s:%d] len(lo_BarDatas) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+#                         , len(lo_BarDatas__Pair_1)
+                        , len(lo_BarDatas)
+                        ), file=sys.stderr)
+
+    '''###################
+        info : currency
+    ###################'''
+#     #     [views.py:6964] lo_CSVs =>
+#     # [['Pair=USDJPY', 'Period=M1', 'Days=20000', 'Shift=1', 'Bars=1200000', 'Time=20190211_085606'], ['no
+#     # ', 'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'D
+#     # iff', 'High/Low', 'datetime', 'dateTime_Local', 's.n.']]
+# 
+    #Pair=USDJPY    Period=M1    Days=20000    Shift=1    Bars=1200000    Time=20190211_085606
+    pair = (lo_CSVs[0][0]).split("=")[1]
+    timeframe = (lo_CSVs[0][1]).split("=")[1]
+    filedate = (lo_CSVs[0][5]).split("=")[1]
+
+    '''###################
+        adjust : order of the list
+    ###################'''
+    # pair : 1
+    bar_Start = lo_BarDatas[0]
+    bar_End = lo_BarDatas[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas.reverse()
+#         lo_BarDatas__Pair_1.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas__Pair_1, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas[0].dateTime
+                             , lo_BarDatas[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    '''###################
+        prep : log file
+    ###################'''
+    lo_Log_Lines = []
+    
+    tlabel = libs.get_TimeLabel_Now()
+    
+    dpath_Log = cons_fx.FPath.dpath_LogFile.value
+    
+    fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0]" 
+    fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
+    
+    fpath_Log = os.path.join(dpath_Log, fname_Log)
+
+    '''###################
+        prep : log file : csv
+    ###################'''
+    fname_Log_CSV_trunk = fname_Log_Trunk
+    fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
+
+    '''###################
+        log : meta info
+    ###################'''
+    msg = "\n"
+    
+    msg += "source csv\t=\t%s" % fname_Src_CSV
+    msg += "\n"
+    msg += "source dpath\t=\t%s" % dpath_Src_CSV
+    msg += "\n"
+    
+    msg += "log file name\t=\t%s" % fname_Log
+    msg += "\n"
+        
+    msg += "log file dpath\t=\t%s" % dpath_Log
+    msg += "\n"
+        
+    msg += "this file created at\t=\t%s" % tlabel
+    msg += "\n"
+    msg += "\n"
+    
+    msg_Log = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg)
+    
+    # append log line
+    lo_Log_Lines.append(msg_Log)
+
+    
+    '''###################
+        return        
+    ###################'''
+    #debug
+    return \
+        (
+         [dpath_Src_CSV, fname_Src_CSV]
+         
+         , [fname_Log_CSV_trunk, fname_Log_CSV]
+         
+         , [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
+         
+         , [lo_BarDatas, lo_CSVs]
+         
+         , [pair, timeframe, filedate]
+         
+         , lo_Log_Lines
+         )
+    
+#/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep
+    
+'''###################
     func : def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
     at : 2019/02/16 12:53:56
     
@@ -9273,7 +9456,7 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     lo_Log_Lines_CSV.append("ending bar (1)\t=\t%s\tclose=\t%.03f" \
             % (
                lo_BarDatas__Pair_1[-1].dateTime
-               , lo_BarDatas__Pair_1[0].price_Close
+               , lo_BarDatas__Pair_1[-1].price_Close
                ))
     lo_Log_Lines_CSV.append("\n")
     lo_Log_Lines_CSV.append("starting bar (2)\t=\t%s\topen=\t%.03f" \
@@ -9286,7 +9469,7 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     lo_Log_Lines_CSV.append("ending bar (2)\t=\t%s\tclose=\t%.03f" \
             % (
                lo_BarDatas__Pair_2[-1].dateTime
-               , lo_BarDatas__Pair_2[0].price_Close
+               , lo_BarDatas__Pair_2[-1].price_Close
                ))
     lo_Log_Lines_CSV.append("\n")
     
@@ -9420,9 +9603,6 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
         
     #/for i in range(0, nA_2):
 
-
-    #ccc
-    
     '''######################################
         write : csv
     ######################################'''
@@ -9465,6 +9645,181 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     return (status, msg)
     
 #/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0
+    
+'''###################
+    func : def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
+    at : 2019/02/16 12:53:56
+    
+    @return: (status, msg)        
+###################'''
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
+#xxx
+    '''###################
+        prep
+    ###################'''
+    (
+#         (
+#          [dpath_Src_CSV, fname_Src_CSV]
+#          
+#          , [fname_Log_CSV_trunk, fname_Log_CSV]
+#          
+#          , [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
+#          
+#          , [lo_BarDatas, lo_CSVs]
+#          
+#          , [pair, timeframe, filedate]
+#          
+#          , lo_Log_Lines
+#          )
+
+         lo_Src_File_Data
+         
+         , lo_Log_File_CSV_Data
+         
+         , lo_Log_File_Data
+         
+         , lo_BarDatas_Data
+         
+         , lo_CSV_Data
+         
+         , lo_Log_Lines
+         
+     ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
+    #ccc
+    '''###################
+        validate : csv files exist
+    ###################'''
+    if lo_Src_File_Data == False : #if lo_Src_File_Data == False
+        
+        #=> (False, status, msg, _, _, _)
+
+        status = lo_BarDatas_Data
+        msg = lo_CSV_Data
+#         msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2.value
+        
+        return (status, msg)
+    
+    #/if lo_Src_File_Data == False
+    
+    '''###################
+        unpack vars
+    ###################'''
+    (dpath_Src_CSV, fname_Src_CSV) = lo_Src_File_Data
+    
+    (lo_BarDatas, lo_CSVs) = lo_BarDatas_Data
+                        
+    (pair, timeframe, filedate) = lo_CSV_Data
+    
+    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) =\
+                lo_Log_File_Data
+    
+    (fname_Log_CSV_trunk, fname_Log_CSV) = lo_Log_File_CSV_Data
+
+    '''###################
+        prep
+            log : meta info
+    ###################'''
+    lo_Log_Lines_CSV = []
+    
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("source csv\t=\t%s" % fname_Src_CSV)
+    lo_Log_Lines_CSV.append("\n")
+
+    lo_Log_Lines_CSV.append("source dpath\t=\t%s" % dpath_Src_CSV)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("log file name\t=\t%s" % fname_Log)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("log file dpath\t=\t%s" % dpath_Log)
+    lo_Log_Lines_CSV.append("\n")
+        
+    lo_Log_Lines_CSV.append("this file created at\t=\t%s" % tlabel)
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("\n")
+
+    # bar datetime, price
+    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("[basics]=========================")
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("pair\t=\t%s" \
+            % (
+               pair
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("timeframe\t=\t%s" \
+            % (
+               timeframe
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("num of bars\t=\t%d" \
+            % (
+               len(lo_BarDatas)
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("starting bar\t=\t%s\topen=\t%.03f" \
+            % (
+               lo_BarDatas[0].dateTime
+               , lo_BarDatas[0].price_Open
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    lo_Log_Lines_CSV.append("ending bar\t=\t%s\tclose=\t%.03f" \
+            % (
+               lo_BarDatas[-1].dateTime
+               , lo_BarDatas[-1].price_Close
+               ))
+    lo_Log_Lines_CSV.append("\n")
+    
+    
+    '''######################################
+        ops
+    ######################################'''
+    
+
+    '''######################################
+        write : csv
+    ######################################'''
+    msg_Log_CSV = "[%s / %s:%d] %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Log_Lines_CSV))
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
+
+    '''###################
+        write : log
+    ###################'''
+    print()
+    print("[%s:%d] len(lo_Log_Lines) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_Log_Lines)
+        ), file=sys.stderr)
+                 
+#     str_Log_Lines = "\r\n".join(tmp_lo_Log_Lines)
+    str_Log_Lines = "\r\n".join(lo_Log_Lines)
+     
+    libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
+    
+    '''###################
+        return        
+    ###################'''
+    status = 1
+    msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas.value
+#     msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_45_1__Get_Basic_Stats.value
+    
+    msg += "<br>Src_CSV = %s" % (fname_Src_CSV)
+    
+    msg += "<br>dpath_CSV = %s" % (dpath_Src_CSV)
+    
+    return (status, msg)
+    
+#/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0
     
 def _BUSL3_Tester_No_42_1__BuyUpSellDown(request):
     
@@ -9557,6 +9912,43 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request):
     (status, msg) = _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
 #     (status, msg) = _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request)
     
+    '''###################
+        time        
+    ###################'''
+    time_Elapsed = time.time() - time_Start
+    
+    msg = "done (time : %02.3f sec)%s" % (time_Elapsed, tmp_msg)
+#     msg = "done (time : %02.3f sec)" % (time_Elapsed)
+
+    print()
+    print("[%s:%d] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , msg
+        ), file=sys.stderr)
+
+    return (status, msg)
+    
+#/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request):
+    
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas(request):
+    
+    '''###################
+        time        
+    ###################'''
+    time_Start = time.time()
+    
+    '''###################
+        ops
+    ###################'''
+    #debug
+    status = -1
+    tmp_msg = ""
+    tmp_msg = "_BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas"
+    
+    
+    (status, msg) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request)
+#     (status, msg) = _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
+    
 #ccc    
     
     '''###################
@@ -9575,7 +9967,7 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request):
 
     return (status, msg)
     
-#/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request):
+#/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas(request):
     
 def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     
@@ -9902,12 +10294,44 @@ def tester_BuyUps_SellLows__V2(request):
             "46-1"
                 stats : gen basic stats, category-2
         ###################'''
-        #ccc
         # call func
         (status, msg) = \
             _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request)
 #             _BUSL3_Tester_No_45_1__Get_Basic_Stats(request)
             
+        #ref color names https://html-color-codes.info/color-names/
+        str_Color_Name = ""
+        
+        if msg.startswith("(ERROR)") : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "red"
+        
+        else : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "DarkGreen"
+        
+        #/if msg.startswith("(ERROR)")
+        
+        dic['message'] = \
+                "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
+
+        print()
+        print("[%s:%d] dic['message'] => %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , dic['message']
+                ), file=sys.stderr)
+        
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[16] :
+        '''###################
+            "44-1"
+                num of up/down bars in each BB area
+        ###################'''
+        #ccc
+        # call func
+        (status, msg) = \
+            _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas(request)
+#             _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request)
+           #ccc 
         #ref color names https://html-color-codes.info/color-names/
         str_Color_Name = ""
         

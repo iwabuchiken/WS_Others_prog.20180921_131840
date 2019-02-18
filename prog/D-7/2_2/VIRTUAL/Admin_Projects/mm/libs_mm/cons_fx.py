@@ -287,6 +287,9 @@ class ParamConstants(Enum):
     ###################'''
     PARAM_BUSL3_CMD_42_1__Tester_Up_Buy_Down_Sell = "up-buy-down-sell"
     
+    PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas = \
+                    "num-of-ups-downs-in-bb-areas"
+    
     PARAM_BUSL3_CMD_45_1__Get_Basic_Stats = "get-basic-stats"
     
     PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 = "get-basic-stats-cat-2"
@@ -317,6 +320,7 @@ class Tester(Enum):
     # max key value : 13 : 20190202_085325
     # max key value : 14 : 20190210_165125
     # max key value : 15 : 20190216_103134
+    # max key value : 16 : 20190218_125015
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -342,6 +346,8 @@ class Tester(Enum):
             , 15 : "46-1"     # "get basic stats, category-2 (as a routine job)
                                 # 1. correl ---> between pairs
                                 #   1. U/J ~ E/J"
+            , 16 : "44-1"     # "num of up/down bars in each BB area"
+
             
             
             
@@ -497,6 +503,17 @@ class Tester(Enum):
                     + "<br>&nbsp;&nbsp;1) U/J ~ E/J" \
                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log"
                 , "20190216_103134" # descipt. : long
+            ],     
+
+            # "44-1"
+            #16 : "44-1"     # "num of up/down bars in each BB area"            
+            [
+                lo_Actions__BUSL__IDs[16]   # key
+                ,"stats : num of up/down bars"  # description : short
+                , ParamConstants.PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas.value    # constant string
+                , "1) num of up/down bars in each BB area" \
+                    + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log" # descipt. : long
+                , "20190218_125015" # registered date
             ],     
 
             #ccc
