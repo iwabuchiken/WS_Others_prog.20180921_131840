@@ -513,6 +513,15 @@ class Tester(Enum):
                 , ParamConstants.PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas.value    # constant string
                 , "1) num of up/down bars in each BB area" \
                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log" # descipt. : long
+                    
+                    + "<div id='div_no_47_1_params_area'>" \
+                    + "gen subdata by day &nbsp;&nbsp;" \
+                        + "<input type='checkbox' name='cb_no_44_1_params_area_filepath' id='cb_no_44_1_params_area_filepath' value='cb_no_44_1_params_area_filepath'>" \
+                    
+                    + "<textarea id='ta_no_44_1_params_area_filepath'>" \
+                    + "</textarea>" \
+                    + "</div>"
+                    
                 , "20190218_125015" # registered date
             ],     
 

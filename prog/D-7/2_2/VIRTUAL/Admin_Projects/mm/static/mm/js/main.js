@@ -423,6 +423,68 @@ function curr_BUSL_3__Action(_param) {
 	 ***************************/
 	var tag_Select_CSV_File = $('select[name=select_Curr_BUSL_2__CSV_Files] option:selected').val();
 
+	/***************************
+		get : param : 44-1 : textarea
+	 ***************************/
+	var tag_TA_No_44_1_FilePath = $('textarea#ta_no_44_1_params_area_filepath').val();
+//	var tag_TA_No_44_1_FilePath = $("textarea#ta_no_44_1_params_area_filepath").val();
+	
+//	//debug
+//	if (tag_TA_No_44_1_FilePath == "") {
+//
+//		alert("tag_TA_No_44_1_FilePath => blank");
+//
+//	} else if (tag_TA_No_44_1_FilePath == null) {
+//		
+//		alert("tag_TA_No_44_1_FilePath => null");
+//		
+//	} else {
+//
+//		alert("tag_TA_No_44_1_FilePath => unknown value");;
+//
+//	}//if (tag_TA_No_44_1_FilePath == "")
+	
+	
+	/***************************
+		get : param : 44-1 checkbox
+	 ***************************/
+	//ref https://tutorialdeep.com/knowhow/get-selected-checkbox-value-jquery/
+	var tag_CheckBox_No_44_1_FilePath = $("input:checkbox[name='cb_no_44_1_params_area_filepath']:checked");
+	
+	//ref https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
+	var judge = tag_CheckBox_No_44_1_FilePath.is(":checked");
+	
+//	if (judge == true) {
+	if ((judge == true) && (tag_TA_No_44_1_FilePath == "")) {
+
+		alert("no.44-1 : file path CB checked, filepath textarea blank. Sorry, no ops"
+				
+				);
+		
+		return;
+		
+//		alert("tag_CheckBox_No_44_1_FilePath => checked "
+//				+ " ("
+//				+ "file path is '"
+//				+ tag_TA_No_44_1_FilePath
+//				+ "'"
+//				+ ")"
+//				
+//		);
+	}//if ((judge == true) && (tag_TA_No_44_1_FilePath == "")) {
+//	} else {
+//
+//		alert("tag_CheckBox_No_44_1_FilePath => NOT checked");;
+//
+//	}//if (judge == true)
+
+//ccc	
+//	//debug
+//	alert("tag_CheckBox_No_44_1_FilePath => '" + tag_CheckBox_No_44_1_FilePath + "'");
+//	return;
+	
+	
+	//ccc
 //	//debug
 //	alert("tag_Select_CSV_File => '" + tag_Select_CSV_File + "'");
 //	

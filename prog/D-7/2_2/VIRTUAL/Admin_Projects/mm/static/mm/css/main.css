@@ -467,6 +467,18 @@ div#layout_Links_Basic {
 	
 }/*div#index_Display_Area {*/
 
+div#div_no_47_1_params_area {
+	
+	background     : BurlyWood; 
+	
+	width          : 75%;
+	
+	min-height: 50px;
+	
+	margin         : 10px;
+	
+}/*div#div_no_47_1_params_area {*/
+
 div#div_Curr_Basics_Button_ShowHide {
 	
 	margin         : 10px;
@@ -763,6 +775,17 @@ div#div_IFM11_List_Main {
 	
 }/*div_IFM11_List_Main {*/
 
+/* ref https://stackoverflow.com/questions/306924/checkbox-size-in-html-css */
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
 
 input#ipt_Numbering_MainDir {
 	
@@ -979,6 +1002,19 @@ textarea#curr_BUSL_2__TA__Fname_CSV {
 	padding    : 5px;
 
 }
+
+textarea#ta_no_47_1_params_area_filepath {
+
+	background : Gold;
+	
+	width      : 60%;
+	
+	margin    : 10px 0px 10px 0px;
+	
+	/* ref http://www.htmq.com/style/padding.shtml */
+	padding    : 5px;
+
+}/* ta_no_47_1_params_area_filepath */
 
 textarea#curr_BUSL_2__TA__Dpath_CSV {
 
