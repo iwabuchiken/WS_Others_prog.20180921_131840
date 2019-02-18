@@ -452,10 +452,11 @@ function curr_BUSL_3__Action(_param) {
 	var tag_CheckBox_No_44_1_FilePath = $("input:checkbox[name='cb_no_44_1_params_area_filepath']:checked");
 	
 	//ref https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
-	var judge = tag_CheckBox_No_44_1_FilePath.is(":checked");
+//	var judge = tag_CheckBox_No_44_1_FilePath.is(":checked");
+	var judge_No_44_1_FilePath = tag_CheckBox_No_44_1_FilePath.is(":checked");
 	
 //	if (judge == true) {
-	if ((judge == true) && (tag_TA_No_44_1_FilePath == "")) {
+	if ((judge_No_44_1_FilePath == true) && (tag_TA_No_44_1_FilePath == "")) {
 
 		alert("no.44-1 : file path CB checked, filepath textarea blank. Sorry, no ops"
 				
@@ -471,7 +472,7 @@ function curr_BUSL_3__Action(_param) {
 //				+ ")"
 //				
 //		);
-	}//if ((judge == true) && (tag_TA_No_44_1_FilePath == "")) {
+	}//if ((judge_No_44_1_FilePath == true) && (tag_TA_No_44_1_FilePath == "")) {
 //	} else {
 //
 //		alert("tag_CheckBox_No_44_1_FilePath => NOT checked");;
@@ -512,6 +513,17 @@ function curr_BUSL_3__Action(_param) {
 		, "param_bardata_csv_file"	: tag_Select_CSV_File
 			
 	};
+
+	// judg_No_44_1_FilePath
+	if (judge_No_44_1_FilePath == true) {
+
+		_data["param_tag_TA_No_44_1_FilePath"] = tag_TA_No_44_1_FilePath;
+
+	}//if (judg_No_44_1_FilePath == true)
+	
+//	//debug
+//	alert("_data => '" + _data + "'");
+//	return;
 	
 	// time out
 	_timeout = 300000 // 30 sec

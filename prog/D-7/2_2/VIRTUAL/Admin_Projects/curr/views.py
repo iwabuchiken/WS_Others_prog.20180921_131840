@@ -9157,13 +9157,51 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     ###################'''
     _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
+    _req_param_tag_TA_No_44_1_FilePath = request.GET.get('param_tag_TA_No_44_1_FilePath', False)
+
+    #debug
+    print()
+    print("[%s:%d] _req_param_tag_TA_No_44_1_FilePath => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , _req_param_tag_TA_No_44_1_FilePath
+        ), file=sys.stderr)
+
+    #ccc
 
     '''###################
         file : validate : exists
     ###################'''
-    #ref join https://torina.top/detail/249/
-    dpath_Src_CSV = _req_dpath_csv
-    fname_Src_CSV = _req_param_bardata_csv_file
+    if not _req_param_tag_TA_No_44_1_FilePath == False : #if not _req_param_tag_TA_No_44_1_FilePath == False
+
+        #debug
+        msg = "_req_param_tag_TA_No_44_1_FilePath"
+        msg += " : dirname => %s / basename => %s" % \
+            (
+             os.path.dirname(_req_param_tag_TA_No_44_1_FilePath)
+            , os.path.basename(_req_param_tag_TA_No_44_1_FilePath)
+            )
+            
+        print()
+        print("[%s:%d] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , msg
+            ), file=sys.stderr)
+    
+        dpath_Src_CSV = os.path.dirname(_req_param_tag_TA_No_44_1_FilePath)
+        fname_Src_CSV = os.path.basename(_req_param_tag_TA_No_44_1_FilePath)
+        
+    
+    else : #if not _req_param_tag_TA_No_44_1_FilePath == False
+    
+        dpath_Src_CSV = _req_dpath_csv
+        fname_Src_CSV = _req_param_bardata_csv_file
+        
+    
+    #/if not _req_param_tag_TA_No_44_1_FilePath == False
+    
+#     #ref join https://torina.top/detail/249/
+#     dpath_Src_CSV = _req_dpath_csv
+#     fname_Src_CSV = _req_param_bardata_csv_file
     
     #ref https://torina.top/detail/249/
     fpath_Src_CSV = os.path.join(dpath_Src_CSV, fname_Src_CSV)
