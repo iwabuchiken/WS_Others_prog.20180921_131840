@@ -9376,7 +9376,8 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     lo_Log_Lines_CSV.append("\n")
     lo_Log_Lines_CSV.append("total / %d" % nA_2)
     lo_Log_Lines_CSV.append("\n")
-    lo_Log_Lines_CSV.append("s.n.\tcorrel")
+    lo_Log_Lines_CSV.append("s.n.\tcorrel\tstart(1)\tend(1)\tstart(2)\tend(2)")
+#     lo_Log_Lines_CSV.append("s.n.\tcorrel")
     lo_Log_Lines_CSV.append("\n")
     
     for i in range(0, nA_2):
@@ -9402,7 +9403,18 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
                 ), file=sys.stderr)
         
         # log lines
-        lo_Log_Lines_CSV.append("%d\t%.03f" % ((i + 1), corr[0][1]))
+        lo_Log_Lines_CSV.append(\
+                    "%d\t%.03f\t%s\t%s\t%s\t%s" \
+                    % (
+                       (i + 1)
+                       , corr[0][1]
+                       , lo_BarDatas__Pair_1__Target[0].dateTime
+                       , lo_BarDatas__Pair_1__Target[-1].dateTime
+                       , lo_BarDatas__Pair_2__Target[0].dateTime
+                       , lo_BarDatas__Pair_2__Target[-1].dateTime
+                       )
+                   )
+#         lo_Log_Lines_CSV.append("%d\t%.03f" % ((i + 1), corr[0][1]))
         lo_Log_Lines_CSV.append("\n")
         
         
