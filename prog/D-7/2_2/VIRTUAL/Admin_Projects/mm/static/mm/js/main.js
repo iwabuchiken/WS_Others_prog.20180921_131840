@@ -455,6 +455,20 @@ function curr_BUSL_3__Action(_param) {
 //	var judge = tag_CheckBox_No_44_1_FilePath.is(":checked");
 	var judge_No_44_1_FilePath = tag_CheckBox_No_44_1_FilePath.is(":checked");
 	
+//	//debug
+//	if (judge_No_44_1_FilePath == true) {
+//
+//		alert("judge_No_44_1_FilePath => true");
+//
+//	} else {
+//
+//		alert("judge_No_44_1_FilePath => false");
+//
+//	}//if (judge_No_44_1_FilePath == true)
+//	
+//	return;
+	
+	
 //	if (judge == true) {
 	if ((judge_No_44_1_FilePath == true) && (tag_TA_No_44_1_FilePath == "")) {
 
@@ -474,8 +488,24 @@ function curr_BUSL_3__Action(_param) {
 //		);
 	}//if ((judge_No_44_1_FilePath == true) && (tag_TA_No_44_1_FilePath == "")) {
 //	} else {
+//		
+//		if (judge_No_44_1_FilePath == true) {
 //
-//		alert("tag_CheckBox_No_44_1_FilePath => NOT checked");;
+//			alert("judge_No_44_1_FilePath ==> true; " +
+//					"tag_TA_No_44_1_FilePath is not blank : '"
+//					+ tag_TA_No_44_1_FilePath
+//					+ "'"
+//					);
+//
+//		} else {
+//
+//			alert("judge_No_44_1_FilePath ==> false");
+//
+//		}//if (judge_No_44_1_FilePath == true)
+//		
+//		return;
+//		
+////		alert("tag_CheckBox_No_44_1_FilePath => NOT checked");;
 //
 //	}//if (judge == true)
 

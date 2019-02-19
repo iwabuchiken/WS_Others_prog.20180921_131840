@@ -4028,7 +4028,41 @@ def tester_BuyUps_SellLows(request):
     '''###################
         list of parameters for table
     ###################'''
-    dic["list_of_params"] = cons_fx.Tester.lo_Actions__BUSL.value
+    # sort
+    #test
+    #@_20190219_115130
+#     print()
+#     print("[%s:%d] before reverse : cons_fx.Tester.lo_Actions__BUSL.value[0] : %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , cons_fx.Tester.lo_Actions__BUSL.value[0]
+#             ), file=sys.stderr)
+
+    lo_Params = copy.deepcopy(cons_fx.Tester.lo_Actions__BUSL.value)
+#     lo_Params = cons_fx.Tester.lo_Actions__BUSL.value
+
+#     print()
+#     print("[%s:%d] before reverse : lo_Params[0] : %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , lo_Params[0]
+#             ), file=sys.stderr)
+    
+    lo_Params.reverse()
+#     lo_Params.sort()
+    
+#     print()
+#     print("[%s:%d] after reverse : cons_fx.Tester.lo_Actions__BUSL.value[0] : %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , cons_fx.Tester.lo_Actions__BUSL.value[0]
+#             ), file=sys.stderr)
+#     
+#     print()
+#     print("[%s:%d] after reverse : lo_Params[0] : %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , lo_Params[0]
+#             ), file=sys.stderr)
+    
+    dic["list_of_params"] = lo_Params
+#     dic["list_of_params"] = cons_fx.Tester.lo_Actions__BUSL.value
 #     dic["list_of_params"] = [
 #         
 #             [
@@ -4091,6 +4125,8 @@ def tester_BuyUps_SellLows(request):
         return render(request, render_Page_full, dic)
     
     pass
+
+#/def tester_BuyUps_SellLows(request)
 
 '''###################
     _tester_BUSL__V2__Param_1_2__CONSEQUTIVE_UPS_DOWNS
@@ -9224,7 +9260,8 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
         msg = "(ERROR) _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep : "
         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
         
-        return (False, status, msg, _, _, _)
+        return (False, status, msg, False, False, False)
+#         return (False, status, msg, _, _, _)
         
     #/if res == False
 

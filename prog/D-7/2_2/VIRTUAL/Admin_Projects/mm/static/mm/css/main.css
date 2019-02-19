@@ -15,6 +15,31 @@ p.current_Scheme {
 	
 }
 
+/* table : default */
+table {
+	
+	/*border     : 1;*/
+	/*border     : 1px solid black;*/
+	/* ref template for css files https://stackoverflow.com/questions/7900575/how-to-add-css-autocomplete-to-eclipse */
+	/*ref table border http://www.html.am/html-codes/tables/table-border.cfm*/
+	border     : 1px solid #aaaaaa;
+	
+	margin     : 10px;
+}
+
+/* td : default */
+/*td {*/
+table tr td {
+	
+	/*background-color   : #ffffff;*/
+	
+	/*text-align     : left;*/
+	
+	border     : 1px solid #aaaaaa;
+	
+	/*padding    : 5px;*/
+	
+}
 
 table#tbl_Im_Actions {
 	
