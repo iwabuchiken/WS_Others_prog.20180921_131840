@@ -2806,3 +2806,30 @@
 [20190219_125303 / views.py:10102] tester_BuyUps_SellLows__V2 starting... =================
 [20190219_125304 / views.py:10453] tester_BuyUps_SellLows__V2 ==> done
 
+[20190220_083545 / views.py:10102] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_083547 / views.py:10453] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_085558 / views.py:10102] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_085559 / views.py:10453] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_090004 / views.py:10113] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_090110 / views.py:10113] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_090111 / views.py:10464] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_090122 / views.py:10113] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_090217 / views.py:10113] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_090218 / views.py:10464] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_090514 / views.py:10123] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_090514 / views.py:10474] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_091111 / views.py:10135] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_091308 / views.py:10135] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_091417 / views.py:10139] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_091643 / views.py:10146] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_091835 / views.py:10147] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_091836 / views.py:10498] tester_BuyUps_SellLows__V2 ==> done
+
+[20190220_092009 / views.py:10147] tester_BuyUps_SellLows__V2 starting... =================
+[20190220_092010 / views.py:10498] tester_BuyUps_SellLows__V2 ==> done
+

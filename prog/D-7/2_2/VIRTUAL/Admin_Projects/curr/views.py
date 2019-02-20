@@ -9193,13 +9193,34 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     ###################'''
     _req_param_bardata_csv_file = request.GET.get('param_bardata_csv_file', False)
     _req_dpath_csv = request.GET.get('dpath_csv', False)
+    
+    # if the param is set ---> the file full path of the source csv 
     _req_param_tag_TA_No_44_1_FilePath = request.GET.get('param_tag_TA_No_44_1_FilePath', False)
+    
+    # if checkbox checked ---> numerical 1 is set
+    _req_param_judge_No_44_1_FilePath = request.GET.get('param_judge_No_44_1_FilePath', False)
+    
+    # radio button ---> subdata by
+    _req_param_tag_RB_No_44_1_SubData__Checked_Val = \
+                request.GET.get('param_tag_RB_No_44_1_SubData__Checked_Val', False)
 
     #debug
     print()
     print("[%s:%d] _req_param_tag_TA_No_44_1_FilePath => %s" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         , _req_param_tag_TA_No_44_1_FilePath
+        ), file=sys.stderr)
+
+    print()
+    print("[%s:%d] _req_param_judge_No_44_1_FilePath => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , str(_req_param_judge_No_44_1_FilePath)
+        ), file=sys.stderr)
+    
+    print()
+    print("[%s:%d] _req_param_tag_RB_No_44_1_SubData__Checked_Val => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , _req_param_tag_RB_No_44_1_SubData__Checked_Val
         ), file=sys.stderr)
 
     #ccc
@@ -9260,7 +9281,8 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
         msg = "(ERROR) _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep : "
         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
         
-        return (False, status, msg, False, False, False)
+        return (False, status, msg, False, False, False, False)
+#         return (False, status, msg, False, False, False)
 #         return (False, status, msg, _, _, _)
         
     #/if res == False
@@ -9385,6 +9407,16 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     '''###################
         return        
     ###################'''
+    #test
+    req_param_judge_No_44_1_FilePath = _req_param_judge_No_44_1_FilePath
+    
+    
+    print()
+    print("[%s:%d] returning... : _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    
     #debug
     return \
         (
@@ -9399,8 +9431,13 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
          , [pair, timeframe, filedate]
          
          , lo_Log_Lines
+         
+         , req_param_judge_No_44_1_FilePath
+#          , _req_param_judge_No_44_1_FilePath
+         
          )
-    
+        
+    #ccc
 #/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep
     
 '''###################
@@ -9758,6 +9795,8 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
          
          , lo_Log_Lines
          
+         , _req_param_judge_No_44_1_FilePath
+         
      ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
     #ccc
     '''###################
@@ -9853,7 +9892,13 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     '''######################################
         ops
     ######################################'''
+    print()
+    print("[%s:%d] _req_param_judge_No_44_1_FilePath => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , _req_param_judge_No_44_1_FilePath
+        ), file=sys.stderr)
     
+    #ccc
 
     '''######################################
         write : csv

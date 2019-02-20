@@ -1171,3 +1171,42 @@ starting : tester_BuyUps_SellLows =======================
 [20190219_130008 / views.py:3939] 
 
 starting : tester_BuyUps_SellLows =======================
+[20190220_083422 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_083546 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_095445.csv
+
+[20190220_084211 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_084334 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_084422 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_084946 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_085100 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_085249 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_085550 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_090122 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/(file-names).(src=44_5.1_10_rawdata.(USDJPY).(Period-M1).(NumOfUnits-20000).(Bars-1200000).20190211_085606.(2019-02).20190211_105217).dat
+
+[20190220_090246 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_090353 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_091957 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190220_092009 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_095445.csv
+

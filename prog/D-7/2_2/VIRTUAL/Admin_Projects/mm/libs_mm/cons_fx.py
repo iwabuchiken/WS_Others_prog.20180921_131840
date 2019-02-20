@@ -311,10 +311,11 @@ class Tester(Enum):
                     gen subdata <input type='checkbox' 
                         name='cb_no_44_1_params_area_filepath' 
                         id='cb_no_44_1_params_area_filepath' 
-                        value='cb_no_44_1_params_area_filepath' />
+                        value='cb_no_44_1_params_area_filepath'>
+                        </input>
                 </td>
                 <td>
-                    <textarea id='ta_no_44_1_params_area_filepath'></textarea>
+                    <textarea id='ta_no_44_1_params_area_filepath'>C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw\\44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_095445.csv</textarea>
                 </td>
             </tr>
             <tr>

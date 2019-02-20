@@ -451,6 +451,14 @@ function curr_BUSL_3__Action(_param) {
 	//ref https://tutorialdeep.com/knowhow/get-selected-checkbox-value-jquery/
 	var tag_CheckBox_No_44_1_FilePath = $("input:checkbox[name='cb_no_44_1_params_area_filepath']:checked");
 	
+	//debug
+	var valOf_Tag_CheckBox_No_44_1_FilePath = tag_CheckBox_No_44_1_FilePath.val();
+	
+//	alert("valOf_Tag_CheckBox_No_44_1_FilePath => '"
+//			+ valOf_Tag_CheckBox_No_44_1_FilePath + "'");
+//	
+//	return;
+	
 	//ref https://www.tutorialrepublic.com/faq/how-to-check-a-checkbox-is-checked-or-not-using-jquery.php
 //	var judge = tag_CheckBox_No_44_1_FilePath.is(":checked");
 	var judge_No_44_1_FilePath = tag_CheckBox_No_44_1_FilePath.is(":checked");
@@ -509,17 +517,30 @@ function curr_BUSL_3__Action(_param) {
 //
 //	}//if (judge == true)
 
-//ccc	
 //	//debug
 //	alert("tag_CheckBox_No_44_1_FilePath => '" + tag_CheckBox_No_44_1_FilePath + "'");
 //	return;
 	
 	
-	//ccc
 //	//debug
 //	alert("tag_Select_CSV_File => '" + tag_Select_CSV_File + "'");
 //	
 //	return;
+	/***************************
+		get : param : no.44-1 : radio button
+	 ***************************/
+	var tag_RB_No_44_1_SubData__Checked = $('input:radio[name=rb_Tester_BuyUps_SellLows_No_44_1_SubData_By]:checked');
+	
+	var tag_RB_No_44_1_SubData__Checked_Val = tag_RB_No_44_1_SubData__Checked.val();
+
+//	//debug
+//	alert("tag_RB_No_44_1_SubData__Checked_Val => '"
+//			+ tag_RB_No_44_1_SubData__Checked_Val
+//			+ "'"
+//			);
+	
+//	return;
+	
 	/***************************
 		get : param
 	 ***************************/
@@ -541,6 +562,11 @@ function curr_BUSL_3__Action(_param) {
 		, "param_3-2_bartype"	: tag_RB_3_2_checked
 		, "param_2-2_MonthOrAll"	: tag_RB_2_2_checked
 		, "param_bardata_csv_file"	: tag_Select_CSV_File
+		
+		, "param_tag_RB_No_44_1_SubData__Checked_Val"	: tag_RB_No_44_1_SubData__Checked_Val
+		, "param_tag_RB_No_44_1_SubData__Checked_Val"	: tag_RB_No_44_1_SubData__Checked_Val
+		
+//		, "param_tag_TA_No_44_1_FilePath"	: tag_TA_No_44_1_FilePath
 			
 	};
 
@@ -548,13 +574,12 @@ function curr_BUSL_3__Action(_param) {
 	if (judge_No_44_1_FilePath == true) {
 
 		_data["param_tag_TA_No_44_1_FilePath"] = tag_TA_No_44_1_FilePath;
+		
+		_data["param_judge_No_44_1_FilePath"] = 1;
 
 	}//if (judg_No_44_1_FilePath == true)
 	
-//	//debug
-//	alert("_data => '" + _data + "'");
-//	return;
-	
+	//ccc
 	// time out
 	_timeout = 300000 // 30 sec
 	
