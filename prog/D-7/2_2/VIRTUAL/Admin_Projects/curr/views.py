@@ -8949,6 +8949,7 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep(request):
         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV__Pair_1)
         
         return (False, status, msg, _, _, _)
+#         return (False, status, msg, _, _, _)
 #         return (status, msg)
         
     #/if res == False
@@ -9223,8 +9224,6 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
         , _req_param_tag_RB_No_44_1_SubData__Checked_Val
         ), file=sys.stderr)
 
-    #ccc
-
     '''###################
         file : validate : exists
     ###################'''
@@ -9281,7 +9280,8 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
         msg = "(ERROR) _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep : "
         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV)
         
-        return (False, status, msg, False, False, False, False)
+        return (False, status, msg, False, False, False, False, False)
+#         return (False, status, msg, False, False, False, False)
 #         return (False, status, msg, False, False, False)
 #         return (False, status, msg, _, _, _)
         
@@ -9435,9 +9435,11 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
          , req_param_judge_No_44_1_FilePath
 #          , _req_param_judge_No_44_1_FilePath
          
+         , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+         
          )
         
-    #ccc
+    
 #/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep
     
 '''###################
@@ -9756,6 +9758,55 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     return (status, msg)
     
 #/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0
+
+'''###################
+    _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData
+
+    at : 2019/02/20 16:41:41
+    
+    @param : 
+        (
+         [dpath_Src_CSV, fname_Src_CSV]
+          
+         , [fname_Log_CSV_trunk, fname_Log_CSV]
+          
+         , [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
+          
+         , [lo_BarDatas, lo_CSVs]
+          
+         , [pair, timeframe, filedate]
+          
+         , lo_Log_Lines
+         )
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData(\
+                lo_Src_File_Data
+                , lo_Log_File_CSV_Data
+                , lo_Log_File_Data
+
+                , lo_BarDatas_Data
+                , lo_CSV_Data
+                
+                , lo_Log_Lines
+                
+                , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+                
+    ):    
+    
+    #debug
+    print()
+    print("[%s:%d] _req_param_tag_RB_No_44_1_SubData__Checked_Val => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        ), file=sys.stderr)
+    
+    
+    
+#ccc
+#/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData(request):    
     
 '''###################
     func : def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
@@ -9796,9 +9847,11 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
          , lo_Log_Lines
          
          , _req_param_judge_No_44_1_FilePath
+        
+        , _req_param_tag_RB_No_44_1_SubData__Checked_Val
          
      ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
-    #ccc
+    
     '''###################
         validate : csv files exist
     ###################'''
@@ -9898,7 +9951,48 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
         , _req_param_judge_No_44_1_FilePath
         ), file=sys.stderr)
     
+    '''####################
+        step : A : 1
+            judge : _req_param_judge_No_44_1_FilePath
+    ####################'''
+#     if _req_param_judge_No_44_1_FilePath == 1 : #if _req_param_judge_No_44_1_FilePath == 1
+    if int(_req_param_judge_No_44_1_FilePath) == 1 : #if _req_param_judge_No_44_1_FilePath == 1
+#          lo_Src_File_Data
+#          
+#          , lo_Log_File_CSV_Data
+#          
+#          , lo_Log_File_Data
+#          
+#          , lo_BarDatas_Data
+#          
+#          , lo_CSV_Data
+#          
+#          , lo_Log_Lines
+        
+        _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData(\
+                lo_Src_File_Data
+                , lo_Log_File_CSV_Data
+                , lo_Log_File_Data
+
+                , lo_BarDatas_Data
+                , lo_CSV_Data
+                
+                , lo_Log_Lines
+                
+                , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+            )
+        
+        
     #ccc
+    
+    else : #if _req_param_judge_No_44_1_FilePath == 1
+    
+        pass
+    
+    #/if _req_param_judge_No_44_1_FilePath == 1
+    
+    
+    
 
     '''######################################
         write : csv
