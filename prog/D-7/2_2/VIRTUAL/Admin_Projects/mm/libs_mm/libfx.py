@@ -5579,6 +5579,16 @@ def slice_BarDatas_By_Month(\
 #/ def slice_BarDatas_By_Month(\
 #/         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
 
+'''###################
+    @return: 
+        lo_Final
+                [
+                    lo_BarDatas,
+                    lo_BarDatas,
+                    lo_BarDatas,
+                    ...
+                ]
+###################'''
 def slice_BarDatas_By_Day(\
         lo_BarDatas, fname_CSV_File, lo_CSVs, dpath_Log):
 #xxx    

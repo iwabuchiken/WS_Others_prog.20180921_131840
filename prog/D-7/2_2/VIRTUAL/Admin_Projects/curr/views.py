@@ -9765,19 +9765,17 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
     at : 2019/02/20 16:41:41
     
     @param : 
-        (
-         [dpath_Src_CSV, fname_Src_CSV]
-          
-         , [fname_Log_CSV_trunk, fname_Log_CSV]
-          
-         , [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
-          
-         , [lo_BarDatas, lo_CSVs]
-          
-         , [pair, timeframe, filedate]
-          
-         , lo_Log_Lines
-         )
+              lo_Src_File_Data    [dpath_Src_CSV, fname_Src_CSV]
+              
+              lo_Log_File_CSV_Data    [fname_Log_CSV_trunk, fname_Log_CSV]
+              
+              lo_Log_File_Data    [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
+              
+              lo_BarDatas_Data    [lo_BarDatas, lo_CSVs]
+              
+              lo_CSV_Data    [pair, timeframe, filedate]
+              
+              lo_Log_Lines    lo_Log_Lines
     
     @return: 
     
@@ -9802,90 +9800,114 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
         (os.path.basename(libs.thisfile()), libs.linenum()
         , _req_param_tag_RB_No_44_1_SubData__Checked_Val
         ), file=sys.stderr)
+
+    '''###################
+        step : A : 0
+            unpack
+    ###################'''
+    (dpath_Src_CSV, fname_Src_CSV) = lo_Src_File_Data   
+    
+    (fname_Log_CSV_trunk, fname_Log_CSV) = lo_Log_File_CSV_Data   
+    
+    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) = lo_Log_File_Data   
+    
+    (lo_BarDatas, lo_CSVs) = lo_BarDatas_Data   
+    
+    (pair, timeframe, filedate) = lo_CSV_Data   
+    
+    '''###################
+        step : A : 1
+            vars
+    ###################'''
+    strOf_Slice_By_Day = "day"
+    strOf_Slice_By_Week = "week"
+    strOf_Slice_By_Month = "month"
+    
+    '''###################
+        step : j1
+            SubData__Checked_Val
+    ###################'''
+    if _req_param_tag_RB_No_44_1_SubData__Checked_Val == strOf_Slice_By_Day : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
+        '''###################
+            step : j1-1
+                "day"
+        ###################'''
+        #debug
+        print()
+        print("[%s:%d] slice by : %s => starting..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , strOf_Slice_By_Day
+            ), file=sys.stderr)
+        
+        '''###################
+            step : j1-1 : 1
+                get : slices
+        ###################'''
+        lo_Final = libfx.slice_BarDatas_By_Day(lo_BarDatas, fname_Src_CSV, lo_CSVs, dpath_Log)
+
+        #debug
+        print()
+        print("[%s:%d] len(lo_Final) => %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , len(lo_Final)
+            ), file=sys.stderr)
+        
+        #debug
+        if len(lo_Final) > 1 : #if len(lo_Final) > 1
+        
+            #debug
+            print()
+            print("[%s:%d] lo_Final[0][0].dateTime = %s, lo_Final[-1][-1].dateTime = %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , lo_Final[0][0].dateTime, lo_Final[-1][-1].dateTime
+                ), file=sys.stderr)
+            
+        
+        else : #if len(lo_Final) > 1
+        
+            #debug
+            print()
+            print("[%s:%d] lo_Final[0][0].dateTime = %s, lo_Final[0][-1].dateTime = %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , lo_Final[0][0].dateTime, lo_Final[0][-1].dateTime
+                ), file=sys.stderr)
+            
+        
+        #/if len(lo_Final) > 1
+        
+        
+        
+    else : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
+    
+        #debug
+        print()
+        print("[%s:%d] slice by : unknown value => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ), file=sys.stderr)
+        
+    
+    #/if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
     
     
     
-#ccc
+    
+    
+    #ccc
+    
 #/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData(request):    
-    
-'''###################
-    func : def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
-    at : 2019/02/16 12:53:56
-    
-    @return: (status, msg)        
-###################'''
-def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
-#xxx
-    '''###################
-        prep
-    ###################'''
-    (
-#         (
-#          [dpath_Src_CSV, fname_Src_CSV]
-#          
-#          , [fname_Log_CSV_trunk, fname_Log_CSV]
-#          
-#          , [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
-#          
-#          , [lo_BarDatas, lo_CSVs]
-#          
-#          , [pair, timeframe, filedate]
-#          
-#          , lo_Log_Lines
-#          )
 
-         lo_Src_File_Data
-         
-         , lo_Log_File_CSV_Data
-         
-         , lo_Log_File_Data
-         
-         , lo_BarDatas_Data
-         
-         , lo_CSV_Data
-         
-         , lo_Log_Lines
-         
-         , _req_param_judge_No_44_1_FilePath
-        
-        , _req_param_tag_RB_No_44_1_SubData__Checked_Val
-         
-     ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
-    
-    '''###################
-        validate : csv files exist
-    ###################'''
-    if lo_Src_File_Data == False : #if lo_Src_File_Data == False
-        
-        #=> (False, status, msg, _, _, _)
-
-        status = lo_BarDatas_Data
-        msg = lo_CSV_Data
-#         msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2.value
-        
-        return (status, msg)
-    
-    #/if lo_Src_File_Data == False
-    
-    '''###################
-        unpack vars
-    ###################'''
-    (dpath_Src_CSV, fname_Src_CSV) = lo_Src_File_Data
-    
-    (lo_BarDatas, lo_CSVs) = lo_BarDatas_Data
-                        
-    (pair, timeframe, filedate) = lo_CSV_Data
-    
-    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) =\
-                lo_Log_File_Data
-    
-    (fname_Log_CSV_trunk, fname_Log_CSV) = lo_Log_File_CSV_Data
-
-    '''###################
-        prep
-            log : meta info
-    ###################'''
-    lo_Log_Lines_CSV = []
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__Get_CSV_MetaInfo(\
+        lo_Log_Lines_CSV
+        , lo_BarDatas
+        , fname_Src_CSV
+        , dpath_Src_CSV
+        , fname_Log
+        , dpath_Log
+        , tlabel
+        , pair
+        , timeframe
+        ):
     
     lo_Log_Lines_CSV.append("\n")
     lo_Log_Lines_CSV.append("source csv\t=\t%s" % fname_Src_CSV)
@@ -9939,7 +9961,155 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
                lo_BarDatas[-1].dateTime
                , lo_BarDatas[-1].price_Close
                ))
-    lo_Log_Lines_CSV.append("\n")
+    lo_Log_Lines_CSV.append("\n")    
+    
+#/ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__Get_CSV_MetaInfo():
+    
+'''###################
+    func : def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request)
+    at : 2019/02/16 12:53:56
+    
+    @return: (status, msg)        
+###################'''
+def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
+#xxx
+    '''###################
+        prep
+    ###################'''
+    (
+#         (
+#          lo_Src_File_Data    [dpath_Src_CSV, fname_Src_CSV]
+#          
+#          lo_Log_File_CSV_Data    [fname_Log_CSV_trunk, fname_Log_CSV]
+#          
+#          lo_Log_File_Data    [tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log]
+#          
+#          lo_BarDatas_Data    [lo_BarDatas, lo_CSVs]
+#          
+#          lo_CSV_Data    [pair, timeframe, filedate]
+#          
+#          lo_Log_Lines    lo_Log_Lines
+#          )
+
+         lo_Src_File_Data
+         
+         , lo_Log_File_CSV_Data
+         
+         , lo_Log_File_Data
+         
+         , lo_BarDatas_Data
+         
+         , lo_CSV_Data
+         
+         , lo_Log_Lines
+         
+         , _req_param_judge_No_44_1_FilePath
+        
+        , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+         
+     ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
+    
+    '''###################
+        validate : csv files exist
+    ###################'''
+    if lo_Src_File_Data == False : #if lo_Src_File_Data == False
+        
+        #=> (False, status, msg, _, _, _)
+
+        status = lo_BarDatas_Data
+        msg = lo_CSV_Data
+#         msg = cons_fx.ParamConstants.PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2.value
+        
+        return (status, msg)
+    
+    #/if lo_Src_File_Data == False
+    
+    '''###################
+        unpack vars
+    ###################'''
+    (dpath_Src_CSV, fname_Src_CSV) = lo_Src_File_Data
+    
+    (lo_BarDatas, lo_CSVs) = lo_BarDatas_Data
+                        
+    (pair, timeframe, filedate) = lo_CSV_Data
+    
+    (tlabel, dpath_Log, fname_Log_Trunk, fname_Log, fpath_Log) =\
+                lo_Log_File_Data
+    
+    (fname_Log_CSV_trunk, fname_Log_CSV) = lo_Log_File_CSV_Data
+
+    '''###################
+        prep
+            log : meta info
+    ###################'''
+    #ccc
+    lo_Log_Lines_CSV = []
+    
+    _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__Get_CSV_MetaInfo(\
+                lo_Log_Lines_CSV
+                , lo_BarDatas
+                , fname_Src_CSV
+                , dpath_Src_CSV
+                , fname_Log
+                , dpath_Log
+                , tlabel
+                , pair
+                , timeframe
+            )
+    
+#     lo_Log_Lines_CSV.append("\n")
+#     lo_Log_Lines_CSV.append("source csv\t=\t%s" % fname_Src_CSV)
+#     lo_Log_Lines_CSV.append("\n")
+# 
+#     lo_Log_Lines_CSV.append("source dpath\t=\t%s" % dpath_Src_CSV)
+#     lo_Log_Lines_CSV.append("\n")
+#         
+#     lo_Log_Lines_CSV.append("log file name\t=\t%s" % fname_Log)
+#     lo_Log_Lines_CSV.append("\n")
+#         
+#     lo_Log_Lines_CSV.append("log file dpath\t=\t%s" % dpath_Log)
+#     lo_Log_Lines_CSV.append("\n")
+#         
+#     lo_Log_Lines_CSV.append("this file created at\t=\t%s" % tlabel)
+#     lo_Log_Lines_CSV.append("\n")
+#     lo_Log_Lines_CSV.append("\n")
+# 
+#     # bar datetime, price
+#     lo_Log_Lines_CSV.append("\n")
+#     lo_Log_Lines_CSV.append("[basics]=========================")
+#     lo_Log_Lines_CSV.append("\n")
+#     
+#     lo_Log_Lines_CSV.append("pair\t=\t%s" \
+#             % (
+#                pair
+#                ))
+#     lo_Log_Lines_CSV.append("\n")
+#     
+#     lo_Log_Lines_CSV.append("timeframe\t=\t%s" \
+#             % (
+#                timeframe
+#                ))
+#     lo_Log_Lines_CSV.append("\n")
+#     
+#     lo_Log_Lines_CSV.append("num of bars\t=\t%d" \
+#             % (
+#                len(lo_BarDatas)
+#                ))
+#     lo_Log_Lines_CSV.append("\n")
+#     
+#     lo_Log_Lines_CSV.append("starting bar\t=\t%s\topen=\t%.03f" \
+#             % (
+#                lo_BarDatas[0].dateTime
+#                , lo_BarDatas[0].price_Open
+#                ))
+#     lo_Log_Lines_CSV.append("\n")
+#     
+#     lo_Log_Lines_CSV.append("ending bar\t=\t%s\tclose=\t%.03f" \
+#             % (
+#                lo_BarDatas[-1].dateTime
+#                , lo_BarDatas[-1].price_Close
+#                ))
+#     lo_Log_Lines_CSV.append("\n")
     
     
     '''######################################
