@@ -9760,6 +9760,55 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0(request):
 #/ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0
 
 '''###################
+    _BUSL3_Tester_No_44_1__Gen_Data_UpDown_In_BB_Areas        
+    
+    at : 2019/02/21 17:32:33
+    
+    @return: 
+        (
+            lo_UU,
+            lo_UD,
+            lo_DU,
+            lo_DD,
+        )
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret):
+    
+    '''###################
+        step : A : 1
+        prep : vars        
+    ###################'''
+    lenOf_LO_BarDatas_Target = len(lo_BarDatas__Taret)
+    
+    # lists
+    lo_UU = []
+    lo_UD = []
+    lo_DU = []
+    lo_DD = []
+
+    '''###################
+        step : A : 2
+            for-loop
+    ###################'''
+    #@_20190221_174243
+    
+    for i in range(0, lenOf_LO_BarDatas_Target - 1):
+    
+        pass
+        
+    #/for i in range(0, lenOf_LO_BarDatas_Target - 1):
+
+
+    '''###################
+        return        
+    ###################'''
+    return (lo_UU, lo_UD, lo_DU, lo_DD)
+
+#ccc
+#/ def _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret):
+
+'''###################
     _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData
 
     at : 2019/02/20 16:41:41
@@ -9815,6 +9864,50 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
     
     (pair, timeframe, filedate) = lo_CSV_Data   
     
+    
+    '''###################
+        step : A : 0.1
+            lo_BarDats : reverse
+    ###################'''
+    # lo_BarDatas
+    tmp_LO_BarDatas = copy.deepcopy(lo_BarDatas)
+    
+    bar_Start = tmp_LO_BarDatas[0]
+    bar_End = tmp_LO_BarDatas[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] tmp_LO_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        tmp_LO_BarDatas.reverse()
+#         lo_BarDatas__Pair_1.reverse()
+
+        print()
+        print("[%s:%d] tmp_LO_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas[0].dateTime
+                             , lo_BarDatas[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] tmp_LO_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    
+#     tmp_LO_BarDatas.reverse()
+    
     '''###################
         step : A : 1
             vars
@@ -9843,38 +9936,50 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             step : j1-1 : 1
                 get : slices
         ###################'''
-        lo_Final = libfx.slice_BarDatas_By_Day(lo_BarDatas, fname_Src_CSV, lo_CSVs, dpath_Log)
-
-        #debug
-        print()
-        print("[%s:%d] len(lo_Final) => %d" % \
-            (os.path.basename(libs.thisfile()), libs.linenum()
-            , len(lo_Final)
-            ), file=sys.stderr)
+        lo_BarDatas_Sliced_By_Day = libfx.slice_BarDatas_By_Day(\
+                            tmp_LO_BarDatas
+                            , fname_Src_CSV
+                            , lo_CSVs
+                            , dpath_Log)
+#         lo_Final = libfx.slice_BarDatas_By_Day(lo_BarDatas, fname_Src_CSV, lo_CSVs, dpath_Log)
+#         #debug
+#         print()
+#         print("[%s:%d] len(lo_BarDatas_Sliced_By_Day) => %d" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , len(lo_BarDatas_Sliced_By_Day)
+#             ), file=sys.stderr)
+#         
+#         #debug
+#         if len(lo_BarDatas_Sliced_By_Day) > 1 : #if len(lo_BarDatas_Sliced_By_Day) > 1
+#         
+#             #debug
+#             print()
+#             print("[%s:%d] lo_BarDatas_Sliced_By_Day[0][0].dateTime = %s, lo_BarDatas_Sliced_By_Day[-1][-1].dateTime = %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , lo_BarDatas_Sliced_By_Day[0][0].dateTime, lo_BarDatas_Sliced_By_Day[-1][-1].dateTime
+#                 ), file=sys.stderr)
+#             
+#         
+#         else : #if len(lo_BarDatas_Sliced_By_Day) > 1
+#         
+#             #debug
+#             print()
+#             print("[%s:%d] lo_BarDatas_Sliced_By_Day[0][0].dateTime = %s, lo_BarDatas_Sliced_By_Day[0][-1].dateTime = %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , lo_BarDatas_Sliced_By_Day[0][0].dateTime, lo_BarDatas_Sliced_By_Day[0][-1].dateTime
+#                 ), file=sys.stderr)
+#             
+#         
+#         #/if len(lo_BarDatas_Sliced_By_Day) > 1
         
-        #debug
-        if len(lo_Final) > 1 : #if len(lo_Final) > 1
+        '''###################
+            step : j1-1 : 2
+                gen data
+        ###################'''
+        lo_BarDatas__Taret = lo_BarDatas_Sliced_By_Day[0]
         
-            #debug
-            print()
-            print("[%s:%d] lo_Final[0][0].dateTime = %s, lo_Final[-1][-1].dateTime = %s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum()
-                , lo_Final[0][0].dateTime, lo_Final[-1][-1].dateTime
-                ), file=sys.stderr)
-            
-        
-        else : #if len(lo_Final) > 1
-        
-            #debug
-            print()
-            print("[%s:%d] lo_Final[0][0].dateTime = %s, lo_Final[0][-1].dateTime = %s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum()
-                , lo_Final[0][0].dateTime, lo_Final[0][-1].dateTime
-                ), file=sys.stderr)
-            
-        
-        #/if len(lo_Final) > 1
-        
+        _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret)
+        #ccc
         
         
     else : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
@@ -10178,11 +10283,11 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     '''###################
         write : log
     ###################'''
-    print()
-    print("[%s:%d] len(lo_Log_Lines) => %d" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , len(lo_Log_Lines)
-        ), file=sys.stderr)
+#     print()
+#     print("[%s:%d] len(lo_Log_Lines) => %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , len(lo_Log_Lines)
+#         ), file=sys.stderr)
                  
 #     str_Log_Lines = "\r\n".join(tmp_lo_Log_Lines)
     str_Log_Lines = "\r\n".join(lo_Log_Lines)

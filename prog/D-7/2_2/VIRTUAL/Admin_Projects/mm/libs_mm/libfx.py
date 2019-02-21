@@ -5678,12 +5678,12 @@ def slice_BarDatas_By_Day(\
             ###################'''
             d_now = d
             
-            print("[%s:%d]\n(j1 : N : 2) d_now ==> updated (d_dnow = %s , cntOf_Days = %d" % \
-                    (os.path.basename(libs.thisfile()), libs.linenum()
-                    , d_now, cntOf_Days
-                    ), file=sys.stderr)
-            
-            print()
+#             print("[%s:%d]\n(j1 : N : 2) d_now ==> updated (d_dnow = %s , cntOf_Days = %d" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , d_now, cntOf_Days
+#                     ), file=sys.stderr)
+#             
+#             print()
             
             '''###################
                 step : j2
