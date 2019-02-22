@@ -9786,26 +9786,77 @@ def _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Tare
     lo_UD = []
     lo_DU = []
     lo_DD = []
+    lo_Others = []
 
     '''###################
         step : A : 2
             for-loop
     ###################'''
     #@_20190221_174243
-    
     for i in range(0, lenOf_LO_BarDatas_Target - 1):
-    
-        pass
+        '''###################
+            step : B : 1
+                prep
+        ###################'''
+        # bar datas
+        e0 = lo_BarDatas__Taret[i]
+        e1 = lo_BarDatas__Taret[i + 1]
+        
+        d0 = e0.price_Close - e0.price_Open
+        d1 = e1.price_Close - e1.price_Open
+        
+        # conditions
+        cond_UU = (d0 > 0) and (d1 > 0) # UU
+        cond_UD = (d0 > 0) and (d1 < 0) # UU
+        
+        cond_DU = (d0 < 0) and (d1 > 0) # UU
+        cond_DD = (d0 < 0) and (d1 < 0) # UU
+        
+        '''###################
+            step : j1
+                up/down
+        ###################'''
+        if cond_UU : #if cond_UU
+        
+            lo_UU.append([e0, e1, i])
+        
+        elif cond_UD : #if cond_UU
+        
+            lo_UD.append([e0, e1, i])
+            
+        elif cond_DU : #if cond_UU
+        
+            lo_DU.append([e0, e1, i])
+            
+        elif cond_DD : #if cond_UU
+        
+            lo_DD.append([e0, e1, i])
+            
+        else : #if cond_UU
+        
+            lo_Others.append([e0, e1, i])
+        
+        #/if cond_UU
         
     #/for i in range(0, lenOf_LO_BarDatas_Target - 1):
 
-
+    print()
+#     print("%s" % \
+#         (
+#         msg
+#         ), file=sys.stderr)
+    print("[%s:%d] len(lo_UU) = %d, len(lo_UD) = %d, len(lo_DU) = %d, len(lo_DD) = %d / lenOf_LO_BarDatas_Target = %d / (start = %s, end = %s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_UU), len(lo_UD), len(lo_DU), len(lo_DD)
+        , lenOf_LO_BarDatas_Target
+        , lo_BarDatas__Taret[0].dateTime, lo_BarDatas__Taret[-1].dateTime
+        ), file=sys.stderr)
+    
     '''###################
         return        
     ###################'''
     return (lo_UU, lo_UD, lo_DU, lo_DD)
 
-#ccc
 #/ def _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret):
 
 '''###################
@@ -9976,10 +10027,132 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             step : j1-1 : 2
                 gen data
         ###################'''
-        lo_BarDatas__Taret = lo_BarDatas_Sliced_By_Day[0]
+        indexOf_Target_BarDatas = 1
         
-        _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret)
+        '''###################
+            step : j1-1 : 2.1
+                for-loop
+        ###################'''
+        #debug
+        print()
+        print("[%s:%d] fname_Log_CSV_trunk = %s, fname_Log_CSV = %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            ), file=sys.stderr)
+        
+        '''###################
+            step : j1-1 : 2.1.1
+                prep : log file
+        ###################'''
+        dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+#         dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV)
+        
+        #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+        if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+            
+            # make dir
+            #ref https://docs.python.org/2/library/os.html
+            os.makedirs(dpath_Log_CSV, exist_ok = True)
+            
+            #debug
+            print()
+            print("[%s:%d] new dir created => %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , dpath_Log_CSV
+                ), file=sys.stderr)
+        
+        #/if not os.path.isdir(dpath_Log_CSV)
+        
+        # vars : file
+        lo_Msg_CSV = []
+        
+        #debug
+        numOf_Max = 100
+        
+        cntOf_For_Loop = 0
+        
+        for lo_BarDatas__Target in lo_BarDatas_Sliced_By_Day:
+        
+            '''###################
+                step : j1-1 : 2.2
+                    get : categorized lists
+            ###################'''
+            (lo_UU, lo_UD, lo_DU, lo_DD) = \
+                _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Target)
+            
+            '''###################
+                step : j1-1 : 3
+                    write to file
+            ###################'''
+            '''###################
+                step : j1-1 : 3.1
+                    prep
+            ###################'''
+#             lo_Msg_CSV = []
+            
+            lo_Msg_CSV.append("%d ----------------------" % (cntOf_For_Loop + 1))
+            lo_Msg_CSV.append("\n")
+            
+            lo_Msg_CSV.append("%s\t%s" % \
+                        (
+                         lo_BarDatas__Target[0].dateTime
+                         , lo_BarDatas__Target[-1].dateTime)
+                        )
+            lo_Msg_CSV.append("\n")
+            
+            lo_Msg_CSV.append("len(lo_UU)\t%d" % (len(lo_UU)))
+            lo_Msg_CSV.append("\n")
+            
+            #@_20190222_095010
+            
+            msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+                    (
+                    libs.get_TimeLabel_Now()
+                    , os.path.basename(libs.thisfile()), libs.linenum()
+                    , "".join(lo_Msg_CSV)
+                    )
+            
+            
+            #ccc
+            
+#             libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+# #             libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
+#             
+#             #debug
+#             print()
+#             print("[%s:%d] csv log written => dpath_Log_CSV = %s, fname_Log_CSV = %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , dpath_Log_CSV, fname_Log_CSV
+#                 ), file=sys.stderr)
+            #debug
+            cntOf_For_Loop += 1
+            if cntOf_For_Loop >= numOf_Max : break    #if cntOf_For_Loop >= numOf_Max
+            
+        #/for lo_BarDatas_Target in lo_BarDatas_Sliced_By_Day:
+
+        msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_CSV)
+                )
+        
+        
         #ccc
+        
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+
+        #ccc
+        
+#         lo_BarDatas__Taret = lo_BarDatas_Sliced_By_Day[indexOf_Target_BarDatas]
+# #         lo_BarDatas__Taret = lo_BarDatas_Sliced_By_Day[0]
+        
+#         (lo_UU, lo_UD, lo_DU, lo_DD) = \
+#             _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Taret)
+        
+        
+        
+        
         
         
     else : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
@@ -10220,6 +10393,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     '''######################################
         ops
     ######################################'''
+    #debug
     print()
     print("[%s:%d] _req_param_judge_No_44_1_FilePath => %s" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
@@ -10277,6 +10451,15 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
             libs.get_TimeLabel_Now()
             , os.path.basename(libs.thisfile()), libs.linenum()
             , "".join(lo_Log_Lines_CSV))
+    
+    #debug
+    print()
+    print("[%s:%d] _req_param_judge_No_44_1_FilePath => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , _req_param_judge_No_44_1_FilePath
+        ), file=sys.stderr)
+    
+    #ccc
     
     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
 
