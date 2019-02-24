@@ -9840,17 +9840,17 @@ def _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Tare
         
     #/for i in range(0, lenOf_LO_BarDatas_Target - 1):
 
-    print()
-#     print("%s" % \
-#         (
-#         msg
+#     print()
+# #     print("%s" % \
+# #         (
+# #         msg
+# #         ), file=sys.stderr)
+#     print("[%s:%d] len(lo_UU) = %d, len(lo_UD) = %d, len(lo_DU) = %d, len(lo_DD) = %d / lenOf_LO_BarDatas_Target = %d / (start = %s, end = %s)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , len(lo_UU), len(lo_UD), len(lo_DU), len(lo_DD)
+#         , lenOf_LO_BarDatas_Target
+#         , lo_BarDatas__Taret[0].dateTime, lo_BarDatas__Taret[-1].dateTime
 #         ), file=sys.stderr)
-    print("[%s:%d] len(lo_UU) = %d, len(lo_UD) = %d, len(lo_DU) = %d, len(lo_DD) = %d / lenOf_LO_BarDatas_Target = %d / (start = %s, end = %s)" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , len(lo_UU), len(lo_UD), len(lo_DU), len(lo_DD)
-        , lenOf_LO_BarDatas_Target
-        , lo_BarDatas__Taret[0].dateTime, lo_BarDatas__Taret[-1].dateTime
-        ), file=sys.stderr)
     
     '''###################
         return        
@@ -10065,6 +10065,25 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
         
         # vars : file
         lo_Msg_CSV = []
+
+        '''###################
+            step : j1-1 : 2.1.2
+                prep : log file : header
+        ###################'''
+        lo_Msg_CSV.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+        
+        lo_Msg_CSV.append("\n")
+        
+        msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_CSV)
+                )
+        
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+        
+        #ccc
         
         #debug
         numOf_Max = 100
@@ -10090,18 +10109,55 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             ###################'''
 #             lo_Msg_CSV = []
             
-            lo_Msg_CSV.append("%d ----------------------" % (cntOf_For_Loop + 1))
+#             lo_Msg_CSV.append("%d ----------------------" % (cntOf_For_Loop + 1))
+#             lo_Msg_CSV.append("\n")
+            
+#             lo_Msg_CSV.append("%s\t%s" % \
+#                         (
+#                          lo_BarDatas__Target[0].dateTime
+#                          , lo_BarDatas__Target[-1].dateTime)
+#                         )
+
+            lenOf_LO_BarDatas__Target = len(lo_BarDatas__Target)
+
+            msg_Log_Line = "%d\t%s\t%s\t%d\t%d\t%d\t%d\t%d" %\
+                    (
+                      (cntOf_For_Loop + 1)
+                         , lo_BarDatas__Target[0].dateTime
+                         , lo_BarDatas__Target[-1].dateTime
+                         , lenOf_LO_BarDatas__Target
+                         , len(lo_UU)
+                         , len(lo_UD)
+                         , len(lo_DU)
+                         , len(lo_DD)
+                     )
+                    
+            msg_Log_Line += "\t%.03f\t%.03f\t%.03f\t%.03f" %\
+                    (
+                         len(lo_UU) * 1.0 / lenOf_LO_BarDatas__Target
+                         , len(lo_UD) * 1.0 / lenOf_LO_BarDatas__Target
+                         , len(lo_DU) * 1.0 / lenOf_LO_BarDatas__Target
+                         , len(lo_DD) * 1.0 / lenOf_LO_BarDatas__Target
+                     )
+                    #ccc
+            lo_Msg_CSV.append("%s" % (msg_Log_Line))
+                              
             lo_Msg_CSV.append("\n")
             
-            lo_Msg_CSV.append("%s\t%s" % \
-                        (
-                         lo_BarDatas__Target[0].dateTime
-                         , lo_BarDatas__Target[-1].dateTime)
-                        )
-            lo_Msg_CSV.append("\n")
+#             lo_Msg_CSV.append("%d\t%s\t%s\t%d\t%d" % \
+#                         (
+#                          (cntOf_For_Loop + 1)
+#                          , lo_BarDatas__Target[0].dateTime
+#                          , lo_BarDatas__Target[-1].dateTime
+#                          , len(lo_UU)
+#                          , len(lo_UD)
+#                          , len(lo_DU)
+#                          , len(lo_DD)
+#                          )
+#                         )
             
-            lo_Msg_CSV.append("len(lo_UU)\t%d" % (len(lo_UU)))
-            lo_Msg_CSV.append("\n")
+#             lo_Msg_CSV.append("len(lo_UU)\t%d" % (len(lo_UU)))
+#             lo_Msg_CSV.append("\n")
             
             #@_20190222_095010
             
