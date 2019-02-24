@@ -10070,6 +10070,29 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             step : j1-1 : 2.1.2
                 prep : log file : header
         ###################'''
+        '''###################
+            step : j1-1 : 2.1.2.1
+                prep : log file : header : meta
+        ###################'''
+        lo_Msg_CSV.append("fname_Src_CSV\t%s" % fname_Src_CSV)
+        lo_Msg_CSV.append("\n")
+        
+        lo_Msg_CSV.append("slice by\t%s" % _req_param_tag_RB_No_44_1_SubData__Checked_Val)
+        lo_Msg_CSV.append("\n")
+        
+        lo_Msg_CSV.append("this file\t%s" % fname_Log_CSV)
+        lo_Msg_CSV.append("\n")
+        
+        lo_Msg_CSV.append("pair\t%s" % pair)
+        lo_Msg_CSV.append("\n")
+        
+        lo_Msg_CSV.append("timeframe\t%s" % timeframe)
+        lo_Msg_CSV.append("\n")
+        lo_Msg_CSV.append("\n")
+        
+        lo_Msg_CSV.append("[ups/downs]==============================")
+        lo_Msg_CSV.append("\n")
+        
         lo_Msg_CSV.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
         
         lo_Msg_CSV.append("\n")
@@ -10081,7 +10104,11 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
                 , "".join(lo_Msg_CSV)
                 )
         
-        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+        
+        # vars : log liens ---> reset
+        lo_Msg_CSV = []
         
         #ccc
         
@@ -10161,12 +10188,12 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             
             #@_20190222_095010
             
-            msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-                    (
-                    libs.get_TimeLabel_Now()
-                    , os.path.basename(libs.thisfile()), libs.linenum()
-                    , "".join(lo_Msg_CSV)
-                    )
+#             msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#                     (
+#                     libs.get_TimeLabel_Now()
+#                     , os.path.basename(libs.thisfile()), libs.linenum()
+#                     , "".join(lo_Msg_CSV)
+#                     )
             
             
             #ccc
