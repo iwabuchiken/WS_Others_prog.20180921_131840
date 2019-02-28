@@ -1,0 +1,9 @@
+[20190228_131759 / views.py:10085]
+fname_Src_CSV	44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-4500).20190214_095445.csv
+slice by	day
+this file	no-44.[ups-downs-in_BB].[v-1.0].20190228_131758.csv
+pair	EURJPY
+timeframe	M15
+
+[ups/downs]==============================
+s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD
