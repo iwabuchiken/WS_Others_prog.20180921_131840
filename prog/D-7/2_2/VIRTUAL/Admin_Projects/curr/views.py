@@ -9362,18 +9362,60 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     tlabel = libs.get_TimeLabel_Now()
     
     dpath_Log = cons_fx.FPath.dpath_LogFile.value
+
+    strOf_File_Content_Info = "ups-downs-in_BB"
+    strOf_Version_Info = "v-1.0"
+    strOf_Task_No = "no-44"
+    strOf_Pair_Name = pair
+    strOf_Timeframe = timeframe
     
-    fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0]" 
-    fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
+    # no-44.[ups-downs-in_BB].[v-1.0].(USDJPY-M15).(20190303_102143).csv.dir
+#     fname_Log_Trunk = "%s.[%s].[%s].(%s-%s).(%s)" % \
+#                 (
+#                  strOf_Task_No
+#                  , strOf_File_Content_Info
+#                  , strOf_Version_Info
+#                  , strOf_Pair_Name
+#                  , strOf_Timeframe
+#                  , tlabel
+#                  )
+# #     fname_Log = "%s.[%s].[%s].(%s-%s).(%s).csv.dir" % \
+#     fname_Log = "%s.csv.dir" % \
+#                 (
+#                  fname_Log_Trunk
+#                  )
+    fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0].(%s-%s)" % \
+                (
+                 strOf_Pair_Name
+                 , strOf_Timeframe
+                 ) 
+#     fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0]" 
+    
+#     fname_Log = "%s.(%s).(%s-%s).[%s].csv" % \
+#              (
+#               fname_Log_CSV_trunk
+#               , tlabel
+#               , pair, timeframe
+#               , strOf_File_Content_Info
+#               ) 
+#     
+    fname_Log = "%s.(%s).log" % (fname_Log_Trunk, tlabel) 
+#     fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
+    
+    #@_20190303_102428
     
     fpath_Log = os.path.join(dpath_Log, fname_Log)
 
     '''###################
         prep : log file : csv
     ###################'''
+#     fname_Log_CSV_trunk = "%s.(%s)" % (fname_Log_Trunk, tlabel)
     fname_Log_CSV_trunk = fname_Log_Trunk
-    fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
-
+#     fname_Log_CSV = "%s.csv" % (fname_Log_CSV_trunk)
+    fname_Log_CSV = "%s.(%s).csv" % (fname_Log_CSV_trunk, tlabel)
+#     fname_Log_CSV = "%s.%s.csv" % (fname_Log_CSV_trunk, tlabel)
+    #@_20190303_105833
+    
     '''###################
         log : meta info
     ###################'''
@@ -10043,6 +10085,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubD
             # make dir
             #ref https://docs.python.org/2/library/os.html
             os.makedirs(dpath_Log_CSV, exist_ok = True)
+            #@_20190303_105303
             
             #debug
             print()
@@ -10430,7 +10473,18 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
         step : j1-1 : 2.1.2.1
             prep : log file : header : meta
     ###################'''
-    fname_Log_CSV = fname_Log_CSV_trunk + "[sec-2].csv"
+    strOf_File_Content_Info = "sec-2"
+    
+    fname_Log_CSV = "%s.(%s).(%s-%s).[%s].csv" % \
+             (
+              fname_Log_CSV_trunk
+              , tlabel
+              , pair, timeframe
+              , strOf_File_Content_Info
+              ) 
+    
+#     fname_Log_CSV = fname_Log_CSV_trunk + "[sec-2].csv"
+    #@_20190303_101951
     
     lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
     lo_Msg_CSV_Header.append("\n")
@@ -10770,6 +10824,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             # make dir
             #ref https://docs.python.org/2/library/os.html
             os.makedirs(dpath_Log_CSV, exist_ok = True)
+            #@_20190303_105405
             
             #debug
             print()
@@ -11027,7 +11082,18 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             step : A : 3.1.3
                 write
         ###################'''
-        fname_Log_CSV_LO_UU = fname_Log_CSV + ".[lo-UUs].csv"
+        strOf_File_Content_Info = "sec-1"
+#         strOf_File_Content_Info = "lo-UUs"
+        
+        fname_Log_CSV_LO_UU = "%s.(%s).(%s-%s).[%s].csv" % \
+                 (
+                  fname_Log_CSV_trunk
+                  , tlabel
+                  , pair, timeframe
+                  , strOf_File_Content_Info
+                  ) 
+#         fname_Log_CSV_LO_UU = fname_Log_CSV + ".[lo-UUs].csv"
+        #@_20190303_101457
         
         msg_Log_CSV = "[%s / %s:%d]\n%s" % \
                 (
@@ -11071,6 +11137,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
 
     '''###################
         step : A : 4
+            gen : "BB zones histogram"
+    ###################'''
+    #@_20190303_110717
+        
+    '''###################
+        step : A : 5
             return
     ###################'''
     return ( \
@@ -11142,8 +11214,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     '''###################
         sec-1
     ###################'''
-    flag_Write_to_File = False
-#     flag_Write_to_File = True
+#     flag_Write_to_File = False
+    flag_Write_to_File = True
     
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     _req_param_tag_RB_No_44_1_SubData__Checked_Val \
@@ -12284,6 +12356,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     str_Log_Lines = "\r\n".join(lo_Log_Lines)
      
     libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
+    #@_20190303_104021
     
     '''###################
         return        
