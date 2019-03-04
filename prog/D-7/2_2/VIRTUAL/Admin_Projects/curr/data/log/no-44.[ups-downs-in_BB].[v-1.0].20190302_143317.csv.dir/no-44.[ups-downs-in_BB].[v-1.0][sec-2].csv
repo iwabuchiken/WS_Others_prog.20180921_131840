@@ -1,9 +1,0 @@
-[20190302_143319 / views.py:10461]
-fname_Src_CSV	44_5.1_10_rawdata.(EURUSD).(Period-M15).(NumOfUnits-6000).(Bars-6000).20190226_125818.csv
-slice by	day
-this file	no-44.[ups-downs-in_BB].[v-1.0][sec-2].csv
-pair	EURUSD
-timeframe	M15
-
-[ups/downs]==============================
-s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD

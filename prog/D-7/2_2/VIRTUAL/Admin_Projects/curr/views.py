@@ -10389,13 +10389,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
         
         ) :
     
-    #debug
-    print()
-    print("[%s:%d] lo_UUs_DDs[0][0] =>" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                         
-                        ), file=sys.stderr)
-    print(lo_UUs_DDs[0][0])
+#     #debug
+#     print()
+#     print("[%s:%d] lo_UUs_DDs[0][0] =>" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          
+#                         ), file=sys.stderr)
+#     print(lo_UUs_DDs[0][0])
             # [[<mm.libs_mm.libfx.BarData object at 0x000000000A339D30>, <mm.libs_mm.libfx.BarData object at 0x000
             # 000000A339D68>, 3], [<mm.libs_mm.libfx.BarData object at 0x000000000A339DD8>, <mm.libs_mm.libfx.BarD
             # ata object at 0x000000000A339E10>, 6], [<mm.libs_mm.libfx.BarData object at 0x000000000A339FD0>, <mm
@@ -11139,8 +11139,162 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         step : A : 4
             gen : "BB zones histogram"
     ###################'''
-    #@_20190303_110717
+    '''###################
+        step : A : 4.1
+            lo_UUs
+            
+                [
+                    [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
+                    , [e0, e1, 6]        --> 2019.02.11 06:14:45
+                    , [e0, e1, 13]        --> 2019.02.11 06:18:00
+                    , [e0, e1, 21]        --> 2019.02.11 06:20:30
+                    ...
+                ]            
+            UU
+                [e0, e1, 3]
+                
+    ###################'''
+    lo_UU__Above_BB_2S = []
+    lo_UU__Above_BB_1S = []
+    
+    lo_UD__Above_BB_2S = []
+    lo_UD__Above_BB_1S = []
+    
+    #debug
+    cntOf_ = 0
+    maxOf_Debug_Loop = 10
+    
+    flg_Debug_Loop = False
+    
+    for lo_UU in lo_UUs:
+    
+        for UU in lo_UU:
+            
+#             #debug
+#             if cntOf_ > maxOf_Debug_Loop : #if cntOf_ > maxOf_Debug_Loop
+#                 
+#                 # set : flag
+#                 flg_Debug_Loop = True
+#                 
+#                 # reset : counter
+#                 cntOf_ = 0
+#                 
+#                 #debug
+#                 print()
+#                 print("[%s:%d] debug : break from 2nd loop" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     
+#                     ), file=sys.stderr)
+#                 
+#                 break
+#             
+#             else :
+#                 
+#                 # count
+#                 cntOf_ += 1
+#                 
+#             #/if cntOf_ > maxOf_Debug_Loop
+            
+            
+            # get : instance
+            e0 = UU[0]
+
+#             #debug
+#             print()
+#             print("[%s:%d] (debug) e0.dateTime = %s, e0.price_Close = %.03f, e0.bb_1S = %.03f" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , e0.dateTime, e0.price_Close, e0.bb_1S
+#                 ), file=sys.stderr)
+            
+            # conditions
+            cond_1  = (e0.price_Close > e0.bb_1S)
+            cond_2  = (e0.price_Close > e0.bb_2S)
+#             cond_1  = e0.price_Close > e0.bb_1S
+#             cond_2  = e0.price_Close > e0.bb_2S
+
+#             #debug
+#             print()
+#             print("[%s:%d] (debug) cond_1 = %s, cond_2 = %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , cond_1, cond_2
+#                 ), file=sys.stderr)
+            
+            # judge
+            if cond_2 == True : #if cond_2 == True
+                
+                lo_UU__Above_BB_2S.append(UU)
+            
+            #/if cond_2 == True
+            
+            if cond_1 == True and not cond_2 == True : #if cond_1 == True and not cond_2
+                
+                lo_UU__Above_BB_1S.append(UU)
+            
+            #/if cond_1 == True and not cond_2
+            
+        #/for UU in UUs:
         
+#         #debug
+#         if flg_Debug_Loop == True : #if flg_Debug_Loop == True
+# 
+#             #debug
+#             print()
+#             print("[%s:%d] debug : break from 1st loop" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 
+#                 ), file=sys.stderr)
+#             
+#             break
+#         
+#         #/if flg_Debug_Loop == True
+
+        
+    #/for lo_UU in lo_UUs:
+
+    '''###################
+        step : A : 4.X
+            report
+    ###################'''
+    #@_20190304_104704
+    
+    # lens
+    lenOf_LO_UU__Above_BB_2S = len(lo_UU__Above_BB_2S)
+    lenOf_LO_UU__Above_BB_1S = len(lo_UU__Above_BB_1S)
+    
+    lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
+    
+    # len of : lo_UUs
+    lenOf_LO_UUs = 0
+    
+    for lo_UU in lo_UUs:
+    
+        # count
+        lenOf_LO_UUs += len(lo_UU)
+        
+    #/for lo_UU in lo_UUs:
+
+    #debug
+    print()
+    print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , lenOf_LO_UUs
+        ), file=sys.stderr)
+    
+    #debug
+    print()
+    print("[%s:%d] len(lo_UU__Above_BB_2S) = %d (%.03f) / len(lo_UU__Above_BB_1S) = %d (%.03f)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , lenOf_LO_UU__Above_BB_2S
+        , (lenOf_LO_UU__Above_BB_2S * 1.0 / lenOf_LO_UUs)
+        , lenOf_LO_UU__Above_BB_1S
+        , (lenOf_LO_UU__Above_BB_1S * 1.0 / lenOf_LO_UUs)
+#         , len(lo_UU__Above_BB_2S)
+#         , len(lo_UU__Above_BB_1S)
+        ), file=sys.stderr)
+    
+    #ccc
+
+    #@_20190303_110717
     '''###################
         step : A : 5
             return
@@ -11214,8 +11368,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     '''###################
         sec-1
     ###################'''
-#     flag_Write_to_File = False
-    flag_Write_to_File = True
+    flag_Write_to_File = False
+#     flag_Write_to_File = True
     
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     _req_param_tag_RB_No_44_1_SubData__Checked_Val \
@@ -11238,7 +11392,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     '''###################
         sec-2
     ###################'''
-    flag_Write_to_File = True
+    flag_Write_to_File = False
+#     flag_Write_to_File = True
     
     #@_20190301_104918
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(lo_UUs_DDs)
