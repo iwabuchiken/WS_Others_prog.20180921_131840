@@ -10650,6 +10650,287 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
 #/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(lo_UUs_DDs)
 
 '''###################
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4()
+
+    at : 20190301_104847
+    
+    @param : 
+        lo_UUsUDsDUsDDs
+                    [
+                     lo_UUs
+                     , lo_UDs
+                     , lo_DUs
+                     , lo_DDs
+                     ]
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
+                lo_UUsUDsDUsDDs
+                , tmp_LO_BarDatas
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                
+                ,fname_Src_CSV
+                ,fname_Log_CSV
+                , dpath_Log_CSV
+                
+                ,pair
+                ,timeframe
+
+                , tlabel
+                
+                ,flag_Write_to_File = True
+                ):
+#_20190304_170515
+    
+    '''###################
+        step : A : 0
+            unpack params
+    ###################'''
+    (lo_UUs, lo_UDs, lo_DUs, lo_DDs) = lo_UUsUDsDUsDDs
+        
+    '''###################
+        step : A : 4.1
+            lo_UUs
+            
+                [
+                    [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
+                    , [e0, e1, 6]        --> 2019.02.11 06:14:45
+                    , [e0, e1, 13]        --> 2019.02.11 06:18:00
+                    , [e0, e1, 21]        --> 2019.02.11 06:20:30
+                    ...
+                ]            
+            UU
+                [e0, e1, 3]
+                
+    ###################'''
+    lo_UU__Z1 = []  # 2S <= x
+    lo_UU__Z2 = []  # 1S <= x < 2S
+    lo_UU__Z3 = []  # Main <= x < 1S
+    lo_UU__Z4 = []  # M_1S <= x < Main
+    lo_UU__Z5 = []  # M_2S <= x < M_1S
+    lo_UU__Z6 = []  # x < M_2S
+    
+    lo_UD__Above_BB_2S = []
+    lo_UD__Above_BB_1S = []
+    
+    #debug
+    cntOf_ = 0
+    maxOf_Debug_Loop = 10
+    
+    flg_Debug_Loop = False
+    
+    for lo_UU in lo_UUs:
+    
+        for UU in lo_UU:
+            
+#             #debug
+#             if cntOf_ > maxOf_Debug_Loop : #if cntOf_ > maxOf_Debug_Loop
+#                 
+#                 # set : flag
+#                 flg_Debug_Loop = True
+#                 
+#                 # reset : counter
+#                 cntOf_ = 0
+#                 
+#                 #debug
+#                 print()
+#                 print("[%s:%d] debug : break from 2nd loop" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     
+#                     ), file=sys.stderr)
+#                 
+#                 break
+#             
+#             else :
+#                 
+#                 # count
+#                 cntOf_ += 1
+#                 
+#             #/if cntOf_ > maxOf_Debug_Loop
+            
+            
+            # get : instance
+            e0 = UU[0]
+
+            # conditions
+            #_20190304_163255
+            cond_2  = (e0.price_Close > e0.bb_2S)
+            cond_1  = (e0.price_Close >= e0.bb_1S)
+            cond_3  = (e0.price_Close >= e0.bb_Main)
+            
+            cond_4  = (e0.price_Close >= e0.bb_M1S)
+            cond_5  = (e0.price_Close >= e0.bb_M2S)
+            
+#             cond_1  = e0.price_Close > e0.bb_1S
+#             cond_2  = e0.price_Close > e0.bb_2S
+
+            
+            # judge
+            if cond_2 == True :                         lo_UU__Z1.append(UU)
+            
+            if cond_1 == True and cond_2 == False : lo_UU__Z2.append(UU)
+            
+            if cond_3 == True and cond_1 == False : lo_UU__Z3.append(UU)
+            
+            if cond_4 == True and cond_3 == False : lo_UU__Z4.append(UU)
+            
+            if cond_5 == True and cond_4 == False : lo_UU__Z5.append(UU)
+            
+            if cond_5 == False : lo_UU__Z6.append(UU)
+            
+        #/for UU in UUs:
+        
+    #/for lo_UU in lo_UUs:
+
+    '''###################
+        step : A : 4.X
+            report
+    ###################'''
+    #@_20190304_104704
+    
+    # lens
+    lenOf_lo_UU__Z1 = len(lo_UU__Z1)
+    lenOf_lo_UU__Z2 = len(lo_UU__Z2)
+    lenOf_lo_UU__Z3 = len(lo_UU__Z3)
+    lenOf_lo_UU__Z4 = len(lo_UU__Z4)
+    lenOf_lo_UU__Z5 = len(lo_UU__Z5)
+    lenOf_lo_UU__Z6 = len(lo_UU__Z6)
+    
+    lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
+    
+    # len of : lo_UUs
+    lenOf_LO_UUs = 0
+    
+    for lo_UU in lo_UUs:
+    
+        # count
+        lenOf_LO_UUs += len(lo_UU)
+        
+    #/for lo_UU in lo_UUs:
+
+    #debug
+    print()
+    print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , lenOf_LO_UUs
+        ), file=sys.stderr)
+    
+    #debug
+    msg = "len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
+        (
+        lenOf_lo_UU__Z1
+        , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
+        , lenOf_lo_UU__Z2
+        , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
+        )
+    msg += "\n"
+    
+    msg += "len(lo_UU__Z3) = %d (%.03f) / len(lo_UU__Z4) = %d (%.03f)" % \
+        (
+        lenOf_lo_UU__Z3
+        , (lenOf_lo_UU__Z3 * 1.0 / lenOf_LO_UUs)
+        , lenOf_lo_UU__Z4
+        , (lenOf_lo_UU__Z4 * 1.0 / lenOf_LO_UUs)
+        )
+    msg += "\n"
+        
+    msg += "len(lo_UU__Z5) = %d (%.03f) / len(lo_UU__Z6) = %d (%.03f)" % \
+        (
+        lenOf_lo_UU__Z5
+        , (lenOf_lo_UU__Z5 * 1.0 / lenOf_LO_UUs)
+        , lenOf_lo_UU__Z6
+        , (lenOf_lo_UU__Z6 * 1.0 / lenOf_LO_UUs)
+        )
+    msg += "\n"
+    
+    #debug
+    print()
+    print("[%s:%d] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , msg
+        ), file=sys.stderr)
+     
+# #     print("lo_UU__Z4[0][0].dateTime =>")
+#     print("lo_UU__Z4[0] : e0 = %s / e1 = %s" % \
+#             (lo_UU__Z4[0][0].dateTime, lo_UU__Z4[0][1].dateTime))
+# #     print("lo_UU__Z4[1][0].dateTime =>")
+#     print("lo_UU__Z4[1] : e0 = %s / e1 = %s" % \
+#             (lo_UU__Z4[1][0].dateTime, lo_UU__Z4[1][1].dateTime))
+
+#     print(lo_UU__Z4[1][0].dateTime)
+#     print("lo_UU__Z4[0][0].dateTime =>")
+#     print(lo_UU__Z4[0][0].dateTime)
+#     print("lo_UU__Z4[1][0].dateTime =>")
+#     print(lo_UU__Z4[1][0].dateTime)
+#     print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , lenOf_lo_UU__Z1
+#         , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
+#         , lenOf_lo_UU__Z2
+#         , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
+#         ), file=sys.stderr)
+    
+    '''###################
+        step : A : 4.X
+            write : to file
+    ###################'''
+    #_20190304_174649
+    
+    # output csv file
+    strOf_File_Content_Info = "sec-1~BB-histogram.UU-UD-DU-DD"
+    
+    fname_Log_CSV = "(%s).(%s-%s).[%s].csv " % \
+                (
+                 tlabel
+                 , pair
+                 , timeframe
+                 , strOf_File_Content_Info
+                 )
+    
+    lo_Msg_CSV_Header = []
+    
+    lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("slice by\t%s" % _req_param_tag_RB_No_44_1_SubData__Checked_Val)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("this file\t%s" % fname_Log_CSV)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("pair\t%s" % pair)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
+    lo_Msg_CSV_Header.append("\n")
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("[ups/downs]==============================")
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+    
+    lo_Msg_CSV_Header.append("\n")
+    
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Header)
+#                 , "".join(lo_Msg_CSV)
+            )
+    
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+        
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
+    #_20190304_173248
+        
+    
+#/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4():
+
+'''###################
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1
 
     at : 20190301_104847
@@ -10847,6 +11128,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             step : j1-1 : 2.1.2.1
                 prep : log file : header : meta
         ###################'''
+        #_20190304_173508
         lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
         lo_Msg_CSV_Header.append("\n")
         
@@ -11145,144 +11427,169 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         step : A : 4
             gen : "BB zones histogram"
     ###################'''
-    '''###################
-        step : A : 4.1
-            lo_UUs
-            
-                [
-                    [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
-                    , [e0, e1, 6]        --> 2019.02.11 06:14:45
-                    , [e0, e1, 13]        --> 2019.02.11 06:18:00
-                    , [e0, e1, 21]        --> 2019.02.11 06:20:30
-                    ...
-                ]            
-            UU
-                [e0, e1, 3]
-                
-    ###################'''
-    lo_UU__Z1 = []  # 2S <= x
-    lo_UU__Z2 = []  # 1S <= x < 2S
-    lo_UU__Z3 = []  # Main <= x < 1S
-    lo_UU__Z4 = []  # M_1S <= x < Main
-    lo_UU__Z5 = []  # M_2S <= x < M_1S
-    lo_UU__Z6 = []  # x < M_2S
+    #_20190304_170315
+    flag_Write_to_File = True
     
-    lo_UD__Above_BB_2S = []
-    lo_UD__Above_BB_1S = []
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
+                            [
+                             lo_UUs
+                             , lo_UDs
+                             , lo_DUs
+                             , lo_DDs
+                             ]
+                            , tmp_LO_BarDatas
+                            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                            
+                            ,fname_Src_CSV
+                            ,fname_Log_CSV
+                            , dpath_Log_CSV
+                            
+                            ,pair
+                            ,timeframe
+                            
+                            , tlabel
+                            
+                            ,flag_Write_to_File
+                     
+                                                                    )
     
-    #debug
-    cntOf_ = 0
-    maxOf_Debug_Loop = 10
-    
-    flg_Debug_Loop = False
-    
-    for lo_UU in lo_UUs:
-    
-        for UU in lo_UU:
-            
-#             #debug
-#             if cntOf_ > maxOf_Debug_Loop : #if cntOf_ > maxOf_Debug_Loop
-#                 
-#                 # set : flag
-#                 flg_Debug_Loop = True
-#                 
-#                 # reset : counter
-#                 cntOf_ = 0
-#                 
-#                 #debug
-#                 print()
-#                 print("[%s:%d] debug : break from 2nd loop" % \
-#                     (os.path.basename(libs.thisfile()), libs.linenum()
-#                     
-#                     ), file=sys.stderr)
-#                 
-#                 break
+#     '''###################
+#         step : A : 4.1
+#             lo_UUs
 #             
-#             else :
+#                 [
+#                     [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
+#                     , [e0, e1, 6]        --> 2019.02.11 06:14:45
+#                     , [e0, e1, 13]        --> 2019.02.11 06:18:00
+#                     , [e0, e1, 21]        --> 2019.02.11 06:20:30
+#                     ...
+#                 ]            
+#             UU
+#                 [e0, e1, 3]
 #                 
-#                 # count
-#                 cntOf_ += 1
-#                 
-#             #/if cntOf_ > maxOf_Debug_Loop
-            
-            
-            # get : instance
-            e0 = UU[0]
-
-            # conditions
-            #_20190304_163255
-            cond_2  = (e0.price_Close > e0.bb_2S)
-            cond_1  = (e0.price_Close >= e0.bb_1S)
-            cond_3  = (e0.price_Close >= e0.bb_Main)
-            
-            cond_4  = (e0.price_Close >= e0.bb_M1S)
-            cond_5  = (e0.price_Close >= e0.bb_M2S)
-            
-#             cond_1  = e0.price_Close > e0.bb_1S
-#             cond_2  = e0.price_Close > e0.bb_2S
-
-            
-            # judge
-            if cond_2 == True :                         lo_UU__Z1.append(UU)
-            
-            if cond_1 == True and cond_2 == False : lo_UU__Z2.append(UU)
-            
-            if cond_3 == True and cond_1 == False : lo_UU__Z3.append(UU)
-            
-            if cond_4 == True and cond_3 == False : lo_UU__Z4.append(UU)
-            
-            if cond_5 == True and cond_4 == False : lo_UU__Z5.append(UU)
-            
-            if cond_5 == False : lo_UU__Z6.append(UU)
-            
-            
-        #/for UU in UUs:
-        
-    #/for lo_UU in lo_UUs:
-
-    '''###################
-        step : A : 4.X
-            report
-    ###################'''
-    #@_20190304_104704
-    
-    # lens
-    lenOf_lo_UU__Z1 = len(lo_UU__Z1)
-    lenOf_lo_UU__Z2 = len(lo_UU__Z2)
-    lenOf_lo_UU__Z3 = len(lo_UU__Z3)
-    lenOf_lo_UU__Z4 = len(lo_UU__Z4)
-    lenOf_lo_UU__Z5 = len(lo_UU__Z5)
-    lenOf_lo_UU__Z6 = len(lo_UU__Z6)
-    
-    lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
-    
-    # len of : lo_UUs
-    lenOf_LO_UUs = 0
-    
-    for lo_UU in lo_UUs:
-    
-        # count
-        lenOf_LO_UUs += len(lo_UU)
-        
-    #/for lo_UU in lo_UUs:
-
-    #debug
-    print()
-    print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , lenOf_LO_UUs
-        ), file=sys.stderr)
-    
-    #debug
-    print()
-    print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , lenOf_lo_UU__Z1
-        , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
-        , lenOf_lo_UU__Z2
-        , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
-        ), file=sys.stderr)
-    
+#     ###################'''
+#     lo_UU__Z1 = []  # 2S <= x
+#     lo_UU__Z2 = []  # 1S <= x < 2S
+#     lo_UU__Z3 = []  # Main <= x < 1S
+#     lo_UU__Z4 = []  # M_1S <= x < Main
+#     lo_UU__Z5 = []  # M_2S <= x < M_1S
+#     lo_UU__Z6 = []  # x < M_2S
+#     
+#     lo_UD__Above_BB_2S = []
+#     lo_UD__Above_BB_1S = []
+#     
+#     #debug
+#     cntOf_ = 0
+#     maxOf_Debug_Loop = 10
+#     
+#     flg_Debug_Loop = False
+#     
+#     for lo_UU in lo_UUs:
+#     
+#         for UU in lo_UU:
+#             
+# #             #debug
+# #             if cntOf_ > maxOf_Debug_Loop : #if cntOf_ > maxOf_Debug_Loop
+# #                 
+# #                 # set : flag
+# #                 flg_Debug_Loop = True
+# #                 
+# #                 # reset : counter
+# #                 cntOf_ = 0
+# #                 
+# #                 #debug
+# #                 print()
+# #                 print("[%s:%d] debug : break from 2nd loop" % \
+# #                     (os.path.basename(libs.thisfile()), libs.linenum()
+# #                     
+# #                     ), file=sys.stderr)
+# #                 
+# #                 break
+# #             
+# #             else :
+# #                 
+# #                 # count
+# #                 cntOf_ += 1
+# #                 
+# #             #/if cntOf_ > maxOf_Debug_Loop
+#             
+#             
+#             # get : instance
+#             e0 = UU[0]
+# 
+#             # conditions
+#             #!_20190304_163255
+#             cond_2  = (e0.price_Close > e0.bb_2S)
+#             cond_1  = (e0.price_Close >= e0.bb_1S)
+#             cond_3  = (e0.price_Close >= e0.bb_Main)
+#             
+#             cond_4  = (e0.price_Close >= e0.bb_M1S)
+#             cond_5  = (e0.price_Close >= e0.bb_M2S)
+#             
+# #             cond_1  = e0.price_Close > e0.bb_1S
+# #             cond_2  = e0.price_Close > e0.bb_2S
+# 
+#             
+#             # judge
+#             if cond_2 == True :                         lo_UU__Z1.append(UU)
+#             
+#             if cond_1 == True and cond_2 == False : lo_UU__Z2.append(UU)
+#             
+#             if cond_3 == True and cond_1 == False : lo_UU__Z3.append(UU)
+#             
+#             if cond_4 == True and cond_3 == False : lo_UU__Z4.append(UU)
+#             
+#             if cond_5 == True and cond_4 == False : lo_UU__Z5.append(UU)
+#             
+#             if cond_5 == False : lo_UU__Z6.append(UU)
+#             
+#         #/for UU in UUs:
+#         
+#     #/for lo_UU in lo_UUs:
+# 
+#     '''###################
+#         step : A : 4.X
+#             report
+#     ###################'''
+#     #@_20190304_104704
+#     
+#     # lens
+#     lenOf_lo_UU__Z1 = len(lo_UU__Z1)
+#     lenOf_lo_UU__Z2 = len(lo_UU__Z2)
+#     lenOf_lo_UU__Z3 = len(lo_UU__Z3)
+#     lenOf_lo_UU__Z4 = len(lo_UU__Z4)
+#     lenOf_lo_UU__Z5 = len(lo_UU__Z5)
+#     lenOf_lo_UU__Z6 = len(lo_UU__Z6)
+#     
+#     lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
+#     
+#     # len of : lo_UUs
+#     lenOf_LO_UUs = 0
+#     
+#     for lo_UU in lo_UUs:
+#     
+#         # count
+#         lenOf_LO_UUs += len(lo_UU)
+#         
+#     #/for lo_UU in lo_UUs:
+# 
+#     #debug
+#     print()
+#     print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , lenOf_LO_UUs
+#         ), file=sys.stderr)
+#     
+#     #debug
+#     print()
+#     print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , lenOf_lo_UU__Z1
+#         , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
+#         , lenOf_lo_UU__Z2
+#         , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
+#         ), file=sys.stderr)
+#     
     #_20190304_164955
     
     #ccc
