@@ -11082,15 +11082,21 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             step : A : 3.1.3
                 write
         ###################'''
-        strOf_File_Content_Info = "sec-1"
+        strOf_File_Content_Info = "sec-1~lo_UUs"
+#         strOf_File_Content_Info = "sec-1:lo_UUs" #=> char ":" --> the rest gets omitted
+#         strOf_File_Content_Info = "sec-1"
 #         strOf_File_Content_Info = "lo-UUs"
         
-        fname_Log_CSV_LO_UU = "%s.(%s).(%s-%s).[%s].csv" % \
+#         fname_Log_CSV_LO_UU = "%s.(%s).(%s-%s).[%s].csv" % \
+        fname_Log_CSV_LO_UU = "(%s).(%s-%s).[%s].csv" % \
                  (
-                  fname_Log_CSV_trunk
-                  , tlabel
+                  tlabel
                   , pair, timeframe
                   , strOf_File_Content_Info
+#                   fname_Log_CSV_trunk
+#                   , tlabel
+#                   , pair, timeframe
+#                   , strOf_File_Content_Info
                   ) 
 #         fname_Log_CSV_LO_UU = fname_Log_CSV + ".[lo-UUs].csv"
         #@_20190303_101457
@@ -11154,8 +11160,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
                 [e0, e1, 3]
                 
     ###################'''
-    lo_UU__Above_BB_2S = []
-    lo_UU__Above_BB_1S = []
+    lo_UU__Z1 = []  # 2S <= x
+    lo_UU__Z2 = []  # 1S <= x < 2S
+    lo_UU__Z3 = []  # Main <= x < 1S
+    lo_UU__Z4 = []  # M_1S <= x < Main
+    lo_UU__Z5 = []  # M_2S <= x < M_1S
+    lo_UU__Z6 = []  # x < M_2S
     
     lo_UD__Above_BB_2S = []
     lo_UD__Above_BB_1S = []
@@ -11199,55 +11209,34 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             # get : instance
             e0 = UU[0]
 
-#             #debug
-#             print()
-#             print("[%s:%d] (debug) e0.dateTime = %s, e0.price_Close = %.03f, e0.bb_1S = %.03f" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , e0.dateTime, e0.price_Close, e0.bb_1S
-#                 ), file=sys.stderr)
-            
             # conditions
-            cond_1  = (e0.price_Close > e0.bb_1S)
+            #_20190304_163255
             cond_2  = (e0.price_Close > e0.bb_2S)
+            cond_1  = (e0.price_Close >= e0.bb_1S)
+            cond_3  = (e0.price_Close >= e0.bb_Main)
+            
+            cond_4  = (e0.price_Close >= e0.bb_M1S)
+            cond_5  = (e0.price_Close >= e0.bb_M2S)
+            
 #             cond_1  = e0.price_Close > e0.bb_1S
 #             cond_2  = e0.price_Close > e0.bb_2S
 
-#             #debug
-#             print()
-#             print("[%s:%d] (debug) cond_1 = %s, cond_2 = %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , cond_1, cond_2
-#                 ), file=sys.stderr)
             
             # judge
-            if cond_2 == True : #if cond_2 == True
-                
-                lo_UU__Above_BB_2S.append(UU)
+            if cond_2 == True :                         lo_UU__Z1.append(UU)
             
-            #/if cond_2 == True
+            if cond_1 == True and cond_2 == False : lo_UU__Z2.append(UU)
             
-            if cond_1 == True and not cond_2 == True : #if cond_1 == True and not cond_2
-                
-                lo_UU__Above_BB_1S.append(UU)
+            if cond_3 == True and cond_1 == False : lo_UU__Z3.append(UU)
             
-            #/if cond_1 == True and not cond_2
+            if cond_4 == True and cond_3 == False : lo_UU__Z4.append(UU)
+            
+            if cond_5 == True and cond_4 == False : lo_UU__Z5.append(UU)
+            
+            if cond_5 == False : lo_UU__Z6.append(UU)
+            
             
         #/for UU in UUs:
-        
-#         #debug
-#         if flg_Debug_Loop == True : #if flg_Debug_Loop == True
-# 
-#             #debug
-#             print()
-#             print("[%s:%d] debug : break from 1st loop" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 
-#                 ), file=sys.stderr)
-#             
-#             break
-#         
-#         #/if flg_Debug_Loop == True
-
         
     #/for lo_UU in lo_UUs:
 
@@ -11258,8 +11247,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     #@_20190304_104704
     
     # lens
-    lenOf_LO_UU__Above_BB_2S = len(lo_UU__Above_BB_2S)
-    lenOf_LO_UU__Above_BB_1S = len(lo_UU__Above_BB_1S)
+    lenOf_lo_UU__Z1 = len(lo_UU__Z1)
+    lenOf_lo_UU__Z2 = len(lo_UU__Z2)
+    lenOf_lo_UU__Z3 = len(lo_UU__Z3)
+    lenOf_lo_UU__Z4 = len(lo_UU__Z4)
+    lenOf_lo_UU__Z5 = len(lo_UU__Z5)
+    lenOf_lo_UU__Z6 = len(lo_UU__Z6)
     
     lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
     
@@ -11282,15 +11275,15 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     
     #debug
     print()
-    print("[%s:%d] len(lo_UU__Above_BB_2S) = %d (%.03f) / len(lo_UU__Above_BB_1S) = %d (%.03f)" % \
+    print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
-        , lenOf_LO_UU__Above_BB_2S
-        , (lenOf_LO_UU__Above_BB_2S * 1.0 / lenOf_LO_UUs)
-        , lenOf_LO_UU__Above_BB_1S
-        , (lenOf_LO_UU__Above_BB_1S * 1.0 / lenOf_LO_UUs)
-#         , len(lo_UU__Above_BB_2S)
-#         , len(lo_UU__Above_BB_1S)
+        , lenOf_lo_UU__Z1
+        , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
+        , lenOf_lo_UU__Z2
+        , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
         ), file=sys.stderr)
+    
+    #_20190304_164955
     
     #ccc
 
@@ -11368,8 +11361,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     '''###################
         sec-1
     ###################'''
-    flag_Write_to_File = False
-#     flag_Write_to_File = True
+#     flag_Write_to_File = False
+    flag_Write_to_File = True
     
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     _req_param_tag_RB_No_44_1_SubData__Checked_Val \
