@@ -10688,7 +10688,16 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
             unpack params
     ###################'''
     (lo_UUs, lo_UDs, lo_DUs, lo_DDs) = lo_UUsUDsDUsDDs
-
+    
+    #_20190306_121821
+    #debug
+    print()
+    print("[%s:%d] debug : len(lo_DUs) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_DUs)
+        ), file=sys.stderr)
+            # [views.py:10696] debug : len(lo_DUs) => 65    
+            
     '''###################
         step : A : 0.1
             vars
@@ -10859,6 +10868,81 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
         #/for UD in UDs:
         
     #/for lo_UD in lo_UDs:
+    
+    '''###################
+        step : A : 4.1.3
+            lo_DUs
+            
+                [
+                    [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
+                    , [e0, e1, 6]        --> 2019.02.11 06:14:45
+                    , [e0, e1, 13]        --> 2019.02.11 06:18:00
+                    , [e0, e1, 21]        --> 2019.02.11 06:20:30
+                    ...
+                ]            
+            DU
+                [e0, e1, 3]
+                
+    ###################'''
+    #_20190305_144208
+    
+    lo_DU__Z1 = []  # 2S <= x
+    lo_DU__Z2 = []  # 1S <= x < 2S
+    lo_DU__Z3 = []  # Main <= x < 1S
+    lo_DU__Z4 = []  # M_1S <= x < Main
+    lo_DU__Z5 = []  # M_2S <= x < M_1S
+    lo_DU__Z6 = []  # x < M_2S
+    
+    #debug
+    cntOf_ = 0
+    maxOf_Debug_Loop = 10
+    
+    flg_Debug_Loop = False
+    
+    for lo_DU in lo_DUs:
+    
+        for DU in lo_DU:
+            
+            # get : instance
+            #_20190306_122104
+            e0 = DU[0]
+
+#             #debug
+#             print()
+#             print("[%s:%d] DU[0] : e0.dateTime => %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                  , e0.dateTime
+#                 ), file=sys.stderr)
+
+            # conditions
+            #_20190304_163255
+            cond_2  = (e0.price_Close > e0.bb_2S)
+            cond_1  = (e0.price_Close >= e0.bb_1S)
+            cond_3  = (e0.price_Close >= e0.bb_Main)
+            
+            cond_4  = (e0.price_Close >= e0.bb_M1S)
+            cond_5  = (e0.price_Close >= e0.bb_M2S)
+            
+#             cond_1  = e0.price_Close > e0.bb_1S
+#             cond_2  = e0.price_Close > e0.bb_2S
+
+            
+            # judge
+            if cond_2 == True :                         lo_DU__Z1.append(DU)
+            
+            if cond_1 == True and cond_2 == False : lo_DU__Z2.append(DU)
+            
+            if cond_3 == True and cond_1 == False : lo_DU__Z3.append(DU)
+            
+            if cond_4 == True and cond_3 == False : lo_DU__Z4.append(DU)
+            
+            if cond_5 == True and cond_4 == False : lo_DU__Z5.append(DU)
+            
+            if cond_5 == False : lo_DU__Z6.append(DU)
+            
+        #/for DU in DUs:
+        
+    #/for lo_DU in lo_DUs:
 
     '''###################
         step : A : 4.2.1
@@ -10877,12 +10961,6 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
                 ,len(lo_UU__Z6)
                         
                         ]
-#     lenOf_lo_UU__Z1 = len(lo_UU__Z1)
-#     lenOf_lo_UU__Z2 = len(lo_UU__Z2)
-#     lenOf_lo_UU__Z3 = len(lo_UU__Z3)
-#     lenOf_lo_UU__Z4 = len(lo_UU__Z4)
-#     lenOf_lo_UU__Z5 = len(lo_UU__Z5)
-#     lenOf_lo_UU__Z6 = len(lo_UU__Z6)
     
     lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
     
@@ -10896,68 +10974,6 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
         
     #/for lo_UU in lo_UUs:
 
-#     #debug
-#     print()
-#     print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , lenOf_LO_UUs
-#         ), file=sys.stderr)
-#     
-#     #debug
-#     msg = "len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
-#         (
-#         lenOf_LO_UU_Zs[1 - 1]
-#         , (lenOf_LO_UU_Zs[1 - 1] * 1.0 / lenOf_LO_UUs)
-#         , lenOf_LO_UU_Zs[2 - 1]
-#         , (lenOf_LO_UU_Zs[2 - 1] * 1.0 / lenOf_LO_UUs)
-#         )
-#     msg += "\n"
-#     
-#     msg += "len(lo_UU__Z3) = %d (%.03f) / len(lo_UU__Z4) = %d (%.03f)" % \
-#         (
-#         lenOf_LO_UU_Zs[3 - 1]
-#         , (lenOf_LO_UU_Zs[3 - 1] * 1.0 / lenOf_LO_UUs)
-#         , lenOf_LO_UU_Zs[4 - 1]
-#         , (lenOf_LO_UU_Zs[4 - 1] * 1.0 / lenOf_LO_UUs)
-#         )
-#     msg += "\n"
-#         
-#     msg += "len(lo_UU__Z5) = %d (%.03f) / len(lo_UU__Z6) = %d (%.03f)" % \
-#         (
-#         lenOf_LO_UU_Zs[5 - 1]
-#         , (lenOf_LO_UU_Zs[5 - 1] * 1.0 / lenOf_LO_UUs)
-#         , lenOf_LO_UU_Zs[6 - 1]
-#         , (lenOf_LO_UU_Zs[6 - 1] * 1.0 / lenOf_LO_UUs)
-#         )
-#     msg += "\n"
-#     
-#     #debug
-#     print()
-#     print("[%s:%d] %s" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#          , msg
-#         ), file=sys.stderr)
-     
-# #     print("lo_UU__Z4[0][0].dateTime =>")
-#     print("lo_UU__Z4[0] : e0 = %s / e1 = %s" % \
-#             (lo_UU__Z4[0][0].dateTime, lo_UU__Z4[0][1].dateTime))
-# #     print("lo_UU__Z4[1][0].dateTime =>")
-#     print("lo_UU__Z4[1] : e0 = %s / e1 = %s" % \
-#             (lo_UU__Z4[1][0].dateTime, lo_UU__Z4[1][1].dateTime))
-
-#     print(lo_UU__Z4[1][0].dateTime)
-#     print("lo_UU__Z4[0][0].dateTime =>")
-#     print(lo_UU__Z4[0][0].dateTime)
-#     print("lo_UU__Z4[1][0].dateTime =>")
-#     print(lo_UU__Z4[1][0].dateTime)
-#     print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , lenOf_lo_UU__Z1
-#         , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
-#         , lenOf_lo_UU__Z2
-#         , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
-#         ), file=sys.stderr)
-    
     '''###################
         step : A : 4.2.2
             report : lo_UDs
@@ -10983,6 +10999,34 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     
         # count
         lenOf_LO_UDs += len(lo_UD)
+        
+    '''###################
+        step : A : 4.2.2
+            report : lo_DUs
+    ###################'''
+    #@_20190304_104704
+    
+    # lens
+    lenOf_LO_DU_Zs = [
+                        
+                len(lo_DU__Z1)
+                ,len(lo_DU__Z2)
+                ,len(lo_DU__Z3)
+                ,len(lo_DU__Z4)
+                ,len(lo_DU__Z5)
+                ,len(lo_DU__Z6)
+                        
+                        ]
+    
+    # len of : lo_DUs
+    lenOf_LO_DUs = 0
+    
+    #_20190306_121737
+    
+    for lo_DU in lo_DUs:
+    
+        # count
+        lenOf_LO_DUs += len(lo_DU)
         
     '''###################
         step : A : 4.3
@@ -11053,21 +11097,24 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     # vars
     sumOf_UUs = sum(lenOf_LO_UU_Zs)
     sumOf_UDs = sum(lenOf_LO_UD_Zs)
-    sumOf_DUs = 0
+    sumOf_DUs = sum(lenOf_LO_DU_Zs)
     sumOf_DDs = 0
     
     # build
     for i in range(0, lenOf_BB_Location_Zs):
     
-        csv_line = "%s\t%d\t%d\t%.04f\t%.04f" % \
+#         csv_line = "%s\t%d\t%d\t%.04f\t%.04f" % \
+        csv_line = "%s\t%d\t%d\t%d\t%.04f\t%.04f\t%.04f" % \
                 (
                  lo_BB_Location_Labels[i]
                  
                  , lenOf_LO_UU_Zs[i]
                  , lenOf_LO_UD_Zs[i]
+                 , lenOf_LO_DU_Zs[i]
                  
                  , (lenOf_LO_UU_Zs[i] * 1.0 / sumOf_UUs)
                  , (lenOf_LO_UD_Zs[i] * 1.0 / sumOf_UDs)
+                 , (lenOf_LO_DU_Zs[i] * 1.0 / sumOf_DUs)
                  
                  )
         
