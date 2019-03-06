@@ -10942,7 +10942,80 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
             
         #/for DU in DUs:
         
-    #/for lo_DU in lo_DUs:
+    '''###################
+        step : A : 4.1.3
+            lo_DDs
+            
+                [
+                    [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
+                    , [e0, e1, 6]        --> 2019.02.11 06:14:45
+                    , [e0, e1, 13]        --> 2019.02.11 06:18:00
+                    , [e0, e1, 21]        --> 2019.02.11 06:20:30
+                    ...
+                ]            
+            DD
+                [e0, e1, 3]
+                
+    ###################'''
+    #_20190306_160758
+    
+    lo_DD__Z1 = []  # 2S <= x
+    lo_DD__Z2 = []  # 1S <= x < 2S
+    lo_DD__Z3 = []  # Main <= x < 1S
+    lo_DD__Z4 = []  # M_1S <= x < Main
+    lo_DD__Z5 = []  # M_2S <= x < M_1S
+    lo_DD__Z6 = []  # x < M_2S
+    
+    #debug
+    cntOf_ = 0
+    maxOf_Debug_Loop = 10
+    
+    flg_Debug_Loop = False
+    
+    for lo_DD in lo_DDs:
+    
+        for DD in lo_DD:
+            
+            # get : instance
+            #_20190306_122104
+            e0 = DD[0]
+
+#             #debug
+#             print()
+#             print("[%s:%d] DU[0] : e0.dateTime => %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                  , e0.dateTime
+#                 ), file=sys.stderr)
+
+            # conditions
+            #_20190304_163255
+            cond_2  = (e0.price_Close > e0.bb_2S)
+            cond_1  = (e0.price_Close >= e0.bb_1S)
+            cond_3  = (e0.price_Close >= e0.bb_Main)
+            
+            cond_4  = (e0.price_Close >= e0.bb_M1S)
+            cond_5  = (e0.price_Close >= e0.bb_M2S)
+            
+#             cond_1  = e0.price_Close > e0.bb_1S
+#             cond_2  = e0.price_Close > e0.bb_2S
+
+            
+            # judge
+            if cond_2 == True :                         lo_DD__Z1.append(DD)
+            
+            if cond_1 == True and cond_2 == False : lo_DD__Z2.append(DD)
+            
+            if cond_3 == True and cond_1 == False : lo_DD__Z3.append(DD)
+            
+            if cond_4 == True and cond_3 == False : lo_DD__Z4.append(DD)
+            
+            if cond_5 == True and cond_4 == False : lo_DD__Z5.append(DD)
+            
+            if cond_5 == False : lo_DD__Z6.append(DD)
+            
+        #/for DD in DDs:
+        
+    #/for lo_DD in lo_DDs:
 
     '''###################
         step : A : 4.2.1
@@ -10978,8 +11051,6 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
         step : A : 4.2.2
             report : lo_UDs
     ###################'''
-    #@_20190304_104704
-    
     # lens
     lenOf_LO_UD_Zs = [
                         
@@ -11027,6 +11098,34 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     
         # count
         lenOf_LO_DUs += len(lo_DU)
+        
+    '''###################
+        step : A : 4.2.2
+            report : lo_DDs
+    ###################'''
+    #@_20190304_104704
+    
+    # lens
+    lenOf_LO_DD_Zs = [
+                        
+                len(lo_DD__Z1)
+                ,len(lo_DD__Z2)
+                ,len(lo_DD__Z3)
+                ,len(lo_DD__Z4)
+                ,len(lo_DD__Z5)
+                ,len(lo_DD__Z6)
+                        
+                        ]
+    
+    # len of : lo_DDs
+    lenOf_LO_DDs = 0
+    
+    #_20190306_121737
+    
+    for lo_DD in lo_DDs:
+    
+        # count
+        lenOf_LO_DDs += len(lo_DD)
         
     '''###################
         step : A : 4.3
@@ -11098,23 +11197,28 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     sumOf_UUs = sum(lenOf_LO_UU_Zs)
     sumOf_UDs = sum(lenOf_LO_UD_Zs)
     sumOf_DUs = sum(lenOf_LO_DU_Zs)
-    sumOf_DDs = 0
+    sumOf_DDs = sum(lenOf_LO_DD_Zs)
+#     sumOf_DDs = 0
     
     # build
     for i in range(0, lenOf_BB_Location_Zs):
     
 #         csv_line = "%s\t%d\t%d\t%.04f\t%.04f" % \
-        csv_line = "%s\t%d\t%d\t%d\t%.04f\t%.04f\t%.04f" % \
+#         csv_line = "%s\t%d\t%d\t%d\t%.04f\t%.04f\t%.04f" % \
+        #_20190306_161112
+        csv_line = "%s\t%d\t%d\t%d\t%d\t%.04f\t%.04f\t%.04f\t%.04f" % \
                 (
                  lo_BB_Location_Labels[i]
                  
                  , lenOf_LO_UU_Zs[i]
                  , lenOf_LO_UD_Zs[i]
                  , lenOf_LO_DU_Zs[i]
+                 , lenOf_LO_DD_Zs[i]
                  
                  , (lenOf_LO_UU_Zs[i] * 1.0 / sumOf_UUs)
                  , (lenOf_LO_UD_Zs[i] * 1.0 / sumOf_UDs)
                  , (lenOf_LO_DU_Zs[i] * 1.0 / sumOf_DUs)
+                 , (lenOf_LO_DD_Zs[i] * 1.0 / sumOf_DDs)
                  
                  )
         
