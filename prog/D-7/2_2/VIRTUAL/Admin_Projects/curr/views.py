@@ -10546,24 +10546,24 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
         
     #/for lo_UU in lo_UUs_DDs[0]:
 
-    #debug
-    print()
-    print("[%s:%d] len(lo_DateTime_Lables) => %d" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                         , len(lo_DateTime_Lables)
-                        ), file=sys.stderr)
-    
-    print("lo_DateTime_Lables[0] =>")
-    print(lo_DateTime_Lables[0])
-    
-    print("lo_DateTime_Lables[-1] =>")
-    print(lo_DateTime_Lables[-1])
-    
-    tmp_num = len(lo_DateTime_Lables)
-    tmp_index = int(tmp_num / 2)
-    
-    print("lo_DateTime_Lables[%d] =>" % tmp_index)
-    print(lo_DateTime_Lables[tmp_index])
+#     #debug
+#     print()
+#     print("[%s:%d] len(lo_DateTime_Lables) => %d" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          , len(lo_DateTime_Lables)
+#                         ), file=sys.stderr)
+#     
+#     print("lo_DateTime_Lables[0] =>")
+#     print(lo_DateTime_Lables[0])
+#     
+#     print("lo_DateTime_Lables[-1] =>")
+#     print(lo_DateTime_Lables[-1])
+#     
+#     tmp_num = len(lo_DateTime_Lables)
+#     tmp_index = int(tmp_num / 2)
+#     
+#     print("lo_DateTime_Lables[%d] =>" % tmp_index)
+#     print(lo_DateTime_Lables[tmp_index])
 
     '''###################
         step : A : 2
@@ -11164,6 +11164,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     
     lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
     lo_Msg_CSV_Header.append("\n")
+    
+    #_20190307_091258
+    lo_Msg_CSV_Header.append("start\t%s" % tmp_LO_BarDatas[0].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    
     lo_Msg_CSV_Header.append("\n")
     
     lo_Msg_CSV_Header.append("[BB locations]==============================")
@@ -11229,12 +11236,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
 #         # sum
 #         sumOf_UUs += lenOf_LO_UU_Zs[i]
                 
-        #debug
-        print()
-        print("[%s:%d] csv_line => '%s'" % \
-            (os.path.basename(libs.thisfile()), libs.linenum()
-             , csv_line
-            ), file=sys.stderr)
+#         #debug
+#         print()
+#         print("[%s:%d] csv_line => '%s'" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#              , csv_line
+#             ), file=sys.stderr)
         
     #/for i in range(0, lenOf_BB_Location_Zs):
 
@@ -11492,6 +11499,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         
         lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
         lo_Msg_CSV_Header.append("\n")
+        
+        #_20190307_091549
+        lo_Msg_CSV_Header.append("start\t%s" % tmp_LO_BarDatas[0].dateTime)
+        lo_Msg_CSV_Header.append("\n")
+        lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
+        lo_Msg_CSV_Header.append("\n")
+        
         lo_Msg_CSV_Header.append("\n")
         
         lo_Msg_CSV_Header.append("[ups/downs]==============================")
