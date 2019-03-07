@@ -43,8 +43,12 @@ def test_1():
     '''###################
         file path
     ###################'''
+    #_20190307_144837
     dpath_CSV = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
-    fname_CSV = "44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-ALL).20190214_095445.csv"
+    fname_CSV = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500)"\
+                + ".(Bars-ALL).20190307_144106.csv"
+#     fname_CSV = "44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500)"\
+#                 + ".(Bars-ALL).20190214_095445.csv"
     
     fpath_CSV = os.path.join(dpath_CSV, fname_CSV)
     
@@ -96,12 +100,18 @@ def test_1():
     lenOf_Lines = len(data)
     
     # file path
+    #_20190307_144916
     dpath_CSV_Dst = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
-    fname_CSV_Dst = "44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500)"
+    
+    # E/J, H1
+    fname_CSV_Dst = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500)"
+    fname_CSV_Dst += ".(Bars-ALL-%s).20190307_144106.csv" % libs.get_TimeLabel_Now()
+    
+#     # E/J, M15
+#     fname_CSV_Dst = "44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500)"
+#     fname_CSV_Dst += ".(Bars-ALL-%s).20190214_095445" % libs.get_TimeLabel_Now()
                    
-    fname_CSV_Dst += ".(Bars-ALL-%s).20190214_095445" % libs.get_TimeLabel_Now()
-                   
-    fname_CSV_Dst += ".csv"
+#     fname_CSV_Dst += ".csv"
 #     fname_CSV_Dst += ".(tmp-%s).csv" % libs.get_TimeLabel_Now()
     
     fpath_CSV_Dst = os.path.join(dpath_CSV_Dst, fname_CSV_Dst)

@@ -11592,9 +11592,10 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
                               
             lo_Msg_CSV.append("\n")
             
+            #_20190307_153552
             #debug
             cntOf_For_Loop += 1
-            if cntOf_For_Loop >= numOf_Max : break    #if cntOf_For_Loop >= numOf_Max
+#             if cntOf_For_Loop >= numOf_Max : break    #if cntOf_For_Loop >= numOf_Max
             
         #/for lo_BarDatas_Target in lo_BarDatas_Sliced_By_Day:
 
@@ -11792,6 +11793,22 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     ###################'''
     #_20190304_170315
     flag_Write_to_File = True
+    
+    #_20190307_152554
+    #debug
+    print()
+    print("[%s:%d] debug : len(lo_UUs) = %d, len(lo_UUs[0]) = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_UUs)
+         , len(lo_UUs[0])
+        ), file=sys.stderr)
+    
+    print("[%s:%d] debug : len(lo_UDs) = %d, len(lo_UDs[0]) = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_UDs)
+         , len(lo_UDs[0])
+        ), file=sys.stderr)
+    
     
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
                             [
