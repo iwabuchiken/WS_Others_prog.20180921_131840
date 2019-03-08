@@ -1620,3 +1620,12 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190307_154007 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190307_151905).20190307_144106.csv
 
+[20190308_081511 / views.py:3939] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190308_093906 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURUSD).(Period-M5).(NumOfUnits-9000).(Bars-ALL-20190308_090352).20190308_090146.csv
+
+[20190308_095428 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURUSD).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190308_092934).20190308_092826.csv
+
+[20190308_095606 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(EURUSD).(Period-H1).(NumOfUnits-6000).(Bars-ALL-20190308_092423).20190308_092230.csv
+
