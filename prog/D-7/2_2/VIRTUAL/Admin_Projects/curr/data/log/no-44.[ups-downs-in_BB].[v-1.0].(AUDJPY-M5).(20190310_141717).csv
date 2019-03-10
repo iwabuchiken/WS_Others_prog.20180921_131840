@@ -1,0 +1,16 @@
+[20190310_141741 / views.py:13167] 
+source csv	=	44_5.1_10_rawdata.(AUDJPY).(Period-M5).(NumOfUnits-55000).(Bars-ALL-20190310_140323).20190310_140123.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-44.[ups-downs-in_BB].[v-1.0].(AUDJPY-M5).(20190310_141717).log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190310_141717
+
+
+[basics]=========================
+pair	=	AUDJPY
+timeframe	=	M5
+num of bars	=	55000
+starting bar	=	2017.11.20 11:30	open=	84.883
+ending bar	=	2019.03.08 23:50	close=	78.317
+
+
