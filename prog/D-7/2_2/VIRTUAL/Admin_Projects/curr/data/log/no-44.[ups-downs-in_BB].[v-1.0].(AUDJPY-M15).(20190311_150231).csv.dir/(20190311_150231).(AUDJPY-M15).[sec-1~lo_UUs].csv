@@ -1,7 +1,7 @@
-[20190311_081538 / views.py:11753]
+[20190311_150234 / views.py:11731]
 fname_Src_CSV	44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190311_081323).20190311_081029.csv
 slice by	day
-this file	no-44.[ups-downs-in_BB].[v-1.0].(AUDJPY-M15).(20190311_081534).csv
+this file	no-44.[ups-downs-in_BB].[v-1.0].(AUDJPY-M15).(20190311_150231).csv
 pair	AUDJPY
 timeframe	M15
 start	2018.06.14 17:30
@@ -11,7 +11,7 @@ end	2019.03.11 02:00
 s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD
 
 
-[20190311_081538 / views.py:11768]
+[20190311_150234 / views.py:11746]
 
 
 [lo_UU]==============================

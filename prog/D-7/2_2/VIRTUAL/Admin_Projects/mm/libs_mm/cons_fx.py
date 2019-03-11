@@ -354,6 +354,16 @@ class Tester(Enum):
                              month
                              </label>
                              
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through" 
+                         value="through"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through">
+                             through
+                             </label>
+                             
                     
                 </td>
             </tr>

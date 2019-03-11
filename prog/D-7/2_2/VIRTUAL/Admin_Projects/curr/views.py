@@ -9202,6 +9202,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     _req_param_judge_No_44_1_FilePath = request.GET.get('param_judge_No_44_1_FilePath', False)
     
     # radio button ---> subdata by
+    #_20190311_144537
     _req_param_tag_RB_No_44_1_SubData__Checked_Val = \
                 request.GET.get('param_tag_RB_No_44_1_SubData__Checked_Val', False)
 
@@ -9293,6 +9294,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     header_Length   = 2
     skip_Header     = False
     
+    #_20190311_144644
     lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
                         dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
     
@@ -9369,40 +9371,13 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(reques
     strOf_Pair_Name = pair
     strOf_Timeframe = timeframe
     
-    # no-44.[ups-downs-in_BB].[v-1.0].(USDJPY-M15).(20190303_102143).csv.dir
-#     fname_Log_Trunk = "%s.[%s].[%s].(%s-%s).(%s)" % \
-#                 (
-#                  strOf_Task_No
-#                  , strOf_File_Content_Info
-#                  , strOf_Version_Info
-#                  , strOf_Pair_Name
-#                  , strOf_Timeframe
-#                  , tlabel
-#                  )
-# #     fname_Log = "%s.[%s].[%s].(%s-%s).(%s).csv.dir" % \
-#     fname_Log = "%s.csv.dir" % \
-#                 (
-#                  fname_Log_Trunk
-#                  )
     fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0].(%s-%s)" % \
                 (
                  strOf_Pair_Name
                  , strOf_Timeframe
                  ) 
-#     fname_Log_Trunk = "no-44.[ups-downs-in_BB].[v-1.0]" 
-    
-#     fname_Log = "%s.(%s).(%s-%s).[%s].csv" % \
-#              (
-#               fname_Log_CSV_trunk
-#               , tlabel
-#               , pair, timeframe
-#               , strOf_File_Content_Info
-#               ) 
-#     
+                
     fname_Log = "%s.(%s).log" % (fname_Log_Trunk, tlabel) 
-#     fname_Log = "%s.%s.log" % (fname_Log_Trunk, tlabel) 
-    
-    #@_20190303_102428
     
     fpath_Log = os.path.join(dpath_Log, fname_Log)
 
@@ -11328,6 +11303,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
                 , flag_Write_to_File = True
     ):
     
+    #_20190311_145445
+    
     '''###################
         step : A : 0
             unpack
@@ -11392,6 +11369,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     strOf_Slice_By_Day = "day"
     strOf_Slice_By_Week = "week"
     strOf_Slice_By_Month = "month"
+    strOf_Slice_By_Throgh = "through"
     
     # lists
     lo_UUs = []
@@ -11778,6 +11756,16 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
 
         
         
+    elif _req_param_tag_RB_No_44_1_SubData__Checked_Val == strOf_Slice_By_Throgh : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
+        #_20190311_145759
+        
+        #debug
+        print()
+        print("[%s:%d] slice by : %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ), file=sys.stderr)
+        
     else : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
     
         #debug
@@ -12021,7 +12009,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
                 , _req_param_tag_RB_No_44_1_SubData__Checked_Val
                 
     ):    
-#xxx
+#_20190311_145306
+
     #debug
     print()
     print("[%s:%d] _req_param_tag_RB_No_44_1_SubData__Checked_Val => %s" % \
@@ -12051,6 +12040,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
 #     flag_Write_to_File = False
     flag_Write_to_File = True
     
+    #_20190311_145414
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     _req_param_tag_RB_No_44_1_SubData__Checked_Val \
             , lo_UUs_DDs, dpath_Log_CSV = \
@@ -13000,6 +12990,8 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
          
      ) = _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__prep(request)
     
+    #_20190311_144449
+    
     '''###################
         validate : csv files exist
     ###################'''
@@ -13036,6 +13028,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     #ccc
     lo_Log_Lines_CSV = []
     
+    #_20190311_144933
     _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0__Get_CSV_MetaInfo(\
                 lo_Log_Lines_CSV
                 , lo_BarDatas
@@ -13047,61 +13040,6 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
                 , pair
                 , timeframe
             )
-    
-#     lo_Log_Lines_CSV.append("\n")
-#     lo_Log_Lines_CSV.append("source csv\t=\t%s" % fname_Src_CSV)
-#     lo_Log_Lines_CSV.append("\n")
-# 
-#     lo_Log_Lines_CSV.append("source dpath\t=\t%s" % dpath_Src_CSV)
-#     lo_Log_Lines_CSV.append("\n")
-#         
-#     lo_Log_Lines_CSV.append("log file name\t=\t%s" % fname_Log)
-#     lo_Log_Lines_CSV.append("\n")
-#         
-#     lo_Log_Lines_CSV.append("log file dpath\t=\t%s" % dpath_Log)
-#     lo_Log_Lines_CSV.append("\n")
-#         
-#     lo_Log_Lines_CSV.append("this file created at\t=\t%s" % tlabel)
-#     lo_Log_Lines_CSV.append("\n")
-#     lo_Log_Lines_CSV.append("\n")
-# 
-#     # bar datetime, price
-#     lo_Log_Lines_CSV.append("\n")
-#     lo_Log_Lines_CSV.append("[basics]=========================")
-#     lo_Log_Lines_CSV.append("\n")
-#     
-#     lo_Log_Lines_CSV.append("pair\t=\t%s" \
-#             % (
-#                pair
-#                ))
-#     lo_Log_Lines_CSV.append("\n")
-#     
-#     lo_Log_Lines_CSV.append("timeframe\t=\t%s" \
-#             % (
-#                timeframe
-#                ))
-#     lo_Log_Lines_CSV.append("\n")
-#     
-#     lo_Log_Lines_CSV.append("num of bars\t=\t%d" \
-#             % (
-#                len(lo_BarDatas)
-#                ))
-#     lo_Log_Lines_CSV.append("\n")
-#     
-#     lo_Log_Lines_CSV.append("starting bar\t=\t%s\topen=\t%.03f" \
-#             % (
-#                lo_BarDatas[0].dateTime
-#                , lo_BarDatas[0].price_Open
-#                ))
-#     lo_Log_Lines_CSV.append("\n")
-#     
-#     lo_Log_Lines_CSV.append("ending bar\t=\t%s\tclose=\t%.03f" \
-#             % (
-#                lo_BarDatas[-1].dateTime
-#                , lo_BarDatas[-1].price_Close
-#                ))
-#     lo_Log_Lines_CSV.append("\n")
-    
     
     '''######################################
         ops
@@ -13133,6 +13071,7 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
         
 #         _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData(\
 #         _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0_Ops_Gen_SubData_V_1_1(\
+        #_20190311_145228
         _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
                 lo_Src_File_Data
                 , lo_Log_File_CSV_Data
@@ -13151,7 +13090,12 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     
     else : #if _req_param_judge_No_44_1_FilePath == 1
     
-        pass
+        #debug
+        print()
+        print("[%s:%d] int(_req_param_judge_No_44_1_FilePath) => not 1 : %d" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , int(_req_param_judge_No_44_1_FilePath) == 1
+            ), file=sys.stderr)
     
     #/if _req_param_judge_No_44_1_FilePath == 1
     
