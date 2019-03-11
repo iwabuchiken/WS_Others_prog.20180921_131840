@@ -1,0 +1,16 @@
+[20190312_075906 / views.py:13111] 
+source csv	=	44_5.1_10_rawdata.(AUDUSD).(Period-M5).(NumOfUnits-2000).(Bars-ALL-20190312_075809).20190312_075213.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-44.[ups-downs-in_BB].[v-1.0].(AUDUSD-M5).(20190312_075905).log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190312_075905
+
+
+[basics]=========================
+pair	=	AUDUSD
+timeframe	=	M5
+num of bars	=	2000
+starting bar	=	2019.03.01 02:45	open=	0.710
+ending bar	=	2019.03.12 01:50	close=	0.707
+
+
