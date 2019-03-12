@@ -11262,6 +11262,406 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
 #/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4():
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through
+
+    at : 2019/03/12 18:05:30
+    
+    @param : 
+    
+    @return: 
+    
+            
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
+        strOf_Slice_By_Day
+        , fname_Log_CSV_trunk, fname_Log_CSV
+        , dpath_Log
+        , fname_Src_CSV
+        ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+        ,pair
+        ,timeframe
+        ,tmp_LO_BarDatas
+    ) :
+
+    '''###################
+        step : j1-1
+            "through"
+    ###################'''
+    #debug
+    print()
+    print("[%s:%d] slice by : %s => starting..." % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , strOf_Slice_By_Day
+        ), file=sys.stderr)
+    
+    '''###################
+        step : j1-1 : 1
+            get : slices
+    ###################'''
+#     lo_BarDatas_Sliced_By_Day = libfx.slice_BarDatas_By_Day(\
+#                         tmp_LO_BarDatas
+#                         , fname_Src_CSV
+#                         , lo_CSVs
+#                         , dpath_Log)
+     
+#         #/if len(lo_BarDatas_Sliced_By_Day) > 1
+     
+#     '''###################
+#         step : j1-1 : 2
+#             gen data
+#     ###################'''
+#     indexOf_Target_BarDatas = 1
+#     
+    '''###################
+        step : j1-1 : 2.1
+            for-loop
+    ###################'''
+    #debug
+    print()
+    print("[%s:%d] fname_Log_CSV_trunk = %s, fname_Log_CSV = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log_CSV_trunk, fname_Log_CSV
+        ), file=sys.stderr)
+
+    '''###################
+        step : j1-1 : 2.1.1
+            prep : log file
+    ###################'''
+    dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+#         dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV)
+     
+    #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+    if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+         
+        # make dir
+        #ref https://docs.python.org/2/library/os.html
+        os.makedirs(dpath_Log_CSV, exist_ok = True)
+        #@_20190303_105405
+         
+        #debug
+        print()
+        print("[%s:%d] new dir created => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+     
+    #/if not os.path.isdir(dpath_Log_CSV)
+     
+    # vars : file
+    lo_Msg_CSV = []
+    lo_Msg_CSV_Header = []
+
+
+
+    '''###################
+        step : j1-1 : 2.1.2
+            prep : log file : header
+    ###################'''
+    '''###################
+        step : j1-1 : 2.1.2.1
+            prep : log file : header : meta
+    ###################'''
+    lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("slice by\t%s" % _req_param_tag_RB_No_44_1_SubData__Checked_Val)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("this file\t%s" % fname_Log_CSV)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("pair\t%s" % pair)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("start\t%s" % tmp_LO_BarDatas[0].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("[ups/downs]==============================")
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+     
+    lo_Msg_CSV_Header.append("\n")
+     
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Header)
+#                 , "".join(lo_Msg_CSV)
+            )
+
+    #debug
+    print()
+    print("[%s:%d] lo_Msg_CSV_Header ==> written (%d lines)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_Msg_CSV_Header)
+        ), file=sys.stderr)
+
+#_20190312_175653
+     
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#         
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
+# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
+# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+#     
+#     # vars : log liens ---> reset
+#     lo_Msg_CSV = []
+#     
+#     #debug
+#     numOf_Max = 100
+#     
+#     cntOf_For_Loop = 0
+# 
+#     for lo_BarDatas__Target in lo_BarDatas_Sliced_By_Day:
+# 
+#         '''###################
+#             step : j1-1 : 2.2
+#                 get : categorized lists
+#         ###################'''
+#         (lo_UU, lo_UD, lo_DU, lo_DD) = \
+#             _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Target)
+#         
+#         '''###################
+#             step : j1-1 : 2.2.1
+#                 append lists
+#         ###################'''
+#         lo_UUs.append(lo_UU)
+#         lo_UDs.append(lo_UD)
+#         lo_DUs.append(lo_DU)
+#         lo_DDs.append(lo_DD)
+#         
+#         '''###################
+#             step : j1-1 : 3
+#                 write to file
+#         ###################'''
+#         '''###################
+#             step : j1-1 : 3.1
+#                 prep
+#         ###################'''
+# 
+#         lenOf_LO_BarDatas__Target = len(lo_BarDatas__Target)
+# 
+#         msg_Log_Line = "%d\t%s\t%s\t%d\t%d\t%d\t%d\t%d" %\
+#                 (
+#                   (cntOf_For_Loop + 1)
+#                      , lo_BarDatas__Target[0].dateTime
+#                      , lo_BarDatas__Target[-1].dateTime
+#                      , lenOf_LO_BarDatas__Target
+#                      , len(lo_UU)
+#                      , len(lo_UD)
+#                      , len(lo_DU)
+#                      , len(lo_DD)
+#                  )
+#                 
+# #             msg_Log_Line += "\t%.05f\t%.05f\t%.05f\t%.05f" %\
+#         msg_Log_Line += "\t%.03f\t%.03f\t%.03f\t%.03f" %\
+#                 (
+#                      len(lo_UU) * 1.0 / lenOf_LO_BarDatas__Target
+#                      , len(lo_UD) * 1.0 / lenOf_LO_BarDatas__Target
+#                      , len(lo_DU) * 1.0 / lenOf_LO_BarDatas__Target
+#                      , len(lo_DD) * 1.0 / lenOf_LO_BarDatas__Target
+#                  )
+#                 
+#         lo_Msg_CSV.append("%s" % (msg_Log_Line))
+#                           
+#         lo_Msg_CSV.append("\n")
+#         
+#         #_20190307_153552
+#         #debug
+#         cntOf_For_Loop += 1
+# #             if cntOf_For_Loop >= numOf_Max : break    #if cntOf_For_Loop >= numOf_Max
+#         
+#     #/for lo_BarDatas_Target in lo_BarDatas_Sliced_By_Day:
+# 
+#     '''###################
+#         step : A : 3
+#             write to file
+#     ###################'''
+#     '''###################
+#         step : A : 3.1
+#             write to file : num of entries
+#     ###################'''
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_CSV)
+#             )
+# 
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#     
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+# 
+#     '''###################
+#         step : A : 3.1
+#             write to file : lo_UUs
+#     ###################'''
+#     '''###################
+#         step : A : 3.1.1
+#             prep
+#     ###################'''
+#     lo_Msg_CSV = []
+#     lo_Msg_CSV.append("\n")
+#     lo_Msg_CSV.append("\n")
+#     
+#     lo_Msg_CSV.append("[lo_UU]==============================")
+#     lo_Msg_CSV.append("\n")
+#     
+# #         lo_Msg_CSV.append("s.n.\te0.dateTime\te1.dateTime\te0.CP\te1.CP\te0.BB_1S")
+#     tmp_msg = "s.n.\te0.dateTime\te1.dateTime\te0.CP\te1.CP"
+#     tmp_msg += "\te0.BB_M2S\te0.BB_M1S\te0.BB_Main\te0.BB_1S\te0.BB_2S"
+#     
+# #         lo_Msg_CSV.append("s.n.\te0.dateTime\te1.dateTime\te0.CP\te1.CP\te0.BB_1S")
+#     lo_Msg_CSV.append(tmp_msg)
+#     lo_Msg_CSV.append("\n")
+# 
+#     
+#     '''###################
+#         step : A : 3.1.2
+#             build log lines
+#             ref ---> lo_UU.append([e0, e1, i])
+#     ###################'''
+#     cntOf_For_Loop_1 = 0
+#     cntOf_For_Loop_2 = 0
+#     
+#     cntOf_UUs = 1
+#     
+#     for UUs in lo_UUs:
+#     
+#         for UU in UUs:
+#             
+#             # build log line
+#             if pair == "EURUSD" : #if pair == "EURUSD"
+# 
+#                 msg = "%d\t%s\t%s\t%.05f\t%.05f" %\
+#                          (
+#                           cntOf_UUs
+#                           , UU[0].dateTime
+#                           , UU[1].dateTime
+#                           , UU[0].price_Close
+#                           , UU[1].price_Close
+#                           
+#                           )
+#                          
+#                 msg += "\t%.05f\t%.05f\t%.05f\t%.05f\t%.05f" %\
+#                          (
+#                           UU[0].bb_M2S
+#                           , UU[0].bb_M1S
+#                           , UU[0].bb_Main
+#                           , UU[0].bb_1S
+#                           , UU[0].bb_2S
+#                           
+#                           )
+#             
+#             else :
+# 
+#                 msg = "%d\t%s\t%s\t%.03f\t%.03f" %\
+#                          (
+#                           cntOf_UUs
+#                           , UU[0].dateTime
+#                           , UU[1].dateTime
+#                           , UU[0].price_Close
+#                           , UU[1].price_Close
+#                           
+#                           )
+#                          
+#                 msg += "\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" %\
+#                          (
+#                           UU[0].bb_M2S
+#                           , UU[0].bb_M1S
+#                           , UU[0].bb_Main
+#                           , UU[0].bb_1S
+#                           , UU[0].bb_2S
+#                           
+#                           )
+#                 
+#             #/if pair == "EURUSD" : #if pair == "EURUSD"
+#                      
+#             lo_Msg_CSV.append(msg)
+#             lo_Msg_CSV.append("\n")
+#             
+#             # count
+#             cntOf_UUs += 1
+#             
+#             # counter
+#             cntOf_For_Loop_2 += 1
+#             
+#         #/for UU in UUs:
+#         
+#         # counter : reset
+#         cntOf_For_Loop_2 = 0
+#         
+#         # counter
+#         cntOf_For_Loop_1 += 1
+#         
+#     #/for UUs in lo_UUs:
+# 
+#     '''###################
+#         step : A : 3.1.3
+#             write
+#     ###################'''
+#     strOf_File_Content_Info = "sec-1~lo_UUs"
+# #         strOf_File_Content_Info = "sec-1:lo_UUs" #=> char ":" --> the rest gets omitted
+# #         strOf_File_Content_Info = "sec-1"
+# #         strOf_File_Content_Info = "lo-UUs"
+#     
+# #         fname_Log_CSV_LO_UU = "%s.(%s).(%s-%s).[%s].csv" % \
+#     fname_Log_CSV_LO_UU = "(%s).(%s-%s).[%s].csv" % \
+#              (
+#               tlabel
+#               , pair, timeframe
+#               , strOf_File_Content_Info
+# #                   fname_Log_CSV_trunk
+# #                   , tlabel
+# #                   , pair, timeframe
+# #                   , strOf_File_Content_Info
+#               ) 
+# #         fname_Log_CSV_LO_UU = fname_Log_CSV + ".[lo-UUs].csv"
+#     #@_20190303_101457
+#     
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_CSV_Header)
+# #                 , "".join(lo_Msg_CSV)
+#             )
+# 
+#     #@_20190301_104444
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#     
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV_LO_UU, 2)
+# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV_LO_UU, 2)
+#     
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_CSV)
+#             )
+#             
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#         
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV_LO_UU, 2)
+# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV_LO_UU, 2)
+        
+#/_BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through
+
+'''###################
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1
 
     at : 20190301_104847
@@ -11386,6 +11786,23 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             SubData__Checked_Val
     ###################'''
     if _req_param_tag_RB_No_44_1_SubData__Checked_Val == strOf_Slice_By_Day : #if _req_param_tag_RB_No_44_1_SubData__Checked_Val == "day"
+        #_20190312_175423
+        
+        '''###################
+            step : 1
+                call func
+        ###################'''
+        _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
+                        strOf_Slice_By_Day
+                        , fname_Log_CSV_trunk, fname_Log_CSV
+                        , dpath_Log
+                        , fname_Src_CSV
+                        ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                        ,pair
+                        ,timeframe
+                        ,tmp_LO_BarDatas
+                    )
+        
         '''###################
             step : j1-1
                 "day"
