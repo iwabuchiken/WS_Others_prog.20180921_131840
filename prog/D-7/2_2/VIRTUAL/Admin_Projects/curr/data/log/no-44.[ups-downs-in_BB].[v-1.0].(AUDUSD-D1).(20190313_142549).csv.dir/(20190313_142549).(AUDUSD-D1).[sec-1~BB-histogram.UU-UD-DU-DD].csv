@@ -1,0 +1,19 @@
+[20190313_142549 / views.py:11253]
+fname_Src_CSV	44_5.1_10_rawdata.(AUDUSD).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190312_174900).20190312_174809.csv
+slice by	through
+this file	(20190313_142549).(AUDUSD-D1).[sec-1~BB-histogram.UU-UD-DU-DD].csv 
+pair	AUDUSD
+timeframe	D1
+start	2012.07.03 00:00
+end	2019.03.12 00:00
+total bars	2000
+
+[20190313_142549 / views.py:11272]
+[in-BB locations]==============================
+loc.	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+> 2S	33	45	4	3	0.0679	0.0884	0.0079	0.0061
+2S >= / >= 1S	139	148	61	76	0.2860	0.2908	0.1201	0.1545
+1S > / >= main	102	110	119	114	0.2099	0.2161	0.2343	0.2317
+main > / >= M1S	102	114	108	95	0.2099	0.2240	0.2126	0.1931
+M1S > / >= M2S	101	89	156	140	0.2078	0.1749	0.3071	0.2846
+M2S >	9	3	60	64	0.0185	0.0059	0.1181	0.1301
