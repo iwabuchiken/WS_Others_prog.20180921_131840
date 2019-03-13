@@ -11281,6 +11281,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
         ,pair
         ,timeframe
         ,tmp_LO_BarDatas
+        , flag_Write_to_File
     ) :
 
     '''###################
@@ -11380,15 +11381,18 @@ def _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
     lo_Msg_CSV_Header.append("\n")
     lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
     lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("bars\t%d" % len(tmp_LO_BarDatas))
+    lo_Msg_CSV_Header.append("\n")
      
     lo_Msg_CSV_Header.append("\n")
      
-    lo_Msg_CSV_Header.append("[ups/downs]==============================")
-    lo_Msg_CSV_Header.append("\n")
-     
-    lo_Msg_CSV_Header.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
-     
-    lo_Msg_CSV_Header.append("\n")
+#     lo_Msg_CSV_Header.append("[ups/downs]==============================")
+#     lo_Msg_CSV_Header.append("\n")
+#      
+#     lo_Msg_CSV_Header.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+#      
+#     lo_Msg_CSV_Header.append("\n")
      
     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
             (
@@ -11405,15 +11409,108 @@ def _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
         , len(lo_Msg_CSV_Header)
         ), file=sys.stderr)
 
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+        tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+        
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
+
+#_20190313_084754
+
+    '''###################
+        step : 2
+            get : categorized lists
+    ###################'''
+    (lo_UU, lo_UD, lo_DU, lo_DD) = \
+        _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(tmp_LO_BarDatas)
+#         _BUSL3_Tester_No_44_1__Gen_Data_Pattern_UpDown_In_BB_Areas(lo_BarDatas__Target)
+     
+    #debug
+    print()
+    print("[%s:%d] len(lo_UU) = %d, len(lo_UD) = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , len(lo_UU), len(lo_UD)
+        ), file=sys.stderr)
+
+    '''###################
+        step : 3
+            write to file : num of entries
+    ###################'''
+    '''###################
+        step : 3.1.1
+            prep : column names
+    ###################'''
+#     lo_Msg_CSV.append("[ups/downs]==============================")
+    lo_Msg_CSV.append("[ups/downs : through]==============================")
+    lo_Msg_CSV.append("\n")
+     
+    lo_Msg_CSV.append("s.n.\tstart\tend\ttotal\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+     
+    lo_Msg_CSV.append("\n")
+    
+    '''###################
+        step : 3.1.2
+            prep
+    ###################'''
+
+    #_20190313_090824
+    
+    lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
+#     lenOf_LO_BarDatas__Target = len(lo_BarDatas__Target)
+    
+    # counter
+    cntOf_For_Loop = 0
+    
+    msg_Log_Line = "%d\t%s\t%s\t%d\t%d\t%d\t%d\t%d" %\
+            (
+              (cntOf_For_Loop + 1)
+                 , tmp_LO_BarDatas[0].dateTime
+                 , tmp_LO_BarDatas[-1].dateTime
+                 , lenOf_tmp_LO_BarDatas
+#                  , lo_BarDatas__Target[0].dateTime
+#                  , lo_BarDatas__Target[-1].dateTime
+#                  , lenOf_LO_BarDatas__Target
+                 , len(lo_UU)
+                 , len(lo_UD)
+                 , len(lo_DU)
+                 , len(lo_DD)
+             )
+             
+    #             msg_Log_Line += "\t%.05f\t%.05f\t%.05f\t%.05f" %\
+    msg_Log_Line += "\t%.03f\t%.03f\t%.03f\t%.03f" %\
+            (
+                 len(lo_UU) * 1.0 / lenOf_tmp_LO_BarDatas
+                 , len(lo_UD) * 1.0 / lenOf_tmp_LO_BarDatas
+                 , len(lo_DU) * 1.0 / lenOf_tmp_LO_BarDatas
+                 , len(lo_DD) * 1.0 / lenOf_tmp_LO_BarDatas
+             )
+             
+    lo_Msg_CSV.append("%s" % (msg_Log_Line))
+                       
+    lo_Msg_CSV.append("\n")
+
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV)
+            )
+ 
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+
+        tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+     
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
+    
 #_20190312_175653
      
-#     # validate : flag --> true
-#     if flag_Write_to_File == True :
-#         
-#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
-# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)
-# #         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 2)
-#     
 #     # vars : log liens ---> reset
 #     lo_Msg_CSV = []
 #     
@@ -11801,6 +11898,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
                         ,pair
                         ,timeframe
                         ,tmp_LO_BarDatas
+                        , flag_Write_to_File
                     )
         
         '''###################
