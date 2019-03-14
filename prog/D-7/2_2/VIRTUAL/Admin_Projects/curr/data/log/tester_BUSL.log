@@ -1725,3 +1725,9 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190313_142548 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190312_174900).20190312_174809.csv
 
+[20190314_085759 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190311_135946).20190311_135752.csv
+
+[20190314_093710 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190311_135946).20190311_135752.csv
+
+[20190314_093855 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190311_135946).20190311_135752.csv
+

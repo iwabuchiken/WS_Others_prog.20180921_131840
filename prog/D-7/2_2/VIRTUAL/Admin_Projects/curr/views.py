@@ -10629,6 +10629,9 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
 
     at : 20190301_104847
     
+    descriptions :
+        1. gen file : (20190314_085800).(AUDJPY-D1).[sec-1~BB-histogram.UU-UD-DU-DD].csv
+    
     @param : 
         lo_UUsUDsDUsDDs
                     [
@@ -10638,6 +10641,26 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
                      , lo_DDs
                      ]
     @return: 
+
+            [
+             lo_UU__Z1, lo_UU__Z2, lo_UU__Z3, lo_UU__Z4, lo_UU__Z5, lo_UU__Z6
+             ]
+            
+            , [
+             lo_UD__Z1, lo_UD__Z2, lo_UD__Z3, lo_UD__Z4, lo_UD__Z5, lo_UD__Z6
+             ]
+            
+            , [
+             lo_DU__Z1, lo_DU__Z2, lo_DU__Z3, lo_DU__Z4, lo_DU__Z5, lo_DU__Z6
+             ]
+            
+            , [
+             lo_DD__Z1, lo_DD__Z2, lo_DD__Z3, lo_DD__Z4, lo_DD__Z5, lo_DD__Z6
+             ]
+            
+            , lo_Msg_CSV_Header
+            , lo_Msg_CSV
+
     
 ###################'''
 def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
@@ -11278,8 +11301,226 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
         
         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
         
+
+    '''###################
+        step : A : 5
+            return
+    ###################'''
+    return (\
+            [
+             lo_UU__Z1
+             , lo_UU__Z2 
+             , lo_UU__Z3
+             , lo_UU__Z4 
+             , lo_UU__Z5 
+             , lo_UU__Z6 
+             ]
+            
+            , [
+             lo_UD__Z1
+             , lo_UD__Z2 
+             , lo_UD__Z3
+             , lo_UD__Z4 
+             , lo_UD__Z5 
+             , lo_UD__Z6 
+             ]
+            
+            , [
+             lo_DU__Z1
+             , lo_DU__Z2 
+             , lo_DU__Z3
+             , lo_DU__Z4 
+             , lo_DU__Z5 
+             , lo_DU__Z6 
+             ]
+            
+            , [
+             lo_DD__Z1
+             , lo_DD__Z2 
+             , lo_DD__Z3
+             , lo_DD__Z4 
+             , lo_DD__Z5 
+             , lo_DD__Z6 
+             ]
+            
+            , lo_Msg_CSV_Header
+            , lo_Msg_CSV
+            
+            )
     
 #/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4():
+
+#_20190314_091737
+'''###################
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5()
+
+    at : 20190301_104847
+    
+    descriptions :
+        1. gen file : (20190314_085800).(AUDJPY-D1).[sec-1~BB-histogram.UU-UD-DU-DD].csv
+    
+    @param : 
+        lo_UUsUDsDUsDDs
+                    [
+                     lo_UUs
+                     , lo_UDs
+                     , lo_DUs
+                     , lo_DDs
+                     ]
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
+                 lo_BarDatas_Zs_ALL
+                , tmp_LO_BarDatas
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                
+                ,fname_Src_CSV
+                ,fname_Log_CSV
+                , dpath_Log_CSV
+                
+                ,pair
+                ,timeframe
+
+                , tlabel
+                
+                ,flag_Write_to_File = True
+                ):
+#_20190304_170515
+    
+    '''###################
+        step : A : 0
+            unpack params
+    ###################'''
+            
+    '''###################
+        step : A : 0.1
+            vars
+    ###################'''
+    lo_Msg_CSV = []
+    
+    '''###################
+        step : A : 4.3
+            write : to file
+    ###################'''
+    '''###################
+        step : A : 4.3.1
+            build : header
+    ###################'''
+    # output csv file
+    strOf_File_Content_Info = "sec-1~BB-histogram.UU-UD-DU-DD"
+    
+    fname_Log_CSV = "(%s).(%s-%s).[%s].csv " % \
+                (
+                 tlabel
+                 , pair
+                 , timeframe
+                 , strOf_File_Content_Info
+                 )
+    
+    lo_Msg_CSV_Header = []
+    
+    lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("slice by\t%s" % _req_param_tag_RB_No_44_1_SubData__Checked_Val)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("this file\t%s" % fname_Log_CSV)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("pair\t%s" % pair)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("start\t%s" % tmp_LO_BarDatas[0].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("total bars\t%s" % len(tmp_LO_BarDatas))
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("\n")
+    
+    '''###################
+        step : A : 4.3.2
+            build : body
+    ###################'''
+    '''###################
+        step : A : 4.3.2.1
+            prep
+    ###################'''
+    
+    # colum names
+    lo_Msg_CSV.append("[in-BB locations]==============================")
+    lo_Msg_CSV.append("\n")
+    
+    lo_Msg_CSV.append("loc.\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+    
+    lo_Msg_CSV.append("\n")
+    
+    
+    '''###################
+        step : A : 4.3.2.1
+            build : lines
+    ###################'''
+    
+    '''###################
+        step : A : 4.3.3
+            write : header
+    ###################'''
+    
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Header)
+            )
+    
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#         
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
+
+    '''###################
+        step : A : 4.3.4
+            write : body
+    ###################'''
+    
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV)
+            )
+    
+#     # validate : flag --> true
+#     if flag_Write_to_File == True :
+#         
+#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
+
+    '''###################
+        step : A : 5
+            return
+    ###################'''
+    #_20190314_093745
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5 => DONE" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+    
+#     return (\
+#             lo_Msg_CSV_Header
+#             , lo_Msg_CSV
+#             
+#             )
+    
+#/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5():
 
 '''###################
     _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through
@@ -12521,7 +12762,29 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         ), file=sys.stderr)
     
     
-    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
+#     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
+#             [
+#              lo_UU__Z1, lo_UU__Z2, lo_UU__Z3, lo_UU__Z4, lo_UU__Z5, lo_UU__Z6
+#              ]
+#             
+#             , [
+#              lo_UD__Z1, lo_UD__Z2, lo_UD__Z3, lo_UD__Z4, lo_UD__Z5, lo_UD__Z6
+#              ]
+#             
+#             , [
+#              lo_DU__Z1, lo_DU__Z2, lo_DU__Z3, lo_DU__Z4, lo_DU__Z5, lo_DU__Z6
+#              ]
+#             
+#             , [
+#              lo_DD__Z1, lo_DD__Z2, lo_DD__Z3, lo_DD__Z4, lo_DD__Z5, lo_DD__Z6
+#              ]
+#             
+#             , lo_Msg_CSV_Header
+#             , lo_Msg_CSV    
+    
+    lo_BarDatas_Zs_UUs, lo_BarDatas_Zs_UDs, lo_BarDatas_Zs_DUs, lo_BarDatas_Zs_DDs \
+        , _, _ \
+            = _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
                             [
                              lo_UUs
                              , lo_UDs
@@ -12549,6 +12812,29 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             
     ###################'''
     #_20190313_143910
+    #_20190314_091531
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
+                            [
+                             lo_BarDatas_Zs_UUs
+                            , lo_BarDatas_Zs_UDs
+                            , lo_BarDatas_Zs_DUs
+                            , lo_BarDatas_Zs_DDs
+                            ]
+                            , tmp_LO_BarDatas
+                            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                            
+                            ,fname_Src_CSV
+                            ,fname_Log_CSV
+                            , dpath_Log_CSV
+                            
+                            ,pair
+                            ,timeframe
+                            
+                            , tlabel
+                            
+                            ,flag_Write_to_File
+                     
+                                                                    )
 
     
 #     '''###################
