@@ -11387,28 +11387,55 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
                 ,flag_Write_to_File = True
                 ):
 #_20190304_170515
-    
+
     '''###################
         step : A : 0
             unpack params
     ###################'''
+    # UUs, UDs, ...
+    [
+    
+         lo_BarDatas_Zs_UUs
+        , lo_BarDatas_Zs_UDs
+        , lo_BarDatas_Zs_DUs
+        , lo_BarDatas_Zs_DDs
+    
+    ] = lo_BarDatas_Zs_ALL
+
+    # Z1 ~ 6 : UU
+    [lo_UU__Z1, lo_UU__Z2 , lo_UU__Z3, lo_UU__Z4 , lo_UU__Z5 , lo_UU__Z6] \
+            = lo_BarDatas_Zs_UUs
+            
+    # Z1 ~ 6 : UD
+    [lo_UD__Z1, lo_UD__Z2 , lo_UD__Z3, lo_UD__Z4 , lo_UD__Z5 , lo_UD__Z6] \
+            = lo_BarDatas_Zs_UDs
+            
+    # Z1 ~ 6 : DU
+    [lo_DU__Z1, lo_DU__Z2 , lo_DU__Z3, lo_DU__Z4 , lo_DU__Z5 , lo_DU__Z6] \
+            = lo_BarDatas_Zs_DUs
+            
+    # Z1 ~ 6 : DD
+    [lo_DD__Z1, lo_DD__Z2 , lo_DD__Z3, lo_DD__Z4 , lo_DD__Z5 , lo_DD__Z6] \
+            = lo_BarDatas_Zs_DDs
             
     '''###################
         step : A : 0.1
             vars
     ###################'''
     lo_Msg_CSV = []
-    
+
     '''###################
-        step : A : 4.3
+        step : A : 1.3
             write : to file
     ###################'''
     '''###################
-        step : A : 4.3.1
+        step : A : 1.3.1
             build : header
     ###################'''
     # output csv file
-    strOf_File_Content_Info = "sec-1~BB-histogram.UU-UD-DU-DD"
+    strOf_Theme = "BB-diff-histogram"
+    strOf_File_Content_Info = "sec-1.A-5.%s.UU-UD-DU-DD" % (strOf_Theme)
+#     strOf_File_Content_Info = "sec-1.A-5.BB-diff-histogram.UU-UD-DU-DD"
     
     fname_Log_CSV = "(%s).(%s-%s).[%s].csv " % \
                 (
@@ -11446,22 +11473,99 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
     lo_Msg_CSV_Header.append("\n")
     
     '''###################
-        step : A : 4.3.2
+        step : A : 1.3.2
             build : body
     ###################'''
     '''###################
-        step : A : 4.3.2.1
-            prep
+        step : A : 2
+            ops
     ###################'''
-    
+    '''###################
+        step : A : 2.1
+            lo_UU__Z1
+    ###################'''
+    lenOf_lo_UU__Z1 = len(lo_UU__Z1)
+
+    '''###################
+        step : A : 2.1 : 0
+            prep : log lines
+    ###################'''
+    #_20190314_181759
     # colum names
-    lo_Msg_CSV.append("[in-BB locations]==============================")
+    lo_Msg_CSV.append("[%s : lo_UU_Z1]==============================" % (strOf_Theme))
     lo_Msg_CSV.append("\n")
     
-    lo_Msg_CSV.append("loc.\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+    # (i + 1)
+    # , e0_DateTime
+    # , diff_Total
+    lo_Msg_CSV.append("s.n.\te0.dateTime\tdiff-total")
+#     lo_Msg_CSV.append("loc.\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
     
     lo_Msg_CSV.append("\n")
+
     
+    maxOf_Loop = 10
+    
+    for i in range(0, lenOf_lo_UU__Z1):
+    
+        '''###################
+            step : A : 2.1 : 1
+                extract : data set
+        ###################'''
+        # (e0, e1, serial num)
+        data = lo_UU__Z1[i]
+                # [<mm.libs_mm.libfx.BarData object at 0x0000000009F6E6D8>, <mm.libs_mm.libfx.BarData object at 0x0000
+                # 000009F6E710>, 58]
+
+        '''###################
+            step : A : 2.1 : 2
+                build line
+        ###################'''
+        diff_Total = data[1].price_Close - data[0].price_Open
+        
+        e0_DateTime = data[0].dateTime
+        
+        tmpOf_Line = "%d\t%s\t%.03f" % \
+                    (
+                        (i + 1)
+                        , e0_DateTime
+                        , diff_Total
+                     )
+        
+        # append
+        lo_Msg_CSV.append(tmpOf_Line)
+        
+        lo_Msg_CSV.append("\n")
+        
+#         #debug
+#         print()
+#         print("[%s:%d] (debug) data => " % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             
+#             ), file=sys.stderr)
+#         print(data)
+        
+#         #debug
+#         if i > maxOf_Loop : #if i > maxOf_Loop
+# 
+#             #debug
+#             print()
+#             print("[%s:%d] (debug) exiting the loop... : i = %d" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , i
+#                 ), file=sys.stderr)
+#             
+#             break
+#         
+#         #/if i > maxOf_Loop
+
+        
+    #/for i in range(0, lenOf_lo_UU__Z1):
+
+    
+    
+    
+    #_20190314_181038
     
     '''###################
         step : A : 4.3.2.1
@@ -11480,10 +11584,11 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
             , "".join(lo_Msg_CSV_Header)
             )
     
-#     # validate : flag --> true
-#     if flag_Write_to_File == True :
-#         
-#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
+    #_20190314_181904
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
 
     '''###################
         step : A : 4.3.4
@@ -11497,10 +11602,10 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
             , "".join(lo_Msg_CSV)
             )
     
-#     # validate : flag --> true
-#     if flag_Write_to_File == True :
-#         
-#         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_CSV, 0)    
 
     '''###################
         step : A : 5
@@ -12717,7 +12822,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
 #         lo_UUs, lo_UDs, lo_DUs, lo_DDs = \
         lo_UUs, lo_UDs, lo_DUs, lo_DDs, dpath_Log_CSV = \
                 _BUSL3_Tester_No_44_1__Sec_1_Slice_By_Through(\
-                        strOf_Slice_By_Day
+#                         strOf_Slice_By_Day
+                        strOf_Slice_By_Throgh
                         , fname_Log_CSV_trunk, fname_Log_CSV
                         , dpath_Log
                         , fname_Src_CSV
