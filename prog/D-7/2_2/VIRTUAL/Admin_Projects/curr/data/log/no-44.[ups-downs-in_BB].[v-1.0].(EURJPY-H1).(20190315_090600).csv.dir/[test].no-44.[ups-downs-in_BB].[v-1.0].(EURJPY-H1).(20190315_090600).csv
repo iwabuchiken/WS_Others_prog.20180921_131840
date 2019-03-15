@@ -1,0 +1,14 @@
+[20190315_090601 / views.py:11778]
+fname_Src_CSV	44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190307_151905).20190307_144106.csv
+slice by	through
+this file	no-44.[ups-downs-in_BB].[v-1.0].(EURJPY-H1).(20190315_090600).csv
+pair	EURJPY
+timeframe	H1
+start	2017.10.23 07:00
+end	2019.03.07 07:00
+bars	8463
+
+[20190315_090601 / views.py:11877]
+[ups/downs : through]==============================
+s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+1	2017.10.23 07:00	2019.03.07 07:00	8463	2136	2180	2189	1898	0.252	0.258	0.259	0.224
