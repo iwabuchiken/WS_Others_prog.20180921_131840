@@ -1,0 +1,14 @@
+[20190316_183122 / views.py:11805]
+fname_Src_CSV	44_5.1_10_rawdata.(EURUSD).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190308_092934).20190308_092826.csv
+slice by	through
+this file	no-44.[ups-downs-in_BB].[v-1.0].(EURUSD-D1).(20190316_183122).csv
+pair	EURUSD
+timeframe	D1
+start	2012.06.30 00:00
+end	2019.03.08 00:00
+bars	2000
+
+[20190316_183123 / views.py:11904]
+[ups/downs : through]==============================
+s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+1	2012.06.30 00:00	2019.03.08 00:00	2000	494	510	510	481	0.247	0.255	0.255	0.240

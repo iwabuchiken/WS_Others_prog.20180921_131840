@@ -1,0 +1,19 @@
+[20190316_175841 / views.py:11276]
+fname_Src_CSV	44_5.1_10_rawdata.(EURUSD).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190308_092934).20190308_092826.csv
+slice by	through
+this file	(20190316_175840).(EURUSD-D1).[sec-1~BB-histogram.UU-UD-DU-DD].csv 
+pair	EURUSD
+timeframe	D1
+start	2012.06.30 00:00
+end	2019.03.08 00:00
+total bars	2000
+
+[20190316_175841 / views.py:11295]
+[in-BB locations]==============================
+loc.	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+> 2S	38	60	5	8	0.0769	0.1176	0.0098	0.0166
+2S >= / >= 1S	129	137	72	76	0.2611	0.2686	0.1412	0.1580
+1S > / >= main	125	115	111	99	0.2530	0.2255	0.2176	0.2058
+main > / >= M1S	122	101	107	99	0.2470	0.1980	0.2098	0.2058
+M1S > / >= M2S	76	93	163	149	0.1538	0.1824	0.3196	0.3098
+M2S >	4	4	52	50	0.0081	0.0078	0.1020	0.1040

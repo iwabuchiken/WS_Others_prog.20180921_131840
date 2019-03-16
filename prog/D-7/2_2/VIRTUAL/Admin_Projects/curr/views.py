@@ -11525,12 +11525,39 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
         
         e0_DateTime = data[0].dateTime
         
-        tmpOf_Line = "%d\t%s\t%.03f" % \
-                    (
-                        (i + 1)
-                        , e0_DateTime
-                        , diff_Total
-                     )
+        '''###################
+            step : A : 2.1 : 2.1
+                unit adjustment
+        ###################'''
+        #_20190316_182605
+        if pair == "EURUSD" : #if pair == "EURUSD"
+        
+            tmpOf_Line = "%d\t%s\t%.05f" % \
+                        (
+                            (i + 1)
+                            , e0_DateTime
+                            , diff_Total
+                         )
+        
+        else : #if pair == "EURUSD"
+        
+            tmpOf_Line = "%d\t%s\t%.03f" % \
+                        (
+                            (i + 1)
+                            , e0_DateTime
+                            , diff_Total
+                         )
+            
+        
+        #/if pair == "EURUSD"
+        
+        
+#         tmpOf_Line = "%d\t%s\t%.03f" % \
+#                     (
+#                         (i + 1)
+#                         , e0_DateTime
+#                         , diff_Total
+#                      )
         
         # append
         lo_Msg_CSV.append(tmpOf_Line)
