@@ -11485,13 +11485,157 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
             lo_UU__Z1
     ###################'''
     lenOf_lo_UU__Z1 = len(lo_UU__Z1)
+    
+    # list of diffs
+    lo_UU__Z1_Diffs = []
+    
+#     '''###################
+#         step : A : 2.1 : 0
+#             prep : log lines
+#     ###################'''
+#     #_20190314_181759
+#     # colum names
+#     lo_Msg_CSV.append("[%s : lo_UU_Z1]==============================" % (strOf_Theme))
+#     lo_Msg_CSV.append("\n")
+#     
+#     # (i + 1)
+#     # , e0_DateTime
+#     # , diff_Total
+#     lo_Msg_CSV.append("s.n.\te0.dateTime\tdiff-total")
+# #     lo_Msg_CSV.append("loc.\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
+#     
+#     lo_Msg_CSV.append("\n")
 
     '''###################
-        step : A : 2.1 : 0
+        step : A : 2.1 : 0.1
+            prep : stats data
+    ###################'''
+    for i in range(0, lenOf_lo_UU__Z1):
+    
+        '''###################
+            step : A : 2.1 : 0.1
+                extract : data set
+        ###################'''
+        # (e0, e1, serial num)
+        data = lo_UU__Z1[i]
+                # [<mm.libs_mm.libfx.BarData object at 0x0000000009F6E6D8>, <mm.libs_mm.libfx.BarData object at 0x0000
+                # 000009F6E710>, 58]
+
+        '''###################
+            step : A : 2.1 : 0.2
+                build line
+        ###################'''
+        diff_Total = data[1].price_Close - data[0].price_Open
+        
+#         e0_DateTime = data[0].dateTime
+
+        '''###################
+            step : A : 2.1 : 0.3
+                append data : diff
+        ###################'''
+        lo_UU__Z1_Diffs.append(diff_Total)    
+
+    '''###################
+        step : A : 2.2 : 0.4
+            calc
+    ###################'''
+    #ref https://stackoverflow.com/questions/9039961/finding-the-average-of-a-list
+    #_20190317_094746
+    avgOf_Diffs = sum(lo_UU__Z1_Diffs) / len(lo_UU__Z1_Diffs)
+    maxOf_Diffs = max(lo_UU__Z1_Diffs)
+    minOf_Diffs = min(lo_UU__Z1_Diffs)
+    #ref https://stackoverflow.com/questions/16670658/python-variance-of-a-list-of-defined-numbers
+    varianceOf_Diffs = numpy.var(lo_UU__Z1_Diffs)
+    stdOf_Diffs = numpy.std(lo_UU__Z1_Diffs)
+    #ref https://docs.scipy.org/doc/numpy/reference/generated/numpy.median.html
+    medianOf_Diffs = numpy.median(lo_UU__Z1_Diffs)
+    
+    '''###################
+        step : A : 2.1 : 0.4
+            build : line
+    ###################'''
+    '''###################
+        step : A : 2.1 : 0.4.1
+            build : line
+    ###################'''
+    if pair == "EURUSD" : #if pair == "EURUSD"
+    
+        tmp_Line = "average\t%0.5f\nmax\t%0.5f\nmin\t%0.5f\n" %\
+                (
+                    avgOf_Diffs
+                    , maxOf_Diffs
+                    , minOf_Diffs
+                 
+                 )
+
+
+#         tmp_Line += "variance\t%0.5f\nstd\t%0.5f\nmedian\t%0.5f\n" %\
+        tmp_Line += "variance\t%0.9f\nstd\t%0.7f\nmedian\t%0.5f\n" %\
+                (
+                    varianceOf_Diffs
+                    , stdOf_Diffs
+                    , medianOf_Diffs
+                 
+                 )
+    
+    else : #if pair == "EURUSD"
+    
+        tmp_Line = "average\t%0.3f\nmax\t%0.3f\nmin\t%0.3f\n" %\
+                (
+                    avgOf_Diffs
+                    , maxOf_Diffs
+                    , minOf_Diffs
+                 
+                 )
+
+        tmp_Line += "variance\t%0.7f\nstd\t%0.5f\nmedian\t%0.3f\n" %\
+                (
+                    varianceOf_Diffs
+                    , stdOf_Diffs
+                    , medianOf_Diffs
+                 
+                 )
+
+    '''###################
+        step : A : 2.1 : 0.4.2
+            line : separator
+    ###################'''
+    tmp_Line += "\n"
+
+    '''###################
+        step : A : 2.1 : 0.5
+            line --> append
+    ###################'''
+#     tmp_Line = "[%s / %s:%d]\n%s" % \
+    tmp_Line = "[%s / %s:%d]==============================\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , tmp_Line
+            )
+    
+    # append
+#     lo_Msg_CSV = [tmp_Line] + lo_Msg_CSV
+    lo_Msg_CSV.append(tmp_Line)
+
+    '''###################
+        step : A : 2.1 : 0.6
             prep : log lines
     ###################'''
     #_20190314_181759
     # colum names
+    #_20190317_102422
+    #     print("[%s:%d] rendering..." % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+
+    lo_Msg_CSV.append("[%s / %s:%d]" %\
+                         (
+                          libs.get_TimeLabel_Now()
+                          ,os.path.basename(libs.thisfile())
+                          , libs.linenum())
+                      )
+    lo_Msg_CSV.append("\n")
+    
     lo_Msg_CSV.append("[%s : lo_UU_Z1]==============================" % (strOf_Theme))
     lo_Msg_CSV.append("\n")
     
@@ -11504,6 +11648,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
     lo_Msg_CSV.append("\n")
 
     
+    #_20190317_100942
+    
+    '''###################
+        step : A : 2.1 : -
+            for-loop
+    ###################'''
     maxOf_Loop = 10
     
     for i in range(0, lenOf_lo_UU__Z1):
@@ -11524,6 +11674,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
         diff_Total = data[1].price_Close - data[0].price_Open
         
         e0_DateTime = data[0].dateTime
+
+#         '''###################
+#             step : A : 2.1 : 2.0.1
+#                 append data : diff
+#         ###################'''
+#         lo_UU__Z1_Diffs.append(diff_Total)
         
         '''###################
             step : A : 2.1 : 2.1
@@ -11589,8 +11745,96 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
         
     #/for i in range(0, lenOf_lo_UU__Z1):
 
+    '''###################
+        step : A : 2.2
+            diffs : gen stats
+    ###################'''
+#     '''###################
+#         step : A : 2.2 : 1
+#             calc
+#     ###################'''
+#     #ref https://stackoverflow.com/questions/9039961/finding-the-average-of-a-list
+#     #_20190317_094746
+#     avgOf_Diffs = sum(lo_UU__Z1_Diffs) / len(lo_UU__Z1_Diffs)
+#     maxOf_Diffs = max(lo_UU__Z1_Diffs)
+#     minOf_Diffs = min(lo_UU__Z1_Diffs)
+#     #ref https://stackoverflow.com/questions/16670658/python-variance-of-a-list-of-defined-numbers
+#     varianceOf_Diffs = numpy.var(lo_UU__Z1_Diffs)
+#     stdOf_Diffs = numpy.std(lo_UU__Z1_Diffs)
+#     #ref https://docs.scipy.org/doc/numpy/reference/generated/numpy.median.html
+#     medianOf_Diffs = numpy.median(lo_UU__Z1_Diffs)
+#     
+#     '''###################
+#         step : A : 2.2 : 2
+#             build : line
+#     ###################'''
+#     if pair == "EURUSD" : #if pair == "EURUSD"
+#     
+#         tmp_Line = "average\t%0.5f\nmax\t%0.5f\nmin\t%0.5f\n" %\
+#                 (
+#                     avgOf_Diffs
+#                     , maxOf_Diffs
+#                     , minOf_Diffs
+#                  
+#                  )
+# 
+# #         tmp_Line += "variance\t%0.5f\nstd\t%0.5f\nmedian\t%0.5f\n" %\
+#         tmp_Line += "variance\t%0.9f\nstd\t%0.7f\nmedian\t%0.5f\n" %\
+#                 (
+#                     varianceOf_Diffs
+#                     , stdOf_Diffs
+#                     , medianOf_Diffs
+#                  
+#                  )
+#     
+#     else : #if pair == "EURUSD"
+#     
+#         tmp_Line = "average\t%0.3f\nmax\t%0.3f\nmin\t%0.3f\n" %\
+#                 (
+#                     avgOf_Diffs
+#                     , maxOf_Diffs
+#                     , minOf_Diffs
+#                  
+#                  )
+# 
+#         tmp_Line += "variance\t%0.7f\nstd\t%0.5f\nmedian\t%0.3f\n" %\
+#                 (
+#                     varianceOf_Diffs
+#                     , stdOf_Diffs
+#                     , medianOf_Diffs
+#                  
+#                  )
+# 
+# #     tmp_Line = "average\t%0.3f\nmax\t%0.3f\nmin\t%0.3f\n" %\
+# #             (
+# #                 avgOf_Diffs
+# #                 , maxOf_Diffs
+# #                 , minOf_Diffs
+# #              
+# #              )
+#     
+# #     tmp_Line += "variance\t%0.3f\nmedian\t%0.3f\n" %\
+# #             (
+# #                 varianceOf_Diffs
+# #                 , medianOf_Diffs
+# #              
+# #              )
+# 
+#     tmp_Line = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , tmp_Line
+#             )
+
+#     '''###################
+#         step : A : 2.2 : 3
+#             append : to main log list
+#     ###################'''
+#     #ref https://stackoverflow.com/questions/1720421/how-to-concatenate-two-lists-in-python#1720432
+#     lo_Msg_CSV = [tmp_Line] + lo_Msg_CSV
     
-    
+    #_20190317_092734
     
     #_20190314_181038
     
@@ -11604,7 +11848,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
             write : header
     ###################'''
     
-    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+    msg_Log_CSV = "[%s / %s:%d]==============================\n%s" % \
             (
             libs.get_TimeLabel_Now()
             , os.path.basename(libs.thisfile()), libs.linenum()
