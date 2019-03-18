@@ -1,0 +1,14 @@
+[20190318_083041 / views.py:12050]
+fname_Src_CSV	44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190311_090135).20190311_090020.csv
+slice by	through
+this file	no-44.[ups-downs-in_BB].[v-1.0].(AUDJPY-H1).(20190318_083040).csv
+pair	AUDJPY
+timeframe	H1
+start	2017.11.21 10:00
+end	2019.03.11 03:00
+bars	8000
+
+[20190318_083041 / views.py:12149]
+[ups/downs : through]==============================
+s.n.	start	end	total	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+1	2017.11.21 10:00	2019.03.11 03:00	8000	2038	2030	2031	1802	0.255	0.254	0.254	0.225

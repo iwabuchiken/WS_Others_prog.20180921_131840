@@ -73,7 +73,8 @@ import subprocess, copy, time, glob, re, datetime, math
 '''###################
     import : user-installed
 ###################'''
-import numpy
+#ref pyplot https://matplotlib.org/users/pyplot_tutorial.html
+import numpy, matplotlib.pyplot as plt
 
 
 
@@ -11350,6 +11351,76 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
     
 #/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4():
 
+'''###################
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot()
+
+    at : 2019/03/18 09:55:43
+    
+    descriptions :
+        1. plot
+    
+    @param : 
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
+            lo_UU__Z1_Diffs
+       ) :
+    
+    '''###################
+        step : A : 0.1
+            test : 1
+    ###################'''
+#     #ref https://matplotlib.org/users/pyplot_tutorial.html
+# #     plt.plot([1,2,3,4])
+#     plt.plot(lo_UU__Z1_Diffs)
+#     plt.ylabel('lo_UU__Z1_Diffs')
+#     
+#     objects = ('Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp')
+#     y_pos = np.arange(len(objects))
+#     performance = [10,8,6,4,2,1]
+     
+    '''###################
+        step : A : 0.2
+            test : 2
+    ###################'''
+    #ref https://pythonspot.com/matplotlib-bar-chart/
+#     objects = ('Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp')
+    objects = lo_UU__Z1_Diffs
+    y_pos = numpy.arange(len(objects))
+#     y_pos = np.arange(len(objects))
+    performance = [10,8,6,4,2,1]
+     
+#     plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.bar(y_pos, lo_UU__Z1_Diffs, align='center', alpha=0.5)
+#     plt.xticks(y_pos, objects)
+#     plt.ylabel('Usage')
+    plt.ylabel('lo_UU__Z1_Diffs')
+    plt.title('lo_UU__Z1_Diffs (test : 2)')
+    
+    '''###################
+        step : A : 0.X
+            test : X
+            save image
+    ###################'''
+    #ref https://stackoverflow.com/questions/9622163/save-plot-to-image-file-instead-of-displaying-it-using-matplotlib
+    dpath_Plot_Image = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\images"
+    fname_Plot_Image = 'foo.[%s].png' % (libs.get_TimeLabel_Now())
+    plt.savefig(os.path.join(dpath_Plot_Image, fname_Plot_Image))
+#     plt.savefig(fname_Plot_Image)
+#     plt.savefig('foo.png')
+    
+    #debug
+    print()
+    print("[%s:%d] (debug) plot ---> done" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+
+#_20190318_095408
+
+#/def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot
+
 #_20190314_091737
 '''###################
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5()
@@ -11881,6 +11952,17 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
 
     '''###################
         step : A : 5
+            write : plot
+    ###################'''
+    #_20190318_100637
+    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
+                lo_UU__Z1_Diffs
+                )
+    
+    #_20190318_094935
+    
+    '''###################
+        step : A : 6
             return
     ###################'''
     #_20190314_093745
