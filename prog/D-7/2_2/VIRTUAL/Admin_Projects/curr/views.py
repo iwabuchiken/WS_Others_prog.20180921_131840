@@ -11365,7 +11365,21 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
 ###################'''
 def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
             lo_UU__Z1_Diffs
+            , dpath_Log_CSV
+            , pair
+            , timeframe
+            , e0_First
+            , e0_Last
+            
        ) :
+    
+    '''###################
+        step : A : 0.0 : 1
+            prep : vars
+    ###################'''
+    tlabel = libs.get_TimeLabel_Now()
+    
+    strOf_File_Label = "Sec_1_A_5_w_Plot"
     
     '''###################
         step : A : 0.1
@@ -11396,7 +11410,55 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
 #     plt.xticks(y_pos, objects)
 #     plt.ylabel('Usage')
     plt.ylabel('lo_UU__Z1_Diffs')
-    plt.title('lo_UU__Z1_Diffs (test : 2)')
+#     plt.title('lo_UU__Z1_Diffs (test : 2)')
+#     strOf_Title = "lo_UU__Z1_Diffs (%s-%s) [%s - %s]" % \
+#     strOf_Title = "lo_UU__Z1_Diffs (%s-%s) \n[%s - %s]\n(%s)" % \
+    strOf_Title = "%s : lo_UU__Z1_Diffs (%s-%s) \n[%s - %s]\n(%s)" % \
+            (
+             strOf_File_Label
+             , pair
+             , timeframe
+             , e0_First.dateTime
+             , e0_Last.dateTime
+             , tlabel
+             )
+    plt.title(strOf_Title)
+    
+    '''###################
+        step : A : 0.3
+            test : 3 : grid
+    ###################'''
+    #ref https://stackoverflow.com/questions/24943991/change-grid-interval-and-specify-tick-labels-in-matplotlib#24953575
+#     fig = plt.figure()
+#     ax = fig.add_subplot(1, 1, 1)
+#     
+#     # Major ticks every 20, minor ticks every 5
+#     major_ticks = numpy.arange(0, max(lo_UU__Z1_Diffs), 10)
+#     minor_ticks = numpy.arange(0, max(lo_UU__Z1_Diffs), 2)
+# #     major_ticks = numpy.arange(0, max(lo_UU__Z1_Diffs), int(max(lo_UU__Z1_Diffs) / 10))
+# #     minor_ticks = numpy.arange(0, max(lo_UU__Z1_Diffs), int(max(lo_UU__Z1_Diffs) / 2))
+# #     major_ticks = np.arange(0, 101, 20)
+# #     minor_ticks = np.arange(0, 101, 5)
+#     
+#     ax.set_xticks(major_ticks)
+# #     ax.set_xticks(minor_ticks, minor=True)
+#     ax.set_yticks(major_ticks)
+#     ax.set_yticks(minor_ticks, minor=True)
+#     
+    # And a corresponding grid
+#     ax.grid(which='both')
+#     
+#     # Or if you want different settings for the grids:
+#     ax.grid(which='minor', alpha=0.2)
+#     ax.grid(which='major', alpha=0.5)    
+
+    #ref https://matplotlib.org/api/_as_gen/matplotlib.pyplot.grid.html
+    plt.grid(linestyle='-', linewidth=1)
+#     plt.grid(color='r', linestyle='-', linewidth=2)
+    #ref https://pythonspot.com/matplotlib-line-chart/
+#     plt.grid(True)
+    
+    plt.ylim(0, 0.01)
     
     '''###################
         step : A : 0.X
@@ -11404,8 +11466,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
             save image
     ###################'''
     #ref https://stackoverflow.com/questions/9622163/save-plot-to-image-file-instead-of-displaying-it-using-matplotlib
-    dpath_Plot_Image = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\images"
-    fname_Plot_Image = 'foo.[%s].png' % (libs.get_TimeLabel_Now())
+    dpath_Plot_Image = dpath_Log_CSV
+#     dpath_Plot_Image = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\images"
+    
+#     strOf_File_Label = "Sec_1_A_5_w_Plot"
+    fname_Plot_Image = '[%s].[%s].png' % (strOf_File_Label, tlabel)
+#     fname_Plot_Image = '[]%s.[%s].png' % (strOf_File_Label, libs.get_TimeLabel_Now())
+#     fname_Plot_Image = 'foo.[%s].png' % (libs.get_TimeLabel_Now())
     plt.savefig(os.path.join(dpath_Plot_Image, fname_Plot_Image))
 #     plt.savefig(fname_Plot_Image)
 #     plt.savefig('foo.png')
@@ -11612,6 +11679,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
     ###################'''
     #ref https://stackoverflow.com/questions/9039961/finding-the-average-of-a-list
     #_20190317_094746
+    
     avgOf_Diffs = sum(lo_UU__Z1_Diffs) / len(lo_UU__Z1_Diffs)
     maxOf_Diffs = max(lo_UU__Z1_Diffs)
     minOf_Diffs = min(lo_UU__Z1_Diffs)
@@ -11629,7 +11697,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
         step : A : 2.1 : 0.4.1
             build : line
     ###################'''
-    if pair == "EURUSD" : #if pair == "EURUSD"
+    if pair == "EURUSD" \
+        or pair == "AUDUSD" : #if pair == "EURUSD"
     
         tmp_Line = "average\t%0.5f\nmax\t%0.5f\nmin\t%0.5f\n" %\
                 (
@@ -11713,7 +11782,9 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
     # (i + 1)
     # , e0_DateTime
     # , diff_Total
-    lo_Msg_CSV.append("s.n.\te0.dateTime\tdiff-total")
+#     lo_Msg_CSV.append("s.n.\te0.dateTime\tdiff-total")
+
+    lo_Msg_CSV.append("s.n.\te0.dateTime\tdiff-total\tstd score")   #_20190319_134751
 #     lo_Msg_CSV.append("loc.\tUU\tUD\tDU\tDD\t%UU\t%UD\t%DU\t%DD")
     
     lo_Msg_CSV.append("\n")
@@ -11757,22 +11828,29 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
                 unit adjustment
         ###################'''
         #_20190316_182605
-        if pair == "EURUSD" : #if pair == "EURUSD"
+        if pair == "EURUSD" \
+            or pair == "AUDUSD" : #if pair == "EURUSD"
         
-            tmpOf_Line = "%d\t%s\t%.05f" % \
+            #_20190319_134815
+            std_Score = 10 * (diff_Total - avgOf_Diffs) / stdOf_Diffs + 50
+#             tmpOf_Line = "%d\t%s\t%.05f" % \
+            tmpOf_Line = "%d\t%s\t%.05f\t%.02f" % \
                         (
                             (i + 1)
                             , e0_DateTime
                             , diff_Total
+                            , std_Score
                          )
         
         else : #if pair == "EURUSD"
         
-            tmpOf_Line = "%d\t%s\t%.03f" % \
+#             tmpOf_Line = "%d\t%s\t%.03f" % \
+            tmpOf_Line = "%d\t%s\t%.03f\t%.02f" % \
                         (
                             (i + 1)
                             , e0_DateTime
                             , diff_Total
+                            , std_Score
                          )
             
         
@@ -11957,12 +12035,17 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
     #_20190318_100637
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5_w_Plot(\
                 lo_UU__Z1_Diffs
+                , dpath_Log_CSV
+                , pair
+                , timeframe
+                , tmp_LO_BarDatas[0]
+                , tmp_LO_BarDatas[-1]
                 )
     
     #_20190318_094935
     
     '''###################
-        step : A : 6
+        step : A : 7
             return
     ###################'''
     #_20190314_093745
@@ -13296,151 +13379,17 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
                      
                                                                     )
 
-    
-#     '''###################
-#         step : A : 4.1
-#             lo_UUs
-#             
-#                 [
-#                     [e0, e1, 3]        --> e.g. 2019.02.11 06:12:15
-#                     , [e0, e1, 6]        --> 2019.02.11 06:14:45
-#                     , [e0, e1, 13]        --> 2019.02.11 06:18:00
-#                     , [e0, e1, 21]        --> 2019.02.11 06:20:30
-#                     ...
-#                 ]            
-#             UU
-#                 [e0, e1, 3]
-#                 
-#     ###################'''
-#     lo_UU__Z1 = []  # 2S <= x
-#     lo_UU__Z2 = []  # 1S <= x < 2S
-#     lo_UU__Z3 = []  # Main <= x < 1S
-#     lo_UU__Z4 = []  # M_1S <= x < Main
-#     lo_UU__Z5 = []  # M_2S <= x < M_1S
-#     lo_UU__Z6 = []  # x < M_2S
-#     
-#     lo_UD__Above_BB_2S = []
-#     lo_UD__Above_BB_1S = []
-#     
-#     #debug
-#     cntOf_ = 0
-#     maxOf_Debug_Loop = 10
-#     
-#     flg_Debug_Loop = False
-#     
-#     for lo_UU in lo_UUs:
-#     
-#         for UU in lo_UU:
-#             
-# #             #debug
-# #             if cntOf_ > maxOf_Debug_Loop : #if cntOf_ > maxOf_Debug_Loop
-# #                 
-# #                 # set : flag
-# #                 flg_Debug_Loop = True
-# #                 
-# #                 # reset : counter
-# #                 cntOf_ = 0
-# #                 
-# #                 #debug
-# #                 print()
-# #                 print("[%s:%d] debug : break from 2nd loop" % \
-# #                     (os.path.basename(libs.thisfile()), libs.linenum()
-# #                     
-# #                     ), file=sys.stderr)
-# #                 
-# #                 break
-# #             
-# #             else :
-# #                 
-# #                 # count
-# #                 cntOf_ += 1
-# #                 
-# #             #/if cntOf_ > maxOf_Debug_Loop
-#             
-#             
-#             # get : instance
-#             e0 = UU[0]
-# 
-#             # conditions
-#             #!_20190304_163255
-#             cond_2  = (e0.price_Close > e0.bb_2S)
-#             cond_1  = (e0.price_Close >= e0.bb_1S)
-#             cond_3  = (e0.price_Close >= e0.bb_Main)
-#             
-#             cond_4  = (e0.price_Close >= e0.bb_M1S)
-#             cond_5  = (e0.price_Close >= e0.bb_M2S)
-#             
-# #             cond_1  = e0.price_Close > e0.bb_1S
-# #             cond_2  = e0.price_Close > e0.bb_2S
-# 
-#             
-#             # judge
-#             if cond_2 == True :                         lo_UU__Z1.append(UU)
-#             
-#             if cond_1 == True and cond_2 == False : lo_UU__Z2.append(UU)
-#             
-#             if cond_3 == True and cond_1 == False : lo_UU__Z3.append(UU)
-#             
-#             if cond_4 == True and cond_3 == False : lo_UU__Z4.append(UU)
-#             
-#             if cond_5 == True and cond_4 == False : lo_UU__Z5.append(UU)
-#             
-#             if cond_5 == False : lo_UU__Z6.append(UU)
-#             
-#         #/for UU in UUs:
-#         
-#     #/for lo_UU in lo_UUs:
-# 
-#     '''###################
-#         step : A : 4.X
-#             report
-#     ###################'''
-#     #@_20190304_104704
-#     
-#     # lens
-#     lenOf_lo_UU__Z1 = len(lo_UU__Z1)
-#     lenOf_lo_UU__Z2 = len(lo_UU__Z2)
-#     lenOf_lo_UU__Z3 = len(lo_UU__Z3)
-#     lenOf_lo_UU__Z4 = len(lo_UU__Z4)
-#     lenOf_lo_UU__Z5 = len(lo_UU__Z5)
-#     lenOf_lo_UU__Z6 = len(lo_UU__Z6)
-#     
-#     lenOf_tmp_LO_BarDatas = len(tmp_LO_BarDatas)
-#     
-#     # len of : lo_UUs
-#     lenOf_LO_UUs = 0
-#     
-#     for lo_UU in lo_UUs:
-#     
-#         # count
-#         lenOf_LO_UUs += len(lo_UU)
-#         
-#     #/for lo_UU in lo_UUs:
-# 
-#     #debug
-#     print()
-#     print("[%s:%d] (debug) lenOf_LO_UUs = %d" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , lenOf_LO_UUs
-#         ), file=sys.stderr)
-#     
-#     #debug
-#     print()
-#     print("[%s:%d] len(lo_UU__Z1) = %d (%.03f) / len(lo_UU__Z2) = %d (%.03f)" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#         , lenOf_lo_UU__Z1
-#         , (lenOf_lo_UU__Z1 * 1.0 / lenOf_LO_UUs)
-#         , lenOf_lo_UU__Z2
-#         , (lenOf_lo_UU__Z2 * 1.0 / lenOf_LO_UUs)
-#         ), file=sys.stderr)
-#     
-    #_20190304_164955
-    
-    #ccc
-
     #@_20190303_110717
+
     '''###################
         step : A : 6
+            detect pattern : lo_UUU, lo_UUD, a.o.
+            coding started : 2019/03/19 14:20:06
+    ###################'''
+    #_20190319_141941
+    
+    '''###################
+        step : A : 7
             return
     ###################'''
     return ( \

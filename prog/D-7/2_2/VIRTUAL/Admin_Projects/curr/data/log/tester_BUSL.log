@@ -1805,3 +1805,44 @@ starting : tester_BuyUps_SellLows =======================
 
 [20190318_101622 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(USDJPY).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190318_092701).20190318_092307.csv
 
+[20190319_124242 / views.py:3940] 
+
+starting : tester_BuyUps_SellLows =======================
+[20190319_124328 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_125055 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_130915 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_131328 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_131509 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_131550 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_131655 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_131929 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132041 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132519 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132602 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132636 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132809 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_132915 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_133333 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_133546 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_133813 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_134920 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
+[20190319_135049 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDUSD).(Period-H1).(NumOfUnits-7000).(Bars-ALL-20190312_174107).20190312_173929.csv
+
