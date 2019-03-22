@@ -12067,6 +12067,404 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
 #/ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5():
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B
+
+    at : 2019/03/22 09:30:18
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B(\
+        lo_UUU
+        , strOf_Sequence_Pattern_Name
+                    ) :
+#_20190322_093136
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+    
+    print()
+    print("[%s:%d] sequence => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , strOf_Sequence_Pattern_Name
+        ), file=sys.stderr)
+    
+    '''###################
+        step : B : 0
+            prep
+    ###################'''
+    lenOf_LO_UUU = len(lo_UUU)
+    
+    '''###################
+        step : B : 1
+            vars
+    ###################'''
+    lo_UUU_Z1 = []; lo_UUU_Z2 = []; lo_UUU_Z3 = []
+    lo_UUU_Z4 = []; lo_UUU_Z5 = []; lo_UUU_Z6 = []
+    
+    '''###################
+        step : B : 2
+            for-loop
+    ###################'''
+    cntOf_Loop = 0
+    maxOf_Debug_Loop = 10
+    
+    for i in range(0, lenOf_LO_UUU):
+        '''###################
+            step : B : 2.1
+                get : instance
+        ###################'''
+        # tuple
+        tupleOf_BDs = lo_UUU[i]
+        
+        # e0
+        e0 = tupleOf_BDs[0]
+        
+#         #debug
+#         print()
+#         print("[%s:%d] e0 => %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , tupleOf_BDs[0].dateTime
+# #             , e0.dateTime
+#             ), file=sys.stderr)
+
+        '''###################
+            step : B : j1
+                e0, CP, location in BB ranges
+        ###################'''
+        e0_CP = e0.price_Close
+        e0_BB_2S = e0.bb_2S
+        
+        if e0_CP >= e0_BB_2S : lo_UUU_Z1.append(tupleOf_BDs)
+        elif e0_CP >= e0.bb_1S : lo_UUU_Z2.append(tupleOf_BDs)
+        elif e0_CP >= e0.bb_Main : lo_UUU_Z3.append(tupleOf_BDs)
+        elif e0_CP > e0.bb_M1S : lo_UUU_Z4.append(tupleOf_BDs)
+        elif e0_CP > e0.bb_M2S : lo_UUU_Z5.append(tupleOf_BDs)
+        elif e0_CP <= e0.bb_M2S : lo_UUU_Z6.append(tupleOf_BDs)
+            
+        else : #if e0_CP > e0_BB_2S
+        
+            pass
+        
+        #/if e0_CP > e0_BB_2S
+        
+        
+        
+        
+                
+        '''###################
+            debug
+        ###################'''
+#         if cntOf_Loop > maxOf_Debug_Loop : #if cntOf_Loop > maxOf_Debug_Loop
+#             
+#             break
+#         
+#         #/if cntOf_Loop > maxOf_Debug_Loop
+#         
+#         # count
+#         cntOf_Loop += 1
+        
+    #/for i in range(0, lenOf_LO_UUU):
+
+    '''###################
+        step : Z : 1
+            report
+    ###################'''
+    #debug
+#     msg = "len(lo_UUU_Z1) = %d, len(lo_UUU_Z2) = %d" % \
+    msg = "len(lo_UUU_Z1) = %d(%.03f), len(lo_UUU_Z2) = %d(%.03f)" % \
+        (
+         len(lo_UUU_Z1)
+         , len(lo_UUU_Z1) / lenOf_LO_UUU
+         , len(lo_UUU_Z2)
+         , len(lo_UUU_Z2) / lenOf_LO_UUU
+         )
+    msg += "\n"
+    
+    msg += "len(lo_UUU_Z3) = %d(%.03f), len(lo_UUU_Z4) = %d(%.03f)" % \
+        (
+         len(lo_UUU_Z3)
+         , len(lo_UUU_Z3) / lenOf_LO_UUU
+         , len(lo_UUU_Z4)
+         , len(lo_UUU_Z4) / lenOf_LO_UUU
+         )
+    msg += "\n"
+    
+    msg += "len(lo_UUU_Z5) = %d(%.03f), len(lo_UUU_Z6) = %d(%.03f)" % \
+        (
+         len(lo_UUU_Z5)
+         , len(lo_UUU_Z5) / lenOf_LO_UUU
+         , len(lo_UUU_Z6)
+         , len(lo_UUU_Z6) / lenOf_LO_UUU
+         )
+    msg += "\n"
+    
+    print()
+    print("[%s:%d]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , msg
+        ), file=sys.stderr)
+
+    '''###################
+        step : Z : 2
+            return
+    ###################'''
+    return (lo_UUU_Z1, lo_UUU_Z2, lo_UUU_Z3, lo_UUU_Z4, lo_UUU_Z5, lo_UUU_Z6)
+    
+#_20190322_093143    
+
+#/def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B(\
+
+'''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges
+
+    at : 2019/03/22 09:28:58
+    
+    @param : 
+        lo_BD_Sequences
+            [lo_UUU, lo_UUD, ...]
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges(\
+            lo_BD_Sequences
+            , strOf_Slice_By_Day
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+            
+        ) :
+    #_20190322_085133
+    
+    '''###################
+        step : A : 0
+            prep
+    ###################'''
+    '''###################
+        step : A : 0.1
+            unpack : param
+    ###################'''
+    (lo_UUU, lo_UUD) = lo_BD_Sequences
+    
+    '''###################
+        step : A : 0.2
+            vars
+    ###################'''
+    lenOf_LO_UUU = len(lo_UUU)
+    lenOf_LO_UUD = len(lo_UUD)
+    
+    '''###################
+        step : B
+            lo_UUU
+    ###################'''
+    #_20190322_093633
+    strOf_Sequence_Pattern_Name = "lo_UUU"
+    
+    (lo_UUU_Z1, lo_UUU_Z2, lo_UUU_Z3, lo_UUU_Z4, lo_UUU_Z5, lo_UUU_Z6) \
+            = _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B(\
+                            lo_UUU
+                            , strOf_Sequence_Pattern_Name
+                            )
+#     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B()
+
+    '''###################
+        step : B2
+            lo_UUD
+    ###################'''
+    strOf_Sequence_Pattern_Name = "lo_UUD"
+    
+    (lo_UUD_Z1, lo_UUD_Z2, lo_UUD_Z3, lo_UUD_Z4, lo_UUD_Z5, lo_UUD_Z6) \
+            = _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B(\
+                            lo_UUD
+                            , strOf_Sequence_Pattern_Name
+                            )
+
+#     '''###################
+#         debug
+#     ###################'''
+#     #debug
+# #     msg = "len(lo_UUU_Z1) = %d, len(lo_UUU_Z2) = %d" % \
+#     msg = "len(lo_UUU_Z1) = %d(%.03f), len(lo_UUU_Z2) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z1)
+#          , len(lo_UUU_Z1) / lenOf_LO_UUU
+#          , len(lo_UUU_Z2)
+#          , len(lo_UUU_Z2) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     msg += "len(lo_UUU_Z3) = %d(%.03f), len(lo_UUU_Z4) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z3)
+#          , len(lo_UUU_Z3) / lenOf_LO_UUU
+#          , len(lo_UUU_Z4)
+#          , len(lo_UUU_Z4) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     msg += "len(lo_UUU_Z5) = %d(%.03f), len(lo_UUU_Z6) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z5)
+#          , len(lo_UUU_Z5) / lenOf_LO_UUU
+#          , len(lo_UUU_Z6)
+#          , len(lo_UUU_Z6) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     print()
+#     print("[%s:%d]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , msg
+#         ), file=sys.stderr)    
+    
+#     '''###################
+#         step : B : 1
+#             vars
+#     ###################'''
+#     lo_UUU_Z1 = []; lo_UUU_Z2 = []; lo_UUU_Z3 = []
+#     lo_UUU_Z4 = []; lo_UUU_Z5 = []; lo_UUU_Z6 = []
+#     
+#     '''###################
+#         step : B : 2
+#             for-loop
+#     ###################'''
+#     cntOf_Loop = 0
+#     maxOf_Debug_Loop = 10
+#     
+#     for i in range(0, lenOf_LO_UUU):
+#         '''###################
+#             step : B : 2.1
+#                 get : instance
+#         ###################'''
+#         # tuple
+#         tupleOf_BDs = lo_UUU[i]
+#         
+#         # e0
+#         e0 = tupleOf_BDs[0]
+#         
+# #         #debug
+# #         print()
+# #         print("[%s:%d] e0 => %s" % \
+# #             (os.path.basename(libs.thisfile()), libs.linenum()
+# #             , tupleOf_BDs[0].dateTime
+# # #             , e0.dateTime
+# #             ), file=sys.stderr)
+# 
+#         '''###################
+#             step : B : j1
+#                 e0, CP, location in BB ranges
+#         ###################'''
+#         e0_CP = e0.price_Close
+#         e0_BB_2S = e0.bb_2S
+#         
+#         if e0_CP >= e0_BB_2S : lo_UUU_Z1.append(tupleOf_BDs)
+#         elif e0_CP >= e0.bb_1S : lo_UUU_Z2.append(tupleOf_BDs)
+#         elif e0_CP >= e0.bb_Main : lo_UUU_Z3.append(tupleOf_BDs)
+#         elif e0_CP > e0.bb_M1S : lo_UUU_Z4.append(tupleOf_BDs)
+#         elif e0_CP > e0.bb_M2S : lo_UUU_Z5.append(tupleOf_BDs)
+#         elif e0_CP <= e0.bb_M2S : lo_UUU_Z6.append(tupleOf_BDs)
+#             
+#         else : #if e0_CP > e0_BB_2S
+#         
+#             pass
+#         
+#         #/if e0_CP > e0_BB_2S
+#         
+#         
+#         
+#         
+#                 
+#         '''###################
+#             debug
+#         ###################'''
+# #         if cntOf_Loop > maxOf_Debug_Loop : #if cntOf_Loop > maxOf_Debug_Loop
+# #             
+# #             break
+# #         
+# #         #/if cntOf_Loop > maxOf_Debug_Loop
+# #         
+# #         # count
+# #         cntOf_Loop += 1
+#         
+#     #/for i in range(0, lenOf_LO_UUU):
+# 
+#     '''###################
+#         step : Z : 1
+#             report
+#     ###################'''
+#     #debug
+# #     msg = "len(lo_UUU_Z1) = %d, len(lo_UUU_Z2) = %d" % \
+#     msg = "len(lo_UUU_Z1) = %d(%.03f), len(lo_UUU_Z2) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z1)
+#          , len(lo_UUU_Z1) / lenOf_LO_UUU
+#          , len(lo_UUU_Z2)
+#          , len(lo_UUU_Z2) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     msg += "len(lo_UUU_Z3) = %d(%.03f), len(lo_UUU_Z4) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z3)
+#          , len(lo_UUU_Z3) / lenOf_LO_UUU
+#          , len(lo_UUU_Z4)
+#          , len(lo_UUU_Z4) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     msg += "len(lo_UUU_Z5) = %d(%.03f), len(lo_UUU_Z6) = %d(%.03f)" % \
+#         (
+#          len(lo_UUU_Z5)
+#          , len(lo_UUU_Z5) / lenOf_LO_UUU
+#          , len(lo_UUU_Z6)
+#          , len(lo_UUU_Z6) / lenOf_LO_UUU
+#          )
+#     msg += "\n"
+#     
+#     print()
+#     print("[%s:%d]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , msg
+#         ), file=sys.stderr)
+#     
+# #     print("[%s:%d]\n%s" % (msg))
+# 
+# #     print("[%s:%d] len(lo_UUU_Z1) = %d, len(lo_UUU_Z2) = %d" % \
+# #         (os.path.basename(libs.thisfile()), libs.linenum()
+# #         , len(lo_UUU_Z1), len(lo_UUU_Z2)
+# #         , len(lo_UUU_Z3), len(lo_UUU_Z4)
+# #         , len(lo_UUU_Z5), len(lo_UUU_Z6)
+# #         ), file=sys.stderr)
+
+    #_20190322_085910
+
+    
+#/def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges(\
+
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq
 
     at : 2019/03/12 18:05:30
@@ -12249,6 +12647,21 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
         step : A : 2.1
             lo_UUU : in each BB range
     ###################'''
+    lo_BD_Sequences = [lo_UUU, lo_UUD]
+    
+    _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges(\
+            lo_BD_Sequences
+            , strOf_Slice_By_Day
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+        )
     #_20190321_095624
     
     '''###################
