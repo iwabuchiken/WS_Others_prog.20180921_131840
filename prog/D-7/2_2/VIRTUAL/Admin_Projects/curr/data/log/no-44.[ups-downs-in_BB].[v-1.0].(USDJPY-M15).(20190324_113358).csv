@@ -1,0 +1,16 @@
+[20190324_113405 / views.py:15328] 
+source csv	=	44_5.1_10_rawdata.(USDJPY).(Period-M15).(NumOfUnits-10000).(Bars-ALL-20190324_113108).20190324_112524.csv
+source dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+log file name	=	no-44.[ups-downs-in_BB].[v-1.0].(USDJPY-M15).(20190324_113358).log
+log file dpath	=	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log
+this file created at	=	20190324_113358
+
+
+[basics]=========================
+pair	=	USDJPY
+timeframe	=	M15
+num of bars	=	10000
+starting bar	=	2018.06.07 17:45	open=	109.942
+ending bar	=	2019.03.22 23:45	close=	109.932
+
+
