@@ -1,0 +1,19 @@
+[20190325_082155 / views.py:11277]
+fname_Src_CSV	44_5.1_10_rawdata.(USDJPY).(Period-D1).(NumOfUnits-2000).(Bars-ALL-20190325_082029).20190318_092307.csv
+slice by	through
+this file	(20190325_082154).(USDJPY-D1).[sec-1~BB-histogram.UU-UD-DU-DD].csv 
+pair	USDJPY
+timeframe	D1
+start	2012.06.01 00:00
+end	2019.03.25 00:00
+total bars	2036
+
+[20190325_082155 / views.py:11296]
+[in-BB locations]==============================
+loc.	UU	UD	DU	DD	%UU	%UD	%DU	%DD
+> 2S	60	60	13	5	0.1062	0.1179	0.0255	0.0111
+2S >= / >= 1S	180	145	80	96	0.3186	0.2849	0.1569	0.2138
+1S > / >= main	131	130	125	106	0.2319	0.2554	0.2451	0.2361
+main > / >= M1S	108	101	103	92	0.1912	0.1984	0.2020	0.2049
+M1S > / >= M2S	80	68	130	108	0.1416	0.1336	0.2549	0.2405
+M2S >	6	5	59	42	0.0106	0.0098	0.1157	0.0935
