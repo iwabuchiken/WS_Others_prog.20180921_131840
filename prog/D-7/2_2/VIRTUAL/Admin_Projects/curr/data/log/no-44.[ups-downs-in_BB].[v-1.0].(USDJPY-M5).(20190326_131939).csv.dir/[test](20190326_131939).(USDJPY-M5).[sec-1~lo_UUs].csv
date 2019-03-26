@@ -1,7 +1,7 @@
-[20190325_180705 / views.py:13883]
+[20190326_131944 / views.py:14087]
 fname_Src_CSV	44_5.1_10_rawdata.(USDJPY).(Period-M5).(NumOfUnits-50000).(Bars-ALL-20190322_165334).20190322_165012.csv
 slice by	through
-this file	no-44.[ups-downs-in_BB].[v-1.0].(USDJPY-M5).(20190325_180701).csv
+this file	no-44.[ups-downs-in_BB].[v-1.0].(USDJPY-M5).(20190326_131939).csv
 pair	USDJPY
 timeframe	M5
 start	2018.06.19 20:55
@@ -10,7 +10,7 @@ bars	50000
 
 
 
-[20190325_180705 / views.py:13902]
+[20190326_131944 / views.py:14106]
 
 
 [lo_UU]==============================
