@@ -3494,3 +3494,187 @@ def get_Slice_Ranges(width_Total, numOf_Slices):
     return lo_Slice_Ranges
     
 #/ def get_Slice_Ranges(width_Total, numOf_Slices):
+
+'''###################
+    build_Msg_Lines__LO_UUU_ZX
+
+    at : 2019/03/27 10:03:25
+    
+    description :
+        http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3
+        "44-1    stats : num of up/down bars"
+        
+        1. e.g. : lo_UUU_Z1 ==> diffs --> categorize into : 1-2-3, 3-2-1, i tak dalej
+    
+    @param : 
+        
+        lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel
+    
+    @return: 
+    
+        ([lo_UU], [lo_UD], [lo_DU], lo_DDs)
+            
+###################'''
+def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
+
+    '''###################
+        step : 1
+            prep : vars
+    ###################'''
+    strOf_CassifyLabel = _strOf_CassifyLabel
+#     strOf_CassifyLabel = "lo_UUU_Z1"
+    
+    # list
+    lo_UUU_ZX_321 = []
+    lo_UUU_ZX_312 = []
+    
+    lo_UUU_ZX_231 = []
+    lo_UUU_ZX_213 = []
+    
+    lo_UUU_ZX_123 = []
+    lo_UUU_ZX_132 = []
+    
+    '''###################
+        step : 2
+            log lines : header
+    ###################'''
+    #_20190327_100704
+    lo_Msg_CSV.append(\
+                "[%s : %d]==============================" %\
+                    (
+                     strOf_CassifyLabel
+                     , len(lo_UUU_ZX)
+#                      , len(lo_UUU_Z1)
+                     )
+                      )
+    lo_Msg_CSV.append("\n")
+    
+    # column names
+    tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
+    
+    lo_Msg_CSV.append(tmp_msg)
+    lo_Msg_CSV.append("\n")
+    
+    # vars
+    cntOf_For_Loop = 1
+    
+    
+    '''###################
+        step : 3
+            for-loop
+    ###################'''
+    for UUU in lo_UUU_ZX:
+
+        '''###################
+            step : 3.0 : 1
+                prep
+        ###################'''
+        # calc: diffs
+        d0 = UUU[0].price_Close - UUU[0].price_Open
+        d1 = UUU[1].price_Close - UUU[1].price_Open
+        d2 = UUU[2].price_Close - UUU[2].price_Open
+        
+        # build : list
+        tmpOf_Set = [d0, d1, d2, UUU]
+        
+        '''###################
+            step : 3.0 : 2
+                prep : conditions
+        ###################'''
+        # conditions
+        cond_1_1 = (d0 >= d1)
+        cond_1_2 = (d0 < d1)
+        
+        cond_2_1 = (d0 >= d2)
+        cond_2_2 = (d0 < d2)
+        
+        cond_3_1 = (d1 >= d2)
+        cond_3_2 = (d1 < d2)
+
+        '''###################
+            step : 3.0 : 3
+                categorize
+        ###################'''
+        if cond_1_1 and cond_2_1 and cond_3_1 : lo_UUU_ZX_321.append(tmpOf_Set)
+        
+        elif cond_1_1 and cond_2_1 and cond_3_2 : lo_UUU_ZX_312.append(tmpOf_Set)
+        
+        elif cond_1_1 and cond_2_2 and cond_3_2 : lo_UUU_ZX_213.append(tmpOf_Set)
+        
+        elif cond_1_2 and cond_2_1 and cond_3_1 : lo_UUU_ZX_231.append(tmpOf_Set)
+        
+        elif cond_1_2 and cond_2_2 and cond_3_1 : lo_UUU_ZX_132.append(tmpOf_Set)
+        
+        elif cond_1_2 and cond_2_2 and cond_3_2 : lo_UUU_ZX_123.append(tmpOf_Set)
+        
+        else : #if cond_1_1 and cond_3_1 and cond_2_1
+        
+            print()
+            print("[%s:%d] (debug) unknown condition set : UUU = %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                  , UUU[0].dateTime
+#                   , UUU.dateTime
+                ), file=sys.stderr)
+            
+        
+        #/if cond_1_1 and cond_3_1 and cond_2_1
+        
+        '''###################
+            step : 3.1
+                build line
+        ###################'''
+        # build line
+        tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
+                (
+                 cntOf_For_Loop
+                 ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
+                 , d0, d1, d2
+#                  , UUU[0].price_Close - UUU[0].price_Open
+#                  , UUU[1].price_Close - UUU[1].price_Open
+#                  , UUU[2].price_Close - UUU[2].price_Open
+                 )
+
+        '''###################
+            step : 3.2
+                append
+        ###################'''
+        lo_Msg_CSV.append(tmp_msg)
+        lo_Msg_CSV.append("\n")
+        
+        # count
+        cntOf_For_Loop += 1
+        
+    #/for UUU in lo_UUU:
+    
+    #_20190327_103816:WL
+    
+    '''###################
+        report
+    ###################'''
+    msg = "len(lo_UUU_ZX_321) = %d\nlen(lo_UUU_ZX_312) = %d\nlen(lo_UUU_ZX_213) = %d\nlen(lo_UUU_ZX_231) = %d\n" \
+        % (
+             len(lo_UUU_ZX_321) 
+             , len(lo_UUU_ZX_312) 
+             , len(lo_UUU_ZX_213) 
+             , len(lo_UUU_ZX_231) 
+           )
+    
+    print()
+    print("[%s:%d] (debug) : %s\n %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+            , strOf_CassifyLabel
+            , msg
+#          , len(lo_UUU_ZX_321) 
+#          , len(lo_UUU_ZX_312) 
+#          , len(lo_UUU_ZX_213) 
+#          , len(lo_UUU_ZX_231) 
+        ), file=sys.stderr)
+        
+    
+    
+    '''###################
+        return        
+    ###################'''
+    return lo_Msg_CSV
+    
+#/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :
