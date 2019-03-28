@@ -3515,7 +3515,11 @@ def get_Slice_Ranges(width_Total, numOf_Slices):
         ([lo_UU], [lo_UD], [lo_DU], lo_DDs)
             
 ###################'''
-def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
+def build_Msg_Lines__LO_UUU_ZX(\
+        lo_UUU_ZX, lo_Msg_CSV
+        , _strOf_CassifyLabel
+        , lo_Msg_CSV_Stats
+        ) :
 
     '''###################
         step : 1
@@ -3654,13 +3658,13 @@ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
         step : 4.1
             line : header
     ###################'''
-    tmpOf_LO_Msg_CSV = []
+#     lo_Msg_CSV_Stats = []
     
     tmpOf_Line = "[%s : stats]==============================" % (strOf_CassifyLabel)
 #     tmpOf_Line = "[lo_UUU_ZX : stats]=============================="
     
-    tmpOf_LO_Msg_CSV.append(tmpOf_Line)
-    tmpOf_LO_Msg_CSV.append("\n")
+    lo_Msg_CSV_Stats.append(tmpOf_Line)
+    lo_Msg_CSV_Stats.append("\n")
 
     tmpOf_Line = "\t".join([ \
                          
@@ -3669,8 +3673,8 @@ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
                          ])
 #     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
     
-    tmpOf_LO_Msg_CSV.append(tmpOf_Line)
-    tmpOf_LO_Msg_CSV.append("\n")
+    lo_Msg_CSV_Stats.append(tmpOf_Line)
+    lo_Msg_CSV_Stats.append("\n")
     
     '''###################
         step : 4.2
@@ -3724,8 +3728,8 @@ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
             step : 4.2 : 2.2
                 append
         ###################'''
-        tmpOf_LO_Msg_CSV.append(tmpOf_Line)
-        tmpOf_LO_Msg_CSV.append("\n")
+        lo_Msg_CSV_Stats.append(tmpOf_Line)
+        lo_Msg_CSV_Stats.append("\n")
         
         '''###################
             step : 4.2 : 2.3
@@ -3736,13 +3740,13 @@ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
     #/for i in range(0, lenOf_Patterns):
     
     # separator line
-    tmpOf_LO_Msg_CSV.append("\n")
+    lo_Msg_CSV_Stats.append("\n")
     
     '''###################
         step : 4.3
             log line : update
     ###################'''
-    lo_Msg_CSV = tmpOf_LO_Msg_CSV + lo_Msg_CSV
+#     lo_Msg_CSV = lo_Msg_CSV_Stats + lo_Msg_CSV
     
     
 #_20190327_103816:WL    
@@ -3775,6 +3779,7 @@ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, _strOf_CassifyLabel) :
     '''###################
         return        
     ###################'''
-    return lo_Msg_CSV
+    return (lo_Msg_CSV, lo_Msg_CSV_Stats)
+#     return lo_Msg_CSV
     
 #/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :

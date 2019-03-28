@@ -12649,7 +12649,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     # vars : file
     lo_Msg_CSV = []
     lo_Msg_CSV_Header = []
-
+    
+    #_20190328_104931
+    lo_Msg_CSV_Stats = []
+    
     '''###################
         step : B1 : 3.1 : 2
             prep : header : meta
@@ -12715,53 +12718,16 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z1
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    #_20190328_104844
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_UUU_Z1, lo_Msg_CSV, strOf_CassifyLabel)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, strOf_CassifyLabel)
 
     # separator line
     lo_Msg_CSV.append("\n")
-    
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z1)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z1:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
 
     '''###################
         step : B1 : 3.1 : 2.2
@@ -12772,55 +12738,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z2
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
     
     # separator line
     lo_Msg_CSV.append("\n")
     
-#     # separator line
-#     lo_Msg_CSV.append("\n")
-#     
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z2)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z2:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
-
     '''###################
         step : B1 : 3.1 : 2.3
             lo_UUU_Z3
@@ -12830,55 +12754,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z3
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
     
-#     # separator line
-#     lo_Msg_CSV.append("\n")
-#     
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z3)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z3:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
-
     '''###################
         step : B1 : 3.1 : 2.4
             lo_UUU_Z4
@@ -12888,55 +12770,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z4
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
     
-#     # separator line
-#     lo_Msg_CSV.append("\n")
-#     
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z4)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z4:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
-
     '''###################
         step : B1 : 3.1 : 2.5
             lo_UUU_Z5
@@ -12946,55 +12786,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z5
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
     
-#     # separator line
-#     lo_Msg_CSV.append("\n")
-#     
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z5)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z5:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
-
     '''###################
         step : B1 : 3.1 : 2.6
             lo_UUU_Z6
@@ -13004,55 +12802,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     lo_Target = lo_UUU_Z6
     
     #_20190327_100226
-    lo_Msg_CSV = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
+#     lo_Msg_CSV = \
+    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
     
-#     # separator line
-#     lo_Msg_CSV.append("\n")
-#     
-#     lo_Msg_CSV.append(\
-#                 "[%s : %d]==============================" %\
-#                     (
-#                      strOf_CassifyLabel
-#                      , len(lo_UUU_Z6)
-#                      )
-#                       )
-#     lo_Msg_CSV.append("\n")
-#     
-#     # column names
-#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
-#     
-#     lo_Msg_CSV.append(tmp_msg)
-#     lo_Msg_CSV.append("\n")
-#     
-#     # vars
-#     cntOf_For_Loop = 1
-#     
-#     # data
-# #     for UUU in lo_UUU:
-#     for UUU in lo_UUU_Z6:
-#     
-#         # build line
-#         tmp_msg = "%d\t%s\t%s\t%s\t%0.3f\t%0.3f\t%0.3f" %\
-#                 (
-#                  cntOf_For_Loop
-#                  ,UUU[0].dateTime, UUU[1].dateTime, UUU[2].dateTime
-#                  , UUU[0].price_Close - UUU[0].price_Open
-#                  , UUU[1].price_Close - UUU[1].price_Open
-#                  , UUU[2].price_Close - UUU[2].price_Open
-#                  )
-# 
-#         lo_Msg_CSV.append(tmp_msg)
-#         lo_Msg_CSV.append("\n")
-#         
-#         # count
-#         cntOf_For_Loop += 1
-#         
-#     #/for UUU in lo_UUU:
-
     #_20190325_182335
     
     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
