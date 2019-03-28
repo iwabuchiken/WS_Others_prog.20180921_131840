@@ -12720,6 +12720,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     #_20190327_100226
 #     lo_Msg_CSV = \
     #_20190328_104844
+    #_20190328_110947:WL:views
     (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
@@ -12811,6 +12812,32 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190325_182335
     
+    '''###################
+        step : C
+            write to file
+    ###################'''
+    '''###################
+        step : C : 1
+            build log lines
+    ###################'''
+    '''###################
+        step : C : 1.1
+            build log lines : stats
+    ###################'''
+    # separator line
+    lo_Msg_CSV_Stats.append("\n")
+    
+    msg_Log_CSV_Stats = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Stats)
+            )
+
+    '''###################
+        step : C : 1.2
+            build log lines : entries
+    ###################'''
     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
             (
             libs.get_TimeLabel_Now()
@@ -12819,9 +12846,15 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
             )
 
     '''###################
-        step : B1 : 3.2
-            aggregate stats data
+        step : C : 2
+            join: lines
     ###################'''
+    msg_Log_CSV = msg_Log_CSV_Stats + msg_Log_CSV
+
+#     '''###################
+#         step : B1 : 3.2
+#             aggregate stats data
+#     ###################'''
 
 #_20190325_175923    
              
