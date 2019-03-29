@@ -3658,9 +3658,18 @@ def build_Msg_Lines__LO_UUU_ZX(\
         step : 4.1
             line : header
     ###################'''
+    #_20190329_134748
+    lo_Msg_CSV_Stats.append("[%s : %d]" % (os.path.basename(libs.thisfile()), libs.linenum()))
+    lo_Msg_CSV_Stats.append("\n")
+    
 #     lo_Msg_CSV_Stats = []
     
-    tmpOf_Line = "[%s : stats]==============================" % (strOf_CassifyLabel)
+#     tmpOf_Line = "[%s : stats]==============================" % (strOf_CassifyLabel)
+    tmpOf_Line = "[%s : stats : %d]==============================" % \
+                (
+                 strOf_CassifyLabel
+                 , len(lo_UUU_ZX)
+                 )
 #     tmpOf_Line = "[lo_UUU_ZX : stats]=============================="
     
     lo_Msg_CSV_Stats.append(tmpOf_Line)
@@ -3668,7 +3677,9 @@ def build_Msg_Lines__LO_UUU_ZX(\
 
     tmpOf_Line = "\t".join([ \
                          
-            "s.n.", "patterns", "num"
+            "s.n.", "patterns"
+            , "num"
+            , "ratio"
                          
                          ])
 #     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
@@ -3701,6 +3712,10 @@ def build_Msg_Lines__LO_UUU_ZX(\
             , lo_UUU_ZX_132, lo_UUU_ZX_123
                              ]
     
+    # len : total
+    #_20190329_130644:WL
+    lenOf_LO_UUU_ZX = len(lo_UUU_ZX)
+    
     # length
     lenOf_Patterns = len(lo_Patterns)
     
@@ -3720,6 +3735,9 @@ def build_Msg_Lines__LO_UUU_ZX(\
                          
             str(cntOf_For_Loop)
             , lo_Patterns[i]
+            , str(len(lo_UUU_ZX_Categorized[i]))
+            
+            , str(len(lo_UUU_ZX_Categorized[i]) / lenOf_LO_UUU_ZX)
 #             , 
                          
                          ])
@@ -3786,3 +3804,284 @@ def build_Msg_Lines__LO_UUU_ZX(\
 #     return lo_Msg_CSV
     
 #/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :
+
+'''###################
+    build_Msg_Lines__LO_UUD_ZX
+
+    at : 2019/03/27 10:03:25
+    
+    description :
+        http://127.0.0.1:8000/curr/tester_BuyUps_SellLows/?command=BUSL_3
+        "44-1    stats : num of up/down bars"
+        
+        1. e.g. : lo_UUD_Z1 ==> diffs --> categorize into : 1-2-3, 3-2-1, i tak dalej
+    
+    @param : 
+        
+        lo_UUD_ZX, lo_Msg_CSV, _strOf_CassifyLabel
+    
+    @return: 
+    
+        ([lo_UU], [lo_UD], [lo_DU], lo_DDs)
+            
+###################'''
+def build_Msg_Lines__LO_UUD_ZX(\
+        lo_UUD_ZX, lo_Msg_CSV
+        , _strOf_CassifyLabel
+        , lo_Msg_CSV_Stats
+        ) :
+
+    '''###################
+        step : 1
+            prep : vars
+    ###################'''
+    strOf_CassifyLabel = _strOf_CassifyLabel
+#     strOf_CassifyLabel = "lo_UUU_Z1"
+    
+    # list
+    lo_UUD_ZX_12M = []
+    lo_UUD_ZX_21M = []
+    
+    '''###################
+        step : 2
+            log lines : header
+    ###################'''
+    #_20190327_100704
+    lo_Msg_CSV.append(\
+                "[%s : %d]==============================" %\
+                    (
+                     strOf_CassifyLabel
+                     , len(lo_UUD_ZX)
+#                      , len(lo_UUU_Z1)
+                     )
+                      )
+    lo_Msg_CSV.append("\n")
+    
+    # column names
+    tmp_msg = "s.n.\te0.date\te1.date\te0.diff\te1.diff"
+#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
+    
+    lo_Msg_CSV.append(tmp_msg)
+    lo_Msg_CSV.append("\n")
+    
+    # vars
+    cntOf_For_Loop = 1
+    
+    
+    '''###################
+        step : 3
+            for-loop
+    ###################'''
+    for UUD in lo_UUD_ZX:
+
+        '''###################
+            step : 3.0 : 1
+                prep
+        ###################'''
+        # get : bardatas
+        e0 = UUD[0]
+        e1 = UUD[1]
+        
+        # calc: diffs
+        d0 = UUD[0].price_Close - UUD[0].price_Open
+        d1 = UUD[1].price_Close - UUD[1].price_Open
+        
+        # build : list
+        tmpOf_Set = [d0, d1, UUD]
+#         tmpOf_Set = [d0, d1, d2, UUD]
+        
+        '''###################
+            step : 3.0 : 2
+                prep : conditions
+        ###################'''
+        # conditions
+        cond_1_1 = (d0 >= d1)
+        cond_1_2 = (d0 < d1)
+        
+        '''###################
+            step : 3.0 : 3
+                categorize
+        ###################'''
+        if cond_1_1 : lo_UUD_ZX_21M.append(tmpOf_Set)
+        
+        elif cond_1_2 : lo_UUD_ZX_12M.append(tmpOf_Set)
+        
+        else : #if cond_1_1 and cond_3_1 and cond_2_1
+        
+            print()
+            print("[%s:%d] (debug) unknown condition set : UUU = %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                  , UUU[0].dateTime
+                ), file=sys.stderr)
+            
+        #/if cond_1_1 and cond_3_1 and cond_2_1
+        
+        '''###################
+            step : 3.1
+                build line
+        ###################'''
+        # build line
+        tmp_msg = "%d\t%s\t%s\t%0.3f\t%0.3f" %\
+                (
+                 cntOf_For_Loop
+                 , e0.dateTime, e1.dateTime
+#                  ,UUU[0].dateTime, UUU[1].dateTime
+                 , d0, d1
+                 )
+
+        '''###################
+            step : 3.2
+                append
+        ###################'''
+        lo_Msg_CSV.append(tmp_msg)
+        lo_Msg_CSV.append("\n")
+        
+        # count
+        cntOf_For_Loop += 1
+        
+    #/for UUU in lo_UUU:
+    
+    '''###################
+        step : 4
+            build : stats data
+    ###################'''
+    '''###################
+        step : 4.1
+            line : header
+    ###################'''
+    #_20190329_134608
+    lo_Msg_CSV_Stats.append("[%s : %d]" % (os.path.basename(libs.thisfile()), libs.linenum()))
+    lo_Msg_CSV_Stats.append("\n")
+    
+#     lo_Msg_CSV_Stats = []
+    
+#     tmpOf_Line = "[%s : stats]==============================" % (strOf_CassifyLabel)
+    tmpOf_Line = "[%s : stats : %d]==============================" % \
+                (
+                 strOf_CassifyLabel
+                 , len(lo_UUD_ZX)
+                 )
+#     tmpOf_Line = "[lo_UUU_ZX : stats]=============================="
+    
+    lo_Msg_CSV_Stats.append(tmpOf_Line)
+    lo_Msg_CSV_Stats.append("\n")
+
+    tmpOf_Line = "\t".join([ \
+                         
+            "s.n.", "patterns"
+            , "num"
+            , "ratio"
+                         
+                         ])
+#     tmp_msg = "s.n.\te0.date\te1.date\te2.date\te0.diff\te1.diff\te2.diff"
+    
+    lo_Msg_CSV_Stats.append(tmpOf_Line)
+    lo_Msg_CSV_Stats.append("\n")
+    
+    '''###################
+        step : 4.2
+            line : body
+    ###################'''
+    '''###################
+        step : 4.2 : 1
+            prep
+    ###################'''
+    # list
+    lo_Patterns = [\
+                          "12M", "21M"
+                          ]
+    
+    # list : categorized entries
+    lo_UUD_ZX_Categorized = [\
+                             
+            lo_UUD_ZX_12M, lo_UUD_ZX_21M
+                             ]
+    
+    # len : total
+    #_20190329_130644:WL
+    lenOf_LO_UUD_ZX = len(lo_UUD_ZX)
+    
+    # length
+    lenOf_Patterns = len(lo_Patterns)
+    
+    # counter
+    cntOf_For_Loop = 1
+    
+    '''###################
+        step : 4.2 : 2
+            loop
+    ###################'''
+    for i in range(0, lenOf_Patterns):
+        '''###################
+            step : 4.2 : 2.1
+                build : line
+        ###################'''
+        tmpOf_Line = "\t".join([ \
+                         
+            str(cntOf_For_Loop)
+            , lo_Patterns[i]
+            , str(len(lo_UUD_ZX_Categorized[i]))
+            
+            , str(len(lo_UUD_ZX_Categorized[i]) / lenOf_LO_UUD_ZX)
+#             , 
+                         
+                         ])
+
+        '''###################
+            step : 4.2 : 2.2
+                append
+        ###################'''
+        lo_Msg_CSV_Stats.append(tmpOf_Line)
+        lo_Msg_CSV_Stats.append("\n")
+        
+        '''###################
+            step : 4.2 : 2.3
+                counter
+        ###################'''
+        cntOf_For_Loop += 1
+        
+    #/for i in range(0, lenOf_Patterns):
+    
+    # separator line
+    lo_Msg_CSV_Stats.append("\n")
+    
+    '''###################
+        step : 4.3
+            log line : update
+    ###################'''
+#     lo_Msg_CSV = lo_Msg_CSV_Stats + lo_Msg_CSV
+    
+    '''###################
+        report
+    ###################'''
+#     msg = "len(lo_UUU_ZX_321) = %d\nlen(lo_UUU_ZX_312) = %d\nlen(lo_UUU_ZX_213) = %d\nlen(lo_UUU_ZX_231) = %d\n" \
+#         % (
+#              len(lo_UUU_ZX_321) 
+#              , len(lo_UUU_ZX_312) 
+#              , len(lo_UUU_ZX_213) 
+#              , len(lo_UUU_ZX_231) 
+#            )
+#     
+#     print()
+#     print("[%s:%d] (debug) : %s\n %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#             , strOf_CassifyLabel
+#             , msg
+# #          , len(lo_UUU_ZX_321) 
+# #          , len(lo_UUU_ZX_312) 
+# #          , len(lo_UUU_ZX_213) 
+# #          , len(lo_UUU_ZX_231) 
+#         ), file=sys.stderr)
+#         
+#     
+#     
+    '''###################
+        return        
+    ###################'''
+#     return lo_Msg_CSV
+#     return lo_Msg_CSV
+#     return (lo_Msg_CSV, lo_Msg_CSV_Stats)
+#     return lo_Msg_CSV
+    
+#/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :
+

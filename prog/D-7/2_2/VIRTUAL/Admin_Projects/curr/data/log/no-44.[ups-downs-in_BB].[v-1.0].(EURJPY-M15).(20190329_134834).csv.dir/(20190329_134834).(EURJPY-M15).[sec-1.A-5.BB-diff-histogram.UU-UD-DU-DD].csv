@@ -1,15 +1,15 @@
-[20190328_110144 / views.py:12018]==============================
+[20190329_134835 / views.py:12018]==============================
 fname_Src_CSV	44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-ALL-20190327_162926).20190214_095445.csv
 slice by	through
-this file	(20190328_110142).(EURJPY-M15).[sec-1.A-5.BB-diff-histogram.UU-UD-DU-DD].csv 
+this file	(20190329_134834).(EURJPY-M15).[sec-1.A-5.BB-diff-histogram.UU-UD-DU-DD].csv 
 pair	EURJPY
 timeframe	M15
 start	2018.11.09 03:30
 end	2019.03.27 10:15
 total bars	9065
 
-[20190328_110144 / views.py:12036]
-[20190328_110144 / views.py:11765]==============================
+[20190329_134835 / views.py:12036]
+[20190329_134835 / views.py:11765]==============================
 average	0.120
 max	0.506
 min	0.016
@@ -17,7 +17,7 @@ variance	0.0070126
 std	0.08374
 median	0.098
 
-[20190328_110144 / views.py:11787]
+[20190329_134835 / views.py:11787]
 [BB-diff-histogram : lo_UU_Z1]==============================
 s.n.	e0.dateTime	diff-total	std score
 1	2018.11.13 05:15	0.364	79.14

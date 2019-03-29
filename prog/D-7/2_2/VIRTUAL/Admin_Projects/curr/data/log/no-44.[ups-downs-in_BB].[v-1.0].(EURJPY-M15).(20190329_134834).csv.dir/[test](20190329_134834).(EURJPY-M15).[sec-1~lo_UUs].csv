@@ -1,7 +1,7 @@
-[20190328_110144 / views.py:13931]
+[20190329_134835 / views.py:14088]
 fname_Src_CSV	44_5.1_10_rawdata.(EURJPY).(Period-M15).(NumOfUnits-4500).(Bars-ALL-20190327_162926).20190214_095445.csv
 slice by	through
-this file	no-44.[ups-downs-in_BB].[v-1.0].(EURJPY-M15).(20190328_110142).csv
+this file	no-44.[ups-downs-in_BB].[v-1.0].(EURJPY-M15).(20190329_134834).csv
 pair	EURJPY
 timeframe	M15
 start	2018.11.09 03:30
@@ -10,7 +10,7 @@ bars	9065
 
 
 
-[20190328_110144 / views.py:13950]
+[20190329_134835 / views.py:14107]
 
 
 [lo_UU]==============================
