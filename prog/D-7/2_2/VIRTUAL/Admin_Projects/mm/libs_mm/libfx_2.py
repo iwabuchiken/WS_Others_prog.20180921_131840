@@ -3780,7 +3780,9 @@ def build_Msg_Lines__LO_UUU_ZX(\
         return        
     ###################'''
     #_20190327_103816:WL:libfx_2
-    return (lo_Msg_CSV, lo_Msg_CSV_Stats)
+#     return lo_Msg_CSV
+#     return lo_Msg_CSV
+#     return (lo_Msg_CSV, lo_Msg_CSV_Stats)
 #     return lo_Msg_CSV
     
 #/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :

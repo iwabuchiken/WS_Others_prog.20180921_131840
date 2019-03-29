@@ -12721,8 +12721,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
 #     lo_Msg_CSV = \
     #_20190328_104844
     #_20190328_110947:WL:views
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_UUU_Z1, lo_Msg_CSV, strOf_CassifyLabel)
 #         libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX, lo_Msg_CSV, strOf_CassifyLabel)
@@ -12740,8 +12742,9 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190327_100226
 #     lo_Msg_CSV = \
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
     
     # separator line
     lo_Msg_CSV.append("\n")
@@ -12756,8 +12759,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190327_100226
 #     lo_Msg_CSV = \
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
@@ -12772,8 +12775,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190327_100226
 #     lo_Msg_CSV = \
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
@@ -12788,8 +12791,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190327_100226
 #     lo_Msg_CSV = \
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
@@ -12804,8 +12807,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
     
     #_20190327_100226
 #     lo_Msg_CSV = \
-    (lo_Msg_CSV, lo_Msg_CSV_Stats) = \
-        libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
+#     lo_Msg_CSV = \
+    libfx_2.build_Msg_Lines__LO_UUU_ZX(lo_Target, lo_Msg_CSV, strOf_CassifyLabel, lo_Msg_CSV_Stats)
 
     # separator line
     lo_Msg_CSV.append("\n")
