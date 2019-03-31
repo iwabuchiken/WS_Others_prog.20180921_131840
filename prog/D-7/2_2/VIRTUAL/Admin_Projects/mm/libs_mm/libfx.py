@@ -6075,7 +6075,7 @@ def _BUSL_3__Stat__Diff_Of_Bars__UpBars(\
            , dpath_Log
            , writeToFile = True
            ):
-
+#_20190331_094230
     '''###################
         step : 1
             prep
@@ -6348,7 +6348,8 @@ def BUSL_3__Stat__Diff_Of_Bars(\
 #            , filterBars = "all_bars"
            ):
 # def BUSL_3__Util_1__Slice_BarDatas_By_Week(lo_BarDatas, fname):
-    
+
+#_20190331_094117
     #debug
     print("[%s:%d] filterBars => %s" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
@@ -6383,6 +6384,7 @@ def BUSL_3__Stat__Diff_Of_Bars(\
     elif filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__UP_BARS.value : #if filterBars == cons_fx.ParamConstants.PARAM_BUSL3_3_2__DIFF_OF_BARS__ALL_BARS.value
     
         # call func
+        #_20190331_094349
         status, msg, (lenOf_BarDatas, cntOf_TargetBars, avg, std_dev) = \
             _BUSL_3__Stat__Diff_Of_Bars__UpBars(
                     lo_BarDatas

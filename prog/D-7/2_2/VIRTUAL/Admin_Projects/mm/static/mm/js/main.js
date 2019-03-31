@@ -551,6 +551,7 @@ function curr_BUSL_3__Action(_param) {
 		ajax : prep
 		
 	 ***************************/
+	//_20190331_093837
 	var _url = "http://127.0.0.1:8000/curr/tester_BuyUps_SellLows__V2";
 //	var _url = "http://127.0.0.1:8000/curr/tester_BuyUps_SellLows";
 

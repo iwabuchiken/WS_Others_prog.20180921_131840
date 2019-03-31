@@ -3739,3 +3739,6 @@
 [20190329_135023 / views.py:16502] tester_BuyUps_SellLows__V2 starting... =================
 [20190329_135028 / views.py:16853] tester_BuyUps_SellLows__V2 ==> done
 
+[20190331_082149 / views.py:16504] tester_BuyUps_SellLows__V2 starting... =================
+[20190331_082159 / views.py:16855] tester_BuyUps_SellLows__V2 ==> done
+

@@ -3059,7 +3059,7 @@ def _tester_BUSL__V2__Param_4__Slice_BarDatas_By_Day(request):
         1    ==> slice bardatas --> file created
 ###################'''
 def _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request):
-
+#_20190331_094002
     '''###################
         request
     ###################'''
@@ -13403,7 +13403,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
              , timeframe
              , "sec-1"
              , "A-6"
-             , "3-seq"
+             , "3-seq-list"
+#              , "3-seq"
              , tlabel_A6
              
              )
@@ -13528,6 +13529,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
     ###################'''
     lo_BD_Sequences = [lo_UUU, lo_UUD]
     
+    #_20190331_085922
     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges(\
             lo_BD_Sequences
             , strOf_Slice_By_Day
@@ -13643,7 +13645,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
         step : A : 3.2 : 1
             lo_UUU
     ###################'''
-    lo_Msg_CSV.append("[lo_UUU]==============================")
+#     lo_Msg_CSV.append("[lo_UUU]==============================")
+    strOf_LO_Type = "lo_UUU"
+    
+    lenOf_LO_XXX = len(lo_UUU)
+    
+    lo_Msg_CSV.append("[%s : %d]==============================" \
+                        % (strOf_LO_Type, lenOf_LO_XXX))
     lo_Msg_CSV.append("\n")
     
     #_20190320_142707
@@ -15063,6 +15071,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     
     #_20190325_085645
 #     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
+    #_20190331_090241
     (lo_UUU, lo_UUD) = _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq(\
 #                         strOf_Slice_By_Day
             strOf_Slice_By_Throgh
@@ -15079,8 +15088,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         )
 
     #_20190319_141941
-    
+
+    '''###################
+        step : A : 7
+            lo_UUU_ZX
+    ###################'''
     #_20190325_085912
+    #_20190331_090336
     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX(\
             (lo_UUU, lo_UUD)
             , strOf_Slice_By_Throgh
@@ -15094,13 +15108,17 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             , tlabel
             , flag_Write_to_File
         )    
-    '''###################
-        step : A : 7
-            lo_UUU_ZX
-    ###################'''
     
     '''###################
         step : A : 8
+            
+    ###################'''
+    #_20190331_092850:wl:views
+    flag_Write_to_File = True
+    
+    
+    '''###################
+        step : A : 9
             return
     ###################'''
     return ( \
@@ -15178,6 +15196,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     
     #_20190311_145414
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
+    #_20190331_090447
     _req_param_tag_RB_No_44_1_SubData__Checked_Val \
             , lo_UUs_DDs, dpath_Log_CSV = \
         _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
@@ -15212,6 +15231,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2(\
     
     #@_20190301_104918
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(lo_UUs_DDs)
+    #_20190331_090927
     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_2(\
             lo_Src_File_Data
             , lo_Log_File_CSV_Data
@@ -16636,6 +16656,7 @@ def tester_BuyUps_SellLows__V2(request):
             PARAM_BUSL3_CMD_STAT_1__DIFFOFBARS_AVG_DEV
         ###################'''
         # call func
+        #_20190331_093938
         (status, msg) = _tester_BUSL__V2__Param_5__Stat_Diff_Of_Bars(request)
 
         dic['message'] += "stat : diff of bars"
