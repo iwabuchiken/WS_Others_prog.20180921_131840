@@ -3773,24 +3773,24 @@ def build_Msg_Lines__LO_UUU_ZX(\
     '''###################
         report
     ###################'''
-    msg = "len(lo_UUU_ZX_321) = %d\nlen(lo_UUU_ZX_312) = %d\nlen(lo_UUU_ZX_213) = %d\nlen(lo_UUU_ZX_231) = %d\n" \
-        % (
-             len(lo_UUU_ZX_321) 
-             , len(lo_UUU_ZX_312) 
-             , len(lo_UUU_ZX_213) 
-             , len(lo_UUU_ZX_231) 
-           )
-    
-    print()
-    print("[%s:%d] (debug) : %s\n %s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-            , strOf_CassifyLabel
-            , msg
+#     msg = "len(lo_UUU_ZX_321) = %d\nlen(lo_UUU_ZX_312) = %d\nlen(lo_UUU_ZX_213) = %d\nlen(lo_UUU_ZX_231) = %d\n" \
+#         % (
+#              len(lo_UUU_ZX_321) 
+#              , len(lo_UUU_ZX_312) 
+#              , len(lo_UUU_ZX_213) 
+#              , len(lo_UUU_ZX_231) 
+#            )
+#     
+#     print()
+#     print("[%s:%d] (debug) : %s\n %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#             , strOf_CassifyLabel
+#             , msg
 #          , len(lo_UUU_ZX_321) 
 #          , len(lo_UUU_ZX_312) 
 #          , len(lo_UUU_ZX_213) 
 #          , len(lo_UUU_ZX_231) 
-        ), file=sys.stderr)
+#         ), file=sys.stderr)
         
     
     
