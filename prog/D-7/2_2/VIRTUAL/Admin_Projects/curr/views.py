@@ -13302,15 +13302,39 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
     lo_BarDatas_Tmp__Downs = []
     lo_BarDatas_Tmp__Zeros = []
     
+    # max
+    maxOf__Ups = -1; maxOf__Downs = -1; maxOf__Zeros = -1
+    
+    # max : e0
+    maxOf__Ups_e0 = False; maxOf__Downs_e0 = False; maxOf__Zeros_e0 = False
+    
+    # min
+    minOf__Ups = 999; minOf__Downs = 999; minOf__Zeros = 999
+    
+    # min : e0
+    minOf__Ups_e0 = False; minOf__Downs_e0 = False; minOf__Zeros_e0 = False
+    
+    # max:HL
+    maxOf_Diffs_HL__Ups = -1; maxOf_Diffs_HL__Downs = -1; maxOf_Diffs_HL__Zeros = -1; 
+    # min:HL
+    minOf_Diffs_HL__Ups = 999; minOf_Diffs_HL__Downs = 999; minOf_Diffs_HL__Zeros = 999
+    
     '''###################
-        step : 1.1
-            ops : ups
+        step : 2
+            ops
     ###################'''
 #     for item in lo_BarDatas:
     for item in tmp_LO_BarDatas:
         # filter
         if item.diff_OC > 0 : #if item.diff_OC > 0
-
+            '''###################
+                step : 2.1
+                    ops : ups
+            ###################'''
+            '''###################
+                step : 2.1 : 1
+                    ops : ups : calc
+            ###################'''
             # diff
             dif = item.diff_OC
             
@@ -13327,14 +13351,52 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
             
             # append
             lo_BarDatas_Tmp__Ups.append(item)
+
+            '''###################
+                step : 2.1 : 2
+                    ops : ups : max
+            ###################'''
+            if dif > maxOf__Ups : #if dif > maxOf__Ups
+                
+                maxOf__Ups = dif
+                
+                # update : e0
+                maxOf__Ups_e0 = item
+            
+            #/if dif > maxOf__Ups
+
+            '''###################
+                step : 2.1 : 3
+                    ops : ups : min
+            ###################'''
+            #_20190401_181456:fix
+            if dif < minOf__Ups : #if dif > maxOf__Ups
+                
+                minOf__Ups = dif
+
+                # update : e0
+                minOf__Ups_e0 = item
+            
+            #/if dif > maxOf__Ups
             
         #/if item.diff_OC > 0
         
+        
+        '''###################
+                step : 2.2
+                    ops : downs
+        ###################'''
+        #_20190401_095649:wl:views:in-func
+        
+        '''###################
+                step : 2.2
+                    ops : zeros
+        ###################'''
     #/for item in lo_BarDatas:
 
     '''###################
-        step : 2
-            stats
+        step : 3
+            stats : ups
     ###################'''
     avg__Ups = sumOf_Diffs__Ups / cntOf_TargetBars__Ups
 #     avg = sumOf_Diffs / lenOf_BarDatas
@@ -13343,20 +13405,67 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
     avg_HL__Ups = sumOf_Diffs_HL__Ups / cntOf_TargetBars__Ups
     
     std_dev__Ups = libfx._BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp__Ups)
-
+    
     '''###################
-        step : 3
+        step : X
             reports
     ###################'''
     #debug
     print()
-    print("[%s:%d] avg__Ups = %.03f" % \
+    print("[%s:%d] avg__Ups = %.03f, avg_HL__Ups = %.03f, std_dev__Ups = %.03f" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
-        , avg__Ups
+        , avg__Ups, avg_HL__Ups, std_dev__Ups
+        
         ), file=sys.stderr)
     print()
+
+
+    '''###################
+        step : 4
+            build : log lines
+    ###################'''
+    '''###################
+        step : 4.1
+            build : log lines : header
+    ###################'''
+    lo_Msg_CSV.append("[diff of ups/downs/zeros]==============================")
+    lo_Msg_CSV.append("\n")
     
-    #_20190401_095649:wl:views:in-func
+#     lo_Msg_CSV.append("category\tnum\tavg\tavg-HL\tstdev")
+    lo_Msg_CSV.append("category\tnum\tratio\tavg\tavg-HL\tstdev\tmax.bar\tdatetime\tmin.bar\tdatetime")
+    lo_Msg_CSV.append("\n")
+    
+    '''###################
+        step : 4.2
+            build : log lines : data
+    ###################'''
+#     lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f" % \
+    lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
+                      
+                      ("ups"
+                      , cntOf_TargetBars__Ups
+                      , cntOf_TargetBars__Ups / lenOf_BarDatas
+                      , avg__Ups
+                      , avg_HL__Ups
+                      , std_dev__Ups
+                      , maxOf__Ups
+                      , maxOf__Ups_e0.dateTime
+                      , minOf__Ups
+                      , minOf__Ups_e0.dateTime
+                      )
+              )
+    lo_Msg_CSV.append("\n")
+    
+    
+    
+    
+    '''###################
+        step : X
+            return
+    ###################'''
+    #_20190401_175410:fix
+    return (cntOf_TargetBars__Ups, avg__Ups, avg_HL__Ups, std_dev__Ups)
+    
     
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
 
@@ -13527,7 +13636,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
              , timeframe
              , "sec-1"
              , "A-8"
-             , "diff-of-seq"
+             , "diff-of-bars"
+#              , "diff-of-seq"
              , tlabel_A7
              
              )
@@ -13560,17 +13670,21 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
         step : A : 2.1
             ops : all bars
     ###################'''
-    _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
+    #_20190401_095642:caller
+    (numOf__Ups, avg__Ups, avg_HL__Ups, std_dev__Ups) = \
+            _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
            
-           tmp_LO_BarDatas
-           , lo_Msg_CSV
-           )
+                   tmp_LO_BarDatas
+                   , lo_Msg_CSV
+                   
+            )
+            
     '''###################
         step : A : 2.X
             ops : lo_UUU
     ###################'''
     #_20190401_091918:caller
-    #_20190401_090408:views:in-func
+    
     #==> this func needs to be fixed : 20190401_095318
 #     _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 #                  
@@ -13585,7 +13699,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
    
     '''###################
         step : B1 : 2
-            prep : header : meta
+            write : header : meta
     ###################'''
     lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
     lo_Msg_CSV_Header.append("\n")
@@ -13636,6 +13750,34 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
             , len(lo_Msg_CSV_Header)
             ), file=sys.stderr)        
     
+    '''###################
+        step : B1 : 3
+            write : data
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_CSV)
+#             , "".join(lo_Msg_CSV_Header)
+            )
+
+
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+#         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+    
+    
+    '''###################
+        step : B1 : 3
+            write : data
+    ###################'''
+    
+    
+    #_20190401_090408:views:in-func
     
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
 
