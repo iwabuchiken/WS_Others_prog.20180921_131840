@@ -13242,40 +13242,24 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
 
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX__LO_UUU(\
 
-'''###################
-    _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU
 
-    at : 2019/04/01 09:50:47
+'''###################
+    _Diff_Of_Bars__Get_Data
+
+    at : 2019/04/02 17:11:43
     
     @param : 
         
-        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
-        strOf_Slice_By_Day
-        fname_Log_CSV_trunkfname_Log_CSV
-        dpath_Log
-        fname_Src_CSV
-        _req_param_tag_RB_No_44_1_SubData__Checked_Val
-        pair
-        timeframe
-        tmp_LO_BarDatas
-        tlabel
-        flag_Write_to_File
-    
     @return: 
     
 ###################'''
-def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
+def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
 
-           tmp_LO_BarDatas
-           , lo_Msg_CSV
+#_20190402_171705:head
 
-            ) :
-    
-    #_20190401_095637:head
-    
     #debug
     print()
-    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars" % \
+    print("[%s:%d] _Diff_Of_Bars__Get_Data" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         
         ), file=sys.stderr)
@@ -13323,6 +13307,230 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
         step : 2
             ops
     ###################'''
+    
+#     for item in lo_BarDatas:
+    for item in tmp_LO_BarDatas:
+        # filter
+        if item.diff_OC > 0 : #if item.diff_OC > 0
+            '''###################
+                step : 2.1
+                    ops : ups
+            ###################'''
+            '''###################
+                step : 2.1 : 1
+                    ops : ups : calc
+            ###################'''
+            # diff
+            dif = item.diff_OC
+            
+            # diff
+            dif_HL = item.diff_HL
+            #abc
+            # sum
+            sumOf_Diffs__Ups += dif
+            
+            sumOf_Diffs_HL__Ups += dif_HL
+            
+            # count
+            cntOf_TargetBars__Ups += 1
+            
+            # append
+            lo_BarDatas_Tmp__Ups.append(item)
+
+            '''###################
+                step : 2.1 : 2
+                    ops : ups : max
+            ###################'''
+            if dif > maxOf__Ups : #if dif > maxOf__Ups
+                
+                maxOf__Ups = dif
+                
+                # update : e0
+                maxOf__Ups_e0 = item
+            
+            #/if dif > maxOf__Ups
+
+            '''###################
+                step : 2.1 : 3
+                    ops : ups : min
+            ###################'''
+            if dif < minOf__Ups : #if dif > maxOf__Ups
+                
+                minOf__Ups = dif
+
+                # update : e0
+                minOf__Ups_e0 = item
+            
+            #/if dif > maxOf__Ups
+            
+        #/if item.diff_OC > 0
+        
+        
+        '''###################
+                step : 2.2
+                    ops : downs
+        ###################'''
+        
+        '''###################
+                step : 2.2
+                    ops : zeros
+        ###################'''
+    #/for item in lo_BarDatas:
+
+    '''###################
+        step : 3
+            stats : ups
+    ###################'''
+    avg__Ups = sumOf_Diffs__Ups / cntOf_TargetBars__Ups
+#     avg = sumOf_Diffs / lenOf_BarDatas
+#     avg = sumOf_Diffs / dif
+    
+    avg_HL__Ups = sumOf_Diffs_HL__Ups / cntOf_TargetBars__Ups
+    
+    std_dev__Ups = libfx._BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp__Ups)
+
+    #_20190402_171719:wl:views:in-func
+    '''###################
+        step : x
+            return
+    ###################'''
+    '''###################
+        step : x.1
+            build ret value : ups
+    ###################'''
+    #_20190402_172934:fix
+    retOf_Ups = \
+        (cntOf_TargetBars__Ups \
+            , avg__Ups, avg_HL__Ups, std_dev__Ups \
+            , maxOf__Ups, maxOf__Ups_e0 \
+            , minOf__Ups, minOf__Ups_e0)
+    
+    
+    retOf_Downs = True
+    retOf_Zeros = True
+    
+    '''###################
+        step : x.x
+            return
+    ###################'''
+    return (retOf_Ups, retOf_Downs, retOf_Zeros)
+#     return (True, True, True)
+
+#/ def _Diff_Of_Bars__Get_Data():
+
+'''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU
+
+    at : 2019/04/01 09:50:47
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
+
+           tmp_LO_BarDatas
+           , pair
+           , lo_Msg_CSV
+
+            ) :
+    
+    #_20190401_095637:head
+    
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+
+    '''###################
+        step : 1
+            gen : data
+    ###################'''
+    #_20190402_115040:wl:views:in-func
+    #_20190402_171712:caller
+    retOf_Func = _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas)
+    
+    '''###################
+        step : 2
+            unpack : data
+    ###################'''
+    # ups, downs, ...
+    retOf_Func_Ups, retOf_Func_Downs, retOf_Func_Zeros = retOf_Func
+    
+    # ups
+    cntOf_TargetBars__Ups \
+        , avg__Ups, avg_HL__Ups, std_dev__Ups \
+        , maxOf__Ups, maxOf__Ups_e0 \
+        , minOf__Ups, minOf__Ups_e0 = retOf_Func_Ups
+
+    #debug
+    #_20190402_173246:debug
+    print()
+    print("[%s:%d] cntOf_TargetBars__Ups => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , cntOf_TargetBars__Ups
+        ), file=sys.stderr)
+    
+    #_20190402_172156:C/P
+    '''###################
+        step : 1
+            prep : vars
+    ###################'''
+    sumOf_Diffs__Ups = 0.0
+    sumOf_Diffs__Downs = 0.0
+    sumOf_Diffs__Zeros = 0.0
+    
+    sumOf_Diffs_HL__Ups = 0.0
+    sumOf_Diffs_HL__Downs = 0.0
+    sumOf_Diffs_HL__Zeros = 0.0
+    
+    lenOf_BarDatas = len(tmp_LO_BarDatas)
+    
+    cntOf_TargetBars__Ups = 0
+    cntOf_TargetBars__Downs = 0
+    cntOf_TargetBars__Zeros = 0
+    
+    lo_BarDatas_Tmp__Ups = []
+    lo_BarDatas_Tmp__Downs = []
+    lo_BarDatas_Tmp__Zeros = []
+    
+    # max
+    maxOf__Ups = -1; maxOf__Downs = -1; maxOf__Zeros = -1
+    
+    # max : e0
+    maxOf__Ups_e0 = False; maxOf__Downs_e0 = False; maxOf__Zeros_e0 = False
+    
+    # min
+    minOf__Ups = 999; minOf__Downs = 999; minOf__Zeros = 999
+    
+    # min : e0
+    minOf__Ups_e0 = False; minOf__Downs_e0 = False; minOf__Zeros_e0 = False
+    
+    # max:HL
+    maxOf_Diffs_HL__Ups = -1; maxOf_Diffs_HL__Downs = -1; maxOf_Diffs_HL__Zeros = -1; 
+    # min:HL
+    minOf_Diffs_HL__Ups = 999; minOf_Diffs_HL__Downs = 999; minOf_Diffs_HL__Zeros = 999
+    
+    '''###################
+        step : 2
+            ops
+    ###################'''
+    
 #     for item in lo_BarDatas:
     for item in tmp_LO_BarDatas:
         # filter
@@ -13393,7 +13601,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
                     ops : zeros
         ###################'''
     #/for item in lo_BarDatas:
-
+    #_20190402_172232:C/P:end
+    
     '''###################
         step : 3
             stats : ups
@@ -13440,8 +13649,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
             build : log lines : data
     ###################'''
 #     lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f" % \
-    #_20190402_115040:wl:views:in-func
-    lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
+    
+    
+    if pair == "AUDUSD" \
+        or pair == "EURUSD" : #if pair == "AUDUSD"
+#     if pair == "AUDUSD" : #if pair == "AUDUSD"
+    
+        lo_Msg_CSV.append("%s\t%d\t%.05f\t%.05f\t%.05f\t%.05f\t%.05f\t%s\t%.05f\t%s" % \
                       
                       ("ups"
                       , cntOf_TargetBars__Ups
@@ -13454,11 +13668,45 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
                       , minOf__Ups
                       , minOf__Ups_e0.dateTime
                       )
-              )
+        )
+        
+    else : #if pair == "AUDUSD"
+    
+        lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
+                      
+                      ("ups"
+                      , cntOf_TargetBars__Ups
+                      , cntOf_TargetBars__Ups / lenOf_BarDatas
+                      , avg__Ups
+                      , avg_HL__Ups
+                      , std_dev__Ups
+                      , maxOf__Ups
+                      , maxOf__Ups_e0.dateTime
+                      , minOf__Ups
+                      , minOf__Ups_e0.dateTime
+                      )
+        )
+    
+    #/if pair == "AUDUSD"
+    
+    
+    
+#     lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
+#                       
+#                       ("ups"
+#                       , cntOf_TargetBars__Ups
+#                       , cntOf_TargetBars__Ups / lenOf_BarDatas
+#                       , avg__Ups
+#                       , avg_HL__Ups
+#                       , std_dev__Ups
+#                       , maxOf__Ups
+#                       , maxOf__Ups_e0.dateTime
+#                       , minOf__Ups
+#                       , minOf__Ups_e0.dateTime
+#                       )
+#               )
+
     lo_Msg_CSV.append("\n")
-    
-    
-    
     
     '''###################
         step : X
@@ -13676,6 +13924,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
             _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
            
                    tmp_LO_BarDatas
+                   , pair
                    , lo_Msg_CSV
                    
             )
