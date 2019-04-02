@@ -13440,6 +13440,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
             build : log lines : data
     ###################'''
 #     lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f" % \
+    #_20190402_115040:wl:views:in-func
     lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
                       
                       ("ups"
@@ -16446,7 +16447,13 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
     
     #ccc
     
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
+    #debug
+    print()
+    print("[%s:%d] write log --> averting : fname_Log_CSV : '%s'" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log_CSV
+        ), file=sys.stderr)
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_CSV, 2)
 
     '''###################
         write : log
@@ -16460,7 +16467,13 @@ def _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas__exec__V_1_0(request):
 #     str_Log_Lines = "\r\n".join(tmp_lo_Log_Lines)
     str_Log_Lines = "\r\n".join(lo_Log_Lines)
      
-    libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
+    #debug
+    print()
+    print("[%s:%d] write log --> averting : fname_Log : '%s'" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        , fname_Log
+        ), file=sys.stderr)
+#     libs.write_Log(str_Log_Lines, dpath_Log, fname_Log, 2)                
     #@_20190303_104021
     
     '''###################
