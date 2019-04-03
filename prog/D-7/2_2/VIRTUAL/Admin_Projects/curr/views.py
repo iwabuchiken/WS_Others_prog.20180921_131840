@@ -13311,8 +13311,7 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
 #     for item in lo_BarDatas:
     for item in tmp_LO_BarDatas:
         
-        #_20190402_171719:wl:views:in-func
-        
+        #_20190403_182435:c/p:start
         # filter
         if item.diff_OC > 0 : #if item.diff_OC > 0
             '''###################
@@ -13366,6 +13365,9 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
             
             #/if dif > maxOf__Ups
             
+            # next elem
+            continue
+            
         #/if item.diff_OC > 0
         
         
@@ -13373,6 +13375,73 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
                 step : 2.2
                     ops : downs
         ###################'''
+        #_20190402_171719:wl:views:in-func
+        
+        #_20190403_182458:c/p:end
+        # filter
+#         if item.diff_OC > 0 : #if item.diff_OC > 0
+        if item.diff_OC < 0 : #if item.diff_OC < 0
+            '''###################
+                step : 2.1
+                    ops : ups
+            ###################'''
+            '''###################
+                step : 2.1 : 1
+                    ops : ups : calc
+            ###################'''
+            # diff
+            dif = item.diff_OC
+            
+            # diff
+            dif_HL = item.diff_HL
+            #abc
+            # sum
+            sumOf_Diffs__Downs += dif
+            
+            sumOf_Diffs_HL__Downs += dif_HL
+            
+            # count
+            cntOf_TargetBars__Downs += 1
+            
+            # append
+            lo_BarDatas_Tmp__Downs.append(item)
+
+            '''###################
+                step : 2.1 : 2
+                    ops : ups : max
+            ###################'''
+#             if dif > maxOf__Downs : #if dif > maxOf__Ups
+#             if abs(dif) > abs(maxOf__Downs) : #if dif > maxOf__Ups
+            #_20190403_185040:found
+            if abs(dif) >= abs(maxOf__Downs) : #if dif > maxOf__Ups
+                
+                maxOf__Downs = dif
+                
+                # update : e0
+                maxOf__Downs_e0 = item
+            
+            #/if dif > maxOf__Downs
+
+            '''###################
+                step : 2.1 : 3
+                    ops : ups : min
+            ###################'''
+#             if dif < minOf__Downs : #if dif > maxOf__Downs
+            #_20190403_185515:found
+            if abs(dif) < abs(maxOf__Downs) : #if dif > maxOf__Downs
+                
+                minOf__Downs = dif
+
+                # update : e0
+                minOf__Downs_e0 = item
+            
+            #/if dif > maxOf__Downs
+            
+            # next elem
+            continue
+            
+        #/if item.diff_OC < 0        
+        
         
         '''###################
                 step : 2.2
@@ -13382,7 +13451,11 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
 
     '''###################
         step : 3
-            stats : ups
+            calc : stats
+    ###################'''
+    '''###################
+        step : 3.1
+            calc : stats : ups
     ###################'''
     avg__Ups = sumOf_Diffs__Ups / cntOf_TargetBars__Ups
 #     avg = sumOf_Diffs / lenOf_BarDatas
@@ -13391,6 +13464,18 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
     avg_HL__Ups = sumOf_Diffs_HL__Ups / cntOf_TargetBars__Ups
     
     std_dev__Ups = libfx._BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp__Ups)
+
+    '''###################
+        step : 3.2
+            calc : stats : downs
+    ###################'''
+    avg__Downs = sumOf_Diffs__Downs / cntOf_TargetBars__Downs
+#     avg = sumOf_Diffs / lenOf_BarDatas
+#     avg = sumOf_Diffs / dif
+    
+    avg_HL__Downs = sumOf_Diffs_HL__Downs / cntOf_TargetBars__Downs
+    
+    std_dev__Downs = libfx._BUSL_3__Stat__Diff_Of_Bars__StdDev(lo_BarDatas_Tmp__Downs)
 
     
     '''###################
@@ -13408,8 +13493,19 @@ def _Diff_Of_Bars__Get_Data(tmp_LO_BarDatas):
             , maxOf__Ups, maxOf__Ups_e0 \
             , minOf__Ups, minOf__Ups_e0)
     
+    '''###################
+        step : x.2
+            build ret value : downs
+    ###################'''
+    #_20190402_172934:fix
+    retOf_Downs = \
+        (cntOf_TargetBars__Downs \
+            , avg__Downs, avg_HL__Downs, std_dev__Downs \
+            , maxOf__Downs, maxOf__Downs_e0 \
+            , minOf__Downs, minOf__Downs_e0)
     
-    retOf_Downs = True
+    
+#     retOf_Downs = True
     retOf_Zeros = True
     
     '''###################
@@ -13479,19 +13575,27 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
             unpack : data
     ###################'''
     # ups, downs, ...
-    retOf_Func_Ups, retOf_Func_Downs, retOf_Func_Zeros = retOf_Func
+    retOf_Func__Ups, retOf_Func__Downs, retOf_Func__Zeros = retOf_Func
     
     # ups
     cntOf_TargetBars__Ups \
         , avg__Ups, avg_HL__Ups, std_dev__Ups \
         , maxOf__Ups, maxOf__Ups_e0 \
-        , minOf__Ups, minOf__Ups_e0 = retOf_Func_Ups
+        , minOf__Ups, minOf__Ups_e0 = retOf_Func__Ups
+
+    # downs
+    #_20190403_184633:fix
+    cntOf_TargetBars__Downs \
+        , avg__Downs, avg_HL__Downs, std_dev__Downs \
+        , maxOf__Downs, maxOf__Downs_e0 \
+        , minOf__Downs, minOf__Downs_e0 = retOf_Func__Downs
 
     #debug
     #_20190402_173246:debug
     print()
     print("[%s:%d] cntOf_TargetBars__Ups => %d" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
+         #_20190403_184155:fix
         , cntOf_TargetBars__Ups
         ), file=sys.stderr)
     
@@ -13664,7 +13768,11 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
     if pair == "AUDUSD" \
         or pair == "EURUSD" : #if pair == "AUDUSD"
 #     if pair == "AUDUSD" : #if pair == "AUDUSD"
-    
+        
+        '''###################
+            step : 4.2.1a
+                build : log lines : data : ups
+        ###################'''
         lo_Msg_CSV.append("%s\t%d\t%.05f\t%.05f\t%.05f\t%.05f\t%.05f\t%s\t%.05f\t%s" % \
                       
                       ("ups"
@@ -13680,8 +13788,36 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
                       )
         )
         
+        lo_Msg_CSV.append("\n")
+        
+        '''###################
+            step : 4.2.2a
+                build : log lines : data : downs
+        ###################'''
+        lo_Msg_CSV.append("%s\t%d\t%.05f\t%.05f\t%.05f\t%.05f\t%.05f\t%s\t%.05f\t%s" % \
+                      
+                      ("downs"
+                      , cntOf_TargetBars__Downs
+                      , cntOf_TargetBars__Downs / lenOf_BarDatas
+                      , avg__Downs
+                      , avg_HL__Downs
+                      , std_dev__Downs
+                      #_20190403_184746:fix
+                      , maxOf__Downs
+                      , maxOf__Downs_e0.dateTime
+                      , minOf__Downs
+                      , minOf__Downs_e0.dateTime
+                      )
+        )
+        
+        lo_Msg_CSV.append("\n")
+        
     else : #if pair == "AUDUSD"
     
+        '''###################
+            step : 4.2.1b
+                build : log lines : data : ups
+        ###################'''
         lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
                       
                       ("ups"
@@ -13697,6 +13833,30 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__All_Bars(\
                       )
         )
     
+        lo_Msg_CSV.append("\n")
+
+        '''###################
+            step : 4.2.2b
+                build : log lines : data : downs
+        ###################'''
+        lo_Msg_CSV.append("%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%s\t%.03f\t%s" % \
+                      
+                      ("downs"
+                      , cntOf_TargetBars__Downs
+                      , cntOf_TargetBars__Downs / lenOf_BarDatas
+                      , avg__Downs
+                      , avg_HL__Downs
+                      , std_dev__Downs
+                      , maxOf__Downs
+                      , maxOf__Downs_e0.dateTime
+                      , minOf__Downs
+                      , minOf__Downs_e0.dateTime
+                      )
+        )
+        
+        lo_Msg_CSV.append("\n")
+        
+        
     #/if pair == "AUDUSD"
     
     
