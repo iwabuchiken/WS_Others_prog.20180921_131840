@@ -13992,6 +13992,258 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds
+
+    at : 2019/04/04 16:05:12
+    
+    @description :
+        1. list of bardatas ===> extract sequence of "up-up-up"
+        2. use threshold ==> the mid bar : if this bar is "down",
+                --> if the volume of "down" is within the threshold value
+                --> then, count this bar as "up" --> i.e. count as "up-up-up"
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+
+        ) :
+
+#_20190404_151216:head
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+
+    '''###################
+        step : A : 1.1
+            prep : length
+    ###################'''
+    lenOf_BDs = len(tmp_LO_BarDatas)
+
+    '''###################
+        step : A : 1.2
+            prep : threshold
+            ==> the prev up bar, x % down or less ---> continue
+    ###################'''
+    valOf_Threshold = 0.5
+#     valOf_Threshold = 0.1
+
+    '''###################
+        step : A : 1.3
+            vars
+    ###################'''
+    lo_Hits = []
+    lo_UUU = []
+
+    '''###################
+        step : B
+            ops
+    ###################'''
+    '''###################
+        step : B.1
+            for-loop
+    ###################'''
+    for i in range(0, lenOf_BDs - 2):
+        '''###################
+            step : B.1 : 1
+                prep : vars
+        ###################'''
+        # bardata
+        e0 = tmp_LO_BarDatas[i]
+        e1 = tmp_LO_BarDatas[i + 1]
+        e2 = tmp_LO_BarDatas[i + 2]
+        
+        # diff
+        d0 = e0.diff_OC
+        d1 = e1.diff_OC
+        d2 = e2.diff_OC
+        
+        # conditions
+        cond_1 = d0 >= 0
+        cond_2 = d2 >= 0
+        
+        cond_3 = d1 >= d0 * valOf_Threshold * -1
+        
+        cond_4 = d1 >= 0
+        
+        '''###################
+            step : B.1 : j0
+                diff >= threshold ?
+        ###################'''
+        if cond_1 and cond_2 and cond_4 : #if cond_1 and cond_2 and cond_4
+            '''###################
+                step : B.1 : j0 : Y
+                    diff >= threshold
+            ###################'''
+            '''###################
+                step : B.1 : j0 : Y : 1
+                    append
+            ###################'''
+            lo_UUU.append([e0, e1, e2])
+        
+        '''###################
+            step : B.1 : j1
+                diff >= threshold ?
+        ###################'''
+        if cond_1 and cond_2 and cond_3 : #if cond_1 and cond_2 and cond_3
+            '''###################
+                step : B.1 : j1 : Y
+                    diff >= threshold
+            ###################'''
+            '''###################
+                step : B.1 : j1 : Y : 1
+                    append
+            ###################'''
+            lo_Hits.append([e0, e1, e2])
+        
+            '''###################
+                step : B.1 : j1 : Y : 2
+                    next
+            ###################'''
+            continue
+        
+        else : #/if cond_1 and cond_2 and cond_3
+            
+            continue
+        
+        #/if cond_1 and cond_2 and cond_3
+        
+    #/for i in range(0, lenOf_BDs - 2):
+
+    '''###################
+        step : B.2
+            calc : diff of ups
+    ###################'''
+    sumOf_Diffs__UUU_With_HS = 0
+    sumOf_Diffs__UUU_Without_HS = 0
+    
+    '''###################
+        step : B.2 : 1
+            calc : diff of ups : With_HS
+    ###################'''
+    for item in lo_Hits:
+        '''###################
+            step : B.2 : 1.1
+                calc
+        ###################'''
+        _diff = item[2].price_Close - item[0].price_Open
+        
+        '''###################
+            step : B.2 : 1.2
+                sum
+        ###################'''
+        sumOf_Diffs__UUU_With_HS += _diff
+        
+    #/for item in lo_Hits:
+    '''###################
+        step : B.2 : 1.3
+            average
+    ###################'''
+    avgOf_Diffs___UUU_With_HS = sumOf_Diffs__UUU_With_HS / len(lo_Hits)
+    
+    '''###################
+        step : B.2 : 2
+            calc : diff of ups : Without_HS
+    ###################'''
+    for item in lo_UUU:
+        '''###################
+            step : B.2 : 2.1
+                calc
+        ###################'''
+        _diff = item[2].price_Close - item[0].price_Open
+        
+        '''###################
+            step : B.2 : 2.2
+                sum
+        ###################'''
+        sumOf_Diffs__UUU_Without_HS += _diff
+        
+    #/for item in lo_Hits:
+    '''###################
+        step : B.2 : 2.3
+            average
+    ###################'''
+    avgOf_Diffs___UUU_Without_HS = sumOf_Diffs__UUU_Without_HS / len(lo_UUU)
+
+    '''###################
+        report
+    ###################'''
+    #debug
+    msg = "threshold = %.02f\n" % (valOf_Threshold)
+    
+    msg += "avg:Hits = %.03f / avg:UUU = %.03f\n" % \
+            (
+             avgOf_Diffs___UUU_With_HS
+             , avgOf_Diffs___UUU_Without_HS
+             )
+    
+    msg += "len(lo_Hits) => %d (%.02f) / len(lo_UUU) => %d (%.02f) / Hits~UUU = %.02f" % \
+            (
+                 len(lo_Hits)
+                 , len(lo_Hits) / lenOf_BDs
+                 
+                 , len(lo_UUU)
+                 , len(lo_UUU) / lenOf_BDs
+                 
+                 , len(lo_Hits) / len(lo_UUU)
+             )
+    print()
+    print("[%s:%d]\n%s" % \
+            (
+             os.path.basename(libs.thisfile()), libs.linenum()
+             , msg
+             )
+          )
+#     print("[%s:%d] len(lo_Hits) => %d (%.02f) / len(lo_UUU) => %d (%.02f) / Hits~UUU = %.02f" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , len(lo_Hits)
+#          , len(lo_Hits) / lenOf_BDs
+#          
+#          , len(lo_UUU)
+#          , len(lo_UUU) / lenOf_BDs
+#          
+#          , len(lo_Hits) / len(lo_UUU)
+#          
+#         ), file=sys.stderr)
+    print()
+    
+
+#_20190404_151225:wl:views:in-func
+
+#/ def _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds(\
+
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars
 
     at : 2019/04/01 09:18:01
@@ -16062,16 +16314,15 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     
     '''###################
         step : A : 8
-            
+            diff of bars
     ###################'''
     #debug
     print()
-    print("[%s:%d] [step : A : 8] =================================" % \
+    print("[%s:%d] [step : A : 8 / diff of bars] =================================" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         
         ), file=sys.stderr)
 
-    #_20190331_092850:wl:views
     flag_Write_to_File = True
     
     #_20190401_090035
@@ -16089,9 +16340,38 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             , flag_Write_to_File
         )    
     
-    
     '''###################
         step : A : 9
+            UU_With_Thresholds
+    ###################'''
+    #debug
+    print()
+    print("[%s:%d] [step : A : 9 / UU_With_Thresholds] =================================" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+
+    flag_Write_to_File = True
+    
+    #_20190404_151221:caller
+    _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds(\
+            (lo_UUU, lo_UUD)
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+        )    
+    
+    #_20190331_092850:wl:views
+    
+    '''###################
+        step : A : X
             return
     ###################'''
     return ( \
