@@ -13992,6 +13992,88 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns
+
+    at : 2019/04/04 16:05:12
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+
+        ) :
+#_20190407_163939:head
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print()
+
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    '''###################
+        step : A : 1.1
+            len
+    ###################'''
+    lenOf_LO_BarDatas = len(tmp_LO_BarDatas)
+
+    '''###################
+        step : A : 1.2
+            model pattern strings
+    ###################'''
+    lo_Model_Pattern_Strings = [
+                                
+        "11111"
+        , "11110"
+        , "11101"
+        , "11011"
+        , "10111"
+        , "01111"
+                                
+                                ]
+    
+    
+    
+    
+#_20190407_163944:wl:in-func
+
+#/ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
+                                                           
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds
 
     at : 2019/04/04 16:05:12
@@ -15710,6 +15792,17 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     lo_DDs = []
     
     '''###################
+        step : A : 1.1
+            vars : flags : controller
+    ###################'''
+    flg_Sec_1_A5 = False
+    flg_Sec_1_A6 = False
+    flg_Sec_1_A7 = False
+    flg_Sec_1_A8 = False
+    flg_Sec_1_A9 = False
+    flg_Sec_1_A10 = True
+    
+    '''###################
         step : A : 2
             ops
     ###################'''
@@ -16209,30 +16302,47 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         
         ), file=sys.stderr)
 
-    #_20190313_143910
-    #_20190314_091531
-    _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
-                            [
-                             lo_BarDatas_Zs_UUs
-                            , lo_BarDatas_Zs_UDs
-                            , lo_BarDatas_Zs_DUs
-                            , lo_BarDatas_Zs_DDs
-                            ]
-                            , tmp_LO_BarDatas
-                            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
-                            
-                            ,fname_Src_CSV
-                            ,fname_Log_CSV
-                            , dpath_Log_CSV
-                            
-                            ,pair
-                            ,timeframe
-                            
-                            , tlabel
-                            
-                            ,flag_Write_to_File
-                     
-                                                                    )
+    '''###################
+        step : A : 5.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A5 == False : #if flg_Sec_1_A5 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A5 == False
+
+        #_20190313_143910
+        #_20190314_091531
+        _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_5(\
+                                [
+                                 lo_BarDatas_Zs_UUs
+                                , lo_BarDatas_Zs_UDs
+                                , lo_BarDatas_Zs_DUs
+                                , lo_BarDatas_Zs_DDs
+                                ]
+                                , tmp_LO_BarDatas
+                                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                                
+                                ,fname_Src_CSV
+                                ,fname_Log_CSV
+                                , dpath_Log_CSV
+                                
+                                ,pair
+                                ,timeframe
+                                
+                                , tlabel
+                                
+                                ,flag_Write_to_File
+                         
+                                                                        )
+    #/if flg_Sec_1_A5 == False
 
     #@_20190303_110717
 
@@ -16296,21 +16406,56 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         
         ), file=sys.stderr)
     
-    #_20190325_085912
-    #_20190331_090336
-    _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX(\
-            (lo_UUU, lo_UUD)
-            , strOf_Slice_By_Throgh
-            , fname_Log_CSV_trunk, fname_Log_CSV
-            , dpath_Log
-            , fname_Src_CSV
-            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
-            ,pair
-            ,timeframe
-            ,tmp_LO_BarDatas
-            , tlabel
-            , flag_Write_to_File
-        )    
+    '''###################
+        step : A : 7.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A7 == False : #if flg_Sec_1_A7 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A7 == False
+    
+        #_20190325_085912
+        #_20190331_090336
+        _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+        
+    
+    #/if flg_Sec_1_A7 == False
+    
+#     #_20190325_085912
+#     #_20190331_090336
+#     _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq_ZX(\
+#             (lo_UUU, lo_UUD)
+#             , strOf_Slice_By_Throgh
+#             , fname_Log_CSV_trunk, fname_Log_CSV
+#             , dpath_Log
+#             , fname_Src_CSV
+#             ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+#             ,pair
+#             ,timeframe
+#             ,tmp_LO_BarDatas
+#             , tlabel
+#             , flag_Write_to_File
+#         )    
     
     '''###################
         step : A : 8
@@ -16323,23 +16468,40 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         
         ), file=sys.stderr)
 
-    flag_Write_to_File = True
+    '''###################
+        step : A : 8.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A8 == False : #if flg_Sec_1_A8 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
     
-    #_20190401_090035
-    _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
-            (lo_UUU, lo_UUD)
-            , strOf_Slice_By_Throgh
-            , fname_Log_CSV_trunk, fname_Log_CSV
-            , dpath_Log
-            , fname_Src_CSV
-            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
-            ,pair
-            ,timeframe
-            ,tmp_LO_BarDatas
-            , tlabel
-            , flag_Write_to_File
-        )    
+    else : #if flg_Sec_1_A8 == False
+
+        flag_Write_to_File = True
+        
+        #_20190401_090035
+        _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
     
+    #_20190407_163517:dup:start
     '''###################
         step : A : 9
             UU_With_Thresholds
@@ -16351,22 +16513,88 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         
         ), file=sys.stderr)
 
-    flag_Write_to_File = True
+    '''###################
+        step : A : 9.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A9 == False : #if flg_Sec_1_A9 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
     
-    #_20190404_151221:caller
-    _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds(\
-            (lo_UUU, lo_UUD)
-            , strOf_Slice_By_Throgh
-            , fname_Log_CSV_trunk, fname_Log_CSV
-            , dpath_Log
-            , fname_Src_CSV
-            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
-            ,pair
-            ,timeframe
-            ,tmp_LO_BarDatas
-            , tlabel
-            , flag_Write_to_File
-        )    
+    else : #if flg_Sec_1_A9 == False
+
+        flag_Write_to_File = True
+        
+        #_20190404_151221:caller
+        _BUSL3_Tester_No_44_1__Sec_1_A9_UU_With_Thresholds(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A9 == False
+    
+    #_20190407_163517:dup:end
+
+    '''###################
+        step : A : 10
+            All_Possible_Patterns
+    ###################'''
+    #debug
+    print()
+    print("[%s:%d] [step : A : 10 / All_Possible_Patterns] =================================" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+
+    '''###################
+        step : A : 10.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A10 == False : #if flg_Sec_1_A10 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A10 == False
+
+        flag_Write_to_File = True
+        
+        #_20190407_163925:caller
+        _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A10 == False
     
     #_20190331_092850:wl:views
     
