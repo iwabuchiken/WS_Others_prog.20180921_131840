@@ -94,6 +94,95 @@ def show_Message() :
     
     print (msg)
 
+def test_2(lenOf_Digits = 5):
+
+#_20190408_161511:head
+#_20190408_161518:caller
+#_20190408_161524:wl:in-func    
+
+    '''###################
+        step : A : 0
+            prep : vars
+    ###################'''
+    lo_StrOf_Model_Patterns = []
+    
+    # for-loop var
+    numOf_ForLoop_Tail = math.pow(2, lenOf_Digits)
+#     numOf_ForLoop_Tail = math.pow(2, 5)
+#     numOf_ForLoop_Tail = math.pow(5, 2)
+    
+    numOf_ForLoop_Tail = int(numOf_ForLoop_Tail)
+    
+    '''###################
+        step : A : 1
+    ###################'''
+    for i in range(0, numOf_ForLoop_Tail):
+        '''###################
+            step : A : 1, 2
+                conv to : binary
+        ###################'''
+#         #ref https://stackoverflow.com/questions/10411085/converting-integer-to-binary-in-python
+#         label = "0:0%sb" % str(lenOf_Digits)
+#         
+#         strOf_Binary = "{0:05b}".format(i)
+        strOf_Binary = "{0:0b}".format(i)
+        
+        print("[%s:%d] i = %d / strOf_Binary = %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , i
+                , strOf_Binary
+                ), file=sys.stderr)
+        
+        '''###################
+            step : A : 3
+                fill zero
+        ###################'''
+        strOf_Zeros = "0" * (lenOf_Digits - len(strOf_Binary))
+        
+        strOf_Binary = strOf_Zeros + strOf_Binary
+
+        #debug
+        print()
+        print("[%s:%d] zero filled ==> %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , strOf_Binary
+                ), file=sys.stderr)
+        print()
+        
+        
+        '''###################
+            step : A : 4
+                append
+        ###################'''
+        lo_StrOf_Model_Patterns.append(strOf_Binary)
+        
+    #/for i in range(0, lenOf_Digits):
+
+    '''###################
+        step : A : 2
+            return
+    ###################'''
+    #debug
+    print("[%s:%d] lo_StrOf_Model_Patterns =>" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              
+            ), file=sys.stderr)
+     
+    print(lo_StrOf_Model_Patterns)
+    
+    
+    return lo_StrOf_Model_Patterns
+    
+#     '''###################
+#         message
+#     ###################'''
+#     print()
+#     print("[%s:%d] test_2 =======================" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+# 
+#                     ), file=sys.stderr)
+#/ def test_2():
+
 def test_1(lenOf_Digits = 5):
 
 #_20190407_174252:head
@@ -177,7 +266,9 @@ def exec_prog():
     '''###################
         ops        
     ###################'''
-    test_1()
+    test_2(lenOf_Digits = 5)
+#     test_2()
+#     test_1()
     
     print("[%s:%d] exec_prog() => done" % \
             (os.path.basename(libs.thisfile()), libs.linenum()

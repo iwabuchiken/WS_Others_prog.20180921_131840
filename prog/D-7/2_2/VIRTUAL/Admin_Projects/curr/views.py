@@ -14055,18 +14055,34 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
         step : A : 1.2
             model pattern strings
     ###################'''
-    lo_Model_Pattern_Strings = [
-                                
-        "11111"
-        , "11110"
-        , "11101"
-        , "11011"
-        , "10111"
-        , "01111"
-                                
-                                ]
+    # length
+    lenOf_Digits = 5
     
+    lo_Model_Pattern_Strings = libfx_2.gen_model_pattern_strings(lenOf_Digits)
+#     lo_Model_Pattern_Strings = [
+#                                 
+#         "11111"
+#         , "11110"
+#         , "11101"
+#         , "11011"
+#         , "10111"
+#         , "01111"
+#                                 
+#                                 ]
     
+    #debug
+    print()
+    print("[%s:%d] lo_Model_Pattern_Strings ==> %d entries" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_Model_Pattern_Strings)
+        ), file=sys.stderr)
+    print(lo_Model_Pattern_Strings)
+    print()
+    
+            # [views.py:14076] lo_Model_Pattern_Strings ==> 32 entries
+            # ['00000', '00001', '00010', '00011', '00100', '00101', '00110', '00111', '01000', '01001', '01010',
+            # '01011', '01100', '01101', '01110', '01111', '10000', '10001', '10010', '10011', '10100', '10101', '
+            # 10110', '10111', '11000', '11001', '11010', '11011', '11100', '11101', '11110', '11111']
     
     
 #_20190407_163944:wl:in-func

@@ -4085,3 +4085,88 @@ def build_Msg_Lines__LO_UUD_ZX(\
     
 #/ def build_Msg_Lines__LO_UUU_ZX(lo_UUU_ZX) :
 
+
+'''###################
+    gen_model_pattern_strings
+
+    at : 2019/04/08 16:27:04
+    
+    @description :
+    
+    @param : 
+        
+        lenOf_Digits : length of the digits
+                    ==> e.g. if 4 given ---> "1110", "1101", ...
+    
+    @return: 
+    
+        list of digits strings (in binary)
+            [
+                '00000', '00001', '00010', '00011', '00100', '00101',
+                ...
+            ]
+    
+###################'''
+def gen_model_pattern_strings(lenOf_Digits = 5):
+
+    '''###################
+        step : A : 0
+            prep : vars
+    ###################'''
+    lo_StrOf_Model_Patterns = []
+    
+    # for-loop var
+    numOf_ForLoop_Tail = math.pow(2, lenOf_Digits)
+    
+    numOf_ForLoop_Tail = int(numOf_ForLoop_Tail)
+    
+    '''###################
+        step : A : 1
+    ###################'''
+    for i in range(0, numOf_ForLoop_Tail):
+        '''###################
+            step : A : 1, 2
+                conv to : binary
+        ###################'''
+#         #ref https://stackoverflow.com/questions/10411085/converting-integer-to-binary-in-python
+        strOf_Binary = "{0:0b}".format(i)
+        
+#         print("[%s:%d] i = %d / strOf_Binary = %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , i
+#                 , strOf_Binary
+#                 ), file=sys.stderr)
+        
+        '''###################
+            step : A : 3
+                fill zero
+        ###################'''
+        strOf_Zeros = "0" * (lenOf_Digits - len(strOf_Binary))
+        
+        strOf_Binary = strOf_Zeros + strOf_Binary
+
+#         #debug
+#         print()
+#         print("[%s:%d] zero filled ==> %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , strOf_Binary
+#                 ), file=sys.stderr)
+#         print()
+#         
+        
+        '''###################
+            step : A : 4
+                append
+        ###################'''
+        lo_StrOf_Model_Patterns.append(strOf_Binary)
+        
+    #/for i in range(0, lenOf_Digits):
+
+    '''###################
+        step : A : 2
+            return
+    ###################'''
+    
+    return lo_StrOf_Model_Patterns
+    
+#/ def gen_model_pattern_strings():
