@@ -14052,7 +14052,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
     lenOf_LO_BarDatas = len(tmp_LO_BarDatas)
 
     '''###################
-        step : A : 1.2
+        step : A : 2
             model pattern strings
     ###################'''
     # length
@@ -14083,9 +14083,50 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
             # ['00000', '00001', '00010', '00011', '00100', '00101', '00110', '00111', '01000', '01001', '01010',
             # '01011', '01100', '01101', '01110', '01111', '10000', '10001', '10010', '10011', '10100', '10101', '
             # 10110', '10111', '11000', '11001', '11010', '11011', '11100', '11101', '11110', '11111']
+
+    '''###################
+        step : B
+            for-loop
+    ###################'''
+    '''###################
+        step : B.1
+            for-loop : start
+    ###################'''
+#     for i in range(0, lenOf_LO_BarDatas - 3):
+    for i in range(0, lenOf_LO_BarDatas - 4):
+        '''###################
+            step : B.2
+                prep : instance, diffs
+        ###################'''
+        '''###################
+            step : B.2.1
+                prep : instance
+        ###################'''
+        e0 = tmp_LO_BarDatas[i]
+        e1 = tmp_LO_BarDatas[i + 1]
+        e2 = tmp_LO_BarDatas[i + 2]
+        e3 = tmp_LO_BarDatas[i + 3]
+        #_20190412_184313:fix
+        e4 = tmp_LO_BarDatas[i + 4]
+        
+# #debug : command lines
+# a = [1,2,3,4,5,6,7,8,9]
+# for i in range(0, len(a) - 3) : print(str(i), " => ", a[i], a[i+1], a[i+2], a[i+3], a[i+4])
+# print(a)
+# for i in range(0, len(a) - 4) : print(str(i), " => ", a[i], a[i+1], a[i+2], a[i+3], a[i+4])
+        
+
+        '''###################
+            step : B.2.2
+                prep : diffs
+        ###################'''
+        #_20190407_163944:wl:in-func
+        
+    #/for i in range(0, lenOf_LO_BarDatas - 3):
+
     
     
-#_20190407_163944:wl:in-func
+
 
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
                                                            
