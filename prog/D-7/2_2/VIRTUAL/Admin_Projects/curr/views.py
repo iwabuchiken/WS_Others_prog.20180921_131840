@@ -14085,6 +14085,28 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
             # 10110', '10111', '11000', '11001', '11010', '11011', '11100', '11101', '11110', '11111']
 
     '''###################
+        step : A : 2.1
+            dictionary of pattern strings
+    ###################'''
+    do_UD_Patterns = {}
+    
+    # init
+    for item in lo_Model_Pattern_Strings:
+    
+        do_UD_Patterns[item] = 0
+        
+    #/for item in lo_Model_Pattern_Strings:
+
+    #debug
+    print()
+    print("[%s:%d] do_UD_Patterns ==> init done" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print(lo_Model_Pattern_Strings)
+    print()
+
+    '''###################
         step : B
             for-loop
     ###################'''
@@ -14120,6 +14142,35 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
             step : B.2.2
                 prep : diffs
         ###################'''
+        d0 = e0.diff_OC
+        d1 = e1.diff_OC
+        d2 = e2.diff_OC
+        d3 = e3.diff_OC
+        d4 = e4.diff_OC
+
+        '''###################
+            step : B.2.3
+                build : up/down pattern string
+        ###################'''
+        # set values
+        a0 = "1" if (d0 >= 0) else "0"
+        a1 = "1" if (d1 >= 0) else "0"
+        a2 = "1" if (d2 >= 0) else "0"
+        a3 = "1" if (d3 >= 0) else "0"
+        a4 = "1" if (d4 >= 0) else "0"
+        
+        # join
+        strOf_UpDownNotations = "".join([a0, a1, a2, a3, a4])
+        
+# #test:python command
+# a = "".join("1", "2", "3")        
+# a = "".join(["1", "2", "3"])        
+
+        '''###################
+            step : B.3
+                judnge : U/D pattern ---> match to which ?
+        ###################'''
+        
         #_20190407_163944:wl:in-func
         
     #/for i in range(0, lenOf_LO_BarDatas - 3):
