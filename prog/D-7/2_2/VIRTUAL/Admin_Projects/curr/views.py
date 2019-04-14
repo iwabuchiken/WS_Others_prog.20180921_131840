@@ -14103,7 +14103,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
         (os.path.basename(libs.thisfile()), libs.linenum()
          
         ), file=sys.stderr)
-    print(lo_Model_Pattern_Strings)
+    print(do_UD_Patterns)
     print()
 
     '''###################
@@ -14114,6 +14114,12 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
         step : B.1
             for-loop : start
     ###################'''
+    '''###################
+        step : B.1.1
+            prep : vars
+    ###################'''
+    cntOf_Loop = 0
+    
 #     for i in range(0, lenOf_LO_BarDatas - 3):
     for i in range(0, lenOf_LO_BarDatas - 4):
         '''###################
@@ -14170,13 +14176,226 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
             step : B.3
                 judnge : U/D pattern ---> match to which ?
         ###################'''
+        for ptn in lo_Model_Pattern_Strings:
         
-        #_20190407_163944:wl:in-func
-        
+            # judge
+            if strOf_UpDownNotations == ptn : #if strOf_UpDownNotations == ptn
+                
+                do_UD_Patterns[ptn] += 1
+            
+            #/if strOf_UpDownNotations == ptn
+
+            
+        #/for ptn in lo_Model_Pattern_Strings:
+
+        '''###################
+            step : B.4
+                count
+        ###################'''
+        cntOf_Loop += 1
+
     #/for i in range(0, lenOf_LO_BarDatas - 3):
 
+    #debug
+    print()
+    print("[%s:%d] do_UD_Patterns ==> for-loop --> done" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print(do_UD_Patterns)
+    print()
     
+    '''###################
+        step : A2
+            write to file
+    ###################'''
+    '''###################
+        step : A2.0
+            prep : vars
+    ###################'''
+    lo_Msg_CSV = []
+    lo_Msg_CSV_Header = []
     
+    lo_Msg_CSV_Stats = []
+
+    tlabel_A10 = libs.get_TimeLabel_Now()
+    
+    strOf_fname_Log_CSV_trunk = "(%s).(%s-%s).[%s.%s.%s].(%s)" %\
+            (
+             tlabel
+             , pair
+             , timeframe
+             , "sec-1"
+             , "A-10"
+             , "Possible-patterns"
+#              , "diff-of-bars"
+             , tlabel_A10
+             
+             )
+    
+    tmp_fname_Log_CSV = "%s.csv" % (strOf_fname_Log_CSV_trunk)
+
+    dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+     
+    #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+    if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+         
+        # make dir
+        #ref https://docs.python.org/2/library/os.html
+        os.makedirs(dpath_Log_CSV, exist_ok = True)
+         
+        #debug
+        print()
+        print("[%s:%d] new dir created => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+     
+    #/if not os.path.isdir(dpath_Log_CSV)
+
+    '''###################
+        step : A2.1
+            build : header lines
+    ###################'''
+    lo_Msg_CSV_Header.append("fname_Src_CSV\t%s" % fname_Src_CSV)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("slice by\t%s" % _req_param_tag_RB_No_44_1_SubData__Checked_Val)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("this file\t%s" % tmp_fname_Log_CSV)
+#     lo_Msg_CSV_Header.append("this file\t%s" % fname_Log_CSV)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("pair\t%s" % pair)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("timeframe\t%s" % timeframe)
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("start\t%s" % tmp_LO_BarDatas[0].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    lo_Msg_CSV_Header.append("end\t%s" % tmp_LO_BarDatas[-1].dateTime)
+    lo_Msg_CSV_Header.append("\n")
+    
+    lo_Msg_CSV_Header.append("bars\t%d" % len(tmp_LO_BarDatas))
+    lo_Msg_CSV_Header.append("\n")
+     
+    lo_Msg_CSV_Header.append("\n")
+     
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Header)
+#                 , "".join(lo_Msg_CSV)
+            )
+
+    '''###################
+        step : A2.2
+            write : header
+    ###################'''
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+#         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+        
+        #debug
+        print()
+        print("[%s:%d] lo_Msg_CSV_Header ==> written (%d lines)" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , len(lo_Msg_CSV_Header)
+            ), file=sys.stderr)        
+
+    '''###################
+        step : A2.3
+            build : body
+    ###################'''
+    '''###################
+        step : A2.3 : 0.1
+            vars
+    ###################'''
+    # vars
+    cntOf_Loop_DO_UD_Patterns = 1
+    
+    '''###################
+        step : A2.3 : 0.1
+            header
+    ###################'''
+    tmpOf_String = "[]============================="
+
+    lo_Msg_CSV.append(tmpOf_String)
+    lo_Msg_CSV.append("\n")
+    
+    tmpOf_String = "s.n.\tpattern\tnum"
+
+    lo_Msg_CSV.append(tmpOf_String)
+    lo_Msg_CSV.append("\n")
+    
+    '''###################
+        step : A2.3 : 0.2
+            for-loop
+    ###################'''
+    #ref https://stackoverflow.com/questions/6332691/python-dictionary-iteration
+    for k in do_UD_Patterns.keys():
+        '''###################
+            step : A2.3 : 1
+                get : value
+        ###################'''
+        numOf_Entries = do_UD_Patterns[k]
+        
+        '''###################
+            step : A2.3 : 2
+                build : line
+        ###################'''
+        tmpOf_String = "%d\t%s\t%d" % (\
+                
+                cntOf_Loop_DO_UD_Patterns
+                , k
+                , numOf_Entries
+                             
+        )
+        
+        '''###################
+            step : A2.3 : 3
+                append
+        ###################'''
+        lo_Msg_CSV.append(tmpOf_String)
+        
+        lo_Msg_CSV.append("\n")
+
+        '''###################
+            step : A2.3 : 3.1
+                counter
+        ###################'''
+        cntOf_Loop_DO_UD_Patterns += 1
+        
+    #/for k in do_UD_Patterns.keys():
+
+    '''###################
+        step : A2.4
+            write : body
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_CSV)
+#             , "".join(lo_Msg_CSV_Header)
+            )
+
+
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+         
+#         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+         
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+
+
+#_20190407_163944:wl:in-func    
 
 
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
@@ -14483,6 +14702,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
         step : A : 1
             prep : vars
     ###################'''
+    #_20190414_173016:c/p
     lo_Msg_CSV = []
     lo_Msg_CSV_Header = []
     
@@ -14559,6 +14779,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
             write to file
     ###################'''
    
+   #_20190414_173050:c/p
     '''###################
         step : B1 : 2
             write : header : meta
@@ -14611,7 +14832,9 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
             (os.path.basename(libs.thisfile()), libs.linenum()
             , len(lo_Msg_CSV_Header)
             ), file=sys.stderr)        
+    #_20190414_173146:c/p:end
     
+    #_20190414_173917:c/p:start
     '''###################
         step : B1 : 3
             write : data
@@ -14631,7 +14854,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars(\
 #         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
          
         libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
-    
+    #_20190414_173917:c/p:end
     
     '''###################
         step : B1 : 3
