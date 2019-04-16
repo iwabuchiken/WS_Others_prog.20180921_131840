@@ -13992,6 +13992,467 @@ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 #/ def _BUSL3_Tester_No_44_1__Sec_1_A8_Diff_Of_Bars__LO_UUU(\
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep
+
+    at : 2019/04/04 16:05:12
+    
+    @description :
+    
+        in the list of BDs
+            1. get the instance : e0
+            2. get the instance : d0
+            3. if d0 >= 0 --> then,
+                if e0.price_OC is in BB.Z1 
+                    ---> the folowing 5 bardats into lo_Z1
+            4. if other BB areas ---> accordingly
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+        
+        (lo_Z1, lo_Z2)
+        
+        lo_Z1 ==> [
+                    [e1, e2, e3, e4, e5]
+                    , [e1, e2, e3, e4, e5]
+                    , ...
+                ]
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
+
+            tmp_LO_BarDatas
+
+        ) :
+
+#_20190416_132709:head
+#_20190416_132731:wl:in-func
+#_20190416_132736:caller
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print()
+
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    '''###################
+        step : A : 1.1
+            len
+    ###################'''
+    lenOf_LO_BarDatas = len(tmp_LO_BarDatas)
+
+    '''###################
+        step : A : 2
+            build : categorized list of BDs
+    ###################'''
+    '''###################
+        step : A : 2.1
+            prep : vars
+    ###################'''
+    lo_Z1 = []
+    lo_Z2 = []
+    
+    '''###################
+        step : A : 2.2
+            for-loop
+    ###################'''
+    for i in range(0, lenOf_LO_BarDatas - 5):
+        '''###################
+            step : A : 2.2 : 1
+                get : vars
+        ###################'''
+        # bardata
+        e0 = tmp_LO_BarDatas[i]
+        
+        # diff
+        d0 = e0.diff_OC
+    
+        '''###################
+            step : A : 2.2 : 2
+                judge : less than zero ?
+        ###################'''
+        if d0 < 0 : #if d0 < 0
+            '''###################
+                step : A : 2.2 : 2.1
+                    judge : less than zero
+                        ==> next
+            ###################'''
+            continue
+        
+        #/if d0 < 0
+        
+        '''###################
+            step : A : 2.2 : 3
+                judge : closing price ==> above ZX
+        ###################'''
+        if e0.price_Close > e0.bb_2S : #if e0.price_Close > e0.bb_1S
+            '''###################
+                step : A : 2.2 : 3 : 1
+                    judge : closing price ==> above Z1
+            ###################'''
+            '''###################
+                step : A : 2.2 : 3 : 1.1
+                    prep : bardatas
+            ###################'''
+            e1 = tmp_LO_BarDatas[i + 1]
+            e2 = tmp_LO_BarDatas[i + 2]
+            e3 = tmp_LO_BarDatas[i + 3]
+            e4 = tmp_LO_BarDatas[i + 4]
+            e5 = tmp_LO_BarDatas[i + 5]
+
+            '''###################
+                step : A : 2.2 : 3 : 1.2
+                    append
+            ###################'''
+            lo_Z1.append([e1, e2, e3, e4, e5])
+        
+        elif e0.price_Close > e0.bb_1S : #if e0.price_Close > e0.bb_1S
+            '''###################
+                step : A : 2.2 : 3 : 2
+                    judge : closing price ==> above Z2
+            ###################'''
+            '''###################
+                step : A : 2.2 : 3 : 2.1
+                    prep : bardatas
+            ###################'''
+            e1 = tmp_LO_BarDatas[i + 1]
+            e2 = tmp_LO_BarDatas[i + 2]
+            e3 = tmp_LO_BarDatas[i + 3]
+            e4 = tmp_LO_BarDatas[i + 4]
+            e5 = tmp_LO_BarDatas[i + 5]
+
+            '''###################
+                step : A : 2.2 : 3 : 2.2
+                    append
+            ###################'''
+            lo_Z2.append([e1, e2, e3, e4, e5])
+        
+        else : #if e0.price_Close > e0.bb_1S
+        
+            pass
+        
+        #/if e0.price_Close > e0.bb_1S
+        
+    #/for i in range(0, lenOf_LO_BarDatas):
+
+    '''###################
+        step : A : X
+            return
+    ###################'''
+    return (lo_Z1, lo_Z2)
+
+    #_20190416_125913:wl:in-func
+
+#/def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
+
+
+'''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB
+
+    at : 2019/04/04 16:05:12
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+
+        ) :
+
+#_20190416_125943:head
+
+
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print()
+
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    (lo_Z1, lo_Z2) = _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
+                    
+                    tmp_LO_BarDatas
+                    
+                    )
+
+    #debug
+    print()
+    print("[%s:%d] len(lo_Z1) => %d / len(lo_Z2) => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , len(lo_Z1)
+         , len(lo_Z2)
+        ), file=sys.stderr)
+    print()
+            # [views.py:14217] len(lo_Z1) => 513 / len(lo_Z2) => 1227    
+
+    '''###################
+        step : A : 2
+            pattern
+    ###################'''
+    '''###################
+        step : A : 2.1
+            pattern : Z1
+    ###################'''
+    '''###################
+        step : A : 2.1 : 1
+            prep
+    ###################'''
+    strOf_BB_Area = "Z1"
+    
+    '''###################
+        step : A : 2.1 : 1.2
+            prep : list
+    ###################'''
+    #_20190416_142438:fix.1
+    tmp_LO_Z1 = [x[0] for x in lo_Z1]
+    
+    '''###################
+        step : A : 2.1 : 2
+            process
+    ###################'''
+    #_20190416_135600:caller
+    (lo_Msg_CSV_Header, lo_Msg_CSV, dpath_Log_CSV, tmp_fname_Log_CSV) = \
+            libfx_2._all_Possible_Patterns(\
+                #_20190416_140211:fix
+    #             dpath_Log_CSV
+                dpath_Log
+                , fname_Src_CSV
+                , fname_Log_CSV
+                , pair
+                ,timeframe
+                #_20190416_142438:fix.2
+                , tmp_LO_Z1
+#                 , lo_Z1
+    #             ,tmp_LO_BarDatas
+                , tlabel
+                , _req_param_tag_RB_No_44_1_SubData__Checked_Val
+                #_20190416_141317:fix
+    #             , tmp_fname_Log_CSV
+                , strOf_BB_Area
+            )
+
+    '''###################
+        step : A : 2.1 : 3
+            write : header
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_CSV_Header)
+            )
+
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+          
+#         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+          
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+         
+        #debug
+        print()
+        print("[%s:%d] lo_Msg_CSV_Header ==> written (%d lines)" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , len(lo_Msg_CSV_Header)
+            ), file=sys.stderr)        
+
+    '''###################
+        step : A : 2.1 : 3
+            write : body
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_CSV)
+#             , "".join(lo_Msg_CSV_Header)
+            )
+ 
+ 
+    # validate : flag --> true
+    if flag_Write_to_File == True :
+          
+#         tmp_fname_Log_CSV = "[test].%s" % fname_Log_CSV
+          
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, tmp_fname_Log_CSV, 0)
+
+
+#_20190416_125913:wl:in-func
+
+#     #debug
+#     print()
+#     print("[%s:%d] libfx_2._all_Possible_Patterns ==> returned this :" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          
+#         ), file=sys.stderr)
+#     print(lo_Msg_CSV_Header)
+#     print()
+    
+#     '''###################
+#         step : A : 1.1
+#             len
+#     ###################'''
+#     lenOf_LO_BarDatas = len(tmp_LO_BarDatas)
+# 
+#     '''###################
+#         step : A : 2
+#             build : categorized list of BDs
+#     ###################'''
+#     '''###################
+#         step : A : 2.1
+#             prep : vars
+#     ###################'''
+#     lo_Z1 = []
+#     lo_Z2 = []
+#     
+#     '''###################
+#         step : A : 2.2
+#             for-loop
+#     ###################'''
+#     for i in range(0, lenOf_LO_BarDatas - 5):
+#         '''###################
+#             step : A : 2.2 : 1
+#                 get : vars
+#         ###################'''
+#         # bardata
+#         e0 = tmp_LO_BarDatas[i]
+#         
+#         # diff
+#         d0 = e0.diff_OC
+#     
+#         '''###################
+#             step : A : 2.2 : 2
+#                 judge : less than zero ?
+#         ###################'''
+#         if d0 < 0 : #if d0 < 0
+#             '''###################
+#                 step : A : 2.2 : 2.1
+#                     judge : less than zero
+#                         ==> next
+#             ###################'''
+#             continue
+#         
+#         #/if d0 < 0
+#         
+#         '''###################
+#             step : A : 2.2 : 3
+#                 judge : closing price ==> above ZX
+#         ###################'''
+#         if e0.price_Close > e0.bb_2S : #if e0.price_Close > e0.bb_1S
+#             '''###################
+#                 step : A : 2.2 : 3 : 1
+#                     judge : closing price ==> above Z1
+#             ###################'''
+#             '''###################
+#                 step : A : 2.2 : 3 : 1.1
+#                     prep : bardatas
+#             ###################'''
+#             e1 = tmp_LO_BarDatas[i + 1]
+#             e2 = tmp_LO_BarDatas[i + 2]
+#             e3 = tmp_LO_BarDatas[i + 3]
+#             e4 = tmp_LO_BarDatas[i + 4]
+#             e5 = tmp_LO_BarDatas[i + 5]
+# 
+#             '''###################
+#                 step : A : 2.2 : 3 : 1.2
+#                     append
+#             ###################'''
+#             lo_Z1.append([e1, e2, e3, e4, e5])
+#         
+#         elif e0.price_Close > e0.bb_1S : #if e0.price_Close > e0.bb_1S
+#             '''###################
+#                 step : A : 2.2 : 3 : 2
+#                     judge : closing price ==> above Z2
+#             ###################'''
+#             '''###################
+#                 step : A : 2.2 : 3 : 2.1
+#                     prep : bardatas
+#             ###################'''
+#             e1 = tmp_LO_BarDatas[i + 1]
+#             e2 = tmp_LO_BarDatas[i + 2]
+#             e3 = tmp_LO_BarDatas[i + 3]
+#             e4 = tmp_LO_BarDatas[i + 4]
+#             e5 = tmp_LO_BarDatas[i + 5]
+# 
+#             '''###################
+#                 step : A : 2.2 : 3 : 2.2
+#                     append
+#             ###################'''
+#             lo_Z2.append([e1, e2, e3, e4, e5])
+#         
+#         else : #if e0.price_Close > e0.bb_1S
+#         
+#             pass
+#         
+#         #/if e0.price_Close > e0.bb_1S
+#         
+#     #/for i in range(0, lenOf_LO_BarDatas):
+# 
+#     #debug
+#     print()
+#     print("[%s:%d] len(lo_Z1) => %d / len(lo_Z2) => %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , len(lo_Z1)
+#          , len(lo_Z2)
+#         ), file=sys.stderr)
+#     print()
+#             # [views.py:14154] len(lo_Z1) => 513 / len(lo_Z2) => 1227    
+
+    
+
+#/def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB(\
+
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns
 
     at : 2019/04/04 16:05:12
@@ -14235,6 +14696,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
     
     tmp_fname_Log_CSV = "%s.csv" % (strOf_fname_Log_CSV_trunk)
 
+    #_20190416_140211:fix.ref1
     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
      
     #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
@@ -16133,6 +16595,8 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     flg_Sec_1_A9 = False
     flg_Sec_1_A10 = True
     
+    flg_Sec_1_A11 = True
+    
     '''###################
         step : A : 2
             ops
@@ -16927,6 +17391,57 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     
     #/if flg_Sec_1_A10 == False
     
+    '''###################
+        step : A : 10
+            All_Possible_Patterns
+    ###################'''
+    #debug
+    print()
+    print("[%s:%d] [step : A : 10 / All_Possible_Patterns] =================================" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+
+    '''###################
+        step : A : 11.1
+            exec or not
+    ###################'''
+    if flg_Sec_1_A11 == False : #if flg_Sec_1_A11 == False
+
+        #debug
+        print()
+        print("[%s:%d] flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A11 == False
+
+        flag_Write_to_File = True
+        
+        #_20190416_125920:caller
+        _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A11 == False
+
+    '''###################
+        step : A : 12
+            detect pattern : mountain
+    ###################'''
+        
     #_20190331_092850:wl:views
     
     '''###################
