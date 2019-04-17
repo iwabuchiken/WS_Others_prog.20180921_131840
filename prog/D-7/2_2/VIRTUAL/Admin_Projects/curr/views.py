@@ -14161,6 +14161,60 @@ def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 
 #/def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 
+'''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_
+
+    at : 2019/04/17 18:36:32
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+    
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+
+        ) :
+
+#_20190417_183441:head
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+
+
+#_20190417_183445:wl:in-func
+
+#/def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
 
 '''###################
     _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB
@@ -16596,6 +16650,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     flg_Sec_1_A10 = True
     
     flg_Sec_1_A11 = True
+    flg_Sec_1_A12 = True
     
     '''###################
         step : A : 2
@@ -17441,7 +17496,37 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         step : A : 12
             detect pattern : mountain
     ###################'''
+    #_20190417_184050:fix
+    if flg_Sec_1_A12 == False : #if flg_Sec_1_A12 == False
+
+        #debug
+        print()
+        print("[%s:%d] (step : A : 12) flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A12 == False
+
+        flag_Write_to_File = True
         
+        #_20190417_183451:caller
+        _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
+                (lo_UUU, lo_UUD)
+                , strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+                ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A12 == False    
     #_20190331_092850:wl:views
     
     '''###################
