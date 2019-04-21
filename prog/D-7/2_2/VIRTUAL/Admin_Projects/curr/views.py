@@ -12217,11 +12217,11 @@ def _BUSL3_Tester_No_44_1__Sec_1_A6_3_Seq__BB_Ranges__Step_B(\
          )
     msg += "\n"
     
-    print()
-    print("[%s:%d]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-        , msg
-        ), file=sys.stderr)
+#     print()
+#     print("[%s:%d]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#         , msg
+#         ), file=sys.stderr)
 
     '''###################
         step : Z : 2
@@ -14210,9 +14210,109 @@ def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
         (os.path.basename(libs.thisfile()), libs.linenum()
          
         ), file=sys.stderr)
+    
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    # debug file
+    strOf_Debug_File = "Sec_1_A12_Detect"
+    
+    fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+    libfx_2.detect_Patt(\
+        
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+            
+            , _fname_Log_Debug = fname_Log_Debug
+        
+        )
+    
+#     '''###################
+#         step : A : 1
+#             prep
+#     ###################'''
+#     lenOf_LO_BDs = len(tmp_LO_BarDatas)
+#     
+#     # flags
+#     flg_Moni = False
+# 
+#     '''###################
+#         step : A : 2
+#             prep : log file
+#     ###################'''
+#     '''###################
+#         step : A : 2.1
+#             vars
+#     ###################'''
+#     fname_Log_Debug = "debug.%s.log" % (tlabel)
+#     
+#     lo_Msg_Debug = []
+#     
+#     #_20190421_153018:fix
+#     # dpath_Log_CSV
+#     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+#          
+#     #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+#     if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+#          
+#         # make dir
+#         #ref https://docs.python.org/2/library/os.html
+#         os.makedirs(dpath_Log_CSV, exist_ok = True)
+#          
+#         #debug
+#         print()
+#         print("[%s:%d] new dir created => %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , dpath_Log_CSV
+#             ), file=sys.stderr)
+#     
+#     else :
+#         
+#         #debug
+#         print()
+#         print("[%s:%d] new dir NOT created => %s -----------!!!!!" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , dpath_Log_CSV
+#             ), file=sys.stderr)
+#         
+#     #/if not os.path.isdir(dpath_Log_CSV)    
+#     
+# #_20190417_183445:wl:in-func
+#     '''###################
+#         step : A : 2.2
+#             debug file : test
+#     ###################'''
+#     lo_Msg_Debug.append("debug ---> starting...")
+#     
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_Debug)
+#             )
+#     
+#     
+# #     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_Debug, 0)
+#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+# 
+#     '''###################
+#         step : B : 1
+#             for-loop
+#     ###################'''
+#     
 
-
-#_20190417_183445:wl:in-func
 
 #/def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
 
@@ -14585,14 +14685,14 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
 #                                 
 #                                 ]
     
-    #debug
-    print()
-    print("[%s:%d] lo_Model_Pattern_Strings ==> %d entries" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , len(lo_Model_Pattern_Strings)
-        ), file=sys.stderr)
-    print(lo_Model_Pattern_Strings)
-    print()
+#     #debug
+#     print()
+#     print("[%s:%d] lo_Model_Pattern_Strings ==> %d entries" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , len(lo_Model_Pattern_Strings)
+#         ), file=sys.stderr)
+#     print(lo_Model_Pattern_Strings)
+#     print()
     
             # [views.py:14076] lo_Model_Pattern_Strings ==> 32 entries
             # ['00000', '00001', '00010', '00011', '00100', '00101', '00110', '00111', '01000', '01001', '01010',
@@ -14612,14 +14712,14 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
         
     #/for item in lo_Model_Pattern_Strings:
 
-    #debug
-    print()
-    print("[%s:%d] do_UD_Patterns ==> init done" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         
-        ), file=sys.stderr)
-    print(do_UD_Patterns)
-    print()
+#     #debug
+#     print()
+#     print("[%s:%d] do_UD_Patterns ==> init done" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          
+#         ), file=sys.stderr)
+#     print(do_UD_Patterns)
+#     print()
 
     '''###################
         step : B
@@ -14711,15 +14811,15 @@ def _BUSL3_Tester_No_44_1__Sec_1_A10_All_Possible_Patterns(\
 
     #/for i in range(0, lenOf_LO_BarDatas - 3):
 
-    #debug
-    print()
-    print("[%s:%d] do_UD_Patterns ==> for-loop --> done" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         
-        ), file=sys.stderr)
-    print(do_UD_Patterns)
-    print()
-    
+#     #debug
+#     print()
+#     print("[%s:%d] do_UD_Patterns ==> for-loop --> done" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          
+#         ), file=sys.stderr)
+#     print(do_UD_Patterns)
+#     print()
+#     
     '''###################
         step : A2
             write to file
@@ -17081,19 +17181,19 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     flag_Write_to_File = True
     
     #_20190307_152554
-    #debug
-    print()
-    print("[%s:%d] debug : len(lo_UUs) = %d, len(lo_UUs[0]) = %d" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , len(lo_UUs)
-         , len(lo_UUs[0])
-        ), file=sys.stderr)
-    
-    print("[%s:%d] debug : len(lo_UDs) = %d, len(lo_UDs[0]) = %d" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , len(lo_UDs)
-         , len(lo_UDs[0])
-        ), file=sys.stderr)
+#     #debug
+#     print()
+#     print("[%s:%d] debug : len(lo_UUs) = %d, len(lo_UUs[0]) = %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , len(lo_UUs)
+#          , len(lo_UUs[0])
+#         ), file=sys.stderr)
+#     
+#     print("[%s:%d] debug : len(lo_UDs) = %d, len(lo_UDs[0]) = %d" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , len(lo_UDs)
+#          , len(lo_UDs[0])
+#         ), file=sys.stderr)
     
     
 #     _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1_A_4(\
@@ -17508,6 +17608,13 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
         print()
     
     else : #if flg_Sec_1_A12 == False
+
+        #debug
+        print()
+        print("[%s:%d] [step : A : 12 / detect pattern : mountain] =================================" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
 
         flag_Write_to_File = True
         
