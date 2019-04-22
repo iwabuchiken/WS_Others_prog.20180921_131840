@@ -4559,9 +4559,9 @@ def _all_Possible_Patterns(\
 #/def _all_Possible_Patterns(\
 
 '''###################
-    _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_
+    dp_Mountain
 
-    at : 2019/04/17 18:36:32
+    at : 2019/04/22 16:28:39
     
     @description :
     
@@ -4578,11 +4578,13 @@ def _all_Possible_Patterns(\
         tmp_LO_BarDatas
         tlabel
         flag_Write_to_File
+
+        _fname_Log_Debug = "debug.log"
     
     @return: 
     
 ###################'''
-def detect_Patt(\
+def dp_Mountain(\
 
             #(lo_UUU, lo_UUD)
             lo_BD_Sequences 
@@ -4596,13 +4598,15 @@ def detect_Patt(\
             ,tmp_LO_BarDatas
             , tlabel
             , flag_Write_to_File
+
+            , _strOf_Debug_File = "Sec_1_A12_Detect"
             
-            , _fname_Log_Debug = "debug.log"
+            , _fname_Log_Debug = "debug.[dp_mountain].log"
 
         ) :
 
-#_20190421_154540:head
-#_20190421_154616:caller
+#_20190422_164141:head
+
 
 
     '''###################
@@ -4640,6 +4644,13 @@ def detect_Patt(\
                     
             }
     
+    # threshold
+    valOf_TS = 0.07 # '0.07' ==> arbitrary    (20190422_170101)
+    
+    # (π<C,i> - π<S,O>) * raioOf_TS ==> threshold price
+    ratioOf_TS = 0.3
+#     raioOf_TS = 0.3
+    
     '''###################
         step : A : 2
             prep : log file
@@ -4648,8 +4659,17 @@ def detect_Patt(\
         step : A : 2.1
             vars
     ###################'''
-    fname_Log_Debug = _fname_Log_Debug
+#     fname_Log_Debug = _fname_Log_Debug
 #     fname_Log_Debug = "debug.%s.log" % (tlabel)
+    
+    strOf_DP_Target = "mountain"
+    
+    fname_Log_Debug = "debug.[%s].[dp-%s].(%s).log" %\
+                 (
+                  _strOf_Debug_File
+                  , strOf_DP_Target
+                  , tlabel
+                  )
     
     lo_Msg_Debug = []
     
@@ -4693,10 +4713,13 @@ def detect_Patt(\
     for i in range(0, lenOf_LO_BDs):
         '''###################
             step : B : 1.1
-                prep : instances
+                prep : instances, diff
         ###################'''
         # bardata
         e0 = tmp_LO_BarDatas[i]
+        
+        # diff
+        d0 = e0.price_Close - e0.price_Open
         
         '''###################
             step : B1 : j1
@@ -4719,8 +4742,8 @@ def detect_Patt(\
                 , msg
                 )
             
-            print()
-            print("%s" % (msg_Debug))
+#             print()
+#             print("%s" % (msg_Debug))
             
             lo_Msg_Debug.append(msg_Debug)
             lo_Msg_Debug.append("\n")
@@ -4755,7 +4778,8 @@ def detect_Patt(\
                         )
             msg += "\n"
             
-            msg_Debug = "[%s:%d]\n%s" % \
+#             msg_Debug = "[%s:%d]\n%s" % \
+            msg_Debug = "[%s:%d] Moni : current status\n%s" % \
                 (os.path.basename(libs.thisfile()), libs.linenum()
                 , msg
                 )
@@ -4764,6 +4788,51 @@ def detect_Patt(\
             lo_Msg_Debug.append("\n")
             lo_Msg_Debug.append("\n")
             
+
+            '''###################
+                step : B1 : j1 : Y : 1
+                    get : e0.price_Close : π<C,i>
+            ###################'''
+            priceOf_E0_Close = e0.price_Close
+            
+            '''###################
+                step : B1 : j1 : Y : 2
+                    get : judging price
+            ###################'''
+            # diff : cumulative
+            diffOf_Cumulative = Moni[KY_curr_Price_Close] - Moni[KY_start_Price_Open]
+            
+            # set : judging price
+            # (π<C,i> - π<S,O>) * raioOf_TS ==> threshold price
+            #_20190422_170746:fix:ok
+#             priceOf_Judging = \
+            volOf_TS = \
+                    (diffOf_Cumulative) \
+                    * ratioOf_TS
+#                     (Moni[KY_curr_Price_Close] - Moni[KY_start_Price_Open]) \
+                    
+            priceOf_Judging = Moni[KY_curr_Price_Close] - volOf_TS
+            
+            #debug
+            msg = "curr_Price_Close\t%.03f\n" % Moni[KY_curr_Price_Close]
+            msg += "start_Price_Open\t%.03f\n" % Moni[KY_start_Price_Open]
+            msg += "diffOf_Cumulative\t%.03f\n" % diffOf_Cumulative
+            
+            msg += "ratioOf_TS\t%.03f\n" % ratioOf_TS
+            msg += "volOf_TS\t%.03f\n" % volOf_TS
+            msg += "priceOf_Judging\t%.03f\n" % priceOf_Judging
+                        
+#             msg_Debug = "[%s:%d]\n%s" % \
+            msg_Debug = "[%s:%d] (step : B1 : j1 : Y : 2)\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , msg
+                )
+            
+            lo_Msg_Debug.append(msg_Debug)
+            lo_Msg_Debug.append("\n")
+            lo_Msg_Debug.append("\n")
+            
+            #_20190422_164213:wl:in-func
             
             #debug
             break
@@ -4782,52 +4851,142 @@ def detect_Patt(\
                 , msg
                 )
             
-            print()
-            print("%s" % (msg_Debug))
+#             print()
+#             print("%s" % (msg_Debug))
             
             lo_Msg_Debug.append(msg_Debug)
             lo_Msg_Debug.append("\n")
 
             '''###################
-                step : B1 : j1 : N : 1
-                    init --> Moni
+                step : B1 : j3
+                    d0 > 0 ?
             ###################'''
-            # start
-            #_20190421_161738:fix
-            Moni[KY_start_Price_Open] = e0.price_Open
-            Moni[KY_start_Price_Close] = e0.price_Close
-            Moni[KY_start_List_Index] = i
-            Moni[KY_start_Data_ID] = e0.no
+            #_20190422_171842:fix
+            if d0 > 0 : #if d0 > 0
+                '''###################
+                    step : B1 : j3 : Y
+                        d0 > 0
+                ###################'''
+                '''###################
+                    step : B1 : j3 : Y : 1
+                        init --> Moni
+                ###################'''
+                # start
+                
+                Moni[KY_start_Price_Open] = e0.price_Open
+                Moni[KY_start_Price_Close] = e0.price_Close
+                Moni[KY_start_List_Index] = i
+                Moni[KY_start_Data_ID] = e0.no
+                
+                # current
+                Moni[KY_curr_Price_Open] = e0.price_Open
+                Moni[KY_curr_Price_Close] = e0.price_Close
+                Moni[KY_curr_List_Index] = i
+                Moni[KY_curr_Data_ID] = e0.no
+                
+    #             Moni = {\
+    #                     
+    #                     "start_Price_Open"
+    #                     , "start_Price_Close"
+    #                     , "start_Index"
+    #                     
+    #                     , "curr_Price_Open"
+    #                     , "curr_Price_Close"
+    #                     , "curr_Index"
+    #                     
+    #                     }
+                
+                '''###################
+                    step : B1 : j3 : Y : 2
+                        flg --> true
+                ###################'''
+                flg_Moni = True                
+
+                #debug
+                msg = "(step : B1 : j3 : Y : 2) Moni ===> init complete: %s" % (e0.dateTime)
+                
+                msg_Debug = "[%s:%d]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg
+                    )
+                
+    #             print()
+    #             print("%s" % (msg_Debug))
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+                
+            else : #if d0 > 0
+                '''###################
+                    step : B1 : j3 : N
+                        d0 <= 0
+                ###################'''
+                '''###################
+                    step : B1 : j3 : N : 1
+                        continue
+                ###################'''
+                #debug
+                msg = "(step : B1 : j3 : N : 1) d3 <=0 (%.03f) ==> continue : %s" %\
+                             (
+                              d0
+                              , e0.dateTime
+                              )
+                
+                msg_Debug = "[%s:%d]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg
+                    )
+                
+    #             print()
+    #             print("%s" % (msg_Debug))
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+
+                continue
+                
             
-            # current
-            Moni[KY_curr_Price_Open] = e0.price_Open
-            Moni[KY_curr_Price_Close] = e0.price_Close
-            Moni[KY_curr_List_Index] = i
-            Moni[KY_curr_Data_ID] = e0.no
+            #/if d0 > 0
             
-#             Moni = {\
-#                     
-#                     "start_Price_Open"
-#                     , "start_Price_Close"
-#                     , "start_Index"
-#                     
-#                     , "curr_Price_Open"
-#                     , "curr_Price_Close"
-#                     , "curr_Index"
-#                     
-#                     }
             
-            '''###################
-                step : B1 : j1 : N : 2
-                    flg --> true
-            ###################'''
-            flg_Moni = True
+#             '''###################
+#                 step : B1 : j1 : N : 1
+#                     init --> Moni
+#             ###################'''
+#             # start
+#             
+#             Moni[KY_start_Price_Open] = e0.price_Open
+#             Moni[KY_start_Price_Close] = e0.price_Close
+#             Moni[KY_start_List_Index] = i
+#             Moni[KY_start_Data_ID] = e0.no
+#             
+#             # current
+#             Moni[KY_curr_Price_Open] = e0.price_Open
+#             Moni[KY_curr_Price_Close] = e0.price_Close
+#             Moni[KY_curr_List_Index] = i
+#             Moni[KY_curr_Data_ID] = e0.no
+#             
+# #             Moni = {\
+# #                     
+# #                     "start_Price_Open"
+# #                     , "start_Price_Close"
+# #                     , "start_Index"
+# #                     
+# #                     , "curr_Price_Open"
+# #                     , "curr_Price_Close"
+# #                     , "curr_Index"
+# #                     
+# #                     }
+#             
+#             '''###################
+#                 step : B1 : j1 : N : 2
+#                     flg --> true
+#             ###################'''
+#             flg_Moni = True
             
 #             #debug
 #             break
             
-            #_20190421_154619:wl:in-func
-        
         #/if flg_Moni == True
         
     #/for i in range(0, lenOf_LO_BDs):
@@ -4844,6 +5003,321 @@ def detect_Patt(\
             )
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+    
+    
+#/def dp_Mountain(\
+
+
+'''###################
+    detect_Patt
+
+    at : 2019/04/22 16:28:39
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+
+        _fname_Log_Debug = "debug.log"
+    
+    @return: 
+    
+###################'''
+def detect_Patt(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+            
+            , _strOf_Debug_File = "Sec_1_A12_Detect"
+            
+            , _fname_Log_Debug = "debug.log"
+            
+        ) :
+
+#_20190421_154540:head
+
+
+
+    '''###################
+        step : 1
+            mountain
+    ###################'''
+    #_20190422_164208:caller
+    dp_Mountain(\
+
+            #(lo_UUU, lo_UUD)
+            lo_BD_Sequences 
+            , strOf_Slice_By_Throgh
+            , fname_Log_CSV_trunk, fname_Log_CSV
+            , dpath_Log
+            , fname_Src_CSV
+            ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+            ,pair
+            ,timeframe
+            ,tmp_LO_BarDatas
+            , tlabel
+            , flag_Write_to_File
+            
+            , _strOf_Debug_File
+            , _fname_Log_Debug
+
+        )    
+    
+#     lenOf_LO_BDs = len(tmp_LO_BarDatas)
+#     
+#     # flags
+#     flg_Moni = False
+# 
+#     # keys for dict
+#     KY_start_Price_Open = "start_Price_Open"
+#     KY_start_Price_Close = "start_Price_Close"
+#     KY_start_List_Index = "start_List_Index"
+#     KY_start_Data_ID = "start_Data_ID"
+#     
+#     KY_curr_Price_Open = "curr_Price_Open"
+#     KY_curr_Price_Close = "curr_Price_Close"
+#     KY_curr_List_Index = "curr_List_Index"
+#     KY_curr_Data_ID = "curr_Data_ID"
+#         
+#     # dict
+#     Moni = {\
+#             
+#             KY_start_Price_Open : -1.0
+#             , KY_start_Price_Close : -1.0
+#             , KY_start_List_Index : -1
+#             , KY_start_Data_ID : -1
+#             
+#             ,KY_curr_Price_Open : -1.0
+#             , KY_curr_Price_Close : -1.0
+#             , KY_curr_List_Index : -1
+#             , KY_curr_Data_ID : -1
+#                     
+#             }
+#     
+#     '''###################
+#         step : A : 2
+#             prep : log file
+#     ###################'''
+#     '''###################
+#         step : A : 2.1
+#             vars
+#     ###################'''
+#     fname_Log_Debug = _fname_Log_Debug
+# #     fname_Log_Debug = "debug.%s.log" % (tlabel)
+#     
+#     lo_Msg_Debug = []
+#     
+#     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+#          
+#     #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+#     if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+#          
+#         # make dir
+#         #ref https://docs.python.org/2/library/os.html
+#         os.makedirs(dpath_Log_CSV, exist_ok = True)
+#          
+#         #debug
+#         print()
+#         print("[%s:%d] new dir created => %s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , dpath_Log_CSV
+#             ), file=sys.stderr)
+#     
+#     else :
+#         
+#         #debug
+#         print()
+#         print("[%s:%d] new dir NOT created (already exists => %s ---!!" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#             , dpath_Log_CSV
+#             ), file=sys.stderr)
+#         
+#     #/if not os.path.isdir(dpath_Log_CSV)    
+#     
+#     '''###################
+#         step : A : 2.2
+#             debug file : test
+#     ###################'''
+#     lo_Msg_Debug.append("debug ---> starting...")
+#     
+#     '''###################
+#         step : B1
+#             for-loop
+#     ###################'''
+#     for i in range(0, lenOf_LO_BDs):
+#         '''###################
+#             step : B : 1.1
+#                 prep : instances
+#         ###################'''
+#         # bardata
+#         e0 = tmp_LO_BarDatas[i]
+#         
+#         '''###################
+#             step : B1 : j1
+#                 flag : monitor --> True ?
+#         ###################'''
+#         if flg_Moni == True : #if flg_Moni == True
+#             '''###################
+#                 step : B1 : j1 : Y
+#                     flag : monitor --> True
+#             ###################'''
+#             '''###################
+#                 step : B1 : j1 : Y
+#                     flag : monitor --> True
+#             ###################'''
+#             #debug
+#             msg = "(step : B1 : j1 : Y) : %s" % (e0.dateTime)
+#             
+#             msg_Debug = "[%s:%d]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , msg
+#                 )
+#             
+# #             print()
+# #             print("%s" % (msg_Debug))
+#             
+#             lo_Msg_Debug.append(msg_Debug)
+#             lo_Msg_Debug.append("\n")
+#             lo_Msg_Debug.append("\n")
+# 
+#             '''###################
+#                 step : B1 : j1 : Y : 0
+#                     debug : Moni : status quo
+#             ###################'''
+#             #debug
+#             msg = "(step : B1 : j1 : Y : 0) : Moni : s.q."
+#             msg += "\n"
+#             
+#             msg = "name\tprice open\tprice close\tlist index\tdata no"
+#             msg += "\n"
+#             
+#             msg += "start\t%.03f\t%.03f\t%d\t%d" % (\
+#                         Moni[KY_start_Price_Open]
+#                         , Moni[KY_start_Price_Close]
+#                         , Moni[KY_start_List_Index]
+#                         , Moni[KY_start_Data_ID]
+#                         
+#                         )
+#             msg += "\n"
+#             
+#             msg += "curr\t%.03f\t%.03f\t%d\t%d" % (\
+#                         Moni[KY_curr_Price_Open]
+#                         , Moni[KY_curr_Price_Close]
+#                         , Moni[KY_curr_List_Index]
+#                         , Moni[KY_curr_Data_ID]
+#                         
+#                         )
+#             msg += "\n"
+#             
+#             msg_Debug = "[%s:%d]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , msg
+#                 )
+#             
+#             lo_Msg_Debug.append(msg_Debug)
+#             lo_Msg_Debug.append("\n")
+#             lo_Msg_Debug.append("\n")
+#             
+#             #_20190421_154619:wl:in-func
+#             
+#             #debug
+#             break
+#             
+#         
+#         else : #if flg_Moni == True
+#             '''###################
+#                 step : B1 : j1 : N
+#                     flag : monitor --> False
+#             ###################'''
+#             #debug
+#             msg = "(step : B1 : j1 : N) : %s" % (e0.dateTime)
+#             
+#             msg_Debug = "[%s:%d]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                 , msg
+#                 )
+#             
+# #             print()
+# #             print("%s" % (msg_Debug))
+#             
+#             lo_Msg_Debug.append(msg_Debug)
+#             lo_Msg_Debug.append("\n")
+# 
+#             '''###################
+#                 step : B1 : j1 : N : 1
+#                     init --> Moni
+#             ###################'''
+#             # start
+#             #_20190421_161738:fix
+#             Moni[KY_start_Price_Open] = e0.price_Open
+#             Moni[KY_start_Price_Close] = e0.price_Close
+#             Moni[KY_start_List_Index] = i
+#             Moni[KY_start_Data_ID] = e0.no
+#             
+#             # current
+#             Moni[KY_curr_Price_Open] = e0.price_Open
+#             Moni[KY_curr_Price_Close] = e0.price_Close
+#             Moni[KY_curr_List_Index] = i
+#             Moni[KY_curr_Data_ID] = e0.no
+#             
+# #             Moni = {\
+# #                     
+# #                     "start_Price_Open"
+# #                     , "start_Price_Close"
+# #                     , "start_Index"
+# #                     
+# #                     , "curr_Price_Open"
+# #                     , "curr_Price_Close"
+# #                     , "curr_Index"
+# #                     
+# #                     }
+#             
+#             '''###################
+#                 step : B1 : j1 : N : 2
+#                     flg --> true
+#             ###################'''
+#             flg_Moni = True
+#             
+# #             #debug
+# #             break
+#             
+#         #/if flg_Moni == True
+#         
+#     #/for i in range(0, lenOf_LO_BDs):
+# 
+#     '''###################
+#         step : C1 : 1
+#             debug : write
+#     ###################'''
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_Debug)
+#             )
+#     
+#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
     
     
 #/def detect_Patt(\

@@ -14220,6 +14220,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
     
     fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
     
+    #_20190421_154616:caller
     libfx_2.detect_Patt(\
         
             #(lo_UUU, lo_UUD)
@@ -14234,6 +14235,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
             ,tmp_LO_BarDatas
             , tlabel
             , flag_Write_to_File
+            
+            , _strOf_Debug_File = strOf_Debug_File
             
             , _fname_Log_Debug = fname_Log_Debug
         
