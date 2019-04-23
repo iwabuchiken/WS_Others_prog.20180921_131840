@@ -69,6 +69,13 @@ from mm.libs_mm import libfx
 
 # from libs import cons
 
+'''###################
+    global vars
+###################'''
+numOf_Debug_Char_Dash = 30 # '-' ==> used for debug file
+
+strOf_Debug_Output_Separator_Line = "".join(["-"] * numOf_Debug_Char_Dash)
+
 ###############################################
 
 def test_func():
@@ -4628,6 +4635,13 @@ def dp_Mountain(\
     KY_curr_Price_Close = "curr_Price_Close"
     KY_curr_List_Index = "curr_List_Index"
     KY_curr_Data_ID = "curr_Data_ID"
+    
+    KY_anch_Price_Open = "anch_Price_Open"
+    KY_anch_Price_Close = "anch_Price_Close"
+    KY_anch_List_Index = "anch_List_Index"
+    KY_anch_Data_ID = "anch_Data_ID"
+    
+    #_20190423_115121:tmp
         
     # dict
     Moni = {\
@@ -4712,6 +4726,27 @@ def dp_Mountain(\
     ###################'''
     for i in range(0, lenOf_LO_BDs):
         '''###################
+            step : B : 0
+                debug
+        ###################'''
+        #_20190423_121933:tmp
+        msg = "%s for-loop : %d" % ("".join(['='] * numOf_Debug_Char_Dash), i)
+        msg += "\n"
+#         msg += "\n"
+        
+#             msg_Debug = "[%s:%d]\n%s" % \
+#         msg_Debug = "[%s:%d] %s" % \
+        msg_Debug = "\n[%s:%d] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , msg
+            )
+        
+        lo_Msg_Debug.append(msg_Debug)
+        lo_Msg_Debug.append("\n")
+        
+        
+        
+        '''###################
             step : B : 1.1
                 prep : instances, diff
         ###################'''
@@ -4779,8 +4814,9 @@ def dp_Mountain(\
             msg += "\n"
             
 #             msg_Debug = "[%s:%d]\n%s" % \
-            msg_Debug = "[%s:%d] Moni : current status\n%s" % \
+            msg_Debug = "[%s:%d] Moni : current status %s\n%s" % \
                 (os.path.basename(libs.thisfile()), libs.linenum()
+                 , strOf_Debug_Output_Separator_Line
                 , msg
                 )
             
@@ -4823,14 +4859,20 @@ def dp_Mountain(\
             msg += "priceOf_Judging\t%.03f\n" % priceOf_Judging
                         
 #             msg_Debug = "[%s:%d]\n%s" % \
-            msg_Debug = "[%s:%d] (step : B1 : j1 : Y : 2)\n%s" % \
+            msg_Debug = "[%s:%d] (step : B1 : j1 : Y : 2) %s\n%s" % \
                 (os.path.basename(libs.thisfile()), libs.linenum()
+                 , strOf_Debug_Output_Separator_Line
                 , msg
                 )
             
             lo_Msg_Debug.append(msg_Debug)
             lo_Msg_Debug.append("\n")
             lo_Msg_Debug.append("\n")
+
+            '''###################
+                step : B1 : j2
+                    judge
+            ###################'''
             
             #_20190422_164213:wl:in-func
             
@@ -4884,6 +4926,14 @@ def dp_Mountain(\
                 Moni[KY_curr_List_Index] = i
                 Moni[KY_curr_Data_ID] = e0.no
                 
+                # anchor
+                Moni[KY_anch_Price_Open] = e0.price_Open
+                Moni[KY_anch_Price_Close] = e0.price_Close
+                Moni[KY_anch_List_Index] = i
+                Moni[KY_anch_Data_ID] = e0.no
+                
+                #_20190423_115456:tmp
+                
     #             Moni = {\
     #                     
     #                     "start_Price_Open"
@@ -4905,9 +4955,40 @@ def dp_Mountain(\
                 #debug
                 msg = "(step : B1 : j3 : Y : 2) Moni ===> init complete: %s" % (e0.dateTime)
                 
-                msg_Debug = "[%s:%d]\n%s" % \
+                msg += "type\tlist index\tprice_open\tprice_close"
+                msg += "\n"
+                
+                msg += "start\t%d\t%.03f\t%.03f" %\
+                        (
+                            Moni[KY_start_List_Index]
+                            , Moni[KY_start_Price_Open]
+                            , Moni[KY_start_Price_Close]
+                         )
+                msg += "\n"
+                
+                msg += "current\t%d\t%.03f\t%.03f" %\
+                        (
+                            Moni[KY_curr_List_Index]
+                            , Moni[KY_curr_Price_Open]
+                            , Moni[KY_curr_Price_Close]
+                         )
+                msg += "\n"
+                
+                msg += "anchor\t%d\t%.03f\t%.03f" %\
+                        (
+                            Moni[KY_anch_List_Index]
+                            , Moni[KY_anch_Price_Open]
+                            , Moni[KY_anch_Price_Close]
+                         )
+                msg += "\n"
+                
+#                 msg_Debug = "[%s:%d]\n%s" % \
+                msg_Debug = "[%s:%d]%s\n%s" % \
                     (os.path.basename(libs.thisfile()), libs.linenum()
+                    , strOf_Debug_Output_Separator_Line
                     , msg
+#                     , "".join(["-"] * numOf_Debug_Char_Dash)
+#                     , "".join(["-"]*20)
                     )
                 
     #             print()
