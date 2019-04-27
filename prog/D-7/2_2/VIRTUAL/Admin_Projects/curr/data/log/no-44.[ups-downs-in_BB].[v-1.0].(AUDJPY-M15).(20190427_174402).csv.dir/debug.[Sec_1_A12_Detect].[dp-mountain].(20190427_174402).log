@@ -1,0 +1,787 @@
+[20190427_174409 / libfx_2.py:5358]
+debug ---> starting...
+[libfx_2.py:4821] ============================== for-loop : 0
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 17:30
+[libfx_2.py:5293]
+(step : B1 : j3 : N : 1) d3 <=0 (-0.092) ==> continue : 2018.06.14 17:30
+
+[libfx_2.py:4821] ============================== for-loop : 1
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 17:45
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 17:45type	list index	price_open	price_close
+start	1	83.084	83.134
+current	1	83.084	83.134
+anchor	1	83.084	83.134
+
+
+[libfx_2.py:4821] ============================== for-loop : 2
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 18:00
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	83.084	83.134	1	21113
+curr	83.084	83.134	1	21113
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	83.085
+start_Price_Open	83.084
+diffOf_Cumulative	0.050
+ratioOf_TS	0.300
+volOf_TS	0.015
+priceOf_Judging	83.119
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	83.085
+priceOf_Judging	83.119
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 18:00
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 18:00
+
+[libfx_2.py:4821] ============================== for-loop : 3
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 18:15
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 18:15type	list index	price_open	price_close
+start	3	83.086	83.111
+current	3	83.086	83.111
+anchor	3	83.086	83.111
+
+
+[libfx_2.py:4821] ============================== for-loop : 4
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 18:30
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	83.086	83.111	3	21111
+curr	83.086	83.111	3	21111
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.928
+start_Price_Open	83.086
+diffOf_Cumulative	0.025
+ratioOf_TS	0.300
+volOf_TS	0.008
+priceOf_Judging	83.103
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.928
+priceOf_Judging	83.103
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 18:30
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 18:30
+
+[libfx_2.py:4821] ============================== for-loop : 5
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 18:45
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 18:45type	list index	price_open	price_close
+start	5	82.929	82.976
+current	5	82.929	82.976
+anchor	5	82.929	82.976
+
+
+[libfx_2.py:4821] ============================== for-loop : 6
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 19:00
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.929	82.976	5	21109
+curr	82.929	82.976	5	21109
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.941
+start_Price_Open	82.929
+diffOf_Cumulative	0.047
+ratioOf_TS	0.300
+volOf_TS	0.014
+priceOf_Judging	82.962
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.941
+priceOf_Judging	82.962
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 19:00
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 19:00
+
+[libfx_2.py:4821] ============================== for-loop : 7
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 19:15
+[libfx_2.py:5293]
+(step : B1 : j3 : N : 1) d3 <=0 (-0.045) ==> continue : 2018.06.14 19:15
+
+[libfx_2.py:4821] ============================== for-loop : 8
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 19:30
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 19:30type	list index	price_open	price_close
+start	8	82.894	82.911
+current	8	82.894	82.911
+anchor	8	82.894	82.911
+
+
+[libfx_2.py:4821] ============================== for-loop : 9
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 19:45
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.894	82.911	8	21106
+curr	82.894	82.911	8	21106
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.877
+start_Price_Open	82.894
+diffOf_Cumulative	0.017
+ratioOf_TS	0.300
+volOf_TS	0.005
+priceOf_Judging	82.906
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.877
+priceOf_Judging	82.906
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 19:45
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 19:45
+
+[libfx_2.py:4821] ============================== for-loop : 10
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 20:00
+[libfx_2.py:5293]
+(step : B1 : j3 : N : 1) d3 <=0 (-0.013) ==> continue : 2018.06.14 20:00
+
+[libfx_2.py:4821] ============================== for-loop : 11
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 20:15
+[libfx_2.py:5293]
+(step : B1 : j3 : N : 1) d3 <=0 (-0.044) ==> continue : 2018.06.14 20:15
+
+[libfx_2.py:4821] ============================== for-loop : 12
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 20:30
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 20:30type	list index	price_open	price_close
+start	12	82.818	82.843
+current	12	82.818	82.843
+anchor	12	82.818	82.843
+
+
+[libfx_2.py:4821] ============================== for-loop : 13
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 20:45
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.818	82.843	12	21102
+curr	82.818	82.843	12	21102
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.817
+start_Price_Open	82.818
+diffOf_Cumulative	0.025
+ratioOf_TS	0.300
+volOf_TS	0.008
+priceOf_Judging	82.835
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.817
+priceOf_Judging	82.835
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 20:45
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 20:45
+
+[libfx_2.py:4821] ============================== for-loop : 14
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 21:00
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 21:00type	list index	price_open	price_close
+start	14	82.819	82.877
+current	14	82.819	82.877
+anchor	14	82.819	82.877
+
+
+[libfx_2.py:4821] ============================== for-loop : 15
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 21:15
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.819	82.877	14	21100
+curr	82.819	82.877	14	21100
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.840
+start_Price_Open	82.819
+diffOf_Cumulative	0.058
+ratioOf_TS	0.300
+volOf_TS	0.017
+priceOf_Judging	82.860
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.840
+priceOf_Judging	82.860
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 21:15
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 21:15
+
+[libfx_2.py:4821] ============================== for-loop : 16
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 21:30
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 21:30type	list index	price_open	price_close
+start	16	82.837	82.865
+current	16	82.837	82.865
+anchor	16	82.837	82.865
+
+
+[libfx_2.py:4821] ============================== for-loop : 17
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 21:45
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.837	82.865	16	21098
+curr	82.837	82.865	16	21098
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.742
+start_Price_Open	82.837
+diffOf_Cumulative	0.028
+ratioOf_TS	0.300
+volOf_TS	0.008
+priceOf_Judging	82.857
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.742
+priceOf_Judging	82.857
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 21:45
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 21:45
+
+[libfx_2.py:4821] ============================== for-loop : 18
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 22:00
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 22:00type	list index	price_open	price_close
+start	18	82.744	82.834
+current	18	82.744	82.834
+anchor	18	82.744	82.834
+
+
+[libfx_2.py:4821] ============================== for-loop : 19
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 22:15
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.744	82.834	18	21096
+curr	82.744	82.834	18	21096
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.831
+start_Price_Open	82.744
+diffOf_Cumulative	0.090
+ratioOf_TS	0.300
+volOf_TS	0.027
+priceOf_Judging	82.807
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.831
+priceOf_Judging	82.807
+
+[libfx_2.py:5041] (step : B1 : j2 : Y : 2) ------------------------------
+moni ==> updated : 2018.06.14 22:15
+KY_start_List_Index	18
+KY_start_Data_ID	21096
+KY_start_Price_Open	82.744
+KY_start_Price_Close	82.834
+KY_curr_List_Index	19
+KY_curr_Data_ID	21095
+KY_curr_Price_Open	82.834
+KY_curr_Price_Close	82.831
+KY_anch_List_Index	18
+KY_anch_Data_ID	21096
+KY_anch_Price_Open	82.744
+KY_anch_Price_Close	82.834
+
+[libfx_2.py:5056] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 22:15
+
+[libfx_2.py:4821] ============================== for-loop : 20
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 22:30
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.744	82.834	18	21096
+curr	82.834	82.831	19	21095
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.813
+start_Price_Open	82.744
+diffOf_Cumulative	0.090
+ratioOf_TS	0.300
+volOf_TS	0.027
+priceOf_Judging	82.807
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.813
+priceOf_Judging	82.807
+
+[libfx_2.py:5041] (step : B1 : j2 : Y : 2) ------------------------------
+moni ==> updated : 2018.06.14 22:30
+KY_start_List_Index	18
+KY_start_Data_ID	21096
+KY_start_Price_Open	82.744
+KY_start_Price_Close	82.834
+KY_curr_List_Index	20
+KY_curr_Data_ID	21094
+KY_curr_Price_Open	82.831
+KY_curr_Price_Close	82.813
+KY_anch_List_Index	18
+KY_anch_Data_ID	21096
+KY_anch_Price_Open	82.744
+KY_anch_Price_Close	82.834
+
+[libfx_2.py:5056] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 22:30
+
+[libfx_2.py:4821] ============================== for-loop : 21
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 22:45
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.744	82.834	18	21096
+curr	82.831	82.813	20	21094
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.783
+start_Price_Open	82.744
+diffOf_Cumulative	0.090
+ratioOf_TS	0.300
+volOf_TS	0.027
+priceOf_Judging	82.807
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.783
+priceOf_Judging	82.807
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 22:45
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 22:45
+
+[libfx_2.py:4821] ============================== for-loop : 22
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 23:00
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.14 23:00type	list index	price_open	price_close
+start	22	82.782	82.811
+current	22	82.782	82.811
+anchor	22	82.782	82.811
+
+
+[libfx_2.py:4821] ============================== for-loop : 23
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 23:15
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.782	82.811	22	21092
+curr	82.782	82.811	22	21092
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.814
+start_Price_Open	82.782
+diffOf_Cumulative	0.029
+ratioOf_TS	0.300
+volOf_TS	0.009
+priceOf_Judging	82.802
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.814
+priceOf_Judging	82.802
+
+[libfx_2.py:5041] (step : B1 : j2 : Y : 2) ------------------------------
+moni ==> updated : 2018.06.14 23:15
+KY_start_List_Index	22
+KY_start_Data_ID	21092
+KY_start_Price_Open	82.782
+KY_start_Price_Close	82.811
+KY_curr_List_Index	23
+KY_curr_Data_ID	21091
+KY_curr_Price_Open	82.812
+KY_curr_Price_Close	82.814
+KY_anch_List_Index	23
+KY_anch_Data_ID	21091
+KY_anch_Price_Open	82.812
+KY_anch_Price_Close	82.814
+
+[libfx_2.py:5056] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 23:15
+
+[libfx_2.py:4821] ============================== for-loop : 24
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.14 23:30
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.782	82.811	22	21092
+curr	82.812	82.814	23	21091
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.744
+start_Price_Open	82.782
+diffOf_Cumulative	0.032
+ratioOf_TS	0.300
+volOf_TS	0.010
+priceOf_Judging	82.804
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.744
+priceOf_Judging	82.804
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.14 23:30
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.14 23:30
+
+[libfx_2.py:4821] ============================== for-loop : 25
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.14 23:45
+[libfx_2.py:5293]
+(step : B1 : j3 : N : 1) d3 <=0 (-0.054) ==> continue : 2018.06.14 23:45
+
+[libfx_2.py:4821] ============================== for-loop : 26
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.15 00:00
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.15 00:00type	list index	price_open	price_close
+start	26	82.657	82.661
+current	26	82.657	82.661
+anchor	26	82.657	82.661
+
+
+[libfx_2.py:4821] ============================== for-loop : 27
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.15 00:15
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.657	82.661	26	21088
+curr	82.657	82.661	26	21088
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.652
+start_Price_Open	82.657
+diffOf_Cumulative	0.004
+ratioOf_TS	0.300
+volOf_TS	0.001
+priceOf_Judging	82.660
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.652
+priceOf_Judging	82.660
+
+[libfx_2.py:5127] (step : B1 : j2 : N : 3) ------------------------------
+moni ==> reset done : 2018.06.15 00:15
+KY_start_List_Index	-1
+KY_start_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_curr_List_Index	-1
+KY_curr_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+KY_anch_List_Index	-1
+KY_anch_Data_ID	-1
+start_Price_Open	-1.000
+diffOf_Cumulative	-1.000
+
+[libfx_2.py:5142] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.15 00:15
+
+[libfx_2.py:4821] ============================== for-loop : 28
+
+[libfx_2.py:5168]
+(step : B1 : j1 : N) : 2018.06.15 00:30
+[libfx_2.py:5263]------------------------------
+(step : B1 : j3 : Y : 2) Moni ===> init complete: 2018.06.15 00:30type	list index	price_open	price_close
+start	28	82.651	82.664
+current	28	82.651	82.664
+anchor	28	82.651	82.664
+
+
+[libfx_2.py:4821] ============================== for-loop : 29
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.15 00:45
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.651	82.664	28	21086
+curr	82.651	82.664	28	21086
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.700
+start_Price_Open	82.651
+diffOf_Cumulative	0.013
+ratioOf_TS	0.300
+volOf_TS	0.004
+priceOf_Judging	82.660
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.700
+priceOf_Judging	82.660
+
+[libfx_2.py:5041] (step : B1 : j2 : Y : 2) ------------------------------
+moni ==> updated : 2018.06.15 00:45
+KY_start_List_Index	28
+KY_start_Data_ID	21086
+KY_start_Price_Open	82.651
+KY_start_Price_Close	82.664
+KY_curr_List_Index	29
+KY_curr_Data_ID	21085
+KY_curr_Price_Open	82.666
+KY_curr_Price_Close	82.700
+KY_anch_List_Index	29
+KY_anch_Data_ID	21085
+KY_anch_Price_Open	82.666
+KY_anch_Price_Close	82.700
+
+[libfx_2.py:5056] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.15 00:45
+
+[libfx_2.py:4821] ============================== for-loop : 30
+
+[libfx_2.py:4857]
+(step : B1 : j1 : Y) : 2018.06.15 01:00
+
+[libfx_2.py:4899] Moni : current status ------------------------------
+(step : B1 : j1 : Y : 0) : Moni : s.q.
+name	price open	price close	list index	data no
+start	82.651	82.664	28	21086
+curr	82.666	82.700	29	21085
+
+
+[libfx_2.py:4957] (step : B1 : j1 : Y : 2) ------------------------------
+curr_Price_Close	82.713
+start_Price_Open	82.651
+diffOf_Cumulative	0.049
+ratioOf_TS	0.300
+volOf_TS	0.015
+priceOf_Judging	82.685
+
+
+[libfx_2.py:4979] (step : B1 : j2) priceOf_E0_Close	82.713
+priceOf_Judging	82.685
+
+[libfx_2.py:5041] (step : B1 : j2 : Y : 2) ------------------------------
+moni ==> updated : 2018.06.15 01:00
+KY_start_List_Index	28
+KY_start_Data_ID	21086
+KY_start_Price_Open	82.651
+KY_start_Price_Close	82.664
+KY_curr_List_Index	30
+KY_curr_Data_ID	21084
+KY_curr_Price_Open	82.696
+KY_curr_Price_Close	82.713
+KY_anch_List_Index	30
+KY_anch_Data_ID	21084
+KY_anch_Price_Open	82.696
+KY_anch_Price_Close	82.713
+
+[libfx_2.py:5056] (step : B1 : j2 : Y : 3) ------------------------------
+continuing ... : 2018.06.15 01:00

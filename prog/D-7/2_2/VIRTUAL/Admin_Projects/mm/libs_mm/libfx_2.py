@@ -530,6 +530,23 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                     step : j1.1 : Y : 3
                         continue
                 ###################'''
+                msg = "(step : j1.1 : Y : 3) continuing... : %s" %\
+                             (
+                              e0.dateTime
+                              )
+                
+                msg_Debug = "[%s:%d]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg
+                    )
+                
+    #             print()
+    #             print("%s" % (msg_Debug))
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+
+                
                 continue
                 
             #/if res == False
@@ -866,6 +883,19 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_5(\
                             step : j6 : N
                                 flag : flg_A1 ---> conditions NOT met
                         ###################'''
+                        msg = "(step : j6 : N) continuing... : %s" %\
+                                     (
+                                      e0.dateTime
+                                      )
+                        
+                        msg_Debug = "[%s:%d]\n%s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                            , msg
+                            )
+                        
+                        lo_Msg_Debug.append(msg_Debug)
+                        lo_Msg_Debug.append("\n")
+                        
                         continue
                     
                     #/if (cond_1 and cond_2)
@@ -1222,6 +1252,19 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
                 
 #                 #debug
 #                 break
+                msg = "(step : j2 : N) continuing... : %s" %\
+                             (
+                              e0.dateTime
+                              )
+                
+                msg_Debug = "[%s:%d]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                    , msg
+                    )
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+
                 continue
 
             
@@ -1713,6 +1756,19 @@ def _BUSL_3__DetectPatterns__Two_Tops__V_2(\
 #                             break
                             
                             # next
+                            msg = "(step : j9 : N : 2) continuing... : %s" %\
+                                         (
+                                          e0.dateTime
+                                          )
+                            
+                            msg_Debug = "[%s:%d]\n%s" % \
+                                (os.path.basename(libs.thisfile()), libs.linenum()
+                                , msg
+                                )
+                            
+                            lo_Msg_Debug.append(msg_Debug)
+                            lo_Msg_Debug.append("\n")
+                            
                             continue
                             
 #                             #debug
@@ -2549,6 +2605,7 @@ def get_Data_Consecutive_Bars__Report(\
                             , 2)
 
             else : #if n0 == (num_Target + 1)
+
             
                 continue
             
@@ -4656,6 +4713,11 @@ def dp_Mountain(\
             , KY_curr_List_Index : -1
             , KY_curr_Data_ID : -1
                     
+            ,KY_anch_Price_Open : -1.0
+            , KY_anch_Price_Close : -1.0
+            , KY_anch_List_Index : -1
+            , KY_anch_Data_ID : -1
+                    
             }
     
     # threshold
@@ -4685,7 +4747,10 @@ def dp_Mountain(\
                   , tlabel
                   )
     
+    # lists
     lo_Msg_Debug = []
+    
+    lo_Monitor_Stopped = []
     
     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
          
@@ -4724,7 +4789,24 @@ def dp_Mountain(\
         step : B1
             for-loop
     ###################'''
+    #debug
+    #_20190427_170121:tmp
+    maxOf_Loop = 30
+    
+    #_20190427_173139:for-loop
+    #_20190422_164213:wl:in-func
     for i in range(0, lenOf_LO_BDs):
+        '''###################
+            step : B : -1
+                debug
+        ###################'''
+        if i > maxOf_Loop : #if i > maxOf_Loop
+            
+            break
+        
+        #/if i > maxOf_Loop
+
+        
         '''###################
             step : B : 0
                 debug
@@ -4792,7 +4874,7 @@ def dp_Mountain(\
             msg = "(step : B1 : j1 : Y : 0) : Moni : s.q."
             msg += "\n"
             
-            msg = "name\tprice open\tprice close\tlist index\tdata no"
+            msg += "name\tprice open\tprice close\tlist index\tdata no"
             msg += "\n"
             
             msg += "start\t%.03f\t%.03f\t%d\t%d" % (\
@@ -4832,11 +4914,22 @@ def dp_Mountain(\
             priceOf_E0_Close = e0.price_Close
             
             '''###################
+                step : B1 : j1 : Y : 1.1
+                    moni : curr ---> update
+            ###################'''
+            Moni[KY_curr_Data_ID] = e0.no
+            Moni[KY_curr_List_Index] = i
+            
+            Moni[KY_curr_Price_Open] = e0.price_Open
+            Moni[KY_curr_Price_Close] = e0.price_Close
+            
+            '''###################
                 step : B1 : j1 : Y : 2
                     get : judging price
             ###################'''
             # diff : cumulative
-            diffOf_Cumulative = Moni[KY_curr_Price_Close] - Moni[KY_start_Price_Open]
+            diffOf_Cumulative = Moni[KY_anch_Price_Close] - Moni[KY_start_Price_Open]
+#             diffOf_Cumulative = Moni[KY_curr_Price_Close] - Moni[KY_start_Price_Open]
             
             # set : judging price
             # (π<C,i> - π<S,O>) * raioOf_TS ==> threshold price
@@ -4847,7 +4940,9 @@ def dp_Mountain(\
                     * ratioOf_TS
 #                     (Moni[KY_curr_Price_Close] - Moni[KY_start_Price_Open]) \
                     
-            priceOf_Judging = Moni[KY_curr_Price_Close] - volOf_TS
+            #_20190427_174308:fix
+            priceOf_Judging = Moni[KY_anch_Price_Close] - volOf_TS
+#             priceOf_Judging = Moni[KY_curr_Price_Close] - volOf_TS
             
             #debug
             msg = "curr_Price_Close\t%.03f\n" % Moni[KY_curr_Price_Close]
@@ -4871,14 +4966,206 @@ def dp_Mountain(\
 
             '''###################
                 step : B1 : j2
-                    judge
+                    judge : close > judge ?
             ###################'''
+            #debug
+            #_20190427_172709:fix
+            msg = "priceOf_E0_Close\t%.03f\npriceOf_Judging\t%.03f" \
+                % (priceOf_E0_Close, priceOf_Judging)
             
-            #_20190422_164213:wl:in-func
+            msg += "\n"
+            
+            tmpOf_Str = " >= " if (priceOf_E0_Close >= priceOf_Judging) else " < "
+            
+            msg += "priceOf_E0_Close" \
+                    + tmpOf_Str \
+                    + "priceOf_Judging"
+#                     + " >= " if (priceOf_E0_Close >= priceOf_Judging) else " < " \
+            
+            msg += "\n"
+            
+#             msg_Debug = "[%s:%d]\n%s" % \
+            msg_Debug = "[%s:%d] (step : B1 : j2) %s\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , strOf_Debug_Output_Separator_Line
+                , msg
+                )
+            
+            lo_Msg_Debug.append(msg_Debug)
+            lo_Msg_Debug.append("\n")
+            
+            
+#             if priceOf_E0_Close >= priceOf_Judging : #if priceOf_E0_Close >= priceOf_Judging
+            if Moni[KY_curr_Price_Close] >= priceOf_Judging : #if priceOf_E0_Close >= priceOf_Judging
+                '''###################
+                    step : B1 : j2 : Y
+                        judge : close > judge
+                ###################'''
+                '''###################
+                    step : B1 : j2 : Y : 1
+                        curr --> update
+                ###################'''
+                Moni[KY_curr_Data_ID] = e0.no
+                Moni[KY_curr_List_Index] = i
+                
+                Moni[KY_curr_Price_Close] = e0.price_Close
+                Moni[KY_curr_Price_Open] = e0.price_Open
+            
+                '''###################
+                    step : B1 : j2 : Y : 2
+                        anchor --> update
+                ###################'''
+                if priceOf_E0_Close > Moni[KY_anch_Price_Close] : #if priceOf_E0_Close > Moni[KY_anch_Price_Close
+                    
+                    Moni[KY_anch_Data_ID] = e0.no
+                    Moni[KY_anch_List_Index] = i
+                    
+                    Moni[KY_anch_Price_Close] = e0.price_Close
+                    Moni[KY_anch_Price_Open] = e0.price_Open
+                
+                #/if priceOf_E0_Close > Moni[KY_anch_Price_Close
+
+
+                # report
+                #_20190427_170535:tmp
+                #debug
+#                 msg = "anchor ==> updated : %s" % (e0.dateTime)
+                msg = "moni ==> updated : %s" % (e0.dateTime)
+                msg += "\n"
+                
+                msg += "KY_start_List_Index\t%d\n" % Moni[KY_start_List_Index]
+                msg += "KY_start_Data_ID\t%d\n" % Moni[KY_start_Data_ID]
+                msg += "KY_start_Price_Open\t%.03f\n" % Moni[KY_start_Price_Open]
+                msg += "KY_start_Price_Close\t%.03f\n" % Moni[KY_start_Price_Close]
+                
+                msg += "KY_curr_List_Index\t%d\n" % Moni[KY_curr_List_Index]
+                msg += "KY_curr_Data_ID\t%d\n" % Moni[KY_curr_Data_ID]
+                msg += "KY_curr_Price_Open\t%.03f\n" % Moni[KY_curr_Price_Open]
+                msg += "KY_curr_Price_Close\t%.03f\n" % Moni[KY_curr_Price_Close]
+                
+                msg += "KY_anch_List_Index\t%d\n" % Moni[KY_anch_List_Index]
+                msg += "KY_anch_Data_ID\t%d\n" % Moni[KY_anch_Data_ID]
+                msg += "KY_anch_Price_Open\t%.03f\n" % Moni[KY_anch_Price_Open]
+                msg += "KY_anch_Price_Close\t%.03f\n" % Moni[KY_anch_Price_Close]
+                
+                msg_Debug = "[%s:%d] (step : B1 : j2 : Y : 2) %s\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , strOf_Debug_Output_Separator_Line
+                    , msg
+                    )
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+                
+                '''###################
+                    step : B1 : j2 : Y : 3
+                        next
+                ###################'''
+                msg = "continuing ... : %s" % e0.dateTime
+                
+                msg_Debug = "[%s:%d] (step : B1 : j2 : Y : 3) %s\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , strOf_Debug_Output_Separator_Line
+                    , msg
+                    )
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+                
+                continue
+            
+            else : #if priceOf_E0_Close >= priceOf_Judging
+                '''###################
+                    step : B1 : j2 : N
+                        judge : close <= judge
+                ###################'''
+                '''###################
+                    step : B1 : j2 : N : 1
+                        monitor --> append
+                ###################'''
+                lo_Monitor_Stopped.append(Moni)
+                
+            
+                '''###################
+                    step : B1 : j2 : N : 2
+                        moni ---> reset
+                ###################'''
+                Moni[KY_start_Price_Open] = -1.0
+                Moni[KY_start_Price_Close] = -1.0
+                Moni[KY_start_List_Index] = -1
+                Moni[KY_start_Data_ID] = -1
+                
+                Moni[KY_curr_Price_Open] = -1.0
+                Moni[KY_curr_Price_Close] = -1.0
+                Moni[KY_curr_List_Index] = -1
+                Moni[KY_curr_Data_ID] = -1
+                        
+                Moni[KY_anch_Price_Open] = -1.0
+                Moni[KY_anch_Price_Close] = -1.0
+                Moni[KY_anch_List_Index] = -1
+                Moni[KY_anch_Data_ID] = -1
+                                
+            
+            
+                '''###################
+                    step : B1 : j2 : N : 3
+                        flag ---> to false
+                ###################'''
+                flg_Moni = False
+
+                # report
+                #_20190427_170909:tmp
+                #debug
+                msg = "moni ==> reset done : %s" % (e0.dateTime)
+                msg += "\n"
+                
+                msg += "KY_start_List_Index\t%d\n" % Moni[KY_start_List_Index]
+                msg += "KY_start_Data_ID\t%d\n" % Moni[KY_start_Data_ID]
+                msg += "start_Price_Open\t%.03f\n" % Moni[KY_start_Price_Open]
+                msg += "diffOf_Cumulative\t%.03f\n" % Moni[KY_start_Price_Close]
+                
+                msg += "KY_curr_List_Index\t%d\n" % Moni[KY_curr_List_Index]
+                msg += "KY_curr_Data_ID\t%d\n" % Moni[KY_curr_Data_ID]
+                msg += "start_Price_Open\t%.03f\n" % Moni[KY_curr_Price_Open]
+                msg += "diffOf_Cumulative\t%.03f\n" % Moni[KY_curr_Price_Close]
+                
+                msg += "KY_anch_List_Index\t%d\n" % Moni[KY_anch_List_Index]
+                msg += "KY_anch_Data_ID\t%d\n" % Moni[KY_anch_Data_ID]
+                msg += "start_Price_Open\t%.03f\n" % Moni[KY_anch_Price_Open]
+                msg += "diffOf_Cumulative\t%.03f\n" % Moni[KY_anch_Price_Close]
+                
+                msg_Debug = "[%s:%d] (step : B1 : j2 : N : 3) %s\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , strOf_Debug_Output_Separator_Line
+                    , msg
+                    )
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+                
+                '''###################
+                    step : B1 : j2 : N : 4
+                        next
+                ###################'''
+                msg = "continuing ... : %s" % e0.dateTime
+                
+                msg_Debug = "[%s:%d] (step : B1 : j2 : Y : 3) %s\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum()
+                     , strOf_Debug_Output_Separator_Line
+                    , msg
+                    )
+                
+                lo_Msg_Debug.append(msg_Debug)
+                lo_Msg_Debug.append("\n")
+
+                continue
+            
+                
+            
+            #/if priceOf_E0_Close >= priceOf_Judging
             
             #debug
             break
-            
         
         else : #if flg_Moni == True
             '''###################
@@ -4954,6 +5241,7 @@ def dp_Mountain(\
 
                 #debug
                 msg = "(step : B1 : j3 : Y : 2) Moni ===> init complete: %s" % (e0.dateTime)
+                msg += "\n"
                 
                 msg += "type\tlist index\tprice_open\tprice_close"
                 msg += "\n"
