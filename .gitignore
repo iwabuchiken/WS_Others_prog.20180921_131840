@@ -4,7 +4,7 @@
 #
 ########################
 *.pdf
-*.dat
+###*.dat #=> commented out 2019/05/01 01:02:59
 *.png
 *.wmv
 *.tif
@@ -68,3 +68,5 @@ prog/D-7/2_2/VIRTUAL/Admin_Projects/curr/data/log/list_4-3.slice*
 ### 2019/03/08 10:13:33
 prog/D-7/2_2/VIRTUAL/Admin_Projects/curr/data/log/storage_log
 
+### 2019/05/01 01:03:40
+prog/D-7/2_2/VIRTUAL/*.dat

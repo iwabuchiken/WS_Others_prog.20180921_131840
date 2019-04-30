@@ -5567,7 +5567,9 @@ def dp_Mountain(\
     ###################'''
     #debug
     #_20190427_170121:tmp
-    maxOf_Loop = 200
+    #_20190429_230257:wl:in-func
+    maxOf_Loop = 100
+#     maxOf_Loop = 200
 #     maxOf_Loop = 30
     
     '''###################
@@ -5577,7 +5579,7 @@ def dp_Mountain(\
     time_Start = time.time()
     
     #_20190429_230317:for-loop
-    #_20190429_230257:wl:in-func
+    
     #_20190429_233426:debug
     for i in range(0, lenOf_LO_BDs):
         '''###################
@@ -5921,22 +5923,73 @@ def dp_Mountain(\
                     step : B1 : j2 : N : 2
                         moni ---> reset
                 ###################'''
-                Moni[KY_start_Price_Open] = -1.0
-                Moni[KY_start_Price_Close] = -1.0
-                Moni[KY_start_List_Index] = -1
-                Moni[KY_start_Data_ID] = -1
+# #debug
+# a = {1 : "aaa", 2 : "bbb", 3 : "ccc"}
+# lo_Tmp = []
+# lo_Tmp.append(a)
+# print(lo_Tmp)
+# # a.clear()
+# a = {1 : "dd", 2 : "ee", 3 : "ff"}
+# print(lo_Tmp)
+# lo_Tmp.append(a)
+# print(lo_Tmp)
+# 
+# a = {1 : "gg", 2 : "hh", 3 : "ii"}
+# print(lo_Tmp)
+# lo_Tmp.append(a)
+# print(lo_Tmp)
+
+                #_20190501_002524:fix:ok
                 
-                Moni[KY_curr_Price_Open] = -1.0
-                Moni[KY_curr_Price_Close] = -1.0
-                Moni[KY_curr_List_Index] = -1
-                Moni[KY_curr_Data_ID] = -1
+                Moni = {\
                         
-                Moni[KY_anch_Price_Open] = -1.0
-                Moni[KY_anch_Price_Close] = -1.0
-                Moni[KY_anch_List_Index] = -1
-                Moni[KY_anch_Data_ID] = -1
+                        KY_start_Price_Open : -1.0
+                        , KY_start_Price_Close : -1.0
+                        , KY_start_List_Index : -1
+                        , KY_start_Data_ID : -1
+                        
+                        , KY_start_BD : False
+                        
+                        ,KY_curr_Price_Open : -1.0
+                        , KY_curr_Price_Close : -1.0
+                        , KY_curr_List_Index : -1
+                        , KY_curr_Data_ID : -1
+                        
+                        , KY_curr_BD : False
                                 
-            
+                        ,KY_anch_Price_Open : -1.0
+                        , KY_anch_Price_Close : -1.0
+                        , KY_anch_List_Index : -1
+                        , KY_anch_Data_ID : -1
+                        
+                        , KY_anch_BD : False
+                        
+                        }
+
+
+#                 Moni[KY_start_Price_Open] = -1.0
+#                 Moni[KY_start_Price_Close] = -1.0
+#                 Moni[KY_start_List_Index] = -1
+#                 Moni[KY_start_Data_ID] = -1
+#                 
+#                 
+#                 Moni[KY_start_BD] = False
+#                 
+#                 #_20190501_001220:fix:ok
+#                 
+#                 Moni[KY_curr_Price_Open] = -1.0
+#                 Moni[KY_curr_Price_Close] = -1.0
+#                 Moni[KY_curr_List_Index] = -1
+#                 Moni[KY_curr_Data_ID] = -1
+#                         
+#                 Moni[KY_curr_BD] = False
+#                 
+#                 Moni[KY_anch_Price_Open] = -1.0
+#                 Moni[KY_anch_Price_Close] = -1.0
+#                 Moni[KY_anch_List_Index] = -1
+#                 Moni[KY_anch_Data_ID] = -1
+#                                 
+#                 Moni[KY_anch_BD] = False
             
                 '''###################
                     step : B1 : j2 : N : 3
@@ -6219,8 +6272,8 @@ def dp_Mountain(\
     
     print(msg)
     print()
-    
     lo_Msg_Debug.append(msg)
+    
     lo_Msg_Debug.append("\n")
 
     #_20190429_224833:debug
@@ -6253,7 +6306,102 @@ def dp_Mountain(\
             )
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+
+    '''###################
+        step : C1 : 2
+            debug : write : lo_Monitor_Stopped
+    ###################'''
+    '''###################
+        step : C1 : 2.1
+            prep
+    ###################'''
+    lo_Debug_LO_Moni_Stopped = []
     
+    '''###################
+        step : C1 : 2.2
+            header
+    ###################'''
+    
+#     msg = "BD.start\tBD.anchor\tBD.end(curr)"
+    msg = "s.n.\tBD.start\tlist_index\topen\tclose\tBD.anchor\tlist_index\topen\tclose\tBD.end(curr)\tlist_index\topen\tclose"
+    msg += "\n"
+    
+    # append
+    lo_Debug_LO_Moni_Stopped.append(msg)
+    
+    '''###################
+        step : C1 : 2.3
+            body
+    ###################'''
+    cntOf_Loop = 1
+    
+    for item in lo_Monitor_Stopped:
+    
+        '''###################
+            step : C1 : 2.3 : 1
+                get : bd
+        ###################'''
+        bd_Start = item[KY_start_BD]
+        bd_Curr = item[KY_curr_BD]
+        bd_Anch = item[KY_anch_BD]
+        
+        '''###################
+            step : C1 : 2.3 : 2
+                build : lines
+        ###################'''
+#         strOf_Line = "%s\t%s\t%s" % \
+        strOf_Line = "%d\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f" % \
+                (
+                    cntOf_Loop
+                    
+                    , bd_Start.dateTime
+                    , item[KY_start_List_Index]
+                    , bd_Start.price_Open
+                    , bd_Start.price_Close
+                    
+                    , bd_Anch.dateTime
+                    , item[KY_anch_List_Index]
+                    , bd_Anch.price_Open
+                    , bd_Anch.price_Close
+                    
+                    , bd_Curr.dateTime
+                    , item[KY_curr_List_Index]
+                    , bd_Curr.price_Open
+                    , bd_Curr.price_Close
+                 
+                 )
+        
+        # return
+        strOf_Line += "\n"
+                
+        # counter
+        cntOf_Loop += 1
+        
+        '''###################
+            step : C1 : 2.3 : 3
+                append
+        ###################'''
+        lo_Debug_LO_Moni_Stopped.append(strOf_Line)
+        
+        
+    #/for item in lo_Monitor_Stopped:
+    
+    '''###################
+        step : C1 : 2.4
+            write
+    ###################'''
+    
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Debug_LO_Moni_Stopped)
+            )
+    
+    fname = "data.[Sec_1_A12_Detect].[dp-mountain~list].(%s).dat" % tlabel
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname, 0)
+#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
     
 #/def dp_Mountain(\
 
