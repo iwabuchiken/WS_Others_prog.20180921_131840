@@ -4790,8 +4790,9 @@ def dp_Mountain__DEPRECATED_20190429_230131(\
             for-loop
     ###################'''
     #debug
-    #_20190427_170121:tmp
-    maxOf_Loop = 200
+    #_20190427_170121:tmp:ok
+    maxOf_Loop = lenOf_LO_BDs
+#     maxOf_Loop = 200
 #     maxOf_Loop = 30
     
     #_20190427_173139:for-loop
@@ -5566,9 +5567,10 @@ def dp_Mountain(\
             for-loop
     ###################'''
     #debug
+    
     #_20190427_170121:tmp
-    #_20190429_230257:wl:in-func
-    maxOf_Loop = 100
+    maxOf_Loop = lenOf_LO_BDs
+#     maxOf_Loop = 100
 #     maxOf_Loop = 200
 #     maxOf_Loop = 30
     
@@ -5600,8 +5602,9 @@ def dp_Mountain(\
             ###################'''
             time_Elapsed = time.time() - time_Start
             
-            msg += " (time : %02.3f sec)" % (time_Elapsed)
-            
+#             msg += " (time : %02.3f sec)" % (time_Elapsed)
+            msg += " (time : %02.3f sec) (%s)" % (time_Elapsed, libs.get_TimeLabel_Now())
+            #_20190501_125325:tmp:ok
 #             print()
 #             print("[%s:%d] -------------- for-loop : %d" % \
 #                 (os.path.basename(libs.thisfile()), libs.linenum()
@@ -6265,9 +6268,11 @@ def dp_Mountain(\
     
 #     msg = "(total time : %02.3f sec)" % (time_Elapsed)
     
-    msg = "[%s:%d] for-loop ==> complete (total time : %02.3f sec)" % \
+#     msg = "[%s:%d] for-loop ==> complete (total time : %02.3f sec)" % \
+    msg = "[%s:%d] for-loop ==> complete (total time : %02.3f sec) (%s)" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         , time_Elapsed
+        , libs.get_TimeLabel_Now()
         )
     
     print(msg)
@@ -6321,9 +6326,37 @@ def dp_Mountain(\
         step : C1 : 2.2
             header
     ###################'''
+    fname = "data.[Sec_1_A12_Detect].[dp-mountain~list].(%s).dat" % tlabel
     
+    #_20190501_123242:tmp:ok
 #     msg = "BD.start\tBD.anchor\tBD.end(curr)"
-    msg = "s.n.\tBD.start\tlist_index\topen\tclose\tBD.anchor\tlist_index\topen\tclose\tBD.end(curr)\tlist_index\topen\tclose"
+#             , fname_Src_CSV
+#             ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+#             ,pair
+#             ,timeframe
+
+    msg = "file(this)\t%s" % fname
+    msg += "\n"
+    
+    msg += "pair\t%s\n" % pair
+    msg += "timeframe\t%s\n" % timeframe
+    
+    msg += "source\t%s" % fname_Src_CSV
+    msg += "\n"
+    
+    msg += "start\t%s" % tmp_LO_BarDatas[0].dateTime
+    msg += "\n"
+    msg += "end\t%s" % tmp_LO_BarDatas[-1].dateTime
+    msg += "\n"
+    
+    msg += "ratioOf_TS\t%.03f" % ratioOf_TS
+    msg += "\n"
+    
+    msg += "\n"
+    
+    #_20190429_230257:wl:in-func
+    msg += "%s\n" % strOf_Debug_Output_Separator_Line
+    msg += "s.n.\tBD.start\tlist_index\topen\tclose\tBD.anchor\tlist_index\topen\tclose\tBD.end(curr)\tlist_index\topen\tclose"
     msg += "\n"
     
     # append
@@ -6398,7 +6431,7 @@ def dp_Mountain(\
             , "".join(lo_Debug_LO_Moni_Stopped)
             )
     
-    fname = "data.[Sec_1_A12_Detect].[dp-mountain~list].(%s).dat" % tlabel
+#     fname = "data.[Sec_1_A12_Detect].[dp-mountain~list].(%s).dat" % tlabel
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname, 0)
 #     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
