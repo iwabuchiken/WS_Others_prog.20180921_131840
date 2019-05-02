@@ -6352,11 +6352,32 @@ def dp_Mountain(\
     msg += "ratioOf_TS\t%.03f" % ratioOf_TS
     msg += "\n"
     
+    #_20190502_234642:tmp
+    msg += "lenOf_LO_BDs\t%d" % lenOf_LO_BDs
+    msg += "\n"
+    
     msg += "\n"
     
     #_20190429_230257:wl:in-func
-    msg += "%s\n" % strOf_Debug_Output_Separator_Line
-    msg += "s.n.\tBD.start\tlist_index\topen\tclose\tBD.anchor\tlist_index\topen\tclose\tBD.end(curr)\tlist_index\topen\tclose"
+    msg += "%s" % strOf_Debug_Output_Separator_Line
+    msg += "\n"
+    
+    #_20190502_235747:tmp
+#     msg += "s.n.\tBD.start\tlist_index\topen\tclose"
+    msg += "s.n."
+    msg += "\t"
+    
+    msg += "BD.start\tlist_index\topen\tclose\tBB.2S\tBB.1S\tBB.main\tBB.M1S\tBB.M2S"
+    msg += "\t"
+    
+#     msg += "BD.anchor\tlist_index\topen\tclose"
+    msg += "BD.anchor\tlist_index\topen\tclose\tBB.2S\tBB.1S\tBB.main\tBB.M1S\tBB.M2S"
+    msg += "\t"
+    
+#     msg += "BD.end(curr)\tlist_index\topen\tclose"
+    msg += "BD.end(curr)\tlist_index\topen\tclose\tBB.2S\tBB.1S\tBB.main\tBB.M1S\tBB.M2S"
+    msg += "\t"
+    
     msg += "\n"
     
     # append
@@ -6383,27 +6404,83 @@ def dp_Mountain(\
                 build : lines
         ###################'''
 #         strOf_Line = "%s\t%s\t%s" % \
-        strOf_Line = "%d\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f" % \
+#         strOf_Line = "%d\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f" % \
+        strOf_Line = "%d" % (cntOf_Loop)
+        strOf_Line += "\t"
+        
+        # bardata : start
+        strOf_Line += "%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % \
                 (
-                    cntOf_Loop
-                    
-                    , bd_Start.dateTime
+                    bd_Start.dateTime
                     , item[KY_start_List_Index]
                     , bd_Start.price_Open
                     , bd_Start.price_Close
                     
-                    , bd_Anch.dateTime
+                    , bd_Start.bb_2S
+                    , bd_Start.bb_1S
+                    , bd_Start.bb_Main
+                    , bd_Start.bb_M1S
+                    , bd_Start.bb_M2S
+                 
+                 )
+        
+        strOf_Line += "\t"
+        
+        # bardata : anchor
+        strOf_Line += "%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % \
+                (
+                    bd_Anch.dateTime
                     , item[KY_anch_List_Index]
                     , bd_Anch.price_Open
                     , bd_Anch.price_Close
                     
-                    , bd_Curr.dateTime
-                    , item[KY_curr_List_Index]
-                    , bd_Curr.price_Open
-                    , bd_Curr.price_Close
+                    , bd_Anch.bb_2S
+                    , bd_Anch.bb_1S
+                    , bd_Anch.bb_Main
+                    , bd_Anch.bb_M1S
+                    , bd_Anch.bb_M2S
                  
                  )
         
+        strOf_Line += "\t"
+        
+        # bardata : end(curr)
+        strOf_Line += "%s\t%d\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % \
+                (
+                    bd_Curr.dateTime
+                    , item[KY_curr_List_Index]
+                    , bd_Curr.price_Open
+                    , bd_Curr.price_Close
+                    
+                    , bd_Curr.bb_2S
+                    , bd_Curr.bb_1S
+                    , bd_Curr.bb_Main
+                    , bd_Curr.bb_M1S
+                    , bd_Curr.bb_M2S
+                 
+                 )
+        
+#         strOf_Line += "%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f\t%s\t%d\t%.03f\t%.03f" % \
+#                 (
+#                     cntOf_Loop
+#                     
+#                     , bd_Start.dateTime
+#                     , item[KY_start_List_Index]
+#                     , bd_Start.price_Open
+#                     , bd_Start.price_Close
+#                     
+#                     , bd_Anch.dateTime
+#                     , item[KY_anch_List_Index]
+#                     , bd_Anch.price_Open
+#                     , bd_Anch.price_Close
+#                     
+#                     , bd_Curr.dateTime
+#                     , item[KY_curr_List_Index]
+#                     , bd_Curr.price_Open
+#                     , bd_Curr.price_Close
+#                  
+#                  )
+#         
         # return
         strOf_Line += "\n"
                 
