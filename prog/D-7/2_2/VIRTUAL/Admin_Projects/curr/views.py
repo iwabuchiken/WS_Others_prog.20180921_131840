@@ -14162,6 +14162,79 @@ def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 #/def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_
+
+    at : 2019/05/07 23:13:24
+    
+    @description :
+    
+    @param : 
+        
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
+
+                strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+
+                , tlabel
+                , flag_Write_to_File
+
+        ) :
+
+#_20190507_231522:head
+
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    # debug file
+    strOf_Debug_File = "Sec_1_A13_Correl"
+    
+    fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+#_20190507_231609:wl:views
+
+#     #_:caller
+#     libfx_2.detect_Patt(\
+#         
+#             #(lo_UUU, lo_UUD)
+#             lo_BD_Sequences 
+#             , strOf_Slice_By_Throgh
+#             , fname_Log_CSV_trunk, fname_Log_CSV
+#             , dpath_Log
+#             , fname_Src_CSV
+#             ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+#             ,pair
+#             ,timeframe
+#             ,tmp_LO_BarDatas
+#             , tlabel
+#             , flag_Write_to_File
+#             
+#             , _strOf_Debug_File = strOf_Debug_File
+#             
+#             , _fname_Log_Debug = fname_Log_Debug
+#         
+#         )
+    
+#/def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
+
+
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_
 
     at : 2019/04/17 18:36:32
@@ -16753,7 +16826,10 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     flg_Sec_1_A10 = True
     
     flg_Sec_1_A11 = True
-    flg_Sec_1_A12 = True
+    flg_Sec_1_A12 = False
+#     flg_Sec_1_A12 = True
+    
+    flg_Sec_1_A13 = True
     
     '''###################
         step : A : 2
@@ -17637,6 +17713,51 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             )    
     
     #/if flg_Sec_1_A12 == False    
+    #_20190331_092850:wl:views
+    
+    '''###################
+        step : A : 13
+            correlation
+    ###################'''
+    if flg_Sec_1_A13 == False : #if flg_Sec_1_A13 == False
+
+        #debug
+        print()
+        print("[%s:%d] (step : A : 13) flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A13 == False
+
+        #debug
+        print()
+        print("[%s:%d] [step : A : 13 / correlation] =================================" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+
+        flag_Write_to_File = True
+        
+        #_20190507_230809:caller
+        _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
+#                 (lo_UUU, lo_UUD)
+#                 , strOf_Slice_By_Throgh
+                strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+#                 ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A13 == False    
+    
     #_20190331_092850:wl:views
     
     '''###################
