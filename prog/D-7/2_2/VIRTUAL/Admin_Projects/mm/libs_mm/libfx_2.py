@@ -5524,6 +5524,7 @@ def dp_Mountain(\
                   , tlabel
                   )
     
+    #_20190508_150732:ref
     # lists
     lo_Msg_Debug = []
     
@@ -6592,240 +6593,76 @@ def detect_Patt(\
 
         )    
     
-#     lenOf_LO_BDs = len(tmp_LO_BarDatas)
-#     
-#     # flags
-#     flg_Moni = False
-# 
-#     # keys for dict
-#     KY_start_Price_Open = "start_Price_Open"
-#     KY_start_Price_Close = "start_Price_Close"
-#     KY_start_List_Index = "start_List_Index"
-#     KY_start_Data_ID = "start_Data_ID"
-#     
-#     KY_curr_Price_Open = "curr_Price_Open"
-#     KY_curr_Price_Close = "curr_Price_Close"
-#     KY_curr_List_Index = "curr_List_Index"
-#     KY_curr_Data_ID = "curr_Data_ID"
-#         
-#     # dict
-#     Moni = {\
-#             
-#             KY_start_Price_Open : -1.0
-#             , KY_start_Price_Close : -1.0
-#             , KY_start_List_Index : -1
-#             , KY_start_Data_ID : -1
-#             
-#             ,KY_curr_Price_Open : -1.0
-#             , KY_curr_Price_Close : -1.0
-#             , KY_curr_List_Index : -1
-#             , KY_curr_Data_ID : -1
-#                     
-#             }
-#     
-#     '''###################
-#         step : A : 2
-#             prep : log file
-#     ###################'''
-#     '''###################
-#         step : A : 2.1
-#             vars
-#     ###################'''
-#     fname_Log_Debug = _fname_Log_Debug
-# #     fname_Log_Debug = "debug.%s.log" % (tlabel)
-#     
-#     lo_Msg_Debug = []
-#     
-#     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
-#          
-#     #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
-#     if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
-#          
-#         # make dir
-#         #ref https://docs.python.org/2/library/os.html
-#         os.makedirs(dpath_Log_CSV, exist_ok = True)
-#          
-#         #debug
-#         print()
-#         print("[%s:%d] new dir created => %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , dpath_Log_CSV
-#             ), file=sys.stderr)
-#     
-#     else :
-#         
-#         #debug
-#         print()
-#         print("[%s:%d] new dir NOT created (already exists => %s ---!!" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , dpath_Log_CSV
-#             ), file=sys.stderr)
-#         
-#     #/if not os.path.isdir(dpath_Log_CSV)    
-#     
-#     '''###################
-#         step : A : 2.2
-#             debug file : test
-#     ###################'''
-#     lo_Msg_Debug.append("debug ---> starting...")
-#     
-#     '''###################
-#         step : B1
-#             for-loop
-#     ###################'''
-#     for i in range(0, lenOf_LO_BDs):
-#         '''###################
-#             step : B : 1.1
-#                 prep : instances
-#         ###################'''
-#         # bardata
-#         e0 = tmp_LO_BarDatas[i]
-#         
-#         '''###################
-#             step : B1 : j1
-#                 flag : monitor --> True ?
-#         ###################'''
-#         if flg_Moni == True : #if flg_Moni == True
-#             '''###################
-#                 step : B1 : j1 : Y
-#                     flag : monitor --> True
-#             ###################'''
-#             '''###################
-#                 step : B1 : j1 : Y
-#                     flag : monitor --> True
-#             ###################'''
-#             #debug
-#             msg = "(step : B1 : j1 : Y) : %s" % (e0.dateTime)
-#             
-#             msg_Debug = "[%s:%d]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , msg
-#                 )
-#             
-# #             print()
-# #             print("%s" % (msg_Debug))
-#             
-#             lo_Msg_Debug.append(msg_Debug)
-#             lo_Msg_Debug.append("\n")
-#             lo_Msg_Debug.append("\n")
-# 
-#             '''###################
-#                 step : B1 : j1 : Y : 0
-#                     debug : Moni : status quo
-#             ###################'''
-#             #debug
-#             msg = "(step : B1 : j1 : Y : 0) : Moni : s.q."
-#             msg += "\n"
-#             
-#             msg = "name\tprice open\tprice close\tlist index\tdata no"
-#             msg += "\n"
-#             
-#             msg += "start\t%.03f\t%.03f\t%d\t%d" % (\
-#                         Moni[KY_start_Price_Open]
-#                         , Moni[KY_start_Price_Close]
-#                         , Moni[KY_start_List_Index]
-#                         , Moni[KY_start_Data_ID]
-#                         
-#                         )
-#             msg += "\n"
-#             
-#             msg += "curr\t%.03f\t%.03f\t%d\t%d" % (\
-#                         Moni[KY_curr_Price_Open]
-#                         , Moni[KY_curr_Price_Close]
-#                         , Moni[KY_curr_List_Index]
-#                         , Moni[KY_curr_Data_ID]
-#                         
-#                         )
-#             msg += "\n"
-#             
-#             msg_Debug = "[%s:%d]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , msg
-#                 )
-#             
-#             lo_Msg_Debug.append(msg_Debug)
-#             lo_Msg_Debug.append("\n")
-#             lo_Msg_Debug.append("\n")
-#             
-#             #_20190421_154619:wl:in-func
-#             
-#             #debug
-#             break
-#             
-#         
-#         else : #if flg_Moni == True
-#             '''###################
-#                 step : B1 : j1 : N
-#                     flag : monitor --> False
-#             ###################'''
-#             #debug
-#             msg = "(step : B1 : j1 : N) : %s" % (e0.dateTime)
-#             
-#             msg_Debug = "[%s:%d]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum()
-#                 , msg
-#                 )
-#             
-# #             print()
-# #             print("%s" % (msg_Debug))
-#             
-#             lo_Msg_Debug.append(msg_Debug)
-#             lo_Msg_Debug.append("\n")
-# 
-#             '''###################
-#                 step : B1 : j1 : N : 1
-#                     init --> Moni
-#             ###################'''
-#             # start
-#             #_20190421_161738:fix
-#             Moni[KY_start_Price_Open] = e0.price_Open
-#             Moni[KY_start_Price_Close] = e0.price_Close
-#             Moni[KY_start_List_Index] = i
-#             Moni[KY_start_Data_ID] = e0.no
-#             
-#             # current
-#             Moni[KY_curr_Price_Open] = e0.price_Open
-#             Moni[KY_curr_Price_Close] = e0.price_Close
-#             Moni[KY_curr_List_Index] = i
-#             Moni[KY_curr_Data_ID] = e0.no
-#             
-# #             Moni = {\
-# #                     
-# #                     "start_Price_Open"
-# #                     , "start_Price_Close"
-# #                     , "start_Index"
-# #                     
-# #                     , "curr_Price_Open"
-# #                     , "curr_Price_Close"
-# #                     , "curr_Index"
-# #                     
-# #                     }
-#             
-#             '''###################
-#                 step : B1 : j1 : N : 2
-#                     flg --> true
-#             ###################'''
-#             flg_Moni = True
-#             
-# #             #debug
-# #             break
-#             
-#         #/if flg_Moni == True
-#         
-#     #/for i in range(0, lenOf_LO_BDs):
-# 
-#     '''###################
-#         step : C1 : 1
-#             debug : write
-#     ###################'''
-#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , "".join(lo_Msg_Debug)
-#             )
-#     
-#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
-    
-    
 #/def detect_Patt(\
+
+'''###################
+    detect_Patt
+
+    at : 2019/04/22 16:28:39
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+
+        _fname_Log_Debug = "debug.log"
+    
+    @return: 
+    
+###################'''
+def get_Formatted_BDs_Same_Period(\
+                                  
+        lo_BarDatas_1
+        , lo_BarDatas_2
+
+        , numOf_Request_BDs
+
+        , fname_Log_CSV_trunk, fname_Log_CSV
+        , dpath_Log
+        , fname_Src_CSV
+        
+        ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+
+        ,pair
+        ,timeframe
+
+        , tlabel
+        , flag_Write_to_File                    
+                                  
+                    ):
+    #_20190508_150225:head
+    
+    '''###################
+        step : A.1
+            get : datetime of the first BD
+    ###################'''
+    dtOf_BD_1st_1 = lo_BarDatas_1[0].dateTime
+    dtOf_BD_1st_2 = lo_BarDatas_2[0].dateTime
+    
+    #debug
+    print()
+    print("[%s:%d] dtOf_BD_1st_1 = %s, dtOf_BD_1st_2 = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , dtOf_BD_1st_1, dtOf_BD_1st_2 
+        ), file=sys.stderr)
+    
+    #_20190508_150158:wl:libfx_2
+    
+    '''###################
+        return        
+    ###################'''
+    #dummy
+    return (False, False)
+
+#/def get_Formatted_BDs_Same_Period(\

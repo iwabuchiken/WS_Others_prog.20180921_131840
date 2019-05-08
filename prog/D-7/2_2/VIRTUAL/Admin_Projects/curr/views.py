@@ -4408,6 +4408,7 @@ def _BUSL3_Tester_No_42_1__BuyUpSellDown__exec(request):
     '''###################
         adjust : order of the list
     ###################'''
+    #_20190508_144834:tmp
     bar_Start = lo_BarDatas[0]
     bar_End = lo_BarDatas[-1]
     
@@ -14199,15 +14200,257 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         ), file=sys.stderr)
     
     '''###################
-        step : A : 1
-            prep
+        step : A : 0
+            prep : log-related
+    ###################'''
+    '''###################
+        step : A : 0.1
+            dir
+    ###################'''
+    # lists
+    lo_Msg_Debug = []
+    
+#     lo_Monitor_Stopped = []
+    
+    dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+         
+    #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+    if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+         
+        # make dir
+        #ref https://docs.python.org/2/library/os.html
+        os.makedirs(dpath_Log_CSV, exist_ok = True)
+         
+        #debug
+        print()
+        print("[%s:%d] new dir created => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+    
+    else :
+        
+        #debug
+        print()
+        print("[%s:%d] new dir NOT created (already exists => %s ---!!" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+        
+    #/if not os.path.isdir(dpath_Log_CSV)        
+
+    '''###################
+        step : A : 0.1
+            file name
     ###################'''
     # debug file
     strOf_Debug_File = "Sec_1_A13_Correl"
     
     fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Msg_Debug)
+#             )
+#     
+#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    '''###################
+        step : A : 1.1
+            list of BDs
+    ###################'''
+    '''###################
+        step : A : 1.1 : 1
+            prep
+    ###################'''
+    fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
+    fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.csv"
     
-#_20190507_231609:wl:views
+    dpath_Src_Csv = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
+    
+    '''###################
+        step : A : 1.1 : 2
+            lo_BDs
+    ###################'''
+    '''###################
+        step : A : 1.1 : 2.1
+            lo_BDs : pair 1
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    # get : BDs
+    lo_BarDatas_1, lo_CSVs_1 = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_Csv, fname_Src_Csv_1, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas_1) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas_1)
+                        ), file=sys.stderr)
+    
+    '''###################
+        step : A : 1.1 : 2.2
+            lo_BDs : pair 2
+    ###################'''
+    # get : BDs
+    lo_BarDatas_2, lo_CSVs_2 = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_Csv, fname_Src_Csv_2, header_Length, skip_Header)
+    
+    print()
+    print("[%s:%d] len(lo_BarDatas_2) => %d" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        , len(lo_BarDatas_2)
+                        ), file=sys.stderr)
+    
+    '''###################
+        step : A : 2
+            format lists
+    ###################'''
+    '''###################
+        step : A : 2.1
+            adjust : order of the list
+    ###################'''
+    '''###################
+        step : A : 2.1 : 1
+            list 1
+    ###################'''
+    #_20190508_144834:tmp
+    bar_Start = lo_BarDatas_1[0]
+    bar_End = lo_BarDatas_1[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas_1.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas_1[0].dateTime
+                             , lo_BarDatas_1[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    '''###################
+        step : A : 2.1 : 2
+            list 2
+    ###################'''
+    #_20190508_244834:tmp
+    bar_Start = lo_BarDatas_2[0]
+    bar_End = lo_BarDatas_2[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas_2.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas_2[0].dateTime
+                             , lo_BarDatas_2[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime
+    
+    '''###################
+        step : A : 2.2
+            get : formatted lists
+    ###################'''
+    numOf_Request_BDs = 200
+    
+    #_20190508_150257:caller
+    tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
+            libfx_2.get_Formatted_BDs_Same_Period(\
+                                                  
+                    lo_BarDatas_1
+                    , lo_BarDatas_2
+
+                    , numOf_Request_BDs
+
+                    , fname_Log_CSV_trunk, fname_Log_CSV
+                    , dpath_Log
+                    , fname_Src_CSV
+                    
+                    ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+
+                    ,pair
+                    ,timeframe
+    
+                    , tlabel
+                    , flag_Write_to_File                    
+                                                  
+                                                  )
+
+    #debug : log
+#     lo_Msg_Debug.append(lo_CSVs_1[0])
+    lo_Msg_Debug.append("\t".join(lo_CSVs_1[0]))
+    lo_Msg_Debug.append("\n")
+    
+#     lo_Msg_Debug.append(lo_CSVs_2[0])
+    lo_Msg_Debug.append("\t".join(lo_CSVs_2[0]))
+    lo_Msg_Debug.append("\n")
+
+    #_20190508_151902:fix:ok
+    #debug
+    print()
+    print("[%s:%d] lo_Msg_Debug =>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    print(lo_Msg_Debug)
+    print()
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_Debug)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+    
+    #_20190507_231609:wl:views
+
+
+    
 
 #     #_:caller
 #     libfx_2.detect_Patt(\
@@ -14315,81 +14558,6 @@ def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
         
         )
     
-#     '''###################
-#         step : A : 1
-#             prep
-#     ###################'''
-#     lenOf_LO_BDs = len(tmp_LO_BarDatas)
-#     
-#     # flags
-#     flg_Moni = False
-# 
-#     '''###################
-#         step : A : 2
-#             prep : log file
-#     ###################'''
-#     '''###################
-#         step : A : 2.1
-#             vars
-#     ###################'''
-#     fname_Log_Debug = "debug.%s.log" % (tlabel)
-#     
-#     lo_Msg_Debug = []
-#     
-#     #_20190421_153018:fix
-#     # dpath_Log_CSV
-#     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
-#          
-#     #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
-#     if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
-#          
-#         # make dir
-#         #ref https://docs.python.org/2/library/os.html
-#         os.makedirs(dpath_Log_CSV, exist_ok = True)
-#          
-#         #debug
-#         print()
-#         print("[%s:%d] new dir created => %s" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , dpath_Log_CSV
-#             ), file=sys.stderr)
-#     
-#     else :
-#         
-#         #debug
-#         print()
-#         print("[%s:%d] new dir NOT created => %s -----------!!!!!" % \
-#             (os.path.basename(libs.thisfile()), libs.linenum()
-#             , dpath_Log_CSV
-#             ), file=sys.stderr)
-#         
-#     #/if not os.path.isdir(dpath_Log_CSV)    
-#     
-# #_20190417_183445:wl:in-func
-#     '''###################
-#         step : A : 2.2
-#             debug file : test
-#     ###################'''
-#     lo_Msg_Debug.append("debug ---> starting...")
-#     
-#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-#             (
-#             libs.get_TimeLabel_Now()
-#             , os.path.basename(libs.thisfile()), libs.linenum()
-#             , "".join(lo_Msg_Debug)
-#             )
-#     
-#     
-# #     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log_Debug, 0)
-#     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
-# 
-#     '''###################
-#         step : B : 1
-#             for-loop
-#     ###################'''
-#     
-
-
 #/def _BUSL3_Tester_No_44_1__Sec_1_A12_Detect_(\
 
 '''###################
