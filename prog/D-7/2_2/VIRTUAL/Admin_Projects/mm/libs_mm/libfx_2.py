@@ -6628,6 +6628,9 @@ def get_Formatted_BDs_Same_Period(\
 
         , numOf_Request_BDs
 
+        , lo_Msg_Debug
+        , lo_Msg_Data
+
         , fname_Log_CSV_trunk, fname_Log_CSV
         , dpath_Log
         , fname_Src_CSV
@@ -6656,6 +6659,26 @@ def get_Formatted_BDs_Same_Period(\
         (os.path.basename(libs.thisfile()), libs.linenum()
          , dtOf_BD_1st_1, dtOf_BD_1st_2 
         ), file=sys.stderr)
+
+    '''###################
+        step : A.1 : 1
+            decide : the starting datetime
+    ###################'''
+    dtOf_Start = dtOf_BD_1st_1 if dtOf_BD_1st_1 <= dtOf_BD_1st_2 else dtOf_BD_1st_2
+
+    #debug
+    print()
+    print("[%s:%d] dtOf_Start => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , dtOf_Start 
+        ), file=sys.stderr)
+
+    '''###################
+        step : A.1 : 3
+            validate : length of the list ---> enough ?
+    ###################'''
+    #_20190509_090655:caller
+    idxOf_DateTime_1 = get_Index_From_DateTime(lo_BarDatas_1, dtOf_Start)
     
     #_20190508_150158:wl:libfx_2
     
@@ -6664,5 +6687,48 @@ def get_Formatted_BDs_Same_Period(\
     ###################'''
     #dummy
     return (False, False)
+#     return (False, False, lo_Msg_Debug, lo_Msg_Data)
 
 #/def get_Formatted_BDs_Same_Period(\
+
+'''###################
+    detect_Patt
+
+    at : 2019/04/22 16:28:39
+    
+    @description :
+    
+    @param : 
+        
+        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
+        strOf_Slice_By_Day
+        fname_Log_CSV_trunkfname_Log_CSV
+        dpath_Log
+        fname_Src_CSV
+        _req_param_tag_RB_No_44_1_SubData__Checked_Val
+        pair
+        timeframe
+        tmp_LO_BarDatas
+        tlabel
+        flag_Write_to_File
+
+        _fname_Log_Debug = "debug.log"
+    
+    @return: 
+    
+###################'''
+def get_Index_From_DateTime(lo_BarDatas, dtOf_Start) :
+#_20190509_090648:head
+#_20190509_090659:wl:in-func:libfx_2
+#_20190509_090655:caller
+    '''###################
+        step : A.1
+    ###################'''
+    
+    '''###################
+        return
+    ###################'''
+    # dummy
+    return -1
+
+#/ def get_Index_From_DateTime(\

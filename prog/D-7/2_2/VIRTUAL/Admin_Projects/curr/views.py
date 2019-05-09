@@ -14210,6 +14210,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     # lists
     lo_Msg_Debug = []
     
+    lo_Msg_Data = []
+    
 #     lo_Monitor_Stopped = []
     
     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
@@ -14247,6 +14249,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     strOf_Debug_File = "Sec_1_A13_Correl"
     
     fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+    fname_Log_Data = "debug.[%s].(%s).dat" % (strOf_Debug_File, tlabel)
 
 #     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
 #             (
@@ -14289,11 +14293,20 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     lo_BarDatas_1, lo_CSVs_1 = libfx.get_Listof_BarDatas_2(
                         dpath_Src_Csv, fname_Src_Csv_1, header_Length, skip_Header)
     
+            # [views.py:14444] lo_CSVs_1 =>
+            # [['Pair=AUDJPY', 'Period=H1', 'Days=8000', 'Shift=1', 'Bars=192000', 'Time=20190508_143128'], ['no',
+            #  'Open', 'High', 'Low', 'Close', 'RSI', 'MFI', 'BB.2s', 'BB.1s', 'BB.main', 'BB.-1s', 'BB.-2s', 'Dif
+            # f', 'High/Low', 'datetime']]
+    
     print()
     print("[%s:%d] len(lo_BarDatas_1) => %d" % \
                         (os.path.basename(libs.thisfile()), libs.linenum()
                         , len(lo_BarDatas_1)
                         ), file=sys.stderr)
+    
+    pair_1 = (lo_CSVs_1[0][0].split("="))[1]
+    
+    timeframe_1 = (lo_CSVs_1[0][1].split("="))[1]
     
     '''###################
         step : A : 1.1 : 2.2
@@ -14390,6 +14403,55 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
                             ), file=sys.stderr)
     
     #/if bar_Start.dateTime > bar_End..dateTime
+
+    '''###################
+        step : A : 1.1 : 2.1 : 3
+            log : add lines : dat
+    ###################'''
+    '''###################
+        step : A : 1.1 : 2.1 : 3.1
+            list : lo_BarDatas_1
+    ###################'''
+    #_20190509_092948:tmp
+            #(20190509_092041).(AUDJPY-M15).[sec-1.A-6.3-seq-list].(20190509_092042).csv
+            # fname_Src_CSV    44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv
+            # slice by    through
+            # this file    (20190509_092041).(AUDJPY-M15).[sec-1.A-6.3-seq-list].(20190509_092042).csv
+            # pair    AUDJPY
+            # timeframe    M15
+            # start    2019.04.10 02:45
+            # end    2019.04.24 12:30
+            # bars    1000
+    
+    lo_Msg_Data.append("fname_Src_CSV_1\t%s" % (fname_Src_Csv_1))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("fname_Src_CSV_2\t%s" % (fname_Src_Csv_2))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("slice by\t%s" % (_req_param_tag_RB_No_44_1_SubData__Checked_Val))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("pair_1\t%s" % (pair_1))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("timeframe_1\t%s" % (timeframe_1))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("start_1\t%s" % (lo_BarDatas_1[0].dateTime))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("end_1\t%s" % (lo_BarDatas_1[-1].dateTime))
+    lo_Msg_Data.append("\n")
+
+    '''###################
+        step : A : 1.1 : 2.1 : 3.1
+            list : lo_BarDatas_1
+    ###################'''
+    #_20190509_094505:tmp:views
     
     '''###################
         step : A : 2.2
@@ -14398,6 +14460,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     numOf_Request_BDs = 200
     
     #_20190508_150257:caller
+#     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
+    #(False, False, lo_Msg_Debug, lo_Msg_Data)
     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
             libfx_2.get_Formatted_BDs_Same_Period(\
                                                   
@@ -14405,7 +14469,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
                     , lo_BarDatas_2
 
                     , numOf_Request_BDs
-
+                    
+                    , lo_Msg_Debug
+                    , lo_Msg_Data
+                    
                     , fname_Log_CSV_trunk, fname_Log_CSV
                     , dpath_Log
                     , fname_Src_CSV
@@ -14429,15 +14496,34 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     lo_Msg_Debug.append("\t".join(lo_CSVs_2[0]))
     lo_Msg_Debug.append("\n")
 
-    #_20190508_151902:fix:ok
     #debug
     print()
-    print("[%s:%d] lo_Msg_Debug =>" % \
+    print("[%s:%d] lo_CSVs_1 =>" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
-         
+          
         ), file=sys.stderr)
-    print(lo_Msg_Debug)
+    print(lo_CSVs_1)
     print()
+
+
+#     #_20190508_151902:fix:ok
+#     #debug
+#     print()
+#     print("[%s:%d] lo_Msg_Debug =>" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          
+#         ), file=sys.stderr)
+#     print(lo_Msg_Debug)
+#     print()
+
+    '''###################
+        step : C
+            write to file
+    ###################'''
+    '''###################
+        step : C.1
+            file : log
+    ###################'''
     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
             (
             libs.get_TimeLabel_Now()
@@ -14446,34 +14532,22 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
             )
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+
+    '''###################
+        step : C.2
+            file : dat
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_Data)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Data, 0)
     
     #_20190507_231609:wl:views
 
-
-    
-
-#     #_:caller
-#     libfx_2.detect_Patt(\
-#         
-#             #(lo_UUU, lo_UUD)
-#             lo_BD_Sequences 
-#             , strOf_Slice_By_Throgh
-#             , fname_Log_CSV_trunk, fname_Log_CSV
-#             , dpath_Log
-#             , fname_Src_CSV
-#             ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
-#             ,pair
-#             ,timeframe
-#             ,tmp_LO_BarDatas
-#             , tlabel
-#             , flag_Write_to_File
-#             
-#             , _strOf_Debug_File = strOf_Debug_File
-#             
-#             , _fname_Log_Debug = fname_Log_Debug
-#         
-#         )
-    
 #/def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 
 
