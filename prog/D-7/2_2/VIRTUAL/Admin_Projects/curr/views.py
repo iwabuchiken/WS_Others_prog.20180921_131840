@@ -14491,6 +14491,23 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     # unpack
     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = tupleOf_Genned_BarDatas
     
+    #debug
+    lo_Msg_Data.append("[DEBUG]===========================")
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("bardatas_1 : 0 : datetime\t%s" % tmpOf_LO_BarDatas_1[0].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("bardatas_1 : -1 : datetime\t%s" % tmpOf_LO_BarDatas_1[-1].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("\n")
+
+    lo_Msg_Data.append("bardatas_2 : 0 : datetime\t%s" % tmpOf_LO_BarDatas_2[0].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("bardatas_2 : -1 : datetime\t%s" % tmpOf_LO_BarDatas_2[-1].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("[/DEBUG]===========================/")
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("\n")
+    
     #debug : log
 #     lo_Msg_Debug.append(lo_CSVs_1[0])
     lo_Msg_Debug.append("\t".join(lo_CSVs_1[0]))
@@ -14519,6 +14536,9 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 #         ), file=sys.stderr)
 #     print(lo_Msg_Debug)
 #     print()
+
+    #_20190507_231609:wl:views
+
 
     '''###################
         step : C
@@ -14550,7 +14570,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Data, 0)
     
-    #_20190507_231609:wl:views
+    
 
 #/def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 

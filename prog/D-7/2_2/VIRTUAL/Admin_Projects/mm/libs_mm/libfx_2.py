@@ -6744,8 +6744,206 @@ def get_Formatted_BDs_Same_Period(\
               
             ), file=sys.stderr)
         
+    '''###################
+        step : A.2
+            get : partial list
+    ###################'''
+    '''###################
+        step : A.2 : 1
+            lo_BarDatas_1
+    ###################'''
+    '''###################
+        step : A.2 : 1.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas_1 = len(lo_BarDatas_1)
+    
+    '''###################
+        step : A.2 : 1.2
+            loop : detect
+    ###################'''
+    lo_BarDatas_1_Target = []
+    
+    flg_Partial_List_Obtained_1 = False
+    
+    for i in range(0, lenOf_LO_BarDatas_1 - numOf_Request_BDs):
+    
+        '''###################
+            step : A.2 : 1.2 : 1
+                
+        ###################'''
+        if i == idxOf_DateTime_1 : #if i == idxOf_DateTime_1
+            
+            # get : partial list
+            lo_BarDatas_1_Target = lo_BarDatas_1[i : i + numOf_Request_BDs]
+            
+            # flag : set
+            flg_Partial_List_Obtained_1 = True
+            
+            #debug
+            print()
+            print("[%s:%d] target list obtained : len(lo_BarDatas_1_Target) = %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                  , len(lo_BarDatas_1_Target)
+                ), file=sys.stderr)
+            
+            
+        #/if i == idxOf_DateTime_1
         
-        #_20190508_150158:wl:libfx_2
+    #/for i in range(0, lenof:
+
+    '''###################
+        step : A.2 : 1.3
+            partial list : obtained ?
+    ###################'''
+    if flg_Partial_List_Obtained_1 == True : #if flg_Partial_List_Obtained_1 == True
+        
+        #debug
+        print()
+        print("[%s:%d] flg_Partial_List_Obtained_1 ==> %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              , flg_Partial_List_Obtained_1
+            ), file=sys.stderr)
+    
+    else :
+        '''###################
+            step : A.2 : 1.3 : N
+                partial list : NOT obtained
+        ###################'''
+        #debug
+        print()
+        print("[%s:%d] flg_Partial_List_Obtained_1 ==> %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              , flg_Partial_List_Obtained_1
+            ), file=sys.stderr)
+        
+        '''###################
+            return        
+        ###################'''
+        # set : flag for return
+        flg_Index_Found = False
+        
+        # tuple
+        tupleOf_Genned_BarDatas = (False, False)
+            
+        # message
+        msg = "lo_BarDatas_1 ==> cannot obtain %d bardatas" % (numOf_Request_BDs)
+            
+        #dummy
+        return (flg_Index_Found, tupleOf_Genned_BarDatas, msg)
+        
+        
+        
+    #/if flg_Partial_List_Obtained_1 == True
+
+    '''###################
+        step : A.2 : 2
+            lo_BarDatas_2
+    ###################'''
+    '''###################
+        step : A.2 : 2.1
+            prep
+    ###################'''
+    lenOf_LO_BarDatas_2 = len(lo_BarDatas_2)
+    
+    '''###################
+        step : A.2 : 2.2
+            loop : detect
+    ###################'''
+    lo_BarDatas_2_Target = []
+    
+    flg_Partial_List_Obtained_2 = False
+    
+    for i in range(0, lenOf_LO_BarDatas_2 - numOf_Request_BDs):
+    
+        '''###################
+            step : A.2 : 2.2 : 1
+                
+        ###################'''
+        if i == idxOf_DateTime_2 : #if i == idxOf_DateTime_2
+            
+            # get : partial list
+            lo_BarDatas_2_Target = lo_BarDatas_2[i : i + numOf_Request_BDs]
+            
+            # flag : set
+            flg_Partial_List_Obtained_2 = True
+            
+            #debug
+            print()
+            print("[%s:%d] target list obtained : len(lo_BarDatas_2_Target) = %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                  , len(lo_BarDatas_2_Target)
+                ), file=sys.stderr)
+            
+            
+        #/if i == idxOf_DateTime_2
+        
+    #/for i in range(0, lenof:
+
+    '''###################
+        step : A.2 : 2.3
+            partial list : obtained ?
+    ###################'''
+    if flg_Partial_List_Obtained_2 == True : #if flg_Partial_List_Obtained_2 == True
+        
+        #debug
+        print()
+        print("[%s:%d] flg_Partial_List_Obtained_2 ==> %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              , flg_Partial_List_Obtained_2
+            ), file=sys.stderr)
+    
+    else :
+        '''###################
+            step : A.2 : 2.3 : N
+                partial list : NOT obtained
+        ###################'''
+        #debug
+        print()
+        print("[%s:%d] flg_Partial_List_Obtained_2 ==> %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              , flg_Partial_List_Obtained_2
+            ), file=sys.stderr)
+        
+        '''###################
+            return        
+        ###################'''
+        # set : flag for return
+        flg_Index_Found = False
+        
+        # tuple
+        tupleOf_Genned_BarDatas = (False, False)
+            
+        # message
+        msg = "lo_BarDatas_2 ==> cannot obtain %d bardatas" % (numOf_Request_BDs)
+            
+        #dummy
+        return (flg_Index_Found, tupleOf_Genned_BarDatas, msg)
+        
+        
+        
+    #/if flg_Partial_List_Obtained_2 == True
+
+    '''###################
+        step : A.2 : 3
+            report
+    ###################'''
+    lo_Msg_Data.append("bardatas_1 : 0 : datetime\t%s" % lo_BarDatas_1_Target[0].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("bardatas_1 : -1 : datetime\t%s" % lo_BarDatas_1_Target[-1].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("\n")
+
+    lo_Msg_Data.append("bardatas_2 : 0 : datetime\t%s" % lo_BarDatas_2_Target[0].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("bardatas_2 : -1 : datetime\t%s" % lo_BarDatas_2_Target[-1].dateTime)
+    lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("\n")
+
+    
+    #_20190508_150158:wl:libfx_2
+    
+        
     #/if flg_Index_Found == False
 
     
@@ -6757,9 +6955,11 @@ def get_Formatted_BDs_Same_Period(\
         step : C.1
             prep
     ###################'''
-    flg = False
+    flg = True
+#     flg = False
     
-    tupleOf_Genned_BarDatas = (False, False)
+    tupleOf_Genned_BarDatas = (lo_BarDatas_1_Target, lo_BarDatas_2_Target)
+#     tupleOf_Genned_BarDatas = (False, False)
     
     msg = "OK" if flg == True else "ERROR"
     
