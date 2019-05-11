@@ -14462,7 +14462,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     #_20190508_150257:caller
 #     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
     #(False, False, lo_Msg_Debug, lo_Msg_Data)
-    tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
+#     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
+    (flg, tupleOf_Genned_BarDatas, msg) = \
             libfx_2.get_Formatted_BDs_Same_Period(\
                                                   
                     lo_BarDatas_1
@@ -14486,7 +14487,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
                     , flag_Write_to_File                    
                                                   
                                                   )
-
+            
+    # unpack
+    tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = tupleOf_Genned_BarDatas
+    
     #debug : log
 #     lo_Msg_Debug.append(lo_CSVs_1[0])
     lo_Msg_Debug.append("\t".join(lo_CSVs_1[0]))

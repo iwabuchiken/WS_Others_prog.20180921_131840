@@ -6604,20 +6604,6 @@ def detect_Patt(\
     
     @param : 
         
-        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
-        strOf_Slice_By_Day
-        fname_Log_CSV_trunkfname_Log_CSV
-        dpath_Log
-        fname_Src_CSV
-        _req_param_tag_RB_No_44_1_SubData__Checked_Val
-        pair
-        timeframe
-        tmp_LO_BarDatas
-        tlabel
-        flag_Write_to_File
-
-        _fname_Log_Debug = "debug.log"
-    
     @return: 
     
 ###################'''
@@ -6645,6 +6631,7 @@ def get_Formatted_BDs_Same_Period(\
                                   
                     ):
     #_20190508_150225:head
+    #_20190508_150257:caller
     
     '''###################
         step : A.1
@@ -6664,7 +6651,8 @@ def get_Formatted_BDs_Same_Period(\
         step : A.1 : 1
             decide : the starting datetime
     ###################'''
-    dtOf_Start = dtOf_BD_1st_1 if dtOf_BD_1st_1 <= dtOf_BD_1st_2 else dtOf_BD_1st_2
+    dtOf_Start = dtOf_BD_1st_1 if dtOf_BD_1st_1 >= dtOf_BD_1st_2 else dtOf_BD_1st_2
+#     dtOf_Start = dtOf_BD_1st_1 if dtOf_BD_1st_1 <= dtOf_BD_1st_2 else dtOf_BD_1st_2
 
     #debug
     print()
@@ -6677,45 +6665,136 @@ def get_Formatted_BDs_Same_Period(\
         step : A.1 : 3
             validate : length of the list ---> enough ?
     ###################'''
+    '''###################
+        step : A.1 : 3.1
+            get : index according to the datetime
+    ###################'''
     #_20190509_090655:caller
-    idxOf_DateTime_1 = get_Index_From_DateTime(lo_BarDatas_1, dtOf_Start)
     
-    #_20190508_150158:wl:libfx_2
+    
+#     idxOf_DateTime_1 = get_Index_From_DateTime(lo_BarDatas_1, dtOf_Start)
+    (flg_1, idxOf_DateTime_1, msg_1) = get_Index_From_DateTime(lo_BarDatas_1, dtOf_Start)
+    
+    (flg_2, idxOf_DateTime_2, msg_2) = get_Index_From_DateTime(lo_BarDatas_2, dtOf_Start)
+    
+    #debug
+    print()
+    print("[%s:%d] idxOf_DateTime_1 = %d, idxOf_DateTime_2 = %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , idxOf_DateTime_1, idxOf_DateTime_2 
+        ), file=sys.stderr)
+    
+    '''###################
+        step : A.1 : 3.1 : 1
+            validate
+    ###################'''
+    flg_Index_Found = True
+    
+    msg = ""
+    
+    if flg_1 == False and flg_2 == False : #if flg_1 == False and flg_2 == False
+        
+        # message
+        msg = "dtOf_Start = %s ==> can't find the entries in both the csv files" % dtOf_Start
+        
+        lo_Msg_Debug.append(msg)
+        lo_Msg_Debug.append("\n")
+
+        flg_Index_Found = False
+        
+    elif flg_1 == False :
+
+        # message
+        msg = "dtOf_Start = %s ==> can't find the entry : flg_1"
+        
+        lo_Msg_Debug.append(msg)
+        lo_Msg_Debug.append("\n")
+
+        flg_Index_Found = False
+            
+    elif flg_2 == False :
+
+        # message
+        msg = "dtOf_Start = %s ==> can't find the entry : flg_2"
+        
+        lo_Msg_Debug.append(msg)
+        lo_Msg_Debug.append("\n")
+
+        flg_Index_Found = False
+            
+    #/if flg_1 == False and flg_2 == False
+    
+    # judge
+    if flg_Index_Found == False : #if flg_Index_Found == False
+        
+        tupleOf_Genned_BarDatas = (False, False)
+            
+        '''###################
+            return        
+        ###################'''
+        #dummy
+        return (flg_Index_Found, tupleOf_Genned_BarDatas, msg)
+    
+    else :
+        
+        #debug
+        print()
+        print("[%s:%d] idxOf_DateTime ---> index found for both bardatas" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+              
+            ), file=sys.stderr)
+        
+        
+        #_20190508_150158:wl:libfx_2
+    #/if flg_Index_Found == False
+
+    
+    '''###################
+        step : C
+            return
+    ###################'''
+    '''###################
+        step : C.1
+            prep
+    ###################'''
+    flg = False
+    
+    tupleOf_Genned_BarDatas = (False, False)
+    
+    msg = "OK" if flg == True else "ERROR"
     
     '''###################
         return        
     ###################'''
     #dummy
-    return (False, False)
+    return (flg, tupleOf_Genned_BarDatas, msg)
+#     return (False, False)
 #     return (False, False, lo_Msg_Debug, lo_Msg_Data)
 
 #/def get_Formatted_BDs_Same_Period(\
 
 '''###################
-    detect_Patt
+    get_Index_From_DateTime
 
-    at : 2019/04/22 16:28:39
+    at : 2019/05/11 17:59:45
     
     @description :
     
+        1. search for the bardata whose dateTime matches the param dtOf_Start
+        2. if found ---> return the index in the for-loop 
+        3. if not ---> return -1 
+    
     @param : 
-        
-        lo_BD_Sequences    # (lo_UUU, lo_UUD, ...)
-        strOf_Slice_By_Day
-        fname_Log_CSV_trunkfname_Log_CSV
-        dpath_Log
-        fname_Src_CSV
-        _req_param_tag_RB_No_44_1_SubData__Checked_Val
-        pair
-        timeframe
-        tmp_LO_BarDatas
-        tlabel
-        flag_Write_to_File
-
-        _fname_Log_Debug = "debug.log"
+        lo_BarDatas : list
+        dtOf_Start : string
     
     @return: 
-    
+        
+        1~    ==> index of the matched bardata
+        -1    ==> not found
+        
+        ===> (True/False, number, message string)
+        
 ###################'''
 def get_Index_From_DateTime(lo_BarDatas, dtOf_Start) :
 #_20190509_090648:head
@@ -6723,12 +6802,51 @@ def get_Index_From_DateTime(lo_BarDatas, dtOf_Start) :
 #_20190509_090655:caller
     '''###################
         step : A.1
+            prep : vars
     ###################'''
+    idxOf_Target = -1
+    
+    lenOf_BarDats = len(lo_BarDatas)
+    
+    '''###################
+        step : A.2
+            loop
+    ###################'''
+    for i in range(0, lenOf_BarDats):
+        '''###################
+            step : A.2 : 1
+                get : bardata
+        ###################'''
+        bd = lo_BarDatas[i]
+        
+        '''###################
+            step : A.2 : 2
+                judge
+        ###################'''
+        if bd.dateTime == dtOf_Start : #if bd.dateTime == dtOf_Start
+            
+            idxOf_Target = i
+#             idxOf_Target = bd.dateTime
+        
+        #/if bd.dateTime == dtOf_Start
+        
+    #/for i in range(0, lenOf_BarDats):
+
+    '''###################
+        step : A.3
+            prep : return
+    ###################'''
+    flg = True if not idxOf_Target == -1 else False
+    
+    msg = "found" if flg == True else "not found" 
+    
+    rtn = (flg, idxOf_Target, msg)
     
     '''###################
         return
     ###################'''
     # dummy
-    return -1
+    return rtn
+#     return -1
 
 #/ def get_Index_From_DateTime(\
