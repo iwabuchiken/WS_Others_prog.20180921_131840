@@ -6705,7 +6705,7 @@ def get_Formatted_BDs_Same_Period(\
     elif flg_1 == False :
 
         # message
-        msg = "dtOf_Start = %s ==> can't find the entry : flg_1"
+        msg = "dtOf_Start ==> can't find the entry : flg_1"
         
         lo_Msg_Debug.append(msg)
         lo_Msg_Debug.append("\n")
@@ -6715,7 +6715,7 @@ def get_Formatted_BDs_Same_Period(\
     elif flg_2 == False :
 
         # message
-        msg = "dtOf_Start = %s ==> can't find the entry : flg_2"
+        msg = "dtOf_Start ==> can't find the entry : flg_2"
         
         lo_Msg_Debug.append(msg)
         lo_Msg_Debug.append("\n")

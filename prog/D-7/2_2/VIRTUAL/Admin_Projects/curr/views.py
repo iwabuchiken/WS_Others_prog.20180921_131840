@@ -3497,6 +3497,7 @@ def tester_BuyUps_SellLows__BUSL_3(request):
     '''###################
         set : conf
     ###################'''
+    #_20190512_141453:tmp
     confs = _tester_BuyUps_SellLows__BUSL_3__Set_Conf()
     
     '''###################
@@ -14212,6 +14213,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     
     lo_Msg_Data = []
     
+    lo_Msg_Error = []
+    
 #     lo_Monitor_Stopped = []
     
     dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
@@ -14242,13 +14245,16 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     #/if not os.path.isdir(dpath_Log_CSV)        
 
     '''###################
-        step : A : 0.1
+        step : A : 0.2
             file name
     ###################'''
     # debug file
     strOf_Debug_File = "Sec_1_A13_Correl"
     
     fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+    fname_Log_Error = "debug.ERROR.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
     
     fname_Log_Data = "debug.[%s].(%s).dat" % (strOf_Debug_File, tlabel)
 
@@ -14260,6 +14266,13 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 #             )
 #     
 #     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+
+    '''###################
+        step : A : 0.3
+            vars : operation-wide
+    ###################'''
+    numOf_BDs_For_Correl_Op = 20
+#     numOf_BDs_For_Correl_Op = 50
 
     '''###################
         step : A : 1
@@ -14275,6 +14288,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     ###################'''
     fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
     fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.csv"
+#     fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.[LAST-500].csv"
+#     fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.[FIRST-500].csv"
     
     dpath_Src_Csv = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
     
@@ -14321,6 +14336,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
                         (os.path.basename(libs.thisfile()), libs.linenum()
                         , len(lo_BarDatas_2)
                         ), file=sys.stderr)
+
+    pair_2 = (lo_CSVs_2[0][0].split("="))[1]
+    
+    timeframe_2 = (lo_CSVs_2[0][1].split("="))[1]
     
     '''###################
         step : A : 2
@@ -14405,55 +14424,6 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     #/if bar_Start.dateTime > bar_End..dateTime
 
     '''###################
-        step : A : 1.1 : 2.1 : 3
-            log : add lines : dat
-    ###################'''
-    '''###################
-        step : A : 1.1 : 2.1 : 3.1
-            list : lo_BarDatas_1
-    ###################'''
-    #_20190509_092948:tmp
-            #(20190509_092041).(AUDJPY-M15).[sec-1.A-6.3-seq-list].(20190509_092042).csv
-            # fname_Src_CSV    44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv
-            # slice by    through
-            # this file    (20190509_092041).(AUDJPY-M15).[sec-1.A-6.3-seq-list].(20190509_092042).csv
-            # pair    AUDJPY
-            # timeframe    M15
-            # start    2019.04.10 02:45
-            # end    2019.04.24 12:30
-            # bars    1000
-    
-    lo_Msg_Data.append("fname_Src_CSV_1\t%s" % (fname_Src_Csv_1))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("fname_Src_CSV_2\t%s" % (fname_Src_Csv_2))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("slice by\t%s" % (_req_param_tag_RB_No_44_1_SubData__Checked_Val))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("pair_1\t%s" % (pair_1))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("timeframe_1\t%s" % (timeframe_1))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("start_1\t%s" % (lo_BarDatas_1[0].dateTime))
-    lo_Msg_Data.append("\n")
-    
-    lo_Msg_Data.append("end_1\t%s" % (lo_BarDatas_1[-1].dateTime))
-    lo_Msg_Data.append("\n")
-
-    '''###################
-        step : A : 1.1 : 2.1 : 3.1
-            list : lo_BarDatas_1
-    ###################'''
-    #_20190509_094505:tmp:views
-    
-    '''###################
         step : A : 2.2
             get : formatted lists
     ###################'''
@@ -14487,10 +14457,61 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
                     , flag_Write_to_File                    
                                                   
                                                   )
-            
+    # validate
+    if flg == False : #if flg == False
+        
+        # line
+        lo_Msg_Error.append("libfx_2.get_Formatted_BDs_Same_Period ==> returned error")
+        lo_Msg_Error.append("\n")
+        lo_Msg_Error.append("message\t%s" % msg)
+        lo_Msg_Error.append("\n")
+        
+        msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+                (
+                libs.get_TimeLabel_Now()
+                , os.path.basename(libs.thisfile()), libs.linenum()
+                , "".join(lo_Msg_Error)
+                )
+        
+        libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Error, 0)
+        
+        return
+        
+        #_20190512_124023:tmp
+    
+    #/if flg == False
+
     # unpack
     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = tupleOf_Genned_BarDatas
+
+    '''###################
+        step : A : 3
+            log file
+    ###################'''
+    lo_Msg_Data.append("fname_Src_CSV_1\t%s" % (fname_Src_Csv_1))
+    lo_Msg_Data.append("\n")
     
+    lo_Msg_Data.append("fname_Src_CSV_2\t%s" % (fname_Src_Csv_2))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("slice by\t%s" % (_req_param_tag_RB_No_44_1_SubData__Checked_Val))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("pair_1\t%s" % (pair_1))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("timeframe_1\t%s" % (timeframe_1))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("start_1\t%s" % (lo_BarDatas_1[0].dateTime))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("end_1\t%s" % (lo_BarDatas_1[-1].dateTime))
+    lo_Msg_Data.append("\n")
+
     #debug
     lo_Msg_Data.append("[DEBUG]===========================")
     lo_Msg_Data.append("\n")
@@ -14537,9 +14558,175 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 #     print(lo_Msg_Debug)
 #     print()
 
+
+    '''###################
+        step : A : 4
+            ops : correl
+    ###################'''
+    '''###################
+        step : A : 4.1
+            prep
+    ###################'''
+    lenOf_TmpOf_LO_BarDatas_1 = len(tmpOf_LO_BarDatas_1)
+    lenOf_TmpOf_LO_BarDatas_2 = len(tmpOf_LO_BarDatas_2)
+    
+    # counter
+    cntOf_Loop = 1
+    
+    # debug stop
+    maxOf_Loop = 50
+#     maxOf_Loop = 10
+#     maxOf_Loop = 100
+    
+    #debug
+    print()
+    print("[%s:%d] lenOf_TmpOf_LO_BarDatas_1 => %d (numOf_Request_BDs = %d)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+          , lenOf_TmpOf_LO_BarDatas_1
+          , numOf_Request_BDs
+        ), file=sys.stderr)
+    print(lo_Msg_Debug)
+    print()
+            # [views.py:14570] lenOf_TmpOf_LO_BarDatas_1 => 200    
+            
+    '''###################
+        step : A : 4.1 : 2
+            prep: log
+    ###################'''
+    # title
+    lo_Msg_Data.append("[correls]===========================")
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("numOf_Request_BDs\t%d" % numOf_Request_BDs)
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("numOf_BDs_For_Correl_Op\t%d" % numOf_BDs_For_Correl_Op)
+    lo_Msg_Data.append("\n")
+    
+    # 1    0    2017.11.23 11:00    2017.11.23 11:00    0.81668113
+#     lo_Msg_Data.append("s.n.\tlist index\tbd_1(last datetime)\tbd_2(last datetime)\tcorrel")
+    lo_Msg_Data.append("s.n.\tlist index\tbd_1(last datetime)\tbd_2(last datetime)\tcorrel\tbd_1.PC\tbd_2.PC")
+    lo_Msg_Data.append("\n")
+        
+    #_20190512_131643:fix
+    
+    '''###################
+        step : A : 4.2
+            for-loop
+    ###################'''
+    
+    for i in range(0, (lenOf_TmpOf_LO_BarDatas_1 - numOf_BDs_For_Correl_Op) - 1):
+#     for i in range(0, lenOf_TmpOf_LO_BarDatas_1 - numOf_BDs_For_Correl_Op):
+#     for i in range(0, lenOf_TmpOf_LO_BarDatas_1 - numOf_Request_BDs):
+        '''###################
+            step : A : 4.2 : 1
+                get : partial list
+        ###################'''
+        lo_Tmp_BD_1_Partial = tmpOf_LO_BarDatas_1[i : i + numOf_BDs_For_Correl_Op]
+        lo_Tmp_BD_2_Partial = tmpOf_LO_BarDatas_2[i : i + numOf_BDs_For_Correl_Op]
+#         lo_Tmp_BD_1_Partial = tmpOf_LO_BarDatas_1[i : numOf_BDs_For_Correl_Op]
+#         lo_Tmp_BD_2_Partial = tmpOf_LO_BarDatas_2[i : numOf_BDs_For_Correl_Op]
+#         lo_Tmp_BD_1_Partial = tmpOf_LO_BarDatas_1[i : numOf_Request_BDs]
+#         lo_Tmp_BD_2_Partial = tmpOf_LO_BarDatas_2[i : numOf_Request_BDs]
+    
+        '''###################
+            step : A : 4.2 : 1
+                get : list of closing prices
+        ###################'''
+        lo_Price_Close_1 = [x.price_Close for x in lo_Tmp_BD_1_Partial]
+        lo_Price_Close_2 = [x.price_Close for x in lo_Tmp_BD_2_Partial]
+
+        '''###################
+            step : A : 4.2 : 2
+                get : correl value
+        ###################'''
+        #ref https://stackoverflow.com/questions/19428029/how-to-get-correlation-of-two-vectors-in-python
+        correls = numpy.corrcoef(lo_Price_Close_1, lo_Price_Close_2)
+
+#         #debug
+#         print()
+#         print("[%s:%d] (step : A : 4.2 : 2) get : correl value" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#               
+#             ), file=sys.stderr)
+# #         print(lo_Msg_Debug)
+#         print(correls)
+#         print()
+        
+        '''###################
+            step : A : 4.2 : 3
+                log
+        ###################'''
+#         #debug
+#         print()
+# #         print("[%s:%d] lo_Tmp_BD_1_Partial[-1].dateTime ==> %s" % \
+#         print("[%s:%d] (i : %d) lo_Tmp_BD_1_Partial[-1] : dateTime = %s / correl = %.08f" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum()
+#                , i
+#                , lo_Tmp_BD_1_Partial[-1].dateTime
+#                , correls[0][1]
+#             ), file=sys.stderr)
+#         print(lo_Msg_Debug)
+#         print()
+        
+#         lo_Msg_Data.append("%d\t%d\t%s\t%s\t%.08f" % \
+        lo_Msg_Data.append("%d\t%d\t%s\t%s\t%.08f\t%.03f\t%.03f" % \
+                        
+                        (
+                         cntOf_Loop
+                         , i
+                         , lo_Tmp_BD_1_Partial[-1].dateTime
+                         , lo_Tmp_BD_2_Partial[-1].dateTime
+                         , correls[0][1]
+                         
+                         , lo_Tmp_BD_1_Partial[-1].price_Close
+                         , lo_Tmp_BD_2_Partial[-1].price_Close
+                         )
+                           
+                           
+        )
+        
+        lo_Msg_Data.append("\n")
+
+        '''###################
+            step : A : 4.2 : 4
+                counter
+        ###################'''
+        cntOf_Loop += 1
+        
+        #_20190512_133254:fix
+#         #debug
+#         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
+#  
+#             #debug
+#             print()
+#             print("[%s:%d] (step : A : 4.2 : 4)  debug stop" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                    
+#                 ), file=sys.stderr)
+#             print(lo_Msg_Debug)
+#             print()
+#              
+#             break
+#         
+#         #/if cntOf_Loop > maxOf_Loop
+
+        
+    #_20190512_125751:tmp:T-1.2
+    #/for i in range(0, lenof):
+
+    #debug
+    print()
+    print("[%s:%d] (step : A : 4.2 : 1) get : list of closing prices" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+          
+        ), file=sys.stderr)
+    print(lo_Msg_Debug)
+    print()
+
+    
+
     #_20190507_231609:wl:views
-
-
     '''###################
         step : C
             write to file
@@ -14570,8 +14757,6 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     
     libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Data, 0)
     
-    
-
 #/def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
 
 
