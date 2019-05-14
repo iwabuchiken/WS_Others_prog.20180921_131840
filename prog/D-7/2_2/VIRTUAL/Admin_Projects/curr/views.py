@@ -14191,7 +14191,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         ) :
 
 #_20190507_231522:head
-
+#_20190507_230809:caller
 
     #debug
     print()
@@ -14199,6 +14199,15 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         (os.path.basename(libs.thisfile()), libs.linenum()
          
         ), file=sys.stderr)
+    
+    '''###################
+        step : A : -1
+            prep : conf values
+    ###################'''
+    _dpath_Conf = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
+    _fname_Conf = "busl_3__sec-13.conf"
+    
+    conf_A_13 = libfx_2.set_Conf(_dpath_Conf, _fname_Conf)
     
     '''###################
         step : A : 0
@@ -14225,7 +14234,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         # make dir
         #ref https://docs.python.org/2/library/os.html
         os.makedirs(dpath_Log_CSV, exist_ok = True)
-         
+        
         #debug
         print()
         print("[%s:%d] new dir created => %s" % \
@@ -14271,7 +14280,22 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         step : A : 0.3
             vars : operation-wide
     ###################'''
-    numOf_BDs_For_Correl_Op = 20
+    #_20190514_131107:tmp
+    numOf_BDs_For_Correl_Op = -1
+    
+    if "numOf_BDs_For_Correl_Op" in conf_A_13  : #if "numOf_BDs_For_Correl_Op" in conf_A_13 
+    
+        numOf_BDs_For_Correl_Op = int(conf_A_13["numOf_BDs_For_Correl_Op"])
+    
+    else : #if "numOf_BDs_For_Correl_Op" in conf_A_13 
+    
+        numOf_BDs_For_Correl_Op = 20
+    
+    #/if "numOf_BDs_For_Correl_Op" in conf_A_13 
+    
+    
+    
+#     numOf_BDs_For_Correl_Op = 20
 #     numOf_BDs_For_Correl_Op = 50
 
     '''###################
@@ -14286,8 +14310,34 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         step : A : 1.1 : 1
             prep
     ###################'''
-    fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
-    fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.csv"
+    #_20190514_120755:tmp
+    fname_Src_Csv_1 = ""
+    
+    if "fname_Src_Csv_1" in conf_A_13 : #if "fname_Src_Csv_1" in conf_A_13
+    
+        fname_Src_Csv_1 = conf_A_13["fname_Src_Csv_1"]
+    
+    else : #if "fname_Src_Csv_1" in conf_A_13
+    
+        fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
+    
+    #/if "fname_Src_Csv_1" in conf_A_13
+    
+    #_20190514_121522:tmp
+    fname_Src_Csv_2 = ""
+    
+    if "fname_Src_Csv_2" in conf_A_13 : #if "fname_Src_Csv_2" in conf_A_13
+    
+        fname_Src_Csv_2 = conf_A_13["fname_Src_Csv_2"]
+    
+    else : #if "fname_Src_Csv_2" in conf_A_13
+    
+        fname_Src_Csv_2 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
+    
+    #/if "fname_Src_Csv_1" in conf_A_13
+    
+#     fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.csv"
+#     fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.csv"
 #     fname_Src_Csv_1 = "44_5.1_10_rawdata.(AUDJPY).(Period-H1).(NumOfUnits-8000).(Bars-ALL-20190508_143318).20190311_090020.[LAST-500].csv"
 #     fname_Src_Csv_2 = "44_5.1_10_rawdata.(EURJPY).(Period-H1).(NumOfUnits-4500).(Bars-ALL-20190506_230346).20190307_144106.[FIRST-500].csv"
     

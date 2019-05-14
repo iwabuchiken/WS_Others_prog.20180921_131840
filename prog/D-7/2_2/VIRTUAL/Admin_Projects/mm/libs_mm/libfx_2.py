@@ -7050,3 +7050,125 @@ def get_Index_From_DateTime(lo_BarDatas, dtOf_Start) :
 #     return -1
 
 #/ def get_Index_From_DateTime(\
+
+'''###################
+    get_Index_From_DateTime
+
+    at : 2019/05/11 17:59:45
+    
+    @description :
+    
+        1. search for the bardata whose dateTime matches the param dtOf_Start
+        2. if found ---> return the index in the for-loop 
+        3. if not ---> return -1 
+    
+    @param : 
+        lo_BarDatas : list
+        dtOf_Start : string
+    
+    @return: 
+        
+        1~    ==> index of the matched bardata
+        -1    ==> not found
+        
+        ===> (True/False, number, message string)
+        
+###################'''
+def set_Conf(_dpath_Conf, _fname_Conf) :
+#_20190514_120210:head
+#_20190514_120214:wl:in-func
+#_20190514_120228:caller
+    
+    '''###################
+        file : conf        
+    ###################'''
+    dpath_Conf = _dpath_Conf
+    fname_Conf = _fname_Conf
+#     dpath_Conf = cons_fx.FPath.DPATH_CONF_BUSL_3.value
+#     fname_Conf = cons_fx.FPath.FNAME_CONF_BUSL_3.value
+    
+    f_conf = open(os.path.join(dpath_Conf, fname_Conf), "r")
+
+    '''###################
+        build : parmas set
+    ###################'''
+    confs = {}
+    
+    # build : conf 
+    conf_lines = []
+    
+    conf_lines_tmp = f_conf.readlines()
+    
+    for item in conf_lines_tmp:
+    
+        # strip
+        item_tmp = item.strip()
+        
+        #
+        if not item_tmp.startswith("#") \
+            and not item_tmp == "" : 
+#         if not item.startswith("#") \
+#             and not item == "" : 
+            
+            conf_lines.append(item.strip())
+        
+    #/for item in conf_lines_tmp:
+
+    
+
+#     print("[%s:%d] conf_lines ==>" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                         
+#                         ), file=sys.stderr)
+#     print(conf_lines)
+    
+    # iterate
+    for item in conf_lines:
+    
+        # trim
+        tmp = item.strip()
+        
+        #
+        tokens = tmp.split("=")
+        
+        confs[tokens[0]] = tokens[1]
+        
+    #/for item in conf_lines:
+
+    '''###################
+        file : close
+    ###################'''
+    f_conf.close()
+    
+    '''###################
+        set : conf values
+    ###################'''
+    '''###################
+        set : conf values : 
+    ###################'''
+#     cons_fx.FPath.BUSL_3_FNAME_PEAK_LIST.value = confs["BUSL_3_FNAME_PEAK_LIST"]
+    
+    result = cons_fx.FPath.set_BUSL_3_CSV_Name("abc")
+    
+#     print("[%s:%d] result = %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum()
+#                     , result
+#                     ), file=sys.stderr)
+
+    '''###################
+        report
+    ###################'''
+    print("[%s:%d] conf ==> loaded" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum()
+                        
+                        ), file=sys.stderr)
+    
+    print(confs)
+
+    '''###################
+        return
+    ###################'''
+    return confs
+
+#/ def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
+    
