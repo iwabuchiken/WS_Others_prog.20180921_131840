@@ -76,7 +76,10 @@ import subprocess, copy, time, glob, re, datetime, math
 #ref pyplot https://matplotlib.org/users/pyplot_tutorial.html
 import numpy, matplotlib.pyplot as plt
 
-
+'''###################
+    vars : global
+###################'''
+dfltOf_NumOf_Request_BDs = 200
 
 '''######################################
     funcs        
@@ -14207,7 +14210,17 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
     _dpath_Conf = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
     _fname_Conf = "busl_3__sec-13.conf"
     
+    #_20190515_154111:fix
     conf_A_13 = libfx_2.set_Conf(_dpath_Conf, _fname_Conf)
+
+    #debug
+    print()
+    print("[%s:%d] conf_A_13 =>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+    print(conf_A_13)
+    print()
     
     '''###################
         step : A : 0
@@ -14311,6 +14324,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
             prep
     ###################'''
     #_20190514_120755:tmp
+    #_20190515_153043:tmp
     fname_Src_Csv_1 = ""
     
     if "fname_Src_Csv_1" in conf_A_13 : #if "fname_Src_Csv_1" in conf_A_13
@@ -14477,12 +14491,40 @@ def _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
         step : A : 2.2
             get : formatted lists
     ###################'''
-    numOf_Request_BDs = 200
+    #_20190515_152937:tmp
+#     numOf_Request_BDs = 200
+#     fname_Src_Csv_1 = ""
+    numOf_Request_BDs = -1
+    
+    if "numOf_Request_BDs" in conf_A_13 : #if "numOf_Request_BDs" in conf_A_13
+    
+        numOf_Request_BDs = int(conf_A_13["numOf_Request_BDs"])
+
+        print()
+        print("[%s:%d] numOf_Request_BDs is in conf_A_13. it's now ==> %d" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , numOf_Request_BDs
+                            ), file=sys.stderr)
+        print()
+    
+    else : #if "fname_Src_Csv_1" in conf_A_13
+    
+        numOf_Request_BDs = dfltOf_NumOf_Request_BDs
+
+        print()
+        print("[%s:%d] numOf_Request_BDs is NOT in conf_A_13. using default ==> %d" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , numOf_Request_BDs
+                            ), file=sys.stderr)
+        print()
+    
+    #/if "numOf_Request_BDs" in conf_A_13
     
     #_20190508_150257:caller
 #     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
     #(False, False, lo_Msg_Debug, lo_Msg_Data)
 #     tmpOf_LO_BarDatas_1, tmpOf_LO_BarDatas_2 = \
+    #_20190515_142955:fix
     (flg, tupleOf_Genned_BarDatas, msg) = \
             libfx_2.get_Formatted_BDs_Same_Period(\
                                                   
