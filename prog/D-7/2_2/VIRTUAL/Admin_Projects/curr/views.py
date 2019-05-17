@@ -80,6 +80,7 @@ import numpy, matplotlib.pyplot as plt
     vars : global
 ###################'''
 dfltOf_NumOf_Request_BDs = 200
+dfltOf_Dpath_Src_Csv="C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw"
 
 '''######################################
     funcs        
@@ -14206,10 +14207,34 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
     
     '''###################
         step : A : -1
+            prep : log-related vars
+    ###################'''
+    # lists
+    lo_Msg_Debug = []
+    
+    lo_Msg_Data = []
+    
+    lo_Msg_Error = []
+    
+    '''###################
+        step : A : -1
             prep : conf values
     ###################'''
     _dpath_Conf = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
     _fname_Conf = "busl_3__sec-14.conf"
+    
+    #log
+    msg_Log_CSV = "[%s / %s:%d]\nconf dir = %s / conf file = %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , _dpath_Conf, _fname_Conf
+            )
+    
+    lo_Msg_Debug.append(msg_Log_CSV)
+    lo_Msg_Debug.append("\n")
+    
+    #_20190517_125458:tmp
     
     #_20190515_154111:fix
     conf_A_14 = libfx_2.set_Conf(_dpath_Conf, _fname_Conf)
@@ -14231,12 +14256,6 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
         step : A : 0.1
             dir
     ###################'''
-    # lists
-    lo_Msg_Debug = []
-    
-    lo_Msg_Data = []
-    
-    lo_Msg_Error = []
     
 #     lo_Monitor_Stopped = []
     
@@ -14267,9 +14286,24 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
         
     #/if not os.path.isdir(dpath_Log_CSV)        
 
+    #log
+    msg_Log_CSV = "[%s / %s:%d]\ndpath_Log_CSV = %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            )
+    
+    lo_Msg_Debug.append(msg_Log_CSV)
+    lo_Msg_Debug.append("\n")
+
     '''###################
         step : A : 0.2
             file name
+    ###################'''
+    '''###################
+        step : A : 0.2 : 1
+            file names
     ###################'''
     # debug file
     strOf_Debug_File = "Sec_1_A14_Correl"
@@ -14293,11 +14327,114 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
     
     #/if "numOf_BDs_For_Correl_Op" in conf_A_14 
 
+    #log
+    msg_Log_CSV = "[%s / %s:%d]\nfname_Src_CSV__ = %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , fname_Src_CSV__
+            )
+    
+    lo_Msg_Debug.append(msg_Log_CSV)
+    lo_Msg_Debug.append("\n")
+
     '''###################
-        step : A : 1.1 : 1
+        step : A : 0.2 : 2
+            dir
+    ###################'''
+    dpath_Src_Csv = ""
+    
+    if "dpath_Src_Csv" in conf_A_14  : #if "numOf_BDs_For_Correl_Op" in conf_A_14 
+    
+        dpath_Src_Csv = conf_A_14["dpath_Src_Csv"]
+    
+    else : #if "numOf_BDs_For_Correl_Op" in conf_A_14 
+    
+        dpath_Src_Csv = dfltOf_Dpath_Src_Csv
+    
+    #_20190517_124642:tmp
+    
+    #/if "numOf_BDs_For_Correl_Op" in conf_A_14 
+
+    #log
+    msg_Log_CSV = "[%s / %s:%d]\ndpath_Src_Csv = %s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Src_Csv
+            )
+    
+    lo_Msg_Debug.append(msg_Log_CSV)
+    lo_Msg_Debug.append("\n")
+
+    '''###################
+        step : A : 1
             prep
     ###################'''
+    '''###################
+        step : A : 1.1
+            get : lo_BDs
+    ###################'''
+    header_Length   = 2
+    skip_Header     = False
+    
+    # get : BDs
+    lo_BarDatas, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_Csv, fname_Src_CSV__, header_Length, skip_Header)
 
+
+    '''###################
+        step : A : 1.1 : 2
+            reverse
+    ###################'''
+    bar_Start = lo_BarDatas[0]
+    bar_End = lo_BarDatas[-1]
+    
+    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+    
+        print()
+        print("[%s:%d] lo_BarDatas, order => Z to A (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+        
+        # reverse
+        lo_BarDatas.reverse()
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , lo_BarDatas[0].dateTime
+                             , lo_BarDatas[-1].dateTime
+                            ), file=sys.stderr)
+    
+    
+    else : #if bar_Start.dateTime > bar_End..dateTime
+
+        print()
+        print("[%s:%d] lo_BarDatas, order => A to Z (start = %s / end = %s)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             , bar_Start.dateTime, bar_End.dateTime
+                            ), file=sys.stderr)
+    
+    #/if bar_Start.dateTime > bar_End..dateTime    
+    '''###################
+        step : A : 1.2
+            vars
+    ###################'''
+    lenOf_LO_BDs = len(lo_BarDatas)
+
+    #log
+    msg_Log_CSV = "[%s / %s:%d]\nlenOf_LO_BDs = %d" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , lenOf_LO_BDs
+            )
+    
+    lo_Msg_Debug.append(msg_Log_CSV)
+    lo_Msg_Debug.append("\n")
+    
     '''###################
         step : A : 3
             log file
@@ -14311,17 +14448,20 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
     lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
     lo_Msg_Data.append("\n")
     
-#     lo_Msg_Data.append("pair_1\t%s" % (pair_1))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("timeframe_1\t%s" % (timeframe_1))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("start_1\t%s" % (lo_BarDatas_1[0].dateTime))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("end_1\t%s" % (lo_BarDatas_1[-1].dateTime))
-#     lo_Msg_Data.append("\n")
+    lo_Msg_Data.append("pair\t%s" % (pair))
+    lo_Msg_Data.append("\n")
+     
+    lo_Msg_Data.append("timeframe\t%s" % (timeframe))
+    lo_Msg_Data.append("\n")
+     
+    lo_Msg_Data.append("start\t%s" % (lo_BarDatas[0].dateTime))
+    lo_Msg_Data.append("\n")
+     
+    lo_Msg_Data.append("end\t%s" % (lo_BarDatas[-1].dateTime))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("total bars\t%d" % (lenOf_LO_BDs))
+    lo_Msg_Data.append("\n")
 
 #     #debug
 #     lo_Msg_Data.append("[DEBUG]===========================")
