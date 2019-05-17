@@ -14167,6 +14167,212 @@ def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 #/def _BUSL3_Tester_No_44_1__Sec_1_A11_All_Possible_Patterns_In_BB__1_Prep(\
 
 '''###################
+    _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio
+
+    at : 2019/05/07 23:13:24
+    
+    @description :
+    
+    @param : 
+        
+    @return: 
+    
+###################'''
+def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
+
+                strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+
+                , tlabel
+                , flag_Write_to_File
+
+        ) :
+
+#_20190517_122110:head
+#_20190517_122121:caller
+#_20190517_122124:wl:views
+
+    #debug
+    print()
+    print("[%s:%d] _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         
+        ), file=sys.stderr)
+    
+    '''###################
+        step : A : -1
+            prep : conf values
+    ###################'''
+    _dpath_Conf = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
+    _fname_Conf = "busl_3__sec-14.conf"
+    
+    #_20190515_154111:fix
+    conf_A_14 = libfx_2.set_Conf(_dpath_Conf, _fname_Conf)
+
+    #debug
+    print()
+    print("[%s:%d] conf_A_14 =>" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+        
+        ), file=sys.stderr)
+    print(conf_A_14)
+    print()
+    
+    '''###################
+        step : A : 0
+            prep : log-related
+    ###################'''
+    '''###################
+        step : A : 0.1
+            dir
+    ###################'''
+    # lists
+    lo_Msg_Debug = []
+    
+    lo_Msg_Data = []
+    
+    lo_Msg_Error = []
+    
+#     lo_Monitor_Stopped = []
+    
+    dpath_Log_CSV = os.path.join(dpath_Log, fname_Log_CSV + ".dir")
+         
+    #ref https://stackoverflow.com/questions/8933237/how-to-find-if-directory-exists-in-python
+    if not os.path.isdir(dpath_Log_CSV) : #if not os.path.isdir(dpath_Log_CSV)
+         
+        # make dir
+        #ref https://docs.python.org/2/library/os.html
+        os.makedirs(dpath_Log_CSV, exist_ok = True)
+        
+        #debug
+        print()
+        print("[%s:%d] new dir created => %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+    
+    else :
+        
+        #debug
+        print()
+        print("[%s:%d] new dir NOT created (already exists => %s ---!!" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            , dpath_Log_CSV
+            ), file=sys.stderr)
+        
+    #/if not os.path.isdir(dpath_Log_CSV)        
+
+    '''###################
+        step : A : 0.2
+            file name
+    ###################'''
+    # debug file
+    strOf_Debug_File = "Sec_1_A14_Correl"
+    
+    fname_Log_Debug = "debug.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+    fname_Log_Error = "debug.ERROR.[%s].(%s).log" % (strOf_Debug_File, tlabel)
+    
+    
+    fname_Log_Data = "debug.[%s].(%s).dat" % (strOf_Debug_File, tlabel)
+
+    fname_Src_CSV__ = ""
+    
+    if "fname_Src_Csv" in conf_A_14  : #if "numOf_BDs_For_Correl_Op" in conf_A_14 
+    
+        fname_Src_CSV__ = conf_A_14["fname_Src_Csv"]
+    
+    else : #if "numOf_BDs_For_Correl_Op" in conf_A_14 
+    
+        fname_Src_CSV__ = fname_Src_CSV
+    
+    #/if "numOf_BDs_For_Correl_Op" in conf_A_14 
+
+    '''###################
+        step : A : 1.1 : 1
+            prep
+    ###################'''
+
+    '''###################
+        step : A : 3
+            log file
+    ###################'''
+    lo_Msg_Data.append("fname_Src_CSV\t%s" % (fname_Src_CSV__))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("slice by\t%s" % (_req_param_tag_RB_No_44_1_SubData__Checked_Val))
+    lo_Msg_Data.append("\n")
+    
+    lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
+    lo_Msg_Data.append("\n")
+    
+#     lo_Msg_Data.append("pair_1\t%s" % (pair_1))
+#     lo_Msg_Data.append("\n")
+#     
+#     lo_Msg_Data.append("timeframe_1\t%s" % (timeframe_1))
+#     lo_Msg_Data.append("\n")
+#     
+#     lo_Msg_Data.append("start_1\t%s" % (lo_BarDatas_1[0].dateTime))
+#     lo_Msg_Data.append("\n")
+#     
+#     lo_Msg_Data.append("end_1\t%s" % (lo_BarDatas_1[-1].dateTime))
+#     lo_Msg_Data.append("\n")
+
+#     #debug
+#     lo_Msg_Data.append("[DEBUG]===========================")
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("bardatas_1 : 0 : datetime\t%s" % tmpOf_LO_BarDatas_1[0].dateTime)
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("bardatas_1 : -1 : datetime\t%s" % tmpOf_LO_BarDatas_1[-1].dateTime)
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("\n")
+# 
+#     lo_Msg_Data.append("bardatas_2 : 0 : datetime\t%s" % tmpOf_LO_BarDatas_2[0].dateTime)
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("bardatas_2 : -1 : datetime\t%s" % tmpOf_LO_BarDatas_2[-1].dateTime)
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("[/DEBUG]===========================/")
+#     lo_Msg_Data.append("\n")
+#     lo_Msg_Data.append("\n")
+    
+    '''###################
+        step : C
+            write to file
+    ###################'''
+    '''###################
+        step : C.1
+            file : log
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_Debug)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Debug, 0)
+
+    '''###################
+        step : C.2
+            file : dat
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Msg_Data)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log_CSV, fname_Log_Data, 0)
+    
+#/def _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
+
+'''###################
     _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_
 
     at : 2019/05/07 23:13:24
@@ -17373,6 +17579,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
 #     flg_Sec_1_A12 = True
     
     flg_Sec_1_A13 = True
+    flg_Sec_1_A14 = True
     
     '''###################
         step : A : 2
@@ -18300,6 +18507,50 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             )    
     
     #/if flg_Sec_1_A13 == False    
+    
+    '''###################
+        step : A : 14
+            correlation
+    ###################'''
+    if flg_Sec_1_A14 == False : #if flg_Sec_1_A14 == False
+
+        #debug
+        print()
+        print("[%s:%d] (step : A : 14) flag is false ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+        print()
+    
+    else : #if flg_Sec_1_A14 == False
+
+        #debug
+        print()
+        print("[%s:%d] [step : A : 14 / OC-HL ratio] =================================" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+            
+            ), file=sys.stderr)
+
+        flag_Write_to_File = True
+        
+        #_20190517_122121:caller
+#         _BUSL3_Tester_No_44_1__Sec_1_A13_Correlation_(\
+        _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
+#                 (lo_UUU, lo_UUD)
+#                 , strOf_Slice_By_Throgh
+                strOf_Slice_By_Throgh
+                , fname_Log_CSV_trunk, fname_Log_CSV
+                , dpath_Log
+                , fname_Src_CSV
+                ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+                ,pair
+                ,timeframe
+#                 ,tmp_LO_BarDatas
+                , tlabel
+                , flag_Write_to_File
+            )    
+    
+    #/if flg_Sec_1_A14 == False    
     
     #_20190331_092850:wl:views
     
