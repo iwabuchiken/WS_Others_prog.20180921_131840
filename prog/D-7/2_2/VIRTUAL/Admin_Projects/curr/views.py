@@ -14980,7 +14980,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
     lo_Msg_Data.append("\n")
     lo_Msg_Data.append("[OCHL_Analysis]===========================")
     lo_Msg_Data.append("\n")
-    lo_Msg_Data.append("s.n.\te1.PC\te2.PC\te3.PC\te4.PC\te5.PC")
+    lo_Msg_Data.append("s.n.\te-5.PC\te-4.PC\te-3.PC\te-2.PC\te-1.PC\te0.PC\te1.PC\te2.PC\te3.PC\te4.PC")
+#     lo_Msg_Data.append("s.n.\te1.PC\te2.PC\te3.PC\te4.PC\te5.PC")
     lo_Msg_Data.append("\n")
 
     '''###################
@@ -15005,7 +15006,19 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
 
             #debug
             print()
-            print("[%s:%d] NOT enough length : lenOf_LO_BDs = %d, idxOf_Data_Set = %d, numOf_Sequence = %d" % \
+            print("[%s:%d] NOT enough length (prospect deficit) : lenOf_LO_BDs = %d, idxOf_Data_Set = %d, numOf_Sequence = %d" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , lenOf_LO_BDs, idxOf_Data_Set, numOf_Sequence
+                ), file=sys.stderr)
+            
+            continue
+        
+        #_20190521_211501:tmp
+        elif idxOf_Data_Set < numOf_Sequence :
+            
+            #debug
+            print()
+            print("[%s:%d] NOT enough length (retro deficit) : lenOf_LO_BDs = %d, idxOf_Data_Set = %d, numOf_Sequence = %d" % \
                 (os.path.basename(libs.thisfile()), libs.linenum()
                  , lenOf_LO_BDs, idxOf_Data_Set, numOf_Sequence
                 ), file=sys.stderr)
@@ -15022,7 +15035,8 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                     slice : list
             ###################'''    
             #_20190520_131458:marker
-            lo_SliceOf_LO_BDs = lo_BDs_Tmp[i : i + numOf_Sequence]
+            lo_SliceOf_LO_BDs = lo_BDs_Tmp[i - numOf_Sequence : i + numOf_Sequence]
+#             lo_SliceOf_LO_BDs = lo_BDs_Tmp[i : i + numOf_Sequence]
             
             #_20190520_095336:wl:views:Sec_1_A14_2
             
