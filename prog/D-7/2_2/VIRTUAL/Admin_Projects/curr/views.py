@@ -14760,17 +14760,37 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                             (os.path.basename(libs.thisfile()), libs.linenum()
                              , bar_Start.dateTime, bar_End.dateTime
                             ), file=sys.stderr)
+        print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             
+                             , lo_BDs_Tmp[0].dateTime
+                             , lo_BDs_Tmp[-1].dateTime
+                             
+                            ), file=sys.stderr)
+        
+        print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum()
+                             
+                            ), file=sys.stderr)
         
         # reverse
-        lo_BDs_Tmp.reverse()
+        lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
+#         lo_BDs_Tmp = lo_BDs_Tmp[::-1]
+#         lo_BDs_Tmp = lo_BDs_Tmp.reverse()
+#         lo_BDs_Tmp.reverse()
 #         lo_BarDatas.reverse()
 
         print()
-        print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+        print("[%s:%d] lo_BarDatas, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
                             (os.path.basename(libs.thisfile()), libs.linenum()
-                             , lo_BarDatas[0].dateTime
-                             , lo_BarDatas[-1].dateTime
+                             , lo_BDs_Tmp[0].dateTime
+                             , lo_BDs_Tmp[-1].dateTime
                             ), file=sys.stderr)
+#         print("[%s:%d] lo_BarDatas, order => reversed (start = %s / end = %s)" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              , lo_BarDatas[0].dateTime
+#                              , lo_BarDatas[-1].dateTime
+#                             ), file=sys.stderr)
     
     
     else : #if bar_Start.dateTime > bar_End..dateTime
@@ -14980,8 +15000,20 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
     lo_Msg_Data.append("\n")
     lo_Msg_Data.append("[OCHL_Analysis]===========================")
     lo_Msg_Data.append("\n")
-    lo_Msg_Data.append("s.n.\te-5.PC\te-4.PC\te-3.PC\te-2.PC\te-1.PC\te0.PC\te1.PC\te2.PC\te3.PC\te4.PC")
+#     lo_Msg_Data.append("s.n.\te-5.PC\te-4.PC\te-3.PC\te-2.PC\te-1.PC\te0.PC\te1.PC\te2.PC\te3.PC\te4.PC")
+    lo_Msg_Data.append("s.n.\te-5.PC\te-4.PC\te-3.PC\te-2.PC\te-1.PC")
+    lo_Msg_Data.append("\te0.PC\te1.PC\te2.PC\te3.PC\te4.PC")
+    lo_Msg_Data.append("\te0.BB.2\te0.BB.1\te0.BB.main\te0.BB.M1\te0.BB.M2")
 #     lo_Msg_Data.append("s.n.\te1.PC\te2.PC\te3.PC\te4.PC\te5.PC")
+    lo_Msg_Data.append("\te0.dateTime")
+    
+    #debug
+    lo_Msg_Data.append("\te0.price_Close")
+    
+    lo_Msg_Data.append("\tlo_BDs_Tmp[i].dateTime\tlo_BDs_Tmp[i].price_Close")
+    
+    lo_Msg_Data.append("\ti")
+    
     lo_Msg_Data.append("\n")
 
     '''###################
@@ -14993,6 +15025,7 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
             step : A : 4.2 : 1
                 get : data set
         ###################'''    
+        # data set : [bd, i, valOf_HL_OC_Ratio]
         setOf_Data = lo_BDs_HLOC_Ratio_Lower[i]
         
         '''###################
@@ -15035,7 +15068,12 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                     slice : list
             ###################'''    
             #_20190520_131458:marker
-            lo_SliceOf_LO_BDs = lo_BDs_Tmp[i - numOf_Sequence : i + numOf_Sequence]
+            #_20190522_163225:for-record
+            lo_SliceOf_LO_BDs = lo_BDs_Tmp[idxOf_Data_Set - numOf_Sequence : idxOf_Data_Set + numOf_Sequence]
+#             lo_SliceOf_LO_BDs = lo_BDs_Tmp[i - numOf_Sequence : i + numOf_Sequence]
+            #=> 83.085    83.134    83.085    83.111    82.928    82.976    82.941    82.895    82.911    82.877
+            #=> numOf_Sequence x 2 entries ; e0 is xth from the right.
+            
 #             lo_SliceOf_LO_BDs = lo_BDs_Tmp[i : i + numOf_Sequence]
             
             #_20190520_095336:wl:views:Sec_1_A14_2
@@ -15063,6 +15101,73 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                     )
             
             lo_Msg_Data.append(msg_Log_CSV)
+            
+            '''###################
+                step : A : 4.2 : 3.2 : 2
+                    build : log line : BB vals
+            ###################'''    
+            # data set : [bd, i, valOf_HL_OC_Ratio]
+            
+            bd = setOf_Data[0]
+            
+            msg_Log_CSV = "\t%.03f\t%.03f\t%.03f\t%.03f\t%.03f" % \
+                    (
+                    bd.bb_2S
+                    , bd.bb_1S
+                    
+                    , bd.bb_Main
+                    
+                    , bd.bb_M1S
+                    , bd.bb_M2S
+                    
+                    )
+                    
+#             msg_Log_CSV = "\t%s" % \
+            msg_Log_CSV += "\t%s" % \
+                    (
+                     
+                     bd.dateTime
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
+            #debug
+            msg_Log_CSV = "\t%.03f" % \
+                    (
+                     
+                     bd.price_Close
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
+            #debug
+            msg_Log_CSV = "\t%s\t%.03f" % \
+                    (
+                     
+                     lo_BDs_Tmp[idxOf_Data_Set].dateTime
+                     , lo_BDs_Tmp[idxOf_Data_Set].price_Close
+#                      lo_BDs_Tmp[i].dateTime
+#                      , lo_BDs_Tmp[i].price_Close
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
+            #_20190522_150246:tmp
+
+            #debug
+            msg_Log_CSV = "\t%d" % \
+                    (
+                     
+                     idxOf_Data_Set
+#                      i
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
             lo_Msg_Data.append("\n")
             
         

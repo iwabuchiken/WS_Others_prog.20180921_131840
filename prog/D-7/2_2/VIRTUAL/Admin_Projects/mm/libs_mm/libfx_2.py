@@ -7172,3 +7172,41 @@ def set_Conf(_dpath_Conf, _fname_Conf) :
 
 #/ def _tester_BuyUps_SellLows__BUSL_3__Set_Conf():
     
+def reverse_ListOf_BarDatas(_lo_BDs):
+    
+    '''###################
+        A : 1
+            prep
+    ###################'''
+    lo_BDs_Reversed = []
+    
+    lenOf_LO_BDs_orig = len(_lo_BDs)
+
+    '''###################
+        A : 2
+            loop
+    ###################'''
+    for i in range(0, lenOf_LO_BDs_orig):
+        '''###################
+            A : 2.1
+                
+        ###################'''
+        lo_BDs_Reversed.append(_lo_BDs[-1 * (1 + i)])
+        
+# #debug
+# a = list("interested to know")
+# b = []
+# for i in range(0, len(a)):
+#     b.append(a[-1 * (1 + i)])
+# a
+# b
+
+    #/for i in range(0, lenOf_LO_BDs_orig):
+
+    
+    '''###################
+        return
+    ###################'''
+    return lo_BDs_Reversed
+    
+#/ def reverse_ListOf_BarDatas():
