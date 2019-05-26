@@ -15014,6 +15014,9 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
     
     lo_Msg_Data.append("\ti")
     
+    #_20190526_111154:tmp
+    lo_Msg_Data.append("\tloc-in-bb")
+    
     lo_Msg_Data.append("\n")
 
     '''###################
@@ -15122,6 +15125,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                     
                     )
                     
+            '''###################
+                step : A : 4.2 : 3.2 : 3
+                    build : log line : BB : datetime
+            ###################'''    
 #             msg_Log_CSV = "\t%s" % \
             msg_Log_CSV += "\t%s" % \
                     (
@@ -15132,6 +15139,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
             
             lo_Msg_Data.append(msg_Log_CSV)
             
+            '''###################
+                step : A : 4.2 : 3.2 : 4
+                    build : log line : BB : PC
+            ###################'''    
             #debug
             msg_Log_CSV = "\t%.03f" % \
                     (
@@ -15142,6 +15153,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
             
             lo_Msg_Data.append(msg_Log_CSV)
             
+            '''###################
+                step : A : 4.2 : 3.2 : 5
+                    build : log line : lo_BDs_Tmp : datetime, PC
+            ###################'''    
             #debug
             msg_Log_CSV = "\t%s\t%.03f" % \
                     (
@@ -15155,14 +15170,66 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
             
             lo_Msg_Data.append(msg_Log_CSV)
             
+            '''###################
+                step : A : 4.2 : 3.2 : 6
+                    build : log line : bd : idx
+            ###################'''    
             #_20190522_150246:tmp
-
             #debug
             msg_Log_CSV = "\t%d" % \
                     (
                      
                      idxOf_Data_Set
 #                      i
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
+            '''###################
+                step : A : 4.2 : 3.2 : 7
+                    build : log line : bd : loc in bb
+            ###################'''    
+            #debug:bb-loc
+            #_20190526_111321:tmp
+            num_Loc_In_BB = -1
+            
+            # judge
+            valOf_BD_PC = bd.price_Close
+            
+            if valOf_BD_PC >= bd.bb_2S : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 1
+            
+            elif valOf_BD_PC >= bd.bb_1S : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 2
+            
+            elif valOf_BD_PC >= bd.bb_Main : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 3
+            
+            elif valOf_BD_PC >= bd.bb_M1S : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 4
+            
+            elif valOf_BD_PC >= bd.bb_M2S : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 5
+            
+            else : #if valOf_BD_PC >= bd.bb_2S
+            
+                num_Loc_In_BB = 5
+            
+            #/if valOf_BD_PC >= bd.bb_2S
+            
+            
+            
+            
+            msg_Log_CSV = "\t%d" % \
+                    (
+                     
+                     num_Loc_In_BB
                     
                     )
             
@@ -15213,53 +15280,11 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
         step : A : X
             log file
     ###################'''
-#     '''###################
-#         step : A : X : 1
-#             dat file
-#     ###################'''
-#     '''###################
-#         step : A : X : 1.1
-#             dat file : meta info
-#     ###################'''
-#     lo_Msg_Data.append("fname_Src_CSV\t%s" % (fname_Src_CSV__))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("slice by\t%s" % (_req_param_tag_RB_No_44_1_SubData__Checked_Val))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("this file\t%s" % (fname_Log_Data))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("pair\t%s" % (pair))
-#     lo_Msg_Data.append("\n")
-#      
-#     lo_Msg_Data.append("timeframe\t%s" % (timeframe))
-#     lo_Msg_Data.append("\n")
-#      
-#     lo_Msg_Data.append("start\t%s" % (lo_BarDatas[0].dateTime))
-#     lo_Msg_Data.append("\n")
-#      
-#     lo_Msg_Data.append("end\t%s" % (lo_BarDatas[-1].dateTime))
-#     lo_Msg_Data.append("\n")
-#     
-#     lo_Msg_Data.append("total bars\t%d" % (lenOf_LO_BDs))
-#     lo_Msg_Data.append("\n")
 
     '''###################
         step : A : X : 1.2
             dat file : data
     ###################'''
-#     '''###################
-#         step : A : X : 1.2.1
-#             dat file : header
-#     ###################'''
-#     
-#     #_20190520_121324:tmp
-#     lo_Msg_Data.append("\n")
-#     lo_Msg_Data.append("[OCHL_Analysis]===========================")
-#     lo_Msg_Data.append("\n")
-#     lo_Msg_Data.append("s.n.\tdatetime\tlist index\tval")
-#     lo_Msg_Data.append("\n")
     
     '''###################
         step : C
