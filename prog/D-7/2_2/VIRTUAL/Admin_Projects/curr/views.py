@@ -15017,6 +15017,10 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
     #_20190526_111154:tmp
     lo_Msg_Data.append("\tloc-in-bb")
     
+    # col : shadow upper/lower ratio
+    #_20190527_112317:tmp
+    lo_Msg_Data.append("\tshadow-u/p-ratio")
+    
     lo_Msg_Data.append("\n")
 
     '''###################
@@ -15234,7 +15238,68 @@ def _BUSL3_Tester_No_44_1__Sec_1_A14_2_OCHL_Analysis(\
                     )
             
             lo_Msg_Data.append(msg_Log_CSV)
+
+            '''###################
+                step : A : 4.2 : 3.2 : 8
+                    shadow upper/lower ratio
+            ###################'''
+            #_20190527_112409:tmp
+            valOf_Shadow_Upper = 0.0
+            valOf_Shadow_Lower = 0.0
             
+            if bd.price_Close >= bd.price_Open : #if bd.price_Close >= bd.price_Open
+                '''###################
+                    step : A : 4.2 : 3.2 : 8.1
+                        bar : up
+                ###################'''
+                valOf_Shadow_Upper = bd.price_High - bd.price_Close
+                valOf_Shadow_Lower = bd.price_Open - bd.price_Low
+            
+            else : #if e0
+                '''###################
+                    step : A : 4.2 : 3.2 : 8.2
+                        bar : down
+                ###################'''
+                valOf_Shadow_Upper = bd.price_High - bd.price_Open
+                valOf_Shadow_Lower = bd.price_Close - bd.price_Low
+            
+            #/if bd.price_Close >= bd.price_Open
+            
+            '''###################
+                step : A : 4.2 : 3.2 : 8.3
+                    get : ratio
+            ###################'''
+            ratioOf_Upper_Lower = 0.0
+            
+            # validate : zero division
+            if valOf_Shadow_Lower == 0.0 : #if valOf_Shadow_Lower == 0.0
+            
+                ratioOf_Upper_Lower = -1.0
+            
+            else : #if valOf_Shadow_Lower == 0.0
+            
+                ratioOf_Upper_Lower = valOf_Shadow_Upper / valOf_Shadow_Lower
+            
+            #/if valOf_Shadow_Lower == 0.0
+            
+            '''###################
+                step : A : 4.2 : 3.2 : 8.4
+                    append
+            ###################'''
+            msg_Log_CSV = "\t%.03f" % \
+                    (
+                     
+                     ratioOf_Upper_Lower
+                    
+                    )
+            
+            lo_Msg_Data.append(msg_Log_CSV)
+            
+            
+            '''###################
+                step : A : 4.2 : 3.2 : X
+                    separator
+            ###################'''
             lo_Msg_Data.append("\n")
             
         
