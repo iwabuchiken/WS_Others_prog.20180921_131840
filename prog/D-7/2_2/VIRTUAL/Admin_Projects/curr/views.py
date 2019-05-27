@@ -20072,7 +20072,7 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
     
     '''###################
         step : A : 14_2
-            correlation
+            OCHL-ratio
     ###################'''
     if flg_Sec_1_A14_2 == False : #if flg_Sec_1_A14_2 == False
 
@@ -20113,6 +20113,12 @@ def _BUSL3_Tester_No_44_1__exec__V_1_0_Gen_SubData_V_1_2__Sec_1(\
             )    
     
     #/if flg_Sec_1_A14_2 == False    
+
+    '''###################
+        step : A : 14_3
+            bar-shadows : upper/lower-ratio
+    ###################'''
+    #_20190527_161537:tmp
     
     #_20190331_092850:wl:views
     
