@@ -16,10 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 
 from curr import views
+from curr import views_2
 
 urlpatterns = [
     
     url(r'^$', views.index, name='curr_index'),
+    
+    #20190528_104616
+    url(r'^views_2/$', views_2.index, name='curr_index_2'),
     
     url(r'^updown_patterns/$', views.updown_patterns, name='updown_patterns'),
     
@@ -38,6 +42,9 @@ urlpatterns = [
     url(r'^testers/$', views.testers, name='testers'),
     
     url(r'^tester_BuyUps_SellLows/$', views.tester_BuyUps_SellLows, name='tester_BuyUps_SellLows'),
+    
+    #20190528_104840
+    url(r'^views_2/tester_BuyUps_SellLows/$', views_2.tester_BuyUps_SellLows, name='tester_BuyUps_SellLows_2'),
     
     url(r'^exec_Tester_BuyUps_SellLows/$', views.exec_Tester_BuyUps_SellLows, name='exec_Tester_BuyUps_SellLows'),
     
