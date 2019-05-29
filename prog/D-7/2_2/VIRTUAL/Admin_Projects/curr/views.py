@@ -35,7 +35,7 @@ sys.path.append('..')
 # sys.path.append('C:/WORKS_2/WS/WS_Others/free/VX7GLZ_science-research/31_Materials')
 sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm')
 
-from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_3
+from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_3, libfx_4
 # from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2
 # from mm.libs_mm import libs
 # from mm.libs_mm import libfx
@@ -8907,6 +8907,8 @@ def _BUSL3_Tester_No_45_1__Get_Basic_Stats__exec__V_3_0(request):
         (False, status, msg) ---> csv file not exist
 ###################'''
 def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep(request):
+    
+    #_20190529_150958:ref
     '''###################
         params : csv file name
     ###################'''
@@ -8959,6 +8961,7 @@ def _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2__exec__V_1_0__prep(request):
         msg = "(ERROR) PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 : "
         msg += "csv source file ---> NOT exist : %s" % (fpath_Src_CSV__Pair_1)
         
+        #_20190529_144847:fix
         return (False, status, msg, _, _, _)
 #         return (False, status, msg, _, _, _)
 #         return (status, msg)
@@ -21903,7 +21906,7 @@ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request):
     return (status, msg)
     
 #/ def _tester_BUSL__V2__Param_1__NumOfUpDownBars(request)
-#xxx
+#_20190529_144049:tmp
 def tester_BuyUps_SellLows__V2(request):
 
     '''###################
@@ -22227,6 +22230,39 @@ def tester_BuyUps_SellLows__V2(request):
             _BUSL3_Tester_No_44_1__Stats_Ups_Downs_In_BB_Areas(request)
 #             _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request)
            #ccc 
+        #ref color names https://html-color-codes.info/color-names/
+        str_Color_Name = ""
+        
+        if msg.startswith("(ERROR)") : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "red"
+        
+        else : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "DarkGreen"
+        
+        #/if msg.startswith("(ERROR)")
+        
+        dic['message'] = \
+                "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
+
+        print()
+        print("[%s:%d] dic['message'] => %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , dic['message']
+                ), file=sys.stderr)
+        
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[17] :
+        '''###################
+            "46-1"
+                stats : gen basic stats, category-2
+        ###################'''
+        # call func
+        #_20190529_145508:caller
+        (status, msg) = \
+            libfx_4._BUSL3_Tester_No_M_1__DP_Basic_1(request)
+#             _BUSL3_Tester_No_46_1__Get_Basic_Stats_Cat_2(request)
+            
         #ref color names https://html-color-codes.info/color-names/
         str_Color_Name = ""
         
