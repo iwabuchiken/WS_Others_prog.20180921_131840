@@ -380,6 +380,74 @@ class Tester(Enum):
     
     """
 
+    tag_No_M_11 = """
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>RECORD : 1</td>
+                <td>
+                    <textarea id='ta_no_m_11_params_area_filepath'>VALUE</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>RECORD : 2
+                </td>
+                <td>
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day" 
+                         value="day"
+                         checked="checked" 
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day">
+                             day
+                             </label>
+                    
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week" 
+                         value="week"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week">
+                             week
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month" 
+                         value="month"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month">
+                             month
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through" 
+                         value="through"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through">
+                             through
+                             </label>
+                             
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>RECORD : 3</td>
+                <td>
+                    VALUE
+                </td>
+            </tr>
+        </table>
+    
+    """
+
 
     
     lo_Commands = [
@@ -431,9 +499,8 @@ class Tester(Enum):
                                 # 1. correl ---> between pairs
                                 #   1. U/J ~ E/J"
             , 16 : "44-1"     # "num of up/down bars in each BB area"
-
-            
-            
+    
+            , 17 : "m-11"     # "detect patterns / basic framework
             
         }
     
@@ -600,37 +667,20 @@ class Tester(Enum):
                     + tag_No_44_1
                     
                     
-#                     + "<br>2) csv gen-ed at : C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\log" \
-#                     
-#                     + "<div id='div_no_47_1_params_area'>" \
-#                     + "gen subdata by" \
-#                     + "<br>" \
-#                     + "<br>" \
-#                     
-#                         + "<input type='checkbox' name='cb_no_44_1_params_area_filepath' id='cb_no_44_1_params_area_filepath' value='cb_no_44_1_params_area_filepath' />" \
-#                         + "<br>" \
-#                         + "<br>" \
-#                     
-#                          +"<input" \
-#                              + "type='radio'" \
-#                              + "name='curr_BUSL_2__Area_Options__RB_2-2_RBs' " \
-#                              + "id='curr_BUSL_2__Area_Options__RB_2-2_ByMonth' " \
-#                              + "value='by_month'" \
-#                              + "checked='checked'" \
-#                              + "/>" \
-#                          + "<label for='curr_BUSL_2__Area_Options__RB_2-2_ByMonth'>" \
-#                                  + "by month" \
-#                                  + "</label>" \
-#                         + "<br>" \
-#                     
-#                     + "<textarea id='ta_no_44_1_params_area_filepath'>" \
-#                     + "</textarea>" \
-#                     + "</div>"
-                    
                 , "20190218_125015" # registered date
             ],     
 
-            #ccc
+            [
+                lo_Actions__BUSL__IDs[17]   # key
+                ,"dp-1 : basic framework"  # description : short
+                , ParamConstants.PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas.value    # constant string
+                , "idea in 2019-05-29_09-34-40_000.jpg" \
+                    + tag_No_M_11
+                    
+                    
+                , "20190529_123310" # registered date
+            ],     
+
         ]
     
     #
