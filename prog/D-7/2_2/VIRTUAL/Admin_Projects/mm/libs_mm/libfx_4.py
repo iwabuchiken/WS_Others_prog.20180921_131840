@@ -127,19 +127,32 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
         (tmp_msg), file=sys.stderr)
 
 
+=======
+
+    print()
+    print("[%s:%d] ============================= [start] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , tmp_msg
+        ), file=sys.stderr)
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
 
     '''###################
         step : 0.2
             flags
     ###################'''
+<<<<<<< HEAD
     flg_A1 = True
 #     flg_A1 = False
+=======
+    flg_A1 = False
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
 
     '''###################
         step : 0.3
             vars
     ###################'''
     #_20190529_153357:mk (marker)
+<<<<<<< HEAD
     lo_Lines_Log = []
     lo_Lines_Error = []
     lo_Lines_Dat = []
@@ -245,18 +258,28 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
     lo_Lines_Error.append("\n")
 
     '''###################
+=======
+    
+    '''###################
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
         step : A : 1
     ###################'''
     #_20190529_152951:marker
     if flg_A1 == False : #if flg_A1 == False
 
         #debug
+<<<<<<< HEAD
         msg = "flg_A1 == False :  ---> NOT executing..."
 #         tmp_msg = "[%s:%d] flg_A1 == False :  ---> NOT executing..." % \
 #             (os.path.basename(libs.thisfile()), libs.linenum()
         tmp_msg = "[%s:%d / %s] %s" % \
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , msg
+=======
+        tmp_msg = "[%s:%d] flg_A1 == False :  ---> NOT executing..." % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
             )
     
         print()
@@ -265,16 +288,24 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
     else : #if flg_A1 == False
 
         #debug
+<<<<<<< HEAD
         msg = "[step : A : 1 / XXX] ================================="
         
         tmp_msg = "[%s:%d]\n%s" % \
             (os.path.basename(libs.thisfile()), libs.linenum()
              , msg
+=======
+        #debug
+        tmp_msg = "[%s:%d]  [step : A : 1 / XXX] =================================" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
             )
     
         print()
         print(tmp_msg, file=sys.stderr)
 
+<<<<<<< HEAD
         lo_Lines_Log.append(tmp_msg)
         lo_Lines_Log.append("\n")
 
@@ -284,6 +315,22 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
         _BUSL3_No_M_1__DP_Basic_1__A1(request, dpath_Log, tlabel, strOf_Op_Name)
 #         _BUSL3_No_M_1__DP_Basic_1__A1(request)
         
+=======
+        flag_Write_to_File = True
+        
+#         _BUSL3_Tester_No_44_1__Sec_1_A14_OCHL_Ratio(\
+#                 strOf_Slice_By_Throgh
+#                 , fname_Log_CSV_trunk, fname_Log_CSV
+#                 , dpath_Log
+#                 , fname_Src_CSV
+#                 ,_req_param_tag_RB_No_44_1_SubData__Checked_Val
+#                 ,pair
+#                 ,timeframe
+#                 , tlabel
+#                 , flag_Write_to_File
+#             )    
+#     
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
     #/if flg_A1 == False    
     
     
@@ -322,6 +369,11 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
             create : dir
     ###################'''
     
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
     '''###################
         time        
     ###################'''
@@ -332,6 +384,7 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
 #     msg = "done (time : %02.3f sec)" % (time_Elapsed)
 
+<<<<<<< HEAD
     msg = "[%s:%d / %s]\n%s" % \
         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , msg
@@ -370,6 +423,14 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
             )
     
     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+=======
+    print()
+    print("[%s:%d] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , msg
+        ), file=sys.stderr)
+
+>>>>>>> ac1729dbaafab4f3cd566691d9a6a8a2edd0b493
 
     '''###################
         step : X
@@ -394,6 +455,7 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
     return (status, msg)
     
 #/ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
+<<<<<<< HEAD
 
 '''###################
     _BUSL3_No_M_1__DP_Basic_1__A1
@@ -642,4 +704,3 @@ def _BUSL3_No_M_1__DP_Basic_1__A1(request, _dpath_Log, _tlabel, _strOf_Op_Name):
 # 
 # 
 # #/ def _BUSL3_No_M_1__DP_Basic_1__A1(request):
-
