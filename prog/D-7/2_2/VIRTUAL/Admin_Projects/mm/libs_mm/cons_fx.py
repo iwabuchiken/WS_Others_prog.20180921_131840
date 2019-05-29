@@ -46,6 +46,13 @@ class BarData(Enum):
 class FPath(Enum):
     
     '''###################
+        conf file
+    ###################'''
+    dpath_CONF_FILE = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
+    
+    fname_CONF_BUSL3__M_1 = "busl_3__M_1.conf"
+    
+    '''###################
         log file : main
     ###################'''
     fname_LOG_FILE_MAIN = "prog_currency_main.log"
@@ -385,53 +392,60 @@ class Tester(Enum):
         <br>
         <table>
             <tr>
-                <td>RECORD : 1</td>
                 <td>
-                    <textarea id='ta_no_m_11_params_area_filepath'>VALUE</textarea>
+                    gen subdata <input type='checkbox' 
+                        name='cb_no_44_1_params_area_filepath' 
+                        id='cb_no_44_1_params_area_filepath' 
+                        value='cb_no_44_1_params_area_filepath'>
+                        </input>
+                </td>
+                <td>
+                    <textarea id='ta_no_44_1_params_area_filepath'>C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw\\44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv</textarea>
                 </td>
             </tr>
             <tr>
-                <td>RECORD : 2
+                <td>subdata by
+                    
                 </td>
                 <td>
                      <input 
                          type="radio" 
-                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day" 
                          value="day"
                          checked="checked" 
                          />
-                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day">
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day">
                              day
                              </label>
                     
                      <input 
                          type="radio" 
-                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week" 
                          value="week"
                          />
-                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week">
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week">
                              week
                              </label>
                              
                      <input 
                          type="radio" 
-                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month" 
                          value="month"
                          />
-                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month">
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month">
                              month
                              </label>
                              
                      <input 
                          type="radio" 
-                         name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-                         id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through" 
                          value="through"
                          />
-                     <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through">
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through">
                              through
                              </label>
                              
@@ -439,14 +453,84 @@ class Tester(Enum):
                 </td>
             </tr>
             <tr>
-                <td>RECORD : 3</td>
                 <td>
-                    VALUE
+                    yes
+                </td>
+                <td>
+                    yes
                 </td>
             </tr>
         </table>
     
     """
+
+#     tag_No_M_11 = """
+#         <br>
+#         <br>
+#         <table>
+#             <tr>
+#                 <td>RECORD : 1</td>
+#                 <td>
+#                     <textarea id='ta_no_m_11_params_area_filepath'>VALUE</textarea>
+#                 </td>
+#             </tr>
+#             <tr>
+#                 <td>RECORD : 2
+#                 </td>
+#                 <td>
+#                      <input 
+#                          type="radio" 
+#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day" 
+#                          value="day"
+#                          checked="checked" 
+#                          />
+#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day">
+#                              day
+#                              </label>
+#                     
+#                      <input 
+#                          type="radio" 
+#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week" 
+#                          value="week"
+#                          />
+#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week">
+#                              week
+#                              </label>
+#                              
+#                      <input 
+#                          type="radio" 
+#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month" 
+#                          value="month"
+#                          />
+#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month">
+#                              month
+#                              </label>
+#                              
+#                      <input 
+#                          type="radio" 
+#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
+#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through" 
+#                          value="through"
+#                          />
+#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through">
+#                              through
+#                              </label>
+#                              
+#                     
+#                 </td>
+#             </tr>
+#             <tr>
+#                 <td>RECORD : 3</td>
+#                 <td>
+#                     VALUE
+#                 </td>
+#             </tr>
+#         </table>
+#     
+#     """
 
 
     
