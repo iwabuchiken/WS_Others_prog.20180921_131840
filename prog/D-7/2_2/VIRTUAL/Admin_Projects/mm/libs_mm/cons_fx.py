@@ -51,6 +51,7 @@ class FPath(Enum):
     dpath_CONF_FILE = "C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\conf"
     
     fname_CONF_BUSL3__M_1 = "busl_3__M_1.conf"
+    fname_CONF_BUSL3__M_1_A_1 = "busl_3__M_1_A1.conf"
     
     '''###################
         log file : main
