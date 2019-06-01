@@ -1052,6 +1052,220 @@ def  _get_Bars__A_1_Get_List_Of_BDs(\
     
 ###################'''
 # def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+def  _get_Bars__A_2_2_RatioOf_OCHL(\
+            lo_BDs_Tmp
+          , ratioOf_OCHL
+          , lo_BDs_Hits__RatioOf_OCHL
+          , lo_LO_Lines) :
+#_20190601_144756:caller
+#_20190601_144759:head
+#_20190601_144803:wl:in-func
+    
+    '''###################
+        step : A : 0
+            unpack : lo_Lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    # vars
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    for i in range(0, lenOf_LO_BDs_Tmp):
+        '''###################
+            step : A : 2.1
+                get : index values
+        ###################'''
+        e0 = lo_BDs_Tmp[i]
+        
+        ratioOf_OCHL_Actual = numpy.abs(e0.price_Open - e0.price_Close) / \
+                                (e0.price_High - e0.price_Low)
+#         ratioOf_OCHL_Actual = e0.diff_OC / e0.diff_HL
+        
+#         price_Close = e0.price_Close
+#         price_Open = e0.price_Open
+#         
+#         bb_M1S = e0.bb_M1S
+#         bb_M2S = e0.bb_M2S
+        
+        '''###################
+            step : A : 2.2
+                in Z4 ?
+        ###################'''
+        '''###################
+            step : A : 2.2 : 1
+                set : conditions
+        ###################'''
+        cond_1 = ratioOf_OCHL_Actual <= ratioOf_OCHL
+#         cond_2 = e0.price_Open > e0.bb_M2S and e0.price_Open <= e0.bb_M1S
+        
+        #_20190530_132430:wl:in-func
+        # to negate the truth value of a variable ==> not(hoge)
+        '''###################
+            step : A : 2.2 : 2
+                judge
+        ###################'''
+#         if cond_1 == True and cond_2 == True : #if cond_1 == True and cond_2 == True
+#         if numpy.all([cond_1, cond_2]) : #if cond_1 == True and cond_2 == True
+        if numpy.all([cond_1]) : #if cond_1 == True and cond_2 == True
+            #_20190530_140432:tmp
+            lo_BDs_Hits__RatioOf_OCHL.append(e0)
+#             lo_BDs_Hits.append(e0)
+        
+        #/if cond_1 == True and cond_2 == True
+        
+    #/for i in range(0, lenOf_LO_BDs_Tmp):
+
+    # report
+    #debug
+#     msg = "RatioOf_OCHL : %.03f : len(lo_BDs_Hits__RatioOf_OCHL) ==> %d (of total : %.03f)" % \
+    msg = "RatioOf_OCHL : %.03f\nratio of diff of open-close over diff of high-low : equal or smaller than (est)\nlen(lo_BDs_Hits__RatioOf_OCHL) ==> %d (of total : %.03f)" % \
+            (
+             ratioOf_OCHL
+             , len(lo_BDs_Hits__RatioOf_OCHL)
+             , len(lo_BDs_Hits__RatioOf_OCHL) / lenOf_LO_BDs_Tmp
+             )
+    
+    tmp_msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , libs.get_TimeLabel_Now()
+         , msg
+        )
+
+    print()
+    print(tmp_msg, file=sys.stderr)
+    
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+#/ def  _get_Bars__A_2_2_RatioOf_OCHL(\
+                                   
+'''###################
+    _get_Bars__A_2_3_RatioOf_Shadow_Upper_Lower
+
+    at : 2019/06/01 15:12:26
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+# def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+def _get_Bars__A_2_3_RatioOf_Shadow_Upper_Lower(\
+            lo_BDs_Tmp
+          , ratioOf_Shadow_Upper_Lower
+          , lo_BDs_Hits__RatioOf_Shadow_Upper_Lower
+          , lo_LO_Lines) :
+#_20190601_151233:caller
+#_20190601_151239:head
+#_20190601_151241:wl:in-func
+
+    '''###################
+        step : A : 0
+            unpack : lo_Lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    # vars
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    for i in range(0, lenOf_LO_BDs_Tmp):
+        '''###################
+            step : A : 2.1
+                get : index values
+        ###################'''
+        e0 = lo_BDs_Tmp[i]
+        
+        diffOf_OC = e0.price_Close - e0.price_Open
+        
+        # validate : zero division
+        if (e0.price_Open - e0.price_Low) == 0 or \
+            (e0.price_Close - e0.price_Low) == 0 :
+            
+            continue
+        
+        #/if (e0.price_Open - e0.price_Low) == 0 or \
+
+        
+        # calc : ratio
+        ratioOf_Shadow_Upper_Lower_Actual = \
+                        (e0.price_High - e0.price_Close) / \
+                            (e0.price_Open - e0.price_Low) \
+                        if diffOf_OC >= 0 \
+                        else (e0.price_High - e0.price_Open) / \
+                            (e0.price_Close - e0.price_Low)
+#         ratioOf_OCHL_Actual = e0.diff_OC / e0.diff_HL
+        
+#         price_Close = e0.price_Close
+#         price_Open = e0.price_Open
+#         
+#         bb_M1S = e0.bb_M1S
+#         bb_M2S = e0.bb_M2S
+        
+        '''###################
+            step : A : 2.2
+                in Z4 ?
+        ###################'''
+        '''###################
+            step : A : 2.2 : 1
+                set : conditions
+        ###################'''
+        cond_1 = ratioOf_Shadow_Upper_Lower_Actual >= ratioOf_Shadow_Upper_Lower
+#         cond_2 = e0.price_Open > e0.bb_M2S and e0.price_Open <= e0.bb_M1S
+        
+        #_20190530_132430:wl:in-func
+        # to negate the truth value of a variable ==> not(hoge)
+        '''###################
+            step : A : 2.2 : 2
+                judge
+        ###################'''
+#         if cond_1 == True and cond_2 == True : #if cond_1 == True and cond_2 == True
+#         if numpy.all([cond_1, cond_2]) : #if cond_1 == True and cond_2 == True
+        if numpy.all([cond_1]) : #if cond_1 == True and cond_2 == True
+            #_20190530_140432:tmp
+            lo_BDs_Hits__RatioOf_Shadow_Upper_Lower.append(e0)
+#             lo_BDs_Hits.append(e0)
+        
+        #/if cond_1 == True and cond_2 == True
+        
+    #/for i in range(0, lenOf_LO_BDs_Tmp):
+
+    # report
+    #debug
+#     msg = "ratioOf_Shadow_Upper_Lower : %.03f : len(lo_BDs_Hits__RatioOf_Shadow_Upper_Lower) ==> %d (of total : %.03f)" % \
+    msg = "ratioOf_Shadow_Upper_Lower : %.03f\nration of upper shadow over lower shadow : equal or greater than (egt)\nlen(lo_BDs_Hits__RatioOf_Shadow_Upper_Lower) ==> %d (of total : %.03f)" % \
+            (
+             ratioOf_Shadow_Upper_Lower
+             , len(lo_BDs_Hits__RatioOf_Shadow_Upper_Lower)
+             , len(lo_BDs_Hits__RatioOf_Shadow_Upper_Lower) / lenOf_LO_BDs_Tmp
+             )
+    
+    tmp_msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , libs.get_TimeLabel_Now()
+         , msg
+        )
+
+    print()
+    print(tmp_msg, file=sys.stderr)
+    
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+#/ def _get_Bars__A_2_3_RatioOf_Shadow_Upper_Lower(\
+
+'''###################
+    get_Bars
+
+    at : 20190530_111954
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+# def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
 def  get_Bars(\
           dpath_Src_Csv, fname_Src_Csv
           
@@ -1070,6 +1284,9 @@ def  get_Bars(\
     ###################'''
     lo_BDs_Hits = []
     lo_BDs_Hits__Loc_In_BB = []
+    lo_BDs_Hits__RatioOf_OCHL = []
+    
+    lo_BDs_Hits__RatioOf_Shadow_Upper_Lower = []
     
 
     '''###################
@@ -1119,5 +1336,33 @@ def  get_Bars(\
           , locIn_BB
           , lo_BDs_Hits__Loc_In_BB
           , lo_LO_Lines)
+
+    '''###################
+        step : A : 2.2
+            search : ratioOf_OCHL
+    ###################'''
+    #_20190601_144756:caller
+    _get_Bars__A_2_2_RatioOf_OCHL(\
+            lo_BDs_Tmp
+          , ratioOf_OCHL
+          , lo_BDs_Hits__RatioOf_OCHL
+          , lo_LO_Lines)
+
+    '''###################
+        step : A : 2.3
+            search : ratioOf_Shadow_Upper_Lower
+    ###################'''
     
+    _get_Bars__A_2_3_RatioOf_Shadow_Upper_Lower(\
+            lo_BDs_Tmp
+          , ratioOf_Shadow_Upper_Lower
+          , lo_BDs_Hits__RatioOf_Shadow_Upper_Lower
+          , lo_LO_Lines)
+
+    '''###################
+        step : A : 2.4
+            search : all conditions
+    ###################'''
+    #_20190601_153244:tmp
+
 #/ def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
