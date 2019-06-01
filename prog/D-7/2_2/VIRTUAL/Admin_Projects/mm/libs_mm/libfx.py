@@ -1939,8 +1939,8 @@ def get_Listof_BarDatas():
     refer : C:\WORKS_2\WS\WS_Others\free\fx\82_\82_6\82_6.py        
             exec_prog__PatternMatch_RSI()
     @return: 
-        None    => libfx.get_ChartData_CSV returned None
-        None    => libfx.conv_CSVRows_2_BarDatas returned None
+        (False, False)    => libfx.get_ChartData_CSV returned None
+        (False, False)    => libfx.conv_CSVRows_2_BarDatas returned None
         lo_CSVs    => csv header lines
 ###################'''
 def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
@@ -1986,7 +1986,8 @@ def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
         
         ), file=sys.stderr)
         
-        return None
+        return (False, False)
+#         return None
         
     #/if is_File == False
     
@@ -2022,7 +2023,8 @@ def get_Listof_BarDatas_2(dpath, fname, header_Length = 2, skip_Header = False):
         print ("[%s:%d] aryOf_BarDatas => None" % (os.path.basename(libs.thisfile()), libs.linenum()))
         print()
         
-        return None
+        return (False, False)
+#         return None
     
     #/if lo_BarDatas == None
 

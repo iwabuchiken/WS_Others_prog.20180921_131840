@@ -933,6 +933,115 @@ def  _get_Bars__A_2_1_Search_LocInBB_Areas(\
 #/ def  _get_Bars__A_2_1_Search_LocInBB_Areas(lo_BDs_Tmp):
               
 '''###################
+    _get_Bars__A_1_Get_List_Of_BDs
+
+    at : 2019/06/01 14:22:02
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+# def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+def  _get_Bars__A_1_Get_List_Of_BDs(\
+         dpath_Src_Csv, fname_Src_Csv
+         , header_Length, skip_Header
+         , lo_LO_Lines
+         ) :
+
+#_20190601_141818:caller
+#_20190601_141837:head
+#_20190601_141841:wl:in-func
+    
+    '''###################
+        step : 0.1
+            unpack
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : A : 1
+        get : list of bardatas
+    ###################'''
+    lo_BDs, lo_CSVs = libfx.get_Listof_BarDatas_2(
+                        dpath_Src_Csv, fname_Src_Csv, header_Length, skip_Header)
+#                         dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
+
+    '''###################
+        step : A : 1 : 1
+            validate
+    ###################'''
+    #_20190601_143126:tmp
+    if lo_BDs == False : #if lo_BDs == False
+        
+        #debug
+        msg = "lo_BDs returned --> False" % \
+                (
+                 
+                 )
+         
+        tmp_msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , libs.get_TimeLabel_Now()
+             , msg
+            )
+     
+        print()
+        print(tmp_msg, file=sys.stderr)
+         
+        lo_Lines_Log.append(tmp_msg)
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append("\n")
+    
+        lo_Lines_Error.append(tmp_msg)
+        lo_Lines_Error.append("\n")
+        lo_Lines_Error.append("\n")
+        
+        # return
+        return (False, False)
+        
+    #/if lo_BDs == False
+
+#     print()
+# #     print("[%s:%d] len(lo_BDs__Pair_1) => %d" % \
+#     print("[%s:%d / %s]\nlen(lo_BDs) => %d" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum()
+#                          , libs.get_TimeLabel_Now()
+# #                         , len(lo_BDs__Pair_1)
+#                         , len(lo_BDs)
+#                         ), file=sys.stderr)
+
+
+    
+    # report
+    #debug
+    msg = "len(lo_BDs) ==> %d" % \
+            (
+             len(lo_BDs)
+             )
+     
+    tmp_msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , libs.get_TimeLabel_Now()
+         , msg
+        )
+ 
+    print()
+    print(tmp_msg, file=sys.stderr)
+     
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    '''###################
+        step : A : 1.2
+            return
+    ###################'''
+    return (lo_BDs, lo_CSVs)
+    
+#/ def  _get_Bars__A_1_Get_List_Of_BDs(\
+              
+'''###################
     get_Bars
 
     at : 20190530_111954
@@ -971,46 +1080,22 @@ def  get_Bars(\
     header_Length   = 2
     skip_Header     = False
     
-    #_20190311_144644
-    lo_BDs, lo_CSVs = libfx.get_Listof_BarDatas_2(
-                        dpath_Src_Csv, fname_Src_Csv, header_Length, skip_Header)
-#                         dpath_Src_CSV, fname_Src_CSV, header_Length, skip_Header)
+    # list of lines
+    lo_LO_Lines = (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error)
     
-    print()
-#     print("[%s:%d] len(lo_BDs__Pair_1) => %d" % \
-    print("[%s:%d / %s]\nlen(lo_BDs) => %d" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum()
-                         , libs.get_TimeLabel_Now()
-#                         , len(lo_BDs__Pair_1)
-                        , len(lo_BDs)
-                        ), file=sys.stderr)
+    #_20190601_141818:caller
+    lo_BDs, lo_CSVs = _get_Bars__A_1_Get_List_Of_BDs(\
+                             dpath_Src_Csv, fname_Src_Csv
+                             , header_Length, skip_Header
+                             , lo_LO_Lines)
+    
+    # validate
+    if lo_BDs == False : #if lo_BDs == False
+        
+        return 
+    
+    #/if lo_BDs == False
 
-    # report
-    #debug
-    msg = "len(lo_BDs) ==> %d" % \
-            (
-             len(lo_BDs)
-             )
-    
-    tmp_msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , libs.get_TimeLabel_Now()
-         , msg
-        )
-
-    print()
-    print(tmp_msg, file=sys.stderr)
-    
-    lo_Lines_Log.append(tmp_msg)
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append("\n")
-
-#     '''###################
-#         step : A : 1.2 : 1
-#             deepcopy
-#     ###################'''
-#     lo_BDs_Tmp = copy.deepcopy(lo_BDs)
-    
     '''###################
         step : A : 1.2 : 2
             reverse
@@ -1018,54 +1103,6 @@ def  get_Bars(\
     #20190531_183402:caller
     lo_BDs_Tmp = _get_Bars__A_1_2_2_Reverse(lo_BDs)
     
-#     bar_Start = lo_BDs[0]
-#     bar_End = lo_BDs[-1]
-#     
-#     if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
-#     
-#         print()
-#         print("[%s:%d] lo_BDs, order => Z to A (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#         print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              
-#                              , lo_BDs_Tmp[0].dateTime
-#                              , lo_BDs_Tmp[-1].dateTime
-#                              
-#                             ), file=sys.stderr)
-#         
-#         print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              
-#                             ), file=sys.stderr)
-#         
-#         # reverse
-#         lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
-# 
-#         print()
-#         print("[%s:%d] lo_BDs, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , lo_BDs_Tmp[0].dateTime
-#                              , lo_BDs_Tmp[-1].dateTime
-#                             ), file=sys.stderr)
-# #         print("[%s:%d] lo_BDs, order => reversed (start = %s / end = %s)" % \
-# #                             (os.path.basename(libs.thisfile()), libs.linenum()
-# #                              , lo_BDs[0].dateTime
-# #                              , lo_BDs[-1].dateTime
-# #                             ), file=sys.stderr)
-#     
-#     
-#     else : #if bar_Start.dateTime > bar_End..dateTime
-# 
-#         print()
-#         print("[%s:%d] lo_BDs, order => A to Z (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#     
-#     #/if bar_Start.dateTime > bar_End..dateTime        
     '''###################
         step : A : 2
             search : targets
@@ -1075,7 +1112,6 @@ def  get_Bars(\
             search : loc in BB areas
     ###################'''
     lo_LO_Lines = (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error)
-#     lo_LO_Lines = (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error)
     
     #20190531_184348:caller
     _get_Bars__A_2_1_Search_LocInBB_Areas(\
@@ -1083,73 +1119,5 @@ def  get_Bars(\
           , locIn_BB
           , lo_BDs_Hits__Loc_In_BB
           , lo_LO_Lines)
-#            lo_BDs_Tmp
-#            , locIn_BB
-#            , lo_BDs_Hits__Loc_In_BB
-#            , lo_LO_Lines):
-    
-#     # vars
-#     lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
-#     
-#     for i in range(0, lenOf_LO_BDs_Tmp):
-#         '''###################
-#             step : A : 2.1
-#                 get : index values
-#         ###################'''
-#         e0 = lo_BDs_Tmp[i]
-#         
-#         price_Close = e0.price_Close
-#         price_Open = e0.price_Open
-#         
-#         bb_M1S = e0.bb_M1S
-#         bb_M2S = e0.bb_M2S
-#         
-#         '''###################
-#             step : A : 2.2
-#                 in Z4 ?
-#         ###################'''
-#         '''###################
-#             step : A : 2.2 : 1
-#                 set : conditions
-#         ###################'''
-#         cond_1 = e0.price_Close > e0.bb_M2S and e0.price_Close <= e0.bb_M1S
-#         cond_2 = e0.price_Open > e0.bb_M2S and e0.price_Open <= e0.bb_M1S
-#         
-#         #_20190530_132430:wl:in-func
-#         # to negate the truth value of a variable ==> not(hoge)
-#         '''###################
-#             step : A : 2.2 : 2
-#                 judge
-#         ###################'''
-# #         if cond_1 == True and cond_2 == True : #if cond_1 == True and cond_2 == True
-#         if numpy.all([cond_1, cond_2]) : #if cond_1 == True and cond_2 == True
-#             #_20190530_140432:tmp
-#             lo_BDs_Hits.append(e0)
-#         
-#         #/if cond_1 == True and cond_2 == True
-#         
-#     #/for i in range(0, lenOf_LO_BDs_Tmp):
-# 
-#     # report
-#     #debug
-#     msg = "BB area : %s : len(lo_BDs_Hits) ==> %d (of total : %.03f)" % \
-#             (
-#              locIn_BB
-#              , len(lo_BDs_Hits)
-#              , len(lo_BDs_Hits) / lenOf_LO_BDs_Tmp
-#              )
-#     
-#     tmp_msg = "[%s:%d / %s]\n%s" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#          , libs.get_TimeLabel_Now()
-#          , msg
-#         )
-# 
-#     print()
-#     print(tmp_msg, file=sys.stderr)
-#     
-#     lo_Lines_Log.append(tmp_msg)
-#     lo_Lines_Log.append("\n")
-#     lo_Lines_Log.append("\n")
     
 #/ def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
