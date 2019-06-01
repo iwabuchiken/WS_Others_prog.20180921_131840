@@ -1,0 +1,37 @@
+[20190601_174743 / libfx_4.py:641]
+[libfx_4.py:465 / 20190601_174738]
+_BUSL3_No_M_1__DP_Basic_1__A1 ==> starts
+
+[libfx_4.py:504 / 20190601_174738]
+conf dir = C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\conf
+conf file = busl_3__M_1_A1.conf
+
+[libfx_4.py:576]
+source csv	dir	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+source csv	file	44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.csv
+locIn_BB = Z5	volOf_OC = 0.300	VolOf_HL = 4.200	ratioOf_OCHL = 0.100	ratioOf_Shadow_Upper_Lower	1.250
+
+[libfx_4.py:1062 / 20190601_174739]
+len(lo_BDs) ==> 21114
+
+[libfx_4.py:959 / 20190601_174741]
+BB area : Z5 : len(lo_BDs_Hits__Loc_In_BB) ==> 2446 (of total : 0.116)
+
+[libfx_4.py:1167 / 20190601_174742]
+RatioOf_OCHL : 0.100
+ratio of diff of open-close over diff of high-low : equal or smaller than (est)
+len(lo_BDs_Hits__RatioOf_OCHL) ==> 2283 (of total : 0.108)
+
+[libfx_4.py:1282 / 20190601_174742]
+ratioOf_Shadow_Upper_Lower : 1.250
+ration of upper shadow over lower shadow : equal or greater than (egt)
+len(lo_BDs_Hits__RatioOf_Shadow_Upper_Lower) ==> 7852 (of total : 0.372)
+
+[libfx_4.py:1416 / 20190601_174742]
+All conditions : len(lo_BDs_Hits__All_Conditions) ==> 181 (of total : 0.009)
+
+[libfx_4.py:1599 / 20190601_174742] data ========================
+
+[libfx_4.py:618 / 20190601_174743]
+done (time : 4.923 sec)(_BUSL3_No_M_1__DP_Basic_1__A1)
+
