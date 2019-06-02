@@ -7158,12 +7158,12 @@ def set_Conf(_dpath_Conf, _fname_Conf) :
     '''###################
         report
     ###################'''
-    print("[%s:%d] conf ==> loaded" % \
+    print("[%s:%d] conf ==> loaded : '%s'" % \
                         (os.path.basename(libs.thisfile()), libs.linenum()
-                        
+                        , fname_Conf
                         ), file=sys.stderr)
     
-    print(confs)
+#     print(confs)
 
     '''###################
         return

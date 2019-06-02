@@ -531,9 +531,9 @@ def _BUSL3_No_M_1__DP_Basic_1__A1(request, _dpath_Log, _tlabel, _strOf_Op_Name):
          , msg
         )
 
-    print()
-    print(tmp_msg, file=sys.stderr)
-    print(conf_M_1_A_1)
+#     print()
+#     print(tmp_msg, file=sys.stderr)
+#     print(conf_M_1_A_1)
 
     '''###################
         step : A : 1
@@ -577,9 +577,9 @@ def _BUSL3_No_M_1__DP_Basic_1__A1(request, _dpath_Log, _tlabel, _strOf_Op_Name):
          , msg
         )
 
-    print()
-    print(tmp_msg, file=sys.stderr)
-    print(conf_M_1_A_1)
+#     print()
+#     print(tmp_msg, file=sys.stderr)
+#     print(conf_M_1_A_1)
     
     lo_Lines_Log.append(tmp_msg)
     lo_Lines_Log.append("\n")
@@ -1579,6 +1579,7 @@ def get_Bars(\
 #         lo_Conditions = ()
         
         #_20190601_153244:tmp
+        #_20190601_164637:caller
         _get_Bars__A_2_4_Search_All_Conditions(\
                 lo_BDs_Tmp
               , lo_Conditions
