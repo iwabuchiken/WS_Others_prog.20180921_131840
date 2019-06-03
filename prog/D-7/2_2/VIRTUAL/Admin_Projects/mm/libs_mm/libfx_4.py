@@ -1397,7 +1397,9 @@ def _get_Bars__A_2_4_Search_All_Conditions(\
         ###################'''
         if numpy.all([cond_1_1, cond_1_2, cond_2, cond_3_2]) : #if cond_1 == True and cond_2 == True
             
-            lo_BDs_Hits__All_Conditions.append(e0)
+            #_20190603_155356:tmp
+            lo_BDs_Hits__All_Conditions.append([e0, i])
+#             lo_BDs_Hits__All_Conditions.append(e0)
         
         #/if cond_1 == True and cond_2 == True
         
@@ -1611,9 +1613,33 @@ def get_Bars(\
         
         lo_Lines_Dat.append("source csv\tfile\t%s" % fname_Src_Csv)
         lo_Lines_Dat.append("\n")
+        
+        lo_Lines_Dat.append("start dt\t%s" % lo_BDs_Tmp[0].dateTime)
+        lo_Lines_Dat.append("\n")
+        
+        lo_Lines_Dat.append("end dt\t%s" % lo_BDs_Tmp[-1].dateTime)
+        lo_Lines_Dat.append("\n")
+        
         lo_Lines_Dat.append("\n")
         
         lo_Lines_Dat.append("conditions : ALL")
+        lo_Lines_Dat.append("\n")
+        lo_Lines_Dat.append("\n")
+        
+        lo_Lines_Dat.append("-----------------------------")
+        lo_Lines_Dat.append("\n")
+        
+        #(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL, ratioOf_Shadow_Upper_Lower)
+        lo_Lines_Dat.append("locIn_BB\t%s\nvolOf_OC\t%.03f\nVolOf_HL\t%.03f\nratioOf_OCHL\t%.03f\nratioOf_Shadow_Upper_Lower\t%.03f"\
+                            % (\
+                               locIn_BB
+                               , volOf_OC, VolOf_HL
+                               , ratioOf_OCHL, ratioOf_Shadow_Upper_Lower
+                               )
+                            )
+        lo_Lines_Dat.append("\n")
+        
+        lo_Lines_Dat.append("-----------------------------")
         lo_Lines_Dat.append("\n")
         lo_Lines_Dat.append("\n")
         
@@ -1621,26 +1647,86 @@ def get_Bars(\
             step : A : 3.2
                 header
         ###################'''
-        lo_Lines_Dat.append("s.n.\tdatetime\tdiff_OC")
+#         lo_Lines_Dat.append("s.n.\tdatetime\tdiff_OC\tidx")
+        lo_Lines_Dat.append("s.n.\tdatetime\tdiff_OC\te0.PC\tidx")
+        
+        # list of pre/post PCs
+        lo_Lines_Dat.append("\t")   # column separator
+        
+        lo_Lines_Dat.append("e.-5\te.-4\te.-3\te.-2\te.-1")
+        lo_Lines_Dat.append("\t")   # column separator
+        
+        lo_Lines_Dat.append("e0\te1\te2\te3\te4\te5")
+        
+#         lo_Lines_Dat.append("s.n.\tdatetime\tdiff_OC")
         lo_Lines_Dat.append("\n")
         
         '''###################
             step : A : 3.3
                 data
         ###################'''
+        # vars
         lenOf_LO_BDs_Hits__All_Conditions = len(lo_BDs_Hits__All_Conditions)
+        
+        lenOf_BDs_Tmp = len(lo_BDs_Tmp)
+        
+        #
+        num_PrePost_Bars = 5
         
         for i in range(0, lenOf_LO_BDs_Hits__All_Conditions):
             '''###################
-                step : A : 3.2 : 1
+                step : A : 3.3 : 1
                     e0
             ###################'''
-            e0 = lo_BDs_Hits__All_Conditions[i]
+            #_20190603_155602:tmp
+            (e0, idx) = lo_BDs_Hits__All_Conditions[i]
+#             e0 = lo_BDs_Hits__All_Conditions[i]
             
             diff_OC = e0.price_Close - e0.price_Open
             
 #             lo_Lines_Dat.append("%d\t%s" % ((i + 1), e0.dateTime))
-            lo_Lines_Dat.append("%d\t%s\t%.03f" % ((i + 1), e0.dateTime, diff_OC))
+#             lo_Lines_Dat.append("%d\t%s\t%.03f" % ((i + 1), e0.dateTime, diff_OC))
+            lo_Lines_Dat.append("%d\t%s\t%.03f\t%.03f\t%d" % ((i + 1), e0.dateTime, diff_OC, e0.price_Close, idx))
+
+            '''###################
+                step : A : 3.2 : 2
+                    pre/post e0 bars
+            ###################'''
+            '''###################
+                step : A : 3.2 : 2.1
+                    prep : range
+            ###################'''
+            # set nums
+            idxOf_Start = idx - 5
+            idxOf_End = idx + 5 + 1 # "+1" is needed
+#             idxOf_End = idx + 5
+#             idxOf_Start = i - 5
+#             idxOf_End = i + 5
+            
+            # validate
+            if idxOf_Start < 0 : idxOf_Start = 0 #/if idxOf_Start < 0
+            if idxOf_End > (lenOf_BDs_Tmp - 1) : idxOf_End = (lenOf_BDs_Tmp - 1) #/if idxOf_Start < 0
+            
+            '''###################
+                step : A : 3.2 : 2.2
+                    build : list of PCs
+            ###################'''
+            # column separator
+            lo_Lines_Dat.append("\t")
+            
+            # prep : slice
+            lo_SliceOf_BDs_Tmp = lo_BDs_Tmp[idxOf_Start : idxOf_End]
+            
+            # build : line
+            #ref zero fill https://stackoverflow.com/questions/40999973/how-to-pad-a-numeric-string-with-zeros-to-the-right-in-python
+            strOf_List_Of_PCs = "\t".join(\
+                      [(str(x.price_Close)).ljust(6, '0') for x in lo_SliceOf_BDs_Tmp])
+#             strOf_List_Of_PCs = "\t".join([str(x.price_Close) for x in lo_SliceOf_BDs_Tmp])
+            
+            # append
+            lo_Lines_Dat.append(strOf_List_Of_PCs)
+            
+            # return char
             lo_Lines_Dat.append("\n")    
             
             
