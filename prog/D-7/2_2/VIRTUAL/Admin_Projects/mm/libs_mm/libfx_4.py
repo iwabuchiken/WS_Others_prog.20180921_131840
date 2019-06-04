@@ -1444,6 +1444,10 @@ def _get_Bars__A_2_4_All_Conditions_Type_1(\
         cond_4_2 = ratioOf_GyunGyun_Bars >= rangeOf_Ratio_GyunGyun_Bars[0] \
                 and ratioOf_GyunGyun_Bars <= rangeOf_Ratio_GyunGyun_Bars[1]
 
+        # conditions : up-down, down-up
+        cond_4_3 = (diffOf_OC_E_M1 * diffOf_OC_E_M2 < 0)
+#         cond_4_3 = (diffOf_OC_E_M1 * diffOf_OC_E_M2 > 0)
+
         '''###################
             step : A : 2.3
                 judge
@@ -1459,6 +1463,8 @@ def _get_Bars__A_2_4_All_Conditions_Type_1(\
                       
                       , cond_4_1
                       , cond_4_2
+                      , cond_4_3
+                      
                       ]
                      ) : #if cond_1 == True and cond_2 == True
             
