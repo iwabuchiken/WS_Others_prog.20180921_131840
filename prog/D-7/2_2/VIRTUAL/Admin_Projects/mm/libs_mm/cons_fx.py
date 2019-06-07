@@ -52,6 +52,7 @@ class FPath(Enum):
     
     fname_CONF_BUSL3__M_1 = "busl_3__M_1.conf"
     fname_CONF_BUSL3__M_1_A_1 = "busl_3__M_1_A1.conf"
+    fname_CONF_BUSL3__M_1_A_2 = "busl_3__M_1_A2.conf"
     
     '''###################
         log file : main
