@@ -685,7 +685,6 @@ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
 #_20190607_175128:caller
 #_20190607_175136:head
-
     
     '''###################
         step : A : 0.1
@@ -712,85 +711,20 @@ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
     (strOf_Op_Name_THIS, strOf_Op_Name, fname_Log, fname_Dat, fname_Error) = lo_Strings
     
-    # vars
+    '''###################
+        step : A : 0.2
+            vars
+    ###################'''
+    # dpath
     dpath_Log = _dpath_Log
+    
+    # time label
+    tlabel = _tlabel
     
     '''###################
         time : start
     ###################'''
     time_Start = time.time()
-
-#     '''###################
-#         step : 0.2
-#             vars : log-related 
-#     ###################'''
-#     lo_Lines_Log = []
-#     lo_Lines_Error = []
-#     lo_Lines_Dat = []
-#     
-#     # dpath
-#     dpath_Log = _dpath_Log
-#     
-#     lo_Lines_Log.append("[%s:%d / %s]\n_BUSL3_No_M_1__DP_Basic_1__A2 ==> starts" % (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()))
-#     lo_Lines_Log.append("\n")
-#     lo_Lines_Log.append("\n")
-#     
-#     lo_Lines_Error.append("[%s:%d:%s]\\n_BUSL3_No_M_1__DP_Basic_1__A2 ==> starts" % (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()))
-#     lo_Lines_Error.append("\n")
-#     lo_Lines_Error.append("\n")
-# 
-#     '''###################
-#         step : 0.3
-#             vars : file names 
-#     ###################'''
-#     tlabel = _tlabel
-#     
-#     #_20190529_172245:tmp
-#     strOf_Op_Name_THIS = "A2"
-#     
-#     strOf_Op_Name = "%s.[%s]" % (_strOf_Op_Name, strOf_Op_Name_THIS)
-#     
-#     fname_Log = "%s.(%s).log" % (strOf_Op_Name, tlabel)
-#     
-#     fname_Error = "%s.(%s).error" % (strOf_Op_Name, tlabel)
-#     
-#     fname_Dat = "%s.(%s).dat" % (strOf_Op_Name, tlabel)
-#     
-#     '''###################
-#         step : 0.4
-#             setup : conf 
-#     ###################'''
-#     #_20190529_173055:mk
-#     #_20190529_151603:marker
-#     dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
-#     fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__M_1_A_2.value
-#      
-#     #log
-#     msg_Log_CSV = "[%s:%d / %s]\nconf dir = %s\nconf file = %s" % \
-#             (
-#             os.path.basename(libs.thisfile()), libs.linenum()
-#             , libs.get_TimeLabel_Now()
-#             
-#             , dpath_Conf, fname_Conf
-#             )
-#     
-#     lo_Lines_Log.append(msg_Log_CSV)
-#     lo_Lines_Log.append("\n")
-#     lo_Lines_Log.append("\n")
-#      
-#     conf_M_1_A_2 = libfx_2.set_Conf(dpath_Conf, fname_Conf)
-# 
-#     '''###################
-#         step : 0.4 : 2
-#             conf --> modify 
-#     ###################'''
-#     #debug
-#     msg = "conf_M_1_A_2 ==>"
-#     
-#     tmp_msg = "[%s:%d]\n%s" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#          , msg
-#         )
 
     '''###################
         step : A : 0.2
@@ -811,62 +745,19 @@ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
          , ratioOf_OCHL
          , ratioOf_Shadow_Upper_Lower) = lo_Conditions
             
-
-    
-#     locIn_BB = str(conf_M_1_A_2['locIn_BB'])
-#     volOf_OC = float(conf_M_1_A_2['volOf_OC'])
-#     VolOf_HL = float(conf_M_1_A_2['VolOf_HL'])
-#     ratioOf_OCHL = float(conf_M_1_A_2['ratioOf_OCHL'])
-#     
-#     ratioOf_Shadow_Upper_Lower = float(conf_M_1_A_2['ratioOf_Shadow_Upper_Lower'])
-#     
-#     dpath_Src_Csv = str(conf_M_1_A_2['dpath_Src_Csv'])
-#     fname_Src_Csv = str(conf_M_1_A_2['fname_Src_Csv'])
-#     
-#     #debug
-#     msg = "source csv\tdir\t%s\nsource csv\tfile\t%s\n" % \
-#             (
-#              dpath_Src_Csv
-#              , fname_Src_Csv
-#              )
-#     
-#     msg += "locIn_BB = %s\tvolOf_OC = %.03f\tVolOf_HL = %.03f\tratioOf_OCHL = %.03f\tratioOf_Shadow_Upper_Lower\t%.03f" % \
-#             (
-#              locIn_BB
-#              , volOf_OC
-#              , VolOf_HL
-#              , ratioOf_OCHL
-#              , ratioOf_Shadow_Upper_Lower
-#              )
-#     
-#     tmp_msg = "[%s:%d]\n%s" % \
-#         (os.path.basename(libs.thisfile()), libs.linenum()
-#          , msg
-#         )
-# 
-#     lo_Lines_Log.append(tmp_msg)
-#     lo_Lines_Log.append("\n")
-#     lo_Lines_Log.append("\n")
-#     
-#     # build : conditions
-#     lo_Conditions = \
-#             (locIn_BB
-#              , volOf_OC
-#              , VolOf_HL
-#              , ratioOf_OCHL
-#              , ratioOf_Shadow_Upper_Lower)
-            
-#     #_20190530_132424:caller
-#     lo_BDs_Targets = get_Bars(\
-#                           dpath_Src_Csv, fname_Src_Csv
-#                           , dpath_Log
-#                           
-#                           , lo_Conditions
-#                           
+    #_20190608_160534:tmp
+    #_20190608_161014:caller
+    lo_BDs_Targets = get_Bars__M_1_A_2(\
+                          dpath_Src_Csv, fname_Src_Csv
+                          , dpath_Log
+                           
+                          , lo_Conditions
+                           
+                          , lo_LO_Lines
 #                           , lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error
-#                           
-#                           , strOf_Op_Name, tlabel
-#                           )
+                           
+                          , strOf_Op_Name, tlabel
+                          )
     
     #_20190607_183738:next
     
@@ -2768,3 +2659,65 @@ def get_Bars(\
     #/if flg_All_Conditions == True
 
 #/ def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+
+'''###################
+    get_Bars__M_1_A_2
+
+    at : 2019/06/08 16:08:50
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def get_Bars__M_1_A_2(\
+          dpath_Src_Csv, fname_Src_Csv
+          , dpath_Log
+          
+          , lo_Conditions
+          , lo_LO_Lines
+#           , lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error
+          
+          , strOf_Op_Name, tlabel
+          
+          ):
+#_20190608_161014:caller
+#_20190608_161019:head
+
+
+    '''###################
+        step : A : 0.1
+            unpack : params 
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    #debug
+    msg = "get_Bars__M_1_A_2 ==> starting... "
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg
+#                 , "".join(lo_Lines_Dat)
+            )
+    
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg_Log)
+#     lo_Lines_Log.append("get_Bars__M_1_A_2 ==> starting... ")
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    '''###################
+        step : A : 1
+            ops 
+    ###################'''
+    #_20190608_161023:wl:in-func
+    
+    '''###################
+        step : A : 0
+            prep : vars 
+    ###################'''
+
+#/ def  get_Bars__M_1_A_2(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+
+
