@@ -1254,33 +1254,34 @@ def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
     
     if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
     
-        print()
-        print("[%s:%d] lo_BDs, order => Z to A (start = %s / end = %s)" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                             , bar_Start.dateTime, bar_End.dateTime
-                            ), file=sys.stderr)
-        print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                             
-                             , lo_BDs_Tmp[0].dateTime
-                             , lo_BDs_Tmp[-1].dateTime
-                             
-                            ), file=sys.stderr)
-        
-        print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                             
-                            ), file=sys.stderr)
+#         print()
+#         print("[%s:%d] lo_BDs, order => Z to A (start = %s / end = %s)" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              , bar_Start.dateTime, bar_End.dateTime
+#                             ), file=sys.stderr)
+#         print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              
+#                              , lo_BDs_Tmp[0].dateTime
+#                              , lo_BDs_Tmp[-1].dateTime
+#                              
+#                             ), file=sys.stderr)
+#         
+#         print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              
+#                             ), file=sys.stderr)
         
         # reverse
         lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
 
-        print()
-        print("[%s:%d] lo_BDs, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                             , lo_BDs_Tmp[0].dateTime
-                             , lo_BDs_Tmp[-1].dateTime
-                            ), file=sys.stderr)
+#         print()
+#         print("[%s:%d] lo_BDs, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              , lo_BDs_Tmp[0].dateTime
+#                              , lo_BDs_Tmp[-1].dateTime
+#                             ), file=sys.stderr)
+
 #         print("[%s:%d] lo_BDs, order => reversed (start = %s / end = %s)" % \
 #                             (os.path.basename(libs.thisfile()), libs.linenum()
 #                              , lo_BDs[0].dateTime
@@ -1289,12 +1290,14 @@ def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
     
     
     else : #if bar_Start.dateTime > bar_End..dateTime
-
-        print()
-        print("[%s:%d] lo_BDs, order => A to Z (start = %s / end = %s)" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum()
-                             , bar_Start.dateTime, bar_End.dateTime
-                            ), file=sys.stderr)
+        
+        pass
+    
+#         print()
+#         print("[%s:%d] lo_BDs, order => A to Z (start = %s / end = %s)" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum()
+#                              , bar_Start.dateTime, bar_End.dateTime
+#                             ), file=sys.stderr)
     
     #/if bar_Start.dateTime > bar_End..dateTime        
 
@@ -2117,6 +2120,7 @@ def _get_Bars__A_2_4_Search_All_Conditions__Build_Log_Lines(\
     lo_Lines_Log.append("\n")
     lo_Lines_Log.append("\n")
     
+    #_20190609_141452:ref
     lo_Lines_Dat.append("source csv\tdir\t%s" % dpath_Src_Csv)
     lo_Lines_Dat.append("\n")
     
@@ -2711,6 +2715,430 @@ def get_Bars__M_1_A_2(\
         step : A : 1
             ops 
     ###################'''
+    '''###################
+        step : A : 1.1
+        get : list of bardatas
+    ###################'''
+    #_20190531_185805:tmp
+    header_Length   = 2
+    skip_Header     = False
+    
+    # list of lines
+#     lo_LO_Lines = (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error)
+    
+    #_20190601_141818:caller
+    lo_BDs, lo_CSVs = _get_Bars__A_1_Get_List_Of_BDs(\
+                             dpath_Src_Csv, fname_Src_Csv
+                             , header_Length, skip_Header
+                             , lo_LO_Lines)
+    
+    # validate
+    if lo_BDs == False : #if lo_BDs == False
+        
+        tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+    
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+        # log
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+        
+        return 
+    
+    #/if lo_BDs == False
+
+    '''###################
+        step : A : 1.2
+            reverse
+    ###################'''
+    tmp_msg = "lo_BDs : lo_BDs[0] = %s / lo_BDs[-1] = %s" % \
+        (
+            lo_BDs[0].dateTime
+            , lo_BDs[-1].dateTime
+         
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+
+    #20190531_183402:caller
+    lo_BDs_Tmp = _get_Bars__A_1_2_2_Reverse(lo_BDs)
+        
+    tmp_msg = "lo_BDs(post revesing) : lo_BDs[0] = %s / lo_BDs[-1] = %s" % \
+        (
+            lo_BDs_Tmp[0].dateTime
+            , lo_BDs_Tmp[-1].dateTime
+         
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+
+    '''###################
+        step : A : 2
+            for-loop
+    ###################'''
+    '''###################
+        step : A : 2.0
+            prep
+    ###################'''
+    # len
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    # list
+    lo_Hits = []
+    lo_Hits_2 = []  # trend : 10 consequtives in total
+    
+    # thresholds
+    ts_Pop = 0.01   # JPY
+    
+    # num of additional bds
+    numOf_Additional_BDs = 7
+    
+    '''###################
+        step : A : 2.1
+            for-loop : start
+    ###################'''
+    for i in range(0, lenOf_LO_BDs_Tmp):
+        '''###################
+            step : A : 2.2
+                get : bds
+        ###################'''
+        e0 = lo_BDs_Tmp[i]
+        e_M1 = lo_BDs_Tmp[i - 1]
+        e_M2 = lo_BDs_Tmp[i - 2]
+        
+        '''###################
+            step : A : 2.4
+                prep : vars
+        ###################'''
+        d0 = e0.price_Close - e0.price_Open
+        d_M1 = e_M1.price_Close - e_M1.price_Open
+        d_M2 = e_M2.price_Close - e_M2.price_Open
+        
+        '''###################
+            step : A : 2.3
+                build : conds
+        ###################'''
+        
+        # latest 3 bars ---> down, down, up (backward-wise)
+        cond_1 = numpy.all([(d0 < 0), (d_M1 < 0), (d_M2 >= 0)])
+        
+        cond_2 = (e_M2.price_Open > e_M2.bb_1S) \
+                and (e_M2.price_Open <= e_M2.bb_2S)
+        
+        '''###################
+            step : A : 2.4
+                judge
+        ###################'''
+        if numpy.all([cond_1, cond_2]) : #if numpy.all([cond_1, cond_2])
+            
+            # append
+            lo_Hits.append([e0, i])
+
+            '''###################
+                step : A : 2.5
+                    hits-2 : 10 consequtives
+            ###################'''
+            '''###################
+                step : A : 2.5 : 0
+                    validate : length
+            ###################'''
+            if (i + numOf_Additional_BDs) > (lenOf_LO_BDs_Tmp - 1) : #if (i + numOf_Additional_BDs) <= (lenOf_LO_BDs_Tmp - 1)
+                
+                continue
+            
+            #/if (i + numOf_Additional_BDs) <= (lenOf_LO_BDs_Tmp - 1)
+            
+            '''###################
+                step : A : 2.5 : 1
+                    prep : instances
+            ###################'''
+            es = lo_BDs_Tmp[i : i + numOf_Additional_BDs]
+            
+            # flag
+            flg_All_Passed = True
+            
+            '''###################
+                step : A : 2.5 : 2
+                    judge
+            ###################'''
+            for item in es:
+                '''###################
+                    step : A : 2.5 : 2.1
+                        prep
+                ###################'''
+                dif_ = item.price_Close - item.price_Open
+                
+                '''###################
+                    step : A : 2.5 : 2.2
+                        judge
+                ###################'''
+                if dif_ < ts_Pop : #if dif_ < ts_Pop
+                    
+                    continue
+                
+                else : #/if dif_ < ts_Pop
+                    
+                    flg_All_Passed = False
+                    
+                    break
+                
+                #/if dif_ < ts_Pop
+
+            #/for item in es:
+            
+            '''###################
+                step : A : 2.5 : 3
+                    judge
+            ###################'''
+            if flg_All_Passed == True : #if flg_All_Passed == True
+            
+                lo_Hits_2.append([e0, i])
+            
+            else : #if flg_All_Passed == True
+            
+                # continue
+                pass
+            
+            #/if flg_All_Passed == True
+            
+        #/if numpy.all([cond_1, cond_2])
+        
+         
+#         cond_1 = (d0 < 0) and (d_M1 < 0) and 
+    #/for i in range(0, lenOf_LO_BDs_Tmp):
+
+    '''###################
+        step : A : X
+            report
+    ###################'''
+    tmp_msg = "len(lo_Hits) = %d (%.03f)" % \
+        (
+            len(lo_Hits)
+            , len(lo_Hits) / lenOf_LO_BDs_Tmp
+#             , len(lo_Hits) / lo_BDs_Tmp
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    tmp_msg = "len(lo_Hits_2) = %d (%.03f)" % \
+        (
+            len(lo_Hits_2)
+            , len(lo_Hits_2) / lenOf_LO_BDs_Tmp
+#             , len(lo_Hits_2) / lo_BDs_Tmp
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    '''###################
+        step : A : X.1
+            file : dat
+    ###################'''
+    '''###################
+        step : A : X.1 : 1
+            meta info
+    ###################'''
+    lo_Lines_Dat.append("source csv\tdir\t%s" % dpath_Src_Csv)
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("source csv\tfile\t%s" % fname_Src_Csv)
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("start dt\t%s" % lo_BDs_Tmp[0].dateTime)
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("end dt\t%s" % lo_BDs_Tmp[-1].dateTime)
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("total bars\t%d" % lenOf_LO_BDs_Tmp)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("num of hits (filter-1)\t%d (%.03f)" % (len(lo_Hits), len(lo_Hits) / lenOf_LO_BDs_Tmp))
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("num of hits (filter-2)\t%d (%.03f)" % (len(lo_Hits_2), len(lo_Hits_2) / lenOf_LO_BDs_Tmp))
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("-----------------------------")
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("Conditions")
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("numOf_Additional_BDs\t%d" % numOf_Additional_BDs)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("ts_Pop\t%.03f" % ts_Pop)
+    lo_Lines_Dat.append("\n")
+    
+    lo_Lines_Dat.append("-----------------------------")
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+    
+    
+    lo_Lines_Dat.append("-----------------------------")
+    lo_Lines_Dat.append("\n")
+
+    '''###################
+        step : A : X.1 : 2
+            header
+    ###################'''
+    lo_Lines_Dat.append("s.n.\tdatetime\te0.PC\tindex")
+    
+    lo_Lines_Dat.append("\n")
+    
+    '''###################
+        step : A : X.1 : 3
+            data
+    ###################'''
+    '''###################
+        step : A : X.1 : 3.1
+            prep
+    ###################'''
+    cntOf_Loop = 1
+    
+    '''###################
+        step : A : X.1 : 3.2
+            loop
+    ###################'''
+    #_20190609_151049:tmp
+    for item in lo_Hits:
+        
+        '''###################
+            step : A : X.1 : 3.2 : 1
+                build : line
+        ###################'''
+        msg = "%d\t%s\t%.03f\t%d" % \
+                (
+                    cntOf_Loop
+                    , item[0].dateTime
+                    , item[0].price_Open
+                    , item[1]
+                    
+                 )
+        
+        '''###################
+            step : A : X.1 : 3.2 : 2
+                append
+        ###################'''
+        lo_Lines_Dat.append(msg)
+        lo_Lines_Dat.append("\n")
+        
+        '''###################
+            step : A : X.1 : 3.2 : 3
+                counter
+        ###################'''
+        cntOf_Loop += 1
+        
+        
+    #/for item in lo_Hits:
+
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("-----------------------------")
+    lo_Lines_Dat.append("\n")
+
+    '''###################
+        step : A : X.2 : 2
+            header
+    ###################'''
+    lo_Lines_Dat.append("s.n.\tdatetime\te0.PC\tindex")
+    
+    lo_Lines_Dat.append("\n")
+    
+    '''###################
+        step : A : X.2 : 3
+            data
+    ###################'''
+    '''###################
+        step : A : X.2 : 3.1
+            prep
+    ###################'''
+    cntOf_Loop = 1
+    
+    '''###################
+        step : A : X.2 : 3.2
+            loop
+    ###################'''
+    for item in lo_Hits_2:
+        
+        '''###################
+            step : A : X.2 : 3.2 : 1
+                build : line
+        ###################'''
+        msg = "%d\t%s\t%.03f\t%d" % \
+                (
+                    cntOf_Loop
+                    , item[0].dateTime
+                    , item[0].price_Open
+                    , item[1]
+                    
+                 )
+        
+        '''###################
+            step : A : X.2 : 3.2 : 2
+                append
+        ###################'''
+        lo_Lines_Dat.append(msg)
+        lo_Lines_Dat.append("\n")
+        
+        '''###################
+            step : A : X.2 : 3.2 : 3
+                counter
+        ###################'''
+        cntOf_Loop += 1
+        
+    #/for item in lo_Hits_2:
+
     #_20190608_161023:wl:in-func
     
     '''###################
@@ -2719,5 +3147,7 @@ def get_Bars__M_1_A_2(\
     ###################'''
 
 #/ def  get_Bars__M_1_A_2(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+
+
 
 

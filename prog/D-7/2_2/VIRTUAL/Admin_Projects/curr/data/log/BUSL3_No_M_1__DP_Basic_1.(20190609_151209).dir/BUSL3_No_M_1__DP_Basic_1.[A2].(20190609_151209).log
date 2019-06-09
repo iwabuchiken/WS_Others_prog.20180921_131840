@@ -1,0 +1,37 @@
+[20190609_151213 / libfx_4.py:462]
+[libfx_4.py:600 / 20190609_151209]
+_BUSL3_No_M_1__DP_Basic_1__A2 ==> starts
+
+[libfx_4.py:638 / 20190609_151209]
+conf dir = C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\conf
+conf file = busl_3__M_1_A2.conf
+
+[libfx_4.py:539]
+source csv	dir	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+source csv	file	44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.csv
+locIn_BB = Z5	volOf_OC = 0.300	VolOf_HL = 4.200	ratioOf_OCHL = 0.100	ratioOf_Shadow_Upper_Lower	1.250
+
+
+[20190609_151209 / libfx_4.py:2703]
+get_Bars__M_1_A_2 ==> starting... 
+
+[libfx_4.py:1494 / 20190609_151210]
+len(lo_BDs) ==> 21114
+
+
+[libfx_4.py:2769 / 20190609_151210]
+lo_BDs : lo_BDs[0] = 2019.04.24 12:30 / lo_BDs[-1] = 2018.06.14 17:30
+
+[libfx_4.py:2792 / 20190609_151212]
+lo_BDs(post revesing) : lo_BDs[0] = 2018.06.14 17:30 / lo_BDs[-1] = 2019.04.24 12:30
+
+[libfx_4.py:2951 / 20190609_151213]
+len(lo_Hits) = 550 (0.026)
+
+
+[libfx_4.py:2972 / 20190609_151213]
+len(lo_Hits_2) = 22 (0.001)
+
+[libfx_4.py:774 / 20190609_151213]
+done (time : 4.048 sec)(_BUSL3_No_M_1__DP_Basic_1__A2)
+
