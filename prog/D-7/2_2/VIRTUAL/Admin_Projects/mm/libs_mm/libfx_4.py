@@ -134,7 +134,11 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
 #     flg_A1 = True
     flg_A1 = False
 
-    flg_A2 = True
+#     flg_A2 = True
+    flg_A2 = False
+    
+    # detect : mountain (M3, 1 mountain)
+    flg_A3 = True
     
     '''###################
         step : 0.3
@@ -324,6 +328,45 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
         _BUSL3_No_M_1__DP_Basic_1__A2(request, dpath_Log, tlabel, strOf_Op_Name)
         
     #/if flg_A2 == False    
+    
+    '''###################
+        step : A : 3
+    ###################'''
+    if flg_A3 == False : #if flg_A3 == False
+
+        #debug
+        msg = "flg_A3 == False :  ---> NOT executing..."
+        tmp_msg = "[%s:%d / %s] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , msg
+            )
+    
+        print()
+        print(tmp_msg, file=sys.stderr)
+    
+    else : #if flg_A3 == False
+
+        #debug
+        msg = "[step : A : 3 / XXX] ================================="
+        
+        tmp_msg = "[%s:%d]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum()
+             , msg
+            )
+    
+        print()
+        print(tmp_msg, file=sys.stderr)
+
+        lo_Lines_Log.append(tmp_msg)
+        lo_Lines_Log.append("\n")
+
+        flag_Write_to_File = True
+        
+        #_20190613_103139:tmp
+        #_20190613_105456:caller
+        _BUSL3_No_M_1__DP_Basic_1__A3(request, dpath_Log, tlabel, strOf_Op_Name)
+        
+    #/if flg_A3 == False    
     
     '''###################
         step : A : X
@@ -670,6 +713,134 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_
     return lo_Returns
 
 #/ def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+    
+'''###################
+    _BUSL3_No_M_1__DP_Basic_1__A3
+
+    at : 2019/06/13 10:32:28
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+    
+#_20190613_105456:caller
+#_20190613_105500:head
+#_20190613_105513:wl:in-func
+
+    '''###################
+        step : A : 0.1
+            setup
+    ###################'''
+    #debug
+    msg = "_BUSL3_No_M_1__DP_Basic_1__A3 ==> starting..."
+    
+    tmp_msg = "[%s:%d]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , msg
+        )
+
+    print()
+    print(tmp_msg, file=sys.stderr)
+
+    #_:tmp
+    (lo_LO_Lines, lo_Strings, conf_M_1_A_2) = \
+                _BUSL3_No_M_1__DP_Basic_1__A2_Setup(
+                    request, _dpath_Log, _tlabel, _strOf_Op_Name)
+    
+    # unpack
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    (strOf_Op_Name_THIS, strOf_Op_Name, fname_Log, fname_Dat, fname_Error) = lo_Strings
+    
+    '''###################
+        step : A : 0.2
+            vars
+    ###################'''
+    # dpath
+    dpath_Log = _dpath_Log
+    
+    # time label
+    tlabel = _tlabel
+    
+    '''###################
+        time : start
+    ###################'''
+    time_Start = time.time()
+
+    '''###################
+        step : A : 0.2
+            get : conf vals 
+    ###################'''
+    #_:tmp
+    lo_Returns = _BUSL3_No_M_1__DP_Basic_1__A2_Get_Conf_Vals(\
+                         conf_M_1_A_2, lo_Lines_Log)
+    
+    # unpack
+    (dpath_Src_Csv, fname_Src_Csv, lo_Conditions) = lo_Returns
+    
+    
+    (
+         locIn_BB
+         , volOf_OC
+         , VolOf_HL
+         , ratioOf_OCHL
+         , ratioOf_Shadow_Upper_Lower) = lo_Conditions
+            
+    #_:tmp
+    #_:caller
+    lo_BDs_Targets = get_Bars__M_1_A_2(\
+                          dpath_Src_Csv, fname_Src_Csv
+                          , dpath_Log
+                           
+                          , lo_Conditions
+                           
+                          , lo_LO_Lines
+#                           , lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error
+                           
+                          , strOf_Op_Name, tlabel
+                          )
+    
+    #_:next
+    
+    '''###################
+        time : end
+    ###################'''
+    time_Elapsed = time.time() - time_Start
+    
+    tmp_msg = "_BUSL3_No_M_1__DP_Basic_1__A2"
+    
+    msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+
+    tmp_msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , msg
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+
+    '''###################
+        step : A : X
+            write : file
+    ###################'''
+    #_:tmp
+    
+    # build
+    lo_Fnames = (fname_Log, fname_Dat, fname_Error)
+    
+    #_:caller
+    _BUSL3_No_M_1__DP_Basic_1__A2_Write_To_File(\
+                    dpath_Log, lo_LO_Lines, lo_Fnames)
+    
+#/ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
 '''###################
     _BUSL3_No_M_1__DP_Basic_1__A2
