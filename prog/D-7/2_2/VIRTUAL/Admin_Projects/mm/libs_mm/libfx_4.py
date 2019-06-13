@@ -134,8 +134,8 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
 #     flg_A1 = True
     flg_A1 = False
 
-#     flg_A2 = True
-    flg_A2 = False
+    flg_A2 = True
+#     flg_A2 = False
     
     # detect : mountain (M3, 1 mountain)
     flg_A3 = True
@@ -325,7 +325,9 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
         
         #_20190607_174459:tmp
         #_20190607_175128:caller
-        _BUSL3_No_M_1__DP_Basic_1__A2(request, dpath_Log, tlabel, strOf_Op_Name)
+        strOf_Op_Name_THIS = "A2"
+        _BUSL3_No_M_1__DP_Basic_1__A2(request, dpath_Log, tlabel, strOf_Op_Name, strOf_Op_Name_THIS)
+#         _BUSL3_No_M_1__DP_Basic_1__A2(request, dpath_Log, tlabel, strOf_Op_Name)
         
     #/if flg_A2 == False    
     
@@ -364,7 +366,9 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
         
         #_20190613_103139:tmp
         #_20190613_105456:caller
-        _BUSL3_No_M_1__DP_Basic_1__A3(request, dpath_Log, tlabel, strOf_Op_Name)
+        strOf_Op_Name_THIS = "A3"
+        
+        _BUSL3_No_M_1__DP_Basic_1__A3(request, dpath_Log, tlabel, strOf_Op_Name, strOf_Op_Name_THIS)
         
     #/if flg_A3 == False    
     
@@ -538,6 +542,107 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Write_To_File(\
 #/ def _BUSL3_No_M_1__DP_Basic_1__A2_Write_To_File(\
 
 '''###################
+    _BUSL3_No_M_1__DP_Basic_1__A3_Get_Conf_Vals
+
+    at : 2019/06/07 18:20:33
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def _BUSL3_No_M_1__DP_Basic_1__A3_Get_Conf_Vals(conf_, lo_Lines_Log) :
+#_20190613_135536:caller
+#_20190613_135546:head
+#_20190613_135552:in-func
+
+    '''###################
+        step : 1
+            get : vals
+    ###################'''
+    '''###################
+        step : 1.1
+            bar data
+    ###################'''
+    locIn_BB = str(conf_['locIn_BB'])
+    volOf_OC = float(conf_['volOf_OC'])
+    VolOf_HL = float(conf_['VolOf_HL'])
+    ratioOf_OCHL = float(conf_['ratioOf_OCHL'])
+    
+    ratioOf_Shadow_Upper_Lower = float(conf_['ratioOf_Shadow_Upper_Lower'])
+    
+    '''###################
+        step : 1.2
+            file
+    ###################'''
+    dpath_Src_Csv = str(conf_['dpath_Src_Csv'])
+    fname_Src_Csv = str(conf_['fname_Src_Csv'])
+
+    '''###################
+        step : 1.3
+            detect patterns
+    ###################'''
+    cond_TS_1 = str(conf_['cond_TS_1'])
+    
+    
+    #debug
+    msg = "source csv\tdir\t%s\nsource csv\tfile\t%s\n" % \
+            (
+             dpath_Src_Csv
+             , fname_Src_Csv
+             )
+    
+    msg += "locIn_BB = %s\tvolOf_OC = %.03f\tVolOf_HL = %.03f\tratioOf_OCHL = %.03f\tratioOf_Shadow_Upper_Lower\t%.03f" % \
+            (
+             locIn_BB
+             , volOf_OC
+             , VolOf_HL
+             , ratioOf_OCHL
+             , ratioOf_Shadow_Upper_Lower
+             )
+    
+    tmp_msg = "[%s:%d]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , msg
+        )
+
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    # build : conditions
+    lo_Conditions = \
+            (
+                 locIn_BB
+                 , volOf_OC
+                 , VolOf_HL
+                 , ratioOf_OCHL
+                 , ratioOf_Shadow_Upper_Lower
+                 
+                 , cond_TS_1
+             
+             )
+
+    '''###################
+        step : X
+            return
+    ###################'''
+    '''###################
+        step : X.1
+            build return vals
+    ###################'''
+    lo_Returns = (dpath_Src_Csv, fname_Src_Csv, lo_Conditions)
+
+    '''###################
+        step : X.2
+            return
+    ###################'''
+    return lo_Returns
+
+
+#/ def _BUSL3_No_M_1__DP_Basic_1__A3_Get_Conf_Vals(conf_, lo_Lines_Log) :
+    
+'''###################
     _BUSL3_No_M_1__DP_Basic_1__A2_Get_Conf_Vals
 
     at : 2019/06/07 18:20:33
@@ -624,7 +729,14 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Get_Conf_Vals(conf_M_1_A_2, lo_Lines_Log) :
     @return: 
     
 ###################'''
-def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(\
+                request, _dpath_Log, _tlabel
+                
+                , _strOf_Op_Name
+                , _strOf_Op_Name_THIS
+                
+                , _fname_Conf = False):
+    
 #_20190607_180545:caller
 #_20190607_180550:head
 #_20190607_180555:in-func
@@ -654,7 +766,8 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_
     ###################'''
     tlabel = _tlabel
     
-    strOf_Op_Name_THIS = "A2"
+    strOf_Op_Name_THIS = _strOf_Op_Name_THIS
+#     strOf_Op_Name_THIS = "A2"
     
     strOf_Op_Name = "%s.[%s]" % (_strOf_Op_Name, strOf_Op_Name_THIS)
     
@@ -673,7 +786,8 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_
     #_20190529_173055:mk
     #_20190529_151603:marker
     dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
-    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__M_1_A_2.value
+    
+    fname_Conf = _fname_Conf if not _fname_Conf == False else cons_fx.FPath.fname_CONF_BUSL3__M_1_A_2.value
      
     #log
     msg_Log_CSV = "[%s:%d / %s]\nconf dir = %s\nconf file = %s" % \
@@ -724,7 +838,13 @@ def _BUSL3_No_M_1__DP_Basic_1__A2_Setup(request, _dpath_Log, _tlabel, _strOf_Op_
     @return: 
     
 ###################'''
-def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+def _BUSL3_No_M_1__DP_Basic_1__A3(\
+          request
+          , _dpath_Log
+          , _tlabel
+          
+          , _strOf_Op_Name
+          , strOf_Op_Name_THIS):
     
 #_20190613_105456:caller
 #_20190613_105500:head
@@ -746,9 +866,16 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     print(tmp_msg, file=sys.stderr)
 
     #_:tmp
+    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__M_1_A_3.value
+    
+    #_20190607_180545:caller
     (lo_LO_Lines, lo_Strings, conf_M_1_A_2) = \
                 _BUSL3_No_M_1__DP_Basic_1__A2_Setup(
-                    request, _dpath_Log, _tlabel, _strOf_Op_Name)
+                    request, _dpath_Log, _tlabel
+                    , _strOf_Op_Name
+                    , strOf_Op_Name_THIS
+                    , _fname_Conf=fname_Conf)
+#                     request, _dpath_Log, _tlabel, _strOf_Op_Name)
     
     # unpack
     (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
@@ -775,7 +902,10 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
             get : conf vals 
     ###################'''
     #_:tmp
-    lo_Returns = _BUSL3_No_M_1__DP_Basic_1__A2_Get_Conf_Vals(\
+    #_20190613_135431:tmp
+    #_20190613_135536:caller
+#     lo_Returns = _BUSL3_No_M_1__DP_Basic_1__A2_Get_Conf_Vals(\
+    lo_Returns = _BUSL3_No_M_1__DP_Basic_1__A3_Get_Conf_Vals(\
                          conf_M_1_A_2, lo_Lines_Log)
     
     # unpack
@@ -783,14 +913,24 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
     
     (
-         locIn_BB
-         , volOf_OC
-         , VolOf_HL
-         , ratioOf_OCHL
-         , ratioOf_Shadow_Upper_Lower) = lo_Conditions
+#          locIn_BB
+#          , volOf_OC
+#          , VolOf_HL
+#          , ratioOf_OCHL
+#          , ratioOf_Shadow_Upper_Lower) = lo_Conditions
+                 locIn_BB
+                 , volOf_OC
+                 , VolOf_HL
+                 , ratioOf_OCHL
+                 , ratioOf_Shadow_Upper_Lower
+                 
+                 , cond_TS_1
+             
+                ) = lo_Conditions
             
     #_:tmp
     #_:caller
+    #_20190613_140642:tmp
     lo_BDs_Targets = get_Bars__M_1_A_2(\
                           dpath_Src_Csv, fname_Src_Csv
                           , dpath_Log
@@ -852,7 +992,8 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     @return: 
     
 ###################'''
-def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name, _strOf_Op_Name_THIS):
+# def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
 #_20190607_175128:caller
 #_20190607_175136:head
@@ -875,7 +1016,9 @@ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     #_20190607_180429:tmp
     (lo_LO_Lines, lo_Strings, conf_M_1_A_2) = \
                 _BUSL3_No_M_1__DP_Basic_1__A2_Setup(
-                    request, _dpath_Log, _tlabel, _strOf_Op_Name)
+                    request, _dpath_Log, _tlabel
+                    , _strOf_Op_Name
+                    , _strOf_Op_Name_THIS)
     
     # unpack
     (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
