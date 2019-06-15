@@ -134,8 +134,8 @@ def _BUSL3_Tester_No_M_1__DP_Basic_1(request):
 #     flg_A1 = True
     flg_A1 = False
 
-    flg_A2 = True
-#     flg_A2 = False
+#     flg_A2 = True
+    flg_A2 = False
     
     # detect : mountain (M3, 1 mountain)
     flg_A3 = True
@@ -931,7 +931,9 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(\
     #_:tmp
     #_:caller
     #_20190613_140642:tmp
-    lo_BDs_Targets = get_Bars__M_1_A_2(\
+#     lo_BDs_Targets = get_Bars__M_1_A_2(\
+    #_20190615_162015:caller
+    lo_BDs_Targets = dp_M_1_A_3(\
                           dpath_Src_Csv, fname_Src_Csv
                           , dpath_Log
                            
@@ -950,7 +952,7 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(\
     ###################'''
     time_Elapsed = time.time() - time_Start
     
-    tmp_msg = "_BUSL3_No_M_1__DP_Basic_1__A2"
+    tmp_msg = "_BUSL3_No_M_1__DP_Basic_1__A3"
     
     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
 
@@ -976,11 +978,11 @@ def _BUSL3_No_M_1__DP_Basic_1__A3(\
     # build
     lo_Fnames = (fname_Log, fname_Dat, fname_Error)
     
-    #_:caller
+    #_20190607_183000:caller
     _BUSL3_No_M_1__DP_Basic_1__A2_Write_To_File(\
                     dpath_Log, lo_LO_Lines, lo_Fnames)
     
-#/ def _BUSL3_No_M_1__DP_Basic_1__A2(request, _dpath_Log, _tlabel, _strOf_Op_Name):
+#/ def _BUSL3_No_M_1__DP_Basic_1__A3(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
 '''###################
     _BUSL3_No_M_1__DP_Basic_1__A2
@@ -1549,7 +1551,8 @@ def _BUSL3_No_M_1__DP_Basic_1__A1(request, _dpath_Log, _tlabel, _strOf_Op_Name):
     
 ###################'''
 # def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
-def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
+# def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
+def  _get_Bars__A_1_2_2_Reverse(lo_BDs, _direction = 1):
 #20190531_183402:caller
 #_20190531_183409:head
 #_20190531_183430:wl:in-func
@@ -1563,57 +1566,111 @@ def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
         step : A : 1.2 : 2
             reverse
     ###################'''
-    bar_Start = lo_BDs[0]
-    bar_End = lo_BDs[-1]
+    '''###################
+        step : A : 1.2 : 2.1
+            ascending
+    ###################'''
+    if _direction == 1 : #if _direction == 1
     
-    if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+        bar_Start = lo_BDs[0]
+        bar_End = lo_BDs[-1]
+        
+        if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+        
+            # reverse
+            lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
     
-#         print()
-#         print("[%s:%d] lo_BDs, order => Z to A (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-#         print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              
-#                              , lo_BDs_Tmp[0].dateTime
-#                              , lo_BDs_Tmp[-1].dateTime
-#                              
-#                             ), file=sys.stderr)
+        else : #if bar_Start.dateTime > bar_End..dateTime
+            
+            pass
+        
+        #/if bar_Start.dateTime > bar_End..dateTime                
+    
+    elif _direction == 2 : #if _direction == 1
+        
+        bar_Start = lo_BDs[0]
+        bar_End = lo_BDs[-1]
+        
+        if bar_Start.dateTime < bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+        
+            # reverse
+            lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
+    
+        else : #if bar_Start.dateTime > bar_End..dateTime
+            
+            pass
+        
+        #/if bar_Start.dateTime > bar_End..dateTime                
+    
+    else : #if _direction == 1
+    
+        tmp_msg = "[NOTICE] unknown direction : '%d'" % \
+            (
+                _direction
+             
+             )
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+    
+        print()
+        print("%s" % (msg), file=sys.stderr)
+    
+    #/if _direction == 1
+    
+#     bar_Start = lo_BDs[0]
+#     bar_End = lo_BDs[-1]
+#     
+#     if bar_Start.dateTime > bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+#     
+# #         print()
+# #         print("[%s:%d] lo_BDs, order => Z to A (start = %s / end = %s)" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              , bar_Start.dateTime, bar_End.dateTime
+# #                             ), file=sys.stderr)
+# #         print("[%s:%d] lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              
+# #                              , lo_BDs_Tmp[0].dateTime
+# #                              , lo_BDs_Tmp[-1].dateTime
+# #                              
+# #                             ), file=sys.stderr)
+# #         
+# #         print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              
+# #                             ), file=sys.stderr)
 #         
-#         print("[%s:%d] calling... : libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              
-#                             ), file=sys.stderr)
-        
-        # reverse
-        lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
-
-#         print()
-#         print("[%s:%d] lo_BDs, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , lo_BDs_Tmp[0].dateTime
-#                              , lo_BDs_Tmp[-1].dateTime
-#                             ), file=sys.stderr)
-
-#         print("[%s:%d] lo_BDs, order => reversed (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , lo_BDs[0].dateTime
-#                              , lo_BDs[-1].dateTime
-#                             ), file=sys.stderr)
-    
-    
-    else : #if bar_Start.dateTime > bar_End..dateTime
-        
-        pass
-    
-#         print()
-#         print("[%s:%d] lo_BDs, order => A to Z (start = %s / end = %s)" % \
-#                             (os.path.basename(libs.thisfile()), libs.linenum()
-#                              , bar_Start.dateTime, bar_End.dateTime
-#                             ), file=sys.stderr)
-    
-    #/if bar_Start.dateTime > bar_End..dateTime        
+#         # reverse
+#         lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
+# 
+# #         print()
+# #         print("[%s:%d] lo_BDs, order => reversed (lo_BDs_Tmp[0] = %s / lo_BDs_Tmp[-1] = %s)" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              , lo_BDs_Tmp[0].dateTime
+# #                              , lo_BDs_Tmp[-1].dateTime
+# #                             ), file=sys.stderr)
+# 
+# #         print("[%s:%d] lo_BDs, order => reversed (start = %s / end = %s)" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              , lo_BDs[0].dateTime
+# #                              , lo_BDs[-1].dateTime
+# #                             ), file=sys.stderr)
+#     
+#     
+#     else : #if bar_Start.dateTime > bar_End..dateTime
+#         
+#         pass
+#     
+# #         print()
+# #         print("[%s:%d] lo_BDs, order => A to Z (start = %s / end = %s)" % \
+# #                             (os.path.basename(libs.thisfile()), libs.linenum()
+# #                              , bar_Start.dateTime, bar_End.dateTime
+# #                             ), file=sys.stderr)
+#     
+#     #/if bar_Start.dateTime > bar_End..dateTime        
 
     '''###################
         step : X
@@ -3461,6 +3518,490 @@ def get_Bars__M_1_A_2(\
     ###################'''
 
 #/ def  get_Bars__M_1_A_2(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
+
+'''###################
+    dp_M_1_A_3
+
+    at : 2019/06/08 16:08:50
+    
+    @param : 
+        1. lo_Conditions
+             locIn_BB
+             , volOf_OC
+             , VolOf_HL
+             , ratioOf_OCHL
+             , ratioOf_Shadow_Upper_Lower
+             , cond_TS_1
+                 
+    @return: 
+    
+###################'''
+def dp_M_1_A_3(\
+          dpath_Src_Csv, fname_Src_Csv
+          , dpath_Log
+          
+          , lo_Conditions
+          , lo_LO_Lines
+#           , lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error
+          
+          , strOf_Op_Name, tlabel
+          
+          ):
+#_20190615_162015:caller
+#_20190615_162019:head
+#_20190615_162023:wl:in-func
+
+    '''###################
+        step : A : 0.1
+            unpack : params 
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : A : 0.2
+            unpack : params 
+    ###################'''
+    (
+         locIn_BB
+         , volOf_OC
+         , VolOf_HL
+         , ratioOf_OCHL
+         , ratioOf_Shadow_Upper_Lower
+         
+         , cond_TS_1
+             
+                ) = lo_Conditions    
+    #debug
+    msg = "dp_M_1_A_3 ==> starting... "
+    msg_Log = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , msg
+#                 , "".join(lo_Lines_Dat)
+            )
+    
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg_Log)
+#     lo_Lines_Log.append("dp_M_1_A_3 ==> starting... ")
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    '''###################
+        step : A : 1
+            ops 
+    ###################'''
+    '''###################
+        step : A : 1.1
+        get : list of bardatas
+    ###################'''
+    #_:tmp
+    header_Length   = 2
+    skip_Header     = False
+    
+    # list of lines
+#     lo_LO_Lines = (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error)
+    
+    #_:caller
+    lo_BDs, lo_CSVs = _get_Bars__A_1_Get_List_Of_BDs(\
+                             dpath_Src_Csv, fname_Src_Csv
+                             , header_Length, skip_Header
+                             , lo_LO_Lines)
+    
+    # validate
+    if lo_BDs == False : #if lo_BDs == False
+        
+        tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+    
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+        # log
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+        
+        return 
+    
+    #/if lo_BDs == False
+
+    '''###################
+        step : A : 1.2
+            reverse
+    ###################'''
+    tmp_msg = "lo_BDs : lo_BDs[0] = %s / lo_BDs[-1] = %s" % \
+        (
+            lo_BDs[0].dateTime
+            , lo_BDs[-1].dateTime
+         
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+
+    #:caller
+    direction = 2 # descending
+    
+    lo_BDs_Tmp = _get_Bars__A_1_2_2_Reverse(lo_BDs, _direction=direction)
+#     lo_BDs_Tmp = _get_Bars__A__2_Reverse(lo_BDs)
+        
+    tmp_msg = "lo_BDs(post revesing) : lo_BDs[0] = %s / lo_BDs[-1] = %s" % \
+        (
+            lo_BDs_Tmp[0].dateTime
+            , lo_BDs_Tmp[-1].dateTime
+         
+         )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+
+    '''###################
+        step : A : 2
+            for-loop
+    ###################'''
+    '''###################
+        step : A : 2.0
+            prep
+    ###################'''
+    # len
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+
+    msg = "[%s:%d / %s] lenOf_LO_BDs_Tmp => %d" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , lenOf_LO_BDs_Tmp
+        )
+
+#     # log
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append("\n")            
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    '''###################
+        step : A : 2.0 : 1
+            flags
+    ###################'''
+    flg_Moni = False
+    
+    '''###################
+        step : A : 2.0 : 2
+            monitor
+    ###################'''
+    Moni = {
+            
+            "start_idx" : -1
+            , "start_pr" : 0.0
+            
+            , "curr_idx" : -1
+            , "curr_pr" : 0.0
+            
+            , "anch_idx" : -1
+            , "anch_pr" : 0.0
+            
+            }
+    
+    '''###################
+        step : B : 1
+            iteration
+    ###################'''
+    for i in range(0, lenOf_LO_BDs_Tmp):
+        '''###################
+            step : B1 : 0
+                debug iteration
+        ###################'''
+        tmp_msg = "================ iterate : %d" % i
+        
+        msg = "[%s:%d / %s]%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+    
+        # log
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append("\n")            
+
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+        '''###################
+            step : B1 : 1
+                prep
+        ###################'''
+        '''###################
+            step : B1 : 1.1
+                bd
+        ###################'''
+        e0 = lo_BDs_Tmp[i]
+        
+        d0 = e0.price_Close - e0.price_Open
+        
+        '''###################
+            step : B1 : j1
+                flag monitor ==> true?
+        ###################'''
+        if flg_Moni == True : #if flg_Moni == True
+            '''###################
+                step : B1 : j1 : Y
+                    flag monitor ==> true
+            ###################'''
+            '''###################
+                step : B1 : j1 : Y : 1
+                    log
+            ###################'''
+            tmp_msg = "(step : B1 : j1 : Y : 1) flg_Moni --> True"
+            
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+        
+            # log
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+            lo_Lines_Log.append("\n")            
+
+            print()
+            print("%s" % (msg), file=sys.stderr)
+
+            '''###################
+                step : B1 : j3
+                    bar : down ?
+            ###################'''
+            if d0 < 0 : #if d0 < 0
+                '''###################
+                    step : B1 : j3 : Y
+                        bar : down
+                ###################'''
+                '''###################
+                    step : B1 : j3 : Y : 1
+                        log
+                ###################'''
+                tmp_msg = "(step : B1 : j3 : Y : 1) bar ==> down"
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+            
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")            
+            
+                #debug
+                break
+            
+            else : #if d0 < 0
+            
+                '''###################
+                    step : B1 : j3 : N
+                        bar : down
+                ###################'''
+                '''###################
+                    step : B1 : j3 : N : 1
+                        log
+                ###################'''
+                tmp_msg = "(step : B1 : j3 : N : 1) bar ==> up or zero"
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+            
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")            
+                
+                #_20190615_172927:tmp
+                
+                #debug
+                break
+            
+            #/if d0 < 0
+            
+#             #debug
+#             break
+        
+        else : #if flg_Moni == True
+            '''###################
+                step : B1 : j1 : N
+                    flag monitor ==> false
+            ###################'''
+            '''###################
+                step : B1 : j1 : N : 1
+                    log
+            ###################'''
+            tmp_msg = "flg_Moni --> False"
+            
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+        
+            # log
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+            lo_Lines_Log.append("\n")            
+
+            print()
+            print("%s" % (msg), file=sys.stderr)
+
+            '''###################
+                step : B1 : j2
+                    bar ==> down ?
+            ###################'''
+            #_20190615_171008:tmp
+            if d0 < 0 : #if d0 < 0
+                '''###################
+                    step : B1 : j2 : Y
+                        bar ==> down
+                ###################'''
+                '''###################
+                    step : B1 : j2 : Y : 1
+                        set : flag
+                ###################'''
+                flg_Moni = True
+                
+                '''###################
+                    step : B1 : j2 : Y : 2
+                        Moni : init
+                ###################'''
+                #_20190615_165954:tmp
+                Moni['start_idx'] = i
+                Moni['start_pr'] = e0.price_Close
+                
+                Moni['curr_idx'] = i
+                Moni['curr_pr'] = e0.price_Open
+
+                Moni['anch_idx'] = i
+                Moni['anch_pr'] = e0.price_Open
+
+                '''###################
+                    step : B1 : j2 : Y : 3
+                        log
+                ###################'''
+                tmp_msg = "Moni --> init done"
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                    
+                msg += "\nMoni['start_idx']\t%d\nMoni['start_pr']\t%.04f" % (\
+ 
+                         Moni['start_idx']
+                         , Moni['start_pr']
+                
+                             )
+                msg += "\nMoni['curr_idx']\t%d\nMoni['curr_pr']\t%.04f" % (\
+ 
+                        Moni['curr_idx']
+                        , Moni['curr_pr']
+                             )
+                    
+                msg += "\nMoni['anch_idx']\t%d\nMoni['anch_pr']\t%.04f" % (\
+ 
+                        Moni['anch_idx']
+                        , Moni['anch_pr']
+                             )
+                    
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")            
+    
+                print()
+                print("%s" % (msg), file=sys.stderr)
+
+                '''###################
+                    step : B1 : j2 : Y : 4
+                        next
+                ###################'''
+                continue
+                
+            else : #if d0 < 0
+                '''###################
+                    step : B1 : j2 : N
+                        bar ==> up or zero
+                ###################'''
+                '''###################
+                    step : B1 : j2 : N : 1
+                        next
+                ###################'''
+                continue
+                
+                
+            
+            #/if d0 < 0
+            
+        #/if flg_Moni == True
+
+    '''###################
+        step : Z
+            report
+    ###################'''
+    tmp_msg = "------------------ iterate : end"
+    
+    msg = "[%s:%d / %s]%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    # log
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")            
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+        
+    #/for i in range(0, lenOf_LO_BDs_Tmp):
+
+
+    '''###################
+        step : A : X
+            report
+    ###################'''
+    '''###################
+        step : A : X.1
+            file : dat
+    ###################'''
+    
+    '''###################
+        step : A : 0
+            prep : vars 
+    ###################'''
+
+#/ def  dp_M_1_A_3(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
 
 
 
