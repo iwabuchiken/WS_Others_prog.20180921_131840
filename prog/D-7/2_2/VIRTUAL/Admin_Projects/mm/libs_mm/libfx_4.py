@@ -3726,6 +3726,13 @@ def dp_M_1_A_3(\
             , "anch_pr" : 0.0
             
             }
+
+    '''###################
+        step : A : 2.0 : 3
+            threshold vals
+    ###################'''
+    # ts : 1 ==> the former of the mountain, the dip
+    valOf_TS_1 = 0.02
     
     '''###################
         step : B : 1
@@ -3736,7 +3743,8 @@ def dp_M_1_A_3(\
             step : B1 : 0
                 debug iteration
         ###################'''
-        tmp_msg = "================ iterate : %d" % i
+#         tmp_msg = "================ iterate : %d" % i
+        tmp_msg = "================ iterate : %d (%s)" % (i, lo_BDs_Tmp[i].dateTime)
         
         msg = "[%s:%d / %s]%s" % \
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
@@ -3815,7 +3823,9 @@ def dp_M_1_A_3(\
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")            
-            
+                
+                #_20190616_111156:tmp
+                
                 #debug
                 break
             
@@ -3823,7 +3833,7 @@ def dp_M_1_A_3(\
             
                 '''###################
                     step : B1 : j3 : N
-                        bar : down
+                        bar : up
                 ###################'''
                 '''###################
                     step : B1 : j3 : N : 1
@@ -3842,6 +3852,97 @@ def dp_M_1_A_3(\
                 lo_Lines_Log.append("\n")            
                 
                 #_20190615_172927:tmp
+                '''###################
+                    step : B1 : j3 : N : 2
+                        prep : conditions
+                ###################'''
+                cond_1 = (Moni['curr_pr'] - e0.price_Open) > valOf_TS_1
+                
+                cond_2 = e0.price_Open > Moni['start_pr']
+
+                tmp_msg = "(step : B1 : j3 : N : 2) prep : conditions"
+                
+                tmp_msg += "\nMoni['curr_pr']\t%.04f\ne0.price_Open)\t%.04f\nvalOf_TS_1\t%.04f\nMoni['start_pr']\t%.04f\ncond_1\t%s\ncond_2\t%s" % \
+                        (
+                         Moni['curr_pr']
+                         , e0.price_Open
+                         , valOf_TS_1
+                         , Moni['start_pr']
+                         
+                         , cond_1
+                         , cond_2
+                         
+                         )
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+            
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")            
+                
+                '''###################
+                    step : B1 : j4
+                        within thresholds ?
+                ###################'''
+                if numpy.all([cond_1, cond_2]) : #if numpy.all([cond_1, cond_2])
+                    '''###################
+                        step : B1 : j4 : Y
+                            within thresholds
+                    ###################'''
+                    '''###################
+                        step : B1 : j4 : Y : 1
+                            log
+                    ###################'''
+                    tmp_msg = "(step : B1 : j4 : Y : 1) within thresholds : %s" % \
+                            (e0.dateTime)
+                    
+                    msg = "[%s:%d / %s]\n%s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                
+                    # log
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")            
+                
+                    #_20190616_103253:tmp
+                    
+                    #debug
+                    break
+                
+                else : #if numpy.all([cond_1, cond_2])
+                    '''###################
+                        step : B1 : j4 : N
+                            within thresholds
+                    ###################'''
+                    '''###################
+                        step : B1 : j4 : N : 1
+                            log
+                    ###################'''
+                    tmp_msg = "(step : B1 : j4 : N : 1) NOT within thresholds : %s" % \
+                            (e0.dateTime)
+                    
+                    msg = "[%s:%d / %s]\n%s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                
+                    # log
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")            
+                
+                    #_20190616_103253:tmp
+                    
+                    #debug
+                    break
+                
+                #/if numpy.all([cond_1, cond_2])
                 
                 #debug
                 break
@@ -3880,11 +3981,31 @@ def dp_M_1_A_3(\
                     bar ==> down ?
             ###################'''
             #_20190615_171008:tmp
+            #_20190616_104435:fix
             if d0 < 0 : #if d0 < 0
                 '''###################
                     step : B1 : j2 : Y
                         bar ==> down
                 ###################'''
+                tmp_msg = "(step : B1 : j2 : Y) bar ==> down"
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                    
+                msg += "\ne0.PC\t%.04f\ne0.PO\t%.04f\ne0.diff_OP\t%.04f" % (\
+ 
+                         e0.price_Close
+                         , e0.price_Open
+                         , (e0.price_Close - e0.price_Open)
+                         )
+                
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")                         
+                
                 '''###################
                     step : B1 : j2 : Y : 1
                         set : flag
@@ -3955,6 +4076,30 @@ def dp_M_1_A_3(\
                 ###################'''
                 '''###################
                     step : B1 : j2 : N : 1
+                        log
+                ###################'''
+                tmp_msg = "(step : B1 : j2 : N : 1) bar ==> up or zero"
+                
+                msg = "[%s:%d / %s]\n%s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                
+                #_20190616_110614:tmp
+                msg += "\ne0.PC\t%.04f\ne0.PO\t%.04f\ne0.diff_OP\t%.04f" % (\
+ 
+                         e0.price_Close
+                         , e0.price_Open
+                         , (e0.price_Close - e0.price_Open)
+                         )
+                
+                # log
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")            
+                
+                '''###################
+                    step : B1 : j2 : N : 2
                         next
                 ###################'''
                 continue
