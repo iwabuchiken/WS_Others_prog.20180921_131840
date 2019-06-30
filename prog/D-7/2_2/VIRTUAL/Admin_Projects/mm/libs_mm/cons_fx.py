@@ -304,6 +304,11 @@ class ParamConstants(Enum):
     
     PARAM_BUSL3_CMD_46_1__Get_Basic_Stats_Cat_2 = "get-basic-stats-cat-2"
 
+    '''###################
+        param : T-1~
+    ###################'''
+    PARAM_BUSL3__T_1 = "tester : test_Buy_Up_1()"
+
 #/ class ParamConstants(Enum):
     
 class Tester(Enum):
@@ -467,76 +472,83 @@ class Tester(Enum):
     
     """
 
-#     tag_No_M_11 = """
-#         <br>
-#         <br>
-#         <table>
-#             <tr>
-#                 <td>RECORD : 1</td>
-#                 <td>
-#                     <textarea id='ta_no_m_11_params_area_filepath'>VALUE</textarea>
-#                 </td>
-#             </tr>
-#             <tr>
-#                 <td>RECORD : 2
-#                 </td>
-#                 <td>
-#                      <input 
-#                          type="radio" 
-#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day" 
-#                          value="day"
-#                          checked="checked" 
-#                          />
-#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Day">
-#                              day
-#                              </label>
-#                     
-#                      <input 
-#                          type="radio" 
-#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week" 
-#                          value="week"
-#                          />
-#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Week">
-#                              week
-#                              </label>
-#                              
-#                      <input 
-#                          type="radio" 
-#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month" 
-#                          value="month"
-#                          />
-#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Month">
-#                              month
-#                              </label>
-#                              
-#                      <input 
-#                          type="radio" 
-#                          name="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By" 
-#                          id="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through" 
-#                          value="through"
-#                          />
-#                      <label for="rb_Tester_BuyUps_SellLows_No_M_11_SubData_By_Through">
-#                              through
-#                              </label>
-#                              
-#                     
-#                 </td>
-#             </tr>
-#             <tr>
-#                 <td>RECORD : 3</td>
-#                 <td>
-#                     VALUE
-#                 </td>
-#             </tr>
-#         </table>
-#     
-#     """
-
-
+    tag_No_T_1 = """
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    gen subdata <input type='checkbox' 
+                        name='cb_no_44_1_params_area_filepath' 
+                        id='cb_no_44_1_params_area_filepath' 
+                        value='cb_no_44_1_params_area_filepath'>
+                        </input>
+                </td>
+                <td>
+                    <textarea id='ta_no_44_1_params_area_filepath'>C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw\\44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>subdata by
+                    
+                </td>
+                <td>
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day" 
+                         value="day"
+                         checked="checked" 
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day">
+                             day
+                             </label>
+                    
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week" 
+                         value="week"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week">
+                             week
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month" 
+                         value="month"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month">
+                             month
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through" 
+                         value="through"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through">
+                             through
+                             </label>
+                             
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    yes
+                </td>
+                <td>
+                    yes
+                </td>
+            </tr>
+        </table>
     
+    """
+
     lo_Commands = [
         
         ["buy_Ups_Sell_Lows", "Buy ups, sell lows"],
@@ -560,6 +572,7 @@ class Tester(Enum):
     # max key value : 14 : 20190210_165125
     # max key value : 15 : 20190216_103134
     # max key value : 16 : 20190218_125015
+    # max key value : 18 : 20190630_173455
     lo_Actions__BUSL__IDs = {
             
             0 : "1"         # 0 num of up bars and down bars in each of BB areas
@@ -588,6 +601,9 @@ class Tester(Enum):
             , 16 : "44-1"     # "num of up/down bars in each BB area"
     
             , 17 : "m-11"     # "detect patterns / basic framework
+            
+            #_20190630_173455:marker
+            , 18 : "t-1"     # test_Buy_Up_1()
             
         }
     
@@ -766,6 +782,20 @@ class Tester(Enum):
                     
                     
                 , "20190529_123310" # registered date
+            ],     
+            
+            #_20190630_173321:tmp
+            [
+                lo_Actions__BUSL__IDs[18]   # key
+                ,"t-1 : test_Buy_Up_1()"  # description
+                , ParamConstants.PARAM_BUSL3__T_1.value    # constant string
+#                 , ParamConstants.PARAM_BUSL3_CMD_44_1__Stats_NumOf_UpsDowns_In_BBAreas.value    # constant string
+                , "idea in 2019-06-30_10-19-21_000.jpg" \
+                    + tag_No_T_1
+#                     + tag_No_M_11
+                    
+                    
+                , "20190630_174240" # registered date
             ],     
 
         ]
