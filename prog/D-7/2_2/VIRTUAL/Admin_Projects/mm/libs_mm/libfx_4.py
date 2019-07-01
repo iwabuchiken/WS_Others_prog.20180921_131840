@@ -1545,14 +1545,16 @@ def _BUSL3_No_M_1__DP_Basic_1__A1(request, _dpath_Log, _tlabel, _strOf_Op_Name):
 
     at : 2019/05/31 18:43:01
     
-    @param : 
+    @param :  _direction
+            1    ==> ascending
+            2    ==> descending
     
     @return: 
     
 ###################'''
 # def  get_Bars(locIn_BB, volOf_OC, VolOf_HL, ratioOf_OCHL):
 # def  _get_Bars__A_1_2_2_Reverse(lo_BDs):
-def  _get_Bars__A_1_2_2_Reverse(lo_BDs, _direction = 1):
+def _get_Bars__A_1_2_2_Reverse(lo_BDs, _direction = 1):
 #20190531_183402:caller
 #_20190531_183409:head
 #_20190531_183430:wl:in-func
@@ -1592,11 +1594,35 @@ def  _get_Bars__A_1_2_2_Reverse(lo_BDs, _direction = 1):
         bar_End = lo_BDs[-1]
         
         if bar_Start.dateTime < bar_End.dateTime : #if bar_Start.dateTime > bar_End..dateTime
+            
+            #debug
+            tmp_msg = "date : start < end : %s, %s" % \
+                            (bar_Start.dateTime, bar_End.dateTime)
+            
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+        
+            print()
+            print("%s" % (msg), file=sys.stderr)
         
             # reverse
             lo_BDs_Tmp = libfx_2.reverse_ListOf_BarDatas(lo_BDs_Tmp)
     
         else : #if bar_Start.dateTime > bar_End..dateTime
+
+            #debug
+            tmp_msg = "date : start >= end : %s, %s" % \
+                            (bar_Start.dateTime, bar_End.dateTime)
+            
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+        
+            print()
+            print("%s" % (msg), file=sys.stderr)
             
             pass
         
@@ -3086,6 +3112,7 @@ def get_Bars__M_1_A_2(\
         step : A : 1
             ops 
     ###################'''
+    #_20190701_174311:ref
     '''###################
         step : A : 1.1
         get : list of bardatas
