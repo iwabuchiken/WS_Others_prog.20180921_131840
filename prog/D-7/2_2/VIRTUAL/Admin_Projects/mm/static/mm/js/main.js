@@ -649,6 +649,17 @@ function _mm_Index_LinkTo__0() {
 	
 	elem.css("background", cname_Yellow);
 	//elem.css("background", "yellow");
+
+	/***************************
+		get : params
+	 ***************************/
+	//_20190702_091024:tmp
+	var _dir_Main_MM_File = $('input#ipt_Idx_Numbering_MainDir').val();
+//	var dir_Main_MM_File = $('input#ipt_Idx_Numbering_MainDir').text();
+	
+//	alert("dir_Main_MM_File => '" + dir_Main_MM_File + "'");
+	
+//	return;
 	
 	/***************************
 		ajax
@@ -659,7 +670,8 @@ function _mm_Index_LinkTo__0() {
 	//var _url = "http://127.0.0.1:8000/im/im_actions";
 	//var _url = "http://127.0.0.1:8000/im/actions";
 	
-	//var _data = {action : _param};
+	var _data = {dir_Main_MM_File : _dir_Main_MM_File};
+//	var _data = {action : _param};
 	
 	$.ajax({
 		
@@ -668,7 +680,7 @@ function _mm_Index_LinkTo__0() {
 		//REF http://stackoverflow.com/questions/1916309/pass-multiple-parameters-to-jquery-ajax-call answered Dec 16 '09 at 17:37
 	//    data: {id: id},
 	//    data: {memos: memos, image_id: image_id},
-	//	data: _data,
+		data: _data,
 		
 		timeout: 10000
 		
@@ -695,6 +707,7 @@ function _mm_Index_LinkTo__0() {
 	
 }//function _mm_Index_LinkTo__0() {
 
+//_20190702_095452:tmp
 function _mm_Index_LinkTo__1() {
 	
 	/***************************

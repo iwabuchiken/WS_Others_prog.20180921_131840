@@ -36,7 +36,8 @@ class FPath(Enum):
         @USED
                 
     ###################'''
-    DPATH_MM_PROJECTS   = "C:\WORKS_2\WS\FM_2_20171104_225946\Projects"
+    DPATH_MM_PROJECTS   = "C:\\WORKS_2\\WS\\FM_2_20171104_225946\\Projects"
+#     DPATH_MM_PROJECTS   = "C:\WORKS_2\WS\FM_2_20171104_225946\Projects"
     
 class Numbering(Enum):
     

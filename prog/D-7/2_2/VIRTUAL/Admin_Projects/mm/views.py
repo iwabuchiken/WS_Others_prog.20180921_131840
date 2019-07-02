@@ -12,18 +12,19 @@ C:\WORKS_2\WS\WS_Others\free\VX7GLZ_science-research\31_Materials\libs_31\libmt.
 
 ###################'''
 
+'''###################
+    import : django        
+###################'''
 from django.http import HttpResponse, HttpRequest
-# from django.http import HttpResponse
-
 from django.shortcuts import render
-
-import datetime
 from django import template
+#ref https://stackoverflow.com/questions/29304845/how-to-disable-cache-in-django-view
+from django.views.decorators.cache import never_cache
 
-import os, sys
-# from sympy.physics.units.dimensions import action
-# from pip._vendor.requests.api import request
-# from macpath import defpath
+'''###################
+    import : built-in modules
+###################'''
+import datetime, os, sys, subprocess, copy, time, glob, re
 
 sys.path.append('.')
 sys.path.append('..')
@@ -31,36 +32,42 @@ sys.path.append('C:/WORKS_2/WS/WS_Others/free/fx/82_')
 
 sys.path.append('C:/WORKS_2/WS/WS_Others/free/VX7GLZ_science-research/31_Materials')
 
-# from libs import libs
-# from libs_31 import test_31
-# from libs_31 import libmt
-
-from mm.libs_mm import cons_mm
-# from im.libs_mm import cons_mm
-
-import subprocess
-
-import copy
-
 #ref https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 from os import listdir
 from os.path import isfile, join
-
-#ref https://stackoverflow.com/questions/29304845/how-to-disable-cache-in-django-view
-from django.views.decorators.cache import never_cache
-
 from pathlib import Path
-
-#from C:\WORKS_2\WS\WS_Others\free\VX7GLZ_science-research\31_Materials\1_\1_1.3.py
-# import xml.etree.ElementTree as ET
-
-import time
-
 from os.path import splitext
 
-import glob
+# import time
+# 
+# 
+# import glob
 
-import re
+# import re
+
+'''###################
+    import : original files        
+###################'''
+# from libs import libs
+# from libs_31 import test_31
+from libs_31 import libmt
+
+#_20190702_090408:tmp
+from mm.libs_mm import cons_mm, libs
+# from im.libs_mm import cons_mm
+
+# import subprocess
+# 
+# import copy
+
+
+
+
+
+#from C:\WORKS_2\WS\WS_Others\free\VX7GLZ_science-research\31_Materials\1_\1_1.3.py
+#_20190702_094748:fix
+import xml.etree.ElementTree as ET
+
 
 ################################## FUNCS
 def _exec_Numbering(dpath, fname):
@@ -649,6 +656,29 @@ def numbering(request):
 #         , req.META.get('HTTP_USER_AGENT')
 #         ), file=sys.stderr)
 #     print()
+
+    '''###################
+        step : 1
+            get : params
+    ###################'''
+    '''###################
+        step : 1.1
+            get : params : main dir for mm files
+    ###################'''
+    dpath_MainDir_MM_Files = request.GET.get('dir_Main_MM_File', False)
+    
+    if dpath_MainDir_MM_Files == False : #if dpath_MainDir_MM_Files == False
+
+        dpath_MainDir_MM_Files = cons_mm.FPath.DPATH_MM_PROJECTS.value
+        
+    #/if dpath_MainDir_MM_Files == False
+    
+    #debug
+    print()
+    print("[%s:%d] dpath_MainDir_MM_Files => %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , dpath_MainDir_MM_Files
+        ), file=sys.stderr)
     
     '''###################
         get : referer        
@@ -665,8 +695,10 @@ def numbering(request):
     
     mypath = MAIN_DIR
     
+    #_20190702_093843:tmp
     #ref https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory answered Jul 8 '10 at 21:01
-    dpath_Main = cons_mm.FPath.DPATH_MM_PROJECTS.value
+    dpath_Main = dpath_MainDir_MM_Files
+#     dpath_Main = cons_mm.FPath.DPATH_MM_PROJECTS.value
     
     #ref glob https://stackoverflow.com/questions/2225564/get-a-filtered-list-of-files-in-a-directory
     lo_Entries = glob.glob(dpath_Main + "\\" + "*.mm")
@@ -712,9 +744,12 @@ def numbering(request):
         
         "msg" : msg,
         
-        "MAIN_DIR" : cons_mm.FPath.DPATH_MM_PROJECTS.value,
+        "MAIN_DIR" : cons_mm.FPath.DPATH_MM_PROJECTS.value
         
-        "lo_Files" : lo_Files,
+        #_20190702_094407:tmp
+        , "dpath_MainDir_MM_Files" : dpath_MainDir_MM_Files
+        
+        , "lo_Files" : lo_Files,
         
         }
     
@@ -1003,6 +1038,10 @@ def build_history(request):
 
 def index(request):
 
+    '''###################
+        step : 1
+            time
+    ###################'''
     now = datetime.datetime.now()
     
 #     t = template.Template("<html><body>Current date and time {{ now }}</body></html>")
@@ -1014,6 +1053,10 @@ def index(request):
     action = "action"
     message = "message"
     
+    '''###################
+        step : 2
+            list of commands
+    ###################'''
     #ref sorted https://www.pythoncentral.io/how-to-sort-python-dictionaries-by-key-or-value/
     lo_Commands = cons_mm.ImOp.lo_Commands.value
     
@@ -1021,7 +1064,18 @@ def index(request):
     print()
     print(lo_Commands)
     
-    dic = {'action' : action, "message" : message, "lo_Commands" : lo_Commands}
+    '''###################
+        step : 3
+            set : dictionary
+    ###################'''
+    str_MainDir_MM_File = cons_mm.FPath.DPATH_MM_PROJECTS.value
+    
+    dic = {
+           'action' : action
+           , "message" : message
+           , "lo_Commands" : lo_Commands
+           , "mainDir_MM_File" : str_MainDir_MM_File
+           }
     
     return render(request, 'mm/index.html', dic)
 

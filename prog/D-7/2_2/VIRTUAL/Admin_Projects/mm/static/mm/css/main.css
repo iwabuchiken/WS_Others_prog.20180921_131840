@@ -829,6 +829,23 @@ input#ipt_Numbering_MainDir {
 	
 }/*input#ipt_Numbering_MainDir {*/
 
+input#ipt_Idx_Numbering_MainDir {
+	
+	height: 30px;
+    width:  350px;
+    /*width:  250px;*/
+
+    background: #81BEF7;
+    
+    margin-top: 10px;
+    
+    margin-left : 20px;
+    
+    padding     : 5px;
+	
+	
+}/*input#ipt_Idx_Numbering_MainDir {*/
+
 input#ipt_Curr_Tester_BUSL_DpathImages {
 	
 	height: 30px;
