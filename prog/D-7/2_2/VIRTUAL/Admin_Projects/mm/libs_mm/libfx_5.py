@@ -610,6 +610,9 @@ def tester_T_1__Buy_Up(request):
     
     valOf_SPREAD = 0.01
     
+    # lists
+    lo_Pos_Target = []
+    
     '''###################
         step : B
             for-loop
@@ -674,6 +677,12 @@ def tester_T_1__Buy_Up(request):
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
             lo_Lines_Log.append("\n")
+            
+            '''###################
+                step : B : j1 : Y : 2
+                    calc
+            ###################'''
+            #_20190707_142412:next
             
             #debug
             break
@@ -834,6 +843,213 @@ def tester_T_1__Buy_Up(request):
                 lo_Lines_Log.append("\n")
                 
                 #_20190707_002624:next
+                '''###################
+                    step : B : j3
+                        ts_TP <= e0.price_High ?
+                ###################'''
+                if ts_TP <= e0.price_High : #if ts_TP <= e0.price_High
+                    '''###################
+                        step : B : j3 : Y
+                            ts_TP <= e0.price_High
+                    ###################'''
+                    '''###################
+                        step : B : j3 : Y : 1
+                            log
+                    ###################'''
+                    tmp_msg = "(step : B : j3 : Y : 1)\nts_TP <= e0.price_High"
+                    tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+                                (
+                                 ts_TP
+                                 , e0.price_High
+                                 )
+                    
+                    tmp_msg += "\n"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")
+
+                    '''###################
+                        step : B : j3 : Y : 2
+                            entry
+                    ###################'''
+                    #_20190707_135356:tmp
+                    lo_Pos_Target.append([e0, Pos])
+                    
+                    '''###################
+                        step : B : j3 : Y : 3
+                            Pos ==> reset
+                    ###################'''
+                    Pos = {
+                            
+                            "st_idx" : -1
+                            , "st_pr" : 0.0
+                            
+                            , "cu_idx" : -1
+                            , "cu_pr" : 0.0
+                            
+                            }
+                    
+                    '''###################
+                        step : B : j3 : Y : 4
+                            flag ==> reset
+                    ###################'''
+                    flg_Pos = False
+                    
+                    '''###################
+                        step : B : j3 : Y : 4.2
+                            log
+                    ###################'''
+                    tmp_msg = "(step : B : j3 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")
+                    
+                    '''###################
+                        step : B : j3 : Y : 5
+                            continue
+                    ###################'''
+                    continue
+                    
+#                     #debug
+#                     break
+                
+                else : #if ts_TP <= e0.price_High
+                    '''###################
+                        step : B : j3 : N
+                            ts_TP > e0.price_High
+                    ###################'''
+                    '''###################
+                        step : B : j3 : N : 1
+                            log
+                    ###################'''
+                    tmp_msg = "(step : B : j3 : N : 1)\nts_TP > e0.price_High"
+                    tmp_msg = "\n"
+                    
+                    tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+                                (
+                                 ts_TP
+                                 , e0.price_High
+                                 )
+                    
+                    tmp_msg += "\n"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")
+                    
+                    '''###################
+                        step : B : j4
+                            ts_SL >= e0.price_Low ?
+                    ###################'''
+                    if ts_SL >= e0.price_Low : #if ts_SL >= e0.price_Low
+                        '''###################
+                            step : B : j4 : Y
+                                ts_SL >= e0.price_Low
+                        ###################'''
+                        '''###################
+                            step : B : j4 : Y : 1
+                                log
+                        ###################'''
+                        tmp_msg = "(step : B : j4 : Y : 1)\nts_SL >= e0.price_Low"
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+                                    (
+                                     ts_SL
+                                     , e0.price_Low
+                                     )
+                        
+                        tmp_msg += "\n"
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                     
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+            
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")
+                    
+                        #debug
+                        break
+                    
+                    else : #if ts_SL >= e0.price_Low
+                        '''###################
+                            step : B : j4 : N
+                                ts_SL < e0.price_Low
+                        ###################'''
+                        '''###################
+                            step : B : j4 : N : 1
+                                log
+                        ###################'''
+                        tmp_msg = "(step : B : j4 : N : 1)\nts_SL < e0.price_Low"
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+                                    (
+                                     ts_SL
+                                     , e0.price_Low
+                                     )
+                        
+                        tmp_msg += "\n"
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                     
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+            
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")
+
+                        '''###################
+                            step : B : j4 : N : 2
+                                next
+                        ###################'''
+                        continue
+                    
+#                         #debug
+#                         break
+#                     
+                    #/if ts_SL >= e0.price_Low
+                    
+                    #debug
+                    break
+                
+                #/if ts_TP <= e0.price_High
+                
                 
 #                 #debug
 #                 break
