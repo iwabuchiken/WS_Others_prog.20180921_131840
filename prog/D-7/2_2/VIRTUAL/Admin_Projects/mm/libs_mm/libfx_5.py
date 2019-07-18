@@ -938,6 +938,37 @@ def tester_T_1__Buy_Up(request):
                             , "cu_pr" : 0.0
                             
                             }
+
+                    tmp_msg = "(step : B : j6 : Y : 3)\nPos ==> reset ---> done"
+                    tmp_msg += "\n"
+                    
+                    tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+                                (
+                                 ts_SL
+                                 , e0.price_Low
+                                 )
+                    
+                    tmp_msg += "\n"
+                    
+                    # lo_Pos_Target.append([e0, Pos])
+                    tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d" %\
+                                (
+                                 lo_Pos_Target[-1][1]['st_idx']
+                                 )
+                    
+                    tmp_msg += "\n"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")
                     
                     '''###################
                         step : B : j6 : Y : 4
@@ -1277,8 +1308,34 @@ def tester_T_1__Buy_Up(request):
                         step : B : j3 : Y : 2
                             entry
                     ###################'''
+                    #_20190718_164717:tmp
+                    
                     #_20190707_135356:tmp
                     lo_Pos_Target.append([e0, Pos])
+
+                    #_20190718_161110:fix
+                    tmp_msg = "(step : B : j3 : Y : 2) Pos being entered..."
+                    tmp_msg += "\n"
+                    
+                    tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
+                             (
+                              lo_Pos_Target[-1]['st_idx']
+                              , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
+                              )
+                    tmp_msg += "\n"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")
+                    
                     
                     '''###################
                         step : B : j3 : Y : 3
@@ -1396,6 +1453,58 @@ def tester_T_1__Buy_Up(request):
                         lo_Lines_Log.append("\n")
                         
                         #_20190707_235646:next
+                        
+                        '''###################
+                            step : B : j4 : Y : 2
+                                entry
+                        ###################'''
+                        #_20190707_135356:tmp
+                        lo_Pos_Target.append([e0, Pos])
+                        
+                        '''###################
+                            step : B : j4 : Y : 3
+                                Pos ==> reset
+                        ###################'''
+                        Pos = {
+                                
+                                "st_idx" : -1
+                                , "st_pr" : 0.0
+                                
+                                , "cu_idx" : -1
+                                , "cu_pr" : 0.0
+                                
+                                }
+                        
+                        '''###################
+                            step : B : j4 : Y : 4
+                                flag ==> reset
+                        ###################'''
+                        flg_Pos = False
+                        
+                        '''###################
+                            step : B : j4 : Y : 4.2
+                                log
+                        ###################'''
+                        tmp_msg = "(step : B : j4 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                     
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+            
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")
+                        
+                        '''###################
+                            step : B : j4 : Y : 5
+                                continue
+                        ###################'''
+#                         continue
+                                                
                         
                         #debug
                         break
@@ -1531,6 +1640,102 @@ def tester_T_1__Buy_Up(request):
         #/if flg_Pos == True
         
     #/for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
+    #_20190706_231147:mk:for-loop:end
+    
+    '''###################
+        step : A : 4
+            reporting
+    ###################'''
+    '''###################
+        step : A : 4.1
+            item : 1
+    ###################'''
+    tmp_msg = "(step : A : 4) reporting..."
+    tmp_msg += "\n"
+    
+#     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
+#     tmp_msg += "\n"
+    tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+                 (
+                  len(lo_Pos_Target)
+                  , cntOf_Loop
+                  , len(lo_Pos_Target) / cntOf_Loop
+                  )
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+
+    '''###################
+        step : A : 4.2
+            item : 2
+    ###################'''
+    '''###################
+        step : A : 4.2
+            item : 2.1 : header
+    ###################'''
+    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+    tmp_msg += "\n"
+    
+    if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
+        
+        for item in lo_Pos_Target:
+            
+            pos = item[1]
+            e0 = item[0]
+            
+            #_20190718_160718:tmp
+            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+                              
+                    pos['st_idx'], pos['st_pr']
+                    , pos['cu_idx'], pos['cu_pr']
+                    
+                    , e0.price_High
+                    , e0.price_Low
+                              
+                             )
+            
+#             tmp_msg += "pos['st_idx']\t%d\npos['st_pr']\t%.03f" % (
+#                              
+#                     pos['st_idx'], pos['st_pr']
+# #                     Pos['st_idx'], Pos['st_pr']
+#                              
+#                              )
+#             
+#             tmp_msg += "\n"
+#             
+#             tmp_msg += "pos['cu_idx']\t%d\npos['cu_pr']\t%.03f" % (
+#                              
+#                     pos['cu_idx'], pos['cu_pr']
+#                              
+#                              )
+            
+            tmp_msg += "\n"
+            tmp_msg += "\n"
+            
+        #/for item in lo_Pos_Target:
+
+    
+    #/if len(lo_Pos_Target) > 0
+
+#     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
+#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+#                  (
+#                   len(lo_Pos_Target)
+#                   , lenOf_LO_BDs_Tmp
+#                   , len(lo_Pos_Target) / lenOf_LO_BDs_Tmp
+#                   )
+#     tmp_msg += "\n"
+    
+    msg = "[%s:%d / %s] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    print()
+    print("%s" % (msg), file=sys.stderr)
+
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
 
     
     
