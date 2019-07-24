@@ -60,6 +60,9 @@ import numpy, matplotlib.pyplot as plt
 '''###################
     vars : global
 ###################'''
+STATUS_POS_EXIT__SL = "STATUS_POS_EXIT__SL"
+STATUS_POS_EXIT__TP = "STATUS_POS_EXIT__TP"
+STATUS_POS_EXIT__OTHERS = "STATUS_POS_EXIT__OTHERS"
 
 '''######################################
     funcs        
@@ -790,7 +793,8 @@ def tester_T_1__Buy_Up(request):
                         entry
                 ###################'''
                 #_20190707_135356:tmp
-                lo_Pos_Target.append([e0, Pos])
+                lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
+#                 lo_Pos_Target.append([e0, Pos])
                 
                 '''###################
                     step : B : j5 : Y : 3
@@ -923,7 +927,8 @@ def tester_T_1__Buy_Up(request):
                             entry
                     ###################'''
                     #_20190707_135356:tmp
-                    lo_Pos_Target.append([e0, Pos])
+                    lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__SL])
+#                     lo_Pos_Target.append([e0, Pos])
                     
                     '''###################
                         step : B : j6 : Y : 3
@@ -1311,7 +1316,8 @@ def tester_T_1__Buy_Up(request):
                     #_20190718_164717:tmp
                     
                     #_20190707_135356:tmp
-                    lo_Pos_Target.append([e0, Pos])
+                    lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
+#                     lo_Pos_Target.append([e0, Pos])
 
                     #_20190718_161110:fix
                     tmp_msg = "(step : B : j3 : Y : 2) Pos being entered..."
@@ -1459,7 +1465,8 @@ def tester_T_1__Buy_Up(request):
                                 entry
                         ###################'''
                         #_20190707_135356:tmp
-                        lo_Pos_Target.append([e0, Pos])
+                        lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__SL])
+#                         lo_Pos_Target.append([e0, Pos])
                         
                         '''###################
                             step : B : j4 : Y : 3
