@@ -49,7 +49,8 @@ import os
 from os import listdir
 from os.path import isfile, join, splitext
 
-import subprocess, copy, time, glob, re, datetime, math
+import subprocess, copy, time, glob, re, datetime, math, traceback
+# import subprocess, copy, time, glob, re, datetime, math
 
 '''###################
     import : user-installed
@@ -498,7 +499,10 @@ def tester_T_1__Buy_Up(request):
     ###################'''
     dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
     
-    fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
+    # SLICE-50
+    fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+    # SLICE-1000
+#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
 
     '''###################
         step : A : 2.1 : 2
@@ -639,27 +643,29 @@ def tester_T_1__Buy_Up(request):
         ###################'''
         cntOf_Loop += 1
         
-        # stopper
-        if i > maxOf_Loop : #if i > maxOf_Loop
-            
-            #log
-            tmp_msg = "(step : B : -1 : 1) stopper ==> detected. breaking..."
-            
-            msg = "[%s:%d / %s]\n%s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
-    
-            print()
-            print("%s" % (msg), file=sys.stderr)
-         
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            
-            #debug
-            break
-        
-        #/if i > maxOf_Loop
+        #_20190724_160545:tmp
+#         # stopper
+#         if i > maxOf_Loop : #if i > maxOf_Loop
+#             
+#             #log
+#             tmp_msg = "(step : B : -1 : 1) stopper ==> detected. breaking..."
+#             
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#     
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#          
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
+#             
+#             #debug
+#             break
+#         
+#         #/if i > maxOf_Loop
 
         
         '''###################
@@ -1316,18 +1322,67 @@ def tester_T_1__Buy_Up(request):
                     #_20190718_164717:tmp
                     
                     #_20190707_135356:tmp
-                    lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
+                    setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+                    
+                    lo_Pos_Target.append(setOf_Entries)
+#                     lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
 #                     lo_Pos_Target.append([e0, Pos])
 
                     #_20190718_161110:fix
                     tmp_msg = "(step : B : j3 : Y : 2) Pos being entered..."
                     tmp_msg += "\n"
                     
-                    tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
-                             (
-                              lo_Pos_Target[-1]['st_idx']
-                              , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
-                              )
+                    #_20190724_160947:fix
+                    #ref https://www.pythonforbeginners.com/error-handling/python-try-and-except/
+                    try :
+                        tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
+                                 (
+                                  #_20190724_163559:fix
+                                  lo_Pos_Target[-1][1]['st_idx']
+                                  , lo_BDs_Tmp[lo_Pos_Target[-1][1]['st_idx']].dateTime
+#                                   lo_Pos_Target[-1]['st_idx']
+#                                   , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
+                                  )
+                    
+                    #ref https://wiki.python.org/moin/HandlingExceptions
+#                     except TypeError :
+                    except TypeError as e :
+                        
+                        tmp_msg = e
+#                         tmp_msg = "TypeError"
+#                         tmp_msg += "\n"
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                     
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+                        
+                        tmp_msg = sys.exc_info()[0]
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                     
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+                        
+                        # traceback
+                        #ref https://stackoverflow.com/questions/1483429/how-to-print-an-exception-in-python
+                        traceback.print_exc()
+                        
+                        break
+                        
+#                     tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
+#                              (
+#                               lo_Pos_Target[-1]['st_idx']
+#                               , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
+#                               )
+                             
+                             
                     tmp_msg += "\n"
                     
                     msg = "[%s:%d / %s] %s" % \
@@ -1510,9 +1565,9 @@ def tester_T_1__Buy_Up(request):
                             step : B : j4 : Y : 5
                                 continue
                         ###################'''
-#                         continue
+                        continue
                                                 
-                        
+                        #_20190724_155910:tmp
                         #debug
                         break
                     
@@ -1653,11 +1708,14 @@ def tester_T_1__Buy_Up(request):
         step : A : 4
             reporting
     ###################'''
+    #_20190724_165655:next
+    
     '''###################
         step : A : 4.1
             item : 1
     ###################'''
-    tmp_msg = "(step : A : 4) reporting..."
+#     tmp_msg = "(step : A : 4) reporting..."
+    tmp_msg = "\n------------------------------ (step : A : 4) reporting..."
     tmp_msg += "\n"
     
 #     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
@@ -1679,7 +1737,8 @@ def tester_T_1__Buy_Up(request):
         step : A : 4.2
             item : 2.1 : header
     ###################'''
-    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit"
     tmp_msg += "\n"
     
     if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
@@ -1689,31 +1748,22 @@ def tester_T_1__Buy_Up(request):
             pos = item[1]
             e0 = item[0]
             
+            exit = item[2]
+            
             #_20190718_160718:tmp
-            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+            #_20190724_155401:tmp
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
                               
                     pos['st_idx'], pos['st_pr']
                     , pos['cu_idx'], pos['cu_pr']
                     
                     , e0.price_High
                     , e0.price_Low
+                    
+                    , exit
                               
                              )
-            
-#             tmp_msg += "pos['st_idx']\t%d\npos['st_pr']\t%.03f" % (
-#                              
-#                     pos['st_idx'], pos['st_pr']
-# #                     Pos['st_idx'], Pos['st_pr']
-#                              
-#                              )
-#             
-#             tmp_msg += "\n"
-#             
-#             tmp_msg += "pos['cu_idx']\t%d\npos['cu_pr']\t%.03f" % (
-#                              
-#                     pos['cu_idx'], pos['cu_pr']
-#                              
-#                              )
             
             tmp_msg += "\n"
             tmp_msg += "\n"
@@ -1723,15 +1773,6 @@ def tester_T_1__Buy_Up(request):
     
     #/if len(lo_Pos_Target) > 0
 
-#     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
-#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
-#                  (
-#                   len(lo_Pos_Target)
-#                   , lenOf_LO_BDs_Tmp
-#                   , len(lo_Pos_Target) / lenOf_LO_BDs_Tmp
-#                   )
-#     tmp_msg += "\n"
-    
     msg = "[%s:%d / %s] %s" % \
         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg
@@ -1744,8 +1785,6 @@ def tester_T_1__Buy_Up(request):
     lo_Lines_Log.append("\n")
     lo_Lines_Log.append("\n")
 
-    
-    
     '''###################
         step : A : X
             log-related
