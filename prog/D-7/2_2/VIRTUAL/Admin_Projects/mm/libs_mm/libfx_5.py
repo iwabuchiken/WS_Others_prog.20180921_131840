@@ -65,6 +65,8 @@ STATUS_POS_EXIT__SL = "STATUS_POS_EXIT__SL"
 STATUS_POS_EXIT__TP = "STATUS_POS_EXIT__TP"
 STATUS_POS_EXIT__OTHERS = "STATUS_POS_EXIT__OTHERS"
 
+DEBUG_SWITCH = False
+
 '''######################################
     funcs        
 ######################################'''
@@ -417,6 +419,173 @@ def dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
     @return: 
     
 ###################'''
+def tester_T_1__Report_Dat(\
+                           
+        fname_Dat, dpath_Log
+        , dpath_Src_Csv, fname_Src_Csv
+        , valOf_TP, valOf_SL, valOf_SPREAD
+        , lo_Pos_Target
+        , cntOf_Loop
+        
+                           ):
+#_20190727_154227:caller
+#_20190727_154232:head
+#_20190727_154236:wl:in-func
+    
+    print()
+    tmp_msg = "[%s:%d] tester_T_1__Report_Dat() : fname_Dat = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , fname_Dat
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+    
+    '''###################
+        step : 0
+            vars
+    ###################'''
+    lo_Lines_Dat = []
+    
+    cntOf_For_Loop = 0
+    
+    '''###################
+        step : 1
+            meta info
+    ###################'''
+    #_20190727_160245:tmp
+    tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s\n" % (\
+              fname_Src_Csv
+              , dpath_Src_Csv
+              
+              )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Dat.append(msg)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+
+    '''###################
+        step : 2
+            data
+    ###################'''
+    #_20190727_161050:tmp
+#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+    tmp_msg = "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+                 (
+                  len(lo_Pos_Target)
+                  , cntOf_Loop
+                  , len(lo_Pos_Target) / cntOf_Loop
+                  )
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+
+    '''###################
+        step : 2.2
+            item : 2
+    ###################'''
+    '''###################
+        step : 2.2
+            item : 2.1 : header
+    ###################'''
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit"
+    tmp_msg += "\n"
+    
+    if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
+        
+        for item in lo_Pos_Target:
+            
+            # count
+            cntOf_For_Loop += 1
+            
+            pos = item[1]
+            e0 = item[0]
+            
+            exit = item[2]
+
+            '''###################
+                step : 2.2
+                    item : 2.2 : values
+            ###################'''
+            #_20190718_160718:tmp
+            #_20190724_155401:tmp
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+            tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+                      
+                    cntOf_For_Loop
+                    , pos['st_idx'], pos['st_pr']
+                    , pos['cu_idx'], pos['cu_pr']
+                    
+                    , e0.price_High
+                    , e0.price_Low
+                    
+                    , exit
+                              
+                             )
+            
+            tmp_msg += "\n"
+#             tmp_msg += "\n"
+            
+        #/for item in lo_Pos_Target:
+
+    
+    #/if len(lo_Pos_Target) > 0
+    
+    msg = "[%s:%d / %s] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+    #/if DEBUG_SWITCH == True
+
+
+    lo_Lines_Dat.append(msg)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+    
+    
+    '''###################
+        step : A : X
+            write : file
+    ###################'''
+#     msg_Dat_CSV = "[%s / %s:%d]\n%s" % \
+    msg_Log_Dat = "%s" % \
+            (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+            "".join(lo_Lines_Dat)
+            )
+    
+    libs.write_Log(msg_Log_Dat, dpath_Log, fname_Dat, 0)
+
+#/ def tester_T_1__Report_Dat():
+    
+    
+'''###################
+    tester_T_1__Buy_Up
+
+    at : 2019/06/30 17:30:19 (?)
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
 def tester_T_1__Buy_Up(request):
     
 #_20190630_180022:caller
@@ -682,9 +851,17 @@ def tester_T_1__Buy_Up(request):
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg
             )
-
+        
+#         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#             
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
         print()
         print("%s" % (msg), file=sys.stderr)
+            
+        
+        #/if DEBUG_SWITCH == True
+
      
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
@@ -718,9 +895,11 @@ def tester_T_1__Buy_Up(request):
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
-         
-            print()
-            print("%s" % (msg), file=sys.stderr)
+            
+            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                print()
+                
+                print("%s" % (msg), file=sys.stderr)
 
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
@@ -749,9 +928,10 @@ def tester_T_1__Buy_Up(request):
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
-         
-            print()
-            print("%s" % (msg), file=sys.stderr)
+            
+            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                print()
+                print("%s" % (msg), file=sys.stderr)
 
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
@@ -786,9 +966,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -832,9 +1013,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -850,9 +1032,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -884,9 +1067,9 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -920,9 +1103,10 @@ def tester_T_1__Buy_Up(request):
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
-                 
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -973,9 +1157,10 @@ def tester_T_1__Buy_Up(request):
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
-                 
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -998,8 +1183,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1016,8 +1202,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1050,8 +1237,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1084,9 +1272,10 @@ def tester_T_1__Buy_Up(request):
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
-                 
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1102,9 +1291,10 @@ def tester_T_1__Buy_Up(request):
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
-                 
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1144,9 +1334,10 @@ def tester_T_1__Buy_Up(request):
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
-         
-            print()
-            print("%s" % (msg), file=sys.stderr)
+            
+            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                print()
+                print("%s" % (msg), file=sys.stderr)
 
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
@@ -1179,9 +1370,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -1204,9 +1396,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -1245,9 +1438,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -1272,9 +1466,10 @@ def tester_T_1__Buy_Up(request):
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-             
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -1307,9 +1502,10 @@ def tester_T_1__Buy_Up(request):
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
-                 
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1356,9 +1552,10 @@ def tester_T_1__Buy_Up(request):
                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                              , tmp_msg
                             )
-                     
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
                         
                         tmp_msg = sys.exc_info()[0]
                         
@@ -1367,8 +1564,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
                         
                         # traceback
                         #ref https://stackoverflow.com/questions/1483429/how-to-print-an-exception-in-python
@@ -1390,8 +1588,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1429,8 +1628,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1470,8 +1670,9 @@ def tester_T_1__Buy_Up(request):
                          , tmp_msg
                         )
                  
-                    print()
-                    print("%s" % (msg), file=sys.stderr)
+                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
         
                     lo_Lines_Log.append(msg)
                     lo_Lines_Log.append("\n")
@@ -1506,8 +1707,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
             
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
@@ -1554,8 +1756,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
             
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
@@ -1596,8 +1799,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
             
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
@@ -1631,8 +1835,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
             
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
@@ -1649,8 +1854,9 @@ def tester_T_1__Buy_Up(request):
                              , tmp_msg
                             )
                      
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
+                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
             
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
@@ -1688,8 +1894,9 @@ def tester_T_1__Buy_Up(request):
                      , tmp_msg
                     )
              
-                print()
-                print("%s" % (msg), file=sys.stderr)
+                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
@@ -1709,6 +1916,16 @@ def tester_T_1__Buy_Up(request):
             reporting
     ###################'''
     #_20190724_165655:next
+    #_20190727_154227:caller
+    tester_T_1__Report_Dat(\
+                fname_Dat, dpath_Log
+                , dpath_Src_Csv, fname_Src_Csv
+                
+                , valOf_TP, valOf_SL, valOf_SPREAD
+                , lo_Pos_Target
+                , cntOf_Loop
+                )
+    
     
     '''###################
         step : A : 4.1
@@ -1772,14 +1989,19 @@ def tester_T_1__Buy_Up(request):
 
     
     #/if len(lo_Pos_Target) > 0
-
+    
     msg = "[%s:%d / %s] %s" % \
         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg
         )
  
-    print()
-    print("%s" % (msg), file=sys.stderr)
+    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+    #/if DEBUG_SWITCH == True
+
 
     lo_Lines_Log.append(msg)
     lo_Lines_Log.append("\n")
