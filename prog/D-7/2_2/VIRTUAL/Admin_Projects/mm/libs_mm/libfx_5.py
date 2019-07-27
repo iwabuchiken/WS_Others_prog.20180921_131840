@@ -410,9 +410,9 @@ def dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
 #/ def dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
     
 '''###################
-    tester_T_1__Buy_Up
+    tester_T_1__Report_Dat
 
-    at : 2019/06/30 17:30:19 (?)
+    at : 2019/07/27 16:23:05
     
     @param : 
     
