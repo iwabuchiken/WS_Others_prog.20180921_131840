@@ -1,0 +1,1491 @@
+[20190731_175504 / libfx_5.py:3309]
+[libfx_5.py:123 / 20190731_175453]
+tester_T_1__Buy_Up ==> starts
+
+[libfx_5.py:151 / 20190731_175453] new dir created => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log\BUSL3_No_T_1.(20190731_175453).dir
+
+[libfx_5.py:151 / 20190731_175453] new dir created => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\log\BUSL3_No_T_1.(20190731_175453).dir
+
+[libfx_5.py:1914 / 20190731_175453]
+fname_Src_Csv	44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv
+dpath_Src_Csv	C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw
+[libfx_4.py:1891 / 20190731_175454]
+len(lo_BDs) ==> 50
+
+
+[libfx_5.py:318 / 20190731_175454]
+lo_BDs : lo_BDs[0] = 2019.04.24 12:30 / lo_BDs[-1] = 2019.04.24 00:15
+
+[libfx_5.py:346 / 20190731_175454]
+lo_BDs(post revesing) : lo_BDs[0] = 2019.04.24 00:15 / lo_BDs[-1] = 2019.04.24 12:30 (len = 50)
+
+[libfx_5.py:730 / 20190731_175454]
+(step : B : 0) =================================== loop : 10
+[libfx_5.py:1208 / 20190731_175454]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 02:45
+
+[libfx_5.py:1244 / 20190731_175454] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 02:45
+
+[libfx_5.py:1270 / 20190731_175454] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 02:45)
+
+[libfx_5.py:1312 / 20190731_175454] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	10
+st_pr	79.341
+cu_idx	10
+cu_pr	79.341
+
+
+[libfx_5.py:1340 / 20190731_175454]
+ts_TP	79.401	/	e0.price_High	79.368
+ts_SL	79.311	/	e0.price_Low	79.328
+
+
+[libfx_5.py:1543 / 20190731_175454] 
+ts_TP	79.401
+e0.price_High	79.368
+
+
+[libfx_5.py:1672 / 20190731_175454] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	79.311
+e0.price_Low	79.328
+
+
+[libfx_5.py:1708 / 20190731_175454] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	10
+Pos["st_pr"]	79.341
+Pos["cu_idx"]	10
+Pos["cu_pr"]	79.340
+
+
+[libfx_5.py:1727 / 20190731_175454] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175454]
+(step : B : 0) =================================== loop : 11
+[libfx_5.py:769 / 20190731_175454] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 03:00
+
+[libfx_5.py:802 / 20190731_175454] (step : B : j1 : Y : 2)
+ts_TP	79.400	/	e0.price_High	79.347
+ts_SL	79.310	/	e0.price_Low	79.298
+
+
+[libfx_5.py:941 / 20190731_175454] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	79.400
+e0.price_High	79.347
+
+
+[libfx_5.py:977 / 20190731_175454] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	79.310
+e0.price_Low	79.298
+
+
+[libfx_5.py:1031 / 20190731_175454] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	79.310
+e0.price_Low	79.298
+lo_Pos_Target[-1]['st_idx']	10
+
+
+[libfx_5.py:1056 / 20190731_175454] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175454] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:730 / 20190731_175454]
+(step : B : 0) =================================== loop : 12
+[libfx_5.py:1208 / 20190731_175454]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 03:15
+
+[libfx_5.py:1244 / 20190731_175454] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 03:15
+
+[libfx_5.py:1270 / 20190731_175454] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 03:15)
+
+[libfx_5.py:1312 / 20190731_175454] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	12
+st_pr	79.309
+cu_idx	12
+cu_pr	79.309
+
+
+[libfx_5.py:1340 / 20190731_175455]
+ts_TP	79.369	/	e0.price_High	79.314
+ts_SL	79.279	/	e0.price_Low	79.243
+
+
+[libfx_5.py:1543 / 20190731_175455] 
+ts_TP	79.369
+e0.price_High	79.314
+
+
+[libfx_5.py:1580 / 20190731_175455] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	79.279
+e0.price_Low	79.243
+
+
+[libfx_5.py:1629 / 20190731_175455] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175455]
+(step : B : 0) =================================== loop : 13
+[libfx_5.py:1208 / 20190731_175455]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 03:30
+
+[libfx_5.py:1244 / 20190731_175455] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 03:30
+
+[libfx_5.py:1270 / 20190731_175455] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 03:30)
+
+[libfx_5.py:1312 / 20190731_175455] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	13
+st_pr	79.274
+cu_idx	13
+cu_pr	79.274
+
+
+[libfx_5.py:1340 / 20190731_175455]
+ts_TP	79.334	/	e0.price_High	79.319
+ts_SL	79.244	/	e0.price_Low	79.256
+
+
+[libfx_5.py:1543 / 20190731_175455] 
+ts_TP	79.334
+e0.price_High	79.319
+
+
+[libfx_5.py:1672 / 20190731_175455] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	79.244
+e0.price_Low	79.256
+
+
+[libfx_5.py:1708 / 20190731_175455] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	13
+Pos["st_pr"]	79.274
+Pos["cu_idx"]	13
+Pos["cu_pr"]	79.309
+
+
+[libfx_5.py:1727 / 20190731_175455] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175455]
+(step : B : 0) =================================== loop : 14
+[libfx_5.py:769 / 20190731_175455] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 03:45
+
+[libfx_5.py:802 / 20190731_175455] (step : B : j1 : Y : 2)
+ts_TP	79.370	/	e0.price_High	79.345
+ts_SL	79.280	/	e0.price_Low	79.298
+
+
+[libfx_5.py:941 / 20190731_175455] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	79.370
+e0.price_High	79.345
+
+
+[libfx_5.py:1110 / 20190731_175455] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	79.280
+e0.price_Low	79.298
+
+
+[libfx_5.py:1146 / 20190731_175455] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	13
+Pos["st_pr"]	79.274
+Pos["cu_idx"]	14
+Pos["cu_pr"]	79.306
+
+
+[libfx_5.py:1165 / 20190731_175455] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175455]
+(step : B : 0) =================================== loop : 15
+[libfx_5.py:769 / 20190731_175455] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 04:00
+
+[libfx_5.py:802 / 20190731_175455] (step : B : j1 : Y : 2)
+ts_TP	79.366	/	e0.price_High	79.332
+ts_SL	79.276	/	e0.price_Low	79.270
+
+
+[libfx_5.py:941 / 20190731_175455] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	79.366
+e0.price_High	79.332
+
+
+[libfx_5.py:977 / 20190731_175455] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	79.276
+e0.price_Low	79.270
+
+
+[libfx_5.py:1031 / 20190731_175455] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	79.276
+e0.price_Low	79.270
+lo_Pos_Target[-1]['st_idx']	13
+
+
+[libfx_5.py:1056 / 20190731_175455] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175455] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:730 / 20190731_175456]
+(step : B : 0) =================================== loop : 16
+[libfx_5.py:1208 / 20190731_175456]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 04:15
+
+[libfx_5.py:1244 / 20190731_175456] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 04:15
+
+[libfx_5.py:1270 / 20190731_175456] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 04:15)
+
+[libfx_5.py:1312 / 20190731_175456] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	16
+st_pr	79.296
+cu_idx	16
+cu_pr	79.296
+
+
+[libfx_5.py:1340 / 20190731_175456]
+ts_TP	79.356	/	e0.price_High	79.357
+ts_SL	79.266	/	e0.price_Low	79.259
+
+
+[libfx_5.py:1376 / 20190731_175456] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	79.356
+e0.price_High	79.357
+
+
+[libfx_5.py:1461 / 20190731_175456] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	16 (dateTime = 2019.04.24 04:15)
+
+
+[libfx_5.py:1501 / 20190731_175456] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175456]
+(step : B : 0) =================================== loop : 17
+[libfx_5.py:1208 / 20190731_175456]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 04:30
+
+[libfx_5.py:1244 / 20190731_175456] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 04:30
+
+[libfx_5.py:1270 / 20190731_175456] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 04:30)
+
+[libfx_5.py:1312 / 20190731_175456] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	17
+st_pr	79.256
+cu_idx	17
+cu_pr	79.256
+
+
+[libfx_5.py:1340 / 20190731_175456]
+ts_TP	79.316	/	e0.price_High	79.256
+ts_SL	79.226	/	e0.price_Low	78.704
+
+
+[libfx_5.py:1543 / 20190731_175456] 
+ts_TP	79.316
+e0.price_High	79.256
+
+
+[libfx_5.py:1580 / 20190731_175456] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	79.226
+e0.price_Low	78.704
+
+
+[libfx_5.py:1629 / 20190731_175456] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175456]
+(step : B : 0) =================================== loop : 18
+[libfx_5.py:1208 / 20190731_175456]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 04:45
+
+[libfx_5.py:1244 / 20190731_175456] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 04:45
+
+[libfx_5.py:1270 / 20190731_175456] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 04:45)
+
+[libfx_5.py:1312 / 20190731_175456] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	18
+st_pr	78.808
+cu_idx	18
+cu_pr	78.808
+
+
+[libfx_5.py:1340 / 20190731_175456]
+ts_TP	78.868	/	e0.price_High	78.808
+ts_SL	78.778	/	e0.price_Low	78.683
+
+
+[libfx_5.py:1543 / 20190731_175456] 
+ts_TP	78.868
+e0.price_High	78.808
+
+
+[libfx_5.py:1580 / 20190731_175456] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.778
+e0.price_Low	78.683
+
+
+[libfx_5.py:1629 / 20190731_175456] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175456]
+(step : B : 0) =================================== loop : 19
+[libfx_5.py:1208 / 20190731_175456]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 05:00
+
+[libfx_5.py:1244 / 20190731_175456] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 05:00
+
+[libfx_5.py:1270 / 20190731_175456] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 05:00)
+
+[libfx_5.py:1312 / 20190731_175456] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	19
+st_pr	78.749
+cu_idx	19
+cu_pr	78.749
+
+
+[libfx_5.py:1340 / 20190731_175456]
+ts_TP	78.809	/	e0.price_High	78.750
+ts_SL	78.719	/	e0.price_Low	78.598
+
+
+[libfx_5.py:1543 / 20190731_175456] 
+ts_TP	78.809
+e0.price_High	78.750
+
+
+[libfx_5.py:1580 / 20190731_175456] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.719
+e0.price_Low	78.598
+
+
+[libfx_5.py:1629 / 20190731_175456] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175456]
+(step : B : 0) =================================== loop : 20
+[libfx_5.py:1208 / 20190731_175456]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 05:15
+
+[libfx_5.py:1244 / 20190731_175456] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 05:15
+
+[libfx_5.py:1270 / 20190731_175456] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 05:15)
+
+[libfx_5.py:1312 / 20190731_175456] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	20
+st_pr	78.644
+cu_idx	20
+cu_pr	78.644
+
+
+[libfx_5.py:1340 / 20190731_175457]
+ts_TP	78.704	/	e0.price_High	78.710
+ts_SL	78.614	/	e0.price_Low	78.606
+
+
+[libfx_5.py:1376 / 20190731_175457] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	78.704
+e0.price_High	78.710
+
+
+[libfx_5.py:1461 / 20190731_175457] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	20 (dateTime = 2019.04.24 05:15)
+
+
+[libfx_5.py:1501 / 20190731_175457] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175457]
+(step : B : 0) =================================== loop : 21
+[libfx_5.py:1208 / 20190731_175457]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 05:30
+
+[libfx_5.py:1244 / 20190731_175457] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 05:30
+
+[libfx_5.py:1270 / 20190731_175457] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 05:30)
+
+[libfx_5.py:1312 / 20190731_175457] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	21
+st_pr	78.689
+cu_idx	21
+cu_pr	78.689
+
+
+[libfx_5.py:1340 / 20190731_175457]
+ts_TP	78.749	/	e0.price_High	78.744
+ts_SL	78.659	/	e0.price_Low	78.681
+
+
+[libfx_5.py:1543 / 20190731_175457] 
+ts_TP	78.749
+e0.price_High	78.744
+
+
+[libfx_5.py:1672 / 20190731_175457] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.659
+e0.price_Low	78.681
+
+
+[libfx_5.py:1708 / 20190731_175457] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	21
+Pos["st_pr"]	78.689
+Pos["cu_idx"]	21
+Pos["cu_pr"]	78.691
+
+
+[libfx_5.py:1727 / 20190731_175457] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175457]
+(step : B : 0) =================================== loop : 22
+[libfx_5.py:769 / 20190731_175457] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 05:45
+
+[libfx_5.py:802 / 20190731_175457] (step : B : j1 : Y : 2)
+ts_TP	78.748	/	e0.price_High	78.707
+ts_SL	78.658	/	e0.price_Low	78.642
+
+
+[libfx_5.py:941 / 20190731_175457] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.748
+e0.price_High	78.707
+
+
+[libfx_5.py:977 / 20190731_175457] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	78.658
+e0.price_Low	78.642
+
+
+[libfx_5.py:1031 / 20190731_175457] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	78.658
+e0.price_Low	78.642
+lo_Pos_Target[-1]['st_idx']	21
+
+
+[libfx_5.py:1056 / 20190731_175457] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175457] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:730 / 20190731_175457]
+(step : B : 0) =================================== loop : 23
+[libfx_5.py:1208 / 20190731_175457]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 06:00
+
+[libfx_5.py:1244 / 20190731_175457] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 06:00
+
+[libfx_5.py:1270 / 20190731_175457] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 06:00)
+
+[libfx_5.py:1312 / 20190731_175457] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	23
+st_pr	78.694
+cu_idx	23
+cu_pr	78.694
+
+
+[libfx_5.py:1340 / 20190731_175457]
+ts_TP	78.754	/	e0.price_High	78.694
+ts_SL	78.664	/	e0.price_Low	78.610
+
+
+[libfx_5.py:1543 / 20190731_175457] 
+ts_TP	78.754
+e0.price_High	78.694
+
+
+[libfx_5.py:1580 / 20190731_175457] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.664
+e0.price_Low	78.610
+
+
+[libfx_5.py:1629 / 20190731_175457] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175457]
+(step : B : 0) =================================== loop : 24
+[libfx_5.py:1208 / 20190731_175457]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 06:15
+
+[libfx_5.py:1244 / 20190731_175457] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 06:15
+
+[libfx_5.py:1270 / 20190731_175457] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 06:15)
+
+[libfx_5.py:1312 / 20190731_175457] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	24
+st_pr	78.666
+cu_idx	24
+cu_pr	78.666
+
+
+[libfx_5.py:1340 / 20190731_175457]
+ts_TP	78.726	/	e0.price_High	78.666
+ts_SL	78.636	/	e0.price_Low	78.606
+
+
+[libfx_5.py:1543 / 20190731_175457] 
+ts_TP	78.726
+e0.price_High	78.666
+
+
+[libfx_5.py:1580 / 20190731_175458] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.636
+e0.price_Low	78.606
+
+
+[libfx_5.py:1629 / 20190731_175458] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175458]
+(step : B : 0) =================================== loop : 25
+[libfx_5.py:1208 / 20190731_175458]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 06:30
+
+[libfx_5.py:1244 / 20190731_175458] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 06:30
+
+[libfx_5.py:1270 / 20190731_175458] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 06:30)
+
+[libfx_5.py:1312 / 20190731_175458] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	25
+st_pr	78.644
+cu_idx	25
+cu_pr	78.644
+
+
+[libfx_5.py:1340 / 20190731_175458]
+ts_TP	78.704	/	e0.price_High	78.650
+ts_SL	78.614	/	e0.price_Low	78.584
+
+
+[libfx_5.py:1543 / 20190731_175458] 
+ts_TP	78.704
+e0.price_High	78.650
+
+
+[libfx_5.py:1580 / 20190731_175458] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.614
+e0.price_Low	78.584
+
+
+[libfx_5.py:1629 / 20190731_175458] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175458]
+(step : B : 0) =================================== loop : 26
+[libfx_5.py:1208 / 20190731_175458]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 06:45
+
+[libfx_5.py:1244 / 20190731_175458] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 06:45
+
+[libfx_5.py:1270 / 20190731_175458] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 06:45)
+
+[libfx_5.py:1312 / 20190731_175458] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	26
+st_pr	78.586
+cu_idx	26
+cu_pr	78.586
+
+
+[libfx_5.py:1340 / 20190731_175458]
+ts_TP	78.646	/	e0.price_High	78.606
+ts_SL	78.556	/	e0.price_Low	78.495
+
+
+[libfx_5.py:1543 / 20190731_175458] 
+ts_TP	78.646
+e0.price_High	78.606
+
+
+[libfx_5.py:1580 / 20190731_175458] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.556
+e0.price_Low	78.495
+
+
+[libfx_5.py:1629 / 20190731_175458] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175458]
+(step : B : 0) =================================== loop : 27
+[libfx_5.py:1208 / 20190731_175458]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 07:00
+
+[libfx_5.py:1244 / 20190731_175458] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 07:00
+
+[libfx_5.py:1270 / 20190731_175458] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 07:00)
+
+[libfx_5.py:1312 / 20190731_175458] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	27
+st_pr	78.503
+cu_idx	27
+cu_pr	78.503
+
+
+[libfx_5.py:1340 / 20190731_175458]
+ts_TP	78.563	/	e0.price_High	78.565
+ts_SL	78.473	/	e0.price_Low	78.499
+
+
+[libfx_5.py:1376 / 20190731_175458] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	78.563
+e0.price_High	78.565
+
+
+[libfx_5.py:1461 / 20190731_175458] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	27 (dateTime = 2019.04.24 07:00)
+
+
+[libfx_5.py:1501 / 20190731_175458] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175458]
+(step : B : 0) =================================== loop : 28
+[libfx_5.py:1208 / 20190731_175458]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 07:15
+
+[libfx_5.py:1244 / 20190731_175459] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 07:15
+
+[libfx_5.py:1270 / 20190731_175459] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 07:15)
+
+[libfx_5.py:1312 / 20190731_175459] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	28
+st_pr	78.555
+cu_idx	28
+cu_pr	78.555
+
+
+[libfx_5.py:1340 / 20190731_175459]
+ts_TP	78.615	/	e0.price_High	78.596
+ts_SL	78.525	/	e0.price_Low	78.550
+
+
+[libfx_5.py:1543 / 20190731_175459] 
+ts_TP	78.615
+e0.price_High	78.596
+
+
+[libfx_5.py:1672 / 20190731_175459] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.525
+e0.price_Low	78.550
+
+
+[libfx_5.py:1708 / 20190731_175459] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	28
+Pos["cu_pr"]	78.593
+
+
+[libfx_5.py:1727 / 20190731_175459] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175459]
+(step : B : 0) =================================== loop : 29
+[libfx_5.py:769 / 20190731_175459] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 07:30
+
+[libfx_5.py:802 / 20190731_175459] (step : B : j1 : Y : 2)
+ts_TP	78.654	/	e0.price_High	78.619
+ts_SL	78.564	/	e0.price_Low	78.566
+
+
+[libfx_5.py:941 / 20190731_175459] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.654
+e0.price_High	78.619
+
+
+[libfx_5.py:1110 / 20190731_175459] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.564
+e0.price_Low	78.566
+
+
+[libfx_5.py:1146 / 20190731_175459] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	29
+Pos["cu_pr"]	78.615
+
+
+[libfx_5.py:1165 / 20190731_175459] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175459]
+(step : B : 0) =================================== loop : 30
+[libfx_5.py:769 / 20190731_175459] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 07:45
+
+[libfx_5.py:802 / 20190731_175459] (step : B : j1 : Y : 2)
+ts_TP	78.674	/	e0.price_High	78.641
+ts_SL	78.584	/	e0.price_Low	78.613
+
+
+[libfx_5.py:941 / 20190731_175459] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.674
+e0.price_High	78.641
+
+
+[libfx_5.py:1110 / 20190731_175459] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.584
+e0.price_Low	78.613
+
+
+[libfx_5.py:1146 / 20190731_175459] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	30
+Pos["cu_pr"]	78.623
+
+
+[libfx_5.py:1165 / 20190731_175459] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175459]
+(step : B : 0) =================================== loop : 31
+[libfx_5.py:769 / 20190731_175459] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 08:00
+
+[libfx_5.py:802 / 20190731_175459] (step : B : j1 : Y : 2)
+ts_TP	78.685	/	e0.price_High	78.641
+ts_SL	78.595	/	e0.price_Low	78.598
+
+
+[libfx_5.py:941 / 20190731_175459] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.685
+e0.price_High	78.641
+
+
+[libfx_5.py:1110 / 20190731_175459] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.595
+e0.price_Low	78.598
+
+
+[libfx_5.py:1146 / 20190731_175459] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	31
+Pos["cu_pr"]	78.604
+
+
+[libfx_5.py:1165 / 20190731_175459] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 32
+[libfx_5.py:769 / 20190731_175500] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 08:15
+
+[libfx_5.py:802 / 20190731_175500] (step : B : j1 : Y : 2)
+ts_TP	78.668	/	e0.price_High	78.647
+ts_SL	78.578	/	e0.price_Low	78.604
+
+
+[libfx_5.py:941 / 20190731_175500] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.668
+e0.price_High	78.647
+
+
+[libfx_5.py:1110 / 20190731_175500] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.578
+e0.price_Low	78.604
+
+
+[libfx_5.py:1146 / 20190731_175500] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	32
+Pos["cu_pr"]	78.643
+
+
+[libfx_5.py:1165 / 20190731_175500] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 33
+[libfx_5.py:769 / 20190731_175500] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 08:30
+
+[libfx_5.py:802 / 20190731_175500] (step : B : j1 : Y : 2)
+ts_TP	78.702	/	e0.price_High	78.655
+ts_SL	78.612	/	e0.price_Low	78.634
+
+
+[libfx_5.py:941 / 20190731_175500] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.702
+e0.price_High	78.655
+
+
+[libfx_5.py:1110 / 20190731_175500] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.612
+e0.price_Low	78.634
+
+
+[libfx_5.py:1146 / 20190731_175500] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	33
+Pos["cu_pr"]	78.644
+
+
+[libfx_5.py:1165 / 20190731_175500] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 34
+[libfx_5.py:769 / 20190731_175500] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 08:45
+
+[libfx_5.py:802 / 20190731_175500] (step : B : j1 : Y : 2)
+ts_TP	78.704	/	e0.price_High	78.658
+ts_SL	78.614	/	e0.price_Low	78.625
+
+
+[libfx_5.py:941 / 20190731_175500] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.704
+e0.price_High	78.658
+
+
+[libfx_5.py:1110 / 20190731_175500] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.614
+e0.price_Low	78.625
+
+
+[libfx_5.py:1146 / 20190731_175500] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	28
+Pos["st_pr"]	78.555
+Pos["cu_idx"]	34
+Pos["cu_pr"]	78.650
+
+
+[libfx_5.py:1165 / 20190731_175500] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 35
+[libfx_5.py:769 / 20190731_175500] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 09:00
+
+[libfx_5.py:802 / 20190731_175500] (step : B : j1 : Y : 2)
+ts_TP	78.709	/	e0.price_High	78.651
+ts_SL	78.619	/	e0.price_Low	78.574
+
+
+[libfx_5.py:941 / 20190731_175500] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.709
+e0.price_High	78.651
+
+
+[libfx_5.py:977 / 20190731_175500] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	78.619
+e0.price_Low	78.574
+
+
+[libfx_5.py:1031 / 20190731_175500] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	78.619
+e0.price_Low	78.574
+lo_Pos_Target[-1]['st_idx']	28
+
+
+[libfx_5.py:1056 / 20190731_175500] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175500] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 36
+[libfx_5.py:1208 / 20190731_175500]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 09:15
+
+[libfx_5.py:1244 / 20190731_175500] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 09:15
+
+[libfx_5.py:1270 / 20190731_175500] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 09:15)
+
+[libfx_5.py:1312 / 20190731_175500] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	36
+st_pr	78.578
+cu_idx	36
+cu_pr	78.578
+
+
+[libfx_5.py:1340 / 20190731_175500]
+ts_TP	78.638	/	e0.price_High	78.585
+ts_SL	78.548	/	e0.price_Low	78.538
+
+
+[libfx_5.py:1543 / 20190731_175500] 
+ts_TP	78.638
+e0.price_High	78.585
+
+
+[libfx_5.py:1580 / 20190731_175500] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.548
+e0.price_Low	78.538
+
+
+[libfx_5.py:1629 / 20190731_175500] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175500]
+(step : B : 0) =================================== loop : 37
+[libfx_5.py:1208 / 20190731_175500]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 09:30
+
+[libfx_5.py:1244 / 20190731_175500] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 09:30
+
+[libfx_5.py:1270 / 20190731_175500] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 09:30)
+
+[libfx_5.py:1312 / 20190731_175500] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	37
+st_pr	78.550
+cu_idx	37
+cu_pr	78.550
+
+
+[libfx_5.py:1340 / 20190731_175500]
+ts_TP	78.610	/	e0.price_High	78.630
+ts_SL	78.520	/	e0.price_Low	78.545
+
+
+[libfx_5.py:1376 / 20190731_175500] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	78.610
+e0.price_High	78.630
+
+
+[libfx_5.py:1461 / 20190731_175500] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	37 (dateTime = 2019.04.24 09:30)
+
+
+[libfx_5.py:1501 / 20190731_175500] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175501]
+(step : B : 0) =================================== loop : 38
+[libfx_5.py:1208 / 20190731_175501]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 09:45
+
+[libfx_5.py:1244 / 20190731_175501] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 09:45
+
+[libfx_5.py:1270 / 20190731_175501] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 09:45)
+
+[libfx_5.py:1312 / 20190731_175501] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	38
+st_pr	78.624
+cu_idx	38
+cu_pr	78.624
+
+
+[libfx_5.py:1340 / 20190731_175501]
+ts_TP	78.684	/	e0.price_High	78.634
+ts_SL	78.594	/	e0.price_Low	78.567
+
+
+[libfx_5.py:1543 / 20190731_175501] 
+ts_TP	78.684
+e0.price_High	78.634
+
+
+[libfx_5.py:1580 / 20190731_175501] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.594
+e0.price_Low	78.567
+
+
+[libfx_5.py:1629 / 20190731_175501] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175501]
+(step : B : 0) =================================== loop : 39
+[libfx_5.py:1208 / 20190731_175501]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 10:00
+
+[libfx_5.py:1244 / 20190731_175501] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 10:00
+
+[libfx_5.py:1270 / 20190731_175501] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 10:00)
+
+[libfx_5.py:1312 / 20190731_175501] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	39
+st_pr	78.579
+cu_idx	39
+cu_pr	78.579
+
+
+[libfx_5.py:1340 / 20190731_175501]
+ts_TP	78.639	/	e0.price_High	78.641
+ts_SL	78.549	/	e0.price_Low	78.548
+
+
+[libfx_5.py:1376 / 20190731_175501] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	78.639
+e0.price_High	78.641
+
+
+[libfx_5.py:1461 / 20190731_175501] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	39 (dateTime = 2019.04.24 10:00)
+
+
+[libfx_5.py:1501 / 20190731_175501] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175501]
+(step : B : 0) =================================== loop : 40
+[libfx_5.py:1208 / 20190731_175501]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 10:15
+
+[libfx_5.py:1244 / 20190731_175501] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 10:15
+
+[libfx_5.py:1270 / 20190731_175501] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 10:15)
+
+[libfx_5.py:1312 / 20190731_175501] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	40
+st_pr	78.634
+cu_idx	40
+cu_pr	78.634
+
+
+[libfx_5.py:1340 / 20190731_175501]
+ts_TP	78.694	/	e0.price_High	78.720
+ts_SL	78.604	/	e0.price_Low	78.604
+
+
+[libfx_5.py:1376 / 20190731_175501] (step : B : j3 : Y : 1)
+ts_TP <= e0.price_Hights_TP	78.694
+e0.price_High	78.720
+
+
+[libfx_5.py:1461 / 20190731_175501] (step : B : j3 : Y : 2) Pos being entered...
+lo_Pos_Target[-1]['st_idx']	40 (dateTime = 2019.04.24 10:15)
+
+
+[libfx_5.py:1501 / 20190731_175501] (step : B : j3 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175501]
+(step : B : 0) =================================== loop : 41
+[libfx_5.py:1208 / 20190731_175502]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 10:30
+
+[libfx_5.py:1244 / 20190731_175502] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 10:30
+
+[libfx_5.py:1270 / 20190731_175502] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 10:30)
+
+[libfx_5.py:1312 / 20190731_175502] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	41
+st_pr	78.714
+cu_idx	41
+cu_pr	78.714
+
+
+[libfx_5.py:1340 / 20190731_175502]
+ts_TP	78.774	/	e0.price_High	78.750
+ts_SL	78.684	/	e0.price_Low	78.683
+
+
+[libfx_5.py:1543 / 20190731_175502] 
+ts_TP	78.774
+e0.price_High	78.750
+
+
+[libfx_5.py:1580 / 20190731_175502] (step : B : j4 : Y : 1)
+ts_SL >= e0.price_Low
+ts_SL	78.684
+e0.price_Low	78.683
+
+
+[libfx_5.py:1629 / 20190731_175502] (step : B : j4 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:730 / 20190731_175502]
+(step : B : 0) =================================== loop : 42
+[libfx_5.py:1208 / 20190731_175502]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 10:45
+
+[libfx_5.py:1244 / 20190731_175502] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 10:45
+
+[libfx_5.py:1270 / 20190731_175502] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 10:45)
+
+[libfx_5.py:1312 / 20190731_175502] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	42
+st_pr	78.695
+cu_idx	42
+cu_pr	78.695
+
+
+[libfx_5.py:1340 / 20190731_175502]
+ts_TP	78.755	/	e0.price_High	78.710
+ts_SL	78.665	/	e0.price_Low	78.683
+
+
+[libfx_5.py:1543 / 20190731_175502] 
+ts_TP	78.755
+e0.price_High	78.710
+
+
+[libfx_5.py:1672 / 20190731_175502] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.665
+e0.price_Low	78.683
+
+
+[libfx_5.py:1708 / 20190731_175502] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	42
+Pos["st_pr"]	78.695
+Pos["cu_idx"]	42
+Pos["cu_pr"]	78.704
+
+
+[libfx_5.py:1727 / 20190731_175502] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175502]
+(step : B : 0) =================================== loop : 43
+[libfx_5.py:769 / 20190731_175502] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 11:00
+
+[libfx_5.py:802 / 20190731_175502] (step : B : j1 : Y : 2)
+ts_TP	78.764	/	e0.price_High	78.725
+ts_SL	78.674	/	e0.price_Low	78.632
+
+
+[libfx_5.py:941 / 20190731_175502] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.764
+e0.price_High	78.725
+
+
+[libfx_5.py:977 / 20190731_175502] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	78.674
+e0.price_Low	78.632
+
+
+[libfx_5.py:1031 / 20190731_175502] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	78.674
+e0.price_Low	78.632
+lo_Pos_Target[-1]['st_idx']	42
+
+
+[libfx_5.py:1056 / 20190731_175502] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175502] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:730 / 20190731_175502]
+(step : B : 0) =================================== loop : 44
+[libfx_5.py:1208 / 20190731_175502]
+(step : B : j1 : N) flg_Pos --> False : 2019.04.24 11:15
+
+[libfx_5.py:1244 / 20190731_175502] (step : B : j2 : Y)
+pattern --> detected : 2019.04.24 11:15
+
+[libfx_5.py:1270 / 20190731_175503] (step : B : j2 : Y : 2)
+flg_Pos ==> now, true (True, 2019.04.24 11:15)
+
+[libfx_5.py:1312 / 20190731_175503] (step : B : j2 : Y : 3)
+Pos ==> init done
+st_idx	44
+st_pr	78.686
+cu_idx	44
+cu_pr	78.686
+
+
+[libfx_5.py:1340 / 20190731_175503]
+ts_TP	78.746	/	e0.price_High	78.705
+ts_SL	78.656	/	e0.price_Low	78.675
+
+
+[libfx_5.py:1543 / 20190731_175503] 
+ts_TP	78.746
+e0.price_High	78.705
+
+
+[libfx_5.py:1672 / 20190731_175503] (step : B : j4 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.656
+e0.price_Low	78.675
+
+
+[libfx_5.py:1708 / 20190731_175503] (step : B : j4 : N : 1.1) updating Pos...
+Pos["st_idx"]	44
+Pos["st_pr"]	78.686
+Pos["cu_idx"]	44
+Pos["cu_pr"]	78.698
+
+
+[libfx_5.py:1727 / 20190731_175503] (step : B : j4 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175503]
+(step : B : 0) =================================== loop : 45
+[libfx_5.py:769 / 20190731_175503] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 11:30
+
+[libfx_5.py:802 / 20190731_175503] (step : B : j1 : Y : 2)
+ts_TP	78.757	/	e0.price_High	78.737
+ts_SL	78.667	/	e0.price_Low	78.688
+
+
+[libfx_5.py:941 / 20190731_175503] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.757
+e0.price_High	78.737
+
+
+[libfx_5.py:1110 / 20190731_175503] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.667
+e0.price_Low	78.688
+
+
+[libfx_5.py:1146 / 20190731_175503] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	44
+Pos["st_pr"]	78.686
+Pos["cu_idx"]	45
+Pos["cu_pr"]	78.723
+
+
+[libfx_5.py:1165 / 20190731_175503] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175503]
+(step : B : 0) =================================== loop : 46
+[libfx_5.py:769 / 20190731_175503] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 11:45
+
+[libfx_5.py:802 / 20190731_175503] (step : B : j1 : Y : 2)
+ts_TP	78.784	/	e0.price_High	78.748
+ts_SL	78.694	/	e0.price_Low	78.711
+
+
+[libfx_5.py:941 / 20190731_175503] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.784
+e0.price_High	78.748
+
+
+[libfx_5.py:1110 / 20190731_175504] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.694
+e0.price_Low	78.711
+
+
+[libfx_5.py:1146 / 20190731_175504] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	44
+Pos["st_pr"]	78.686
+Pos["cu_idx"]	46
+Pos["cu_pr"]	78.747
+
+
+[libfx_5.py:1165 / 20190731_175504] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175504]
+(step : B : 0) =================================== loop : 47
+[libfx_5.py:769 / 20190731_175504] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 12:00
+
+[libfx_5.py:802 / 20190731_175504] (step : B : j1 : Y : 2)
+ts_TP	78.806	/	e0.price_High	78.798
+ts_SL	78.716	/	e0.price_Low	78.723
+
+
+[libfx_5.py:941 / 20190731_175504] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.806
+e0.price_High	78.798
+
+
+[libfx_5.py:1110 / 20190731_175504] (step : B : j6 : N : 1)
+ts_SL < e0.price_Low
+ts_SL	78.716
+e0.price_Low	78.723
+
+
+[libfx_5.py:1146 / 20190731_175504] (step : B : j6 : N : 1.1) updating Pos...
+Pos["st_idx"]	44
+Pos["st_pr"]	78.686
+Pos["cu_idx"]	47
+Pos["cu_pr"]	78.797
+
+
+[libfx_5.py:1165 / 20190731_175504] (step : B : j6 : N : 2) continuing...
+
+[libfx_5.py:730 / 20190731_175504]
+(step : B : 0) =================================== loop : 48
+[libfx_5.py:769 / 20190731_175504] (step : B : j1 : Y)
+flg_Pos --> True : 2019.04.24 12:15
+
+[libfx_5.py:802 / 20190731_175504] (step : B : j1 : Y : 2)
+ts_TP	78.856	/	e0.price_High	78.804
+ts_SL	78.766	/	e0.price_Low	78.761
+
+
+[libfx_5.py:941 / 20190731_175504] (step : B : j5 : N : 1)
+e0.price_High < ts_TP
+ts_TP	78.856
+e0.price_High	78.804
+
+
+[libfx_5.py:977 / 20190731_175504] (step : B : j6 : Y : 1)
+e0.price_Low <= ts_SL
+ts_SL	78.766
+e0.price_Low	78.761
+
+
+[libfx_5.py:1031 / 20190731_175504] (step : B : j6 : Y : 3)
+Pos ==> reset ---> done
+ts_SL	78.766
+e0.price_Low	78.761
+lo_Pos_Target[-1]['st_idx']	44
+
+
+[libfx_5.py:1056 / 20190731_175504] (step : B : j6 : Y : 4.2)
+Pos, flag ==> reset done (flag = False)
+
+[libfx_5.py:1075 / 20190731_175504] (step : B : j6 : Y : 5) continuing loop...
+
+[libfx_5.py:3254 / 20190731_175504] 
+------------------------------ (step : A : 4) reporting...
+len(lo_Pos_Target)	23
+total	39
+ratio	0.590
+
+st_idx	st_pr	cu_idx	cu_pr	e0.price_High	e0.price_Low	exit	diff.price
+10	79.341	10	79.340	79.347	79.298	STATUS_POS_EXIT__SL	-0.043
+
+12	79.309	12	79.309	79.314	79.243	STATUS_POS_EXIT__SL	-0.066
+
+13	79.274	14	79.306	79.332	79.270	STATUS_POS_EXIT__SL	-0.004
+
+16	79.296	16	79.296	79.357	79.259	STATUS_POS_EXIT__TP	0.061
+
+17	79.256	17	79.256	79.256	78.704	STATUS_POS_EXIT__SL	-0.552
+
+18	78.808	18	78.808	78.808	78.683	STATUS_POS_EXIT__SL	-0.125
+
+19	78.749	19	78.749	78.750	78.598	STATUS_POS_EXIT__SL	-0.151
+
+20	78.644	20	78.644	78.710	78.606	STATUS_POS_EXIT__TP	0.066
+
+21	78.689	21	78.691	78.707	78.642	STATUS_POS_EXIT__SL	-0.047
+
+23	78.694	23	78.694	78.694	78.610	STATUS_POS_EXIT__SL	-0.084
+
+24	78.666	24	78.666	78.666	78.606	STATUS_POS_EXIT__SL	-0.060
+
+25	78.644	25	78.644	78.650	78.584	STATUS_POS_EXIT__SL	-0.060
+
+26	78.586	26	78.586	78.606	78.495	STATUS_POS_EXIT__SL	-0.091
+
+27	78.503	27	78.503	78.565	78.499	STATUS_POS_EXIT__TP	0.062
+
+28	78.555	34	78.650	78.651	78.574	STATUS_POS_EXIT__SL	0.019
+
+36	78.578	36	78.578	78.585	78.538	STATUS_POS_EXIT__SL	-0.040
+
+37	78.550	37	78.550	78.630	78.545	STATUS_POS_EXIT__TP	0.080
+
+38	78.624	38	78.624	78.634	78.567	STATUS_POS_EXIT__SL	-0.057
+
+39	78.579	39	78.579	78.641	78.548	STATUS_POS_EXIT__TP	0.062
+
+40	78.634	40	78.634	78.720	78.604	STATUS_POS_EXIT__TP	0.086
+
+41	78.714	41	78.714	78.750	78.683	STATUS_POS_EXIT__SL	-0.031
+
+42	78.695	42	78.704	78.725	78.632	STATUS_POS_EXIT__SL	-0.063
+
+44	78.686	47	78.797	78.804	78.761	STATUS_POS_EXIT__SL	0.075
+
+
+
+[libfx_5.py:3290 / 20190731_175504]
+done (time : 11.161 sec)(BUSL3_No_T_1)
+

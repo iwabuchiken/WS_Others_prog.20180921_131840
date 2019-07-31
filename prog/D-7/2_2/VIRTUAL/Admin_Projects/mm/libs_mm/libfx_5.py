@@ -486,8 +486,89 @@ def tester_T_1__Report_Dat(\
                   , len(lo_Pos_Target) / cntOf_Loop
                   )
     tmp_msg += "\n"
+#     tmp_msg += "\n"
+
+    '''###################
+        step : 2.1
+            data : SL, TP
+    ###################'''
+    #_20190731_161107:tmp
+    cntOf_TPs = 0
+    cntOf_SLs = 0
+    cntOf_Unknowns = 0
+    
+    sumOf_TPs = 0.0
+    sumOf_SLs = 0.0
+    
+    for item in lo_Pos_Target:
+        
+        # values
+        e0 = item[0]
+        
+        pos = item[1]
+        
+        exit = item[2]
+        
+        # judge
+        if exit == STATUS_POS_EXIT__SL : #if exit == STATUS_POS_EXIT__SL
+            
+            # count
+            cntOf_SLs += 1
+            
+            # add up
+            #_20190731_174924:tmp
+            sumOf_SLs += (e0.price_Low - pos['st_pr'])
+        
+        elif exit == STATUS_POS_EXIT__TP : #if exit == STATUS_POS_EXIT__SL
+            
+            # cont
+            cntOf_TPs += 1
+
+            # add up
+            sumOf_TPs += (e0.price_High - pos['st_pr'])
+            
+        else :
+            
+            cntOf_Unknowns += 1
+        
+        #/if exit == STATUS_POS_EXIT__SL
+        
+    #/for item in lo_Pos_Target:
+    
+    lenOf_LO_Pos_Target = len(lo_Pos_Target)
+    
+    tmp_msg += "cntOf_SLs\t%d (%.03f)\ncntOf_TPs\t%d (%.03f)\n" %\
+                 (
+                  cntOf_SLs, cntOf_SLs / lenOf_LO_Pos_Target
+                  , cntOf_TPs, cntOf_TPs / lenOf_LO_Pos_Target
+                  )
+    tmp_msg += "\n"
     tmp_msg += "\n"
 
+    '''###################
+        step : 2.1 : 1
+            data : sum of SL, TP
+    ###################'''
+    tmp_msg += "sumOf_SLs\t%.03f\nsumOf_TPs\t%.03f\nratio (TP/SL)\t%.03f" %\
+                 (
+                  sumOf_SLs, sumOf_TPs
+                  , sumOf_TPs / sumOf_SLs
+                  )
+                 
+    tmp_msg += "\n"
+
+    '''###################
+        step : 2.1 : 2
+            data : SL, TP, SPREAD
+    ###################'''
+    tmp_msg += "valOf_SL\t%.03f\nvalOf_TP\t%.03f\nvalOf_SPREAD\t%.03f\n" %\
+                 (
+                  valOf_SL, valOf_TP, valOf_SPREAD
+                  )
+    tmp_msg += "\n"
+
+    
+    
     '''###################
         step : 2.2
             item : 2
@@ -497,7 +578,9 @@ def tester_T_1__Report_Dat(\
             item : 2.1 : header
     ###################'''
 #     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
-    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit"
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit"
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
+    tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
     tmp_msg += "\n"
     
     if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
@@ -512,6 +595,19 @@ def tester_T_1__Report_Dat(\
             
             exit = item[2]
 
+            diffOf_Price = 0.0
+            if exit == STATUS_POS_EXIT__TP :
+                
+                diffOf_Price = (e0.price_High - pos['st_pr'])
+                
+            elif exit == STATUS_POS_EXIT__SL :
+                             
+                diffOf_Price = (e0.price_Low - pos['st_pr'])
+            
+            else :
+                
+                diffOf_Price = -999.9
+            
             '''###################
                 step : 2.2
                     item : 2.2 : values
@@ -520,7 +616,8 @@ def tester_T_1__Report_Dat(\
             #_20190724_155401:tmp
 #             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
 #             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
-            tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+#             tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+            tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s\t%.03f" % (
                       
                     cntOf_For_Loop
                     , pos['st_idx'], pos['st_pr']
@@ -530,7 +627,9 @@ def tester_T_1__Report_Dat(\
                     , e0.price_Low
                     
                     , exit
-                              
+                    
+                    , diffOf_Price
+                    
                              )
             
             tmp_msg += "\n"
@@ -577,233 +676,39 @@ def tester_T_1__Report_Dat(\
     
     
 '''###################
-    tester_T_1__Buy_Up
+    tester_T_1__Buy_Up__Loop_1
 
-    at : 2019/06/30 17:30:19 (?)
+    at : 2019/07/31 17:08:56
     
     @param : 
     
     @return: 
     
 ###################'''
-def tester_T_1__Buy_Up(request):
-    
-#_20190630_180022:caller
-#_20190630_180027:head
-#_20190630_180033:wl:in-func
-
-    '''###################
-        time        
-    ###################'''
-    time_Start = time.time()
-
-    '''###################
-        step : 0.1
-            debug
-    ###################'''
-    strOf_Opening_Message = "tester_T_1__Buy_Up()"
-    
-    tmp_msg = "[%s:%d] ============================= [start] %s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , strOf_Opening_Message
-        )
-
-    print()
-    print("%s" % (tmp_msg), file=sys.stderr)
-
-    '''###################
-        step : 0.2
-            flags
-    ###################'''
-#     flg_A1 = True
-    flg_A1 = False
-
-#     flg_A2 = True
-    flg_A2 = False
-    
-    # detect : mountain (M3, 1 mountain)
-    flg_A3 = True
-    
-    '''###################
-        step : 0.3 : 0
-            vars
-    ###################'''
-    strOf_Op_Name = "BUSL3_No_T_1"
-
-    tlabel = libs.get_TimeLabel_Now()
-    
-    dpath_Log = os.path.join(\
-                             cons_fx.FPath.dpath_LOG_FILE_MAIN.value
-                             , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
-                             )
-    
-    '''###################
-        step : 0.3 : 1
-            call func
-    ###################'''
-    #_20190701_173110:caller
-    ret = tester_T_1__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log)
-
-    '''###################
-        step : 0.3 : 2
-            unpack
-    ###################'''
-    (lo_Fnames, lo_LO_Lines) = ret
-    
-    (fname_Log, fname_Dat, fname_Error) = lo_Fnames
-    
-    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
-    
-    '''###################
-        step : A : 1 >> get : param values
-    ###################'''
-
-    '''###################
-        step : A : 2
-            get lo_BDs
-    ###################'''
-    '''###################
-        step : A : 2.1
-            vars
-    ###################'''
-    dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
-    
-    # SLICE-50
-    fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
-    # SLICE-1000
-#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
-
-    '''###################
-        step : A : 2.1 : 2
-            log
-    ###################'''
-    tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s" %\
-                (
-                    fname_Src_Csv
-                    , dpath_Src_Csv
-                 )
-     
-    msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg
-        )
- 
-    # log
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append(msg)
-    lo_Lines_Log.append("\n")
-    
-    
-    '''###################
-        step : A : 2.2
-            get list
-    ###################'''
-    #_20190701_180031:marker
-    #_20190701_180131:caller
-    valOf_Ret = tester_T_1__Buy_Up__2_Get_LO_BDs(\
-
-             dpath_Src_Csv, fname_Src_Csv
-             
-             , lo_LO_Lines
-             , valOf_Param_Direction = 1
-             
-             )
-
-    # validate
-    if valOf_Ret == False : #if lo_BDs == False
-         
-        tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
-         
-        msg = "[%s:%d / %s]\n%s" % \
-            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg
-            )
-     
-        print()
-        print("%s" % (msg), file=sys.stderr)
-         
-        # log
-        lo_Lines_Log.append("\n")
-        lo_Lines_Log.append(msg)
-        lo_Lines_Log.append("\n")
-         
-        status = -1
-        msg = "get lo_BDS ==> error"
-         
-        return (status, msg)
-         
-    #/if lo_BDs == False
-
-    '''###################
-        step : A : 2.3
-            unpack
-    ###################'''
-    (lo_BD_Related) = valOf_Ret
-    
-    (lo_BDs, lo_BDs_Tmp, lo_CSVs) = lo_BD_Related
-    
-    #debug
-    tmp_msg = "len(lo_BDs_Tmp) => %d" % len(lo_BDs_Tmp)
-     
-    msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg
-        )
- 
-    print()
-    print("%s" % (msg), file=sys.stderr)
-    
-    '''###################
-        step : A : 3
-            testing
-    ###################'''
-    '''###################
-        step : A : 3.1
-            prep : vars
-    ###################'''
-    #_20190701_181631:tmp
-    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
-    
-    lenOf_Detection_Target_Range = 10
-    
-    # flags
-    flg_Pos = False # position taken
-    
-    # pos
-    Pos = {
-            
-            "st_idx" : -1
-            , "st_pr" : 0.0
-            
-            , "cu_idx" : -1
-            , "cu_pr" : 0.0
-            
-            }
-    
-    # thresholds, a.o.
-    valOf_TP = 0.05
-    valOf_SL = 0.02
-    
-    valOf_SPREAD = 0.01
-    
-    # lists
-    lo_Pos_Target = []
-    
-    '''###################
-        step : B
-            for-loop
-    ###################'''
+def tester_T_1__Buy_Up__Loop_1(\
+                               
+        lenOf_Detection_Target_Range
+        , lenOf_LO_BDs_Tmp
+        , lo_Lines_Log
+        , flg_Pos
+        , lo_BDs_Tmp
+        , valOf_TP
+        , valOf_SPREAD
+        , valOf_SL
+#         , ts_TP, ts_SL
+        , lo_Pos_Target
+        , Pos
+        , lo_LO_Lines
+                               ):
+#_20190731_170957:caller
+#_20190731_171000:head
+#_20190731_171004:wl:in-func
     '''###################
         step : B : -1
-            prep : stopper
+            prep
     ###################'''
-    # counter
     cntOf_Loop = 0
     
-    # max loop
-    maxOf_Loop = 20
-    
-    #_20190706_231147:mk:for-loop
     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
     
         '''###################
@@ -811,31 +716,6 @@ def tester_T_1__Buy_Up(request):
                 stopper
         ###################'''
         cntOf_Loop += 1
-        
-        #_20190724_160545:tmp
-#         # stopper
-#         if i > maxOf_Loop : #if i > maxOf_Loop
-#             
-#             #log
-#             tmp_msg = "(step : B : -1 : 1) stopper ==> detected. breaking..."
-#             
-#             msg = "[%s:%d / %s]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg
-#                 )
-#     
-#             print()
-#             print("%s" % (msg), file=sys.stderr)
-#          
-#             lo_Lines_Log.append(msg)
-#             lo_Lines_Log.append("\n")
-#             lo_Lines_Log.append("\n")
-#             
-#             #debug
-#             break
-#         
-#         #/if i > maxOf_Loop
-
         
         '''###################
             step : B : 0
@@ -852,17 +732,12 @@ def tester_T_1__Buy_Up(request):
              , tmp_msg
             )
         
-#         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
-#             
-#             print()
-#             print("%s" % (msg), file=sys.stderr)
         print()
         print("%s" % (msg), file=sys.stderr)
             
         
         #/if DEBUG_SWITCH == True
 
-     
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
         
@@ -910,8 +785,11 @@ def tester_T_1__Buy_Up(request):
                     calc (j2 : Y : 4)
             ###################'''
             #_20190707_142412:next
-            ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
-            ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
+            #_20190731_181756:fix
+            ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
+            ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
+#             ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
+#             ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
             
             #log
             tmp_msg = "(step : B : j1 : Y : 2)"
@@ -1451,8 +1329,11 @@ def tester_T_1__Buy_Up(request):
                     step : B : j2 : Y : 4
                         calc
                 ###################'''
-                ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
-                ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
+                #_20190731_181756:fix:2
+                ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
+                ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
+#                 ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
+#                 ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
                 
                 #log
                 tmp_msg = "ts_TP\t%.03f\t/\te0.price_High\t%.03f" % (ts_TP, e0.price_High)
@@ -1910,6 +1791,1383 @@ def tester_T_1__Buy_Up(request):
         
     #/for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
     #_20190706_231147:mk:for-loop:end
+
+    '''###################
+        step : B : X
+            return
+    ###################'''
+    '''###################
+        step : B : X : 1
+            build val
+    ###################'''
+    valOf_Ret = (cntOf_Loop)
+    
+    '''###################
+        step : B : X : 2
+            return
+    ###################'''
+    return valOf_Ret
+    
+#/ def tester_T_1__Buy_Up__Loop_1(request):
+    
+'''###################
+    tester_T_1__Buy_Up
+
+    at : 2019/06/30 17:30:19 (?)
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def tester_T_1__Buy_Up(request):
+    
+#_20190630_180022:caller
+#_20190630_180027:head
+#_20190630_180033:wl:in-func
+
+    '''###################
+        time        
+    ###################'''
+    time_Start = time.time()
+
+    '''###################
+        step : 0.1
+            debug
+    ###################'''
+    strOf_Opening_Message = "tester_T_1__Buy_Up()"
+    
+    tmp_msg = "[%s:%d] ============================= [start] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , strOf_Opening_Message
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+
+    '''###################
+        step : 0.1 : 1
+            conf file
+    ###################'''
+    #_20190731_183054:next
+    
+    '''###################
+        step : 0.2
+            flags
+    ###################'''
+#     flg_A1 = True
+    flg_A1 = False
+
+#     flg_A2 = True
+    flg_A2 = False
+    
+    # detect : mountain (M3, 1 mountain)
+    flg_A3 = True
+    
+    '''###################
+        step : 0.3 : 0
+            vars
+    ###################'''
+    strOf_Op_Name = "BUSL3_No_T_1"
+
+    tlabel = libs.get_TimeLabel_Now()
+    
+    dpath_Log = os.path.join(\
+                             cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+                             , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
+                             )
+    
+    '''###################
+        step : 0.3 : 1
+            call func
+    ###################'''
+    #_20190701_173110:caller
+    ret = tester_T_1__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log)
+
+    '''###################
+        step : 0.3 : 2
+            unpack
+    ###################'''
+    (lo_Fnames, lo_LO_Lines) = ret
+    
+    (fname_Log, fname_Dat, fname_Error) = lo_Fnames
+    
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : A : 1 >> get : param values
+    ###################'''
+
+    '''###################
+        step : A : 2
+            get lo_BDs
+    ###################'''
+    '''###################
+        step : A : 2.1
+            vars
+    ###################'''
+    dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+    
+    # SLICE-50
+    fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+    # SLICE-1000
+#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
+
+    '''###################
+        step : A : 2.1 : 2
+            log
+    ###################'''
+    tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s" %\
+                (
+                    fname_Src_Csv
+                    , dpath_Src_Csv
+                 )
+     
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    
+    
+    '''###################
+        step : A : 2.2
+            get list
+    ###################'''
+    #_20190701_180031:marker
+    #_20190701_180131:caller
+    valOf_Ret = tester_T_1__Buy_Up__2_Get_LO_BDs(\
+
+             dpath_Src_Csv, fname_Src_Csv
+             
+             , lo_LO_Lines
+             , valOf_Param_Direction = 1
+             
+             )
+
+    # validate
+    if valOf_Ret == False : #if lo_BDs == False
+         
+        tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
+         
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+     
+        print()
+        print("%s" % (msg), file=sys.stderr)
+         
+        # log
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+         
+        status = -1
+        msg = "get lo_BDS ==> error"
+         
+        return (status, msg)
+         
+    #/if lo_BDs == False
+
+    '''###################
+        step : A : 2.3
+            unpack
+    ###################'''
+    (lo_BD_Related) = valOf_Ret
+    
+    (lo_BDs, lo_BDs_Tmp, lo_CSVs) = lo_BD_Related
+    
+    #debug
+    tmp_msg = "len(lo_BDs_Tmp) => %d" % len(lo_BDs_Tmp)
+     
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    '''###################
+        step : A : 3
+            testing
+    ###################'''
+    '''###################
+        step : A : 3.1
+            prep : vars
+    ###################'''
+    #_20190701_181631:tmp
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    lenOf_Detection_Target_Range = 10
+    
+    # flags
+    flg_Pos = False # position taken
+    
+    # pos
+    Pos = {
+            
+            "st_idx" : -1
+            , "st_pr" : 0.0
+            
+            , "cu_idx" : -1
+            , "cu_pr" : 0.0
+            
+            }
+    
+    # thresholds, a.o.
+    valOf_TP = 0.05
+    valOf_SL = 0.02
+    
+    valOf_SPREAD = 0.01
+    
+    # lists
+    lo_Pos_Target = []
+    
+    '''###################
+        step : B
+            for-loop
+    ###################'''
+    '''###################
+        step : B : -1
+            prep : stopper
+    ###################'''
+    # counter
+    cntOf_Loop = 0
+    
+    # max loop
+    maxOf_Loop = 20
+    
+    
+    #_20190706_231147:mk:for-loop
+    #_20190731_170957:caller
+    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_1(\
+                               
+        lenOf_Detection_Target_Range
+        , lenOf_LO_BDs_Tmp
+        , lo_Lines_Log
+        , flg_Pos
+        , lo_BDs_Tmp
+        , valOf_TP
+        , valOf_SPREAD
+        , valOf_SL
+#         , ts_TP, ts_SL
+        , lo_Pos_Target
+        , Pos
+        , lo_LO_Lines
+                               )
+
+#     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
+#     
+#         '''###################
+#             step : B : -1 : 1
+#                 stopper
+#         ###################'''
+#         cntOf_Loop += 1
+#         
+#         #_20190724_160545:tmp
+# #         # stopper
+# #         if i > maxOf_Loop : #if i > maxOf_Loop
+# #             
+# #             #log
+# #             tmp_msg = "(step : B : -1 : 1) stopper ==> detected. breaking..."
+# #             
+# #             msg = "[%s:%d / %s]\n%s" % \
+# #                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+# #                  , tmp_msg
+# #                 )
+# #     
+# #             print()
+# #             print("%s" % (msg), file=sys.stderr)
+# #          
+# #             lo_Lines_Log.append(msg)
+# #             lo_Lines_Log.append("\n")
+# #             lo_Lines_Log.append("\n")
+# #             
+# #             #debug
+# #             break
+# #         
+# #         #/if i > maxOf_Loop
+# 
+#         
+#         '''###################
+#             step : B : 0
+#                 log : loop num
+#         ###################'''
+#         #log
+#         tmp_msg = "(step : B : 0) =================================== loop : %d" %\
+#                  (
+#                     i
+#                   )
+#         
+#         msg = "[%s:%d / %s]\n%s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg
+#             )
+#         
+# #         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+# #             
+# #             print()
+# #             print("%s" % (msg), file=sys.stderr)
+#         print()
+#         print("%s" % (msg), file=sys.stderr)
+#             
+#         
+#         #/if DEBUG_SWITCH == True
+# 
+#      
+#         lo_Lines_Log.append(msg)
+#         lo_Lines_Log.append("\n")
+#         
+#         '''###################
+#             step : B : 1
+#                 prep : vars
+#         ###################'''
+#         e0 = lo_BDs_Tmp[i]
+#         
+#         '''###################
+#             step : B : j1
+#                 position --> taken ?
+#         ###################'''
+#         if flg_Pos == True : #if flg_Pos == True
+#             '''###################
+#                 step : B : j1 : Y
+#                     position --> taken
+#             ###################'''
+#             '''###################
+#                 step : B : j1 : Y : 1
+#                     log
+#             ###################'''
+#             #log
+#             tmp_msg = "(step : B : j1 : Y)\nflg_Pos --> True : %s" %\
+#                      (
+#                         e0.dateTime
+#                       )
+#             
+#             msg = "[%s:%d / %s] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 print()
+#                 
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
+#             
+#             '''###################
+#                 step : B : j1 : Y : 2
+#                     calc (j2 : Y : 4)
+#             ###################'''
+#             #_20190707_142412:next
+#             ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
+#             ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
+#             
+#             #log
+#             tmp_msg = "(step : B : j1 : Y : 2)"
+#             tmp_msg += "\n"
+#             
+#             tmp_msg += "ts_TP\t%.03f\t/\te0.price_High\t%.03f" % (ts_TP, e0.price_High)
+#             tmp_msg += "\n"
+#             
+# #                 tmp_msg += "ts_SL\t%.03f" % (ts_SL)
+#             tmp_msg += "ts_SL\t%.03f\t/\te0.price_Low\t%.03f" % (ts_SL, e0.price_Low)
+#             tmp_msg += "\n"
+#             
+#             msg = "[%s:%d / %s] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 print()
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")            
+# 
+#             '''###################
+#                 step : B : j5
+#                     e0.price_High >= ts_TP ?
+#                     (j3)
+#             ###################'''
+#             if e0.price_High >= ts_TP : #if e0.price_High >= ts_TP
+#                 '''###################
+#                     step : B : j5 : Y
+#                         e0.price_High >= ts_TP
+#                 ###################'''
+#                 '''###################
+#                     step : B : j5 : Y : 1
+#                         log
+#                 ###################'''
+#                 tmp_msg = "(step : B : j5 : Y : 1)\ne0.price_High >= ts_TP"
+#                 tmp_msg += "\n"
+#                 
+#                 tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+#                             (
+#                              ts_TP
+#                              , e0.price_High
+#                              )
+#                 
+#                 tmp_msg += "\n"
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 '''###################
+#                     step : B : j5 : Y : 2
+#                         entry
+#                 ###################'''
+#                 #_20190707_135356:tmp
+#                 lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
+# #                 lo_Pos_Target.append([e0, Pos])
+#                 
+#                 '''###################
+#                     step : B : j5 : Y : 3
+#                         Pos ==> reset
+#                 ###################'''
+#                 Pos = {
+#                         
+#                         "st_idx" : -1
+#                         , "st_pr" : 0.0
+#                         
+#                         , "cu_idx" : -1
+#                         , "cu_pr" : 0.0
+#                         
+#                         }
+#                 
+#                 '''###################
+#                     step : B : j5 : Y : 4
+#                         flag ==> reset
+#                 ###################'''
+#                 flg_Pos = False
+#                 
+#                 '''###################
+#                     step : B : j5 : Y : 4.2
+#                         log
+#                 ###################'''
+#                 tmp_msg = "(step : B : j5 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+#                 
+#                 '''###################
+#                     step : B : j5 : Y : 5
+#                         continue
+#                 ###################'''
+#                 tmp_msg = "(step : B : j5 : Y : 5) continuing loop..."
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 continue                
+#                 
+#             
+#             else : #if e0.price_High >= ts_TP
+#                 '''###################
+#                     step : B : j5 : N
+#                         e0.price_High < ts_TP
+#                 ###################'''
+#                 '''###################
+#                     step : B : j5 : N : 1
+#                         log
+#                 ###################'''
+#                 tmp_msg = "(step : B : j5 : N : 1)\ne0.price_High < ts_TP"
+#                 tmp_msg += "\n"
+#                 tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+#                             (
+#                              ts_TP
+#                              , e0.price_High
+#                              )
+#                 
+#                 tmp_msg += "\n"
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 '''###################
+#                     step : B : j6 (j4)
+#                         e0.price_Low <= ts_SL ?
+#                 ###################'''
+#                 if e0.price_Low <= ts_SL : #if e0.price_Low <= ts_SL
+#                     '''###################
+#                         step : B : j6 : Y
+#                             e0.price_Low <= ts_SL
+#                     ###################'''
+#                     '''###################
+#                         step : B : j6 : Y : 1
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j6 : Y : 1)\ne0.price_Low <= ts_SL"
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+#                                 (
+#                                  ts_SL
+#                                  , e0.price_Low
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                     
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+# 
+#                     '''###################
+#                         step : B : j6 : Y : 2
+#                             entry
+#                     ###################'''
+#                     #_20190707_135356:tmp
+#                     lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__SL])
+# #                     lo_Pos_Target.append([e0, Pos])
+#                     
+#                     '''###################
+#                         step : B : j6 : Y : 3
+#                             Pos ==> reset
+#                     ###################'''
+#                     Pos = {
+#                             
+#                             "st_idx" : -1
+#                             , "st_pr" : 0.0
+#                             
+#                             , "cu_idx" : -1
+#                             , "cu_pr" : 0.0
+#                             
+#                             }
+# 
+#                     tmp_msg = "(step : B : j6 : Y : 3)\nPos ==> reset ---> done"
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+#                                 (
+#                                  ts_SL
+#                                  , e0.price_Low
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     # lo_Pos_Target.append([e0, Pos])
+#                     tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d" %\
+#                                 (
+#                                  lo_Pos_Target[-1][1]['st_idx']
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                     
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     '''###################
+#                         step : B : j6 : Y : 4
+#                             flag ==> reset
+#                     ###################'''
+#                     flg_Pos = False
+#                     
+#                     '''###################
+#                         step : B : j6 : Y : 4.2
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j6 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     '''###################
+#                         step : B : j6 : Y : 5
+#                             continue
+#                     ###################'''
+#                     tmp_msg = "(step : B : j6 : Y : 5) continuing loop..."
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     continue
+#                 
+#                 else : #if e0.price_Low <= ts_SL
+#                     '''###################
+#                         step : B : j6 : N
+#                             ts_SL < e0.price_Low
+#                     ###################'''
+#                     '''###################
+#                         step : B : j6 : N : 1
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j6 : N : 1)\nts_SL < e0.price_Low"
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+#                                 (
+#                                  ts_SL
+#                                  , e0.price_Low
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+# 
+#                     '''###################
+#                         step : B : j6 : N : 1.1
+#                             Pos ==> update
+#                     ###################'''
+# #                         , "cu_idx" : -1
+# #                         , "cu_pr" : 0.0
+#                     Pos["cu_idx"] = i
+#                     Pos["cu_pr"] = e0.price_Close
+#                     
+#                     #log
+#                     tmp_msg = "(step : B : j6 : N : 1.1) updating Pos..."
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "Pos[\"st_idx\"]\t%d" % (Pos["st_idx"])
+#                     tmp_msg += "\n"
+#                     tmp_msg += "Pos[\"st_pr\"]\t%.03f" % (Pos["st_pr"])
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "Pos[\"cu_idx\"]\t%d" % (Pos["cu_idx"])
+#                     tmp_msg += "\n"
+#                     tmp_msg += "Pos[\"cu_pr\"]\t%.03f" % (Pos["cu_pr"])
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                     
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     '''###################
+#                         step : B : j6 : N : 2
+#                             next
+#                     ###################'''
+#                     tmp_msg = "(step : B : j6 : N : 2) continuing..."
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                     
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+# 
+#                     continue                
+#                     
+#                 
+#                 #/if e0.price_Low <= ts_SL
+#                 
+#                 
+#                 #debug
+#                 break
+#             
+#             #/if e0.price_High >= ts_TP
+#             
+#             
+#             #debug
+#             break
+#         
+#         else : #if flg_Pos == True
+#             '''###################
+#                 step : B : j1 : N
+#                     position --> NOT taken
+#             ###################'''
+#             '''###################
+#                 step : B : j1 : N : 1
+#                     log
+#             ###################'''
+#             #log
+#             tmp_msg = "(step : B : j1 : N) flg_Pos --> False : %s" %\
+#                      (
+#                         e0.dateTime
+#                       )
+#             
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 print()
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
+#             
+#             '''###################
+#                 step : B : j2
+#                     detect pattern ?
+#             ###################'''
+#             #_20190706_231447:caller
+#             res = dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp)
+#             
+#             if res == True : #if res == True
+#                 '''###################
+#                     step : B : j2 : Y
+#                         detect pattern
+#                 ###################'''
+#                 '''###################
+#                     step : B : j2 : Y : 1
+#                         log
+#                 ###################'''
+#                 #_20190706_231819:tmp
+#                 #log
+#                 tmp_msg = "(step : B : j2 : Y)\npattern --> detected : %s" %\
+#                          (
+#                             e0.dateTime
+#                           )
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 '''###################
+#                     step : B : j2 : Y : 2
+#                         flag --> set : True
+#                 ###################'''
+#                 flg_Pos = True
+#                 
+#                 #log
+#                 tmp_msg = "(step : B : j2 : Y : 2)\nflg_Pos ==> now, true (%s, %s)" %\
+#                          (
+#                             flg_Pos
+#                             , e0.dateTime
+#                           )
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 '''###################
+#                     step : B : j2 : Y : 3
+#                         Pos --> init
+#                 ###################'''
+#                 # "st_idx" : -1
+#                 # , "st_pr" : 0.0
+#                 # 
+#                 # , "cu_idx" : -1
+#                 # , "cu_pr" : 0.0
+#                 
+#                 Pos["st_idx"] = i
+#                 Pos["st_pr"] = e0.price_Open
+#                 
+#                 Pos["cu_idx"] = i
+#                 Pos["cu_pr"] = e0.price_Open
+# 
+#                 #log
+#                 tmp_msg = "(step : B : j2 : Y : 3)\nPos ==> init done"
+#                 
+#                 tmp_msg += "\n"
+#                 
+#                 tmp_msg += "st_idx\t%d\nst_pr\t%.03f" % (Pos["st_idx"], Pos["st_pr"])
+#                 tmp_msg += "\n"
+#                 
+#                 tmp_msg += "cu_idx\t%d\ncu_pr\t%.03f" % (Pos["cu_idx"], Pos["cu_pr"])
+#                 tmp_msg += "\n"
+#                 
+#                 
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+# 
+#                 '''###################
+#                     step : B : j2 : Y : 4
+#                         calc
+#                 ###################'''
+#                 ts_TP = e0.price_Open + valOf_TP + valOf_SPREAD
+#                 ts_SL = e0.price_Open - valOf_SL - valOf_SPREAD
+#                 
+#                 #log
+#                 tmp_msg = "ts_TP\t%.03f\t/\te0.price_High\t%.03f" % (ts_TP, e0.price_High)
+#                 tmp_msg += "\n"
+#                 
+# #                 tmp_msg += "ts_SL\t%.03f" % (ts_SL)
+#                 tmp_msg += "ts_SL\t%.03f\t/\te0.price_Low\t%.03f" % (ts_SL, e0.price_Low)
+#                 tmp_msg += "\n"
+#                 
+#                 msg = "[%s:%d / %s]\n%s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#                 
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+#                 
+#                 #_20190707_002624:next
+#                 '''###################
+#                     step : B : j3
+#                         ts_TP <= e0.price_High ?
+#                 ###################'''
+#                 if ts_TP <= e0.price_High : #if ts_TP <= e0.price_High
+#                     '''###################
+#                         step : B : j3 : Y
+#                             ts_TP <= e0.price_High
+#                     ###################'''
+#                     '''###################
+#                         step : B : j3 : Y : 1
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j3 : Y : 1)\nts_TP <= e0.price_High"
+#                     tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+#                                 (
+#                                  ts_TP
+#                                  , e0.price_High
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                     
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+# 
+#                     '''###################
+#                         step : B : j3 : Y : 2
+#                             entry
+#                     ###################'''
+#                     #_20190718_164717:tmp
+#                     
+#                     #_20190707_135356:tmp
+#                     setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+#                     
+#                     lo_Pos_Target.append(setOf_Entries)
+# #                     lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__TP])
+# #                     lo_Pos_Target.append([e0, Pos])
+# 
+#                     #_20190718_161110:fix
+#                     tmp_msg = "(step : B : j3 : Y : 2) Pos being entered..."
+#                     tmp_msg += "\n"
+#                     
+#                     #_20190724_160947:fix
+#                     #ref https://www.pythonforbeginners.com/error-handling/python-try-and-except/
+#                     try :
+#                         tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
+#                                  (
+#                                   #_20190724_163559:fix
+#                                   lo_Pos_Target[-1][1]['st_idx']
+#                                   , lo_BDs_Tmp[lo_Pos_Target[-1][1]['st_idx']].dateTime
+# #                                   lo_Pos_Target[-1]['st_idx']
+# #                                   , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
+#                                   )
+#                     
+#                     #ref https://wiki.python.org/moin/HandlingExceptions
+# #                     except TypeError :
+#                     except TypeError as e :
+#                         
+#                         tmp_msg = e
+# #                         tmp_msg = "TypeError"
+# #                         tmp_msg += "\n"
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                         
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#                         
+#                         tmp_msg = sys.exc_info()[0]
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#                         
+#                         # traceback
+#                         #ref https://stackoverflow.com/questions/1483429/how-to-print-an-exception-in-python
+#                         traceback.print_exc()
+#                         
+#                         break
+#                         
+# #                     tmp_msg += "lo_Pos_Target[-1]['st_idx']\t%d (dateTime = %s)" %\
+# #                              (
+# #                               lo_Pos_Target[-1]['st_idx']
+# #                               , lo_BDs_Tmp[lo_Pos_Target[-1]['st_idx']].dateTime
+# #                               )
+#                              
+#                              
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     
+#                     '''###################
+#                         step : B : j3 : Y : 3
+#                             Pos ==> reset
+#                     ###################'''
+#                     Pos = {
+#                             
+#                             "st_idx" : -1
+#                             , "st_pr" : 0.0
+#                             
+#                             , "cu_idx" : -1
+#                             , "cu_pr" : 0.0
+#                             
+#                             }
+#                     
+#                     '''###################
+#                         step : B : j3 : Y : 4
+#                             flag ==> reset
+#                     ###################'''
+#                     flg_Pos = False
+#                     
+#                     '''###################
+#                         step : B : j3 : Y : 4.2
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j3 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     '''###################
+#                         step : B : j3 : Y : 5
+#                             continue
+#                     ###################'''
+#                     continue
+#                     
+# #                     #debug
+# #                     break
+#                 
+#                 else : #if ts_TP <= e0.price_High
+#                     '''###################
+#                         step : B : j3 : N
+#                             ts_TP > e0.price_High
+#                     ###################'''
+#                     '''###################
+#                         step : B : j3 : N : 1
+#                             log
+#                     ###################'''
+#                     tmp_msg = "(step : B : j3 : N : 1)\nts_TP > e0.price_High"
+#                     tmp_msg = "\n"
+#                     
+#                     tmp_msg += "ts_TP\t%.03f\ne0.price_High\t%.03f" %\
+#                                 (
+#                                  ts_TP
+#                                  , e0.price_High
+#                                  )
+#                     
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                  
+#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#         
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
+#                     
+#                     '''###################
+#                         step : B : j4
+#                             ts_SL >= e0.price_Low ?
+#                     ###################'''
+#                     if ts_SL >= e0.price_Low : #if ts_SL >= e0.price_Low
+#                         '''###################
+#                             step : B : j4 : Y
+#                                 ts_SL >= e0.price_Low
+#                         ###################'''
+#                         '''###################
+#                             step : B : j4 : Y : 1
+#                                 log
+#                         ###################'''
+#                         tmp_msg = "(step : B : j4 : Y : 1)\nts_SL >= e0.price_Low"
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+#                                     (
+#                                      ts_SL
+#                                      , e0.price_Low
+#                                      )
+#                         
+#                         tmp_msg += "\n"
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#             
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")
+#                         
+#                         #_20190707_235646:next
+#                         
+#                         '''###################
+#                             step : B : j4 : Y : 2
+#                                 entry
+#                         ###################'''
+#                         #_20190707_135356:tmp
+#                         lo_Pos_Target.append([e0, Pos, STATUS_POS_EXIT__SL])
+# #                         lo_Pos_Target.append([e0, Pos])
+#                         
+#                         '''###################
+#                             step : B : j4 : Y : 3
+#                                 Pos ==> reset
+#                         ###################'''
+#                         Pos = {
+#                                 
+#                                 "st_idx" : -1
+#                                 , "st_pr" : 0.0
+#                                 
+#                                 , "cu_idx" : -1
+#                                 , "cu_pr" : 0.0
+#                                 
+#                                 }
+#                         
+#                         '''###################
+#                             step : B : j4 : Y : 4
+#                                 flag ==> reset
+#                         ###################'''
+#                         flg_Pos = False
+#                         
+#                         '''###################
+#                             step : B : j4 : Y : 4.2
+#                                 log
+#                         ###################'''
+#                         tmp_msg = "(step : B : j4 : Y : 4.2)\nPos, flag ==> reset done (flag = %s)" % (flg_Pos)
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#             
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")
+#                         
+#                         '''###################
+#                             step : B : j4 : Y : 5
+#                                 continue
+#                         ###################'''
+#                         continue
+#                                                 
+#                         #_20190724_155910:tmp
+#                         #debug
+#                         break
+#                     
+#                     else : #if ts_SL >= e0.price_Low
+#                         '''###################
+#                             step : B : j4 : N
+#                                 ts_SL < e0.price_Low
+#                         ###################'''
+#                         '''###################
+#                             step : B : j4 : N : 1
+#                                 log
+#                         ###################'''
+#                         tmp_msg = "(step : B : j4 : N : 1)\nts_SL < e0.price_Low"
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "ts_SL\t%.03f\ne0.price_Low\t%.03f" %\
+#                                     (
+#                                      ts_SL
+#                                      , e0.price_Low
+#                                      )
+#                         
+#                         tmp_msg += "\n"
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#             
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")
+# 
+#                         '''###################
+#                             step : B : j4 : N : 1.1
+#                                 Pos ==> update
+#                         ###################'''
+# #                         , "cu_idx" : -1
+# #                         , "cu_pr" : 0.0
+#                         Pos["cu_idx"] = i
+#                         Pos["cu_pr"] = e0.price_Close
+#                         
+#                         #log
+#                         tmp_msg = "(step : B : j4 : N : 1.1) updating Pos..."
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "Pos[\"st_idx\"]\t%d" % (Pos["st_idx"])
+#                         tmp_msg += "\n"
+#                         tmp_msg += "Pos[\"st_pr\"]\t%.03f" % (Pos["st_pr"])
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "Pos[\"cu_idx\"]\t%d" % (Pos["cu_idx"])
+#                         tmp_msg += "\n"
+#                         tmp_msg += "Pos[\"cu_pr\"]\t%.03f" % (Pos["cu_pr"])
+#                         tmp_msg += "\n"
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#             
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")
+#                         
+#                         '''###################
+#                             step : B : j4 : N : 2
+#                                 next
+#                         ###################'''
+#                         tmp_msg = "(step : B : j4 : N : 2) continuing..."
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                      
+#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#             
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")
+# 
+#                         continue
+#                     
+# #                         #debug
+# #                         break
+# #                     
+#                     #/if ts_SL >= e0.price_Low
+#                     
+#                     #debug
+#                     break
+#                 
+#                 #/if ts_TP <= e0.price_High
+#                 
+#                 
+# #                 #debug
+# #                 break
+#             
+#             else : #if res == True
+#                 '''###################
+#                     step : B : j2 : N
+#                         detect pattern NOT
+#                 ###################'''
+#                 '''###################
+#                     step : B : j2 : N : 1
+#                         continue
+#                 ###################'''
+#                 tmp_msg = "(step : B : j2 : N : 1) continuing..."
+#                 
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#              
+#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     print()
+#                     print("%s" % (msg), file=sys.stderr)
+#     
+#                 lo_Lines_Log.append(msg)
+#                 lo_Lines_Log.append("\n")
+#                 lo_Lines_Log.append("\n")
+#                 
+#                 continue
+#             
+#             #/if res == True
+#             
+#         #/if flg_Pos == True
+#         
+#     #/for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
+#     #_20190706_231147:mk:for-loop:end
     
     '''###################
         step : A : 4
@@ -1955,7 +3213,7 @@ def tester_T_1__Buy_Up(request):
             item : 2.1 : header
     ###################'''
 #     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
-    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit"
+    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
     tmp_msg += "\n"
     
     if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
@@ -1967,10 +3225,24 @@ def tester_T_1__Buy_Up(request):
             
             exit = item[2]
             
+            diffOf_Price = 0.0
+            if exit == STATUS_POS_EXIT__TP :
+                
+                diffOf_Price = (e0.price_High - pos['st_pr'])
+                
+            elif exit == STATUS_POS_EXIT__SL :
+                             
+                diffOf_Price = (e0.price_Low - pos['st_pr'])
+            
+            else :
+                
+                diffOf_Price = -999.9
+                
             #_20190718_160718:tmp
             #_20190724_155401:tmp
 #             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
-            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s\t%.03f" % (
                               
                     pos['st_idx'], pos['st_pr']
                     , pos['cu_idx'], pos['cu_pr']
@@ -1979,8 +3251,9 @@ def tester_T_1__Buy_Up(request):
                     , e0.price_Low
                     
                     , exit
-                              
-                             )
+                    
+                    , diffOf_Price
+                    )
             
             tmp_msg += "\n"
             tmp_msg += "\n"
