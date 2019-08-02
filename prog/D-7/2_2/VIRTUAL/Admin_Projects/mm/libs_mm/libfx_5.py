@@ -67,6 +67,12 @@ STATUS_POS_EXIT__OTHERS = "STATUS_POS_EXIT__OTHERS"
 
 DEBUG_SWITCH = False
 
+SWITCH_TEST = True
+
+DFLT_VAL_TP = 0.05
+DFLT_VAL_SL = 0.02
+DFLT_VAL_SPREAD = 0.01
+
 '''######################################
     funcs        
 ######################################'''
@@ -640,7 +646,8 @@ def tester_T_1__Report_Dat(\
     
     #/if len(lo_Pos_Target) > 0
     
-    msg = "[%s:%d / %s] %s" % \
+#     msg = "[%s:%d / %s] %s" % \
+    msg = "[%s:%d / %s]\n%s" % \
         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg
         )
@@ -1850,6 +1857,31 @@ def tester_T_1__Buy_Up(request):
             conf file
     ###################'''
     #_20190731_183054:next
+    dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
+    
+    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__Tester_T_1.value    
+#     fname_Conf = _fname_Conf if not _fname_Conf == False else cons_fx.FPath.fname_CONF_BUSL3__M_1_A_2.value    
+    
+    conf_Tester_T_1 = libfx_2.set_Conf(dpath_Conf, fname_Conf)    
+    
+    keysOf_Conf = conf_Tester_T_1.keys()
+    
+    
+    
+    #_20190802_160153:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+        
+        tmp_msg = "(step : 0.1 : 1) conf file -----------------------"
+         
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+         
+        print(conf_Tester_T_1)
+         
+        #debug
+#         return
+    
+    #/if SWITCH_TEST == True
     
     '''###################
         step : 0.2
@@ -1909,9 +1941,31 @@ def tester_T_1__Buy_Up(request):
     dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
     
     # SLICE-50
-    fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+    strOf_Conf_Fname_Src_Csv = "fname_Src_Csv"
+    
+    is_Conf_Fname_Src_Csv = strOf_Conf_Fname_Src_Csv in keysOf_Conf
+    
+    fname_Src_Csv = conf_Tester_T_1[strOf_Conf_Fname_Src_Csv] if is_Conf_Fname_Src_Csv == True \
+                else "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
     # SLICE-1000
 #     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
+    
+    #_20190802_161814:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+        
+        tmp_msg = "(step : A : 2.1) conf file : fname_Src_Csv = '%s'" \
+                % (fname_Src_Csv)
+        
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+        
+        #debug
+#         return
+    
+    #/if SWITCH_TEST == True
+
+    
 
     '''###################
         step : A : 2.1 : 2
@@ -2021,10 +2075,75 @@ def tester_T_1__Buy_Up(request):
             }
     
     # thresholds, a.o.
-    valOf_TP = 0.05
-    valOf_SL = 0.02
+    #_20190802_160702:marker
+    strOf_Conf_ValOf_TP = "valOf_TP"
     
-    valOf_SPREAD = 0.01
+    is_Conf_ValOf_TP = strOf_Conf_ValOf_TP in keysOf_Conf
+    
+    valOf_TP = float(conf_Tester_T_1[strOf_Conf_ValOf_TP]) if is_Conf_ValOf_TP == True \
+                else DFLT_VAL_TP
+    
+    #_20190802_163641:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+        
+        tmp_msg = "(step : A : 2.1) conf file : valOf_TP = %.03f" \
+                % (valOf_TP)
+        
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+        
+        #debug
+#         return
+    
+    #/if SWITCH_TEST == True
+    
+#     valOf_TP = 0.05
+    #_20190802_160702:marker
+    strOf_Conf_ValOf_SL = "valOf_SL"
+    
+    is_Conf_ValOf_SL = strOf_Conf_ValOf_SL in keysOf_Conf
+    
+    valOf_SL = float(conf_Tester_T_1[strOf_Conf_ValOf_SL]) if is_Conf_ValOf_SL == True \
+                else DFLT_VAL_SL
+    
+    #_20190802_164034:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+        
+        tmp_msg = "(step : A : 2.1) conf file : valOf_SL = %.03f" \
+                % (valOf_SL)
+        
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+        
+        #debug
+#         return
+    
+    #/if SWITCH_TEST == True
+
+#     valOf_SL = 0.02
+
+    strOf_Conf_ValOf_SPREAD = "valOf_SPREAD"
+    
+    is_Conf_ValOf_SPREAD = strOf_Conf_ValOf_SPREAD in keysOf_Conf
+    
+    valOf_SPREAD = float(conf_Tester_T_1[strOf_Conf_ValOf_SPREAD]) if is_Conf_ValOf_SPREAD == True \
+                else DFLT_VAL_SPREAD
+    
+    #20190802_164116:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+        
+        tmp_msg = "(step : A : 2.1) conf file : valOf_SPREAD = %.03f" \
+                % (valOf_SPREAD)
+        
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+        
+        #debug
+#         return
+    
+    #/if SWITCH_TEST == True
+    
+#     valOf_SPREAD = 0.01
     
     # lists
     lo_Pos_Target = []
