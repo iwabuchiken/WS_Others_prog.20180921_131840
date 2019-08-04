@@ -543,7 +543,8 @@ def tester_T_1__Report_Dat(\
     
     lenOf_LO_Pos_Target = len(lo_Pos_Target)
     
-    tmp_msg += "cntOf_SLs\t%d (%.03f)\ncntOf_TPs\t%d (%.03f)\n" %\
+#     tmp_msg += "cntOf_SLs\t%d (%.03f)\ncntOf_TPs\t%d (%.03f)\n" %\
+    tmp_msg += "cntOf_SLs\t%d\t(%.03f)\ncntOf_TPs\t%d\t(%.03f)\n" %\
                  (
                   cntOf_SLs, cntOf_SLs / lenOf_LO_Pos_Target
                   , cntOf_TPs, cntOf_TPs / lenOf_LO_Pos_Target
