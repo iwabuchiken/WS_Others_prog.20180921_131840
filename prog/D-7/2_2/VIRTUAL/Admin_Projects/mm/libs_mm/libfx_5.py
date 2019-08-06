@@ -6,7 +6,8 @@
     at: 2019/05/29 15:39:16
     
 ###################'''
-from sympy.solvers.tests.test_constantsimp import C1
+# from sympy.solvers.tests.test_constantsimp import C1
+# from numpy.distutils.from_template import item_re
 
 '''###################
     import : django        
@@ -1841,6 +1842,8 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
             , _valOf_SL
             , keysOf_Conf
             , conf_Tester_T_1
+            , _time_Start
+            , dpath_Blanket
             ):
     
 #_20190805_165909:caller
@@ -1862,6 +1865,12 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
     print("%s" % (tmp_msg), file=sys.stderr)
 
     '''###################
+        step : 0.2 : 0
+            params
+    ###################'''
+    time_Start = _time_Start
+    
+    '''###################
         step : 0.3 : 0
             vars
     ###################'''
@@ -1869,10 +1878,15 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
 
     tlabel = libs.get_TimeLabel_Now()
     
+    #_20190806_130340:tmp
     dpath_Log = os.path.join(\
                              cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+                             , dpath_Blanket
                              , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
+#                              , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
                              )
+    
+    
     
     '''###################
         step : 0.3 : 1
@@ -2155,7 +2169,186 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
     
     #_20190805_173755:cp:to--------        
     
+    #_20190805_174612:cp:from:--------
+    '''###################
+        step : A : 4
+            reporting
+    ###################'''
+    #_20190724_165655:next
+    #_20190727_154227:caller
+    tester_T_1__Report_Dat(\
+                fname_Dat, dpath_Log
+                , dpath_Src_Csv, fname_Src_Csv
+                
+                , valOf_TP, valOf_SL, valOf_SPREAD
+                , lo_Pos_Target
+                , cntOf_Loop
+                )
     
+    
+    '''###################
+        step : A : 4.1
+            item : 1
+    ###################'''
+#     tmp_msg = "(step : A : 4) reporting..."
+    tmp_msg = "\n------------------------------ (step : A : 4) reporting..."
+    tmp_msg += "\n"
+    
+#     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
+#     tmp_msg += "\n"
+    tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+                 (
+                  len(lo_Pos_Target)
+                  , cntOf_Loop
+                  , len(lo_Pos_Target) / cntOf_Loop
+                  )
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+
+    '''###################
+        step : A : 4.2
+            item : 2
+    ###################'''
+    '''###################
+        step : A : 4.2
+            item : 2.1 : header
+    ###################'''
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
+    tmp_msg += "\n"
+    
+    if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
+        
+        for item in lo_Pos_Target:
+            
+            pos = item[1]
+            e0 = item[0]
+            
+            exit = item[2]
+            
+            diffOf_Price = 0.0
+            if exit == STATUS_POS_EXIT__TP :
+                
+                diffOf_Price = (e0.price_High - pos['st_pr'])
+                
+            elif exit == STATUS_POS_EXIT__SL :
+                             
+                diffOf_Price = (e0.price_Low - pos['st_pr'])
+            
+            else :
+                
+                diffOf_Price = -999.9
+                
+            #_20190718_160718:tmp
+            #_20190724_155401:tmp
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s\t%.03f" % (
+                              
+                    pos['st_idx'], pos['st_pr']
+                    , pos['cu_idx'], pos['cu_pr']
+                    
+                    , e0.price_High
+                    , e0.price_Low
+                    
+                    , exit
+                    
+                    , diffOf_Price
+                    )
+            
+            tmp_msg += "\n"
+            tmp_msg += "\n"
+            
+        #/for item in lo_Pos_Target:
+
+    
+    #/if len(lo_Pos_Target) > 0
+    
+    msg = "[%s:%d / %s] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+    #/if DEBUG_SWITCH == True
+
+
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+
+    '''###################
+        step : A : X
+            log-related
+    ###################'''
+
+    '''###################
+        step : A : X.1
+            create : dir
+    ###################'''
+    
+    '''###################
+        time        
+    ###################'''
+    time_Elapsed = time.time() - time_Start
+    
+    tmp_msg = "%s" % strOf_Op_Name
+    
+    msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    '''###################
+        step : A : X
+            write : file
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Lines_Log)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Lines_Error)
+            )
+    
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+    
+    '''###################
+        step : X
+            debug : ending message
+    ###################'''
+    tmp_msg = strOf_Opening_Message
+
+    print()
+    print("[%s:%d] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [end] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , tmp_msg
+        ), file=sys.stderr)
+    
+    #_20190805_174612:cp:to:--------
+        
     
 #/ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(listOf_TP_SL_Sets):
 
@@ -2254,28 +2447,71 @@ def tester_T_1__Buy_Up(request):
     if flg_Is_Exec_Exec_Multi_TP_SL_Sets == "True" :
     
         listOf_TP_SL_Sets = [\
-                [0.2, 0.4]
-                , [0.3, 0.6]
-                , [0.4, 0.8]
-                , [0.5, 1.0]
-                , [0.6, 1.2]
+                [0.3, 0.6]
+                , [0.3, 0.7]
+                , [0.3, 0.8]
+                , [0.3, 0.9]
+                , [0.3, 1.0]
                              ]
+#         listOf_TP_SL_Sets = [\
+#                 [0.2, 0.4]
+#                 , [0.3, 0.6]
+#                 , [0.4, 0.8]
+#                 , [0.5, 1.0]
+#                 , [0.6, 1.2]
+#                              ]
+        
+        
+        
+#         _valOf_TP = listOf_TP_SL_Sets[0][1]
+#         _valOf_SL = listOf_TP_SL_Sets[0][0]
+        
+        # dir name
+        dpath_Blanket = "BUSL3_No_T_1.BLANKET.(%s).dir" % (libs.get_TimeLabel_Now())
+#         dpath_Blanket = "Multi_TP_SL_Sets_%s" % (libs.get_TimeLabel_Now())
         
         #_20190805_165909:caller
+        for item in listOf_TP_SL_Sets:
         
-        _valOf_TP = listOf_TP_SL_Sets[0][1]
-        _valOf_SL = listOf_TP_SL_Sets[0][0]
-        
-        tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
-#                             listOf_TP_SL_Sets
+            # get values
+            _valOf_TP = item[1]
+            _valOf_SL = item[0]
+            
+            tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
                             _valOf_TP
                             , _valOf_SL
                             , keysOf_Conf
                             , conf_Tester_T_1
+                            
+                            , time_Start
+                            , dpath_Blanket
                             )
+            
+            
+        #/for item in listOf_TP_SL_Sets:
+
         
-        #debug
-        return
+#         tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
+# #                             listOf_TP_SL_Sets
+#                             _valOf_TP
+#                             , _valOf_SL
+#                             , keysOf_Conf
+#                             , conf_Tester_T_1
+#                             
+#                             , time_Start
+#                             )
+
+        '''###################
+            step : X
+            return
+        ###################'''
+        status = 10
+        msg = "SKELETON"
+        
+        return (status, msg)
+        
+#         #debug
+#         return
     
     else :
         
@@ -3689,185 +3925,185 @@ def tester_T_1__Buy_Up(request):
     
     #_20190805_173755:cp:to--------
     
-    #_20190805_174612:cp:from:--------
-    '''###################
-        step : A : 4
-            reporting
-    ###################'''
-    #_20190724_165655:next
-    #_20190727_154227:caller
-    tester_T_1__Report_Dat(\
-                fname_Dat, dpath_Log
-                , dpath_Src_Csv, fname_Src_Csv
-                
-                , valOf_TP, valOf_SL, valOf_SPREAD
-                , lo_Pos_Target
-                , cntOf_Loop
-                )
-    
-    
-    '''###################
-        step : A : 4.1
-            item : 1
-    ###################'''
-#     tmp_msg = "(step : A : 4) reporting..."
-    tmp_msg = "\n------------------------------ (step : A : 4) reporting..."
-    tmp_msg += "\n"
-    
-#     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
+#     #_20190805_174612:cp:from:--------
+#     '''###################
+#         step : A : 4
+#             reporting
+#     ###################'''
+#     #_20190724_165655:next
+#     #_20190727_154227:caller
+#     tester_T_1__Report_Dat(\
+#                 fname_Dat, dpath_Log
+#                 , dpath_Src_Csv, fname_Src_Csv
+#                 
+#                 , valOf_TP, valOf_SL, valOf_SPREAD
+#                 , lo_Pos_Target
+#                 , cntOf_Loop
+#                 )
+#     
+#     
+#     '''###################
+#         step : A : 4.1
+#             item : 1
+#     ###################'''
+# #     tmp_msg = "(step : A : 4) reporting..."
+#     tmp_msg = "\n------------------------------ (step : A : 4) reporting..."
 #     tmp_msg += "\n"
-    tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
-                 (
-                  len(lo_Pos_Target)
-                  , cntOf_Loop
-                  , len(lo_Pos_Target) / cntOf_Loop
-                  )
-    tmp_msg += "\n"
-    tmp_msg += "\n"
-
-    '''###################
-        step : A : 4.2
-            item : 2
-    ###################'''
-    '''###################
-        step : A : 4.2
-            item : 2.1 : header
-    ###################'''
-#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
-    tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
-    tmp_msg += "\n"
-    
-    if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
-        
-        for item in lo_Pos_Target:
-            
-            pos = item[1]
-            e0 = item[0]
-            
-            exit = item[2]
-            
-            diffOf_Price = 0.0
-            if exit == STATUS_POS_EXIT__TP :
-                
-                diffOf_Price = (e0.price_High - pos['st_pr'])
-                
-            elif exit == STATUS_POS_EXIT__SL :
-                             
-                diffOf_Price = (e0.price_Low - pos['st_pr'])
-            
-            else :
-                
-                diffOf_Price = -999.9
-                
-            #_20190718_160718:tmp
-            #_20190724_155401:tmp
-#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
-#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
-            tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s\t%.03f" % (
-                              
-                    pos['st_idx'], pos['st_pr']
-                    , pos['cu_idx'], pos['cu_pr']
-                    
-                    , e0.price_High
-                    , e0.price_Low
-                    
-                    , exit
-                    
-                    , diffOf_Price
-                    )
-            
-            tmp_msg += "\n"
-            tmp_msg += "\n"
-            
-        #/for item in lo_Pos_Target:
-
-    
-    #/if len(lo_Pos_Target) > 0
-    
-    msg = "[%s:%d / %s] %s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg
-        )
- 
-    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
-        
-        print()
-        print("%s" % (msg), file=sys.stderr)
-        
-    #/if DEBUG_SWITCH == True
-
-
-    lo_Lines_Log.append(msg)
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append("\n")
-
-    '''###################
-        step : A : X
-            log-related
-    ###################'''
-
-    '''###################
-        step : A : X.1
-            create : dir
-    ###################'''
-    
-    '''###################
-        time        
-    ###################'''
-    time_Elapsed = time.time() - time_Start
-    
-    tmp_msg = "%s" % strOf_Op_Name
-    
-    msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
-
-    msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , msg
-        )
-
-    print()
-    print("%s" % (msg), file=sys.stderr)
-    
-    # log
-    lo_Lines_Log.append(msg)
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append("\n")
-    
-    '''###################
-        step : A : X
-            write : file
-    ###################'''
-    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-            (
-            libs.get_TimeLabel_Now()
-            , os.path.basename(libs.thisfile()), libs.linenum()
-            , "".join(lo_Lines_Log)
-            )
-    
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
-
-    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-            (
-            libs.get_TimeLabel_Now()
-            , os.path.basename(libs.thisfile()), libs.linenum()
-            , "".join(lo_Lines_Error)
-            )
-    
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
-    
-    '''###################
-        step : X
-            debug : ending message
-    ###################'''
-    tmp_msg = strOf_Opening_Message
-
-    print()
-    print("[%s:%d] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [end] %s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum()
-         , tmp_msg
-        ), file=sys.stderr)
-    
-    #_20190805_174612:cp:to:--------
+#     
+# #     tmp_msg += "len(lo_Pos_Target) = %d" % (len(lo_Pos_Target))
+# #     tmp_msg += "\n"
+#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+#                  (
+#                   len(lo_Pos_Target)
+#                   , cntOf_Loop
+#                   , len(lo_Pos_Target) / cntOf_Loop
+#                   )
+#     tmp_msg += "\n"
+#     tmp_msg += "\n"
+# 
+#     '''###################
+#         step : A : 4.2
+#             item : 2
+#     ###################'''
+#     '''###################
+#         step : A : 4.2
+#             item : 2.1 : header
+#     ###################'''
+# #     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low"
+#     tmp_msg += "st_idx\tst_pr\tcu_idx\tcu_pr\te0.price_High\te0.price_Low\texit\tdiff.price"
+#     tmp_msg += "\n"
+#     
+#     if len(lo_Pos_Target) > 0 : #if len(lo_Pos_Target) > 0
+#         
+#         for item in lo_Pos_Target:
+#             
+#             pos = item[1]
+#             e0 = item[0]
+#             
+#             exit = item[2]
+#             
+#             diffOf_Price = 0.0
+#             if exit == STATUS_POS_EXIT__TP :
+#                 
+#                 diffOf_Price = (e0.price_High - pos['st_pr'])
+#                 
+#             elif exit == STATUS_POS_EXIT__SL :
+#                              
+#                 diffOf_Price = (e0.price_Low - pos['st_pr'])
+#             
+#             else :
+#                 
+#                 diffOf_Price = -999.9
+#                 
+#             #_20190718_160718:tmp
+#             #_20190724_155401:tmp
+# #             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f" % (
+# #             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s" % (
+#             tmp_msg += "%d\t%.03f\t%d\t%.03f\t%.03f\t%.03f\t%s\t%.03f" % (
+#                               
+#                     pos['st_idx'], pos['st_pr']
+#                     , pos['cu_idx'], pos['cu_pr']
+#                     
+#                     , e0.price_High
+#                     , e0.price_Low
+#                     
+#                     , exit
+#                     
+#                     , diffOf_Price
+#                     )
+#             
+#             tmp_msg += "\n"
+#             tmp_msg += "\n"
+#             
+#         #/for item in lo_Pos_Target:
+# 
+#     
+#     #/if len(lo_Pos_Target) > 0
+#     
+#     msg = "[%s:%d / %s] %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , tmp_msg
+#         )
+#  
+#     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#         
+#         print()
+#         print("%s" % (msg), file=sys.stderr)
+#         
+#     #/if DEBUG_SWITCH == True
+# 
+# 
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append("\n")
+# 
+#     '''###################
+#         step : A : X
+#             log-related
+#     ###################'''
+# 
+#     '''###################
+#         step : A : X.1
+#             create : dir
+#     ###################'''
+#     
+#     '''###################
+#         time        
+#     ###################'''
+#     time_Elapsed = time.time() - time_Start
+#     
+#     tmp_msg = "%s" % strOf_Op_Name
+#     
+#     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+# 
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , msg
+#         )
+# 
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+#     
+#     # log
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append("\n")
+#     
+#     '''###################
+#         step : A : X
+#             write : file
+#     ###################'''
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Log)
+#             )
+#     
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+# 
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Error)
+#             )
+#     
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+#     
+#     '''###################
+#         step : X
+#             debug : ending message
+#     ###################'''
+#     tmp_msg = strOf_Opening_Message
+# 
+#     print()
+#     print("[%s:%d] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [end] %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , tmp_msg
+#         ), file=sys.stderr)
+#     
+#     #_20190805_174612:cp:to:--------
     
     '''###################
         step : X
