@@ -66,7 +66,8 @@ STATUS_POS_EXIT__SL = "STATUS_POS_EXIT__SL"
 STATUS_POS_EXIT__TP = "STATUS_POS_EXIT__TP"
 STATUS_POS_EXIT__OTHERS = "STATUS_POS_EXIT__OTHERS"
 
-DEBUG_SWITCH = False
+SWITCH_DEBUG = True
+# SWITCH_DEBUG = False
 
 SWITCH_TEST = True
 
@@ -406,6 +407,7 @@ def dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
         step : X : 1.1
             return values
     ###################'''
+#     ret = False
     ret = True
     
     '''###################
@@ -654,12 +656,12 @@ def tester_T_1__Report_Dat(\
          , tmp_msg
         )
  
-    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
         
         print()
         print("%s" % (msg), file=sys.stderr)
         
-    #/if DEBUG_SWITCH == True
+    #/if SWITCH_DEBUG == True
 
 
     lo_Lines_Dat.append(msg)
@@ -684,6 +686,265 @@ def tester_T_1__Report_Dat(\
 #/ def tester_T_1__Report_Dat():
     
     
+'''###################
+    tester_T_1__Buy_Up__Loop_2_Trailing
+
+    at : 2019/07/31 17:08:56
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def tester_T_1__Buy_Up__Loop_2_Trailing(\
+                               
+        lenOf_Detection_Target_Range
+        , lenOf_LO_BDs_Tmp
+        , lo_Lines_Log
+        , flg_Pos
+        , lo_BDs_Tmp
+        , valOf_TP
+        , valOf_SPREAD
+        , valOf_SL
+#         , ts_TP, ts_SL
+        , lo_Pos_Target
+        , Pos
+        , lo_LO_Lines
+                               ):
+#_20190807_085747:caller
+#_20190807_085752:head
+#_20190807_085756:wl:in-func
+    
+    msg = "[%s:%d / %s] tester_T_1__Buy_Up__Loop_2_Trailing ---> starting..."
+ 
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        print()
+
+    '''###################
+        step : A : 1
+            prep
+    ###################'''
+    cntOf_Loop = 0
+
+    #_20190807_094922:cp:from:-----------
+    for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
+    
+        '''###################
+            step : B : -1 : 1
+                stopper
+        ###################'''
+        cntOf_Loop += 1
+        
+        '''###################
+            step : B : 0
+                log : loop num
+        ###################'''
+        #log
+        tmp_msg = "(step : B : 0) =================================== loop : %d" %\
+                 (
+                    i
+                  )
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+            
+        
+        #/if SWITCH_DEBUG == True
+
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+        
+        '''###################
+            step : B : 1
+                prep : vars
+        ###################'''
+        e0 = lo_BDs_Tmp[i]
+        
+        #_20190807_094922:cp:to:-----------
+
+        #_20190807_095032:cp:from:----------------
+        '''###################
+            step : B : j1
+                position --> taken ?
+        ###################'''
+        if flg_Pos == True : #if flg_Pos == True
+            
+            #_20190807_095032:cp:to:----------------
+            #_20190807_095827:cp:from:----------------
+            '''###################
+                step : B : j1 : Y
+                    position --> taken
+            ###################'''
+            '''###################
+                step : B : j1 : Y : 1
+                    log
+            ###################'''
+            #log
+            tmp_msg = "(step : B : j1 : Y)\nflg_Pos --> True : %s" %\
+                     (
+                        e0.dateTime
+                      )
+            
+            msg = "[%s:%d / %s] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+            
+            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                print()
+                
+                print("%s" % (msg), file=sys.stderr)
+
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+            lo_Lines_Log.append("\n")
+            
+            #_20190807_095827:cp:to:----------------
+            
+            #debug
+            break
+
+        #_20190807_095324:cp:from:---------------
+        else : #if flg_Pos == True
+            '''###################
+                step : B : j1 : N
+                    position --> NOT taken
+            ###################'''
+            '''###################
+                step : B : j1 : N : 1
+                    log
+            ###################'''
+            #log
+            tmp_msg = "(step : B : j1 : N) flg_Pos --> False : %s" %\
+                     (
+                        e0.dateTime
+                      )
+            
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+            
+            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                print()
+                print("%s" % (msg), file=sys.stderr)
+
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+            lo_Lines_Log.append("\n")
+            
+            '''###################
+                step : B : j2
+                    detect pattern ?
+            ###################'''
+            #_20190706_231447:caller
+            res = dp_Tester_T_1__Buy_Up(lo_LO_Lines, lo_BDs_Tmp)
+            
+            if res == True : #if res == True
+                '''###################
+                    step : B : j2 : Y
+                        detect pattern
+                ###################'''
+                '''###################
+                    step : B : j2 : Y : 1
+                        log
+                ###################'''
+                #_20190706_231819:tmp
+                #log
+                tmp_msg = "(step : B : j2 : Y)\npattern --> detected : %s" %\
+                         (
+                            e0.dateTime
+                          )
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")
+
+                '''###################
+                    step : B : j2 : Y : 2
+                        flag --> set : True
+                ###################'''
+                flg_Pos = True
+                
+                #log
+                tmp_msg = "(step : B : j2 : Y : 2)\nflg_Pos ==> now, true (%s, %s)" %\
+                         (
+                            flg_Pos
+                            , e0.dateTime
+                          )
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")
+                
+                #_20190807_095324:cp:to:---------------
+                
+                #_20190807_101202:next
+                
+            #_20190807_100216:cp:from:------------
+            else : #if res == True
+                '''###################
+                    step : B : j2 : N
+                        detect pattern NOT
+                ###################'''
+                '''###################
+                    step : B : j2 : N : 1
+                        continue
+                ###################'''
+                tmp_msg = "(step : B : j2 : N : 1) continuing..."
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+             
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")
+                
+                #debug
+                break
+                
+                continue
+                
+                #_20190807_100216:cp:to:------------            
+            
+            #/if res == True : #if res == True
+            
+        #/if flg_Pos == True : #if flg_Pos == True
+        
+#/ def tester_T_1__Buy_Up__Loop_2_Trailing(\
+
 '''###################
     tester_T_1__Buy_Up__Loop_1
 
@@ -718,6 +979,7 @@ def tester_T_1__Buy_Up__Loop_1(\
     ###################'''
     cntOf_Loop = 0
     
+    #_20190807_094922:cp:from:-----------
     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
     
         '''###################
@@ -745,7 +1007,7 @@ def tester_T_1__Buy_Up__Loop_1(\
         print("%s" % (msg), file=sys.stderr)
             
         
-        #/if DEBUG_SWITCH == True
+        #/if SWITCH_DEBUG == True
 
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
@@ -756,11 +1018,19 @@ def tester_T_1__Buy_Up__Loop_1(\
         ###################'''
         e0 = lo_BDs_Tmp[i]
         
+        #_20190807_094922:cp:to:-----------
+        
+        #_20190807_095032:cp:from:----------------
         '''###################
             step : B : j1
                 position --> taken ?
         ###################'''
         if flg_Pos == True : #if flg_Pos == True
+            
+            #_20190807_095032:cp:to:----------------
+            
+            
+            #_20190807_095827:cp:from:----------------
             '''###################
                 step : B : j1 : Y
                     position --> taken
@@ -780,7 +1050,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                  , tmp_msg
                 )
             
-            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                 print()
                 
                 print("%s" % (msg), file=sys.stderr)
@@ -788,6 +1058,8 @@ def tester_T_1__Buy_Up__Loop_1(\
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
             lo_Lines_Log.append("\n")
+            
+            #_20190807_095827:cp:to:----------------
             
             '''###################
                 step : B : j1 : Y : 2
@@ -816,7 +1088,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                  , tmp_msg
                 )
             
-            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                 print()
                 print("%s" % (msg), file=sys.stderr)
 
@@ -854,7 +1126,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -901,7 +1173,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -920,7 +1192,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -954,7 +1226,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg
                     )
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -991,7 +1263,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                     
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1045,7 +1317,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                     
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1070,7 +1342,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1089,7 +1361,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1124,7 +1396,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1160,7 +1432,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                     
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1179,7 +1451,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                     
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1202,6 +1474,7 @@ def tester_T_1__Buy_Up__Loop_1(\
             #debug
             break
         
+        #_20190807_095324:cp:from:---------------
         else : #if flg_Pos == True
             '''###################
                 step : B : j1 : N
@@ -1222,7 +1495,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                  , tmp_msg
                 )
             
-            if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                 print()
                 print("%s" % (msg), file=sys.stderr)
 
@@ -1258,7 +1531,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -1284,14 +1557,16 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
                 lo_Lines_Log.append(msg)
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")
-
+                
+                #_20190807_095324:cp:to:---------------
+                
                 '''###################
                     step : B : j2 : Y : 3
                         Pos --> init
@@ -1326,7 +1601,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -1357,7 +1632,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
                 
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -1393,7 +1668,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                     
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1443,7 +1718,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                         
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
                         
@@ -1454,7 +1729,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
                         
@@ -1478,7 +1753,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1518,7 +1793,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1560,7 +1835,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                          , tmp_msg
                         )
                  
-                    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                         print()
                         print("%s" % (msg), file=sys.stderr)
         
@@ -1597,7 +1872,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
             
@@ -1646,7 +1921,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
             
@@ -1689,7 +1964,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
             
@@ -1725,7 +2000,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
             
@@ -1744,7 +2019,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                              , tmp_msg
                             )
                      
-                        if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                             print()
                             print("%s" % (msg), file=sys.stderr)
             
@@ -1768,6 +2043,7 @@ def tester_T_1__Buy_Up__Loop_1(\
 #                 #debug
 #                 break
             
+            #_20190807_100216:cp:from:------------
             else : #if res == True
                 '''###################
                     step : B : j2 : N
@@ -1784,7 +2060,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                      , tmp_msg
                     )
              
-                if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
                     print()
                     print("%s" % (msg), file=sys.stderr)
     
@@ -1793,7 +2069,9 @@ def tester_T_1__Buy_Up__Loop_1(\
                 lo_Lines_Log.append("\n")
                 
                 continue
-            
+                
+                #_20190807_100216:cp:to:------------
+                
             #/if res == True
             
         #/if flg_Pos == True
@@ -2151,7 +2429,9 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
     maxOf_Loop = 20
     
     #_20190731_170957:caller
-    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_1(\
+#     (cntOf_Loop) = tester_T_1__Buy_Up__Loop_1(\
+    #_20190807_085747:caller
+    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_2_Trailing(\
                                
         lenOf_Detection_Target_Range
         , lenOf_LO_BDs_Tmp
@@ -2166,6 +2446,9 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
         , Pos
         , lo_LO_Lines
                                )
+    
+    #debug
+    return
     
     #_20190805_173755:cp:to--------        
     
@@ -2269,12 +2552,12 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
          , tmp_msg
         )
  
-    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
         
         print()
         print("%s" % (msg), file=sys.stderr)
         
-    #/if DEBUG_SWITCH == True
+    #/if SWITCH_DEBUG == True
 
 
     lo_Lines_Log.append(msg)
@@ -2804,7 +3087,9 @@ def tester_T_1__Buy_Up(request):
     
     #_20190706_231147:mk:for-loop
     #_20190731_170957:caller
-    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_1(\
+#     (cntOf_Loop) = tester_T_1__Buy_Up__Loop_1(\
+    #_20190807_085747:caller
+    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_2_Trailing(\
                                
         lenOf_Detection_Target_Range
         , lenOf_LO_BDs_Tmp
@@ -2819,6 +3104,10 @@ def tester_T_1__Buy_Up(request):
         , Pos
         , lo_LO_Lines
                                )
+
+    #debug
+    return
+
 
 #     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
 #     
@@ -2868,7 +3157,7 @@ def tester_T_1__Buy_Up(request):
 #              , tmp_msg
 #             )
 #         
-# #         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+# #         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 # #             
 # #             print()
 # #             print("%s" % (msg), file=sys.stderr)
@@ -2876,7 +3165,7 @@ def tester_T_1__Buy_Up(request):
 #         print("%s" % (msg), file=sys.stderr)
 #             
 #         
-#         #/if DEBUG_SWITCH == True
+#         #/if SWITCH_DEBUG == True
 # 
 #      
 #         lo_Lines_Log.append(msg)
@@ -2912,7 +3201,7 @@ def tester_T_1__Buy_Up(request):
 #                  , tmp_msg
 #                 )
 #             
-#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                 print()
 #                 
 #                 print("%s" % (msg), file=sys.stderr)
@@ -2945,7 +3234,7 @@ def tester_T_1__Buy_Up(request):
 #                  , tmp_msg
 #                 )
 #             
-#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                 print()
 #                 print("%s" % (msg), file=sys.stderr)
 # 
@@ -2983,7 +3272,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3030,7 +3319,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3049,7 +3338,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3083,7 +3372,7 @@ def tester_T_1__Buy_Up(request):
 #                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
 #                      , tmp_msg
 #                     )
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3120,7 +3409,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                     
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3174,7 +3463,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                     
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3199,7 +3488,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3218,7 +3507,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3253,7 +3542,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3289,7 +3578,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                     
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3308,7 +3597,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                     
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3351,7 +3640,7 @@ def tester_T_1__Buy_Up(request):
 #                  , tmp_msg
 #                 )
 #             
-#             if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                 print()
 #                 print("%s" % (msg), file=sys.stderr)
 # 
@@ -3387,7 +3676,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3413,7 +3702,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3455,7 +3744,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3483,7 +3772,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #                 
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -3519,7 +3808,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                     
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3569,7 +3858,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                         
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #                         
@@ -3580,7 +3869,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #                         
@@ -3604,7 +3893,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3644,7 +3933,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3686,7 +3975,7 @@ def tester_T_1__Buy_Up(request):
 #                          , tmp_msg
 #                         )
 #                  
-#                     if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                         print()
 #                         print("%s" % (msg), file=sys.stderr)
 #         
@@ -3723,7 +4012,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #             
@@ -3772,7 +4061,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #             
@@ -3815,7 +4104,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #             
@@ -3851,7 +4140,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #             
@@ -3870,7 +4159,7 @@ def tester_T_1__Buy_Up(request):
 #                              , tmp_msg
 #                             )
 #                      
-#                         if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                             print()
 #                             print("%s" % (msg), file=sys.stderr)
 #             
@@ -3910,7 +4199,7 @@ def tester_T_1__Buy_Up(request):
 #                      , tmp_msg
 #                     )
 #              
-#                 if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+#                 if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
 #                     print()
 #                     print("%s" % (msg), file=sys.stderr)
 #     
@@ -4029,12 +4318,12 @@ def tester_T_1__Buy_Up(request):
          , tmp_msg
         )
   
-    if DEBUG_SWITCH == True : #if DEBUG_SWITCH == True
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
          
         print()
         print("%s" % (msg), file=sys.stderr)
          
-    #/if DEBUG_SWITCH == True
+    #/if SWITCH_DEBUG == True
  
  
     lo_Lines_Log.append(msg)
