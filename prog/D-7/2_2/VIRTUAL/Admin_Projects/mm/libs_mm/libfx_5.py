@@ -1,5 +1,5 @@
-'''###################
             
+'''###################
     file : C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\mm\libs_mm\libfx_4.py
     copy source : C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\mm\libs_mm\libfx_3.py
     
@@ -906,6 +906,93 @@ def tester_T_1__Buy_Up__Loop_2_Trailing(\
                 #_20190807_095324:cp:to:---------------
                 
                 #_20190807_101202:next
+                #_20190808_095641:cp:from:---------------
+                '''###################
+                    step : B : j2 : Y : 3
+                        Pos --> init
+                ###################'''
+                # "st_idx" : -1
+                # , "st_pr" : 0.0
+                # 
+                # , "cu_idx" : -1
+                # , "cu_pr" : 0.0
+                
+                Pos["st_idx"] = i
+                Pos["st_pr"] = e0.price_Open
+                
+                Pos["cu_idx"] = i
+                Pos["cu_pr"] = e0.price_Open
+                
+                Pos["ref_idx"] = i
+                Pos["ref_pr"] = e0.price_Open
+
+                #log
+                tmp_msg = "(step : B : j2 : Y : 3)\nPos ==> init done"
+                
+                tmp_msg += "\n"
+                
+                tmp_msg += "st_idx\t%d\nst_pr\t%.03f" % (Pos["st_idx"], Pos["st_pr"])
+                tmp_msg += "\n"
+                
+                tmp_msg += "cu_idx\t%d\ncu_pr\t%.03f" % (Pos["cu_idx"], Pos["cu_pr"])
+                tmp_msg += "\n"
+                
+                tmp_msg += "ref_idx\t%d\nref_pr\t%.03f" % (Pos["ref_idx"], Pos["ref_pr"])
+                tmp_msg += "\n"
+                
+                
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")
+
+                
+                #_20190808_095641:cp:to:---------------                
+                
+                '''################### #_20190808_100645:marker
+                    step : B : j2 : Y : 4
+                        calc : ts_TP, ts_SL
+                ###################'''
+                ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
+                ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
+                
+                tmp_msg += "(step : B : j2 : Y : 4) calc ts_TP, ts_SL"
+                tmp_msg += "\n"
+                
+                tmp_msg += "ts_TP\t%.03f\nts_SL\t%.03f" % (ts_TP, ts_SL)
+                tmp_msg += "\n"
+                
+                
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")
+                
+                #_20190808_102247:next
+                '''###################
+                    step : B : j3
+                        judge : e0.price_Low --> equal or less than ts_SL ?
+                ###################'''
+                
+                
                 
             #_20190807_100216:cp:from:------------
             else : #if res == True
@@ -1567,6 +1654,7 @@ def tester_T_1__Buy_Up__Loop_1(\
                 
                 #_20190807_095324:cp:to:---------------
                 
+                #_20190808_095641:cp:from:---------------
                 '''###################
                     step : B : j2 : Y : 3
                         Pos --> init
@@ -1609,6 +1697,9 @@ def tester_T_1__Buy_Up__Loop_1(\
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")
 
+                
+                #_20190808_095641:cp:to:---------------
+                
                 '''###################
                     step : B : j2 : Y : 4
                         calc
@@ -2330,6 +2421,10 @@ def tester_T_1__Buy_Up__Exec_Multi_TP_SL_Sets(\
             
             , "cu_idx" : -1
             , "cu_pr" : 0.0
+            
+            #_20190808_100224:marker
+            , "ref_idx" : -1
+            , "ref_pr" : 0.0
             
             }
     
