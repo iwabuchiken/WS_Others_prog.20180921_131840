@@ -724,6 +724,12 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
         print()
 
     '''###################
+        step : A : 0
+            vars
+    ###################'''
+    lo_Pos_Exits = []
+    
+    '''###################
         step : A : 1
             prep
     ###################'''
@@ -1087,6 +1093,65 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                         lo_Lines_Log.append("\n")
                         
                         #_20190814_104749:next
+                        '''###################
+                            step : B : j7 : Y : 3
+                                set : vals
+                        ###################'''
+                        '''###################
+                            step : B : j7 : Y : 3.1
+                                to list ==> e0, Pos
+                        ###################'''
+                        setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+                        
+                        lo_Pos_Exits.append(setOf_Entries)
+                        
+                        tmp_msg = "(step : B : j7 : Y : 3)\n"
+                        
+                        tmp_msg += "Pos ==> to list"
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+                                lo_Pos_Exits[-1][1]["st_idx"]                        
+                                , lo_Pos_Exits[-1][1]["st_pr"]                        
+                                                        
+                                )
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
+                                lo_Pos_Exits[-1][1]["rf_idx"]                        
+                                , lo_Pos_Exits[-1][1]["rf_pr"]                        
+                                                        
+                                )
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
+                                lo_Pos_Exits[-1][1]["ext_idx"]                        
+                                , lo_Pos_Exits[-1][1]["ext_pr"]                        
+                                                        
+                                )
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+                                                                                                                     
+                                lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
+                                                        
+                                )
+                        tmp_msg += "\n"
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                         
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
+             
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")                        
+                        
+                        #_20190814_171206:next
                         
                         #debug
                         #_20190814_101628:tmp
@@ -1862,7 +1927,7 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
         step : C : 1.1
             build vals
     ###################'''
-    ret = (cntOf_Loop)
+    ret = (cntOf_Loop, lo_Pos_Exits)
         
     '''###################
         step : C : 1.2
@@ -4386,7 +4451,9 @@ def tester_T_1__Buy_Up(request):
 #     (cntOf_Loop) = tester_T_1__Buy_Up__Loop_2_Trailing(\
 
     #_20190810_125252:caller
-    (cntOf_Loop) = tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
+    #_20190814_165634:tmp
+#     (cntOf_Loop) = tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
+    (cntOf_Loop, lo_Pos_Exits) = tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                                
         lenOf_Detection_Target_Range
         , lenOf_LO_BDs_Tmp
