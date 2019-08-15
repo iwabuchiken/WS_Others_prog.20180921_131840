@@ -1152,6 +1152,111 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                         lo_Lines_Log.append("\n")                        
                         
                         #_20190814_171206:next
+                        '''###################
+                            step : B : j7 : Y : 4
+                                Pos ==> reset
+                        ###################'''
+                        Pos = {
+                                
+                                "st_idx" : -1
+                                , "st_pr" : 0.0
+                                
+                                , "cu_idx" : -1
+                                , "cu_pr" : 0.0
+                                
+                                # the bar : for later referral
+                                , "rf_idx" : -1
+                                , "rf_pr" : 0.0
+                                
+                                # the bar to exit
+                                , "ext_idx" : -1
+                                , "ext_pr" : 0.0
+                                
+                                # values, margins
+                                , "val_TP" : 0.0
+                                , "val_SL" : 0.0
+                                , "val_SPREAD" : 0.0
+                                
+                                , "ts_TP" : 0.0
+                                , "ts_SL" : 0.0
+                                
+                                }
+
+                        tmp_msg = "(step : B : j7 : Y : 4)\n"
+                        
+                        tmp_msg += "Pos ==> reset done"
+                        tmp_msg += "\n"
+                        
+                        tmp_msg += "Pos[\"st_idx\"]\t%d\nPos[\"cu_idx\"]\t%d\nPos[\"rf_idx\"]\t%d\n" % (\
+
+                                Pos["st_idx"]
+                                , Pos["cu_idx"]
+                                , Pos["rf_idx"]
+                                                        
+                                )
+                        tmp_msg += "\n"
+                        
+                        
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                         
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
+             
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")                             
+                        
+                        #_20190815_105241:tmp
+                        '''###################
+                            step : B : j7 : Y : 5
+                                flag ==> reset
+                        ###################'''
+                        flg_Pos = False
+                        
+                        tmp_msg = "(step : B : j7 : Y : 5)\n"
+                        
+                        tmp_msg += "flag ==> reset done : %s" % (flg_Pos)
+                        tmp_msg += "\n"
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                         
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
+             
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")                             
+
+                        '''###################
+                            step : B : j7 : Y : 6
+                                continue
+                        ###################'''
+                        tmp_msg = "(step : B : j7 : Y : 6) continuing..."
+                        
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                         
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
+             
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")                             
+
+                        continue
+                        
                         
                         #debug
                         #_20190814_101628:tmp
@@ -4323,7 +4428,7 @@ def tester_T_1__Buy_Up(request):
     # flags
     flg_Pos = False # position taken
     
-    # pos
+    # pos : init
     Pos = {
             
             "st_idx" : -1
