@@ -736,7 +736,8 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
     cntOf_Loop = 0
     
     # max loop
-    maxOf_Loop = 10
+    maxOf_Loop = 50
+#     maxOf_Loop = 10
 
     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
     
@@ -781,7 +782,8 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                 message : loop number
         ###################'''
         #log
-        tmp_msg = "(step : B : 0) =================================== loop : %d" %\
+#         tmp_msg = "(step : B : 0) =================================== loop : %d" %\
+        tmp_msg = "(step : B : 0) =================================== [loop : %d]" %\
                  (
                     i
                   )
@@ -914,8 +916,27 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")
                 
+                #_20190815_110825:next
+                
                 #debug
+                tmp_msg = "breaking..."
+                tmp_msg += "\n"
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+             
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+    
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")                                                
+                
                 break            
+            
             else : #if ts_SL >= e0.price_Low
                 '''###################
                     step : B : j5 : N
