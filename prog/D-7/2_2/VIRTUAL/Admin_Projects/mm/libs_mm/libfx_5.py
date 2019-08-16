@@ -987,7 +987,7 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                 tmp_msg += "Pos ==> to list"
                 tmp_msg += "\n"
                 
-                
+                # data : len of list
                 tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
                 tmp_msg += "\n"
                 
@@ -1125,7 +1125,26 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")                   
                 
+                '''###################
+                    step : B : j5 : Y : 6
+                        continue
+                ###################'''
+                tmp_msg = "(step : B : j5 : Y : 6) continuing..."
                 
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+                 
+                if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                    print()
+                    print("%s" % (msg), file=sys.stderr)
+     
+                lo_Lines_Log.append(msg)
+                lo_Lines_Log.append("\n")
+                lo_Lines_Log.append("\n")                             
+
+                continue                
                 
                 #debug
                 tmp_msg = "breaking..."
@@ -1338,6 +1357,18 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                         tmp_msg = "(step : B : j7 : Y : 3)\n"
                         
                         tmp_msg += "Pos ==> to list"
+                        tmp_msg += "\n"
+
+                        # data : len of list
+                        tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
+                        tmp_msg += "\n"
+                        
+                        # data : status 
+                        tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
+                                                                                                                   
+                                lo_Pos_Exits[-1][2]
+                                                        
+                                )
                         tmp_msg += "\n"
                         
                         tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
@@ -2048,7 +2079,25 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                     lo_Lines_Log.append("\n")
                     lo_Lines_Log.append("\n")
                     
+                    #_20190816_102247:next
+                    
                     #debug
+                    tmp_msg = "breaking..."
+                    tmp_msg += "\n"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+                 
+                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                        print()
+                        print("%s" % (msg), file=sys.stderr)
+        
+                    lo_Lines_Log.append(msg)
+                    lo_Lines_Log.append("\n")
+                    lo_Lines_Log.append("\n")                                                
+
                     break
                 
                 else : #if ts_SL >= e0.price_Low
