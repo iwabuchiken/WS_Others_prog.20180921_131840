@@ -507,6 +507,8 @@ def tester_T_1__Report_Dat__V2(\
     cntOf_SLs = 0
     cntOf_Unknowns = 0
     
+    
+    #_20190817_150021:fix
     sumOf_TPs = 0.0
     sumOf_SLs = 0.0
     
@@ -526,8 +528,10 @@ def tester_T_1__Report_Dat__V2(\
             cntOf_SLs += 1
             
             # add up
-            #_20190731_174924:tmp
-            sumOf_SLs += (e0.price_Low - pos['st_pr'])
+            #_20190817_150102:fx
+            sumOf_SLs += (pos['ext_pr'] - pos['st_pr'])
+#             sumOf_SLs += (e0.price_Low - pos['st_pr'])
+            
         
         elif exit == STATUS_POS_EXIT__TP : #if exit == STATUS_POS_EXIT__SL
             
@@ -535,7 +539,8 @@ def tester_T_1__Report_Dat__V2(\
             cntOf_TPs += 1
 
             # add up
-            sumOf_TPs += (e0.price_High - pos['st_pr'])
+            sumOf_TPs += (pos['ext_pr'] - pos['st_pr'])
+#             sumOf_TPs += (e0.price_High - pos['st_pr'])
             
         else :
             
@@ -563,7 +568,10 @@ def tester_T_1__Report_Dat__V2(\
     tmp_msg += "sumOf_SLs\t%.03f\nsumOf_TPs\t%.03f\nratio (TP/SL)\t%.03f" %\
                  (
                   sumOf_SLs, sumOf_TPs
-                  , sumOf_TPs / sumOf_SLs
+                  #_20190817_151054:tmp
+                  #ref https://www.tutorialspoint.com/python/number_abs.htm
+                  , sumOf_TPs / abs(sumOf_SLs)
+#                   , sumOf_TPs / sumOf_SLs
                   )
                  
     tmp_msg += "\n"
@@ -594,6 +602,9 @@ def tester_T_1__Report_Dat__V2(\
     tmp_msg += "rf_idx\trf_pr"
     tmp_msg += "\t"
     
+    tmp_msg += "ext_idx\text_pr"
+    tmp_msg += "\t"
+    
     tmp_msg += "e0.price_High\te0.price_Low"
     tmp_msg += "\t"
     
@@ -614,13 +625,17 @@ def tester_T_1__Report_Dat__V2(\
             exit = item[2]
 
             diffOf_Price = 0.0
+            
+            #_20190817_145127:tmp
             if exit == STATUS_POS_EXIT__TP :
                 
-                diffOf_Price = (e0.price_High - pos['st_pr'])
+                diffOf_Price = (pos['ext_pr'] - pos['st_pr'])
+#                 diffOf_Price = (e0.price_High - pos['st_pr'])
                 
             elif exit == STATUS_POS_EXIT__SL :
                              
-                diffOf_Price = (e0.price_Low - pos['st_pr'])
+                diffOf_Price = (pos['ext_pr'] - pos['st_pr'])
+#                 diffOf_Price = (e0.price_Low - pos['st_pr'])
             
             else :
                 
@@ -642,6 +657,14 @@ def tester_T_1__Report_Dat__V2(\
             tmp_msg += "%d\t%.03f" % (
                       
                     pos['rf_idx'], pos['rf_pr']
+                    
+                             )
+            
+            tmp_msg += "\t"
+            
+            tmp_msg += "%d\t%.03f" % (
+                      
+                    pos['ext_idx'], pos['ext_pr']
                     
                              )
             
@@ -1036,34 +1059,34 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
         ###################'''
         cntOf_Loop += 1
         
-        '''###################
-            step : B : 1 : 1.1
-                stopper
-        ###################'''
-        if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
-
-            tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
-                     (
-                        cntOf_Loop, maxOf_Loop
-                      )
-            
-            msg = "[%s:%d / %s]\n%s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
-            
-            print()
-            print("%s" % (msg), file=sys.stderr)
-                
-            
-            #/if SWITCH_DEBUG == True
-    
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            
-            break
-        
-        #/if cntOf_Loop > maxOf_Loop
+#         '''###################
+#             step : B : 1 : 1.1
+#                 stopper
+#         ###################'''
+#         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
+# 
+#             tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
+#                      (
+#                         cntOf_Loop, maxOf_Loop
+#                       )
+#             
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#                 
+#             
+#             #/if SWITCH_DEBUG == True
+#     
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             
+#             break
+#         
+#         #/if cntOf_Loop > maxOf_Loop
         
         
         '''###################
@@ -2686,8 +2709,27 @@ def tester_T_1__Buy_Up__Loop_2_Trailing__V2(\
                         lo_Lines_Log.append(msg)
                         lo_Lines_Log.append("\n")
                         lo_Lines_Log.append("\n")
-                    
+                        
+                        #_20190817_152346:fix
+                        #_20190817_152507:next
+                        
                         #debug
+                        tmp_msg = "breaking..."
+                        tmp_msg += "\n"
+                         
+                        msg = "[%s:%d / %s] %s" % \
+                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                             , tmp_msg
+                            )
+                      
+                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+                            print()
+                            print("%s" % (msg), file=sys.stderr)
+             
+                        lo_Lines_Log.append(msg)
+                        lo_Lines_Log.append("\n")
+                        lo_Lines_Log.append("\n")                                                
+
                         break
                         
                     
