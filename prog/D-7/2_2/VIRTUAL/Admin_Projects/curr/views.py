@@ -37,7 +37,7 @@ sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm'
 
 from mm.libs_mm import cons_mm, cons_fx, libs, libfx \
         , libfx_2, libfx_3, libfx_4 \
-        , libfx_5
+        , libfx_5, libfx_6
 # from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2
 # from mm.libs_mm import libs
 # from mm.libs_mm import libfx
@@ -22298,6 +22298,38 @@ def tester_BuyUps_SellLows__V2(request):
         #_20190630_180022:caller
         (status, msg) = \
             libfx_5.tester_T_1__Buy_Up(request)
+            
+        #ref color names https://html-color-codes.info/color-names/
+        str_Color_Name = ""
+        
+        if msg.startswith("(ERROR)") : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "red"
+        
+        else : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "DarkGreen"
+        
+        #/if msg.startswith("(ERROR)")
+        
+        dic['message'] = \
+                "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
+
+        print()
+        print("[%s:%d] dic['message'] => %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , dic['message']
+                ), file=sys.stderr)
+        
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[19] :
+        #_20190929_124044:tmp
+        '''###################
+            "T-1"
+                test_Buy_Up_1()
+        ###################'''
+        # call func
+        #_20190630_180022:caller
+        (status, msg) = libfx_6.dp_2(request)
             
         #ref color names https://html-color-codes.info/color-names/
         str_Color_Name = ""
