@@ -361,6 +361,207 @@ def tester_T_1__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log):
 
 
 '''###################
+    1. _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log)
+
+    at : 2019/09/30 12:39:29
+    
+    @param : 
+    
+    @return: lo_Hits
+    
+###################'''
+def _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log):
+#_20190930_124040:caller
+#_20190930_124042:head
+#_20190930_124050:wl:in-func
+
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    '''###################
+        step : 1.1
+            vars
+    ###################'''
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    # lists
+    lo_Hits = []    # condition-filling BDs
+    
+    numOf_AntePost_Bars = 10    # the target bars; ante and post bars
+    
+    numOf_Target_Bars = 4
+    
+    '''###################
+        step : B
+            for-loop
+    ###################'''
+    for i in range(numOf_AntePost_Bars, lenOf_LO_BDs_Tmp - numOf_AntePost_Bars):
+    
+        '''###################
+            step : B : 1
+                prep : vars
+        ###################'''
+        lo_Es = lo_BDs_Tmp[i : i + numOf_Target_Bars]
+        
+        '''###################
+            step : B : 2
+                set : conditions
+        ###################'''
+        '''###################
+            step : B : 2 : 1
+                cond_1
+        ###################'''
+        cond_1_1 = (lo_Es[0].price_Close - lo_Es[0].price_Open) >=0
+        cond_1_2 = (lo_Es[1].price_Close - lo_Es[1].price_Open) >=0
+        cond_1_3 = (lo_Es[2].price_Close - lo_Es[2].price_Open) >=0
+        cond_1_4 = (lo_Es[3].price_Close - lo_Es[3].price_Open) >=0
+        
+        cond_1 = all([
+                      cond_1_1 == False     # down
+                      , cond_1_2 == False   # down
+                      , cond_1_3 == True    # up
+                      , cond_1_4 == True    # up
+                      ])
+        
+        '''###################
+            step : B : 2 : 2
+                cond_2
+        ###################'''
+        cond_2_1 = lo_Es[1].price_Close < lo_Es[1].bb_M2S
+        cond_2_2 = lo_Es[2].price_Close < lo_Es[1].bb_M2S
+        
+        cond_2 = all([
+                      cond_2_1 == True
+                      , cond_2_2 == True
+                      ])
+        
+        cond_Final = all([cond_1, cond_2])
+        
+        '''###################
+            step : B : j1
+                cond_1, cond_2 ==> true ?
+        ###################'''
+        if cond_Final == True : #if cond_Final == True
+            '''###################
+                step : B : j1 : Y
+                    cond_1, cond_2 ==> true
+            ###################'''
+            '''###################
+                step : B : j1 : Y : 1
+                    log
+            ###################'''
+            #_20190930_131347:tmp
+            tmp_msg = "[%s:%d / %s] (step : B : j1 : Y : 1) cond_1, cond_2 ==> true" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 
+                )
+                
+            tmp_msg += "\n"
+            
+            tmp_msg += "i\t%d" % i
+            tmp_msg += "\n"
+            
+            tmp_msg += "lo_Es[0].dateTime\t%s" % lo_Es[0].dateTime
+            tmp_msg += "\n"
+            
+                
+            print()
+            print("%s" % \
+                (tmp_msg), file=sys.stderr)
+            
+            # append
+            lo_Lines_Log.append(tmp_msg)
+            lo_Lines_Log.append("\n")
+            lo_Lines_Log.append("\n")
+            
+            '''###################
+                step : B : j1 : Y : 2
+                    append
+            ###################'''
+            lo_Hits.append(lo_Es)
+            
+            # clear the lo_Es
+            lo_Es = []
+            
+            '''###################
+                step : B : j1 : Y : 3
+                    continue
+            ###################'''
+            continue
+        
+        else : #if cond_Final == True
+            '''###################
+                step : B : j1 : N
+                    cond_1, cond_2 ==> false (both/either)
+            ###################'''
+            '''###################
+                step : B : j1 : N : 1
+                    log
+            ###################'''
+        
+            '''###################
+                step : B : j1 : N : 2
+                    continue
+            ###################'''
+            continue
+        
+        #/if cond_Final == True
+        
+        
+    #/for i in range(10, lenOf_LO_BDs_Tmp - 10):
+
+    '''###################
+        step : C
+            post for-loop
+    ###################'''
+    '''###################
+        step : C : 1
+            log
+    ###################'''
+    tmp_msg = "[%s:%d / %s] (step : C : 1)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         
+        )
+        
+    tmp_msg += "\n"
+    
+    tmp_msg += "len(lo_Hits)\t%d" % len(lo_Hits)
+    tmp_msg += "\n"
+    
+    print()
+    print("%s" % \
+        (tmp_msg), file=sys.stderr)
+    
+    # append
+    lo_Lines_Log.append(tmp_msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+#     '''###################
+#         step : B : 1
+#             prep : vars
+#     ###################'''
+
+    '''###################
+        step : D
+            return values
+    ###################'''
+    '''###################
+        step : D : 1
+            set
+    ###################'''
+    valOf_Ret = lo_Hits
+    
+    '''###################
+        step : D : 2
+            return
+    ###################'''
+    return valOf_Ret
+    
+#/ def _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log):
+
+'''###################
     1. dp_2()
 
     at : 2019/06/30 17:30:19 (?)
@@ -372,9 +573,9 @@ def tester_T_1__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log):
 ###################'''
 def dp_2(request):
     
-#_:caller
-#_:head
-#_:wl:in-func
+#_20190930_123951:caller
+#_20190930_123955:head
+#_20190930_123958:wl:in-func
 
     '''###################
         time        
@@ -582,11 +783,16 @@ def dp_2(request):
             detect : patterns
     ###################'''
     #_20190929_125816:next
-
+    #_20190930_124040:caller
+    valOf_Ret = _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log)
+    
     '''###################
-        step : A : 4
+        step : 6
             reporting
     ###################'''
+    #_20190930_133504:next
+    
+    
     '''###################
         step : A : 4 : 1
             dat
