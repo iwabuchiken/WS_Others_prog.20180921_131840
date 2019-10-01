@@ -562,6 +562,131 @@ def _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log):
 #/ def _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log):
 
 '''###################
+    1. _dp_2__Report_Dat(lo_Hits, dpath_Src_Csv, fname_Src_Csv, dpath_Log, fname_Dat)
+
+    at : 2019/06/30 17:30:19 (?)
+    
+    @param : lo_Hits ==> [e0, e1, e2, e3]
+    
+    @return: 
+    
+###################'''
+def _dp_2__Report_Dat(\
+          lo_Hits, lo_BDs_Tmp
+          , dpath_Src_Csv, fname_Src_Csv
+          , dpath_Log, fname_Dat):
+    
+#_20191001_125223:caller
+#_20191001_125230:head
+#_20191001_125234:wl:in-func
+
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    lenOf_LO_Hits = len(lo_Hits)
+    lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
+    
+    fpath_Src_Csv = os.path.join(dpath_Src_Csv, fname_Src_Csv)
+    
+    fpath_Log_Dat = os.path.join(dpath_Log, fname_Dat)
+    
+    # log line list
+    lo_Log_Dat = []
+    
+    '''###################
+        step : 2
+            write
+    ###################'''
+    '''###################
+        step : 2 : 1
+            header
+    ###################'''
+    txt = "fname_Src_Csv\t%s" % fname_Src_Csv
+    txt += "\n"
+    
+    txt += "dpath_Src_Csv\t%s" % dpath_Src_Csv
+    txt += "\n"
+    
+    txt += "dpath_Log\t%s" % dpath_Log
+    txt += "\n"
+    
+    txt += "fname_Dat\t%s" % fname_Dat
+    txt += "\n"
+    
+    txt += "len(lo_BDs_Tmp)\t%d" % len(lo_BDs_Tmp)
+    txt += "\n"
+    
+    txt += "len(lo_Hits)\t%d\t(ratio\t%.03f)" % (len(lo_Hits), len(lo_Hits) * 1.0 / len(lo_BDs_Tmp))
+    txt += "\n"
+    
+    txt += "\n"
+    
+    txt += "========================================"
+    txt += "\n"
+    
+    txt += "s.n.\tdatetime\tC"
+    txt += "\n"
+    
+    # append
+    lo_Log_Dat.append(txt)
+
+    '''###################
+        step : 2 : 2
+            data
+    ###################'''
+    cntOf_Loop = 1
+    
+    for item in lo_Hits:
+    
+#         txt = "%d\t%s\t%.03f" % (cntOf_Loop, item.dateTime, item.price_Close)
+        txt = "%d\t%s\t%.03f" % (cntOf_Loop, item[0].dateTime, item[0].price_Close)
+        txt += "\n"
+        
+        # counter
+        cntOf_Loop += 1
+        
+        # append
+        lo_Log_Dat.append(txt)
+        
+    #/for item in lo_Hits:
+
+    '''###################
+        step : 3
+            file
+    ###################'''
+    '''###################
+        step : 3 : 1
+            file : open
+    ###################'''
+    f_Out = open(fpath_Log_Dat, "w")
+    
+    '''###################
+        step : 3 : 1
+            file : write
+    ###################'''
+    f_Out.write("".join(lo_Log_Dat))
+    
+    '''###################
+        step : X
+            file : close
+    ###################'''
+    f_Out.close()
+    
+    # report
+    #_20191001_130416:tmp
+    tmp_msg = "[%s:%d] log : dat file --> closed (%s)" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , fname_Dat
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+    
+    
+#/ def _dp_2__Report_Dat(lo_Hits, dpath_Src_Csv, fname_Src_Csv, dpath_Log, fname_Dat):
+
+'''###################
     1. dp_2()
 
     at : 2019/06/30 17:30:19 (?)
@@ -603,7 +728,8 @@ def dp_2(request):
     #_20190731_183054:next
     dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
     
-    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__Tester_T_1.value    
+#     fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__Tester_T_1.value    
+    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__DP_2.value    
 #     fname_Conf = _fname_Conf if not _fname_Conf == False else cons_fx.FPath.fname_CONF_BUSL3__M_1_A_2.value    
     
     conf_Tester_T_1 = libfx_2.set_Conf(dpath_Conf, fname_Conf)    
@@ -784,14 +910,22 @@ def dp_2(request):
     ###################'''
     #_20190929_125816:next
     #_20190930_124040:caller
+    #@return: lo_Hits
     valOf_Ret = _dp_2__Detect(lo_BDs_Tmp, lo_Lines_Log)
+
+    '''###################
+        step : 5 : 1
+            unpack
+    ###################'''
+    (lo_Hits) = valOf_Ret
     
     '''###################
         step : 6
             reporting
     ###################'''
     #_20190930_133504:next
-    
+    #_20191001_125223:caller
+    _dp_2__Report_Dat(lo_Hits, lo_BDs_Tmp, dpath_Src_Csv, fname_Src_Csv, dpath_Log, fname_Dat)
     
     '''###################
         step : A : 4 : 1
