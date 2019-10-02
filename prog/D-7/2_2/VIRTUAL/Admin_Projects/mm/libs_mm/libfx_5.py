@@ -5674,6 +5674,7 @@ def tester_T_1__Buy_Up(request):
     #_20190701_181631:tmp
     lenOf_LO_BDs_Tmp = len(lo_BDs_Tmp)
     
+    #_20191002_120537:marker
     lenOf_Detection_Target_Range = 10
     
     # flags
