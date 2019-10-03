@@ -22353,6 +22353,38 @@ def tester_BuyUps_SellLows__V2(request):
                 , dic['message']
                 ), file=sys.stderr)
         
+    elif param == (cons_fx.Tester.lo_Actions__BUSL__IDs.value)[20] :
+        #_20190929_124044:tmp
+        '''###################
+            "T-1"
+                test_Buy_Up_1()
+        ###################'''
+        # call func
+        #_20191003_124456:caller
+        (status, msg) = libfx_6.tester_T_2(request)
+        
+        #ref color names https://html-color-codes.info/color-names/
+        str_Color_Name = ""
+        
+        if msg.startswith("(ERROR)") : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "red"
+        
+        else : #if msg.startswith("(ERROR)")
+        
+            str_Color_Name = "DarkGreen"
+        
+        #/if msg.startswith("(ERROR)")
+        
+        dic['message'] = \
+                "<br><div style='color : %s;'>%s</div>" % (str_Color_Name, msg)
+
+        print()
+        print("[%s:%d] dic['message'] => %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                , dic['message']
+                ), file=sys.stderr)
+        
     else : #if param == cons_fx.Tester.lo_Actions__BUSL__IDs[0].value
     
         dic['message'] += "(UNKNOWN PARAM)"

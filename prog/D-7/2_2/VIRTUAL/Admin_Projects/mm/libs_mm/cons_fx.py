@@ -56,6 +56,7 @@ class FPath(Enum):
     fname_CONF_BUSL3__M_1_A_3 = "busl_3__M_1_A3.conf"
     
     fname_CONF_BUSL3__Tester_T_1 = "busl_3__tester_T_1__Buy_Up.conf"
+    fname_CONF_BUSL3__Tester_T_2 = "busl_3__tester_T_2.conf"
     
     fname_CONF_BUSL3__DP_2 = "busl_3__DP_2.conf"
     
@@ -312,7 +313,7 @@ class ParamConstants(Enum):
         param : T-1~ ==> tester
     ###################'''
     PARAM_BUSL3__T_1 = "tester : test_Buy_Up_1()"
-    PARAM_BUSL3__T_2 = "tester : test_Buy_Up_2()"
+    PARAM_BUSL3__T_2 = "tester : tester_2()"
 
     '''###################
         param : P-1~ ==> detect patterns
@@ -559,6 +560,83 @@ class Tester(Enum):
     
     """
 
+    tag_No_T_2 = """
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    gen subdata <input type='checkbox' 
+                        name='cb_no_44_1_params_area_filepath' 
+                        id='cb_no_44_1_params_area_filepath' 
+                        value='cb_no_44_1_params_area_filepath'>
+                        </input>
+                </td>
+                <td>
+                    <textarea id='ta_no_44_1_params_area_filepath'>C:\\WORKS_2\\WS\\WS_Others.prog\\prog\\D-7\\2_2\\VIRTUAL\\Admin_Projects\\curr\\data\\csv_raw\\44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>subdata by
+                    
+                </td>
+                <td>
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day" 
+                         value="day"
+                         checked="checked" 
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Day">
+                             day
+                             </label>
+                    
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week" 
+                         value="week"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Week">
+                             week
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month" 
+                         value="month"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Month">
+                             month
+                             </label>
+                             
+                     <input 
+                         type="radio" 
+                         name="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By" 
+                         id="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through" 
+                         value="through"
+                         />
+                     <label for="rb_Tester_BuyUps_SellLows_No_44_1_SubData_By_Through">
+                             through
+                             </label>
+                             
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    yes
+                </td>
+                <td>
+                    yes
+                </td>
+            </tr>
+        </table>
+    
+    """
+
     tag_No_P_1 = """
         <br>
         <br>
@@ -695,6 +773,9 @@ class Tester(Enum):
     
             # 2019/09/29 12:30:53
             , 19 : "dp-2"     # detect patterns / series-1
+            
+            # 2019/10/03 12:14:37
+            , 20 : "t-2"     # tester
             
         }
     
@@ -900,9 +981,21 @@ class Tester(Enum):
                 , "20190929_123645" # registered date
             ],     
             
+            #_20191003_122759:marker
+            [
+                lo_Actions__BUSL__IDs[20]   # key
+                ,"t-2 : tester (for dp-2)"  # description : short
+                , ParamConstants.PARAM_BUSL3__T_2.value    # constant string
+                , "" \
+                    + tag_No_T_2
+                    
+                    
+                , "20190929_123645" # registered date
+            ],     
+            
 
 
-        ]
+        ]#lo_Actions__BUSL = [
     
     #
     OPEN_DATA_DIR = "OPEN_DATA_DIR"
