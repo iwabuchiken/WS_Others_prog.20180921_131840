@@ -1144,7 +1144,8 @@ def _im_actions__Ops_11_0(action, request): # /im/im_action
     ###################'''
     ### match
     #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.jpg"
-    pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png)"
+    #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png)"
+    pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png|mov)"	#20191007_090951
 
     comp = re.compile(pat)
 
