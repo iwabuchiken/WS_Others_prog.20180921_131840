@@ -528,6 +528,8 @@ def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
 #_20191006_095329:head
 #_20191006_095334:wl:in-func
     
+    #_20191007_142934:next
+    
     '''###################
         step : X : 1
             return
@@ -1772,6 +1774,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
                 step : B : j2
                     detect pattern ?
             ###################'''
+            #_20191007_142637:marker
             #_20191006_095325:caller
             res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp)
             
@@ -2845,8 +2848,413 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
     
 #/ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
 
+'''###################
+    tester_T_2__Report_Dat
+
+    at : 2019/08/17 14:27:25
+    
+    @param : 
+            lo_Pos_Exits ==> setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
+    
+    @return: 
+    
+###################'''
+def tester_T_2__Report_Dat(\
+                           
+        fname_Dat, dpath_Log
+        , dpath_Src_Csv, fname_Src_Csv
+        , valOf_TP, valOf_SL, valOf_SPREAD
+        , lo_Pos_Exits
+        , cntOf_Loop
+        
+                           ):
+#_20191007_140229:caller
+#_20191007_140232:head
+#_20191007_140236:wl:in-func
+    
+    print()
+    tmp_msg = "[%s:%d] tester_T_2__Report_Dat() : fname_Dat = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , fname_Dat
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+    
+    '''###################
+        step : 0
+            vars
+    ###################'''
+    lo_Lines_Dat = []
+    
+    cntOf_For_Loop = 0
+    
+    '''###################
+        step : 1
+            meta info
+    ###################'''
+    #_20190727_160245:tmp
+    tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s\n" % (\
+              fname_Src_Csv
+              , dpath_Src_Csv
+              
+              )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    # log
+    lo_Lines_Dat.append(msg)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+
+    '''###################
+        step : 2
+            data
+    ###################'''
+    #_20190727_161050:tmp
+#     tmp_msg += "len(lo_Pos_Exits)\t%d\ntotal\t%d\nratio\t%.03f" %\
+    tmp_msg = "len(lo_Pos_Exits)\t%d\ntotal\t%d\nratio\t%.03f" %\
+                 (
+                  len(lo_Pos_Exits)
+                  , cntOf_Loop
+                  , len(lo_Pos_Exits) / cntOf_Loop
+                  )
+    tmp_msg += "\n"
+#     tmp_msg += "\n"
+
+    '''###################
+        step : 2.1
+            data : SL, TP
+    ###################'''
+    #_20190731_161107:tmp
+    cntOf_TPs = 0
+    cntOf_SLs = 0
+    cntOf_Unknowns = 0
+    
+    
+    #_20190817_150021:fix
+    sumOf_TPs = 0.0
+    sumOf_SLs = 0.0
+    
+    for item in lo_Pos_Exits:
+        
+        # values
+        e0 = item[0]
+        
+        pos = item[1]
+        
+        exit = item[2]
+        
+        # judge
+        if exit == STATUS_POS_EXIT__SL : #if exit == STATUS_POS_EXIT__SL
+            
+            # count
+            cntOf_SLs += 1
+            
+            # add up
+            #_20190817_150102:fx
+            sumOf_SLs += (pos['ext_pr'] - pos['st_pr'])
+#             sumOf_SLs += (e0.price_Low - pos['st_pr'])
+            
+        
+        elif exit == STATUS_POS_EXIT__TP : #if exit == STATUS_POS_EXIT__SL
+            
+            # cont
+            cntOf_TPs += 1
+
+            # add up
+            sumOf_TPs += (pos['ext_pr'] - pos['st_pr'])
+#             sumOf_TPs += (e0.price_High - pos['st_pr'])
+            
+        else :
+            
+            cntOf_Unknowns += 1
+        
+        #/if exit == STATUS_POS_EXIT__SL
+        
+    #/for item in lo_Pos_Exits:
+    
+    lenOf_LO_Pos_Target = len(lo_Pos_Exits)
+    
+#     tmp_msg += "cntOf_SLs\t%d (%.03f)\ncntOf_TPs\t%d (%.03f)\n" %\
+    tmp_msg += "cntOf_SLs\t%d\t(%.03f)\ncntOf_TPs\t%d\t(%.03f)\n" %\
+                 (
+                  cntOf_SLs, cntOf_SLs / lenOf_LO_Pos_Target
+                  , cntOf_TPs, cntOf_TPs / lenOf_LO_Pos_Target
+                  )
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+
+    '''###################
+        step : 2.1 : 1
+            data : sum of SL, TP
+    ###################'''
+    tmp_msg += "sumOf_SLs\t%.03f\nsumOf_TPs\t%.03f\nratio (TP/SL)\t%.03f" %\
+                 (
+                  sumOf_SLs, sumOf_TPs
+                  #_20190817_151054:tmp
+                  #ref https://www.tutorialspoint.com/python/number_abs.htm
+                  , sumOf_TPs / abs(sumOf_SLs)
+#                   , sumOf_TPs / sumOf_SLs
+                  )
+                 
+    tmp_msg += "\n"
+
+    '''###################
+        step : 2.1 : 2
+            data : SL, TP, SPREAD
+    ###################'''
+    tmp_msg += "valOf_SL\t%.03f\nvalOf_TP\t%.03f\nvalOf_SPREAD\t%.03f\n" %\
+                 (
+                  valOf_SL, valOf_TP, valOf_SPREAD
+                  )
+    tmp_msg += "\n"
+
+    
+    
+    '''###################
+        step : 2.2
+            item : 2
+    ###################'''
+    #_20190817_143905:tmp
+    '''###################
+        step : 2.2 : 1 : header
+    ###################'''
+    tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr"
+    tmp_msg += "\t"
+    
+    tmp_msg += "rf_idx\trf_pr"
+    tmp_msg += "\t"
+    
+    tmp_msg += "ext_idx\text_pr"
+    tmp_msg += "\t"
+    
+    tmp_msg += "e0.price_High\te0.price_Low"
+    tmp_msg += "\t"
+    
+    tmp_msg += "exit\tdiff.price"
+    
+    tmp_msg += "\n"
+    
+    if len(lo_Pos_Exits) > 0 : #if len(lo_Pos_Exits) > 0
+        
+        for item in lo_Pos_Exits:
+            
+            # count
+            cntOf_For_Loop += 1
+            
+            pos = item[1]
+            e0 = item[0]
+            
+            exit = item[2]
+
+            diffOf_Price = 0.0
+            
+            #_20190817_145127:tmp
+            if exit == STATUS_POS_EXIT__TP :
+                
+                diffOf_Price = (pos['ext_pr'] - pos['st_pr'])
+#                 diffOf_Price = (e0.price_High - pos['st_pr'])
+                
+            elif exit == STATUS_POS_EXIT__SL :
+                             
+                diffOf_Price = (pos['ext_pr'] - pos['st_pr'])
+#                 diffOf_Price = (e0.price_Low - pos['st_pr'])
+            
+            else :
+                
+                diffOf_Price = -999.9
+            
+            #_20190817_144143:tmp
+            '''###################
+                step : 2.2 : 2 : values
+            ###################'''
+            tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f" % (
+                      
+                    cntOf_For_Loop
+                    , pos['st_idx'], pos['st_pr']
+                    , pos['cu_idx'], pos['cu_pr']
+                    
+                             )
+            tmp_msg += "\t"
+            
+            tmp_msg += "%d\t%.03f" % (
+                      
+                    pos['rf_idx'], pos['rf_pr']
+                    
+                             )
+            
+            tmp_msg += "\t"
+            
+            tmp_msg += "%d\t%.03f" % (
+                      
+                    pos['ext_idx'], pos['ext_pr']
+                    
+                             )
+            
+            tmp_msg += "\t"
+            
+            tmp_msg += "%.03f\t%.03f" % (
+                      
+                    e0.price_High
+                    , e0.price_Low
+                    
+                             )
+            
+            tmp_msg += "\t"
+            
+            tmp_msg += "%s\t%.03f" % (
+                      
+                    exit
+                    
+                    , diffOf_Price
+                    
+                             )
+            
+            tmp_msg += "\n"
+#             tmp_msg += "\n"
+            
+        #/for item in lo_Pos_Exits:
+
+    
+    #/if len(lo_Pos_Exits) > 0
+    
+#     msg = "[%s:%d / %s] %s" % \
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+ 
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+    #/if SWITCH_DEBUG == True
 
 
+    lo_Lines_Dat.append(msg)
+    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat.append("\n")
+    
+    
+    '''###################
+        step : A : X
+            write : file
+    ###################'''
+#     msg_Dat_CSV = "[%s / %s:%d]\n%s" % \
+    msg_Log_Dat = "%s" % \
+            (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+            "".join(lo_Lines_Dat)
+            )
+    
+    libs.write_Log(msg_Log_Dat, dpath_Log, fname_Dat, 0)
+
+#/ def tester_T_2__Report_Dat():
+
+'''###################
+    tester_T_2__Report_Log
+
+    at : 2019/10/07 14:11:31
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def tester_T_2__Report_Log(\
+
+           fname_Log
+           , fname_Error
+           , dpath_Log
+           
+           , time_Start
+           , strOf_Op_Name
+           
+           , lo_Lines_Log
+           , lo_Lines_Error
+
+           ):
+
+#_20191007_141106:caller
+#_20191007_141110:head
+#_20191007_141113:wl:in-func
+    
+    print()
+    tmp_msg = "[%s:%d] tester_T_2__Report_Log() : fname_Log = %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , fname_Log
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+    
+    tmp_msg = "\n------------------------------ (step : A : 4 : 2) reporting : log"
+    tmp_msg += "\n"
+      
+#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+#                  (
+#                   len(lo_Pos_Target)
+#                   , cntOf_Loop
+#                   , len(lo_Pos_Target) / cntOf_Loop
+#                   )
+#     tmp_msg += "\n"
+    
+    tmp_msg += "\n"
+  
+    '''###################
+        time        
+    ###################'''
+    time_Elapsed = time.time() - time_Start
+      
+    tmp_msg = "%s" % strOf_Op_Name
+      
+    msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+  
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , msg
+        )
+  
+    print()
+    print("%s" % (msg), file=sys.stderr)
+      
+    # log
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+      
+    '''###################
+        step : A : X
+            write : file
+    ###################'''
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Lines_Log)
+            )
+      
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+  
+    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+            (
+            libs.get_TimeLabel_Now()
+            , os.path.basename(libs.thisfile()), libs.linenum()
+            , "".join(lo_Lines_Error)
+            )
+      
+    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)            
+
+#/ def tester_T_2__Report_Log():
 
 '''###################
     1. tester_T_2()
@@ -3190,86 +3598,103 @@ def tester_T_2(request):
     lo_Lines_Log.append("\n")
     
     #_20191006_101452:next
-#     '''###################
-#         step : A : 4
-#             reporting
-#     ###################'''
-#     '''###################
-#         step : A : 4 : 1
-#             dat
-#     ###################'''
-#     #_20190817_142750:caller
+    '''###################
+        step : A : 4
+            reporting
+    ###################'''
+    '''###################
+        step : A : 4 : 1
+            dat
+    ###################'''
+    #_20191007_140229:caller
 #     tester_T_2__Report_Dat__V2(\
-#                 fname_Dat, dpath_Log
-#                 , dpath_Src_Csv, fname_Src_Csv
-#                   
-#                 , valOf_TP, valOf_SL, valOf_SPREAD
-#                 , lo_Pos_Exits
-# #                 , lo_Pos_Target
-#                 , cntOf_Loop
-#                 )
-#      
-#      
+    tester_T_2__Report_Dat(\
+                fname_Dat, dpath_Log
+                , dpath_Src_Csv, fname_Src_Csv
+                   
+                , valOf_TP, valOf_SL, valOf_SPREAD
+                , lo_Pos_Exits
+#                 , lo_Pos_Target
+                , cntOf_Loop
+                )
+      
+      
     '''###################
         step : A : 4 : 2
-            log
+            log, error
     ###################'''
-    tmp_msg = "\n------------------------------ (step : A : 4 : 2) reporting : log"
-    tmp_msg += "\n"
-      
-#     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
-#                  (
-#                   len(lo_Pos_Target)
-#                   , cntOf_Loop
-#                   , len(lo_Pos_Target) / cntOf_Loop
-#                   )
-#     tmp_msg += "\n"
+    #_20191007_141106:caller
+    tester_T_2__Report_Log(\
+           
+           fname_Log
+           , fname_Error
+           , dpath_Log
+           
+           , time_Start
+           , strOf_Op_Name
+           
+           , lo_Lines_Log
+           , lo_Lines_Error
+           
+                          )
+
     
-    tmp_msg += "\n"
-  
-    '''###################
-        time        
-    ###################'''
-    time_Elapsed = time.time() - time_Start
-      
-    tmp_msg = "%s" % strOf_Op_Name
-      
-    msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
-  
-    msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , msg
-        )
-  
-    print()
-    print("%s" % (msg), file=sys.stderr)
-      
-    # log
-    lo_Lines_Log.append(msg)
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append("\n")
-      
-    '''###################
-        step : A : X
-            write : file
-    ###################'''
-    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-            (
-            libs.get_TimeLabel_Now()
-            , os.path.basename(libs.thisfile()), libs.linenum()
-            , "".join(lo_Lines_Log)
-            )
-      
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
-  
-    msg_Log_CSV = "[%s / %s:%d]\n%s" % \
-            (
-            libs.get_TimeLabel_Now()
-            , os.path.basename(libs.thisfile()), libs.linenum()
-            , "".join(lo_Lines_Error)
-            )
-      
-    libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+#     tmp_msg = "\n------------------------------ (step : A : 4 : 2) reporting : log"
+#     tmp_msg += "\n"
+#       
+# #     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+# #                  (
+# #                   len(lo_Pos_Target)
+# #                   , cntOf_Loop
+# #                   , len(lo_Pos_Target) / cntOf_Loop
+# #                   )
+# #     tmp_msg += "\n"
+#     
+#     tmp_msg += "\n"
+#   
+#     '''###################
+#         time        
+#     ###################'''
+#     time_Elapsed = time.time() - time_Start
+#       
+#     tmp_msg = "%s" % strOf_Op_Name
+#       
+#     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+#   
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , msg
+#         )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+#       
+#     # log
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append("\n")
+#       
+#     '''###################
+#         step : A : X
+#             write : file
+#     ###################'''
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Log)
+#             )
+#       
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+#   
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Error)
+#             )
+#       
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
       
     '''###################
         step : X
