@@ -523,12 +523,115 @@ def tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf
     @return: 
     
 ###################'''
-def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
+# def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
+def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp, num_Idx, numOf_Sample_Bars):
 #_20191006_095325:caller
 #_20191006_095329:head
 #_20191006_095334:wl:in-func
     
     #_20191007_142934:next
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    
+    '''###################
+        step : 2
+            prep : sub list
+    ###################'''
+    lo_Temp = lo_BDs_Tmp[num_Idx - numOf_Sample_Bars : num_Idx]
+
+    '''###################
+        step : 3
+            up-down pattern
+    ###################'''
+    '''###################
+        step : 3.1
+            list of values
+    ###################'''
+    #_20191008_140248:tmp
+    lo_Up_Down_Values = [e0.price_Close - e0.price_Open for e0 in lo_Temp]
+
+    '''###################
+        step : 3.2
+            convert
+    ###################'''
+    lo_Temp_UpDown_Converted = []
+    
+    for item in lo_Up_Down_Values:
+    
+        # judge
+        if item >= 0 : #if item >= 0
+        
+            strOf_Temp = "1"
+            
+            lo_Temp_UpDown_Converted.append(strOf_Temp)
+        
+        else : #if item >= 0
+        
+            strOf_Temp = "0"
+            
+            lo_Temp_UpDown_Converted.append(strOf_Temp)
+            
+        #/if item >= 0
+        
+    #/for item in lo_Up_Down_Values:
+    
+    #debug
+    tmp_msg = "(step : 3.2) converted ==> %s" %\
+             (
+                "".join(lo_Temp_UpDown_Converted)
+              )
+      
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+      
+    print()
+    print("%s" % (msg), file=sys.stderr)
+
+    '''###################
+        step : j1
+            converted string --> "0011" ? (down-down-up-up, temporal-wise)
+    ###################'''
+    strOf_Serial = "".join(lo_Temp_UpDown_Converted)
+    
+    strOf_Target_Pattern = "0011" #=> down-down-up-up, temporal-wise
+
+    ret = False
+    
+    if strOf_Serial == strOf_Target_Pattern : #if strOf_Serial == strOf_Target_Pattern
+        '''###################
+            step : j1 : Y
+                converted string --> "0011" (down-down-up-up, temporal-wise)
+        ###################'''
+        ret = True
+        
+        #debug
+        tmp_msg = "(step : j1 : Y) pattern ==> match (strOf_Target_Pattern = '%s'" %\
+                 (
+                    strOf_Target_Pattern
+                  )
+          
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+          
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        
+    else : #if strOf_Serial == "11"
+        '''###################
+            step : j1 : N
+                converted string --> NOT "0011" (down-down-up-up, temporal-wise)
+        ###################'''
+    
+        ret = False
+    
+    #/if strOf_Serial == "11"
     
     '''###################
         step : X : 1
@@ -539,7 +642,7 @@ def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp):
             return values
     ###################'''
 #     ret = False
-    ret = True
+#     ret = True
     
     '''###################
         step : X : 1.2
@@ -602,7 +705,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
     cntOf_Loop = 0
     
     # max loop
-    maxOf_Loop = 200
+    maxOf_Loop = 30
+#     maxOf_Loop = 200
 #     maxOf_Loop = 50
 #     maxOf_Loop = 10
 
@@ -614,34 +718,35 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
         ###################'''
         cntOf_Loop += 1
         
-#         '''###################
-#             step : B : 1 : 1.1
-#                 stopper
-#         ###################'''
-#         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
-#  
-#             tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
-#                      (
-#                         cntOf_Loop, maxOf_Loop
-#                       )
-#              
-#             msg = "[%s:%d / %s]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg
-#                 )
-#              
-#             print()
-#             print("%s" % (msg), file=sys.stderr)
-#                  
-#              
-#             #/if SWITCH_DEBUG == True
-#      
-#             lo_Lines_Log.append(msg)
-#             lo_Lines_Log.append("\n")
-#              
-#             break
-#          
-#         #/if cntOf_Loop > maxOf_Loop
+        #_20191008_143720:next
+        '''###################
+            step : B : 1 : 1.1
+                stopper
+        ###################'''
+        if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
+  
+            tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
+                     (
+                        cntOf_Loop, maxOf_Loop
+                      )
+              
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+              
+            print()
+            print("%s" % (msg), file=sys.stderr)
+                  
+              
+            #/if SWITCH_DEBUG == True
+      
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+              
+            break
+          
+        #/if cntOf_Loop > maxOf_Loop
         
         
         '''###################
@@ -1776,7 +1881,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
             ###################'''
             #_20191007_142637:marker
             #_20191006_095325:caller
-            res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp)
+            
+            num_Idx = i
+            
+            numOf_Sample_Bars = 4
+            
+            #_20191008_142053:fix
+            res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp, num_Idx, numOf_Sample_Bars)
+#             res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp)
+            
+#             #test
+#             res = True
+            
             
             if res == True : #if res == True
                 '''###################
@@ -2815,8 +2931,9 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")
                 
-                #debug
-                break
+                #_20191008_142850:tmp
+#                 #debug
+#                 break
                 
                 '''###################
                     step : B : j2 : N : 2
