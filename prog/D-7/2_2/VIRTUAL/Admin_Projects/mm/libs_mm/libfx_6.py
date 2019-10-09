@@ -705,8 +705,9 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
     cntOf_Loop = 0
     
     # max loop
-    maxOf_Loop = 30
+#     maxOf_Loop = 30
 #     maxOf_Loop = 200
+    maxOf_Loop = 500
 #     maxOf_Loop = 50
 #     maxOf_Loop = 10
 
@@ -2981,7 +2982,7 @@ def tester_T_2__Report_Dat(\
         fname_Dat, dpath_Log
         , dpath_Src_Csv, fname_Src_Csv
         , valOf_TP, valOf_SL, valOf_SPREAD
-        , lo_Pos_Exits
+        , lo_Pos_Exits, lo_BDs_Tmp
         , cntOf_Loop
         
                            ):
@@ -3143,7 +3144,9 @@ def tester_T_2__Report_Dat(\
     '''###################
         step : 2.2 : 1 : header
     ###################'''
-    tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr"
+    #_20191009_120504:tmp
+#     tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr"
+    tmp_msg += "s.n.\tst_idx\tdatetime\tst_pr\tcu_idx\tcu_pr"
     tmp_msg += "\t"
     
     tmp_msg += "rf_idx\trf_pr"
@@ -3192,10 +3195,19 @@ def tester_T_2__Report_Dat(\
             '''###################
                 step : 2.2 : 2 : values
             ###################'''
-            tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f" % (
+#             tmp_msg += "%d\t%d\t%.03f\t%d\t%.03f" % (
+            tmp_msg += "%d\t%d\t%s\t%.03f\t%d\t%.03f" % (
                       
                     cntOf_For_Loop
-                    , pos['st_idx'], pos['st_pr']
+                    
+                    , pos['st_idx']
+                    
+                    #_20191009_120656:marker
+                    , lo_BDs_Tmp[pos['st_idx']].dateTime
+                    
+                    , pos['st_pr']
+                    
+                    
                     , pos['cu_idx'], pos['cu_pr']
                     
                              )
@@ -3730,7 +3742,7 @@ def tester_T_2(request):
                 , dpath_Src_Csv, fname_Src_Csv
                    
                 , valOf_TP, valOf_SL, valOf_SPREAD
-                , lo_Pos_Exits
+                , lo_Pos_Exits, lo_BDs_Tmp
 #                 , lo_Pos_Target
                 , cntOf_Loop
                 )
