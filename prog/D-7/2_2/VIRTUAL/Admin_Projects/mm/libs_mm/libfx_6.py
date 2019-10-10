@@ -2967,6 +2967,124 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
 #/ def tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
 
 '''###################
+    _get_BB_Area_Number(b1, n1)
+
+    at : 2019/10/10 13:11:39
+    
+    @param : bardata ==> instance of BarData
+    @param : price_Target ==> target price (double)
+            
+    @return: 
+            1,2,3,... ==> integer
+            
+###################'''
+def _get_BB_Area_Number(bardata, price_Target):
+#_20191010_130400:caller
+#_20191010_130404:head
+#_20191010_130408:wl:in-func
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    valOf_Ret = -1
+    
+    
+    '''###################
+        step : 2
+            judge
+    ###################'''
+    
+    if price_Target   > bardata.bb_2S :    valOf_Ret = 1
+    elif price_Target > bardata.bb_1S :    valOf_Ret = 2
+    elif price_Target >= bardata.bb_Main : valOf_Ret = 3
+    
+    elif price_Target >= bardata.bb_M1S :   valOf_Ret = 4
+    elif price_Target >= bardata.bb_M2S :   valOf_Ret = 5
+    elif price_Target < bardata.bb_M2S  :   valOf_Ret = 6
+    
+    else : #if price_Target > bardata.bb_2S
+    
+        pass
+    
+    #/if price_Target > bardata.bb_2S
+    
+    '''###################
+        step : 3
+            return
+    ###################'''
+    return valOf_Ret
+    
+#/ def _get_BB_Area_Number(bardata, price_Target):
+
+'''###################
+    _get_StrOf_BB_Seq(lo_BDs, num_Idx)
+
+    at : 2019/10/10 12:50:42
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def _get_StrOf_BB_Seq(lo_BDs, num_Idx):
+#_20191010_125054:caller
+#_20191010_125100:head
+#_20191010_125104:wl:in-func
+    
+    '''###################
+        step : 1
+            prep : 4 bars
+    ###################'''
+    b1 = lo_BDs[num_Idx - 4]
+    b2 = lo_BDs[num_Idx - 3]
+#     b3 = lo_BDs[num_Idx - 2]
+    b4 = lo_BDs[num_Idx - 1]
+    
+    '''###################
+        step : 2
+            get : prices
+    ###################'''
+    n1 = b1.price_Open
+    n2 = b2.price_Close
+    n3 = b4.price_Close
+
+    '''###################
+        step : 3
+            conv --> to BB area number
+    ###################'''
+    #_20191010_130303:tmp
+    #_20191010_130400:caller
+    area_1 = _get_BB_Area_Number(b1, n1)
+    area_2 = _get_BB_Area_Number(b2, n2)
+    area_3 = _get_BB_Area_Number(b4, n3)
+
+    '''###################
+        step : 4
+            build : sequence string
+    ###################'''
+    strOf_Seq = "%d-%d-%d" % (area_1, area_2, area_3)
+    
+    '''###################
+        step : X
+            return
+    ###################'''
+    '''###################
+        step : X : 1
+            val
+    ###################'''
+    valOf_Ret = strOf_Seq
+    
+    '''###################
+        step : X : 2
+            return
+    ###################'''
+    return valOf_Ret
+    
+    
+#/ def _get_StrOf_BB_Seq(lo_BDs, num_Idx):
+    
+'''###################
     tester_T_2__Report_Dat
 
     at : 2019/08/17 14:27:25
@@ -3146,7 +3264,10 @@ def tester_T_2__Report_Dat(\
     ###################'''
     #_20191009_120504:tmp
 #     tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr"
-    tmp_msg += "s.n.\tst_idx\tdatetime\tst_pr\tcu_idx\tcu_pr"
+    tmp_msg += "s.n.\tst_idx\tdatetime"
+    tmp_msg += "\t"
+    
+    tmp_msg += "st_pr\tcu_idx\tcu_pr"
     tmp_msg += "\t"
     
     tmp_msg += "rf_idx\trf_pr"
@@ -3159,6 +3280,9 @@ def tester_T_2__Report_Dat(\
     tmp_msg += "\t"
     
     tmp_msg += "exit\tdiff.price"
+    tmp_msg += "\t"
+    
+    tmp_msg += "BB-seq"
     
     tmp_msg += "\n"
     
@@ -3236,6 +3360,7 @@ def tester_T_2__Report_Dat(\
                     
                              )
             
+            # diffOf_Price
             tmp_msg += "\t"
             
             tmp_msg += "%s\t%.03f" % (
@@ -3246,8 +3371,18 @@ def tester_T_2__Report_Dat(\
                     
                              )
             
+            # BB-seq
+            #lo_BDs_Tmp[pos['st_idx']]
+            #_20191010_124755:tmp
+            #_20191010_125054:caller
+#             strOf_BB_Seq = _get_StrOf_BB_Seq(lo_BDs_Tmp, [pos['st_idx']])
+            strOf_BB_Seq = _get_StrOf_BB_Seq(lo_BDs_Tmp, pos['st_idx'])
+            
+            tmp_msg += "\t"
+            
+            tmp_msg += "%s" % (strOf_BB_Seq)
+            
             tmp_msg += "\n"
-#             tmp_msg += "\n"
             
         #/for item in lo_Pos_Exits:
 
@@ -3736,6 +3871,7 @@ def tester_T_2(request):
             dat
     ###################'''
     #_20191007_140229:caller
+    #_20191009_131848:next
 #     tester_T_2__Report_Dat__V2(\
     tester_T_2__Report_Dat(\
                 fname_Dat, dpath_Log
