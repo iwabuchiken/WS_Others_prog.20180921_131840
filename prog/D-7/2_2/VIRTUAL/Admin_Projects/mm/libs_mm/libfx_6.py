@@ -3523,20 +3523,20 @@ def tester_T_2__Report_Log(\
 #_20191011_100514
 
 '''###################
-    1. tester_T_2()
+    1. _tester_T_2__Choice_1
 
-    at : 2019/10/03 12:44:12
+    at : 2019/10/12 10:17:13
     
     @param : 
     
     @return: 
     
 ###################'''
-def tester_T_2(request):
+def _tester_T_2__Choice_1(request, _strOf_Op_Name = "BUSL3_No_T_2"):
 
-#_20191003_124456:caller
-#_20191003_124500:head
-#_20191003_124503:wl:in-func
+#_20191012_101720:caller
+#_20191012_101725:head
+#_20191012_101733:wl:in-func
 
     '''###################
         time        
@@ -3599,7 +3599,8 @@ def tester_T_2(request):
         step : 0.3 : 0
             vars
     ###################'''
-    strOf_Op_Name = "BUSL3_No_T_2"
+    strOf_Op_Name = _strOf_Op_Name
+#     strOf_Op_Name = "BUSL3_No_T_2"
  
     tlabel = libs.get_TimeLabel_Now()
      
@@ -3982,6 +3983,961 @@ def tester_T_2(request):
     lo_Lines_Log.append("\n")
 
     #_20190805_174612:cp:to:--------
+#/ def _tester_T_2__Choice_1(request):
+
+'''###################
+    1. tester_T_3
+
+    at : 2019/10/12 10:17:13
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def tester_T_3(request, _strOf_Op_Name = "BUSL3_No_T_2"):
+
+#_20191012_103235:caller
+#_20191012_103242:head
+#_20191012_103247:wl:in-func
+
+    '''###################
+        time        
+    ###################'''
+    time_Start = time.time()
+
+    '''###################
+        step : 0.1
+            debug
+    ###################'''
+    strOf_Opening_Message = "tester_T_3()"
+    
+    tmp_msg = "[%s:%d] ============================= [start] %s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum()
+         , strOf_Opening_Message
+        )
+
+    print()
+    print("%s" % (tmp_msg), file=sys.stderr)
+ 
+    '''###################
+        step : 0.1 : 1
+            conf file
+    ###################'''
+    dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
+     
+    fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__Tester_T_2.value    
+     
+    conf_Tester_T_2 = libfx_2.set_Conf(dpath_Conf, fname_Conf)    
+     
+    keysOf_Conf = conf_Tester_T_2.keys()
+     
+    #_20190802_160153:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+         
+        tmp_msg = "(step : 0.1 : 1) conf file ---------------- '%s'" % fname_Conf
+          
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+          
+        print(conf_Tester_T_2)
+          
+    #/if SWITCH_TEST == True
+     
+#     '''###################
+#         step : 0.2
+#             flags
+#     ###################'''
+# #     flg_A1 = True
+#     flg_A1 = False
+# 
+# #     flg_A2 = True
+#     flg_A2 = False
+#     
+#     # detect : mountain (M3, 1 mountain)
+#     flg_A3 = True
+
+    #_20191003_133957:next
+    '''###################
+        step : 0.3 : 0
+            vars
+    ###################'''
+    strOf_Op_Name = _strOf_Op_Name
+#     strOf_Op_Name = "BUSL3_No_T_2"
+ 
+    tlabel = libs.get_TimeLabel_Now()
+     
+    dpath_Log = os.path.join(\
+                             cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+                             , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
+                             )
+     
+    '''###################
+        step : 0.3 : 1
+            call func
+    ###################'''
+    #_20190701_173110:caller
+    ret = tester_T_2__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log)
+
+    # debug
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+         
+        tmp_msg = "(step : 0.3 : 1) tester_T_2__Buy_Up__1_Setup ==> done"
+          
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+          
+        print(conf_Tester_T_2)
+          
+    #/if SWITCH_TEST == True
+ 
+    '''###################
+        step : 0.3 : 2
+            unpack
+    ###################'''
+    (lo_Fnames, lo_LO_Lines) = ret
+     
+    (fname_Log, fname_Dat, fname_Error) = lo_Fnames
+     
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+     
+    '''###################
+        step : A : 1 >> get : param values
+    ###################'''
+ 
+    '''###################
+        step : A : 2
+            get lo_BDs
+    ###################'''
+    '''###################
+        step : A : 2.1
+            vars
+    ###################'''
+    dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+     
+    # SLICE-50
+    strOf_Conf_Fname_Src_Csv = "fname_Src_Csv"
+     
+    is_Conf_Fname_Src_Csv = strOf_Conf_Fname_Src_Csv in keysOf_Conf
+     
+    fname_Src_Csv = conf_Tester_T_2[strOf_Conf_Fname_Src_Csv] if is_Conf_Fname_Src_Csv == True \
+                else "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+    # SLICE-1000
+#     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
+     
+    #_20190802_161814:test
+    if SWITCH_TEST == True : #if SWITCH_TEST == True
+         
+        tmp_msg = "(step : A : 2.1) conf file : fname_Src_Csv = '%s'" \
+                % (fname_Src_Csv)
+         
+        print()
+        print("%s" % (tmp_msg), file=sys.stderr)
+         
+        #debug
+#         return
+     
+    #/if SWITCH_TEST == True
+ 
+    '''###################
+        step : A : 2.1 : 2
+            log
+    ###################'''
+    tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s" %\
+                (
+                    fname_Src_Csv
+                    , dpath_Src_Csv
+                 )
+      
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+  
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+     
+     
+    '''###################
+        step : A : 2.2
+            get list
+    ###################'''
+    #_20191005_130528:caller
+    #_20191005_130250:tmp
+    valOf_Ret = tester_T_2__Buy_Up__2_Get_LO_BDs(\
+ 
+             dpath_Src_Csv, fname_Src_Csv
+              
+             , lo_LO_Lines
+             , valOf_Param_Direction = 1
+              
+             )
+ 
+    # validate
+    if valOf_Ret == False : #if lo_BDs == False
+          
+        tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
+          
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+      
+        print()
+        print("%s" % (msg), file=sys.stderr)
+          
+        # log
+        lo_Lines_Log.append("\n")
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+          
+        status = -1
+        msg = "get lo_BDS ==> error"
+          
+        return (status, msg)
+          
+    #/if lo_BDs == False
+ 
+    '''###################
+        step : A : 2.3
+            unpack
+    ###################'''
+    (lo_BD_Related) = valOf_Ret
+     
+    (lo_BDs, lo_BDs_Tmp, lo_CSVs) = lo_BD_Related
+     
+    #debug
+    tmp_msg = "len(lo_BDs_Tmp) => %d" % len(lo_BDs_Tmp)
+      
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+  
+    print()
+    print("%s" % (msg), file=sys.stderr)
+
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+     
+    '''###################
+        step : A : 3
+            testing
+    ###################'''
+    '''###################
+        step : A : 3.1
+            prep : vars
+    ###################'''
+    #_20191005_132806:tmp
+    #_20191005_133027:caller
+#     tester_T_2__Buy_Up__3_Prep_Trailing()
+    #_20191006_100250:fix
+    valOf_Ret = tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf)
+    
+    (\
+#          lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range
+#          , flg_Pos, Pos
+#          
+#          , strOf_Conf_ValOf_TP, is_Conf_ValOf_TP
+#          , valOf_SL
+#          
+#          , strOf_Conf_ValOf_SPREAD, is_Conf_ValOf_SPREAD
+#          , valOf_SPREAD
+#          
+         lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range
+         , flg_Pos, Pos
+         
+         , strOf_Conf_ValOf_TP, is_Conf_ValOf_TP
+         , valOf_TP
+         
+         , strOf_Conf_ValOf_SL, is_Conf_ValOf_SL
+         , valOf_SL
+         
+         , strOf_Conf_ValOf_SPREAD, is_Conf_ValOf_SPREAD
+         , valOf_SPREAD
+
+         
+         ) = valOf_Ret
+#     (lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range, flg_Pos, Pos) = valOf_Ret
+
+    #debug
+    tmp_msg = "valOf_SPREAD => %s" % valOf_SPREAD
+      
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+  
+    print()
+    print("%s" % (msg), file=sys.stderr)
+    
+    #_20191005_134618:next
+    # lists
+    lo_Pos_Target = []
+     
+    #_20190805_173721:cp:from--------
+    '''###################
+        step : A : 3.2
+            for-loop
+    ###################'''
+#     # counter
+#     cntOf_Loop = 0
+#      
+#     # max loop
+#     maxOf_Loop = 20
+#      
+    #_20191006_094231:caller
+    (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
+                                
+        lenOf_Detection_Target_Range
+        , lenOf_LO_BDs_Tmp
+        , lo_Lines_Log
+        , flg_Pos
+        , lo_BDs_Tmp
+        , valOf_TP
+        , valOf_SPREAD
+        , valOf_SL
+#         , ts_TP, ts_SL
+        , lo_Pos_Target
+        , Pos
+        , lo_LO_Lines
+                               )
+
+    #_20191006_100759:tmp
+    #debug
+    tmp_msg = "len(lo_Pos_Exits)\t%d\ncntOf_Loop\t%d" % (len(lo_Pos_Exits), cntOf_Loop)
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+      
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+  
+    print()
+    print("%s" % (msg), file=sys.stderr)
+
+    # log
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    
+    #_20191006_101452:next
+    '''###################
+        step : A : 4
+            reporting
+    ###################'''
+    '''###################
+        step : A : 4 : 1
+            dat
+    ###################'''
+    #_20191007_140229:caller
+    #_20191009_131848:next
+#     tester_T_2__Report_Dat__V2(\
+    tester_T_2__Report_Dat(\
+                fname_Dat, dpath_Log
+                , dpath_Src_Csv, fname_Src_Csv
+                   
+                , valOf_TP, valOf_SL, valOf_SPREAD
+                , lo_Pos_Exits, lo_BDs_Tmp
+#                 , lo_Pos_Target
+                , cntOf_Loop
+                )
+      
+      
+    '''###################
+        step : A : 4 : 2
+            log, error
+    ###################'''
+    #_20191007_141106:caller
+    tester_T_2__Report_Log(\
+           
+           fname_Log
+           , fname_Error
+           , dpath_Log
+           
+           , time_Start
+           , strOf_Op_Name
+           
+           , lo_Lines_Log
+           , lo_Lines_Error
+           
+                          )
+
+    
+#     tmp_msg = "\n------------------------------ (step : A : 4 : 2) reporting : log"
+#     tmp_msg += "\n"
+#       
+# #     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+# #                  (
+# #                   len(lo_Pos_Target)
+# #                   , cntOf_Loop
+# #                   , len(lo_Pos_Target) / cntOf_Loop
+# #                   )
+# #     tmp_msg += "\n"
+#     
+#     tmp_msg += "\n"
+#   
+#     '''###################
+#         time        
+#     ###################'''
+#     time_Elapsed = time.time() - time_Start
+#       
+#     tmp_msg = "%s" % strOf_Op_Name
+#       
+#     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+#   
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , msg
+#         )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+#       
+#     # log
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append("\n")
+#       
+#     '''###################
+#         step : A : X
+#             write : file
+#     ###################'''
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Log)
+#             )
+#       
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+#   
+#     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+#             (
+#             libs.get_TimeLabel_Now()
+#             , os.path.basename(libs.thisfile()), libs.linenum()
+#             , "".join(lo_Lines_Error)
+#             )
+#       
+#     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+      
+    '''###################
+        step : X
+            debug : ending message
+    ###################'''
+    tmp_msg = strOf_Opening_Message
+    
+    msg = "[%s:%d] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [end] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum()
+                 , tmp_msg
+                )
+  
+    print()
+    print("%s" % (msg), file=sys.stderr)
+      
+    # log
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+
+    #_20190805_174612:cp:to:--------
+#/ def tester_T_3(request):
+
+'''###################
+    1. tester_T_2()
+
+    at : 2019/10/03 12:44:12
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def tester_T_2(request):
+
+#_20191003_124456:caller
+#_20191003_124500:head
+#_20191003_124503:wl:in-func
+
+    '''###################
+        step : 1
+            dispatch
+    ###################'''
+    if False : #if True
+        '''###################
+            step : 1 : 1
+                choice : 1 ==> T_2
+        ###################'''
+        strOf_Op_Name = "BUSL3_No_T_2.Choice-1"
+        
+        #_20191012_101720:caller
+        _tester_T_2__Choice_1(request, strOf_Op_Name)
+    
+    elif True : #if True
+        '''###################
+            step : 1 : 1
+                choice : 2 ==> T_3
+        ###################'''
+        strOf_Op_Name = "BUSL3_No_T_3"
+        
+        #_20191012_103235:caller
+        tester_T_3(request, strOf_Op_Name)
+    
+    else : #if True
+    
+        pass
+    
+    #/if True
+    
+#     '''###################
+#         time        
+#     ###################'''
+#     time_Start = time.time()
+# 
+#     '''###################
+#         step : 0.1
+#             debug
+#     ###################'''
+#     strOf_Opening_Message = "tester_T_2()"
+#     
+#     tmp_msg = "[%s:%d] ============================= [start] %s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum()
+#          , strOf_Opening_Message
+#         )
+# 
+#     print()
+#     print("%s" % (tmp_msg), file=sys.stderr)
+#  
+#     '''###################
+#         step : 0.1 : 1
+#             conf file
+#     ###################'''
+#     dpath_Conf = cons_fx.FPath.dpath_CONF_FILE.value
+#      
+#     fname_Conf = cons_fx.FPath.fname_CONF_BUSL3__Tester_T_2.value    
+#      
+#     conf_Tester_T_2 = libfx_2.set_Conf(dpath_Conf, fname_Conf)    
+#      
+#     keysOf_Conf = conf_Tester_T_2.keys()
+#      
+#     #_20190802_160153:test
+#     if SWITCH_TEST == True : #if SWITCH_TEST == True
+#          
+#         tmp_msg = "(step : 0.1 : 1) conf file ---------------- '%s'" % fname_Conf
+#           
+#         print()
+#         print("%s" % (tmp_msg), file=sys.stderr)
+#           
+#         print(conf_Tester_T_2)
+#           
+#     #/if SWITCH_TEST == True
+#      
+# #     '''###################
+# #         step : 0.2
+# #             flags
+# #     ###################'''
+# # #     flg_A1 = True
+# #     flg_A1 = False
+# # 
+# # #     flg_A2 = True
+# #     flg_A2 = False
+# #     
+# #     # detect : mountain (M3, 1 mountain)
+# #     flg_A3 = True
+# 
+#     #_20191003_133957:next
+#     '''###################
+#         step : 0.3 : 0
+#             vars
+#     ###################'''
+#     strOf_Op_Name = "BUSL3_No_T_2"
+#  
+#     tlabel = libs.get_TimeLabel_Now()
+#      
+#     dpath_Log = os.path.join(\
+#                              cons_fx.FPath.dpath_LOG_FILE_MAIN.value
+#                              , "%s.(%s).dir" % (strOf_Op_Name, tlabel)
+#                              )
+#      
+#     '''###################
+#         step : 0.3 : 1
+#             call func
+#     ###################'''
+#     #_20190701_173110:caller
+#     ret = tester_T_2__Buy_Up__1_Setup(strOf_Op_Name, tlabel, dpath_Log)
+# 
+#     # debug
+#     if SWITCH_TEST == True : #if SWITCH_TEST == True
+#          
+#         tmp_msg = "(step : 0.3 : 1) tester_T_2__Buy_Up__1_Setup ==> done"
+#           
+#         print()
+#         print("%s" % (tmp_msg), file=sys.stderr)
+#           
+#         print(conf_Tester_T_2)
+#           
+#     #/if SWITCH_TEST == True
+#  
+#     '''###################
+#         step : 0.3 : 2
+#             unpack
+#     ###################'''
+#     (lo_Fnames, lo_LO_Lines) = ret
+#      
+#     (fname_Log, fname_Dat, fname_Error) = lo_Fnames
+#      
+#     (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+#      
+#     '''###################
+#         step : A : 1 >> get : param values
+#     ###################'''
+#  
+#     '''###################
+#         step : A : 2
+#             get lo_BDs
+#     ###################'''
+#     '''###################
+#         step : A : 2.1
+#             vars
+#     ###################'''
+#     dpath_Src_Csv = cons_fx.FPath.BUSL_3_DPATH_PEAK_LIST.value
+#      
+#     # SLICE-50
+#     strOf_Conf_Fname_Src_Csv = "fname_Src_Csv"
+#      
+#     is_Conf_Fname_Src_Csv = strOf_Conf_Fname_Src_Csv in keysOf_Conf
+#      
+#     fname_Src_Csv = conf_Tester_T_2[strOf_Conf_Fname_Src_Csv] if is_Conf_Fname_Src_Csv == True \
+#                 else "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+# #     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-50].csv"
+#     # SLICE-1000
+# #     fname_Src_Csv = "44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-1000].csv"
+#      
+#     #_20190802_161814:test
+#     if SWITCH_TEST == True : #if SWITCH_TEST == True
+#          
+#         tmp_msg = "(step : A : 2.1) conf file : fname_Src_Csv = '%s'" \
+#                 % (fname_Src_Csv)
+#          
+#         print()
+#         print("%s" % (tmp_msg), file=sys.stderr)
+#          
+#         #debug
+# #         return
+#      
+#     #/if SWITCH_TEST == True
+#  
+#     '''###################
+#         step : A : 2.1 : 2
+#             log
+#     ###################'''
+#     tmp_msg = "fname_Src_Csv\t%s\ndpath_Src_Csv\t%s" %\
+#                 (
+#                     fname_Src_Csv
+#                     , dpath_Src_Csv
+#                  )
+#       
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , tmp_msg
+#         )
+#   
+#     # log
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#      
+#      
+#     '''###################
+#         step : A : 2.2
+#             get list
+#     ###################'''
+#     #_20191005_130528:caller
+#     #_20191005_130250:tmp
+#     valOf_Ret = tester_T_2__Buy_Up__2_Get_LO_BDs(\
+#  
+#              dpath_Src_Csv, fname_Src_Csv
+#               
+#              , lo_LO_Lines
+#              , valOf_Param_Direction = 1
+#               
+#              )
+#  
+#     # validate
+#     if valOf_Ret == False : #if lo_BDs == False
+#           
+#         tmp_msg = "_get_Bars__A_1_Get_List_Of_BDs ==> returned false"
+#           
+#         msg = "[%s:%d / %s]\n%s" % \
+#             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg
+#             )
+#       
+#         print()
+#         print("%s" % (msg), file=sys.stderr)
+#           
+#         # log
+#         lo_Lines_Log.append("\n")
+#         lo_Lines_Log.append(msg)
+#         lo_Lines_Log.append("\n")
+#           
+#         status = -1
+#         msg = "get lo_BDS ==> error"
+#           
+#         return (status, msg)
+#           
+#     #/if lo_BDs == False
+#  
+#     '''###################
+#         step : A : 2.3
+#             unpack
+#     ###################'''
+#     (lo_BD_Related) = valOf_Ret
+#      
+#     (lo_BDs, lo_BDs_Tmp, lo_CSVs) = lo_BD_Related
+#      
+#     #debug
+#     tmp_msg = "len(lo_BDs_Tmp) => %d" % len(lo_BDs_Tmp)
+#       
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , tmp_msg
+#         )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+# 
+#     # log
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#      
+#     '''###################
+#         step : A : 3
+#             testing
+#     ###################'''
+#     '''###################
+#         step : A : 3.1
+#             prep : vars
+#     ###################'''
+#     #_20191005_132806:tmp
+#     #_20191005_133027:caller
+# #     tester_T_2__Buy_Up__3_Prep_Trailing()
+#     #_20191006_100250:fix
+#     valOf_Ret = tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf)
+#     
+#     (\
+# #          lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range
+# #          , flg_Pos, Pos
+# #          
+# #          , strOf_Conf_ValOf_TP, is_Conf_ValOf_TP
+# #          , valOf_SL
+# #          
+# #          , strOf_Conf_ValOf_SPREAD, is_Conf_ValOf_SPREAD
+# #          , valOf_SPREAD
+# #          
+#          lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range
+#          , flg_Pos, Pos
+#          
+#          , strOf_Conf_ValOf_TP, is_Conf_ValOf_TP
+#          , valOf_TP
+#          
+#          , strOf_Conf_ValOf_SL, is_Conf_ValOf_SL
+#          , valOf_SL
+#          
+#          , strOf_Conf_ValOf_SPREAD, is_Conf_ValOf_SPREAD
+#          , valOf_SPREAD
+# 
+#          
+#          ) = valOf_Ret
+# #     (lenOf_LO_BDs_Tmp, lenOf_Detection_Target_Range, flg_Pos, Pos) = valOf_Ret
+# 
+#     #debug
+#     tmp_msg = "valOf_SPREAD => %s" % valOf_SPREAD
+#       
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , tmp_msg
+#         )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+#     
+#     #_20191005_134618:next
+#     # lists
+#     lo_Pos_Target = []
+#      
+#     #_20190805_173721:cp:from--------
+#     '''###################
+#         step : A : 3.2
+#             for-loop
+#     ###################'''
+# #     # counter
+# #     cntOf_Loop = 0
+# #      
+# #     # max loop
+# #     maxOf_Loop = 20
+# #      
+#     #_20191006_094231:caller
+#     (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V2(\
+#                                 
+#         lenOf_Detection_Target_Range
+#         , lenOf_LO_BDs_Tmp
+#         , lo_Lines_Log
+#         , flg_Pos
+#         , lo_BDs_Tmp
+#         , valOf_TP
+#         , valOf_SPREAD
+#         , valOf_SL
+# #         , ts_TP, ts_SL
+#         , lo_Pos_Target
+#         , Pos
+#         , lo_LO_Lines
+#                                )
+# 
+#     #_20191006_100759:tmp
+#     #debug
+#     tmp_msg = "len(lo_Pos_Exits)\t%d\ncntOf_Loop\t%d" % (len(lo_Pos_Exits), cntOf_Loop)
+#     tmp_msg += "\n"
+#     tmp_msg += "\n"
+#       
+#     msg = "[%s:%d / %s]\n%s" % \
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#          , tmp_msg
+#         )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+# 
+#     # log
+#     lo_Lines_Log.append("\n")
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+#     
+#     #_20191006_101452:next
+#     '''###################
+#         step : A : 4
+#             reporting
+#     ###################'''
+#     '''###################
+#         step : A : 4 : 1
+#             dat
+#     ###################'''
+#     #_20191007_140229:caller
+#     #_20191009_131848:next
+# #     tester_T_2__Report_Dat__V2(\
+#     tester_T_2__Report_Dat(\
+#                 fname_Dat, dpath_Log
+#                 , dpath_Src_Csv, fname_Src_Csv
+#                    
+#                 , valOf_TP, valOf_SL, valOf_SPREAD
+#                 , lo_Pos_Exits, lo_BDs_Tmp
+# #                 , lo_Pos_Target
+#                 , cntOf_Loop
+#                 )
+#       
+#       
+#     '''###################
+#         step : A : 4 : 2
+#             log, error
+#     ###################'''
+#     #_20191007_141106:caller
+#     tester_T_2__Report_Log(\
+#            
+#            fname_Log
+#            , fname_Error
+#            , dpath_Log
+#            
+#            , time_Start
+#            , strOf_Op_Name
+#            
+#            , lo_Lines_Log
+#            , lo_Lines_Error
+#            
+#                           )
+# 
+#     
+# #     tmp_msg = "\n------------------------------ (step : A : 4 : 2) reporting : log"
+# #     tmp_msg += "\n"
+# #       
+# # #     tmp_msg += "len(lo_Pos_Target)\t%d\ntotal\t%d\nratio\t%.03f" %\
+# # #                  (
+# # #                   len(lo_Pos_Target)
+# # #                   , cntOf_Loop
+# # #                   , len(lo_Pos_Target) / cntOf_Loop
+# # #                   )
+# # #     tmp_msg += "\n"
+# #     
+# #     tmp_msg += "\n"
+# #   
+# #     '''###################
+# #         time        
+# #     ###################'''
+# #     time_Elapsed = time.time() - time_Start
+# #       
+# #     tmp_msg = "%s" % strOf_Op_Name
+# #       
+# #     msg = "done (time : %02.3f sec)(%s)" % (time_Elapsed, tmp_msg)
+# #   
+# #     msg = "[%s:%d / %s]\n%s" % \
+# #         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+# #          , msg
+# #         )
+# #   
+# #     print()
+# #     print("%s" % (msg), file=sys.stderr)
+# #       
+# #     # log
+# #     lo_Lines_Log.append(msg)
+# #     lo_Lines_Log.append("\n")
+# #     lo_Lines_Log.append("\n")
+# #       
+# #     '''###################
+# #         step : A : X
+# #             write : file
+# #     ###################'''
+# #     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+# #             (
+# #             libs.get_TimeLabel_Now()
+# #             , os.path.basename(libs.thisfile()), libs.linenum()
+# #             , "".join(lo_Lines_Log)
+# #             )
+# #       
+# #     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Log, 0)
+# #   
+# #     msg_Log_CSV = "[%s / %s:%d]\n%s" % \
+# #             (
+# #             libs.get_TimeLabel_Now()
+# #             , os.path.basename(libs.thisfile()), libs.linenum()
+# #             , "".join(lo_Lines_Error)
+# #             )
+# #       
+# #     libs.write_Log(msg_Log_CSV, dpath_Log, fname_Error, 0)
+#       
+#     '''###################
+#         step : X
+#             debug : ending message
+#     ###################'''
+#     tmp_msg = strOf_Opening_Message
+#     
+#     msg = "[%s:%d] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [end] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum()
+#                  , tmp_msg
+#                 )
+#   
+#     print()
+#     print("%s" % (msg), file=sys.stderr)
+#       
+#     # log
+#     lo_Lines_Log.append(msg)
+#     lo_Lines_Log.append("\n")
+# 
+#     #_20190805_174612:cp:to:--------
     
     '''###################
         step : X
