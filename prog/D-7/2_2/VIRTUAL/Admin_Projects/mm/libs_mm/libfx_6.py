@@ -660,12 +660,13 @@ def dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp, num_Idx, numOf_Sample_Bars):
     
     orig : tester_T_2__Trailing__V3__Step_B_j5_Y_3_1() // libfx_6.py
     
-    @param : 
+    @param : lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
     
     @return: 
     
     @descripton
-    
+        append to lo_Pos_Exists --> "[e0, Pos, strOf_STATUS_POS_EXIT]"
+        
 ###################'''
 def tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
                                               
@@ -679,7 +680,8 @@ def tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
 #_20191014_090550:head
 #_20191014_090554:wl:in-func
 
-    setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
+    setOf_Entries = [e0, Pos, strOf_STATUS_POS_EXIT]
+#     setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
     
     lo_Pos_Exits.append(setOf_Entries)
     
@@ -849,7 +851,7 @@ def tester_T_2__Trailing__V3__Step_B_j5_Y_4(\
     
     @param : 
     
-    @return: 
+    @return: lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
     
     @descripton
     
@@ -1130,6 +1132,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                 
                 #_20191014_090444:tmp
                 strOf_Step_Id = "(step : B : j5 : Y : 3.1)"
+                
+                strOf_STATUS_POS_EXIT = STATUS_POS_EXIT__SL
                 
                 #_20191014_090545:caller
                 tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
@@ -1542,71 +1546,86 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                             step : B : j7 : Y : 3.1
                                 to list ==> e0, Pos
                         ###################'''
-                        setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+                        #_20191015_091340:tmp
+                        strOf_Step_Id = "(step : B : j7 : Y : 3.1)"
                         
-                        lo_Pos_Exits.append(setOf_Entries)
+                        strOf_STATUS_POS_EXIT = STATUS_POS_EXIT__TP
                         
-                        tmp_msg = "(step : B : j7 : Y : 3)\n"
+                        #_20191014_090545:caller
+                        tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
+                                                                  
+                                Pos, e0, strOf_STATUS_POS_EXIT, lo_Pos_Exits
+                                , lo_Lines_Log
+                                , strOf_Step_Id
+                                
+                                        )
                         
-                        tmp_msg += "Pos ==> to list"
-                        tmp_msg += "\n"
-
-                        # data : len of list
-                        tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
-                        tmp_msg += "\n"
                         
-                        # data : status 
-                        tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
-                                                                                                                   
-                                lo_Pos_Exits[-1][2]
-                                                        
-                                )
-                        tmp_msg += "\n"
-                        
-                        tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                                lo_Pos_Exits[-1][1]["st_idx"]                        
-                                , lo_Pos_Exits[-1][1]["st_pr"]                        
-                                                        
-                                )
-                        tmp_msg += "\n"
-                        
-                        tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
-                                lo_Pos_Exits[-1][1]["rf_idx"]                        
-                                , lo_Pos_Exits[-1][1]["rf_pr"]                        
-                                                        
-                                )
-                        tmp_msg += "\n"
-                        
-                        tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
-                                lo_Pos_Exits[-1][1]["ext_idx"]                        
-                                , lo_Pos_Exits[-1][1]["ext_pr"]                        
-                                                        
-                                )
-                        tmp_msg += "\n"
-                        
-                        tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                                                                                                                     
-                                lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
-                                                        
-                                )
-                        tmp_msg += "\n"
-                        
-                        msg = "[%s:%d / %s] %s" % \
-                            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                             , tmp_msg
-                            )
-                         
-                        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                            print()
-                            print("%s" % (msg), file=sys.stderr)
-             
-                        lo_Lines_Log.append(msg)
-                        lo_Lines_Log.append("\n")
-                        lo_Lines_Log.append("\n")                        
-                        
-                        #_20190814_171206:next
-                        
-                        #_20191014_084210:tmp
+#                         setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+#                         
+#                         lo_Pos_Exits.append(setOf_Entries)
+#                         
+#                         tmp_msg = "(step : B : j7 : Y : 3)\n"
+#                         
+#                         tmp_msg += "Pos ==> to list"
+#                         tmp_msg += "\n"
+# 
+#                         # data : len of list
+#                         tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
+#                         tmp_msg += "\n"
+#                         
+#                         # data : status 
+#                         tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
+#                                                                                                                    
+#                                 lo_Pos_Exits[-1][2]
+#                                                         
+#                                 )
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                                 lo_Pos_Exits[-1][1]["st_idx"]                        
+#                                 , lo_Pos_Exits[-1][1]["st_pr"]                        
+#                                                         
+#                                 )
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
+#                                 lo_Pos_Exits[-1][1]["rf_idx"]                        
+#                                 , lo_Pos_Exits[-1][1]["rf_pr"]                        
+#                                                         
+#                                 )
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
+#                                 lo_Pos_Exits[-1][1]["ext_idx"]                        
+#                                 , lo_Pos_Exits[-1][1]["ext_pr"]                        
+#                                                         
+#                                 )
+#                         tmp_msg += "\n"
+#                         
+#                         tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                                                                                                                      
+#                                 lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
+#                                                         
+#                                 )
+#                         tmp_msg += "\n"
+#                         
+#                         msg = "[%s:%d / %s] %s" % \
+#                             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                              , tmp_msg
+#                             )
+#                          
+#                         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                             print()
+#                             print("%s" % (msg), file=sys.stderr)
+#              
+#                         lo_Lines_Log.append(msg)
+#                         lo_Lines_Log.append("\n")
+#                         lo_Lines_Log.append("\n")                        
+#                         
+#                         #_20190814_171206:next
+#                         
+#                         #_20191014_084210:tmp
                         '''###################
                             step : B : j7 : Y : 4
                                 Pos ==> reset
@@ -2376,73 +2395,88 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                         step : B : j3 : Y : 3
                             set : vals
                     ###################'''
+                    
+                    #_20191015_092900:tmp
                     '''###################
                         step : B : j3 : Y : 3.1
                             to list ==> e0, Pos
                     ###################'''
-                    setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
+                    strOf_Step_Id = "(step : B : j3 : Y : 3.1)"
                     
-                    lo_Pos_Exits.append(setOf_Entries)
+                    strOf_STATUS_POS_EXIT = STATUS_POS_EXIT__SL
                     
-                    tmp_msg = "(step : B : j3 : Y : 3)\n"
+                    #_20191014_090545:caller
+                    tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
+                                                              
+                            Pos, e0, strOf_STATUS_POS_EXIT, lo_Pos_Exits
+                            , lo_Lines_Log
+                            , strOf_Step_Id
+                            
+                                    )
                     
-                    # message
-                    tmp_msg += "Pos ==> to list"
-                    tmp_msg += "\n"
-                    
-                    # data : len of list
-                    tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
-                    tmp_msg += "\n"
-                    
-                    # data : status 
-                    tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
-                                                                                                               
-                            lo_Pos_Exits[-1][2]
-                                                    
-                            )
-                    tmp_msg += "\n"
-                    
-                    # data : 
-                    tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                            lo_Pos_Exits[-1][1]["st_idx"]                        
-                            , lo_Pos_Exits[-1][1]["st_pr"]                        
-                                                    
-                            )
-                    tmp_msg += "\n"
-                    
-                    tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
-                            lo_Pos_Exits[-1][1]["rf_idx"]                        
-                            , lo_Pos_Exits[-1][1]["rf_pr"]                        
-                                                    
-                            )
-                    tmp_msg += "\n"
-                    
-                    tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
-                            lo_Pos_Exits[-1][1]["ext_idx"]                        
-                            , lo_Pos_Exits[-1][1]["ext_pr"]                        
-                                                    
-                            )
-                    tmp_msg += "\n"
-                    
-                    tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                                                                                                                 
-                            lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
-                                                    
-                            )
-                    tmp_msg += "\n"
-                    
-                    msg = "[%s:%d / %s] %s" % \
-                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                         , tmp_msg
-                        )
-                     
-                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
-         
-                    lo_Lines_Log.append(msg)
-                    lo_Lines_Log.append("\n")
-                    lo_Lines_Log.append("\n")                                        
+#                     setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
+#                     
+#                     lo_Pos_Exits.append(setOf_Entries)
+#                     
+#                     tmp_msg = "(step : B : j3 : Y : 3)\n"
+#                     
+#                     # message
+#                     tmp_msg += "Pos ==> to list"
+#                     tmp_msg += "\n"
+#                     
+#                     # data : len of list
+#                     tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
+#                     tmp_msg += "\n"
+#                     
+#                     # data : status 
+#                     tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
+#                                                                                                                
+#                             lo_Pos_Exits[-1][2]
+#                                                     
+#                             )
+#                     tmp_msg += "\n"
+#                     
+#                     # data : 
+#                     tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                             lo_Pos_Exits[-1][1]["st_idx"]                        
+#                             , lo_Pos_Exits[-1][1]["st_pr"]                        
+#                                                     
+#                             )
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
+#                             lo_Pos_Exits[-1][1]["rf_idx"]                        
+#                             , lo_Pos_Exits[-1][1]["rf_pr"]                        
+#                                                     
+#                             )
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
+#                             lo_Pos_Exits[-1][1]["ext_idx"]                        
+#                             , lo_Pos_Exits[-1][1]["ext_pr"]                        
+#                                                     
+#                             )
+#                     tmp_msg += "\n"
+#                     
+#                     tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                                                                                                                  
+#                             lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
+#                                                     
+#                             )
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                      
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#          
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")                                        
                     
                     #_20191014_084644:tmp
                     '''###################
@@ -2452,6 +2486,24 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                     strOf_Step_Id = "(step : B : j3 : Y : 4)"
                     
                     (Pos) = tester_T_2__Trailing__V3__Step_B_j5_Y_4(Pos, lo_Lines_Log, strOf_Step_Id)
+
+#                     tmp_msg = "(debug) Pos['st_idx'] => %d" % Pos['st_idx']
+#                     tmp_msg += "\n"
+#                     
+#                     msg = "[%s:%d / %s] %s" % \
+#                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                          , tmp_msg
+#                         )
+#                      
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#          
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")                                        
+#                     
+#                     #_20191015_092321:debug
                     
 #                     Pos = {
 #                             
@@ -2777,71 +2829,86 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                                 step : B : j4 : Y : 3
                                     set : vals
                             ###################'''
+                            
+                            #_20191015_093700:tmp
                             '''###################
                                 step : B : j4 : Y : 3.1
                                     to list ==> e0, Pos
                             ###################'''
-                            setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+                            strOf_Step_Id = "(step : B : j4 : Y : 3.1)"
                             
-                            lo_Pos_Exits.append(setOf_Entries)
+                            strOf_STATUS_POS_EXIT = STATUS_POS_EXIT__TP
                             
-                            tmp_msg = "(step : B : j4 : Y : 3)\n"
+                            #_20191014_090545:caller
+                            tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
+                                                                      
+                                    Pos, e0, strOf_STATUS_POS_EXIT, lo_Pos_Exits
+                                    , lo_Lines_Log
+                                    , strOf_Step_Id
+                                    
+                                            )
                             
-                            tmp_msg += "Pos ==> to list"
-                            tmp_msg += "\n"
-    
-                            # data : len of list
-                            tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
-                            tmp_msg += "\n"
-                            
-                            # data : status 
-                            tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
-                                                                                                                       
-                                    lo_Pos_Exits[-1][2]
-                                                            
-                                    )
-                            tmp_msg += "\n"
-                            
-                            tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                                    lo_Pos_Exits[-1][1]["st_idx"]                        
-                                    , lo_Pos_Exits[-1][1]["st_pr"]                        
-                                                            
-                                    )
-                            tmp_msg += "\n"
-                            
-                            tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
-                                    lo_Pos_Exits[-1][1]["rf_idx"]                        
-                                    , lo_Pos_Exits[-1][1]["rf_pr"]                        
-                                                            
-                                    )
-                            tmp_msg += "\n"
-                            
-                            tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
-                                    lo_Pos_Exits[-1][1]["ext_idx"]                        
-                                    , lo_Pos_Exits[-1][1]["ext_pr"]                        
-                                                            
-                                    )
-                            tmp_msg += "\n"
-                            
-                            tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
-                                                                                                                         
-                                    lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
-                                                            
-                                    )
-                            tmp_msg += "\n"
-                            
-                            msg = "[%s:%d / %s] %s" % \
-                                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                                 , tmp_msg
-                                )
-                             
-                            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                                print()
-                                print("%s" % (msg), file=sys.stderr)
-                 
-                            lo_Lines_Log.append(msg)
-                            lo_Lines_Log.append("\n")
-                            lo_Lines_Log.append("\n")                        
+#                             setOf_Entries = [e0, Pos, STATUS_POS_EXIT__TP]
+#                             
+#                             lo_Pos_Exits.append(setOf_Entries)
+#                             
+#                             tmp_msg = "(step : B : j4 : Y : 3)\n"
+#                             
+#                             tmp_msg += "Pos ==> to list"
+#                             tmp_msg += "\n"
+#     
+#                             # data : len of list
+#                             tmp_msg += "len(lo_Pos_Exits)\t%d" % (len(lo_Pos_Exits))
+#                             tmp_msg += "\n"
+#                             
+#                             # data : status 
+#                             tmp_msg += "lo_Pos_Exits[-1][2]\t%s" % (\
+#                                                                                                                        
+#                                     lo_Pos_Exits[-1][2]
+#                                                             
+#                                     )
+#                             tmp_msg += "\n"
+#                             
+#                             tmp_msg += "lo_Pos_Exits[-1][1][\"st_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                                     lo_Pos_Exits[-1][1]["st_idx"]                        
+#                                     , lo_Pos_Exits[-1][1]["st_pr"]                        
+#                                                             
+#                                     )
+#                             tmp_msg += "\n"
+#                             
+#                             tmp_msg += "lo_Pos_Exits[-1][1][\"rf_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"rf_pr\"]\t%.03f" % (\
+#                                     lo_Pos_Exits[-1][1]["rf_idx"]                        
+#                                     , lo_Pos_Exits[-1][1]["rf_pr"]                        
+#                                                             
+#                                     )
+#                             tmp_msg += "\n"
+#                             
+#                             tmp_msg += "lo_Pos_Exits[-1][1][\"ext_idx\"]\t%d\nlo_Pos_Exits[-1][1][\"ext_pr\"]\t%.03f" % (\
+#                                     lo_Pos_Exits[-1][1]["ext_idx"]                        
+#                                     , lo_Pos_Exits[-1][1]["ext_pr"]                        
+#                                                             
+#                                     )
+#                             tmp_msg += "\n"
+#                             
+#                             tmp_msg += "lo_Pos_Exits[-1][1][\"ext_pr\"] - lo_Pos_Exits[-1][1][\"st_pr\"]\t%.03f" % (\
+#                                                                                                                          
+#                                     lo_Pos_Exits[-1][1]["ext_pr"] - lo_Pos_Exits[-1][1]["st_pr"]
+#                                                             
+#                                     )
+#                             tmp_msg += "\n"
+#                             
+#                             msg = "[%s:%d / %s] %s" % \
+#                                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                                  , tmp_msg
+#                                 )
+#                              
+#                             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                                 print()
+#                                 print("%s" % (msg), file=sys.stderr)
+#                  
+#                             lo_Lines_Log.append(msg)
+#                             lo_Lines_Log.append("\n")
+#                             lo_Lines_Log.append("\n")                        
                             
                             #_20190814_171206:next
                             #_20191014_085223:tmp
@@ -3333,6 +3400,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
     num_Index = 10
     
     #_20191013_130918:next
+    #_20191015_100103:next
     (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                                
         lenOf_Detection_Target_Range
@@ -3353,6 +3421,42 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
         
         , num_Index
                                )
+
+    #debug : #_20191015_094358:debug
+    if SWITCH_DEBUG == True :
+    
+        if len(lo_Pos_Exits) > 0 : #if len(lo_Pos_Exits) > 0
+            
+            #_20191015_095643:fix
+            # extract 1st entry
+            # lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
+            lo_Pos_Exits_0 = lo_Pos_Exits[0]
+            
+            Pos = lo_Pos_Exits_0[1]
+            
+            tmp_msg = "lo_Pos_Exits[0]['st_idx'] => %d" %\
+                     (
+                        Pos['st_idx']
+#                         lo_Pos_Exits[0][0]['st_idx']
+                      )
+        
+        else : #if len(lo_Pos_Exits) > 0
+        
+            tmp_msg = "len(lo_Pos_Exits> <= 0"
+        
+        #/if len(lo_Pos_Exits) > 0
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+          
+        print()
+        print("%s" % (msg), file=sys.stderr)
+              
+          
+        #/if SWITCH_DEBUG == True
+    
     
     '''###################
         step : C : 1
