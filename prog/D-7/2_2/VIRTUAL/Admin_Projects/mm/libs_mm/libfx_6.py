@@ -887,8 +887,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
     ###################'''
     #tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1
 #     for i in range(lenOf_Detection_Target_Range, (lenOf_LO_BDs_Tmp - 1)):
+
+    # counter
+    cntOf_Loop_B = 0
+
     for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
     
+        '''###################
+            step : B : 0
+                count
+        ###################'''
+        cntOf_Loop_B += 1
+        
         '''###################
             step : B : 1 : 1
                 prep : stopper
@@ -3327,7 +3337,9 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
         step : C : 1.1
             build vals
     ###################'''
-    ret = (cntOf_Loop, lo_Pos_Exits)
+    ret = (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B)
+
+#     ret = (cntOf_Loop, lo_Pos_Exits)
         
     '''###################
         step : C : 1.2
@@ -3430,7 +3442,12 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
     ###################'''
     #_20191016_104742:next
     for i in range(0, 3):
-    
+        '''###################
+            step : A : 2 : 0.2
+                lo_Pos_Exits ==> reset
+        ###################'''
+        lo_Pos_Exits = []
+        
         '''###################
             step : A : 2 : 1
                 call : tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1
@@ -3439,7 +3456,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
         #_20191013_130918:next
         #_20191015_100103:next
         #_20191017_094755:next
-        (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
+#         (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
+        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
                                    
             lenOf_Detection_Target_Range
             , lenOf_LO_BDs_Tmp
@@ -3459,6 +3477,30 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
             
             , num_Index
                                    )
+    
+        #debug:20191020_131337
+        tmp_msg = "(step : A : 2 : 1) loop --> comp"
+        tmp_msg += "\n"
+          
+        tmp_msg += "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d" \
+                    % (len(lo_BDs_Tmp), cntOf_Loop_B)
+        tmp_msg += "\n"
+          
+        msg = "[%s:%d / %s] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+          
+        print()
+        print("%s" % (msg), file=sys.stderr)
+              
+          
+        #/if SWITCH_DEBUG == True
+  
+        lo_Lines_Log.append(msg)
+        lo_Lines_Log.append("\n")
+        
+        
     
         '''###################
             step : A : 2 : j1
@@ -3488,7 +3530,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
             tmp_msg = "(step : A : 2 : j1 : Y : 1) "
             tmp_msg += "\n"
               
-            tmp_msg = "Pos['ext_idx']\t%d" \
+            tmp_msg += "Pos['ext_idx']\t%d" \
                         % (Pos['ext_idx'])
             tmp_msg += "\n"
               
@@ -3546,6 +3588,29 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
       
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
+
+            #debug:20191020_131337
+            tmp_msg = "(DEBUG) "
+            tmp_msg += "\n"
+            
+            tmp_msg = "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d\ncntOf_Loop_B + num_Index\t%d" \
+                        % (len(lo_BDs_Tmp), cntOf_Loop_B, cntOf_Loop_B + num_Index)
+            tmp_msg += "\n"
+              
+            msg = "[%s:%d / %s] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+              
+            print()
+            print("%s" % (msg), file=sys.stderr)
+                  
+              
+            #/if SWITCH_DEBUG == True
+      
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+
 
             '''###################
                 step : A : 2 : j1 : Y : 4
