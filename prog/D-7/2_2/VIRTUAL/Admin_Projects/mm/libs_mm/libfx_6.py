@@ -3872,7 +3872,9 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
         step : C : 1.1
             build vals
     ###################'''
-    ret = (cntOf_Loop, lo_Pos_Exits)
+    #_20191023_102559:tmp
+    ret = (cntOf_Loop, lo_LO_Pos_Exits)
+#     ret = (cntOf_Loop, lo_Pos_Exits)
         
     '''###################
         step : C : 1.2
