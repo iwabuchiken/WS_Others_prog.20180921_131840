@@ -3442,7 +3442,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
             loop : loop-1
     ###################'''
     #_20191016_104742:next
-    num_Max_Loop = 10
+#     num_Max_Loop = 10
+    num_Max_Loop = lenOf_LO_BDs_Tmp - 2
     
 #     for i in range(0, 3):   #for-loop-1:20191020_133913
     for i in range(0, num_Max_Loop):   #for-loop-1:20191020_133913

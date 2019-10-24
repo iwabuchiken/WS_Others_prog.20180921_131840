@@ -4523,3 +4523,10 @@ starting : tester_BuyUps_SellLows =======================
 
 [20191023_102702 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-100].csv
 
+[20191024_123033 / views.py:3951] 
+
+starting : tester_BuyUps_SellLows =======================
+[20191024_125110 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-500].csv
+
+[20191024_125420 / libfx.py:1960] fname_In => C:\WORKS_2\WS\WS_Others.prog\prog\D-7\2_2\VIRTUAL\Admin_Projects\curr\data\csv_raw/44_5.1_10_rawdata.(AUDJPY).(Period-M15).(NumOfUnits-18000).(Bars-ALL-20190424_184417).20190311_081029.[SLICE-500].csv
+
