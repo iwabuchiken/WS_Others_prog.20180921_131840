@@ -891,7 +891,12 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
 
     # counter
     cntOf_Loop_B = 0
-
+    
+    #_20191027_120343:fix:2
+    num_Accomodate = 2
+    
+    maxOf_Loop_B = ((lenOf_LO_BDs_Tmp - 1) - lenOf_Detection_Target_Range + num_Index) - num_Accomodate
+        
     for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
     
         '''###################
@@ -911,7 +916,9 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
             step : B : 1 : 1.1
                 stopper
         ###################'''
-        if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
+        #_20191027_120343:fix:1
+        if cntOf_Loop_B > maxOf_Loop_B : #if cntOf_Loop > maxOf_Loop
+#         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
   
             tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
                      (
