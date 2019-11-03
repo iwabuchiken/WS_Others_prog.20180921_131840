@@ -513,6 +513,49 @@ def tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf
 #/ def tester_T_2__Buy_Up__3_Prep_Trailing():
 
 '''###################
+    dp_ANY
+
+    at : 2019/11/03 09:08:36
+    
+    orig : libfx_5 : dp_Tester_T_2__Buy_Up
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def dp_ANY(lo_LO_Lines, lo_BDs_Tmp):
+#20191103_090905:caller
+#_20191103_090910:head
+#_20191103_090918:wl:in-func
+    
+    '''###################
+        step : 1
+            prep
+    ###################'''
+    
+    '''###################
+        step : X : 1
+            return
+    ###################'''
+    '''###################
+        step : X : 1.1
+            return values
+    ###################'''
+#     ret = False
+    ret = True
+    
+    '''###################
+        step : X : 1.2
+            return
+    ###################'''
+    return ret
+    
+#/ def dp_ANY(lo_LO_Lines, lo_BDs_Tmp):
+
+
+
+'''###################
     dp_Tester_T_2__Buy_Up
 
     at : 2019/10/06 09:53:20
@@ -915,9 +958,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
         if cntOf_Loop_B > maxOf_Loop_B : #if cntOf_Loop > maxOf_Loop
 #         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
   
-            tmp_msg = "(B : 1 : 1.1) cntOf_Loop ==> over the max : count = %d / max = %d" %\
+            tmp_msg = "(B : 1 : 1.1) cntOf_Loop_B > maxOf_Loop_B (==> over the max) : count = %d / max = %d" %\
                      (
-                        cntOf_Loop, maxOf_Loop
+                        cntOf_Loop_B, maxOf_Loop_B
+#                         cntOf_Loop, maxOf_Loop
                       )
               
             msg = "[%s:%d / %s]\n%s" % \
@@ -1887,7 +1931,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             
             numOf_Sample_Bars = 4
             
-            res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp, num_Idx, numOf_Sample_Bars)
+            #_20191103_090605:tmp
+            #20191103_090905:caller
+            res = dp_ANY(lo_LO_Lines, lo_BDs_Tmp)
+#             res = dp_Tester_T_2__Buy_Up(lo_LO_Lines, lo_BDs_Tmp, num_Idx, numOf_Sample_Bars)
             
             if res == True : #if res == True
                 '''###################
@@ -1995,6 +2042,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     step : B : j2 : Y : 4
                         calc : ts_TP, ts_SL
                 ###################'''
+                #_20191103_091904:next
                 ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
                 ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
                 
