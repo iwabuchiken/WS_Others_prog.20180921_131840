@@ -2043,8 +2043,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         calc : ts_TP, ts_SL
                 ###################'''
                 #_20191103_091904:next
-                ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
-                ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
+                ts_SL = Pos['st_pr'] + valOf_SL + valOf_SPREAD
+                ts_TP = Pos['st_pr'] - valOf_TP - valOf_SPREAD
+#                 ts_TP = Pos['st_pr'] + valOf_TP + valOf_SPREAD
+#                 ts_SL = Pos['st_pr'] - valOf_SL - valOf_SPREAD
                 
                 tmp_msg += "(step : B : j2 : Y : 4) calc ts_TP, ts_SL"
                 tmp_msg += "\n"
@@ -2067,26 +2069,31 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 lo_Lines_Log.append("\n")
                 lo_Lines_Log.append("\n")
                 
+                #_20191104_101450:tmp
                 '''###################
                     step : B : j3
-                        judge : e0.price_Low --> equal or less than ts_SL ?
+                        DEPRECATED : judge : e0.price_Low --> equal or less than ts_SL ?
+                        judge : e0.price_High --> equal or more than ts_SL ?
                 ###################'''
-                if ts_SL >= e0.price_Low : #if ts_SL >= e0.price_Low
+                cond_1 = (e0.price_High >= ts_SL)
+                
+#                 if ts_SL >= e0.price_Low : #if ts_SL >= e0.price_Low
+                if cond_1 == True : #if cond_1 = (e0.price_High >= ts_SL)
                     '''###################
                         step : B : j3 : Y
-                            judge : e0.price_Low --> equal or less than ts_SL
+                            judge : e0.price_High --> equal or more than ts_SL
                     ###################'''
                     '''###################
                         step : B : j3 : Y : 1
                             log
                     ###################'''
-                    tmp_msg = "(step : B : j3 : Y : 1)\njudge : e0.price_Low --> equal or less than ts_SL"
+                    tmp_msg = "(step : B : j3 : Y : 1)\njudge : e0.price_High --> equal or more than ts_SL"
                     tmp_msg += "\n"
                     
                     tmp_msg += "ts_SL\t%.03f" % (ts_SL)
                     tmp_msg += "\n"
                      
-                    tmp_msg += "e0.price_Low\t%.03f" % (e0.price_Low)
+                    tmp_msg += "e0.price_High\t%.03f" % (e0.price_High)
                     tmp_msg += "\n"
                      
                     msg = "[%s:%d / %s] %s" % \
@@ -2106,6 +2113,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         step : B : j3 : Y : 2
                             set : vals
                     ###################'''
+                    #_20191104_102501:next
+                    
                     Pos["ext_idx"] = i
                     Pos["ext_pr"] = Pos["st_pr"] - (valOf_SL + valOf_SPREAD)
                     
@@ -2244,7 +2253,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     
                     break              
     
-                else : #if ts_SL >= e0.price_Low
+                else : #if cond_1 = (e0.price_High >= ts_SL)
                     '''###################
                         step : B : j3 : N
                             judge : e0.price_Low --> NOT equal or less than ts_SL
@@ -2705,7 +2714,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     
                     #/if e0.price_High >= ts_TP
                     
-                #/if ts_SL >= e0.price_Low
+                #if cond_1 = (e0.price_High >= ts_SL)
                 
                 #debug
                 break
@@ -5730,13 +5739,14 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg
             )
-          
-        print()
-        print("%s" % (msg), file=sys.stderr)
-              
-          
-        #/if SWITCH_DEBUG == True
         
+        if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+            
+            print()
+            print("%s" % (msg), file=sys.stderr)
+            
+        #/if SWITCH_DEBUG == True
+
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
         
