@@ -2116,7 +2116,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     #_20191104_102501:next
                     
                     Pos["ext_idx"] = i
-                    Pos["ext_pr"] = Pos["st_pr"] - (valOf_SL + valOf_SPREAD)
+                    Pos["ext_pr"] = Pos["st_pr"] + (valOf_SL + valOf_SPREAD) #=> SELL position
+#                     Pos["ext_pr"] = Pos["st_pr"] - (valOf_SL + valOf_SPREAD) #=> BUY position
                     
                     Pos["ts_TP"] = ts_TP
                     Pos["ts_SL"] = ts_SL
@@ -2288,6 +2289,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         step : B : j3-2
                             e0.price_High >= ts_TP ?
                     ###################'''
+                    #_20191106_123123:next
                     if e0.price_High >= ts_TP : #if e0.price_High >= ts_TP
                         '''###################
                             step : B : j3-2 : Y
@@ -8930,7 +8932,9 @@ def tester_T_2__Report_Dat(\
     tmp_msg += "rf_idx\trf_pr"
     tmp_msg += "\t"
     
-    tmp_msg += "ext_idx\text_pr"
+    #_20191106_121422:modify
+#     tmp_msg += "ext_idx\text_pr"
+    tmp_msg += "ext_idx\text_pr\texit_datetime"
     tmp_msg += "\t"
     
     tmp_msg += "e0.price_High\te0.price_Low"
@@ -9002,9 +9006,12 @@ def tester_T_2__Report_Dat(\
             
             tmp_msg += "\t"
             
-            tmp_msg += "%d\t%.03f" % (
+            #_20191106_121450:modify
+#             tmp_msg += "%d\t%.03f" % (
+            tmp_msg += "%d\t%.03f\t%s\t" % (
                       
                     pos['ext_idx'], pos['ext_pr']
+                    , lo_BDs_Tmp[pos['ext_idx']].dateTime
                     
                              )
             
