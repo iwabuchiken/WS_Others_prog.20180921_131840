@@ -34,7 +34,7 @@ sys.path.append('..')
 # sys.path.append('C:/WORKS_2/WS/WS_Others/free/VX7GLZ_science-research/31_Materials')
 sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm')
 
-from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_4
+from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_4, libfx_7
 # from mm.libs_mm import libs
 # from mm.libs_mm import libfx
 
@@ -2254,7 +2254,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     
                     break              
     
-                else : #if cond_1 = (e0.price_High >= ts_SL)
+                else : #if cond_1 = (e0.price_High >= ts_SL) --- step : B : j3
                     '''###################
                         step : B : j3 : N
                             judge : e0.price_Low --> NOT equal or less than ts_SL
@@ -2290,7 +2290,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                             e0.price_High >= ts_TP ?
                     ###################'''
                     #_20191106_123123:next
-                    if e0.price_High >= ts_TP : #if e0.price_High >= ts_TP
+                    cond_1 = (e0.price_Low <= ts_TP)
+                    
+#                     if e0.price_High >= ts_TP : #if e0.price_High >= ts_TP
+                    if cond_1 == True : #cond_1 = (e0.price_Low <= ts_TP)
                         '''###################
                             step : B : j3-2 : Y
                                 e0.price_High >= ts_TP
@@ -2355,6 +2358,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                             step : B : j4
                                 n1 >= n2 ?
                         ###################'''
+                        #_20191107_131028:tmp
                         if n1 >= n2 : #if n1 >= n2
                             '''###################
                                 step : B : j4 : Y
@@ -2632,7 +2636,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 
                         break
                     
-                    else : #if e0.price_High >= ts_TP
+#                     else : #if e0.price_High >= ts_TP
+                    else : #cond_1 = (e0.price_Low <= ts_TP) --- step : B : j3-2 : Y
                         '''###################
                             step : B : j3-2 : N
                                 e0.price_High < ts_TP
@@ -2714,8 +2719,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 
                         continue
                     
-                    #/if e0.price_High >= ts_TP
+                    #/cond_1 = (e0.price_Low <= ts_TP) --- step : B : j3-2 : Y
+                    ##/if e0.price_High >= ts_TP
                     
+                #/if cond_1 = (e0.price_High >= ts_SL) --- step : B : j3
                 #if cond_1 = (e0.price_High >= ts_SL)
                 
                 #debug
@@ -2751,7 +2758,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 ###################'''
                 continue
                 
-            #/if res == True : #if res == True
+            #/if res == True : #if res == True --- step : B : j2
             
         #/if flg_Pos == True : #if flg_Pos == True
 
@@ -5405,7 +5412,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
         #_20191031_134048:next
 #         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
         #_20191102_121417:caller
-        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
+#         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
+        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                                    
             lenOf_Detection_Target_Range
             , lenOf_LO_BDs_Tmp
