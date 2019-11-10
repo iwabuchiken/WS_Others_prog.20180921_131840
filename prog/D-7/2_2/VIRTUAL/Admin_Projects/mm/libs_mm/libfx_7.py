@@ -2701,9 +2701,62 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     
     maxOf_Loop_B = ((lenOf_LO_BDs_Tmp - 1) - lenOf_Detection_Target_Range + num_Index) - num_Accomodate
     
+    # counter : stats
+    cntOf_Stats_20191110_133022 = 0
+    
     #_20191102_123624:tmp
     for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
     
+#         '''###################
+#             debug
+#                 stats : id-2
+#                 pr_Open > pr_L and
+#                 pr_Close > pr_Open
+#         ###################'''
+#         #_20191110_141003:tmp
+#         e0 = lo_BDs_Tmp[i]
+#         
+#         pr_Open = e0.price_Open
+#         pr_Low = e0.price_Low
+#         pr_High = e0.price_High
+#         pr_Close = e0.price_Close
+#         
+#         cond_1 = pr_Low < pr_Open
+#         cond_2 = pr_High > pr_Open
+#         
+#         # judge
+#         #ref https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.logic.html
+#         if numpy.all([cond_1, cond_2]) : #if AND([cond_1, cond_2])
+#             
+#             cntOf_Stats_20191110_133022 += 1
+#         
+#         #/if AND([cond_1, cond_2])
+
+#         '''###################
+#             debug
+#                 stats : id-1
+#                 pr_Open > pr_L and
+#                 pr_Close > pr_Open
+#         ###################'''
+#         #_20191110_133022:tmp
+#         e0 = lo_BDs_Tmp[i]
+#         
+#         pr_Open = e0.price_Open
+#         pr_Low = e0.price_Low
+#         pr_Close = e0.price_Close
+#         
+#         cond_1 = pr_Close < pr_Open
+#         cond_2 = pr_Open < pr_Close
+#         
+#         # judge
+#         #ref https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.logic.html
+#         if numpy.all([cond_1, cond_2]) : #if AND([cond_1, cond_2])
+#             
+#             cntOf_Stats_20191110_133022 += 1
+#         
+#         #/if AND([cond_1, cond_2])
+
+        
         '''###################
             step : B : 0
                 count
@@ -2797,19 +2850,23 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         e0.dateTime
                       )
             
-            msg = "[%s:%d / %s] %s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
             
-            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                print()
-                
-                print("%s" % (msg), file=sys.stderr)
-
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            lo_Lines_Log.append("\n")
+#             msg = "[%s:%d / %s] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                 print()
+#                 
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
 
             #debug
             #log
@@ -2819,15 +2876,19 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
-            
-            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                print()
-                
-                print("%s" % (msg), file=sys.stderr)
 
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            lo_Lines_Log.append("\n")
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
+            
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                 print()
+#                 
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
             
             break
 
@@ -2847,24 +2908,58 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                      (
                         e0.dateTime
                       )
-            
-            msg = "[%s:%d / %s]\n%s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
-            
-            if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                print()
-                print("%s" % (msg), file=sys.stderr)
 
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            lo_Lines_Log.append("\n")
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
+            
+            '''###################
+                step : B : j2
+                    pattern ==> detected ?
+            ###################'''
+            #_20191110_143844:next
+            
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#             
+#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                 print()
+#                 print("%s" % (msg), file=sys.stderr)
+# 
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             lo_Lines_Log.append("\n")
             
             #/if res == True : #if res == True --- step : B : j2
             
         #/if flg_Pos == True (step : B : j1)
+    
+    #/for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
+    
+    
+    #log
+#     tmp_msg = "(debug) stats : id-1 ==> %d" %\
+    tmp_msg = "(debug) stats : id-2 ==> %d" %\
+             (
+                cntOf_Stats_20191110_133022
+              )
+    
+    msg = "[%s:%d / %s]\n%s" % \
+        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg
+        )
+    
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+        print()
+        print("%s" % (msg), file=sys.stderr)
 
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    
     '''###################
         step : C
             return
@@ -2883,3 +2978,29 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 
 #/ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 
+def output_Log(
+       file_name, line_num, time_label
+         , _tmp_msg, lo_Lines_Log) :
+
+#_20191110_142858:caller
+#_20191110_142904:head
+#_20191110_142909:wl:in-func
+    
+    #log
+    tmp_msg = _tmp_msg
+    
+#         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+    msg = "[%s:%d / %s] %s" % \
+        (file_name, line_num, time_label, tmp_msg)
+    
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+        print()
+        
+        print("%s" % (msg), file=sys.stderr)
+
+    lo_Lines_Log.append(msg)
+    lo_Lines_Log.append("\n")
+    lo_Lines_Log.append("\n")
+    
+    
+#/ def output_Log(
