@@ -2652,6 +2652,89 @@ def tester_T_2__Report_Log(\
 #_20191011_100514
 
 '''###################
+    loop_J2_Y
+
+    at : 2019/11/11 14:04:34
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def loop_J2_Y(e0, _index, lo_LO_Lines, lo_BDs_Tmp) :
+#_20191111_134815:caller
+#_20191111_134818:head
+#_20191111_134822:wl:in-func
+
+    '''###################
+        step : 0
+            prep
+    ###################'''
+    '''###################
+        step : 0 : 1
+            unpack : log lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : B : j2 : Y
+            pattern ==> detected
+    ###################'''
+    '''###################
+        step : B : j2 : Y : 1
+            log
+    ###################'''
+    #log
+    tmp_msg = "(step : B : j2 : Y : 1)\npattern ==> detected : e0 = %s" \
+                % (e0.dateTime)
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
+    '''###################
+        step : B : j2 : Y : 2
+            flag ==> true
+    ###################'''
+    flg_Pos = True
+
+    #log
+    tmp_msg = "(step : B : j2 : Y : 2)\nflg_Pos is now ==> %s" \
+                % (flg_Pos)
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
+    '''###################
+        step : B : j2 : Y : 3
+            Pos ==> init
+    ###################'''
+    #_20191111_140836:next
+    
+    '''###################
+        step : X
+            return
+    ###################'''
+    '''###################
+        step : X : 1
+            prep : ret values
+    ###################'''
+    valOf_Ret = (flg_Pos)
+
+    '''###################
+        step : X : 2
+            return
+    ###################'''
+    return valOf_Ret
+
+# def loop_J2_Y(lo_LO_Lines, lo_BDs_Tmp) :
+
+'''###################
     tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell
 
     at : 2019/11/07 13:51:54
@@ -2895,6 +2978,55 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     pattern ==> detected ?
             ###################'''
             #_20191110_143844:next
+            res = dp_ANY(lo_LO_Lines, lo_BDs_Tmp)
+            
+            if res == True : #if res == True (step : B : j2)
+                '''###################
+                    step : B : j2 : Y
+                        pattern ==> detected
+                ###################'''
+                #_20191111_134815:caller
+                (flg_Pos) = loop_J2_Y(e0, i, lo_LO_Lines, lo_BDs_Tmp)
+
+                #debug
+                #log
+                tmp_msg = "flg_Pos returned ==> it's now : %s" % (flg_Pos)
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+    
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+
+                #debug
+                #log
+                tmp_msg = "BREAKING LOOP....."
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+    
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+                
+                break
+            
+            else : #if res == True (step : B : j2)
+                '''###################
+                    step : B : j2 : N
+                        pattern ==> NOT detected
+                ###################'''
+            
+                
+            
+            #/if res == True (step : B : j2)
+            
+            
             
             #/if res == True : #if res == True --- step : B : j2
             
