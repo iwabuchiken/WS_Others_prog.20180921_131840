@@ -2854,20 +2854,6 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
             
-#             msg = "[%s:%d / %s] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg
-#                 )
-#             
-#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-#                 print()
-#                 
-#                 print("%s" % (msg), file=sys.stderr)
-# 
-#             lo_Lines_Log.append(msg)
-#             lo_Lines_Log.append("\n")
-#             lo_Lines_Log.append("\n")
-
             #debug
             #log
             tmp_msg = "BREAKING LOOP....."
@@ -2880,15 +2866,6 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             #_20191110_142858:caller
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
-            
-#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-#                 print()
-#                 
-#                 print("%s" % (msg), file=sys.stderr)
-# 
-#             lo_Lines_Log.append(msg)
-#             lo_Lines_Log.append("\n")
-#             lo_Lines_Log.append("\n")
             
             break
 
@@ -2918,19 +2895,6 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     pattern ==> detected ?
             ###################'''
             #_20191110_143844:next
-            
-#             msg = "[%s:%d / %s]\n%s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg
-#                 )
-#             
-#             if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-#                 print()
-#                 print("%s" % (msg), file=sys.stderr)
-# 
-#             lo_Lines_Log.append(msg)
-#             lo_Lines_Log.append("\n")
-#             lo_Lines_Log.append("\n")
             
             #/if res == True : #if res == True --- step : B : j2
             
