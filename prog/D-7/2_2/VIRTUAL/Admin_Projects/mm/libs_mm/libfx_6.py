@@ -388,6 +388,7 @@ def tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf
     # flags
     flg_Pos = False # position taken
      
+    #_20191112_155635:tmp
     # pos : init
     Pos = {
              
@@ -406,6 +407,13 @@ def tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf
             # the bar to exit
             , "ext_idx" : -1
             , "ext_pr" : 0.0
+            
+            #_20191112_155744:tmp
+            , "base_idx" : -1
+            , "base_pr" : 0.0
+             
+            , "trail_starting_idx" : -1
+            , "trail_starting_pr" : 0.0
              
             # values, margins
             , "val_TP" : 0.0
@@ -5413,6 +5421,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
 #         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1(\
         #_20191102_121417:caller
 #         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
+        #_20191107_135221:caller
         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                                    
             lenOf_Detection_Target_Range
