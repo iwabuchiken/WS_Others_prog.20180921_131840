@@ -2652,6 +2652,86 @@ def tester_T_2__Report_Log(\
 #_20191011_100514
 
 '''###################
+    buildMsg_Loop_J2_Y3
+
+    at : 2019/11/13 13:45:53
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def buildMsg_Loop_J2_Y3(\
+          price_Open, ts_TP, ts_SL, priceOf_Start_Trailing
+          , valOf_TP, valOf_SL, valOf_SPREAD
+                        ) :
+#_20191113_133407:caller
+#_20191113_133411:head
+#_20191113_133415:wl:in-func
+    
+    tmp_msg = "(step : B : j2 : Y : 3)\nvalues ==> set"
+    tmp_msg += "\n"
+    
+    tmp_msg += "price_Open\t%.03f\nts_TP\t%.03f\nts_SL\t%.03f\npriceOf_Start_Trailing\t%.03f" % \
+                (
+                 price_Open
+                 , ts_TP, ts_SL, priceOf_Start_Trailing
+                 )
+    tmp_msg += "\n"
+
+    tmp_msg += "valOf_TP\t%.03f\nvalOf_SL\t%.03f\nvalOf_SPREAD\t%.03f" % \
+                (
+                 valOf_TP, valOf_SL, valOf_SPREAD
+                 )
+    tmp_msg += "\n"
+
+    # return
+    return tmp_msg
+    
+#/ def buildMsg_Loop_J2_Y3() :
+
+'''###################
+    buildMsg_Loop_J2_Y4
+
+    at : 2019/11/13 13:45:53
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def buildMsg_Loop_J2_Y4(\
+          Pos
+                        ) :
+#_20191113_134632:caller
+#_20191113_134638:head
+#_20191113_134641:wl:in-func
+    
+    tmp_msg = "(step : B : j2 : Y : 4)\nPos ==> init"
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos[\"st_idx\"]\t%d\t\nPos[\"st_pr\"]\t%.03f\t" % \
+                (
+                 Pos["st_idx"]
+                 , Pos["st_pr"]
+                 )
+    tmp_msg += "\n"
+
+    # return
+    return tmp_msg
+    
+#/ def buildMsg_Loop_J2_Y4() :
+    
+    
+'''###################
     loop_J2_Y
 
     at : 2019/11/11 14:04:34
@@ -2665,7 +2745,18 @@ def tester_T_2__Report_Log(\
     @descripton
     
 ###################'''
-def loop_J2_Y(e0, _index, lo_LO_Lines, lo_BDs_Tmp) :
+def loop_J2_Y(\
+    e0, Pos, _index
+    , lo_LO_Lines, lo_BDs_Tmp
+
+    , valOf_TP
+    , valOf_SPREAD
+    , valOf_SL
+    
+    , num_Index
+    
+    , flg_Sell = True
+      ) :
 #_20191111_134815:caller
 #_20191111_134818:head
 #_20191111_134822:wl:in-func
@@ -2712,9 +2803,124 @@ def loop_J2_Y(e0, _index, lo_LO_Lines, lo_BDs_Tmp) :
 
     '''###################
         step : B : j2 : Y : 3
-            Pos ==> init
+            calc : ts_SL, ts_TP, trailing
+            #_20191113_131747:ref
     ###################'''
     #_20191111_140836:next
+    if flg_Sell == True : #if flg_Sell == True
+        '''###################
+            step : B : j2 : Y : 3.1
+                SELL position
+        ###################'''
+        ts_TP = e0.price_Open - (valOf_TP + valOf_SPREAD)
+        ts_SL = e0.price_Open + (valOf_SL + valOf_SPREAD)
+    
+    else : #if flg_Sell == True
+        '''###################
+            step : B : j2 : Y : 3.2
+                BUY position
+        ###################'''
+        ts_TP = e0.price_Open + (valOf_TP + valOf_SPREAD)
+        ts_SL = e0.price_Open - (valOf_SL + valOf_SPREAD)
+    
+    #/if flg_Sell == True
+    
+#     ts_TP = Pos['st_pr'] + (valOf_TP + valOf_SPREAD)
+#     ts_SL = Pos['st_pr'] - (valOf_SL + valOf_SPREAD)
+    
+    '''###################
+        step : B : j2 : Y : 3 : 2
+            trailing
+    ###################'''
+    if flg_Sell == True : #if flg_Sell == True
+        '''###################
+            step : B : j2 : Y : 3 : 2.1
+                SELL
+        ###################'''
+        priceOf_Start_Trailing = e0.price_Open - cons_fx.BarData.VOLUMEOF_Start_Trailing.value
+    
+    else : #if flg_Sell == True
+        '''###################
+            step : B : j2 : Y : 3 : 2.2
+                BUY
+        ###################'''
+        priceOf_Start_Trailing = e0.price_Open + cons_fx.BarData.VOLUMEOF_Start_Trailing.value
+    
+    #/if flg_Sell == True
+    
+#     priceOf_Start_Trailing = e0.price_Open + cons_fx.BarData.VOLUMEOF_Start_Trailing.value
+
+    #log
+    tmp_msg = buildMsg_Loop_J2_Y3(\
+                      e0.price_Open, ts_TP, ts_SL, priceOf_Start_Trailing
+                      , valOf_TP, valOf_SL, valOf_SPREAD
+                      )
+    
+#     tmp_msg = "(step : B : j2 : Y : 3)\nvalues ==> set"
+#     tmp_msg += "\n"
+#     
+#     tmp_msg += "e0.price_Open\t%.03f\nts_TP\t%.03f\nts_SL\t%.03f\npriceOf_Start_Trailing\t%.03f" % \
+#                 (
+#                  e0.price_Open
+#                  , ts_TP, ts_SL, priceOf_Start_Trailing
+#                  )
+#     tmp_msg += "\n"
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
+    '''###################
+        step : B : j2 : Y : 4
+            Pos ==> init
+            #_20191113_134013:ref
+    ###################'''
+    '''###################
+        step : B : j2 : Y : 4.1
+            index, price
+    ###################'''
+    Pos["st_idx"] = _index
+    Pos["st_pr"] = e0.price_Open
+    
+    Pos["cu_idx"] = _index
+    Pos["cu_pr"] = e0.price_Open
+    
+    Pos["ref_idx"] = _index
+    Pos["ref_pr"] = e0.price_Open    
+
+    Pos["base_idx"] = _index
+    Pos["base_pr"] = e0.price_Open    
+    
+    Pos["base_pr"] = e0.price_Open    
+    
+    '''###################
+        step : B : j2 : Y : 4.2
+            values
+    ###################'''
+    Pos["val_TP"] = valOf_TP
+    Pos["val_SL"] = valOf_SL
+    Pos["val_SPREAD"] = valOf_SPREAD
+    
+    Pos["ts_TP"] = ts_TP
+    Pos["ts_SL"] = ts_SL
+    
+    Pos["trail_starting_pr"] = priceOf_Start_Trailing
+
+    #log
+    #_20191113_134632:caller
+    tmp_msg = buildMsg_Loop_J2_Y4(\
+                      Pos
+                      )
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
+    '''###################
+        step : B : j3
+            price_Low < ST_price ?
+    ###################'''
+    #_20191113_140159:next
     
     '''###################
         step : X
@@ -2946,20 +3152,20 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
             
-#             #debug
-#             #log
-#             tmp_msg = "BREAKING LOOP....."
-#             
-#             msg = "[%s:%d / %s] %s" % \
-#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg
-#                 )
-# 
-#             #_20191110_142858:caller
-#             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                  , tmp_msg, lo_Lines_Log)
-#             
-#             break
+            #debug
+            #log
+            tmp_msg = "BREAKING LOOP....."
+             
+            msg = "[%s:%d / %s] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+ 
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
+             
+            break
 
         else : #if flg_Pos == True (step : B : j1)
             '''###################
@@ -2995,7 +3201,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         pattern ==> detected
                 ###################'''
                 #_20191111_134815:caller
-                (flg_Pos) = loop_J2_Y(e0, i, lo_LO_Lines, lo_BDs_Tmp)
+#                 (flg_Pos) = loop_J2_Y(e0, Pos, i, lo_LO_Lines, lo_BDs_Tmp)
+                (flg_Pos) = loop_J2_Y(
+                                      e0, Pos, i
+                                      , lo_LO_Lines, lo_BDs_Tmp
+
+                                    , valOf_TP
+                                    , valOf_SPREAD
+                                    , valOf_SL
+                                    
+                                    , num_Index
+                                      
+                                      )
 
                 #debug
                 #log
@@ -3010,20 +3227,20 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg, lo_Lines_Log)
 
-#                 #debug
-#                 #log
-#                 tmp_msg = "BREAKING LOOP....."
-#                 
-#                 msg = "[%s:%d / %s] %s" % \
-#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                      , tmp_msg
-#                     )
-#     
-#                 #_20191110_142858:caller
-#                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-#                      , tmp_msg, lo_Lines_Log)
-#                 
-#                 break
+                #debug
+                #log
+                tmp_msg = "BREAKING LOOP....."
+                 
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+     
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+                 
+                break
             
             else : #if res == True (step : B : j2)
                 '''###################

@@ -1058,6 +1058,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 step : B : j1 : Y : 2
                     calc : ts_SL, ts_TP
             ###################'''
+            #_20191113_131747:ref
             ts_TP = Pos['st_pr'] + (valOf_TP + valOf_SPREAD)
             ts_SL = Pos['st_pr'] - (valOf_SL + valOf_SPREAD)
             
@@ -2008,6 +2009,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 # , "cu_idx" : -1
                 # , "cu_pr" : 0.0
                 
+                #_20191113_134013:ref
                 Pos["st_idx"] = i
                 Pos["st_pr"] = e0.price_Open
                 

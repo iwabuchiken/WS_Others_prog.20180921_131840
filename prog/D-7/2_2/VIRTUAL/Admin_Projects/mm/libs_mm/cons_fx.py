@@ -43,6 +43,11 @@ class BarData(Enum):
     HighLowDiff_ID_Start    = 243	# 2017.12.15 13:00
     HighLowDiff_ID_End      = 250	# 2017.12.15 06:00
 
+    '''###################
+        prices, ranges
+    ###################'''
+    VOLUMEOF_Start_Trailing = 0.04 # JPY
+
 class FPath(Enum):
     
     '''###################
