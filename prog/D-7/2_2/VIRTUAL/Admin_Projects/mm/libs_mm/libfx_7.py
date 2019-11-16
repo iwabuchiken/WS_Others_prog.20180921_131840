@@ -2790,7 +2790,6 @@ def _loop_J2_Y_4(Pos, e0, _index, lo_Vals) :
 #/ def _loop_J2_Y_4(Pos, e0, _index, lo_Vals) :
     
 '''###################
-<<<<<<< HEAD
     _loop_J3_4(Pos, e0, _index, lo_Vals, lo_LO_Lines)
 
     at : 2019/11/16 14:21:43
@@ -2909,8 +2908,6 @@ def _loop_J3_4(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def _loop_J3_4(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
 '''###################
-=======
->>>>>>> c7e267312813e4daed94ba553bb91d15c08e8062
     _loop_J3_N(Pos, e0, _index, lo_Vals)
 
     at : 2019/11/14 13:59:32
@@ -2955,36 +2952,26 @@ def _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
          , msg
         )
 
-<<<<<<< HEAD
     #_20191110_142858:caller
     flg_commandline_ouput = False
     
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
-=======
->>>>>>> c7e267312813e4daed94ba553bb91d15c08e8062
 #     print()
 #     print("%s" % \
 #         (tmp_msg), file=sys.stderr)
     
     # append
-<<<<<<< HEAD
 #     lo_Lines_Log.append(tmp_msg)
 #     lo_Lines_Log.append("\n")
 #     lo_Lines_Log.append("\n")
-=======
-    lo_Lines_Log.append(tmp_msg)
-    lo_Lines_Log.append("\n")
-    lo_Lines_Log.append("\n")
->>>>>>> c7e267312813e4daed94ba553bb91d15c08e8062
 
     '''###################
         step : B : j3.4
             price_Low == price_Close ?
     ###################'''
     #_20191114_140937:next
-<<<<<<< HEAD
     #_20191116_142120:caller
     valOf_Ret = _loop_J3_4(Pos, e0, _index, lo_Vals, lo_LO_Lines)
     
@@ -3025,9 +3012,6 @@ def _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     return valOf_Ret
     
     
-=======
-
->>>>>>> c7e267312813e4daed94ba553bb91d15c08e8062
 #/ def _loop_J3_N(Pos, e0, _index, lo_Vals) :
 
 '''###################
@@ -3297,17 +3281,12 @@ def loop_J2_Y(\
                 price_Low >= ST_price
                 ==> C4, C5
         ###################'''
-<<<<<<< HEAD
+
         #_20191116_145444:next
         #_20191114_140354:caller
         valOf_Ret = _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
         
         (valOf_Identity) = valOf_Ret
-=======
-        #_20191114_140354:caller
-        _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
-    
->>>>>>> c7e267312813e4daed94ba553bb91d15c08e8062
         
     
     #/if e0.price_Low < priceOf_Start_Trailing
