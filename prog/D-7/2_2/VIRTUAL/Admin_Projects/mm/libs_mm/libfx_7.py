@@ -3072,6 +3072,53 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def _loop_J3_Y(Pos, e0, _index, lo_Vals) :
 
 '''###################
+    _loop_J3
+
+    at : 2019/11/17 13:08:14
+    
+    orig : 
+    
+    @param : 
+    
+    @return: 
+    
+    @descripton
+    
+###################'''
+def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191117_130614:caller
+#_20191117_130618:head
+#_20191117_130622:wl:in-func
+    '''###################
+        step : B : j3
+            price_Low < ST_price ?
+    ###################'''
+
+    if e0.price_Low < priceOf_Start_Trailing : #if e0.price_Low < priceOf_Start_Trailing
+        '''###################
+            step : B : j3 : Y
+                price_Low < ST_price
+                ==> C1, C2, C3, C6
+        ###################'''
+        #_20191114_135941:caller
+        _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        
+    else : #if e0.price_Low < priceOf_Start_Trailing
+        '''###################
+            step : B : j3 : N
+                price_Low >= ST_price
+                ==> C4, C5
+        ###################'''
+
+        #_20191116_145444:next
+        #_20191114_140354:caller
+        valOf_Ret = _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        
+        (valOf_Identity) = valOf_Ret
+
+#/ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+
+'''###################
     loop_J2_Y
 
     at : 2019/11/11 14:04:34
@@ -3262,31 +3309,140 @@ def loop_J2_Y(\
          , tmp_msg, lo_Lines_Log)
     
     '''###################
+        step : B : j3.01
+            up bar / down bar ?
+    ###################'''
+    '''###################
+        step : B : j3.01 : 1
+            calc
+    ###################'''
+    diffOf_Open_Close = e0.price_Close - e0.price_Open
+    
+    cond_1 = (diffOf_Open_Close >= 0)
+    
+    '''###################
+        step : B : j3.01 : 2
+            judge
+    ###################'''
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : B : j3.01 : Y
+                up bar
+        ###################'''
+        '''###################
+            step : B : j3.01 : Y : 1
+                log
+        ###################'''
+        #_20191117_131246:tmp
+        #log
+        #_20191113_134632:caller
+        tmp_msg = "(step : B : j3.01 : Y) up bar"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        '''###################
+            step : B : j4
+                upbar : categorize
+        ###################'''
+        #_20191117_133730:next
+        
+    else : #if cond_1 == True
+        '''###################
+            step : B : j3.01 : N
+                down bar
+        ###################'''
+        '''###################
+            step : B : j3.01 : N : 1
+                log
+        ###################'''
+        #log
+        #_20191113_134632:caller
+        tmp_msg = "(step : B : j3.01 : N) down bar"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    #/if cond_1 == True
+    
+    '''###################
+        step : B : j3.02
+            price_High > ts_SL
+            ==> SL ?
+    ###################'''
+    cond_1 = (e0.price_High >= ts_SL)
+    
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : B : j3.02 : Y
+                price_High >= ts_SL
+        ###################'''
+        #_20191117_131246:tmp
+        #log
+        #_20191113_134632:caller
+        tmp_msg = "(step : B : j3.02 : Y) price_High >= ts_SL"
+        
+        tmp_msg += "\n"
+        
+        tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    else : #if cond_1 == True
+        '''###################
+            step : B : j3.02 : N
+                price_High < ts_SL
+        ###################'''
+        #log
+        #log
+        #_20191113_134632:caller
+        tmp_msg = "(step : B : j3.02 : N) price_High < ts_SL"
+        
+        tmp_msg += "\n"
+        
+        tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    #/if cond_1 == True    
+    '''###################
         step : B : j3
             price_Low < ST_price ?
     ###################'''
+    #_20191117_130520:tmp
+    #_20191117_130614:caller
+#     _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+    
     #_20191113_140159:next
-    if e0.price_Low < priceOf_Start_Trailing : #if e0.price_Low < priceOf_Start_Trailing
-        '''###################
-            step : B : j3 : Y
-                price_Low < ST_price
-                ==> C1, C2, C3, C6
-        ###################'''
-        #_20191114_135941:caller
-        _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
-        
-    else : #if e0.price_Low < priceOf_Start_Trailing
-        '''###################
-            step : B : j3 : N
-                price_Low >= ST_price
-                ==> C4, C5
-        ###################'''
-
-        #_20191116_145444:next
-        #_20191114_140354:caller
-        valOf_Ret = _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
-        
-        (valOf_Identity) = valOf_Ret
+#     if e0.price_Low < priceOf_Start_Trailing : #if e0.price_Low < priceOf_Start_Trailing
+#         '''###################
+#             step : B : j3 : Y
+#                 price_Low < ST_price
+#                 ==> C1, C2, C3, C6
+#         ###################'''
+#         #_20191114_135941:caller
+#         _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+#         
+#     else : #if e0.price_Low < priceOf_Start_Trailing
+#         '''###################
+#             step : B : j3 : N
+#                 price_Low >= ST_price
+#                 ==> C4, C5
+#         ###################'''
+# 
+#         #_20191116_145444:next
+#         #_20191114_140354:caller
+#         valOf_Ret = _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+#         
+#         (valOf_Identity) = valOf_Ret
         
     
     #/if e0.price_Low < priceOf_Start_Trailing
