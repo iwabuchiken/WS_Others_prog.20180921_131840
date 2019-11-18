@@ -3089,6 +3089,20 @@ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #_20191117_130614:caller
 #_20191117_130618:head
 #_20191117_130622:wl:in-func
+
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+    
+    
     '''###################
         step : B : j3
             price_Low < ST_price ?
@@ -3119,6 +3133,117 @@ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
 '''###################
+    _loop_J5
+
+    at : 2019/11/18 14:21:40
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (cond_1, "UNKNOWN")
+    
+    @descripton
+    
+###################'''
+def _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191111_134815:caller
+#_20191111_134818:head
+#_20191111_134822:wl:in-func
+
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+
+    
+    '''###################
+        step : B : j5
+            SL ?
+    ###################'''
+    tmp_msg = "(step : B : j5) SL ?"
+    tmp_msg += "\n"
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
+    '''###################
+        step : B : j5
+            e0.price_High >= ts_SL ?
+    ###################'''
+    '''###################
+        step : B : j5 : op : 1
+            conditions
+    ###################'''
+    cond_1 = (e0.price_High >= ts_SL)
+    
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : B : j5 : Y
+                e0.price_High >= ts_SL
+        ###################'''
+        '''###################
+            step : B : j5 : Y : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j5 : Y : 1) e0.price_High >= ts_SL ----> SL"
+        tmp_msg += "\n"
+        tmp_msg += "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    else : #if cond_1 == True
+        '''###################
+            step : B : j5 : N
+                e0.price_High < ts_SL
+        ###################'''
+        '''###################
+            step : B : j5 : N : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j5 : N : 1) e0.price_High < ts_SL ----> NOT SL"
+        tmp_msg += "\n"
+        tmp_msg += "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+        
+    
+    #/if cond_1 == True
+    
+    '''###################
+        step : B : j5 : op : 2
+            return
+    ###################'''
+    '''###################
+        step : B : j5 : op : 2.1
+            build values
+    ###################'''
+    valOf_Ret = (cond_1, "UNKNOWN")
+
+    '''###################
+        step : B : j5 : op : 2.2
+            return
+    ###################'''
+    return valOf_Ret
+
+#/ def _loop_J5(Pos, e0, _index, lo_Vals) :
+
+'''###################
     loop_J2_Y
 
     at : 2019/11/11 14:04:34
@@ -3144,9 +3269,9 @@ def loop_J2_Y(\
     
     , flg_Sell = True
       ) :
-#_20191111_134815:caller
-#_20191111_134818:head
-#_20191111_134822:wl:in-func
+#_20191118_142204:caller
+#_20191118_142206:head
+#_20191118_142211:wl:in-func
 
     '''###################
         step : 0
@@ -3309,110 +3434,170 @@ def loop_J2_Y(\
          , tmp_msg, lo_Lines_Log)
     
     '''###################
-        step : B : j3.01
-            up bar / down bar ?
+        step : B : j5
+            SL ?
     ###################'''
+    #_20191118_141154:tmp
+    #_20191111_134815:caller
+    valOf_Ret = _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+    
+#     (cond_1, "UNKNOWN") = valOf_Ret
+    (judge_J5, strOf_Bar_Type_Name) = valOf_Ret
+
+    tmp_msg = "(step : B : 5) vals ==> returned"
+    tmp_msg += "\n"
+    tmp_msg += "judge_J5\t%s\nstrOf_Bar_Type_Name\t%s" % (judge_J5, strOf_Bar_Type_Name)
+
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
     '''###################
-        step : B : j3.01 : 1
-            calc
-    ###################'''
-    diffOf_Open_Close = e0.price_Close - e0.price_Open
-    
-    cond_1 = (diffOf_Open_Close >= 0)
-    
-    '''###################
-        step : B : j3.01 : 2
-            judge
-    ###################'''
-    if cond_1 == True : #if cond_1 == True
+        step : B : j5 : post : 1
+            dispatch
+    ###################'''    
+    if judge_J5 == True : #if judge_J5 == True
         '''###################
-            step : B : j3.01 : Y
-                up bar
-        ###################'''
-        '''###################
-            step : B : j3.01 : Y : 1
-                log
-        ###################'''
-        #_20191117_131246:tmp
-        #log
-        #_20191113_134632:caller
-        tmp_msg = "(step : B : j3.01 : Y) up bar"
-        
-        #_20191110_142858:caller
-        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
-        
-        '''###################
-            step : B : j4
-                upbar : categorize
-        ###################'''
-        #_20191117_133730:next
-        
-    else : #if cond_1 == True
-        '''###################
-            step : B : j3.01 : N
-                down bar
-        ###################'''
-        '''###################
-            step : B : j3.01 : N : 1
-                log
-        ###################'''
-        #log
-        #_20191113_134632:caller
-        tmp_msg = "(step : B : j3.01 : N) down bar"
-        
-        #_20191110_142858:caller
-        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
-    
-    #/if cond_1 == True
-    
-    '''###################
-        step : B : j3.02
-            price_High > ts_SL
-            ==> SL ?
-    ###################'''
-    cond_1 = (e0.price_High >= ts_SL)
-    
-    if cond_1 == True : #if cond_1 == True
-        '''###################
-            step : B : j3.02 : Y
-                price_High >= ts_SL
-        ###################'''
-        #_20191117_131246:tmp
-        #log
-        #_20191113_134632:caller
-        tmp_msg = "(step : B : j3.02 : Y) price_High >= ts_SL"
-        
+            step : B : j5 : post : 1 : Y
+                SL
+        ###################'''    
+        tmp_msg = "(step : B : j5 : post : 1 : Y) SL"
         tmp_msg += "\n"
-        
-        tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
-        
-        
+    
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log)
     
-    else : #if cond_1 == True
+    else : #if judge_J5 == True
         '''###################
-            step : B : j3.02 : N
-                price_High < ts_SL
-        ###################'''
-        #log
-        #log
-        #_20191113_134632:caller
-        tmp_msg = "(step : B : j3.02 : N) price_High < ts_SL"
-        
+            step : B : j5 : post : 1 : N
+                NOT SL
+        ###################'''    
+        tmp_msg = "(step : B : j5 : post : 1 : N) NOT SL"
         tmp_msg += "\n"
-        
-        tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
-        
-        
+    
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log)
     
-    #/if cond_1 == True    
+        '''###################
+            step : B : j3
+                price_Low < ST_price ?
+        ###################'''
+        #_20191117_130520:tmp
+        #_20191117_130614:caller
+        _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        
+    
+    #/if judge_J5 == True
+
+
+    
+#     '''###################
+#         step : B : j3.01
+#             up bar / down bar ?
+#     ###################'''
+#     '''###################
+#         step : B : j3.01 : 1
+#             calc
+#     ###################'''
+#     diffOf_Open_Close = e0.price_Close - e0.price_Open
+#     
+#     cond_1 = (diffOf_Open_Close >= 0)
+#     
+#     '''###################
+#         step : B : j3.01 : 2
+#             judge
+#     ###################'''
+#     if cond_1 == True : #if cond_1 == True
+#         '''###################
+#             step : B : j3.01 : Y
+#                 up bar
+#         ###################'''
+#         '''###################
+#             step : B : j3.01 : Y : 1
+#                 log
+#         ###################'''
+#         #_20191117_131246:tmp
+#         #log
+#         #_20191113_134632:caller
+#         tmp_msg = "(step : B : j3.01 : Y) up bar"
+#         
+#         #_20191110_142858:caller
+#         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg, lo_Lines_Log)
+#         
+#         '''###################
+#             step : B : j4
+#                 upbar : categorize
+#         ###################'''
+#         #_20191117_133730:next
+#         
+#     else : #if cond_1 == True
+#         '''###################
+#             step : B : j3.01 : N
+#                 down bar
+#         ###################'''
+#         '''###################
+#             step : B : j3.01 : N : 1
+#                 log
+#         ###################'''
+#         #log
+#         #_20191113_134632:caller
+#         tmp_msg = "(step : B : j3.01 : N) down bar"
+#         
+#         #_20191110_142858:caller
+#         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg, lo_Lines_Log)
+#     
+#     #/if cond_1 == True
+#     
+#     '''###################
+#         step : B : j3.02
+#             price_High > ts_SL
+#             ==> SL ?
+#     ###################'''
+#     cond_1 = (e0.price_High >= ts_SL)
+#     
+#     if cond_1 == True : #if cond_1 == True
+#         '''###################
+#             step : B : j3.02 : Y
+#                 price_High >= ts_SL
+#         ###################'''
+#         #_20191117_131246:tmp
+#         #log
+#         #_20191113_134632:caller
+#         tmp_msg = "(step : B : j3.02 : Y) price_High >= ts_SL"
+#         
+#         tmp_msg += "\n"
+#         
+#         tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+#         
+#         
+#         #_20191110_142858:caller
+#         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg, lo_Lines_Log)
+#     
+#     else : #if cond_1 == True
+#         '''###################
+#             step : B : j3.02 : N
+#                 price_High < ts_SL
+#         ###################'''
+#         #log
+#         #log
+#         #_20191113_134632:caller
+#         tmp_msg = "(step : B : j3.02 : N) price_High < ts_SL"
+#         
+#         tmp_msg += "\n"
+#         
+#         tmp_msg = "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+#         
+#         
+#         #_20191110_142858:caller
+#         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#              , tmp_msg, lo_Lines_Log)
+#     
+#     #/if cond_1 == True    
     '''###################
         step : B : j3
             price_Low < ST_price ?
@@ -3753,6 +3938,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg, lo_Lines_Log)
 
+                #_20191118_145250:next
                 #debug
                 #log
                 tmp_msg = "BREAKING LOOP....."
