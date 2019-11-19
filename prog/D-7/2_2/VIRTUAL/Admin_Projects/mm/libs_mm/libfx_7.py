@@ -3107,7 +3107,8 @@ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         step : B : j3
             price_Low < ST_price ?
     ###################'''
-
+    valOf_Identity = ""
+    
     if e0.price_Low < priceOf_Start_Trailing : #if e0.price_Low < priceOf_Start_Trailing
         '''###################
             step : B : j3 : Y
@@ -3115,7 +3116,10 @@ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
                 ==> C1, C2, C3, C6
         ###################'''
         #_20191114_135941:caller
-        _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+#         _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        valOf_Ret = _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        
+        (valOf_Identity) = valOf_Ret
         
     else : #if e0.price_Low < priceOf_Start_Trailing
         '''###################
@@ -3129,6 +3133,24 @@ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         valOf_Ret = _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines)
         
         (valOf_Identity) = valOf_Ret
+
+    #_20191119_131433:tmp
+    '''###################
+        step : B : j3 : N : ops : X
+            return
+    ###################'''
+    '''###################
+        step : B : j3 : N : ops : X.1
+            set vals
+    ###################'''
+    valOf_Ret = (valOf_Identity)
+    
+    '''###################
+        step : B : j3 : N : ops : X.2
+            return
+    ###################'''
+    return valOf_Ret
+    
 
 #/ def _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
@@ -3242,6 +3264,61 @@ def _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     return valOf_Ret
 
 #/ def _loop_J5(Pos, e0, _index, lo_Vals) :
+
+'''###################
+    update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+    at : 2019/11/11 14:04:34
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191119_133203:caller
+#_20191119_133207:head
+#_20191119_133210:wl:in-func
+    
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+
+    '''###################
+        step : C : 2
+            update ==> Pos
+    ###################'''
+    '''###################
+        step : C : 2.1
+            log
+    ###################'''
+    #log
+    tmp_msg = "(step : C : 2) updating ==> Pos..."
+    
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
+    '''###################
+        step : C : 2.2
+            Pos ==> update
+    ###################'''
+    #_20191119_134137:next
+    
+
+#/ def update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
 '''###################
     loop_J2_Y
@@ -3455,11 +3532,18 @@ def loop_J2_Y(\
     '''###################
         step : B : j5 : post : 1
             dispatch
-    ###################'''    
+    ###################'''
+    #_20191119_131013:tmp
+    valOf_Identity = ""
+    
     if judge_J5 == True : #if judge_J5 == True
         '''###################
             step : B : j5 : post : 1 : Y
-                SL
+                SL --> valOf_Identity = "C8"
+        ###################'''    
+        '''###################
+            step : B : j5 : post : 1 : Y : 1
+                log
         ###################'''    
         tmp_msg = "(step : B : j5 : post : 1 : Y) SL"
         tmp_msg += "\n"
@@ -3467,6 +3551,12 @@ def loop_J2_Y(\
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log)
+        
+        '''###################
+            step : B : j5 : post : 1 : Y : 2
+                set : valOf_Identity = "C8"
+        ###################'''    
+        valOf_Identity = "C8"
     
     else : #if judge_J5 == True
         '''###################
@@ -3485,12 +3575,42 @@ def loop_J2_Y(\
                 price_Low < ST_price ?
         ###################'''
         #_20191117_130520:tmp
-        #_20191117_130614:caller
-        _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        (valOf_Identity) = valOf_Ret
         
-    
+        #_20191117_130614:caller
+        valOf_Ret = _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        
+        (valOf_Identity) = valOf_Ret
+        
     #/if judge_J5 == True
 
+    '''###################
+        step : C
+            post identifying
+    ###################'''
+    '''###################
+        step : C : 1
+            log
+    ###################'''
+    tmp_msg = "(step : C : 1) post identifying"
+    tmp_msg += "\n"
+    
+    tmp_msg += "e0.dateTime\t%s\nvalOf_Identity\t%s" % (e0.dateTime, valOf_Identity)
+
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
+    '''###################
+        step : C : 2
+            update ==> Pos
+    ###################'''
+    #_20191119_133203:caller
+    update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+    
+    #_20191117_130520:tmp
+    #_20191117_130614:caller
+#     _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
 
     
 #     '''###################
@@ -3913,6 +4033,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 ###################'''
                 #_20191111_134815:caller
 #                 (flg_Pos) = loop_J2_Y(e0, Pos, i, lo_LO_Lines, lo_BDs_Tmp)
+                #_20191118_142204:caller
                 (flg_Pos) = loop_J2_Y(
                                       e0, Pos, i
                                       , lo_LO_Lines, lo_BDs_Tmp
@@ -3939,6 +4060,43 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                      , tmp_msg, lo_Lines_Log)
 
                 #_20191118_145250:next
+#                 #debug
+#                 #log
+#                 tmp_msg = "BREAKING LOOP....."
+#                  
+#                 msg = "[%s:%d / %s] %s" % \
+#                     (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg
+#                     )
+#      
+#                 #_20191110_142858:caller
+#                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                      , tmp_msg, lo_Lines_Log)
+#                  
+#                 break
+            
+            else : #if res == True (step : B : j2)
+                '''###################
+                    step : B : j2 : N
+                        pattern ==> NOT detected
+                ###################'''
+                '''###################
+                    step : B : j2 : N : 1
+                        log
+                ###################'''
+                #debug
+                #log
+                tmp_msg = "(step : B : j2 : N : 1) pattern ==> NOT detected"
+                
+                msg = "[%s:%d / %s] %s" % \
+                    (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg
+                    )
+    
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+                
                 #debug
                 #log
                 tmp_msg = "BREAKING LOOP....."
@@ -3953,12 +4111,6 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                      , tmp_msg, lo_Lines_Log)
                  
                 break
-            
-            else : #if res == True (step : B : j2)
-                '''###################
-                    step : B : j2 : N
-                        pattern ==> NOT detected
-                ###################'''
             
                 
             
