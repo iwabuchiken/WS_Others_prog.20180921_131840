@@ -3266,6 +3266,88 @@ def _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def _loop_J5(Pos, e0, _index, lo_Vals) :
 
 '''###################
+    update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+    at : 2019/11/20 12:08:49
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191119_133203:caller
+#_20191119_133207:head
+#_20191119_133210:wl:in-func
+    
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+
+    '''###################
+        step : 1
+            update
+                "st_idx" : -1
+                , "st_pr" : 0.0
+                 
+                , "cu_idx" : -1
+                , "cu_pr" : 0.0
+                 
+                #_20190811_122717:tmp
+                # the bar : for later referral
+                , "rf_idx" : -1
+                , "rf_pr" : 0.0
+                 
+                #_20190814_102053:tmp
+                # the bar to exit
+                , "ext_idx" : -1
+                , "ext_pr" : 0.0
+                
+                #_20191112_155744:tmp
+                , "base_idx" : -1
+                , "base_pr" : 0.0
+                 
+                , "trail_starting_idx" : -1
+                , "trail_starting_pr" : 0.0
+                 
+                # values, margins
+                , "val_TP" : 0.0
+                , "val_SL" : 0.0
+                , "val_SPREAD" : 0.0
+                 
+                , "ts_TP" : 0.0
+                , "ts_SL" : 0.0
+    ###################'''
+    Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    Pos['cu_idx'] = _index; Pos['cu_pr'] = e0.price_Close
+    
+    Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low
+    
+    Pos['base_idx'] = _index; Pos['base_pr'] = e0.price_Open
+    
+    Pos['val_TP'] = valOf_TP
+    Pos['val_SL'] = valOf_SL
+    Pos['valOf_SPREAD'] = valOf_SPREAD
+    
+    Pos['ts_TP'] = ts_TP
+    Pos['ts_SL'] = ts_SL
+    
+#/ def update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+
+'''###################
     update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines)
 
     at : 2019/11/11 14:04:34
@@ -3279,7 +3361,11 @@ def _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     @descripton
     
 ###################'''
-def update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+def update_Pos_After_Identifying(
+             Pos, e0, 
+             _index
+             , lo_Vals, lo_LO_Lines
+             , valOf_Identity) :
 #_20191119_133203:caller
 #_20191119_133207:head
 #_20191119_133210:wl:in-func
@@ -3316,7 +3402,62 @@ def update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
             Pos ==> update
     ###################'''
     #_20191119_134137:next
+    if valOf_Identity == "C5" : #if valOf_Identity == "C5"
+        '''###################
+            step : C : 2.2 : 1
+                C5
+        ###################'''
+        '''###################
+            step : C : 2.2 : 1.1
+                log
+        ###################'''
+        #log
+        tmp_msg = "(step : C : 2 : 1.1) valOf_Identity ==> C5"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+
+        '''###################
+            step : C : 2.2 : 2
+                call func
+        ###################'''    
+        update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+        #log
+        tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
+        tmp_msg += "\n"
+        
+        tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
+        tmp_msg += "\n"
+        
+        tmp_msg += "Pos['rf_idx']\t%d\nPos['rf_pr']\t%.03f" % (Pos['rf_idx'], Pos['rf_pr'])
+        tmp_msg += "\n"
+        
+        tmp_msg += "Pos['val_TP']\t%.03f\nPos['ts_TP']\t%.03f" % (Pos['val_TP'], Pos['ts_TP'])
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+    else : #if valOf_Identity == "C5"
+        '''###################
+            step : C : 2.2 : X
+                C5
+        ###################'''
+        '''###################
+            step : C : 2.2 : X.1
+                log
+        ###################'''
+        #log
+        tmp_msg = "(step : C : 2 : X.1) valOf_Identity ==> unknown : %s" % valOf_Identity
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
     
+    #/if valOf_Identity == "C5"
 
 #/ def update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
@@ -3606,7 +3747,7 @@ def loop_J2_Y(\
             update ==> Pos
     ###################'''
     #_20191119_133203:caller
-    update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+    update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines, valOf_Identity)
     
     #_20191117_130520:tmp
     #_20191117_130614:caller
@@ -3982,6 +4123,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             #_20191110_142858:caller
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
+            
+            #_20191120_122218:next
             
             #debug
             #log
