@@ -258,7 +258,7 @@ def tester_T_2__Trailing__V3__Step_B_j5_Y_4(\
             , "ext_pr" : 0.0
             
             # values, margins
-            , "val_TP" : 0.0
+            , "" : 0.0
             , "val_SL" : 0.0
             , "val_SPREAD" : 0.0
             
@@ -502,6 +502,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             lo_Lines_Log.append("\n")
             lo_Lines_Log.append("\n")                   
 
+            #_20191121_143018:ref
             '''###################
                 step : B : j5
                     judge : e0.price_Low --> equal or less than ts_SL ?
@@ -3670,6 +3671,7 @@ def loop_J2_Y(\
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log)
 
+    #_20191121_145626:ref
     '''###################
         step : B : j5 : post : 1
             dispatch
@@ -4104,6 +4106,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             step : B : j1
                 position --> taken ?
         ###################'''
+        #_20191121_143904:tmp
         if flg_Pos == True : #if flg_Pos == True (step : B : j1)
             
             '''###################
@@ -4119,12 +4122,83 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                      (
                         e0.dateTime
                       )
+            tmp_msg += "\n"
+            tmp_msg += "\n"
+            
+            tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f" %\
+                    (
+                     Pos['st_idx'], Pos['st_pr'] )
+                     
+            tmp_msg += "\n"
+            
+            tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f" %\
+                    (
+                     Pos['cu_idx'], Pos['cu_pr'] )
+                     
+            tmp_msg += "\n"
+            
+            tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" %\
+                    (
+                     Pos['ts_TP'], Pos['ts_SL'] )
+                     
+            tmp_msg += "\n"
+            
+            tmp_msg += "loop index\t%d\ne0.price_Open\t%.03f" %\
+                    (
+                     i
+                     , e0.price_Open
+                     
+                     )
             
             #_20191110_142858:caller
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
+
+            '''###################
+                step : B : j1 : Y : 2
+                    prep : vars
+            ###################'''
+            ts_TP = Pos['ts_TP']
+            ts_SL = Pos['ts_SL']
             
             #_20191120_122218:next
+            '''###################
+                step : B : j5-2
+                    SL ?
+            ###################'''
+            #_20191118_141154:tmp
+            #_20191111_134815:caller
+#             valOf_Ret = _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+#             lo_Vals = (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing)
+            lo_Vals = (\
+                       Pos['val_TP'], Pos['val_SL'], Pos['val_SPREAD']
+                       , Pos['ts_TP'], Pos['ts_SL']
+                       , Pos['trail_starting_pr']
+                       )
+
+            valOf_Ret = _loop_J5(Pos, e0, i, lo_Vals, lo_LO_Lines)
+            
+        #     (cond_1, "UNKNOWN") = valOf_Ret
+            (judge_J5, strOf_Bar_Type_Name) = valOf_Ret
+        
+            '''###################
+                step : B : j5-2 : post : 1
+                    log
+            ###################'''
+            tmp_msg = "(step : B : j5-2 : post : 1) _loop_J5 : vals ==> returned"
+            tmp_msg += "\n"
+            tmp_msg += "judge_J5\t%s\nstrOf_Bar_Type_Name\t%s" % (judge_J5, strOf_Bar_Type_Name)
+        
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
+            
+            #_20191111_134815:caller
+            '''###################
+                step : B : j5-2 : post : 1
+                    dispatch
+            ###################'''
+            #_20191121_145803:next
             
             #debug
             #log
@@ -4146,6 +4220,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 step : B : j1 : N
                     position --> NOT taken
             ###################'''
+            #_20191121_143955:tmp
             #_20191107_140017:next
             
             '''###################
