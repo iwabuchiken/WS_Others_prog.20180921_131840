@@ -2726,6 +2726,20 @@ def buildMsg_Loop_J2_Y4(\
                  )
     tmp_msg += "\n"
 
+    tmp_msg += "Pos[\"cu_idx\"]\t%d\t\nPos[\"cu_pr\"]\t%.03f\t" % \
+                (
+                 Pos["cu_idx"]
+                 , Pos["cu_pr"]
+                 )
+    tmp_msg += "\n"
+
+    tmp_msg += "Pos[\"rf_idx\"]\t%d\t\nPos[\"rf_pr\"]\t%.03f\t" % \
+                (
+                 Pos["rf_idx"]
+                 , Pos["rf_pr"]
+                 )
+    tmp_msg += "\n"
+
     # return
     return tmp_msg
     
@@ -2759,7 +2773,7 @@ def _loop_J2_Y_4(Pos, e0, _index, lo_Vals) :
     
     '''###################
         step : B : j2 : Y : 4.1
-            index, price
+            init ==> index, price
     ###################'''
     Pos["st_idx"] = _index
     Pos["st_pr"] = e0.price_Open
@@ -2767,8 +2781,10 @@ def _loop_J2_Y_4(Pos, e0, _index, lo_Vals) :
     Pos["cu_idx"] = _index
     Pos["cu_pr"] = e0.price_Open
     
-    Pos["ref_idx"] = _index
-    Pos["ref_pr"] = e0.price_Open    
+    Pos["rf_idx"] = _index
+    Pos["rf_pr"] = e0.price_Open    
+#     Pos["ref_idx"] = _index
+#     Pos["ref_pr"] = e0.price_Open    
 
     Pos["base_idx"] = _index
     Pos["base_pr"] = e0.price_Open    
@@ -2777,7 +2793,7 @@ def _loop_J2_Y_4(Pos, e0, _index, lo_Vals) :
     
     '''###################
         step : B : j2 : Y : 4.2
-            values
+            init ==> values
     ###################'''
     Pos["val_TP"] = valOf_TP
     Pos["val_SL"] = valOf_SL
@@ -3331,13 +3347,54 @@ def update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
                 , "ts_TP" : 0.0
                 , "ts_SL" : 0.0
     ###################'''
-    Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    if Pos['st_idx'] == -1 : #if Pos['st_idx'] == -1
+        
+        #log
+        tmp_msg = "Pos['st_idx'] ==> -1 ; updating..."
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    #/if Pos['st_idx'] == -1
+
+#     Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
     
     Pos['cu_idx'] = _index; Pos['cu_pr'] = e0.price_Close
     
-    Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low
+    #_20191123_231151:modify
+    if e0.price_Low < Pos['rf_pr'] : #if e0.price_Low < Pos['rf_pr']
+        
+        #log
+        tmp_msg = "e0.price_Low < Pos['rf_pr'] (low = %.03f / rf = %.03f)" \
+                    % (e0.price_Low, Pos['rf_pr'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low        
     
-    Pos['base_idx'] = _index; Pos['base_pr'] = e0.price_Open
+    #/if e0.price_Low < Pos['rf_pr']
+
+#     Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low
+    
+    if Pos['base_idx'] == -1 : #if Pos['base_idx'] == -1
+        
+        #log
+        tmp_msg = "Pos['base_idx'] ==> -1 ; updating..."
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['base_idx'] = _index; Pos['base_pr'] = e0.price_Open
+    
+    #/if Pos['base_idx'] == -1
+
+#     Pos['base_idx'] = _index; Pos['base_pr'] = e0.price_Open
     
     Pos['val_TP'] = valOf_TP
     Pos['val_SL'] = valOf_SL
@@ -3587,16 +3644,6 @@ def loop_J2_Y(\
                       , valOf_TP, valOf_SL, valOf_SPREAD
                       )
     
-#     tmp_msg = "(step : B : j2 : Y : 3)\nvalues ==> set"
-#     tmp_msg += "\n"
-#     
-#     tmp_msg += "e0.price_Open\t%.03f\nts_TP\t%.03f\nts_SL\t%.03f\npriceOf_Start_Trailing\t%.03f" % \
-#                 (
-#                  e0.price_Open
-#                  , ts_TP, ts_SL, priceOf_Start_Trailing
-#                  )
-#     tmp_msg += "\n"
-    
     #_20191110_142858:caller
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log)
@@ -3744,6 +3791,7 @@ def loop_J2_Y(\
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log)
     
+    #_20191123_230423:ref
     '''###################
         step : C : 2
             update ==> Pos
@@ -3968,7 +4016,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     cntOf_Stats_1 = 0
     cntOf_Stats_2 = 0
     
-    
+    #_20191123_233608:next
     #_20191102_123624:tmp
     for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
     
@@ -4045,6 +4093,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             step : B : 1 : 1.1
                 stopper
         ###################'''
+        #_20191123_233710:tmp
         if cntOf_Loop_B > maxOf_Loop_B : #if cntOf_Loop > maxOf_Loop
 #         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
   
@@ -4195,10 +4244,90 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             
             #_20191111_134815:caller
             '''###################
-                step : B : j5-2 : post : 1
+                step : B : j5-2 : post : 2
                     dispatch
             ###################'''
             #_20191121_145803:next
+            #_20191119_131013:tmp
+            valOf_Identity = ""
+            
+            if judge_J5 == True : #if judge_J5 == True
+                '''###################
+                    step : B : j5-2 : post : 2 : Y
+                        SL --> valOf_Identity = "C8"
+                ###################'''    
+                '''###################
+                    step : B : j5-2 : post : 2 : Y : 1
+                        log
+                ###################'''    
+                tmp_msg = "(step : B : j5-2 : post : 2 : Y : 1) SL"
+                tmp_msg += "\n"
+            
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+                
+                '''###################
+                    step : B : j5-2 : post : 2 : Y : 2
+                        set : valOf_Identity = "C8"
+                ###################'''    
+                valOf_Identity = "C8"
+            
+            else : #if judge_J5 == True
+                '''###################
+                    step : B : j5-2 : post : 2 : N
+                        NOT SL
+                ###################'''    
+                '''###################
+                    step : B : j5-2 : post : 2 : N : 1
+                        log
+                ###################'''    
+                tmp_msg = "(step : B : j5-2 : post : 2 : N : 1) NOT SL"
+                tmp_msg += "\n"
+            
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+            
+                '''###################
+                    step : B : j3-2
+                        price_Low < ST_price ?
+                ###################'''
+                #_20191117_130520:tmp
+                (valOf_Identity) = valOf_Ret
+                
+                #_20191117_130614:caller
+#                 valOf_Ret = _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+                valOf_Ret = _loop_J3(Pos, e0, i, lo_Vals, lo_LO_Lines)
+                
+                (valOf_Identity) = valOf_Ret
+                
+            #/if judge_J5 == True
+        
+            '''###################
+                step : C-2
+                    post identifying
+            ###################'''
+            '''###################
+                step : C-2 : 1
+                    log
+            ###################'''
+            tmp_msg = "(step : C-2 : 1) post identifying"
+            tmp_msg += "\n"
+            
+            tmp_msg += "e0.dateTime\t%s\nvalOf_Identity\t%s" % (e0.dateTime, valOf_Identity)
+        
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)            
+            
+            #_20191123_230735:tmp
+            '''###################
+                step : C-2 : 2
+                    update ==> Pos
+            ###################'''
+            #_20191119_133203:caller
+            update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
             
             #debug
             #log
