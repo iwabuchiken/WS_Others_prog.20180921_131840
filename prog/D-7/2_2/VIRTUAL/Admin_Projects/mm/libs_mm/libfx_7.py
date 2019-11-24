@@ -4011,6 +4011,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     num_Accomodate = 2
     
     maxOf_Loop_B = ((lenOf_LO_BDs_Tmp - 1) - lenOf_Detection_Target_Range + num_Index) - num_Accomodate
+    maxOf_Loop = 5
     
     # counter : stats
     cntOf_Stats_1 = 0
@@ -4094,7 +4095,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 stopper
         ###################'''
         #_20191123_233710:tmp
-        if cntOf_Loop_B > maxOf_Loop_B : #if cntOf_Loop > maxOf_Loop
+        if cntOf_Loop_B > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
+#         if cntOf_Loop_B > maxOf_Loop_B : #if cntOf_Loop > maxOf_Loop
 #         if cntOf_Loop > maxOf_Loop : #if cntOf_Loop > maxOf_Loop
   
             tmp_msg = "(B : 1 : 1.1) cntOf_Loop_B > maxOf_Loop_B (==> over the max) : count = %d / max = %d" %\
@@ -4329,20 +4331,20 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             #_20191119_133203:caller
             update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
             
-            #debug
-            #log
-            tmp_msg = "BREAKING LOOP....."
-             
-            msg = "[%s:%d / %s] %s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
- 
-            #_20191110_142858:caller
-            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg, lo_Lines_Log)
-             
-            break
+#             #debug
+#             #log
+#             tmp_msg = "BREAKING LOOP....."
+#              
+#             msg = "[%s:%d / %s] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#  
+#             #_20191110_142858:caller
+#             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg, lo_Lines_Log)
+#              
+#             break
 
         else : #if flg_Pos == True (step : B : j1)
             '''###################
