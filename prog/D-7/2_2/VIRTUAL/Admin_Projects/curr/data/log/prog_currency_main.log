@@ -6009,6 +6009,7 @@
 [20191126_141028 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
 [20191126_141031 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
 
+<<<<<<< HEAD
 [20191127_095222 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
 [20191127_095225 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
 
@@ -6027,4 +6028,45 @@
 
 [20191127_102418 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
 [20191127_102420 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+=======
+>>>>>>> 753eb720f6b12eec6181885176a49fb7937e1326
+[20191127_123040 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_123043 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_123513 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_123516 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_124600 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_124603 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_124932 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_124935 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_131129 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_131132 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_132113 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_132123 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_133225 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_133236 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_133237 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_133249 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_134307 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_134318 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_134748 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_134757 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_134943 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_134953 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_135427 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_135429 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
+
+[20191127_135534 / views.py:21927] tester_BuyUps_SellLows__V2 starting... =================
+[20191127_135544 / views.py:22410] tester_BuyUps_SellLows__V2 ==> done
 

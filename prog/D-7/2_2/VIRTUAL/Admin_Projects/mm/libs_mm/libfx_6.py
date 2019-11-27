@@ -395,8 +395,8 @@ def tester_T_2__Buy_Up__3_Prep_Trailing(lo_BDs_Tmp, conf_Tester_T_2, keysOf_Conf
             "st_idx" : -1
             , "st_pr" : 0.0
              
-            , "cu_idx" : -1
             , "cu_pr" : 0.0
+            , "cu_idx" : -1
              
             #_20190811_122717:tmp
             # the bar : for later referral
@@ -5467,8 +5467,6 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
   
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
-        
-        
     
         '''###################
             step : A : 2 : j1
@@ -5481,6 +5479,15 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                 step : A : 2 : j1 : Y
                     len(lo_Pos_Exits) > 0
             ###################'''
+            #_20191127_133126:tmp
+            #log
+            tmp_msg = "(step : A : 2 : j1 : Y) len(lo_Pos_Exits) > 0 (len = %d)" % (len(lo_Pos_Exits))
+            tmp_msg += "\n"
+            
+            #_20191110_142858:caller
+            libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)            
+            
             '''###################
                 step : A : 2 : j1 : Y : 1
                     get : "st_idx" value
@@ -5497,9 +5504,17 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             tmp_msg = "(step : A : 2 : j1 : Y : 1) "
             tmp_msg += "\n"
               
-            tmp_msg += "Pos['ext_idx']\t%d" \
-                        % (Pos['ext_idx'])
+            tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" \
+                        % (Pos['st_idx'], Pos['st_pr'])
             tmp_msg += "\n"
+              
+            tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" \
+                        % (Pos['ext_idx'], Pos['ext_pr'])
+            tmp_msg += "\n"
+              
+#             tmp_msg += "Pos['ext_idx']\t%d" \
+#                         % (Pos['ext_idx'])
+#             tmp_msg += "\n"
               
             msg = "[%s:%d / %s] %s" % \
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
@@ -5519,6 +5534,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                 step : A : 2 : j1 : Y : 2
                     append
             ###################'''
+            #_20191127_130006:ref
             # deepcopy
             tmp_LO_Pos_Exits_0 = deepcopy(lo_Pos_Exits_0)
             
