@@ -150,6 +150,7 @@ def tester_T_2__Trailing__V3__Step_B_j5_Y_3_1(\
     setOf_Entries = [e0, Pos, strOf_STATUS_POS_EXIT]
 #     setOf_Entries = [e0, Pos, STATUS_POS_EXIT__SL]
     
+    #_20191127_163615:tmp
     lo_Pos_Exits.append(setOf_Entries)
     
 #     tmp_msg = "(step : B : j5 : Y : 3)\n"
@@ -4702,6 +4703,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 # set of values
                 setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
                 
+                #_20191127_163641:tmp
                 # append
                 lo_Pos_Exits.append(setOf_Pos_Exit)
 

@@ -5425,7 +5425,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
 #         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
         #_20191127_102826:next
         #_20191107_135221:caller
-        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
+        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.#_20191102_121417:caller(\
                                    
             lenOf_Detection_Target_Range
             , lenOf_LO_BDs_Tmp
@@ -5447,11 +5447,13 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                                    )
     
         #debug:20191020_131337
+        #_20191127_155149:tmp
         tmp_msg = "(step : A : 2 : 1) loop --> comp"
         tmp_msg += "\n"
           
-        tmp_msg += "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d" \
-                    % (len(lo_BDs_Tmp), cntOf_Loop_B)
+#         tmp_msg += "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d" \
+        tmp_msg += "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d\ncntOf_Loop\t%d" \
+                    % (len(lo_BDs_Tmp), cntOf_Loop_B, cntOf_Loop)
         tmp_msg += "\n"
           
         msg = "[%s:%d / %s] %s" % \
@@ -5472,6 +5474,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             step : A : 2 : j1
                 len(lo_Pos_Exits) > 0 ?
         ###################'''
+        #_20191127_153839:tmp
         num_ST_IDX = -1
         
         if len(lo_Pos_Exits) > 0 : #if len(lo_Pos_Exits) > 0
@@ -5657,24 +5660,24 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                 step : A : 2 : j1 : N : 2
                     break
             ###################'''
-            tmp_msg = "(step : A : 2 : j1 : N : 2) breaking from the loop... : #for-loop-1:20191020_133913"
-              
-            msg = "[%s:%d / %s]\n%s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
-              
-            print()
-            print("%s" % (msg), file=sys.stderr)
-                  
-              
-            #/if SWITCH_DEBUG == True
-      
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            
-            # break
-            break
+#             tmp_msg = "(step : A : 2 : j1 : N : 2) breaking from the loop... : #for-loop-1:20191020_133913"
+#               
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#               
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#                   
+#               
+#             #/if SWITCH_DEBUG == True
+#       
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             
+#             # break
+#             break
             
         
         #/if len(lo_Pos_Exits) > 0
@@ -5702,6 +5705,43 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
   
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
+
+        '''###################
+            step : A : j1.2
+                loop limit ?
+        ###################'''
+        num_loop_limit_buffer = 10
+#         num_loop_limit_buffer = 3
+        
+        cond_1 = (cntOf_Loop >= (lenOf_LO_BDs_Tmp - num_loop_limit_buffer))
+        
+        if cond_1 == True : #if True
+            '''###################
+                step : A : j1.2 : Y
+                    loop limit
+            ###################'''
+            tmp_msg = "(step : A : j1.2 : Y) loop limit ==> reached\ncntOf_Loop\t%d\nlenOf_LO_BDs_Tmp\t%d\nnum_loop_limit_buffer\t%d" %\
+                     (cntOf_Loop, lenOf_LO_BDs_Tmp, num_loop_limit_buffer)
+              
+            msg = "[%s:%d / %s]\n%s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+              
+            print()
+            print("%s" % (msg), file=sys.stderr)
+                  
+              
+            #/if SWITCH_DEBUG == True
+      
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+            
+            # break
+            break
+        
+        #/if True
+
             
     #/for i in range(0, 3):
 
@@ -5941,6 +5981,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
                                    )
     
         #debug:20191020_131337
+        #_20191127_154533:tmp
         tmp_msg = "(step : A : 2 : 1) loop --> comp"
         tmp_msg += "\n"
           
@@ -5968,6 +6009,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3(\
             step : A : 2 : j1
                 len(lo_Pos_Exits) > 0 ?
         ###################'''
+        #_20191127_153903:tmp
         num_ST_IDX = -1
         
         if len(lo_Pos_Exits) > 0 : #if len(lo_Pos_Exits) > 0
