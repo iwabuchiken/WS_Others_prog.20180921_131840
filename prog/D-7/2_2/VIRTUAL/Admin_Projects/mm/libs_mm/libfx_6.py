@@ -5425,7 +5425,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
 #         (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
         #_20191127_102826:next
         #_20191107_135221:caller
-        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.#_20191102_121417:caller(\
+        #_20191128_142437:tmp
+        (cntOf_Loop, lo_Pos_Exits, cntOf_Loop_B) = libfx_7.tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                                    
             lenOf_Detection_Target_Range
             , lenOf_LO_BDs_Tmp
@@ -5541,6 +5542,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             # deepcopy
             tmp_LO_Pos_Exits_0 = deepcopy(lo_Pos_Exits_0)
             
+            #_20191128_143856:next
             lo_LO_Pos_Exits.append(tmp_LO_Pos_Exits_0)
 
             tmp_msg = "(step : A : 2 : j1 : Y : 2) "
@@ -5710,37 +5712,39 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             step : A : j1.2
                 loop limit ?
         ###################'''
-        num_loop_limit_buffer = 10
-#         num_loop_limit_buffer = 3
-        
-        cond_1 = (cntOf_Loop >= (lenOf_LO_BDs_Tmp - num_loop_limit_buffer))
-        
-        if cond_1 == True : #if True
-            '''###################
-                step : A : j1.2 : Y
-                    loop limit
-            ###################'''
-            tmp_msg = "(step : A : j1.2 : Y) loop limit ==> reached\ncntOf_Loop\t%d\nlenOf_LO_BDs_Tmp\t%d\nnum_loop_limit_buffer\t%d" %\
-                     (cntOf_Loop, lenOf_LO_BDs_Tmp, num_loop_limit_buffer)
-              
-            msg = "[%s:%d / %s]\n%s" % \
-                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg
-                )
-              
-            print()
-            print("%s" % (msg), file=sys.stderr)
-                  
-              
-            #/if SWITCH_DEBUG == True
-      
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
-            
-            # break
-            break
-        
-        #/if True
+# #         num_loop_limit_buffer = 15
+#         num_loop_limit_buffer = 10
+# #         num_loop_limit_buffer = 3
+#         
+#         cond_1 = (cntOf_Loop >= num_loop_limit_buffer)
+# #         cond_1 = (cntOf_Loop >= (lenOf_LO_BDs_Tmp - num_loop_limit_buffer))
+#         
+#         if cond_1 == True : #if True
+#             '''###################
+#                 step : A : j1.2 : Y
+#                     loop limit
+#             ###################'''
+#             tmp_msg = "(step : A : j1.2 : Y) loop limit ==> reached\ncntOf_Loop\t%d\nlenOf_LO_BDs_Tmp\t%d\nnum_loop_limit_buffer\t%d" %\
+#                      (cntOf_Loop, lenOf_LO_BDs_Tmp, num_loop_limit_buffer)
+#               
+#             msg = "[%s:%d / %s]\n%s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+#               
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#                   
+#               
+#             #/if SWITCH_DEBUG == True
+#       
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+#             
+#             # break
+#             break
+#         
+#         #/if True
 
             
     #/for i in range(0, 3):
@@ -5810,8 +5814,21 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
         
         Pos = item[1]
         
-        tmp_msg = "Pos['st_idx']\t%d" % Pos['st_idx']
+        #_20191128_142805:tmp
+#         tmp_msg = "Pos['st_idx']\t%d" % Pos['st_idx']
+#         tmp_msg += "\n"
+          
+        tmp_msg = "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f\nlo_BDs_Tmp[Pos['st_idx']].dateTime\t%s" % (Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
         tmp_msg += "\n"
+          
+        tmp_msg += "Pos['cu_idx']\t%d\nPos['cu_pr']\t%.03f\nlo_BDs_Tmp[Pos['cu_idx']].dateTime\t%s" %\
+                    (Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
+        tmp_msg += "\n"
+          
+        tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f\nlo_BDs_Tmp[Pos['ext_idx']].dateTime\t%s" %\
+                    (Pos['ext_idx'], Pos['ext_pr'], lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+        tmp_msg += "\n"
+          
           
         msg = "[%s:%d / %s] %s" % \
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
@@ -10040,6 +10057,7 @@ def tester_T_3(request, _strOf_Op_Name = "BUSL3_No_T_2"):
     if True : #if True
         
         #_20191031_131139:caller
+        #_20191128_142320:tmp
         (cntOf_Loop, lo_Pos_Exits) = tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                                     
             lenOf_Detection_Target_Range
