@@ -67,10 +67,14 @@ STATUS_POS_EXIT__SL = "STATUS_POS_EXIT__SL"
 STATUS_POS_EXIT__TP = "STATUS_POS_EXIT__TP"
 STATUS_POS_EXIT__OTHERS = "STATUS_POS_EXIT__OTHERS"
 
+# switches
 # SWITCH_DEBUG = True
 SWITCH_DEBUG = False
 
 SWITCH_TEST = True
+SWITCH_COMMANDLINE_OUTPUT = False
+
+
 
 DFLT_VAL_TP = 0.05
 DFLT_VAL_SL = 0.02
@@ -2683,22 +2687,25 @@ def msg_C8(Pos, e0, _index) :
     tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
+    tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['rf_idx']\t%d\nPos['rf_pr']\t%.03f" % (Pos['rf_idx'], Pos['rf_pr'])
+    tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f" % (Pos['cu_idx'], Pos['cu_pr'])
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" % (Pos['ext_idx'], Pos['ext_pr'])
+    tmp_msg += "Pos['rf_idx']\t%d\tPos['rf_pr']\t%.03f" % (Pos['rf_idx'], Pos['rf_pr'])
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['val_TP']\t%.03f\nPos['val_SL']\t%.03f" % (Pos['val_TP'], Pos['val_SL'])
+    tmp_msg += "Pos['ext_idx']\t%d\tPos['ext_pr']\t%.03f" % (Pos['ext_idx'], Pos['ext_pr'])
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['val_TP']\t%.03f\tPos['val_SL']\t%.03f" % (Pos['val_TP'], Pos['val_SL'])
     tmp_msg += "\n"
 
-    tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" % (Pos['ts_TP'], Pos['ts_SL'])
+    tmp_msg += "Pos['ts_TP']\t%.03f\tPos['ts_SL']\t%.03f" % (Pos['ts_TP'], Pos['ts_SL'])
     tmp_msg += "\n"
 
-    tmp_msg += "e0.price_High\t%.03f\ne0.price_Close\t%.03f" % (e0.price_High, e0.price_Close)
+    tmp_msg += "e0.price_High\t%.03f\te0.price_Close\t%.03f" % (e0.price_High, e0.price_Close)
     tmp_msg += "\n"
 
     '''###################
@@ -2708,6 +2715,68 @@ def msg_C8(Pos, e0, _index) :
     return tmp_msg
 
 #/ def msg_C8(Pos, e0, _index) :
+    
+'''###################
+    msg_Pos_Vals_ALL(Pos, e0, _index, lo_BDs_Tmp)
+
+    at : 20191129_130801
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def msg_Pos_Vals_ALL(Pos, e0, _index, lo_BDs_Tmp) :
+#_20191129_130806:caller
+#_20191129_130812:head
+#_20191129_130817:wl:in-func
+    
+    '''###################
+        step : 1
+            build text
+    ###################'''    
+    #log
+    tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['st_idx'], Pos['st_pr']
+                               , lo_BDs_Tmp[Pos['st_idx']].dateTime)
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['cu_idx']\t%d\nPos['cu_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['cu_idx'], Pos['cu_pr']
+                               , lo_BDs_Tmp[Pos['cu_idx']].dateTime)
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['rf_idx']\t%d\nPos['rf_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['rf_idx'], Pos['rf_pr']
+                               , lo_BDs_Tmp[Pos['rf_idx']].dateTime)
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['ext_idx'], Pos['ext_pr']
+                               , lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+#     tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" % (Pos['ext_idx'], Pos['ext_pr'])
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['val_TP']\t%.03f\nPos['val_SL']\t%.03f" % (Pos['val_TP'], Pos['val_SL'])
+    tmp_msg += "\n"
+
+    tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" % (Pos['ts_TP'], Pos['ts_SL'])
+    tmp_msg += "\n"
+
+    '''###################
+        step : 2
+            return
+    ###################'''    
+    return tmp_msg
+
+#/ def msg_C5(Pos, e0, _index) :
     
 '''###################
     msg_C5(Pos, e0, _index)
@@ -2723,7 +2792,7 @@ def msg_C8(Pos, e0, _index) :
     @descripton
     
 ###################'''
-def msg_C5(Pos, e0, _index) :
+def msg_C5(Pos, e0, _index, lo_BDs_Tmp) :
 #_20191126_131506:caller
 #_20191126_131511:head
 #_20191126_131514:wl:in-func
@@ -2736,13 +2805,25 @@ def msg_C5(Pos, e0, _index) :
     tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
+    tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['st_idx'], Pos['st_pr']
+                               , lo_BDs_Tmp[Pos['st_idx']].dateTime)
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['rf_idx']\t%d\nPos['rf_pr']\t%.03f" % (Pos['rf_idx'], Pos['rf_pr'])
+    tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['cu_idx'], Pos['cu_pr']
+                               , lo_BDs_Tmp[Pos['cu_idx']].dateTime)
     tmp_msg += "\n"
     
-    tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" % (Pos['ext_idx'], Pos['ext_pr'])
+    tmp_msg += "Pos['rf_idx']\t%d\tPos['rf_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['rf_idx'], Pos['rf_pr']
+                               , lo_BDs_Tmp[Pos['rf_idx']].dateTime)
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['ext_idx']\t%d\tPos['ext_pr']\t%.03f\tdateTime\t%s" % (\
+                               Pos['ext_idx'], Pos['ext_pr']
+                               , lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+#     tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" % (Pos['ext_idx'], Pos['ext_pr'])
     tmp_msg += "\n"
     
     tmp_msg += "Pos['val_TP']\t%.03f\nPos['val_SL']\t%.03f" % (Pos['val_TP'], Pos['val_SL'])
@@ -3082,7 +3163,7 @@ def _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         )
 
     #_20191110_142858:caller
-    flg_commandline_ouput = False
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
     
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
@@ -3702,8 +3783,9 @@ def update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     
 ###################'''
 def update_Pos_After_Identifying(
-             Pos, e0, 
-             _index
+             Pos, e0
+             , _index
+             , lo_BDs_Tmp
              , lo_Vals, lo_LO_Lines
              , valOf_Identity) :
 #_20191119_133203:caller
@@ -3781,7 +3863,8 @@ def update_Pos_After_Identifying(
         update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
         
         # message
-        tmp_msg = msg_C5(Pos, e0, _index)
+        #_20191126_131506:caller
+        tmp_msg = msg_C5(Pos, e0, _index, lo_BDs_Tmp)
         
 #         #log
 #         tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
@@ -3823,20 +3906,8 @@ def update_Pos_After_Identifying(
         update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
         
         # message
-        tmp_msg = msg_C5(Pos, e0, _index)
-        
-#         #log
-#         tmp_msg = "(step : C : 2.2 : 2) call func ==> comp"
-#         tmp_msg += "\n"
-#         
-#         tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
-#         tmp_msg += "\n"
-#         
-#         tmp_msg += "Pos['rf_idx']\t%d\nPos['rf_pr']\t%.03f" % (Pos['rf_idx'], Pos['rf_pr'])
-#         tmp_msg += "\n"
-#         
-#         tmp_msg += "Pos['val_TP']\t%.03f\nPos['ts_TP']\t%.03f" % (Pos['val_TP'], Pos['ts_TP'])
-#         tmp_msg += "\n"
+        #_20191126_131506:caller
+        tmp_msg = msg_C5(Pos, e0, _index, lo_BDs_Tmp)
         
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
@@ -4039,14 +4110,18 @@ def loop_J2_Y(\
 #     priceOf_Start_Trailing = e0.price_Open + cons_fx.BarData.VOLUMEOF_Start_Trailing.value
 
     #log
+    #_20191113_133407:caller
     tmp_msg = buildMsg_Loop_J2_Y3(\
                       e0.price_Open, ts_TP, ts_SL, priceOf_Start_Trailing
                       , valOf_TP, valOf_SL, valOf_SPREAD
                       )
     
     #_20191110_142858:caller
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+    
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg, lo_Lines_Log)
+         , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+#          , tmp_msg, lo_Lines_Log)
     
     '''###################
         step : B : j2 : Y : 4
@@ -4096,8 +4171,10 @@ def loop_J2_Y(\
                       )
     
     #_20191110_142858:caller
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+    
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg, lo_Lines_Log)
+         , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
     
     '''###################
         step : B : j5
@@ -4197,7 +4274,13 @@ def loop_J2_Y(\
             update ==> Pos
     ###################'''
     #_20191119_133203:caller
-    valOf_Update = update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines, valOf_Identity)
+#     valOf_Update = update_Pos_After_Identifying(Pos, e0, _index, lo_Vals, lo_LO_Lines, valOf_Identity)
+    valOf_Update = update_Pos_After_Identifying(\
+                                    Pos
+                                    , e0
+                                    , _index
+                                    , lo_BDs_Tmp
+                                    , lo_Vals, lo_LO_Lines, valOf_Identity)
             #=> valOf_Ret= (True)
             
     #debug
@@ -4507,15 +4590,15 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             tmp_msg += "\n"
             tmp_msg += "\n"
             
-            tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f" %\
+            tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f\tdateTime\t%s" %\
                     (
-                     Pos['st_idx'], Pos['st_pr'] )
+                     Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
                      
             tmp_msg += "\n"
             
-            tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f" %\
+            tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f\tdateTime\t%s" %\
                     (
-                     Pos['cu_idx'], Pos['cu_pr'] )
+                     Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
                      
             tmp_msg += "\n"
             
@@ -4535,13 +4618,24 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             #_20191110_142858:caller
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
-
+            
+            #_20191129_122003:next
+            
             '''###################
                 step : B : j1 : Y : 2
                     prep : vars
             ###################'''
             ts_TP = Pos['ts_TP']
             ts_SL = Pos['ts_SL']
+            
+            '''###################
+                step : B : j1 : Y : 3
+                    update : Pos['cu_XX']
+            ###################'''
+            #_20191129_124855:tmp
+            Pos['cu_idx'] = i
+            Pos['cu_pr'] = e0.price_Close
+            
             
             #_20191120_122218:next
             '''###################
@@ -4569,8 +4663,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             ###################'''
             tmp_msg = "(step : B : j5-2 : post : 1) _loop_J5 : vals ==> returned"
             tmp_msg += "\n"
+            
             tmp_msg += "judge_J5\t%s\nstrOf_Bar_Type_Name\t%s" % (judge_J5, strOf_Bar_Type_Name)
-        
+
+            #_20191110_142858:caller
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)
+
+            #debug
+            #_20191129_125330:caller
+            tmp_msg = msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
+            
+                    
             #_20191110_142858:caller
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg, lo_Lines_Log)
@@ -4634,6 +4738,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 valOf_Ret = _loop_J3(Pos, e0, i, lo_Vals, lo_LO_Lines)
                 
                 (valOf_Identity) = valOf_Ret
+
+                #debug
+                tmp_msg = "(step : B : j3-2) _loop_J3 ==> returned value"
+                tmp_msg += "\n"                
+                
+                #_20191129_125330:caller
+                tmp_msg += msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
+                
+                        
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
                 
             #/if judge_J5 == True
         
@@ -4664,7 +4780,12 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 #             update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
             # return : valOf_Ret= [True]
 #             (valOf_Update) = update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
-            valof_Ret = update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
+#             valof_Ret = update_Pos_After_Identifying(Pos, e0, i, lo_Vals, lo_LO_Lines, valOf_Identity)
+            valof_Ret = update_Pos_After_Identifying(Pos
+                                    , e0
+                                    , i
+                                    , lo_BDs_Tmp
+                                    , lo_Vals, lo_LO_Lines, valOf_Identity)
             
             # unpack
             valOf_Update = valof_Ret[0]
@@ -4686,13 +4807,19 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 #log
                 tmp_msg = "(step : D : j6-2 : Y : 1)\nvalOf_Update ==> false (SL)"
                 tmp_msg += "\n"
-                tmp_msg = "valOf_Identity\t%s" % (valOf_Identity)
+                tmp_msg += "valOf_Identity\t%s" % (valOf_Identity)
                 tmp_msg += "\n"
                 
-                tmp_msg = "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
+                tmp_msg += "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f" % (Pos['st_idx'], Pos['st_pr'])
                 tmp_msg += "\n"
                 
                 tmp_msg += "\n"
+
+                #_20191110_142858:caller
+                flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
                 #_20191127_130848:tmp
 
@@ -4705,7 +4832,24 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 
                 #_20191127_163641:tmp
                 # append
+                #_20191129_114625:debug
                 lo_Pos_Exits.append(setOf_Pos_Exit)
+
+                tmp_msg = "(step : D : j6-2 : Y : 2)\nlo_Pos_Exits.append(setOf_Pos_Exit) ==> comp"
+                tmp_msg += "\n"
+                
+                tmp_msg += "Pos['ext_idx']\t%d\nlo_BDs_Tmp[Pos['ext_idx']].dateTime\t%s\ne0.dateTime\t%s" %\
+                         (Pos['ext_idx'], lo_BDs_Tmp[Pos['ext_idx']].dateTime, e0.dateTime)
+                tmp_msg += "\n"
+                
+                
+                tmp_msg += "\n"
+
+                #_20191110_142858:caller
+                flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
                 '''###################
                     step : D : j6-2 : Y : 3
@@ -4991,21 +5135,23 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     lo_Lines_Log.append("\n")
     
     #debug
-    tmp_msg = "(debug) vars(__builtins__)"
-    
-    msg = "[%s:%d / %s]\n%s" % \
-        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg
-        )
-    
-    print()
-    print("%s" % (msg), file=sys.stderr)
-    #ref https://stackoverflow.com/questions/1592565/determine-if-variable-is-defined-in-python
-    print(vars().keys())
-#     print(vars())    #=> working
-#     print(vars(__builtins__))
-                #     print(vars(__builtins__))
-                # TypeError: vars() argument must have __dict__ attribute
+    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+        
+        tmp_msg = "(debug) vars(__builtins__)"
+        
+        msg = "[%s:%d / %s]\n%s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+        
+        print()
+        print("%s" % (msg), file=sys.stderr)
+        #ref https://stackoverflow.com/questions/1592565/determine-if-variable-is-defined-in-python
+        print(vars().keys())
+    #     print(vars())    #=> working
+    #     print(vars(__builtins__))
+                    #     print(vars(__builtins__))
+                    # TypeError: vars() argument must have __dict__ attribute
     
     
     '''###################
@@ -5053,3 +5199,53 @@ def output_Log(
     
     
 #/ def output_Log(
+
+'''###################
+    msg_Pos_Vals
+
+    at : 2019/11/29 12:53:23
+    
+    orig : 
+    
+    @param : lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
+    
+    @return: 
+    
+    @descripton
+        append to lo_Pos_Exists --> "[e0, Pos, strOf_STATUS_POS_EXIT]"
+        
+###################'''
+def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
+#_20191129_125330:caller
+#_20191129_125337:head
+#_20191129_125341:wl:in-func
+    
+    tmp_msg = "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" %\
+            (
+             Pos['ts_TP'], Pos['ts_SL'] )
+             
+    tmp_msg += "\n"
+    
+    tmp_msg += "loop index\t%d\ne0.price_Open\t%.03f" %\
+            (
+             i
+             , e0.price_Open
+             
+             )
+    
+    # return
+    return tmp_msg
+
+#/ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :

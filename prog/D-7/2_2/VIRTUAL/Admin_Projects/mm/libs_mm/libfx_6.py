@@ -5456,7 +5456,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
         tmp_msg += "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d\ncntOf_Loop\t%d" \
                     % (len(lo_BDs_Tmp), cntOf_Loop_B, cntOf_Loop)
         tmp_msg += "\n"
-          
+        
         msg = "[%s:%d / %s] %s" % \
             (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg
@@ -5464,12 +5464,13 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
           
         print()
         print("%s" % (msg), file=sys.stderr)
-              
           
         #/if SWITCH_DEBUG == True
   
         lo_Lines_Log.append(msg)
         lo_Lines_Log.append("\n")
+
+        #_20191129_132713:next
     
         '''###################
             step : A : 2 : j1
@@ -5486,6 +5487,24 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             #_20191127_133126:tmp
             #log
             tmp_msg = "(step : A : 2 : j1 : Y) len(lo_Pos_Exits) > 0 (len = %d)" % (len(lo_Pos_Exits))
+            tmp_msg += "\n"
+            
+            #_20191110_142858:caller
+            libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log)            
+
+            #_20191129_113120:debug
+            tmp_e0 = lo_Pos_Exits[0][0]
+            tmp_Pos = lo_Pos_Exits[0][1]
+            
+#             tmp_msg = "tmp_Pos['st_idx']\t%.d\tdateTime\t%s\ntmp_Pos['ext_idx']\t%d\tdateTime\t%s" \
+            tmp_msg = "tmp_Pos['st_idx']\t%d\tdateTime\t%s\ntmp_Pos['ext_idx']\t%d\tdateTime\t%s" \
+                        % (tmp_Pos['st_idx'], lo_BDs_Tmp[tmp_Pos['st_idx']].dateTime
+                           , tmp_Pos['ext_idx'], lo_BDs_Tmp[tmp_Pos['ext_idx']].dateTime)
+            tmp_msg += "\n"
+            
+            tmp_msg += "tmp_e0.price_Open\t%.03f\ntmp_e0.price_Close\t%.03f\ntmp_e0.dateTime\t%s" \
+                        % (tmp_e0.price_Open, tmp_e0.price_Close, tmp_e0.dateTime)
             tmp_msg += "\n"
             
             #_20191110_142858:caller
