@@ -3256,10 +3256,9 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
 
     '''###################
-        step : B : j3 : Y
+        step : B : j3 : Y : 1
             price_Low < ST_price
             ==> C1, C2, C3, C6
-            
             log
     ###################'''
     msg = "(step : B : j3 : Y) price_Low < ST_price ==> C1, C2, C3, C6"
@@ -3277,7 +3276,13 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     lo_Lines_Log.append(tmp_msg)
     lo_Lines_Log.append("\n")
     lo_Lines_Log.append("\n")
-
+    
+    '''###################
+        step : B : j3.1
+            price_Low <= ts_TP ? (in case of TP ?)
+    ###################'''
+    #_20191130_135558:next
+    
     '''###################
         step : X
             return
@@ -4267,6 +4272,17 @@ def loop_J2_Y(\
     #_20191110_142858:caller
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log)
+
+    #_20191130_124726:debug
+    #debug
+    #_20191129_125330:caller
+    tmp_msg = msg_Pos_Vals(Pos, e0, _index, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
+    
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
     
     #_20191123_230423:ref
     '''###################
@@ -4284,7 +4300,7 @@ def loop_J2_Y(\
             #=> valOf_Ret= (True)
             
     #debug
-    tmp_msg = "(step : C : 2) (update ==> Pos) ==> comp"
+    tmp_msg = "(step : C : 2) (update ==> Pos) ==> comp (update_Pos_After_Identifying ==> comp)"
     tmp_msg += "\n"
     
 #     tmp_msg += "e0.dateTime\t%s\nvalOf_Identity\t%s" % (e0.dateTime, valOf_Identity)
@@ -4295,6 +4311,16 @@ def loop_J2_Y(\
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
          , tmp_msg, lo_Lines_Log)
             
+    #_20191130_125200:debug
+    #debug
+    #_20191129_125330:caller
+    tmp_msg = msg_Pos_Vals(Pos, e0, _index, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
+    
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
     #_20191117_130520:tmp
     #_20191117_130614:caller
 #     _loop_J3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
@@ -4414,6 +4440,50 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
 #_20191107_135224:head
 #_20191107_135231:wl:in-func
 
+    #debug
+    tmp_msg = "------------------------------------------------------------"
+    tmp_msg += "starting ==> tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell"
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+    
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
+    #_20191130_130118:caller
+    tmp_msg = "\n"
+    tmp_msg += msg_Pos_Vals_Only(Pos, lo_BDs_Tmp)
+    
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+
+    '''###################
+        step : A : 0 : 1
+            prep : Pos ==> reset
+    ###################'''
+    Pos = reset_Pos()
+
+    #debug
+    tmp_msg = "(step : A : 0 : 1) Pos ==> reset ---> comp"
+    tmp_msg += "\n"
+    tmp_msg += "\n"
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
+    #_20191130_130118:caller
+    tmp_msg = "\n"
+    tmp_msg += msg_Pos_Vals_Only(Pos, lo_BDs_Tmp)
+    
+            
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)
+    
     '''###################
         step : A : 2
             for-loop
@@ -4430,7 +4500,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     # counter : stats
     cntOf_Stats_1 = 0
     cntOf_Stats_2 = 0
-    
+
     #_20191123_233608:next
     #_20191102_123624:tmp
     for i in range(lenOf_Detection_Target_Range + num_Index, (lenOf_LO_BDs_Tmp - 1)):
@@ -4874,6 +4944,15 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                      , tmp_msg, lo_Lines_Log)
                 
+                #debug
+                #_20191129_125330:caller
+                tmp_msg = msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
+                        
+                #_20191110_142858:caller
+                output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                     , tmp_msg, lo_Lines_Log)
+                
+                #debug
                 tmp_msg = "breaking from the loop..."
                 
                 msg = "[%s:%d / %s] %s" % \
@@ -5201,6 +5280,67 @@ def output_Log(
 #/ def output_Log(
 
 '''###################
+    msg_Pos_Vals_Only
+
+    at : 2019/11/29 12:53:23
+    
+    orig : 
+    
+    @param : lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
+    
+    @return: 
+    
+    @descripton
+        append to lo_Pos_Exists --> "[e0, Pos, strOf_STATUS_POS_EXIT]"
+        
+###################'''
+def msg_Pos_Vals_Only(Pos, lo_BDs_Tmp) :
+#_20191130_130118:caller
+#_20191130_130121:head
+#_20191130_130125:wl:in-func
+    
+    # start
+    tmp_msg = "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # current
+    tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # refer
+    tmp_msg += "Pos['rf_idx']\t%d\tPos['rf_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['rf_idx'], Pos['rf_pr'], lo_BDs_Tmp[Pos['rf_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # exit
+    tmp_msg += "Pos['ext_idx']\t%d\tPos['ext_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['ext_idx'], Pos['ext_pr'], lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # TP, SL
+    tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" %\
+            (
+             Pos['ts_TP'], Pos['ts_SL'] )
+             
+    tmp_msg += "\n"
+    
+    # return
+    return tmp_msg
+
+#/ def msg_Pos_Vals_Only(Pos) :
+
+
+'''###################
     msg_Pos_Vals
 
     at : 2019/11/29 12:53:23
@@ -5220,18 +5360,35 @@ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
 #_20191129_125337:head
 #_20191129_125341:wl:in-func
     
+    # start
     tmp_msg = "Pos['st_idx']\t%d\tPos['st_pr']\t%.03f\tdateTime\t%s" %\
             (
              Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
              
     tmp_msg += "\n"
     
+    # current
     tmp_msg += "Pos['cu_idx']\t%d\tPos['cu_pr']\t%.03f\tdateTime\t%s" %\
             (
              Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
              
     tmp_msg += "\n"
     
+    # refer
+    tmp_msg += "Pos['rf_idx']\t%d\tPos['rf_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['rf_idx'], Pos['rf_pr'], lo_BDs_Tmp[Pos['rf_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # exit
+    tmp_msg += "Pos['ext_idx']\t%d\tPos['ext_pr']\t%.03f\tdateTime\t%s" %\
+            (
+             Pos['ext_idx'], Pos['ext_pr'], lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+             
+    tmp_msg += "\n"
+    
+    # TP, SL
     tmp_msg += "Pos['ts_TP']\t%.03f\nPos['ts_SL']\t%.03f" %\
             (
              Pos['ts_TP'], Pos['ts_SL'] )
@@ -5249,3 +5406,5 @@ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
     return tmp_msg
 
 #/ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
+
+

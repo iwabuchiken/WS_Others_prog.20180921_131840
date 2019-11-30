@@ -10156,7 +10156,80 @@ def tester_T_3(request, _strOf_Op_Name = "BUSL3_No_T_2"):
 #                 , lo_Pos_Target
                 , cntOf_Loop
                 )
-      
+
+    #debug
+    #_20191022_095819:tmp
+    # lo_Pos_Exits
+                # Pos = {
+                #              
+                #             "st_idx" : -1
+                #             , "st_pr" : 0.0
+                #              
+                #             , "cu_idx" : -1
+                #             , "cu_pr" : 0.0
+                #              
+                #             #_20190811_122717:tmp
+                #             # the bar : for later referral
+                #             , "rf_idx" : -1
+                #             , "rf_pr" : 0.0
+                #              
+                #             #_20190814_102053:tmp
+                #             # the bar to exit
+                #             , "ext_idx" : -1
+                #             , "ext_pr" : 0.0
+                #              
+                #             # values, margins
+                #             , "val_TP" : 0.0
+                #             , "val_SL" : 0.0
+                #             , "val_SPREAD" : 0.0
+                #              
+                #             , "ts_TP" : 0.0
+                #             , "ts_SL" : 0.0
+                #              
+                #             }    
+#     for item in lo_LO_Pos_Exits:
+    for item in lo_Pos_Exits:
+        
+        # lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
+        
+        Pos = item[1]
+        
+        #_20191128_142805:tmp
+#         tmp_msg = "Pos['st_idx']\t%d" % Pos['st_idx']
+#         tmp_msg += "\n"
+          
+        tmp_msg = "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f\nlo_BDs_Tmp[Pos['st_idx']].dateTime\t%s" % (Pos['st_idx'], Pos['st_pr'], lo_BDs_Tmp[Pos['st_idx']].dateTime)
+        tmp_msg += "\n"
+          
+        tmp_msg += "Pos['cu_idx']\t%d\nPos['cu_pr']\t%.03f\nlo_BDs_Tmp[Pos['cu_idx']].dateTime\t%s" %\
+                    (Pos['cu_idx'], Pos['cu_pr'], lo_BDs_Tmp[Pos['cu_idx']].dateTime)
+        tmp_msg += "\n"
+          
+        tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f\nlo_BDs_Tmp[Pos['ext_idx']].dateTime\t%s" %\
+                    (Pos['ext_idx'], Pos['ext_pr'], lo_BDs_Tmp[Pos['ext_idx']].dateTime)
+        tmp_msg += "\n"
+          
+          
+        msg = "[%s:%d / %s] %s" % \
+            (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg
+            )
+        
+#         if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#             
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+            
+        #/if SWITCH_DEBUG == True
+
+        #_20191110_142858:caller
+        libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , msg, lo_Lines_Log)
+
+#         lo_Lines_Log.append(msg)
+#         lo_Lines_Log.append("\n")
+        
+    #/for item in lo_LO_Pos_Exits:    
       
     '''###################
         step : A : 4 : 2
