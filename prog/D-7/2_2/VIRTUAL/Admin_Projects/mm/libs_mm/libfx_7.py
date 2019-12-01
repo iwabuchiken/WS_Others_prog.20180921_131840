@@ -3256,6 +3256,12 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
 
     '''###################
+        step : 0 : 3
+            prep : vars
+    ###################'''
+    valOf_Ret = ""
+    
+    '''###################
         step : B : j3 : Y : 1
             price_Low < ST_price
             ==> C1, C2, C3, C6
@@ -3281,7 +3287,58 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         step : B : j3.1
             price_Low <= ts_TP ? (in case of TP ?)
     ###################'''
+    '''###################
+        step : B : j3.1 : 1
+            set : conditions
+    ###################'''
     #_20191130_135558:next
+    cond_1 = (e0.price_Low <= ts_TP)
+    
+    '''###################
+        step : B : j3.1 : 2
+            judge
+    ###################'''
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : B : j3.1 : Y
+                price_Low <= ts_TP (in case of TP)
+        ###################'''
+        '''###################
+            step : B : j3.1 : Y : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j3.1 : Y : 1) price_Low <= ts_TP (in case of TP)"
+        tmp_msg += "\n"
+        
+        tmp_msg += "e0.price_Low\t%.03f\tts_TP\t%.03f" % (e0.price_Low, ts_TP)
+        tmp_msg += "\n"
+        
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    else : #if cond_1 == True
+        '''###################
+            step : B : j3.1 : N
+                price_Low > ts_TP (NOT in case of TP)
+        ###################'''
+        '''###################
+            step : B : j3.1 : N : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j3.1 : N : 1) price_Low > ts_TP (NOT in case of TP)"
+        tmp_msg += "\n"
+        
+        tmp_msg += "e0.price_Low\t%.03f\tts_TP\t%.03f" % (e0.price_Low, ts_TP)
+        tmp_msg += "\n"
+        
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    #/if cond_1 == True
     
     '''###################
         step : X
@@ -5089,6 +5146,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     step : D : j6
                         SL ? (valOf_Update ==> false)
                 ###################'''
+                #20191201_094215:next
+                
 #                 if valOf_Update == False : #if valOf_Update == False
                 #_20191127_102353:fix
                 if valOf_Update[0] == False : #if valOf_Update == False
