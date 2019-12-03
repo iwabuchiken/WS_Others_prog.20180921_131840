@@ -2110,14 +2110,20 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , tmp_msg
                         )
+                    #debug
+                    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                    
+                    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , msg, lo_Lines_Log, flg_commandline_ouput)
+#                          , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
                      
-                    if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
-                        print()
-                        print("%s" % (msg), file=sys.stderr)
-         
-                    lo_Lines_Log.append(msg)
-                    lo_Lines_Log.append("\n")
-                    lo_Lines_Log.append("\n")
+#                     if SWITCH_DEBUG == True : #if SWITCH_DEBUG == True
+#                         print()
+#                         print("%s" % (msg), file=sys.stderr)
+#          
+#                     lo_Lines_Log.append(msg)
+#                     lo_Lines_Log.append("\n")
+#                     lo_Lines_Log.append("\n")
                     
                     '''###################
                         step : B : j3 : Y : 2
@@ -5508,8 +5514,12 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             tmp_msg += "\n"
             
             #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
             libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg, lo_Lines_Log)            
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+#             libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg, lo_Lines_Log)            
             
             '''###################
                 step : A : 2 : j1 : Y : 1
@@ -5582,15 +5592,22 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
+            #debug
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , msg, lo_Lines_Log, flg_commandline_ouput)
+#                  , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
               
-            print()
-            print("%s" % (msg), file=sys.stderr)
-                  
-              
-            #/if SWITCH_DEBUG == True
-      
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#                   
+#               
+#             #/if SWITCH_DEBUG == True
+#       
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
+
             '''###################
                 step : A : 2 : j1 : Y : 3
                     set : "st_idx" ==> to "num_Index"

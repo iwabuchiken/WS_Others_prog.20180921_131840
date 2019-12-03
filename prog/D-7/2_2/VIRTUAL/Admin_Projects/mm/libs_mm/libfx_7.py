@@ -1158,8 +1158,10 @@ def _loop_J3_4(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
                     % (e0.price_Low, e0.price_Close)
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
         '''###################
             step : B : j3.4 : Y : 2
@@ -1395,6 +1397,8 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
     ###################'''
     #_20191130_135558:next
     cond_1 = (e0.price_Low <= ts_TP)
+    
+    #_20191203_105148:next
     
     '''###################
         step : B : j3.1 : 2
@@ -1633,8 +1637,10 @@ def _loop_J5(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         tmp_msg += "\n"
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
     
         
     
@@ -1982,8 +1988,10 @@ def update_Pos_After_Identifying(
     tmp_msg = "(step : C : 2) updating ==> Pos..."
     
     #_20191110_142858:caller
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+    
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg, lo_Lines_Log)
+         , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
     
     '''###################
         step : C : 2.2
@@ -2076,8 +2084,10 @@ def update_Pos_After_Identifying(
         tmp_msg = msg_C5(Pos, e0, _index, lo_BDs_Tmp)
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
         
     elif valOf_Identity == "C8" : #if valOf_Identity == "C8"
         '''###################
@@ -2130,8 +2140,10 @@ def update_Pos_After_Identifying(
         tmp_msg = "(step : C : 2.2 : X.1) valOf_Identity ==> unknown : %s" % valOf_Identity
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
         '''###################
             step : C : 2.2 : X.2
@@ -2143,8 +2155,10 @@ def update_Pos_After_Identifying(
         tmp_msg = "(step : C : 2.2 : X.2) valOf_Ret[0] = False (%s) " % valOf_Ret[0]
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
     
     #/if valOf_Identity == "C5"
 
@@ -2359,8 +2373,10 @@ def loop_J2_Y(\
     tmp_msg += "judge_J5\t%s\nstrOf_Bar_Type_Name\t%s" % (judge_J5, strOf_Bar_Type_Name)
 
     #_20191110_142858:caller
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+    
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg, lo_Lines_Log)
+         , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
     #_20191121_145626:ref
     '''###################
@@ -2401,8 +2417,10 @@ def loop_J2_Y(\
         tmp_msg += "\n"
     
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
     
         '''###################
             step : B : j3
@@ -2475,8 +2493,10 @@ def loop_J2_Y(\
                  (e0.dateTime, valOf_Identity, valOf_Update)
 
     #_20191110_142858:caller
+    flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+    
     output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-         , tmp_msg, lo_Lines_Log)
+         , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
             
     #_20191130_125200:debug
     #debug
@@ -2914,8 +2934,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             tmp_msg += "judge_J5\t%s\nstrOf_Bar_Type_Name\t%s" % (judge_J5, strOf_Bar_Type_Name)
 
             #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg, lo_Lines_Log)
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
             #debug
             #_20191129_125330:caller
@@ -3119,8 +3141,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     )
     
                 #_20191110_142858:caller
+                flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                     , tmp_msg, lo_Lines_Log)
+                     , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
                 
                 #debug
                 #_20191129_125330:caller
@@ -3266,8 +3290,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 
                         
                 #_20191110_142858:caller
+                flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                     , tmp_msg, lo_Lines_Log)
+                     , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
                 #test
 #                 setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
@@ -3320,14 +3346,29 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                             Pos, e0 ==> append to --> lo_Pos_Exits
                     ###################'''
                     #_20191202_142809:next
-#                     setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
+                    setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
                     
+                    lo_Pos_Exits.append(setOf_Pos_Exit)
+
+                    tmp_msg += "(step : D : j6 : Y : 2) Pos, e0 ==> append to --> lo_Pos_Exits"
+                    
+                    msg = "[%s:%d / %s] %s" % \
+                        (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg
+                        )
+        
+                    #_20191110_142858:caller
+                    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                         , tmp_msg, lo_Lines_Log)
+                    
+                    #debug
+                    msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
                     
                     '''###################
                         step : D : j6 : Y : 3
                             break
                     ###################'''
-                    tmp_msg += "breaking from the loop..."
+                    tmp_msg = "breaking from the loop..."
                     
                     msg = "[%s:%d / %s] %s" % \
                         (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
