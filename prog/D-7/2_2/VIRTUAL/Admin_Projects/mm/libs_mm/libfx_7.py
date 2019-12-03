@@ -1329,6 +1329,195 @@ def _loop_J3_N(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def _loop_J3_N(Pos, e0, _index, lo_Vals) :
 
 '''###################
+    _loop_J3_2(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+    at : 2019/11/14 13:59:32
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def _loop_J3_2(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191203_134425:caller
+#_20191203_134427:head
+#_20191203_134430:wl:in-func
+    
+    '''###################
+        step : 0 : 0
+            prep
+    ###################'''
+    valOf_Ret = ""
+
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+    
+    '''###################
+        step : B : j3.2
+            C1, C2, C6
+            price_Low == price_Close ?
+    ###################'''
+    '''###################
+        step : B : j3.2 : 1
+            conditions
+    ###################'''
+    cond_1 = (e0.price_Low == e0.price_Close)
+    
+    '''###################
+        step : B : j3.2 : 2
+            judge
+    ###################'''
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : B : j3.2 : Y
+                price_Low == price_Close ===> C2
+        ###################'''
+        '''###################
+            step : B : j3.2 : Y : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j3.2 : Y : 1) price_Low == price_Close"
+        tmp_msg += "\n"
+        
+        tmp_msg += "e0.price_Low\t%.03f\ne0.price_Close\t%.03f" % (e0.price_Low, e0.price_Close)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+
+        '''###################
+            step : B : j3.2 : Y : 2
+                set : type
+        ###################'''
+        valOf_Ret = "C2"
+    
+    else : #if cond_1 == True
+        '''###################
+            step : B : j3.2 : N
+                price_Low != price_Close
+        ###################'''
+        '''###################
+            step : B : j3.2 : N : 1
+                log
+        ###################'''
+        tmp_msg = "(step : B : j3.2 : N) price_Low != price_Close"
+        tmp_msg += "\n"
+        
+        tmp_msg += "e0.price_Low\t%.03f\ne0.price_Close\t%.03f" % (e0.price_Low, e0.price_Close)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+
+        '''###################
+            step : B : j3.2 : N : 2
+                set : type
+        ###################'''
+        valOf_Ret = "C1orC6"
+    
+        #_20191203_140140:tmp
+        '''###################
+            step : B : j3.3
+                e0.price_Close > Pos['base_pr'] ?
+        ###################'''
+        '''###################
+            step : B : j3.3 : 1
+                conditions
+        ###################'''
+        cond_1 = (e0.price_Close > Pos['base_pr'])
+        
+        '''###################
+            step : B : j3.3 : 2
+                judge
+        ###################'''
+        if cond_1 == True : #if cond_1 == True
+            '''###################
+                step : B : j3.3 : Y
+                    e0.price_Close > Pos['base_pr']
+            ###################'''
+            '''###################
+                step : B : j3.3 : Y : 1
+                    log
+            ###################'''
+            tmp_msg = "(step : B : j3.3 : Y : 1) e0.price_Close > Pos['base_pr']"
+            tmp_msg += "\n"
+            
+            tmp_msg += "e0.price_Close\t%.03f\nPos['base_pr']\t%.03f" %\
+                         (e0.price_Close, Pos['base_pr'])
+            tmp_msg += "\n"
+            
+            #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+            
+            '''###################
+                step : B : j3.3 : Y : 2
+                    set : val
+            ###################'''
+            valOf_Ret = "C6"
+        
+        else : #if cond_1 == True
+            '''###################
+                step : B : j3.3 : N
+                    e0.price_Close <= Pos['base_pr']
+            ###################'''
+            '''###################
+                step : B : j3.3 : N : 1
+                    log
+            ###################'''
+            tmp_msg = "(step : B : j3.3 : N : 1) e0.price_Close <= Pos['base_pr']"
+            tmp_msg += "\n"
+            
+            tmp_msg += "e0.price_Close\t%.03f\nPos['base_pr']\t%.03f" %\
+                         (e0.price_Close, Pos['base_pr'])
+            tmp_msg += "\n"
+            
+            #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
+            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+            
+            '''###################
+                step : B : j3.3 : N : 2
+                    set : val
+            ###################'''
+            valOf_Ret = "C1"
+        
+        #/if cond_1 == True
+        
+    #/if cond_1 == True
+    
+    '''###################
+        step : B : j3.2 : post : 1
+            return
+    ###################'''
+    return valOf_Ret
+
+#/ def _loop_J3_2(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+    
+'''###################
     _loop_J3_Y(Pos, e0, _index, lo_Vals)
 
     at : 2019/11/14 13:59:32
@@ -1347,6 +1536,12 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #_20191114_135945:head
 #_20191114_135951:wl:in-func
 
+    '''###################
+        step : 0 : 0
+            prep : vars
+    ###################'''
+    valOf_Ret = "UNKNOWN"
+    
     '''###################
         step : 0 : 1
             prep : unpack : lines
@@ -1423,6 +1618,12 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log)
+
+        '''###################
+            step : B : j3.1 : Y : 2
+                set : val : C3 ==> TP
+        ###################'''
+        valOf_Ret = "C3"
     
     else : #if cond_1 == True
         '''###################
@@ -1443,6 +1644,22 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
         #_20191110_142858:caller
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log)
+
+        #_20191203_134148:tmp
+        '''###################
+            step : B : j3.2
+                C1, C6
+                price_Low == price_Close ?
+        ###################'''
+        #_20191203_134425:caller
+        return_Val = _loop_J3_2(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+        '''###################
+            step : B : j3.2 : post-func : 1
+                
+                set : return val
+        ###################'''
+        valOf_Ret = return_Val
     
     #/if cond_1 == True
     
@@ -1455,7 +1672,7 @@ def _loop_J3_Y(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
             set value
     ###################'''
     #temporal
-    valOf_Ret = "UNKNOWN"
+#     valOf_Ret = "UNKNOWN"
 
     '''###################
         step : X : 2
@@ -2123,10 +2340,16 @@ def update_Pos_After_Identifying(
         tmp_msg = msg_C8(Pos, e0, _index)
         
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , tmp_msg, lo_Lines_Log)
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+#     elif valOf_Identity == "C1" : #if valOf_Identity == "C8"
+#         #_20191203_141429:next
         
     else : #if valOf_Identity == "C5"
+        
         '''###################
             step : C : 2.2 : X
                 unknown
@@ -2883,8 +3106,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                      )
             
             #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg, lo_Lines_Log)
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
             
             #_20191129_122003:next
             
@@ -2945,8 +3170,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             
                     
             #_20191110_142858:caller
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
             output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                 , tmp_msg, lo_Lines_Log)
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
             
             #_20191111_134815:caller
             '''###################
@@ -3151,8 +3378,10 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                 tmp_msg = msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp)
                         
                 #_20191110_142858:caller
+                flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+                
                 output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-                     , tmp_msg, lo_Lines_Log)
+                     , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
                 
                 #debug
                 tmp_msg = "breaking from the loop..."

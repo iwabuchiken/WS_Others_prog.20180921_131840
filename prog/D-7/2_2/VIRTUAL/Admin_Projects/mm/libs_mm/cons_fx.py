@@ -1021,3 +1021,18 @@ class Constants(Enum) :
     lenOf_BarDatas__Target = 5
     
 #/ class Constants(Enum) :
+
+
+class Flags(Enum) :
+
+    '''###################
+        debug
+    ###################'''
+    SWITCH_COMMANDLINE_OUTPUT = False
+
+    
+#/ class Flags(Enum) :
+
+
+
+

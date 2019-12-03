@@ -76,6 +76,8 @@ DFLT_VAL_TP = 0.05
 DFLT_VAL_SL = 0.02
 DFLT_VAL_SPREAD = 0.01
 
+SWITCH_COMMANDLINE_OUTPUT = cons_fx.Flags.SWITCH_COMMANDLINE_OUTPUT.value
+
 '''######################################
     funcs        
 ######################################'''
@@ -2113,7 +2115,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     #debug
                     flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
                     
-                    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                    libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                          , msg, lo_Lines_Log, flg_commandline_ouput)
 #                          , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
                      
@@ -5595,7 +5597,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             #debug
             flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
             
-            output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+            libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , msg, lo_Lines_Log, flg_commandline_ouput)
 #                  , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
               
