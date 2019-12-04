@@ -5556,14 +5556,20 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
                  , tmp_msg
                 )
               
-            print()
-            print("%s" % (msg), file=sys.stderr)
-                  
-              
-            #/if SWITCH_DEBUG == True
-      
-            lo_Lines_Log.append(msg)
-            lo_Lines_Log.append("\n")
+            #debug
+            flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+            
+            libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , msg, lo_Lines_Log, flg_commandline_ouput)
+
+#             print()
+#             print("%s" % (msg), file=sys.stderr)
+#                   
+#               
+#             #/if SWITCH_DEBUG == True
+#       
+#             lo_Lines_Log.append(msg)
+#             lo_Lines_Log.append("\n")
             
             '''###################
                 step : A : 2 : j1 : Y : 2
@@ -10242,8 +10248,10 @@ def tester_T_3(request, _strOf_Op_Name = "BUSL3_No_T_2"):
         #/if SWITCH_DEBUG == True
 
         #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
         libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
-             , msg, lo_Lines_Log)
+             , msg, lo_Lines_Log, flg_commandline_ouput)
 
 #         lo_Lines_Log.append(msg)
 #         lo_Lines_Log.append("\n")
