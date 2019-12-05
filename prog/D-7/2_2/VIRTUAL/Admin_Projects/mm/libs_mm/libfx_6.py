@@ -5538,29 +5538,44 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
             #debug
             tmp_msg = "(step : A : 2 : j1 : Y : 1) "
             tmp_msg += "\n"
-              
-            tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" \
-                        % (Pos['st_idx'], Pos['st_pr'])
-            tmp_msg += "\n"
-              
-            tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" \
-                        % (Pos['ext_idx'], Pos['ext_pr'])
-            tmp_msg += "\n"
-              
-#             tmp_msg += "Pos['ext_idx']\t%d" \
-#                         % (Pos['ext_idx'])
-#             tmp_msg += "\n"
-              
+
             msg = "[%s:%d / %s] %s" % \
                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , tmp_msg
                 )
-              
+
             #debug
             flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
             
             libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
                  , msg, lo_Lines_Log, flg_commandline_ouput)
+            
+            # Pos data
+            libfx_7.msg_Pos_Vals_Only(Pos, lo_BDs_Tmp)
+#             libfx_7.msg_Pos_Vals_Only(Pos, lo_BDs_Tmp)
+            
+#             tmp_msg += "Pos['st_idx']\t%d\nPos['st_pr']\t%.03f" \
+#                         % (Pos['st_idx'], Pos['st_pr'])
+#             tmp_msg += "\n"
+#               
+#             tmp_msg += "Pos['ext_idx']\t%d\nPos['ext_pr']\t%.03f" \
+#                         % (Pos['ext_idx'], Pos['ext_pr'])
+#             tmp_msg += "\n"
+              
+#             tmp_msg += "Pos['ext_idx']\t%d" \
+#                         % (Pos['ext_idx'])
+#             tmp_msg += "\n"
+              
+#             msg = "[%s:%d / %s] %s" % \
+#                 (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , tmp_msg
+#                 )
+              
+#             #debug
+#             flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+#             
+#             libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+#                  , msg, lo_Lines_Log, flg_commandline_ouput)
 
 #             print()
 #             print("%s" % (msg), file=sys.stderr)
