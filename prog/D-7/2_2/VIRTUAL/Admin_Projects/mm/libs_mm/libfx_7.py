@@ -4693,4 +4693,53 @@ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
 
 #/ def msg_Pos_Vals(Pos, e0, i, lo_Vals, lo_LO_Lines, lo_BDs_Tmp) :
 
+'''###################
+    get_Bar_Type
 
+    at : 2019/11/29 12:53:23
+    
+    orig : 
+    
+    @param : lo_Pos_Exits ==> [[e0, Pos, strOf_STATUS_POS_EXIT], ...]
+    
+    @return: 
+    
+    @descripton
+        append to lo_Pos_Exists --> "[e0, Pos, strOf_STATUS_POS_EXIT]"
+        
+###################'''
+def get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp) :
+#_20191207_130008:caller
+#_20191207_130011:head
+#_20191207_130015:wl:in-func
+    
+    '''###################
+        step : 0 : 1
+            prep : vars
+    ###################'''
+    valOf_Ret = "UNKNOWN_BARTYPE"
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : log lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    #_20191207_131824:next
+    
+    '''###################
+        step : X : 1
+            return
+    ###################'''
+    '''###################
+        step : X : 1.1
+            return values
+    ###################'''
+    
+    '''###################
+        step : X : 1.2
+            return
+    ###################'''
+    return valOf_Ret
+
+#/ def get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp) :

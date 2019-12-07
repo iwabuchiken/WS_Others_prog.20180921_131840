@@ -8827,7 +8827,9 @@ def _get_BB_Area_Number(bardata, price_Target):
 
 '''###################
     _get_StrOf_BB_Seq(lo_BDs, num_Idx)
-
+    
+    descrip : previous 4 bars : max, min, 1 before
+    
     at : 2019/10/10 12:50:42
     
     @param : 
@@ -8910,7 +8912,7 @@ def tester_T_2__Report_Dat(\
         , valOf_TP, valOf_SL, valOf_SPREAD
         , lo_Pos_Exits, lo_BDs_Tmp
         , cntOf_Loop
-        
+        , lo_LO_Lines
                            ):
 #_20191007_140229:caller
 #_20191007_140232:head
@@ -8929,7 +8931,7 @@ def tester_T_2__Report_Dat(\
         step : 0
             vars
     ###################'''
-    lo_Lines_Dat = []
+    lo_Lines_Dat_tmp = []
     
     cntOf_For_Loop = 0
     
@@ -8953,9 +8955,9 @@ def tester_T_2__Report_Dat(\
     print("%s" % (msg), file=sys.stderr)
     
     # log
-    lo_Lines_Dat.append(msg)
-    lo_Lines_Dat.append("\n")
-    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat_tmp.append(msg)
+    lo_Lines_Dat_tmp.append("\n")
+    lo_Lines_Dat_tmp.append("\n")
 
     '''###################
         step : 2
@@ -9075,6 +9077,7 @@ def tester_T_2__Report_Dat(\
     '''###################
         step : 2.2 : 1 : header
     ###################'''
+    #_20191207_125453:edit
     #_20191009_120504:tmp
 #     tmp_msg += "s.n.\tst_idx\tst_pr\tcu_idx\tcu_pr"
     tmp_msg += "s.n.\tst_idx\tdatetime"
@@ -9094,7 +9097,8 @@ def tester_T_2__Report_Dat(\
     tmp_msg += "e0.price_High\te0.price_Low"
     tmp_msg += "\t"
     
-    tmp_msg += "exit\tdiff.price"
+#     tmp_msg += "exit\tdiff.price"
+    tmp_msg += "exit\tbar_type\tdiff.price"
     tmp_msg += "\t"
     
     tmp_msg += "BB-seq"
@@ -9181,10 +9185,14 @@ def tester_T_2__Report_Dat(\
             # diffOf_Price
             tmp_msg += "\t"
             
-            tmp_msg += "%s\t%.03f" % (
+#             tmp_msg += "%s\t%.03f" % (
+            tmp_msg += "%s\t%s\t%.03f" % (
                       
                     exit
                     
+                    #_20191207_130008:caller
+                    # param : Pos, e0, lo_LO_Lines, lo_BDs_Tmp
+                    , libfx_7.get_Bar_Type(pos, e0, lo_LO_Lines, lo_BDs_Tmp)
                     , diffOf_Price
                     
                              )
@@ -9221,9 +9229,9 @@ def tester_T_2__Report_Dat(\
     #/if SWITCH_DEBUG == True
 
 
-    lo_Lines_Dat.append(msg)
-    lo_Lines_Dat.append("\n")
-    lo_Lines_Dat.append("\n")
+    lo_Lines_Dat_tmp.append(msg)
+    lo_Lines_Dat_tmp.append("\n")
+    lo_Lines_Dat_tmp.append("\n")
     
     
     '''###################
@@ -9235,7 +9243,7 @@ def tester_T_2__Report_Dat(\
             (
 #             libs.get_TimeLabel_Now()
 #             , os.path.basename(libs.thisfile()), libs.linenum()
-            "".join(lo_Lines_Dat)
+            "".join(lo_Lines_Dat_tmp)
             )
     
     libs.write_Log(msg_Log_Dat, dpath_Log, fname_Dat, 0)
@@ -10195,6 +10203,7 @@ def tester_T_3(request, _strOf_Op_Name = "BUSL3_No_T_2"):
                 , lo_Pos_Exits, lo_BDs_Tmp
 #                 , lo_Pos_Target
                 , cntOf_Loop
+                , lo_LO_Lines
                 )
 
     #debug
