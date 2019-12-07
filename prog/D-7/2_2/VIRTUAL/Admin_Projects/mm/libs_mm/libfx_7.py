@@ -2035,6 +2035,164 @@ def update_Pos_After_Identifying_C8(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def update_Pos_After_Identifying_C8(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
 '''###################
+    update_Pos_After_Identifying_C6(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+    
+    C6 ==> 
+    
+    at : 2019/12/07 12:01:20
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def update_Pos_After_Identifying_C6(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191207_120134:caller
+#_20191207_120137:head
+#_20191207_120141:wl:in-func
+    
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+
+    '''###################
+        step : 1
+            update
+                "st_idx" : -1
+                , "st_pr" : 0.0
+                 
+                , "cu_idx" : -1
+                , "cu_pr" : 0.0
+                 
+                #_20190811_122717:tmp
+                # the bar : for later referral
+                , "rf_idx" : -1
+                , "rf_pr" : 0.0
+                 
+                #_20190814_102053:tmp
+                # the bar to exit
+                , "ext_idx" : -1
+                , "ext_pr" : 0.0
+                
+                #_20191112_155744:tmp
+                , "base_idx" : -1
+                , "base_pr" : 0.0
+                 
+                , "trail_starting_idx" : -1
+                , "trail_starting_pr" : 0.0
+                 
+                # values, margins
+                , "val_TP" : 0.0
+                , "val_SL" : 0.0
+                , "val_SPREAD" : 0.0
+                 
+                , "ts_TP" : 0.0
+                , "ts_SL" : 0.0
+    ###################'''
+    
+    '''###################
+        step : 1 : 1
+            start 
+    ###################'''
+    if Pos['st_idx'] == -1 : #if Pos['st_idx'] == -1
+        
+        #log
+        tmp_msg = "Pos['st_idx'] ==> -1 ; updating..."
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    #/if Pos['st_idx'] == -1
+
+#     Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    '''###################
+        step : 1 : 2
+            current
+    ###################'''
+    Pos['cu_idx'] = _index; Pos['cu_pr'] = e0.price_Low
+
+#     '''###################
+#         step : 1 : 2/3
+#             exit
+#     ###################'''
+#     Pos['ext_idx'] = _index; Pos['ext_pr'] = Pos['ts_TP']
+
+    '''###################
+        step : 1 : 3
+            base
+    ###################'''
+    '''###################
+        step : 1 : 3.1
+            base : index
+    ###################'''
+    cond_1 = (Pos['base_idx'] == -1)
+
+    if cond_1 == True : #if Pos['base_idx'] == -1
+        
+        #log
+        tmp_msg = "(step : 1 : 3.1) Pos['base_idx'] ==> -1; updating..."
+        tmp_msg += "\n"
+        
+        tmp_msg += "currently :\nPos['base_idx']\t%d" % (Pos['base_idx'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        # set : index value
+        Pos['base_idx'] = _index
+    
+    #/if Pos['base_idx'] == -1    
+
+#         '''###################
+#             step : 1 : 4
+#                 ts_TP, _SL
+#         ###################'''
+#         ts_TP = Pos['base_pr'] - (valOf_TP + valOf_SPREAD)
+#         ts_SL = Pos['base_pr'] + (valOf_SL + valOf_SPREAD)
+    
+    '''###################
+        step : 1 : 3
+            refer 
+    ###################'''
+    if e0.price_Low < Pos['rf_pr'] : #if e0.price_Low < Pos['rf_pr']
+        
+        #log
+        tmp_msg = "e0.price_Low < Pos['rf_pr'] (low = %.03f / rf = %.03f); updating Pos['rf_XX']" \
+                    % (e0.price_Low, Pos['rf_pr'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low        
+
+        tmp_msg = "Pos['rf_XX'] is now : rf_idx = %d / rf_pr = %.03f" \
+                    % (Pos['rf_idx'], Pos['rf_pr'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+
+#/ def update_Pos_After_Identifying_C6(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+        
+'''###################
     update_Pos_After_Identifying_C3(Pos, e0, _index, lo_Vals, lo_LO_Lines)
     
     C3 ==> TP
@@ -2866,6 +3024,49 @@ def update_Pos_After_Identifying(
 #         (ts_TP, ts_SL) = receive_Ret        
 
         #_20191205_125354:next
+    elif valOf_Identity == "C6" : #if valOf_Identity == "C8"
+        #_20191203_141429:next
+        '''###################
+            step : C : 2.2 : 6
+                C6
+        ###################'''
+        '''###################
+            step : C : 2.2 : 6.1
+                log
+        ###################'''
+        #log
+        tmp_msg = "(step : C : 2.2 : 6.1) valOf_Identity ==> C6"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+
+        '''###################
+            step : C : 2.2 : 6.2
+                call func
+        ###################'''    
+        #_20191204_130543:tmp
+#         update_Pos_After_Identifying_C5(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        #_20191205_120218:caller
+#         receive_Ret = update_Pos_After_Identifying_C6(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+        #_20191207_120134:caller
+        update_Pos_After_Identifying_C6(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+                    #valOf_Ret = (ts_TP, ts_SL)
+
+        '''###################
+            step : C : 2.2 : 6.X
+                return value
+        ###################'''    
+#         valOf_Ret[0] = False
+        
+        #log
+        tmp_msg = "(step : C : 2.2 : 6.X) valOf_Ret[0] = True (%s) " % valOf_Ret[0]
+        
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
 
     else : #if valOf_Identity == "C5"
         
