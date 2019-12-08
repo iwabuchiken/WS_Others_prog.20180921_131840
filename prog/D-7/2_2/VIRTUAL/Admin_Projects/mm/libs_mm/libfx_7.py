@@ -4238,6 +4238,7 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                     pattern ==> detected ?
             ###################'''
             #_20191110_143844:next
+            #_20191208_132632:next
             res = dp_ANY(lo_LO_Lines, lo_BDs_Tmp)
             
             if res == True : #if res == True (step : B : j2)
@@ -4353,7 +4354,27 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
                             Pos, e0 ==> append to --> lo_Pos_Exits
                     ###################'''
                     #_20191202_142809:next
-                    setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
+                    #_20191208_130559:modify
+#                     tmp_StrOf_BarType_Name = get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp)
+                    tmp_StrOf_BarType_Name = get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp)
+                    
+                    if tmp_StrOf_BarType_Name == "C8" : #if tmp_StrOf_BarType_Name == "C8"
+                    
+                        setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
+                    
+                    elif tmp_StrOf_BarType_Name == "C3" : #if tmp_StrOf_BarType_Name == "C8"
+                        
+                        setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__TP]
+                        
+                    else : #if tmp_StrOf_BarType_Name == "C8"
+                    
+                        setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__OTHERS]
+                    
+                    #/if tmp_StrOf_BarType_Name == "C8"
+                    
+                    
+                    
+#                     setOf_Pos_Exit = [e0, Pos, STATUS_POS_EXIT__SL]
                     
                     lo_Pos_Exits.append(setOf_Pos_Exit)
 
