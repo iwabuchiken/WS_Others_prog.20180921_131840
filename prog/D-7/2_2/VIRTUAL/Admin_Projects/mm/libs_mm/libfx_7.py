@@ -4719,6 +4719,10 @@ def get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp) :
     ###################'''
     valOf_Ret = "UNKNOWN_BARTYPE"
     
+    # ref (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals
+    ts_TP = Pos['ts_TP']
+    ts_SL = Pos['ts_SL']
+    
     '''###################
         step : 0 : 2
             prep : unpack : log lines
@@ -4726,7 +4730,105 @@ def get_Bar_Type(Pos, e0, lo_LO_Lines, lo_BDs_Tmp) :
     (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
     
     #_20191207_131824:next
+    #debug
+    tmp_msg = "--------------------------------------"
+    tmp_msg += "\n"
+    tmp_msg += "get_Bar_Type ==> starting..."
+    tmp_msg += "\n"
     
+    #_20191110_142858:caller
+    output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+         , tmp_msg, lo_Lines_Log)    
+    
+    
+
+    
+    
+    '''###################
+        step : 1
+            judge
+    ###################'''
+    '''###################
+        step : 1 : 1
+            C8 ==> SL
+    ###################'''
+    '''###################
+        step : 1 : 1.1
+            condition
+    ###################'''
+    cond_1 = (e0.price_High >= ts_SL)
+    cond_2 = (e0.price_Low <= ts_TP)
+    
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : 1 : 1.2 : Y
+                e0.price_High >= ts_SL
+        ###################'''
+        '''###################
+            step : 1 : 1.2 : Y : 1
+                log
+        ###################'''
+        tmp_msg = "(step : 1 : 1.2 : Y : 1) e0.price_High >= ts_SL ----> SL"
+        tmp_msg += "\n"
+        tmp_msg += "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)    
+
+        '''###################
+            step : 1 : 1.2 : Y : 2
+                set : return val
+        ###################'''
+        valOf_Ret = "C8"
+    
+    elif cond_2 == True : #if cond_1 == True
+        '''###################
+            step : 1 : 2
+                C3
+        ###################'''
+        '''###################
+            step : 1 : 2 : Y
+                e0.price_Low <= ts_TP
+        ###################'''
+        '''###################
+            step : 1 : 2 : Y : 1
+                log
+        ###################'''
+        tmp_msg = "(step : 1 : 2 : Y : 1) e0.price_Low <= ts_TP ----> C3"
+        tmp_msg += "\n"
+        tmp_msg += "e0.price_Low\t%.03f\nts_TP\t%.03f" % (e0.price_Low, ts_TP)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)    
+
+        '''###################
+            step : 1 : 1.2 : Y : 2
+                set : return val
+        ###################'''
+        valOf_Ret = "C3"
+    
+    else : #if cond_1 == True
+        '''###################
+            step : X
+                unknown
+        ###################'''
+        '''###################
+            step : X : 1
+                log
+        ###################'''
+        tmp_msg += "unknown bar type"
+        tmp_msg += "\n"
+        tmp_msg += "e0.price_High\t%.03f\nts_SL\t%.03f" % (e0.price_High, ts_SL)
+        tmp_msg += "\n"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)    
+        
     '''###################
         step : X : 1
             return
