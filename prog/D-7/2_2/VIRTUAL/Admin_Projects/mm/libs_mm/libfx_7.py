@@ -3634,8 +3634,8 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
     
     num_Accomodate = 2
     
-#     maxOf_Loop_B = ((lenOf_LO_BDs_Tmp - 1) - lenOf_Detection_Target_Range + num_Index) - num_Accomodate
-    maxOf_Loop_B = 10
+    maxOf_Loop_B = ((lenOf_LO_BDs_Tmp - 1) - lenOf_Detection_Target_Range + num_Index) - num_Accomodate
+#     maxOf_Loop_B = 10
 #     maxOf_Loop = 5
     
     # counter : stats
