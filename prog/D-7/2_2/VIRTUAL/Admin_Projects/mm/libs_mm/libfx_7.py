@@ -2933,6 +2933,7 @@ def update_Pos_After_Identifying(
         
     elif valOf_Identity == "C1" : #if valOf_Identity == "C8"
         #_20191203_141429:next
+        #_20191210_143520:ref
         '''###################
             step : C : 2.2 : 4
                 C1
@@ -3067,7 +3068,9 @@ def update_Pos_After_Identifying(
         
         output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
              , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
-
+        
+        #_20191210_143318:next
+        
     else : #if valOf_Identity == "C5"
         
         '''###################
