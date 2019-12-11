@@ -1022,6 +1022,20 @@ class Constants(Enum) :
     
 #/ class Constants(Enum) :
 
+class DP(Enum) :
+    
+    '''###################
+        general        
+    ###################'''
+    CONS_NONE = "NONE"
+
+    '''###################
+        dps
+    ###################'''
+    DP_1_TREND_DOWN = "dp_1_trend_down"
+    
+#/ class DP(Enum) :
+
 
 class Flags(Enum) :
 

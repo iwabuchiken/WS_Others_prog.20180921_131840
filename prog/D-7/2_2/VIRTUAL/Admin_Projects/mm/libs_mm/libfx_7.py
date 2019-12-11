@@ -34,7 +34,7 @@ sys.path.append('..')
 # sys.path.append('C:/WORKS_2/WS/WS_Others/free/VX7GLZ_science-research/31_Materials')
 sys.path.append('C:/WORKS_2/WS/WS_Others/prog/D-7/2_2/VIRTUAL/Admin_Projects/mm')
 
-from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_4
+from mm.libs_mm import cons_mm, cons_fx, libs, libfx, libfx_2, libfx_4, libfx_dp_1
 # from mm.libs_mm import libs
 # from mm.libs_mm import libfx
 
@@ -80,6 +80,9 @@ DFLT_VAL_TP = 0.05
 DFLT_VAL_SL = 0.02
 DFLT_VAL_SPREAD = 0.01
 
+NUMOF_TARGET_BARS_FOR_DP = 4
+TYPEOF_DP = cons_fx.DP.DP_1_TREND_DOWN.value
+
 '''######################################
     funcs        
 ######################################'''
@@ -95,15 +98,100 @@ DFLT_VAL_SPREAD = 0.01
     @return: 
     
 ###################'''
-def dp_ANY(lo_LO_Lines, lo_BDs_Tmp):
+# def dp_ANY(lo_LO_Lines, lo_BDs_Tmp):
+def dp_ANY(\
+#                          lo_LO_Lines, lo_BDs_Tmp
+#                          , typeOf_DP
+#                          , i
+#                          , numOf_Target_Bars        
+        _lo_LO_Lines, _lo_BDs_Tmp
+        , _typeOf_DP
+        , _index
+        , _numOf_Target_Bars = 4
+        ):
 #20191103_090905:caller
 #_20191103_090910:head
 #_20191103_090918:wl:in-func
     
     '''###################
-        step : 1
-            prep
+        step : 0 : 1
+            prep : vars
     ###################'''
+    valOf_Ret = False
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = _lo_LO_Lines
+    
+    '''###################
+        step : 1
+            dispatch
+    ###################'''
+#     cons_fx.DP.DP_1_TREND_DOWN.value
+    if _typeOf_DP == cons_fx.DP.DP_1_TREND_DOWN.value : #if _typeOf_DP == cons_fx.DP.DP_1_TREND_DOWN.value
+        '''###################
+            step : 1 : 1
+                dp 1 : trend down
+        ###################'''
+        '''###################
+            step : 1 : 1.1
+                log
+        ###################'''
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        tmp_msg = "dp type ==> %s" \
+                    % (_typeOf_DP)
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+        '''###################
+            step : 1 : 1.2
+                call
+        ###################'''
+#           _lo_LO_Lines, _lo_BDs_Tmp
+#           , _typeOf_DP
+#           , _index_start
+#           , numOf_Target_Bars = 4
+        
+#         valOf_Ret = libfx_dp_1.dp_Trend_Down(\
+        valOf_Ret = libfx_dp_1.dp_1_Trend_Down(\
+                _lo_LO_Lines, _lo_BDs_Tmp
+                , _typeOf_DP
+                , _index
+                , _numOf_Target_Bars
+                )
+    
+    else : #if _typeOf_DP == cons_fx.DP.DP_1_TREND_DOWN.value
+        '''###################
+            step : 1 : X
+                unknown
+        ###################'''
+        '''###################
+            step : 1 : X.1
+                log
+        ###################'''
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        tmp_msg = "dp type ==> UNKNOWN (%s)" \
+                    % (_typeOf_DP)
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+        '''###################
+            step : 1 : 1.2
+                set : default ==> false
+        ###################'''
+        valOf_Ret = False
+    
+    #/if _typeOf_DP == cons_fx.DP.DP_1_TREND_DOWN.value
+    
+    
     
     '''###################
         step : X : 1
@@ -114,7 +202,8 @@ def dp_ANY(lo_LO_Lines, lo_BDs_Tmp):
             return values
     ###################'''
 #     ret = False
-    ret = True
+#     ret = True
+    ret = valOf_Ret
     
     '''###################
         step : X : 1.2
@@ -4486,7 +4575,18 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3__ForLoop_1_Sell(\
             ###################'''
             #_20191110_143844:next
             #_20191208_132632:next
-            res = dp_ANY(lo_LO_Lines, lo_BDs_Tmp)
+            #20191103_090905:caller
+            
+            numOf_Target_Bars = NUMOF_TARGET_BARS_FOR_DP
+            
+            typeOf_DP = TYPEOF_DP
+            
+            res = dp_ANY(\
+                         lo_LO_Lines, lo_BDs_Tmp
+                         , typeOf_DP
+                         , i
+                         , numOf_Target_Bars
+                         )
             
             if res == True : #if res == True (step : B : j2)
                 '''###################
