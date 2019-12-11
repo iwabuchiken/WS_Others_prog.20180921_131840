@@ -2413,6 +2413,214 @@ def update_Pos_After_Identifying_C3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 #/ def update_Pos_After_Identifying_C3(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
 
 '''###################
+    update_Pos_After_Identifying_C2(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+    at : 2019/11/20 12:08:49
+    
+    orig : 
+    
+    @param : 
+    
+    @return: (flg_Pos)
+    
+    @descripton
+    
+###################'''
+def update_Pos_After_Identifying_C2(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+#_20191211_124911:caller
+#_20191211_124914:head
+#_20191211_124917:wl:in-func
+    
+    '''###################
+        step : 0 : 1
+            prep : unpack : lines
+    ###################'''
+    (lo_Lines_Log, lo_Lines_Dat, lo_Lines_Error) = lo_LO_Lines
+    
+    '''###################
+        step : 0 : 2
+            prep : unpack : vals
+    ###################'''
+    (valOf_TP, valOf_SL, valOf_SPREAD, ts_TP, ts_SL, priceOf_Start_Trailing) = lo_Vals    
+
+    '''###################
+        step : 1
+            update
+                "st_idx" : -1
+                , "st_pr" : 0.0
+                 
+                , "cu_idx" : -1
+                , "cu_pr" : 0.0
+                 
+                #_20190811_122717:tmp
+                # the bar : for later referral
+                , "rf_idx" : -1
+                , "rf_pr" : 0.0
+                 
+                #_20190814_102053:tmp
+                # the bar to exit
+                , "ext_idx" : -1
+                , "ext_pr" : 0.0
+                
+                #_20191112_155744:tmp
+                , "base_idx" : -1
+                , "base_pr" : 0.0
+                 
+                , "trail_starting_idx" : -1
+                , "trail_starting_pr" : 0.0
+                 
+                # values, margins
+                , "val_TP" : 0.0
+                , "val_SL" : 0.0
+                , "val_SPREAD" : 0.0
+                 
+                , "ts_TP" : 0.0
+                , "ts_SL" : 0.0
+    ###################'''
+    
+    '''###################
+        step : 1 : 1
+            start 
+    ###################'''
+    if Pos['st_idx'] == -1 : #if Pos['st_idx'] == -1
+        
+        #log
+        tmp_msg = "Pos['st_idx'] ==> -1 ; updating..."
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    #/if Pos['st_idx'] == -1
+
+#     Pos['st_idx'] = _index; Pos['st_pr'] = e0.price_Open
+    
+    '''###################
+        step : 1 : 2
+            current 
+    ###################'''
+    Pos['cu_idx'] = _index; Pos['cu_pr'] = e0.price_Close
+
+    '''###################
+        step : 1 : 3
+            base
+    ###################'''
+    '''###################
+        step : 1 : 3.1
+            base : index
+    ###################'''
+    cond_1 = (Pos['base_idx'] == -1)
+
+    if cond_1 == True : #if Pos['base_idx'] == -1
+        
+        #log
+        tmp_msg = "(step : 1 : 3.1) Pos['base_idx'] ==> -1; updating..."
+        tmp_msg += "\n"
+        
+        tmp_msg += "currently :\nPos['base_idx']\t%d" % (Pos['base_idx'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        # set : index value
+        Pos['base_idx'] = _index
+            
+    '''###################
+        step : 1 : 3.2
+            base : price
+    ###################'''
+    cond_1 = (Pos['rf_pr'] > e0.price_Low)
+            
+#     if Pos['base_idx'] == -1 : #if Pos['base_idx'] == -1
+    if cond_1 == True : #if Pos['base_idx'] == -1
+        
+        #log
+        tmp_msg = "(step : 1 : 3.2) Pos['rf_pr'] > e0.price_Low; updating Pos['base_XX'] ..."
+        tmp_msg += "\n"
+        
+        tmp_msg += "currently :\nPos['base_idx']\t%d\nPos['base_pr']\t%.03f\nPos['rf_pr']\t%.03f\nPos['st_pr']\t%.03f\ne0.price_Low\t%.03f" %\
+                     (
+                      Pos['base_idx']
+                      , Pos['base_pr']
+                      , Pos['rf_pr']
+                      , Pos['st_pr']
+                      , e0.price_Low
+                      )
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['base_pr'] = e0.price_Low + (valOf_SL + valOf_SPREAD)
+    
+    #/if Pos['base_idx'] == -1    
+
+        '''###################
+            step : 1 : 4
+                ts_TP, _SL
+        ###################'''
+        ts_TP = Pos['base_pr'] - (valOf_TP + valOf_SPREAD)
+        ts_SL = Pos['base_pr'] + (valOf_SL + valOf_SPREAD)
+    
+    '''###################
+        step : 1 : 3
+            refer 
+    ###################'''
+    if e0.price_Low < Pos['rf_pr'] : #if e0.price_Low < Pos['rf_pr']
+        
+        #log
+        tmp_msg = "e0.price_Low < Pos['rf_pr'] (low = %.03f / rf = %.03f); updating Pos['rf_XX']" \
+                    % (e0.price_Low, Pos['rf_pr'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+        
+        Pos['rf_idx'] = _index; Pos['rf_pr'] = e0.price_Low        
+
+        tmp_msg = "Pos['rf_XX'] is now : rf_idx = %d / rf_pr = %.03f" \
+                    % (Pos['rf_idx'], Pos['rf_pr'])
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+    
+    #/if e0.price_Low < Pos['rf_pr']
+
+
+
+#     Pos['base_idx'] = _index; Pos['base_pr'] = e0.price_Open
+    
+    Pos['val_TP'] = valOf_TP
+    Pos['val_SL'] = valOf_SL
+    Pos['valOf_SPREAD'] = valOf_SPREAD
+    
+    Pos['ts_TP'] = ts_TP
+    Pos['ts_SL'] = ts_SL
+
+    '''###################
+        step : X
+            return
+    ###################'''
+    '''###################
+        step : X : 1
+            vals
+    ###################'''
+    valOf_Ret = (ts_TP, ts_SL)
+    
+    '''###################
+        step : X : 2
+            return
+    ###################'''
+    return valOf_Ret
+    
+    
+#/ def update_Pos_After_Identifying_C2(Pos, e0, _index, lo_Vals, lo_LO_Lines) :
+
+'''###################
     update_Pos_After_Identifying_C1(Pos, e0, _index, lo_Vals, lo_LO_Lines)
 
     at : 2019/11/20 12:08:49
@@ -3062,6 +3270,42 @@ def update_Pos_After_Identifying(
         
         #log
         tmp_msg = "(step : C : 2.2 : 6.X) valOf_Ret[0] = True (%s) " % valOf_Ret[0]
+        
+        #_20191110_142858:caller
+        flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
+        
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+    elif valOf_Identity == "C2" : #if valOf_Identity == "C8"
+        '''###################
+            step : C : 2.2 : 7
+                C2
+        ###################'''
+        '''###################
+            step : C : 2.2 : 7.1
+                log
+        ###################'''
+        #log
+        tmp_msg = "(step : C : 2.2 : 7.1) valOf_Identity ==> C2"
+        
+        #_20191110_142858:caller
+        output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log)
+
+        '''###################
+            step : C : 2.2 : 7.2
+                call func
+        ###################'''    
+        #_20191211_124911:caller
+        update_Pos_After_Identifying_C2(Pos, e0, _index, lo_Vals, lo_LO_Lines)
+
+        '''###################
+            step : C : 2.2 : 7.X
+                return value
+        ###################'''    
+        #log
+        tmp_msg = "(step : C : 2.2 : 7.X) valOf_Ret[0] = True (%s) " % valOf_Ret[0]
         
         #_20191110_142858:caller
         flg_commandline_ouput = SWITCH_COMMANDLINE_OUTPUT
