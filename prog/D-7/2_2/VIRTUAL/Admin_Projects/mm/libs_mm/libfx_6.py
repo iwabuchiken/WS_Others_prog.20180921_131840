@@ -5716,6 +5716,81 @@ def tester_T_2__Buy_Up__Loop_2_Trailing__V3_Sell(\
       
             lo_Lines_Log.append(msg)
             lo_Lines_Log.append("\n")
+            
+            #_20191212_125206:modify
+            '''###################
+                step : A : 2 : j1 : N : 2
+                (step : A : 2 : j1 : Y : 3) ==> same
+                    set : "st_idx" ==> to "num_Index"
+            ###################'''
+            #_20191110_142858:caller
+            flg_commandline_ouput = cons_fx.Flags.SWITCH_COMMANDLINE_OUTPUT.value
+            
+            tmp_msg = "(step : A : 2 : j1 : N : 2) setting vals to ==> "
+            tmp_msg += "n"
+            tmp_msg += "num_Index\t%d\nnum_ST_IDX\t%d" % (num_Index, num_ST_IDX)
+            
+            libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+            
+            # set : val
+            num_Index = num_Index + 1
+#             num_Index = num_ST_IDX + 1
+            
+            #debug
+            tmp_msg = "(step : A : 2 : j1 : N : 2) "
+            tmp_msg += "\n"
+              
+            tmp_msg = "num_ST_IDX = %d ---> set to num_Index (now %d)" % (num_ST_IDX, num_Index)
+            tmp_msg += "\n"
+              
+            msg = "[%s:%d / %s] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+              
+            print()
+            print("%s" % (msg), file=sys.stderr)
+                  
+              
+            #/if SWITCH_DEBUG == True
+      
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+
+            #debug:20191020_131337
+            tmp_msg = "(DEBUG) "
+            tmp_msg += "\n"
+            
+            tmp_msg = "len(lo_BDs_Tmp)\t%d\ncntOf_Loop_B\t%d\ncntOf_Loop_B + num_Index\t%d" \
+                        % (len(lo_BDs_Tmp), cntOf_Loop_B, cntOf_Loop_B + num_Index)
+            tmp_msg += "\n"
+              
+            msg = "[%s:%d / %s] %s" % \
+                (os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+                 , tmp_msg
+                )
+              
+            print()
+            print("%s" % (msg), file=sys.stderr)
+                  
+              
+            #/if SWITCH_DEBUG == True
+      
+            lo_Lines_Log.append(msg)
+            lo_Lines_Log.append("\n")
+
+
+            '''###################
+                step : A : 2 : j1 : N : 3
+                (step : A : 2 : j1 : Y : 3) ==> same
+                    modify : lenOf_Detection_Target_Range
+            ###################'''
+            if num_Index >= lenOf_Detection_Target_Range : #if num_Index >= lenOf_Detection_Target_Range
+                
+                lenOf_Detection_Target_Range = 0
+            
+            #/if num_Index >= lenOf_Detection_Target_Range
         
             '''###################
                 step : A : 2 : j1 : N : 2

@@ -99,6 +99,7 @@ def dp_1_Trend_Down(\
         step : 0 : 2
             prep : vars
     ###################'''
+    valOf_Ret = False
     
     '''###################
         step : 0 : 3
@@ -115,9 +116,91 @@ def dp_1_Trend_Down(\
     
     '''###################
         step : 1
-            
+            get : 4 bars
     ###################'''
     #_20191211_135133:next
+    e0 = _lo_BDs_Tmp[_index_start - 0]
+    e1 = _lo_BDs_Tmp[_index_start - 1]
+    e2 = _lo_BDs_Tmp[_index_start - 2]
+    e3 = _lo_BDs_Tmp[_index_start - 3]
+    
+    '''###################
+        step : 2
+            get : lower price
+    ###################'''
+    pr_Bottom_0 = e0.price_Close if (e0.price_Close < e0.price_Open) else e0.price_Open
+    pr_Bottom_1 = e1.price_Close if (e1.price_Close < e1.price_Open) else e1.price_Open
+    pr_Bottom_2 = e2.price_Close if (e2.price_Close < e2.price_Open) else e2.price_Open
+    pr_Bottom_3 = e3.price_Close if (e3.price_Close < e3.price_Open) else e3.price_Open
+
+    '''###################
+        step : j1
+            judge : trend down ?
+    ###################'''
+    '''###################
+        step : j1 : 1
+            conditions
+    ###################'''
+    cond_1 = (
+              (pr_Bottom_0 < pr_Bottom_1) \
+            and  (pr_Bottom_1 < pr_Bottom_2) \
+            and (pr_Bottom_2 < pr_Bottom_3)
+            )
+    
+    '''###################
+        step : j1 : 2
+            judge
+    ###################'''
+    if cond_1 == True : #if cond_1 == True
+        '''###################
+            step : j1 : Y
+                judge : trend down
+        ###################'''
+        '''###################
+            step : j1 : Y : 1
+                log
+        ###################'''
+        #_20191110_142858:caller
+        flg_commandline_ouput = cons_fx.Flags.SWITCH_COMMANDLINE_OUTPUT.value
+        
+        tmp_msg = "(step : 3 : 2) judge : trend down ==> True (cond_1 = %s)" % (cond_1)
+        
+        libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+        '''###################
+            step : j1 : Y : 2
+                set : vals
+        ###################'''
+        valOf_Ret = True
+    
+    else : #if cond_1 == True
+        '''###################
+            step : j1 : N
+                judge : trend NOT down
+        ###################'''
+    
+        '''###################
+            step : j1 : N : 1
+                log
+        ###################'''
+        #_20191110_142858:caller
+        flg_commandline_ouput = cons_fx.Flags.SWITCH_COMMANDLINE_OUTPUT.value
+        
+        tmp_msg = "(step : 3 : 2) judge : trend down ==> False (cond_1 = %s)" % (cond_1)
+        
+        libfx_7.output_Log(os.path.basename(libs.thisfile()), libs.linenum(), libs.get_TimeLabel_Now()
+             , tmp_msg, lo_Lines_Log, flg_commandline_ouput)
+        
+        '''###################
+            step : j1 : N : 2
+                set : vals
+        ###################'''
+        valOf_Ret = False
+    
+    #/if cond_1 == True
+    
+    
     
     '''###################
         step : X : 1
@@ -128,7 +211,8 @@ def dp_1_Trend_Down(\
             return values
     ###################'''
 #     ret = False
-    ret = True
+#     ret = True
+    ret = valOf_Ret
     
     '''###################
         step : X : 1.2
