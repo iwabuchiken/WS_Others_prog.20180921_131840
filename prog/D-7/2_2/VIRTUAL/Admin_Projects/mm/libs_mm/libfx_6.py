@@ -8901,6 +8901,78 @@ def _get_BB_Area_Number(bardata, price_Target):
 #/ def _get_BB_Area_Number(bardata, price_Target):
 
 '''###################
+    _get_StrOf_BB_Seq__2_Price_Close(lo_BDs, num_Idx)
+    
+    descrip : previous 4 bars : closing prices
+    
+    at : 2019/12/13 14:32:48
+    
+    @param : 
+    
+    @return: 
+    
+###################'''
+def _get_StrOf_BB_Seq__2_Price_Close(lo_BDs, num_Idx):
+#_20191213_143255:caller
+#_20191213_143257:head
+#_20191213_143302:wl:in-func
+    
+    '''###################
+        step : 1
+            prep : 4 bars
+    ###################'''
+    b1 = lo_BDs[num_Idx - 4]
+    b2 = lo_BDs[num_Idx - 3]
+    b3 = lo_BDs[num_Idx - 2]
+    b4 = lo_BDs[num_Idx - 1]
+    
+    '''###################
+        step : 2
+            get : prices
+    ###################'''
+    n1 = b1.price_Close
+    n2 = b2.price_Close
+    n3 = b3.price_Close
+    n4 = b4.price_Close
+
+    '''###################
+        step : 3
+            conv --> to BB area number
+    ###################'''
+    #_20191010_130303:tmp
+    #_20191010_130400:caller
+    area_1 = _get_BB_Area_Number(b1, n1)
+    area_2 = _get_BB_Area_Number(b2, n2)
+    area_3 = _get_BB_Area_Number(b3, n3)
+    area_4 = _get_BB_Area_Number(b4, n4)
+
+    '''###################
+        step : 4
+            build : sequence string
+    ###################'''
+    strOf_Seq = "%d-%d-%d-%d" % (area_1, area_2, area_3, area_4)
+#     strOf_Seq = "%d-%d-%d" % (area_1, area_2, area_3)
+    
+    '''###################
+        step : X
+            return
+    ###################'''
+    '''###################
+        step : X : 1
+            val
+    ###################'''
+    valOf_Ret = strOf_Seq
+    
+    '''###################
+        step : X : 2
+            return
+    ###################'''
+    return valOf_Ret
+    
+    
+#/ def _get_StrOf_BB_Seq__2_Price_Close(lo_BDs, num_Idx):
+    
+'''###################
     _get_StrOf_BB_Seq(lo_BDs, num_Idx)
     
     descrip : previous 4 bars : max, min, 1 before
@@ -9241,7 +9313,8 @@ def tester_T_2__Report_Dat(\
             
             #_20191106_121450:modify
 #             tmp_msg += "%d\t%.03f" % (
-            tmp_msg += "%d\t%.03f\t%s\t" % (
+#             tmp_msg += "%d\t%.03f\t%s\t" % (
+            tmp_msg += "%d\t%.03f\t%s" % (
                       
                     pos['ext_idx'], pos['ext_pr']
                     , lo_BDs_Tmp[pos['ext_idx']].dateTime
@@ -9277,7 +9350,9 @@ def tester_T_2__Report_Dat(\
             #_20191010_124755:tmp
             #_20191010_125054:caller
 #             strOf_BB_Seq = _get_StrOf_BB_Seq(lo_BDs_Tmp, [pos['st_idx']])
-            strOf_BB_Seq = _get_StrOf_BB_Seq(lo_BDs_Tmp, pos['st_idx'])
+#             strOf_BB_Seq = _get_StrOf_BB_Seq(lo_BDs_Tmp, pos['st_idx'])
+            #_20191213_143255:caller
+            strOf_BB_Seq = _get_StrOf_BB_Seq__2_Price_Close(lo_BDs_Tmp, pos['st_idx'])
             
             tmp_msg += "\t"
             
