@@ -1133,6 +1133,8 @@ def _im_actions__Ops_11_0(action, request): # /im/im_action
     time_Label_Orig = request.GET.get('update', False)
 
     print()
+    
+    #print("[%s:%d] time_Label_Orig => '%s' !!!" % \
     print("[%s:%d] time_Label_Orig => '%s'" % \
         (os.path.basename(libs.thisfile()), libs.linenum()
         , time_Label_Orig
@@ -1146,17 +1148,49 @@ def _im_actions__Ops_11_0(action, request): # /im/im_action
     #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.jpg"
     #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png)"
     #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png|mov)"	#20191007_090951
-    pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png|mov|m4a)"	#20191116_135859
+    #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png|mov|m4a)"	#20191116_135859
+    #pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-(\d\d_\d\d\d|\d\d).(jpg|png|mov|m4a)"	#20200127_104729
+    pat = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d_\d\d\d.(jpg|png|mov|m4a|JPG|PNG|MOV)"	#20200127_105120
+    #pat2 = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d.(jpg|png|mov|m4a|JPG|PNG|MOV)"	#20200201_105142
+    pat2 = "\d\d\d\d-\d\d-\d\d_\d\d-\d\d-\d\d\.(jpg|png|mov|m4a|JPG|PNG|MOV)"	#20200201_110538
 
     comp = re.compile(pat)
+    comp2 = re.compile(pat2)
 
     res = comp.match(time_Label_Orig)
+    res2 = comp2.match(time_Label_Orig)
+    #res2 = comp.match(time_Label_Orig)
 
-    if res == None : #if res == None
+    #if res == None : #if res == None
+    if res == None and res2 == None : #if res == None #20200201_105142
 
-        return "No match"
+        #return "No match"
+        msg = "No match (res = %s / res2 = %s)" % (res, res2)
+
+        print()
+        print("[%s:%d] %s" % \
+             (os.path.basename(libs.thisfile()), libs.linenum()
+             , msg
+             ), file=sys.stderr)
+
+        return msg
 
     #/if res == None
+	
+    #debug
+    if not res == None :
+        print()
+        print("[%s:%d] match : pattern = %s / target = %s" % \
+             (os.path.basename(libs.thisfile()), libs.linenum()
+             , pat, time_Label_Orig
+             ), file=sys.stderr)
+
+    if not res2 == None :
+        print()
+        print("[%s:%d] match : pattern = %s / target = %s" % \
+             (os.path.basename(libs.thisfile()), libs.linenum()
+             , pat2, time_Label_Orig
+             ), file=sys.stderr)
 
     '''###################
         build label        
@@ -1193,7 +1227,9 @@ def _im_actions__Ops_11_0(action, request): # /im/im_action
 #     times2 = times[0].split("-") # 16 39 38
 #     times2 = times.split("-") # 16 39 38
 
-    label_Times = ":".join(times) + "." + tokens2[2] # 16:39:38.000
+    #label_Times = ":".join(times) + "." + tokens2[2] # 16:39:38.000
+    tmp_st = tokens2[2] if (len(tokens2) > 2) else "000"
+    label_Times = ":".join(times) + "." + tmp_st # 16:39:38.000 #20200201_111022
 #     label_Times = ":".join(times2) + "." + times[1]
 
     label_All = "%s %s" % (label_Dates, label_Times)
